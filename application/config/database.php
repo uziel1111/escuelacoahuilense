@@ -71,16 +71,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-	// 'hostname' => '209.99.16.14',
-	// 'username' => 'escue9sx_adminco',
-	// 'password' => 'adminco.123',
-	// 'database' => 'escue9sx_pruebas_coahuila',
-
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => 'root',
-	// 'database' => 'escuelacoahuila_db',
-
 $active_group = 'default';
 $query_builder = TRUE;
 
