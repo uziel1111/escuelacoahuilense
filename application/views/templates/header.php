@@ -19,7 +19,7 @@
 <body>
 
 <div class="card">
-  <div class="row mx-auto" style="width: 400px;">
+  <div class="row mx-auto">
 		<h2>Escuela Coahuilense</h2>
   </div>
 </div>
