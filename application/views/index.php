@@ -28,6 +28,11 @@
         <a href="#">
           <span>Otro...</span>
         </a>
-      </div>      
+      </div>  
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <a href="#">
+          <span>Otro2...</span>
+        </a>
+      </div>     
     </div>
   </div>
