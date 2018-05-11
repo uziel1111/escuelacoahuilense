@@ -23,5 +23,11 @@
           <span>Riesgo de abandono</span>
         </a>
       </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <a href="#">
+          <span>Otro...</span>
+        </a>
+      </div>      
     </div>
   </div>
