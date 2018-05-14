@@ -85,7 +85,7 @@
             <tr>
               <th scope="row">
                 <?= form_open('Info_escuela/get_info', array('class' => '', 'id' => '')) ?>
-                <?= form_hidden('id_cct', $escuela['id_cct']) ?>                
+                <?= form_hidden('id_cct', $escuela['id_cct']) ?>
                 <?= form_submit('mysubmit', $escuela['cve_centro'], array('id' => '', 'class'=>'btn btn-primary btn-block' )); ?>
                 <?= form_close() ?>
 

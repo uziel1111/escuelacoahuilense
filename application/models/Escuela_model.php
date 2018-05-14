@@ -9,8 +9,9 @@ class Escuela_model extends CI_Model
       $this->db->select('es.id_cct, es.cve_centro, tu.turno_registro as turno, es.nombre_centro,ne.nivel_educativo,mu.municipio,lo.localidad,es.domicilio');
       $this->db->from('escuela as es');
       $this->db->join('nivel_educativo as ne', 'ne.cve_nivel_educativo = es.cve_nivel_educativo AND es.cve_tipo_educacion = ne.cve_tipo_educacion');
-      $this->db->join('localidad as lo', 'lo.cve_localidad = es.cve_localidad AND es.cve_region = lo.cve_region AND es.cve_subregion = lo.cve_subregion');
-      $this->db->join('municipio as mu', 'mu.cve_municipio = lo.cve_municipio');
+      // $this->db->join('localidad as lo', 'lo.cve_localidad = es.cve_localidad AND es.cve_region = lo.cve_region AND es.cve_subregion = lo.cve_subregion');
+      $this->db->join('localidad as lo', 'lo.cve_localidad = es.cve_localidad');
+      $this->db->join('municipio as mu', 'mu.cve_municipio = es.cve_municipio');
       $this->db->join('turno_registro as tu', 'tu.cve_turno = es.cve_turno');
       $this->db->join('sostenimiento as so', 'so.cve_sostenimiento = es.cve_sostenimiento');
 
