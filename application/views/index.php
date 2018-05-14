@@ -1,8 +1,7 @@
-<div class="container-fluid">
   <div class="card">
     <div  class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <a href="<?php echo site_url('Estadistica/estad_indi_generales'); ?>">
+          <a href="<?= site_url('Estadistica/estad_indi_generales'); ?>">
             <span>Estadística por estado, municipio y zona</span>
           </a>
         </div>
@@ -28,4 +27,3 @@
       </div>
     </div>
   </div>
-</div>

@@ -83,7 +83,13 @@
         <tbody>
           <?php foreach($arr_escuelas as $escuela) { ?>
             <tr>
-              <th scope="row"><?= $escuela['cve_centro'] ?></th>
+              <th scope="row">
+                <?= form_open('Info_escuela/get_info', array('class' => '', 'id' => '')) ?>
+                <?= form_hidden('id_cct', $escuela['id_cct']) ?>                
+                <?= form_submit('mysubmit', $escuela['cve_centro'], array('id' => '', 'class'=>'btn btn-primary btn-block' )); ?>
+                <?= form_close() ?>
+
+              </th>
               <td><?= utf8_decode($escuela['turno']) ?></td>
               <td><?= utf8_encode($escuela['nombre_centro']) ?></td>
               <td><?= utf8_encode($escuela['nivel_educativo']) ?></td>

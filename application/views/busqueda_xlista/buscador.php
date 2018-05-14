@@ -114,11 +114,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <?= form_dropdown('slc_busquedalista_modal', array(), '', array('id' => 'busquedalista_modal', 'class'=>'form-control')) ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <?= form_open('Info_escuela/get_info', array('class' => '', 'id' => '')) ?>
+        <div class="row">
+          <div class="col-12">
+            <?= form_dropdown('id_cct', array(), '', array('id' => 'id_cct', 'class'=>'form-control')) ?>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <?= form_submit('mysubmit', 'Ver', array('id' => '', 'class'=>'btn btn-info btn-block' )); ?>
+          </div>
+        </div>
+
+        <?= form_close() ?>
+
       </div>
     </div>
   </div>
@@ -196,7 +205,6 @@
         let obj_re = new Regularexpression();
         let valid = obj_re.cct(this.value);
         if(valid){
-          alert("correct!");
           get_xcvecentro(this.value);
         }
     }
@@ -215,14 +223,16 @@
           data: {'cve_centro':cve_centro}
         })
         .done(function( data ) {
+          if(data.total_escuelas==0){
+            alert('sin resultados');
+          }
           if(data.total_escuelas==1){
-            let id_cct = data.result_escuelas[0]['id_cct'];
-            alert('id_cct: '+id_cct);
-            // form(id_cct);
-            $("#busquedalista_modal").modal("show");
+            form(data.id_cct);
           }
           else if (data.total_escuelas>1) {
-            alert('mas de 1 escuela con la cct');
+            $("#id_cct").empty();
+            $("#id_cct").append(data.str_select);
+            $("#busquedalista_modal").modal("show");
           }
         })
         .fail(function(e) {
@@ -236,7 +246,7 @@
     form.id = "form_getinfo";
     form.method = "POST";
     form.target = "_self";
-    form.action = base_url+"usuario/update";
+    form.action = base_url+"Info_escuela/get_info";
 
     var element1 = document.createElement("input");
     element1.type="hidden";
@@ -248,4 +258,7 @@
     form.submit();
   }// form()
 
+  $('#busquedalista_modal').on('hidden.bs.modal', function (e) {
+    $("#id_cct").empty();
+  })
 </script>

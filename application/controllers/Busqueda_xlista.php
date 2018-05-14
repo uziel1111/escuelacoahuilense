@@ -88,9 +88,20 @@ class Busqueda_xlista extends CI_Controller {
 			// echo "<pre>"; print_r($cve_centro); die();
 			$result_escuelas = $this->Escuela_model->get_xcvecentro($cve_centro);
 			$total_escuelas = count($result_escuelas);
+
+			$id_cct = 0;
+			$str_select = '';
+			if(count($result_escuelas)>0){
+				foreach ($result_escuelas as $key => $value) {
+					$id_cct = $value['id_cct'];
+					$str_select .= "<option value={$value['id_cct']}>{$value['cve_centro']} - {$value['turno']}</option>";
+				}
+			}
 			// echo "<pre>"; print_r($result_escuelas); die();
-			$response = array('result_escuelas' => $result_escuelas,
-												'total_escuelas' => $total_escuelas
+			$response = array(
+												'total_escuelas' => $total_escuelas,
+												'str_select' => $str_select,
+												'id_cct' => $id_cct
 												);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
