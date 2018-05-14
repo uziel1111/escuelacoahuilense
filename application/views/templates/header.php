@@ -18,6 +18,7 @@
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
+  <script src="<?= base_url('assets/js/general.js') ?>"></script>
   <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
 
   <script>
@@ -26,6 +27,7 @@
       base_url = base_url + "index.php/";
     });
   </script>
+
 </head>
 
 <body>

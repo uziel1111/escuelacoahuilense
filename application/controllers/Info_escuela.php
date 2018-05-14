@@ -11,7 +11,8 @@ class Info_escuela extends CI_Controller {
 
 		function get_info()
 		{
-
+			$id_cct = $this->input->post('id_cct');
+			echo $id_cct; die();
 		}
 
 
