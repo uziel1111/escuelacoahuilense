@@ -13,7 +13,7 @@ class Estadistica extends CI_Controller {
 		public function estad_indi_generales()
 		{
 			$data = array();
-			Utilerias::pagina_basica($this, "estadistica/estad_indi_generales", $data);
+			Utilerias::pagina_basica($this, "estadistica/estadi_e_indi_gen", $data);
 		}
 
 
