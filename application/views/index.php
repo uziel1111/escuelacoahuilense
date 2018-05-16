@@ -27,7 +27,3 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-=======
-</div>
->>>>>>> a5ccfbc0394e533477d6f3d04afeb0ece835c012
