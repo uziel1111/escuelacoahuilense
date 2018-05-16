@@ -43,4 +43,13 @@ class Escuela_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_xcentro()
 
+    function get_marcadores(){
+      $this->db->select('latitud, longitud, nombre_centro');
+      $query = $this->db->get('escuela')->result_array();
+      // echo "";
+      // print_r($query);
+      // die();
+      return $query;
+    }
+
 }// Municipio_model
