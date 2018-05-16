@@ -5,14 +5,54 @@ class Estadistica extends CI_Controller {
 
 		function __construct() {
 			parent::__construct();
-			$this->load->library('Utilerias');
 			$this->load->helper('form');
-			// $this->load->model('Estadistica_model');
+			$this->load->library('Utilerias');
+			$this->load->model('Municipio_model');
+			$this->load->model('Nivel_model');
+			$this->load->model('Sostenimiento_model');
+			$this->load->model('Estadistica_e_indicadores_xcct_model');
+
 		}
 
 		public function estad_indi_generales()
 		{
-			$data = array();
+			$result_municipios = $this->Municipio_model->all();
+			$arr_municipios = array();
+			$arr_sostenimientos = array();
+			$arr_niveles = array();
+
+			if(count($result_municipios)==0){
+				$data['arr_municipios'] = array(	'0' => 'Error recuperando los municipios' );
+			}else{
+				$arr_municipios['0'] = 'TODOS';
+				foreach ($result_municipios as $row){
+					 $arr_municipios[$row['id_municipio']] = $row['municipio'];
+				}
+			}
+
+			$result_niveles = $this->Nivel_model->all();
+			if(count($result_niveles)==0){
+				$data['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
+			}else{
+				$arr_niveles['0'] = 'TODOS';
+				foreach ($result_niveles as $row){
+					 $arr_niveles[$row['id_nivel']] = $row['nivel'];
+				}
+			}
+
+			$result_sostenimientos = $this->Sostenimiento_model->all();
+			if(count($result_sostenimientos)==0){
+				$data['arr_sostenimientos'] = array(	'0' => 'Error recuperando los sostenimientos' );
+			}else{
+				$arr_sostenimientos['0'] = 'TODOS';
+				foreach ($result_sostenimientos as $row){
+					 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
+				}
+			}
+
+			$data['arr_municipios'] = $arr_municipios;
+			$data['arr_niveles'] = $arr_niveles;
+			$data['arr_sostenimientos'] =$arr_sostenimientos;
 			Utilerias::pagina_basica($this, "estadistica/estadi_e_indi_gen", $data);
 		}
 

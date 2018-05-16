@@ -6,9 +6,7 @@ class Municipio_model extends CI_Model
     }
 
     function all(){
-            $this->db->select('cve_municipio,municipio');
-            $this->db->from('municipio');
-            return  $this->db->get()->result_array();
+            return  $this->db->get('municipio')->result_array();
     }// all()
 
 }// Municipio_model
