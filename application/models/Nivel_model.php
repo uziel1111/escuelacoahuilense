@@ -18,6 +18,6 @@ class Nivel_model extends CI_Model
       $this->db->where('mu.id_municipio', $id_municipio);
       $this->db->group_by('ni.id_nivel');
       return  $this->db->get()->result_array();
-    }// get_xcvemunicipio()
+    }// get_xidmunicipio()
 
 }// Nivel_model
