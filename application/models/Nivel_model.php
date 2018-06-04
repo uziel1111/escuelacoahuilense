@@ -6,21 +6,18 @@ class Nivel_model extends CI_Model
     }
 
     function all(){
-      $this->db->select('ne.cve_nivel_educativo, ne.nivel_educativo');
-      $this->db->from('nivel_educativo as ne');
-      $this->db->group_by(" ne.cve_nivel_educativo");
-      return  $this->db->get()->result_array();
+      return  $this->db->get('nivel')->result_array();
     }// all()
 
-    function get_xcvemunicipio($cve_municipio){
-      $this->db->select('ne.cve_nivel_educativo, ne.nivel_educativo');
-      $this->db->from('nivel_educativo as ne');
-      $this->db->join('escuela as es', 'es.cve_nivel_educativo = ne.cve_nivel_educativo');
-      $this->db->join('localidad as lo', 'lo.cve_localidad = es.cve_localidad');
-      $this->db->join('municipio as mu', 'mu.cve_municipio = lo.cve_municipio');
-      $this->db->where('mu.cve_municipio', $cve_municipio);
-      $this->db->group_by(" ne.cve_nivel_educativo");
+
+    function get_xidmunicipio($id_municipio){
+      $this->db->select('ni.id_nivel, ni.nivel');
+      $this->db->from('nivel as ni');
+      $this->db->join('escuela as es', 'ni.id_nivel = es.id_nivel');
+      $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+      $this->db->where('mu.id_municipio', $id_municipio);
+      $this->db->group_by('ni.id_nivel');
       return  $this->db->get()->result_array();
-    }// get_xcvemunicipio()
+    }// get_xidmunicipio()
 
 }// Nivel_model
