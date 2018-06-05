@@ -24,8 +24,12 @@ Mapa.prototype.get_Niveles =function(){
 		type: 'POST',
 		dataType: 'JSON',
 		data: {idmunicipio: $("#slt_municipio_mapa").val()},
+		beforeSend: function(xhr) {
+	        obj_loader.show();
+	    },
 	})
 	.done(function(result) {
+		obj_loader.hide();
 		$("#slt_nivel_mapa").empty();
 		$("#slt_nivel_mapa").append(result.options);
 	})
@@ -44,8 +48,12 @@ Mapa.prototype.get_Sostenimientos =function(){
 		type: 'POST',
 		dataType: 'JSON',
 		data: {idnivel: $("#slt_nivel_mapa").val()},
+		beforeSend: function(xhr) {
+	        obj_loader.show();
+	    },
 	})
 	.done(function(result) {
+		obj_loader.hide();
 		$("#slt_sostenimiento_mapa").empty();
 		$("#slt_sostenimiento_mapa").append(result.options);
 	})
@@ -64,8 +72,12 @@ Mapa.prototype.get_marcadores_filtro =function(){
 		dataType: 'JSON',
 		data: {idmunicipio: $("#slt_municipio_mapa").val(), idnivel: $("#slt_nivel_mapa").val(), 
 		idsostenimiento: $("#slt_sostenimiento_mapa").val(), nombre: $("#txt_nombre_escuela").val(), cct: $("#txt_cct_escuela").val()},
+		beforeSend: function(xhr) {
+	        obj_loader.show();
+	    },
 	})
 	.done(function(result) {
+		obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -120,8 +132,12 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 		type: 'POST',
 		dataType: 'json',
 		data: "idcct="+idcct,
+		beforeSend: function(xhr) {
+	        obj_loader.show();
+	    },
 	})
 	.done(function(result) {
+		obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -140,8 +156,12 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 		type: 'POST',
 		dataType: 'json',
 		data: "idcct="+idcct,
+		beforeSend: function(xhr) {
+	        obj_loader.show();
+	    },
 	})
 	.done(function(result) {
+		obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})

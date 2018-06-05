@@ -172,5 +172,4 @@ class Mapa extends CI_Controller {
 			}
 		}
 
-
 }// Mapa

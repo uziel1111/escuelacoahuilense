@@ -9,6 +9,7 @@
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
 
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
   <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
@@ -19,7 +20,7 @@
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
   <script src="<?= base_url('assets/js/general.js') ?>"></script>
-  <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
+  <script src="<?= base_url('assets/js/loader.js') ?>"></script>
 
   <script>
     $(function() {
@@ -35,5 +36,12 @@
 <div class="card">
   <div class="row mx-auto">
 		<h2>Escuela Coahuilense</h2>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="idmodalloader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+  <center><div class="loader"></div></center>
   </div>
 </div>
