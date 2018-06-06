@@ -75,7 +75,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-1" href="<?= site_url('Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
-                                          <a class="dropdown-item hcolor-1" href="#">Por escuela</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= site_url('Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
                                         </div>

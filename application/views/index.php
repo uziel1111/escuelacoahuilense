@@ -21,7 +21,7 @@
                                                 <!-- List group -->
                                                 <ul class="list-group">
                                                     <li class="list-group-item"><a href="<?= site_url('Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por estado, municipio y zona</a></li>
-                                                    <li class="list-group-item"><a href="#"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
+                                                    <li class="list-group-item"><a href="<?= site_url('Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
                                                     <li class="list-group-item"><a href="<?= site_url('Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Localiza tu escuela</a></li>
                                                     <li class="list-group-item"><a href="#"><span class="color-1"><i class="material-icons">face</i></span> Riesgo de abandono</a></li>                                                          
                                                 </ul>
