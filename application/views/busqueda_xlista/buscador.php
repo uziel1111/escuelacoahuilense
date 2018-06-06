@@ -8,7 +8,8 @@
     font-weight: bold;
   }
 </style>
-<div class="container">
+
+<div class="container" style="padding-top:75px;">
   <div class="card mt-3 mb-3">
     <div class="card-header">Estadísticas por escuela</div>
     <div class="card-body">
