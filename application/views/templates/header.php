@@ -27,6 +27,10 @@
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
 
+  <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
+
+
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">  
   
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
@@ -37,7 +41,12 @@
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
+
   <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
+
+  <script src="<?= base_url('assets/js/general.js') ?>"></script>
+  <script src="<?= base_url('assets/js/loader.js') ?>"></script>
+
 
   <script>
     $(function() {
@@ -55,7 +64,7 @@
                 <div class="container">
                     <div class="header-content d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="#top" class="smooth"><img src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="smooth"><img src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
                         </div>
                         <div class="right-bar d-flex align-items-center">
                             <nav class="d-flex align-items-center">
@@ -65,9 +74,9 @@
                                           Estadística e Indicadores
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
-                                          <a class="dropdown-item hcolor-1" href="#">Por estado, municipio y zona</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
                                           <a class="dropdown-item hcolor-1" href="#">Por escuela</a>
-                                          <a class="dropdown-item hcolor-1" href="#">Localiza tu escuela</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
                                         </div>
                                     </li>
@@ -108,3 +117,10 @@
             </div>
         </header>
         <!-- End Header Area -->
+
+<!-- Modal -->
+<div class="modal fade" id="idmodalloader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+  <center><div class="loader"></div></center>
+  </div>
+</div>
