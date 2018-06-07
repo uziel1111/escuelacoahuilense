@@ -13,6 +13,8 @@ class Estadistica extends CI_Controller {
 			$this->load->model('Modalidad_model');
 			$this->load->model('Ciclo_model');
 			$this->load->model('Estadistica_e_indicadores_xcct_model');
+			$this->load->model('Planeaxmuni_model');
+			$this->load->model('Inegixmuni_model');
 			$this->load->model('Supervision_model');
 			$this->load->model('Subsostenimiento_model');
 
@@ -80,7 +82,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_ciclo)==0){
 				$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
 			}else{
-				$arr_ciclo['0'] = 'ELIGE UN CLICO ESCOLAR';
+				// $arr_ciclo['0'] = 'ELIGE UN CLICO ESCOLAR';
 				foreach ($result_ciclo as $row){
 					 $arr_ciclo[$row['id_ciclo']] = $row['ciclo'];
 				}
@@ -247,6 +249,10 @@ class Estadistica extends CI_Controller {
 			$data["srt_tab_alumnos"] = $this->tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_pdocentes"] = $this->tabla_pdocentes($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_infraestructura"] = $this->tabla_infraestructura($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
+			$data["srt_tab_planea"] = $this->tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
+			$data["srt_tab_rezag_inegi"] = $this->tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
+			$data["srt_tab_analf_inegi"] = $this->tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
+
 			Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data);
 
 		}//xest_muni_x
@@ -463,6 +469,158 @@ class Estadistica extends CI_Controller {
 
 			return $str_html_alumn;
 		}//tabla_infraestructura()
+
+		function tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
+			 $result_planea = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $id_ciclo);
+			 // echo "<pre>";print_r($result_planea); die();
+			$str_html_alumn='<table class="table">
+							<thead>
+				<tr>
+					<th rowspan="2">Resultados de la prueba Planea</th>
+					<th colspan="5">Lenguaje y Comunicación</th>
+				<th colspan="5">Matemáticas</th>
+				</tr>
+				<tr>
+					<th colspan="4">Nivel de dominio</th>
+					<th rowspan="2">Porcentaje de alumnos con nivel bueno y excelente</th>
+					<th colspan="4">Nivel de dominio</th>
+					<th rowspan="2">Porcentaje de alumnos con nivel bueno y excelente</th>
+				</tr>
+				<tr>
+					<th>Nivel</th>
+					<th><center>I<br><sub>Insuficiente</sub></center></th>
+					<th><center>II<br><sub>Elemental</sub></center></th>
+					<th><center>III<br><sub>Bueno</sub></center></th>
+					<th><center>IV<br><sub>Excelente</sub></center></th>
+					<th><center>I<br><sub>Insuficiente</sub></center></th>
+					<th><center>II<br><sub>Elemental</sub></center></th>
+					<th><center>III<br><sub>Bueno</sub></center></th>
+					<th><center>IV<br><sub>Excelente</sub></center></th>
+				</tr>
+				</thead>
+				<tbody>';
+
+			foreach ($result_planea as $row){
+
+				$str_html_alumn.='
+				<tr>
+				<td>'.$row['nivel'].'</td>
+				<td>'.($row['lyc_i']).'%</td><td>'.($row['lyc_ii']).'%</td><td>'.($row['lyc_iii']).'%</td><td>'.($row['lyc_iv']).'%</td>
+				<td>'.($row['lyc_iii']+$row['lyc_iv']).'%</td>
+				<td>'.($row['mat_i']).'%</td><td>'.($row['mat_ii']).'%</td><td>'.($row['mat_iii']).'%</td><td>'.($row['mat_iv']).'%</td>
+				<td>'.($row['mat_iii']+$row['mat_iv']).'%</td>
+				</tr>';
+			}
+			$str_html_alumn.='</tbody>
+								</table>
+
+								<div class="pie_tabla">
+												<div id="fuentes_pie">Fuente: SEP Federal.</div>
+								</div>';
+
+			return $str_html_alumn;
+		}//tabla_planea()
+
+
+
+
+		function tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
+			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
+			 // echo "<pre>";print_r($result_rezinegi); die();
+			$str_html_rezinegi='<table class="table">
+          <tr>
+            <th>Inasistencia escolar</th>
+            <th colspan="3">Población total</th>
+            <th colspan="3">Población que no asiste a la escuela</th>
+          </tr>
+          <tr>
+            <th id="rezago">Población por grupo de edad que no asiste a la escuela</th>
+            <th>Hombres</th>
+            <th>Mujeres</th>
+            <th>Total</th>
+            <th>Hombres</th>
+            <th>Mujeres</th>
+            <th>Total</th>
+          </tr>
+	</thead>
+	<tbody>';
+
+			foreach ($result_rezinegi as $row){
+
+				$str_html_rezinegi.='
+				<tr>
+				<td>3 a 5 años</td>
+				<td>'.number_format($row['P_3A5_M']).'</td><td>'.number_format($row['P_3A5_F']).'</td><td>'.number_format($row['P_3A5_M']+$row['P_3A5_F']).'</td>
+				<td>'.number_format($row['P3A5_NOA_M']).'</td><td>'.number_format($row['P3A5_NOA_F']).'</td><td>'.number_format($row['P3A5_NOA_M']+$row['P3A5_NOA_F']).'</td>
+				</tr>
+				<tr>
+				<td>6 a 11 años</td>
+				<td>'.number_format($row['P_6A11_M']).'</td><td>'.number_format($row['P_6A11_F']).'</td><td>'.number_format($row['P_6A11_M']+$row['P_6A11_F']).'</td>
+				<td>'.number_format($row['P6A11_NOAM']).'</td><td>'.number_format($row['P6A11_NOAF']).'</td><td>'.number_format($row['P6A11_NOAM']+$row['P6A11_NOAF']).'</td>
+				</tr>
+				<tr>
+				<td>12 a 14 años</td>
+				<td>'.number_format($row['P_12A14_M']).'</td><td>'.number_format($row['P_12A14_F']).'</td><td>'.number_format($row['P_12A14_M']+$row['P_12A14_F']).'</td>
+				<td>'.number_format($row['P12A14NOAM']).'</td><td>'.number_format($row['P12A14NOAF']).'</td><td>'.number_format($row['P12A14NOAM']+$row['P12A14NOAF']).'</td>
+				</tr>
+				<tr>
+				<td>15 a 17 años</td>
+				<td>'.number_format($row['P_15A17_M']).'</td><td>'.number_format($row['P_15A17_F']).'</td><td>'.number_format($row['P_15A17_M']+$row['P_15A17_F']).'</td>
+				<td>'.number_format($row['P_15A17_M']-$row['P15A17A_M']).'</td><td>'.number_format($row['P_15A17_F']-$row['P15A17A_F']).'</td><td>'.number_format(($row['P_15A17_M']+$row['P_15A17_F'])-$row['P15A17A_M']+$row['P15A17A_F']).'</td>
+				</tr>
+				<tr>
+				<td>18 a 22 años</td>
+				<td>'.number_format($row['P_18A24_M']).'</td><td>'.number_format($row['P_18A24_F']).'</td><td>'.number_format($row['P_18A24_M']+$row['P_18A24_F']).'</td>
+				<td>'.number_format($row['P_18A24_M']-$row['P18A24A_M']).'</td><td>'.number_format($row['P_18A24_F']-$row['P18A24A_F']).'</td><td>'.number_format(($row['P_18A24_M']+$row['P_18A24_F'])-$row['P18A24A_M']+$row['P18A24A_F']).'</td>
+				</tr>
+				';
+			}
+			$str_html_rezinegi.='</tbody>
+								</table>
+
+								<div class="pie_tabla">
+												<div id="fuentes_pie">Fuente:  INEGI. 2010</div>
+								</div>';
+
+			return $str_html_rezinegi;
+		}//tabla_rezinegi()
+
+
+		function tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
+			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
+			 // echo "<pre>";print_r($result_analfinegi); die();
+			$str_html_analfinegi='<table class="table">
+					 <tr>
+						 <th></th>
+						 <th>Hombres</th>
+						 <th>Mujeres</th>
+						 <th>Total</th>
+					 </tr>
+	</thead>
+	<tbody>';
+
+			foreach ($result_analfinegi as $row){
+
+				$str_html_analfinegi.='
+				<tr>
+				<td>Población de 8 a 14 años que no saben leer ni escribir</td>
+				<td>'.number_format($row['P8A14AN_M']).'</td><td>'.number_format($row['P8A14AN_F']).'</td><td>'.number_format($row['P8A14AN_M']+$row['P8A14AN_F']).'</td>
+				</tr>
+				<tr>
+				<td>Población mayor de 15 años que no saben leer ni escribir</td>
+				<td>'.number_format($row['P15YM_AN_M']).'</td><td>'.number_format($row['P15YM_AN_F']).'</td><td>'.number_format($row['P15YM_AN_M']+$row['P15YM_AN_F']).'</td>
+				</tr>
+				';
+			}
+			$str_html_analfinegi.='</tbody>
+								</table>
+
+								<div class="pie_tabla">
+												<div id="fuentes_pie">Fuente:  INEGI. 2010</div>
+								</div>';
+
+			return $str_html_analfinegi;
+		}//tabla_analfinegi()
 
 		public function xest_zona_x(){
 			$id_nivel_z = $this->input->post('slc_xest_nivel_zona');

@@ -6,7 +6,10 @@ class Ciclo_model extends CI_Model
     }
 
     function all(){
-            return  $this->db->get('ciclo')->result_array();
+      $this->db->select('id_ciclo, ciclo');
+      $this->db->from('ciclo');
+      $this->db->order_by("id_ciclo", "desc");
+            return  $this->db->get()->result_array();
     }// all()
 
     function getciclo_xidmun_idnivel_xsost_idmod($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad){

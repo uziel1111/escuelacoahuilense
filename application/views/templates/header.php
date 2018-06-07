@@ -17,12 +17,12 @@
     <title>Escuela Coahuilense</title>
     <!-- Site Title -->
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">        
+    <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <!-- CSS -->
-               
+
     <link rel="stylesheet" href="<?= base_url('assets/css/linearicons.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
@@ -31,8 +31,8 @@
   <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
 
 
-    <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">  
-  
+    <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
+
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
   <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -74,9 +74,9 @@
                                           Estadística e Indicadores
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
-                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
-                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Busqueda_xlista/index'); ?>">Por escuela</a>
-                                          <a class="dropdown-item hcolor-1" href="<?= site_url('Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('Busqueda_xlista/index'); ?>">Por escuela</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
                                         </div>
                                     </li>
@@ -89,7 +89,7 @@
                                           <a class="dropdown-item hcolor-2" href="#">Supervisión</a>
                                           <a class="dropdown-item hcolor-2" href="#">Escuelas particulares</a>
                                         </div>
-                                    </li>                                    
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Información

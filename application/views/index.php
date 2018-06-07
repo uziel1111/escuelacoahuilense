@@ -14,16 +14,16 @@
                                             <div class="card-header bgcolor-1">
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-chart-bars"></span>
-                                                </div>  
+                                                </div>
                                               <h3 class="card-title color-6">Estadística e Indicadores</h3>
                                             </div>
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
-                                                    <li class="list-group-item"><a href="<?= site_url('Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por estado, municipio y zona</a></li>
-                                                    <li class="list-group-item"><a href="<?= site_url('Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
-                                                    <li class="list-group-item"><a href="<?= site_url('Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Localiza tu escuela</a></li>
-                                                    <li class="list-group-item"><a href="#"><span class="color-1"><i class="material-icons">face</i></span> Riesgo de abandono</a></li>                                                          
+                                                    <li class="list-group-item"><a href="<?= base_url('Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por estado, municipio y zona</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Localiza tu escuela</a></li>
+                                                    <li class="list-group-item"><a href="#"><span class="color-1"><i class="material-icons">face</i></span> Riesgo de abandono</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -33,7 +33,7 @@
                                             <div class="card-header bgcolor-2">
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-briefcase"></span>
-                                                </div>  
+                                                </div>
                                               <h3 class="card-title color-6">Servicios</h3>
                                             </div>
                                             <div class="card-body">
@@ -42,7 +42,7 @@
                                                   <li class="list-group-item"><a href="#"><span class="color-2"><i class="material-icons">face</i></span> Servicio profesional docente</a></li>
                                                   <li class="list-group-item"><a href="#"><span class="color-2"><i class="material-icons">face</i></span> Supervisión</a></li>
                                                   <li class="list-group-item"><a href="#"><span class="color-2"><i class="material-icons">face</i></span> Escuelas particulares</a></li>
-                                                  <li class="list-group-item"><a href="#"></a></li>                                                          
+                                                  <li class="list-group-item"><a href="#"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                             <div class="card-header bgcolor-3">
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-bubble"></span>
-                                                </div>  
+                                                </div>
                                               <h3 class="card-title color-6">Información</h3>
                                             </div>
                                             <div class="card-body">
@@ -61,7 +61,7 @@
                                                   <li class="list-group-item"><a href="#"><span class="color-3"><i class="material-icons">face</i></span> Guía para padres de familia</a></li>
                                                   <li class="list-group-item"><a href="#"></a></li>
                                                   <li class="list-group-item"><a href="#"></a></li>
-                                                  <li class="list-group-item"><a href="#"></a></li>                                                          
+                                                  <li class="list-group-item"><a href="#"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                             <div class="card-header bgcolor-4">
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-layers"></span>
-                                                </div>  
+                                                </div>
                                               <h3 class="card-title color-6">Otros</h3>
                                             </div>
                                             <div class="card-body">
@@ -80,7 +80,7 @@
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Modelo Coahuilense</a></li>
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Calendario escolar</a></li>
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Sismo</a></li>
-                                                  <li class="list-group-item"><a href="#"></a></li>                                                          
+                                                  <li class="list-group-item"><a href="#"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -104,4 +104,3 @@
                 </div>
         </section>
   <!-- End Coa Box Txt -->
-
