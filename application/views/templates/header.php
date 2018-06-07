@@ -59,7 +59,7 @@
                 <div class="container">
                     <div class="header-content d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="#top" class="smooth"><img src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+                            <a href="<?= base_url(); ?>" class="smooth"><img src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
                         </div>
                         <div class="right-bar d-flex align-items-center">
                             <nav class="d-flex align-items-center">
