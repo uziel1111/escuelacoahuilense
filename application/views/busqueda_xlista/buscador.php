@@ -247,7 +247,7 @@
     form.id = "form_getinfo";
     form.method = "POST";
     form.target = "_self";
-    form.action = base_url+"Info_escuela/get_info";
+    form.action = base_url+"Escuela/get_info";
 
     var element1 = document.createElement("input");
     element1.type="hidden";

@@ -89,6 +89,7 @@ class Busqueda_xlista extends CI_Controller {
 			$cve_centro = '05'.trim($cve_centro);
 			// echo "<pre>"; print_r($cve_centro); die();
 			$result_escuelas = $this->Escuela_model->get_xcvecentro($cve_centro);
+			// echo "<pre>"; print_r($result_escuelas); die();
 			$total_escuelas = count($result_escuelas);
 
 			$id_cct = 0;
@@ -99,7 +100,7 @@ class Busqueda_xlista extends CI_Controller {
 					$str_select .= "<option value={$value['id_cct']}>{$value['cve_centro']} - {$value['turno']}</option>";
 				}
 			}
-			// echo "<pre>"; print_r($result_escuelas); die();
+			// echo "<pre>"; print_r($id_cct); die();
 			$response = array(
 												'total_escuelas' => $total_escuelas,
 												'str_select' => $str_select,
