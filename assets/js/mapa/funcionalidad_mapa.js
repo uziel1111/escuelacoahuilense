@@ -216,11 +216,29 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	              contentString += 'TURNO: <b>'+marcadores[i][6]+'</b>, ZONA: <b>no lo tengo<br> <b style="font-size: 120%; color:red;"><b> ';
 	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_mismo_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del mismo nivel educativo</button></div></div> ';
 	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_siguiente_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del siguiente nivel educativo</button></div></div>';
-	              contentString += '<div class="row margintop" ><div class="col"><button class="btn btn-primary btn-sm">Conozca información relevante de esta escuela</button></div></div>';
+	              contentString += '<div class="row margintop" ><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.get_info('+marcadores[i][7]+')">Conozca información relevante de esta escuela</button></div></div>';
 	              contentString += '</div>'
 	              infowindow.setContent(contentString);
 	              infowindow.open(map, marker);
 	          }
 	      })(marker, i));
 	     }
+}
+
+Mapa.prototype.get_info = function(id_cct){
+	var form = document.createElement("form");
+	var element1 = document.createElement("input");
+		  element1.type="hidden";
+		  element1.name="id_cct";
+		  element1.value= id_cct;
+
+	form.name = "form_info";
+	form.id = "form_info";
+	form.method = "POST";
+	// form.target = "_self";
+	form.action = base_url+"info/index";
+	form.appendChild(element1);
+
+	document.body.appendChild(form);
+	form.submit();
 }
