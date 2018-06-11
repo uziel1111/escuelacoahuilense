@@ -8,7 +8,8 @@
     font-weight: bold;
   }
 </style>
-<div class="container">
+
+<div class="container" style="padding-top:75px;">
   <div class="card mt-3 mb-3">
     <div class="card-header">Estadísticas por escuela</div>
     <div class="card-body">
@@ -246,7 +247,7 @@
     form.id = "form_getinfo";
     form.method = "POST";
     form.target = "_self";
-    form.action = base_url+"Info_escuela/get_info";
+    form.action = base_url+"Escuela/get_info";
 
     var element1 = document.createElement("input");
     element1.type="hidden";

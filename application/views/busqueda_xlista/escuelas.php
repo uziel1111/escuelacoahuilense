@@ -1,4 +1,4 @@
-<div class="container-fluid mb-5">
+<div class="container-fluid mb-5" style="padding-top:75px;">
 
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -77,6 +77,7 @@
 
 <div class="row mt-3">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="table_escuelas">
       <div class="table-responsive">
       <table class="table table-hover table-sm">
         <thead>
@@ -92,18 +93,14 @@
         </thead>
         <tbody>
           <?php foreach($arr_escuelas as $escuela) { ?>
-            <tr>
-              <th scope="row">
-                <?= form_open('Escuela/get_info', array('class' => '', 'id' => '')) ?>
-                <?= form_hidden('id_cct', $escuela['id_cct']) ?>
-                <?= form_submit('mysubmit', $escuela['cve_centro'], array('id' => '', 'class'=>'btn btn-primary btn-block' )); ?>
-                <?= form_close() ?>
-              </th>
+            <tr data-idescuela="<?= $escuela['id_cct'] ?>">
+              <td>
+                <?= $escuela['cve_centro'] ?>
+              </td>
               <td><?= $escuela['turno'] ?></td>
               <td><?= $escuela['nombre_centro'] ?></td>
               <td><?= $escuela['nivel'] ?></td>
               <td><?= $escuela['municipio'] ?></td>
-              <!-- <td><?= $escuela['localidad'] ?></td> -->
               <td>Pendiente</td>
               <td><?= $escuela['domicilio'] ?></td>
             </tr>
@@ -111,6 +108,7 @@
         </tbody>
       </table>
     </div><!-- table-responsive -->
+    </div>
   </div><!-- col-12 -->
   </div><!-- row -->
 
@@ -120,4 +118,25 @@
   $("#itxt_busquedalista_nombreescuela").keyup(function() {
     $("#itxt_busquedalista_nombreescuela_reporte").val($(this).val());
   });
+
+  $(document).on("click", "#table_escuelas tbody tr", function(e) {
+    var idescuela = $(this).data('idescuela');
+
+    var form = document.createElement("form");
+    var element1 = document.createElement("input");
+
+    element1.type = "hidden";
+    element1.name="id_cct";
+    element1.value = idescuela;
+
+    form.name = "form_escuelas_getinfo";
+    form.id = "form_escuelas_getinfo";
+    form.method = "POST";
+    form.target = "_self";
+    form.action = base_url+"Escuela/get_info/";
+
+    document.body.appendChild(form);
+    form.appendChild(element1);
+    form.submit();
+});
 </script>
