@@ -20,9 +20,9 @@
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
-                                                    <li class="list-group-item"><a href="<?= base_url('Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por estado, municipio y zona</a></li>
-                                                    <li class="list-group-item"><a href="<?= base_url('Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
-                                                    <li class="list-group-item"><a href="<?= base_url('Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Localiza tu escuela</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por estado, municipio y zona</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Por escuela</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">face</i></span> Localiza tu escuela</a></li>
                                                     <li class="list-group-item"><a href="#"><span class="color-1"><i class="material-icons">face</i></span> Riesgo de abandono</a></li>
                                                 </ul>
                                             </div>

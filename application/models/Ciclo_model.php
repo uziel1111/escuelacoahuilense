@@ -63,4 +63,18 @@ class Ciclo_model extends CI_Model
 
     }// getciclo_idnivel_xsost_xzona
 
+
+    function get_ciclo($id_ciclo){
+      if ($id_ciclo==0) {
+        return "TODOS";
+      }
+      else {
+        $this->db->select('ci.ciclo');
+        $this->db->from('ciclo ci');
+        $this->db->where('ci.id_ciclo', $id_ciclo);
+        return  $this->db->get()->row('ciclo');
+      }
+
+    }// get_ciclo()
+
 }// Municipio_model
