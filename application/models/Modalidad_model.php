@@ -33,4 +33,18 @@ class Modalidad_model extends CI_Model
       return  $this->db->get()->result_array();
     }// getmodali_xidmun_idnivel_idsost()
 
+
+    function get_modalidad($id_modalidad){
+      if ($id_modalidad==0) {
+        return "TODOS";
+      }
+      else {
+        $this->db->select('mo.modalidad');
+        $this->db->from('modalidad as mo');
+        $this->db->where('mo.id_modalidad', $id_modalidad);
+        return  $this->db->get()->row('modalidad');
+      }
+
+    }// get_modalidad()
+
 }// Sostenimiento_model

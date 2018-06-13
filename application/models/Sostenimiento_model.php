@@ -41,4 +41,17 @@ class Sostenimiento_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_xcvenivel()
 
+    function get_sostenimiento($id_sostenimiento){
+      if ($id_sostenimiento==0) {
+        return "TODOS";
+      }
+      else {
+        $this->db->select('so.sostenimiento');
+        $this->db->from('sostenimiento as so');
+        $this->db->where('so.id_sostenimiento', $id_sostenimiento);
+        return  $this->db->get()->row('sostenimiento');
+      }
+
+    }// get_sostenimiento()
+
 }// Sostenimiento_model
