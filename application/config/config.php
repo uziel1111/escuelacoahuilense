@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/proy_completo_coahuila/wicho/escuelacoahuilense/';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/escuelacoahuilense/';
 
 /*
 |--------------------------------------------------------------------------
