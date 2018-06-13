@@ -1,4 +1,5 @@
 <div class="container">
+<br><br><br><br>
     <div class="row">
         <div class="col col-md-4">
           <?=form_label('Municipio', 'minicipio', array('class' => 'mr-sm-2'));?>
@@ -13,7 +14,7 @@
             <?=form_dropdown('sostenimiento', $sostenimientos, 'large', array('class' => 'form-control', 'id' => 'slt_sostenimiento_mapa'));?>
         </div>
     </div>
-	<div class="row">
+    <div class="row">
         <div class="col">
             <?=form_label('Nombre de la escuela(Opcional)', 'n_escuela');?>
             <?=form_input('n_escuela', '', array('class' => 'form-control', 'id' => 'txt_nombre_escuela'));?>

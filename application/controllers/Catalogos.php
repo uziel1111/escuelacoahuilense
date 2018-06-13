@@ -12,10 +12,10 @@ class Catalogos extends CI_Controller {
 
 		public function getniveles_xcvemunicipio(){
 			$cve_municipio  = $this->input->post('cve_municipio');
-			$result_niveles = $this->Nivel_model->get_xcvemunicipio($cve_municipio);
+			$result_niveles = $this->Nivel_model->get_xidmunicipio($cve_municipio);
 			$str_select = '<option value=-1>Todos</option>';
 			foreach ($result_niveles as $key => $value) {
-				$str_select .= "<option value={$value['cve_nivel_educativo']}> {$value['nivel_educativo']} </option>";
+				$str_select .= "<option value={$value['id_nivel']}> {$value['nivel']} </option>";
 			}
 			$response = array('str_select' => $str_select);
 			Utilerias::enviaDataJson(200, $response, $this);
@@ -24,11 +24,11 @@ class Catalogos extends CI_Controller {
 
 		public function getsostenimientos_xcvenivel(){
 			$cve_nivel  = $this->input->post('cve_nivel');
-			$result_sostenimientos = $this->Sostenimiento_model->get_xcvenivel($cve_nivel);
+			$result_sostenimientos = $this->Sostenimiento_model->get_xidnivel($cve_nivel);
 
 			$str_select = '<option value=-1>Todos</option>';
 			foreach ($result_sostenimientos as $key => $value) {
-				$str_select .= "<option value={$value['cve_sostenimiento']}> {$value['sostenimiento']} </option>";
+				$str_select .= "<option value={$value['id_sostenimiento']}> {$value['sostenimiento']} </option>";
 			}
 			$response = array('str_select' => $str_select);
 			Utilerias::enviaDataJson(200, $response, $this);

@@ -138,6 +138,7 @@ $config['subclass_prefix'] = 'MY_';
 */
 $config['composer_autoload'] = FALSE;
 
+
 /*
 |--------------------------------------------------------------------------
 | Allowed URL Characters

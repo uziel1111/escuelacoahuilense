@@ -47,7 +47,18 @@ class Escuela_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_xcentro()
 
-    function get_xidcct($idcct){
+
+    function get_marcadores(){
+      $this->db->select('latitud, longitud, nombre_centro');
+      $query = $this->db->get('escuela')->result_array();
+      // echo "";
+      // print_r($query);
+      // die();
+      return $query;
+    }
+
+
+function get_xidcct($idcct){
       // echo $idcct; die();
       $this->db->select('es.id_cct,es.cve_centro,es.nombre_centro, es.latitud, es.longitud, es.id_nivel');
       $this->db->from('escuela as es');
