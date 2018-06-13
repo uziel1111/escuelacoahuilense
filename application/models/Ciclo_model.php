@@ -6,7 +6,10 @@ class Ciclo_model extends CI_Model
     }
 
     function all(){
-            return  $this->db->get('ciclo')->result_array();
+      $this->db->select('id_ciclo, ciclo');
+      $this->db->from('ciclo');
+      $this->db->order_by("id_ciclo", "desc");
+            return  $this->db->get()->result_array();
     }// all()
 
     function getciclo_xidmun_idnivel_xsost_idmod($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad){
@@ -59,5 +62,19 @@ class Ciclo_model extends CI_Model
       return  $this->db->get()->result_array();
 
     }// getciclo_idnivel_xsost_xzona
+
+
+    function get_ciclo($id_ciclo){
+      if ($id_ciclo==0) {
+        return "TODOS";
+      }
+      else {
+        $this->db->select('ci.ciclo');
+        $this->db->from('ciclo ci');
+        $this->db->where('ci.id_ciclo', $id_ciclo);
+        return  $this->db->get()->row('ciclo');
+      }
+
+    }// get_ciclo()
 
 }// Municipio_model
