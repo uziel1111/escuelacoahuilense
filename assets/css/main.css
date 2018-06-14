@@ -908,189 +908,6 @@ td, th {
   font-weight: 600;
 }
 /*** End Buttons ***/
-/** Cards **/
-.card-style-1 {
-  border-radius: 20px; 
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 20px; 
-   
-}
-.card-1-header {
-    font-family: 'Boogaloo', cursive !important;
-    font-size: 26px;
-    border-radius: 20px 20px 0 0 !important;
-    -moz-border-radius: 20px 20px 0 0 !important;
-    -webkit-border-radius: 20px 20px 0 0 !important;
-}
-.card-1-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.4);
-}
-/* End Cards */
-/** Forms **/
-/* Form Group 1 */
-.form-group-style-1 .form-control {
-    font-size: 15px;
-    border-radius: 20px; 
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 2px; 
-    height: 40px;  
-}
-.form-group-style-1 label {
-    color: #7ea629;
-}
-.form-group-style-1 .input-group-text {
-    border-radius:20px 0 0 20px; 
-    -moz-border-radius:20px 0 0 20px;
-    -webkit-border-radius:20px 0 0 20px; 
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 2px 0 2px 2px;  
-    height: 40px;
-}
-.form-group-style-1 .input-group > .custom-select {
-    border-radius: 20px; 
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 2px; 
-    height: 40px;
-}
-.form-group-style-1 .input-group-prepend > label {
-    border-radius: 20px; 
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
-    border-style: solid;
-    border-color: #ccc;
-    border-width: 2px; 
-    height: 40px;
-}
-.form-group-style-1 div.input-group-prepend + select.custom-select {
-    border-radius: 0 20px 20px 0; 
-    -moz-border-radius: 0 20px 20px 0;
-    -webkit-border-radius: 0 20px 20px 0; 
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 2px 2px 2px 1px; 
-    height: 40px;
-}
-.form-group-style-1 input.form-control + div.input-group-append > span.input-group-text {
-    border-radius: 0 20px 20px 0; 
-    -moz-border-radius: 0 20px 20px 0;
-    -webkit-border-radius: 0 20px 20px 0; 
-    border-style: solid;
-    border-color: #ccc;
-    border-width: 2px 2px 2px 1px; 
-    height: 40px;
-}
-.form-group-style-1 .custom-control-label:before{
-  background-color:#ccc;
-}
-.form-group-style-1 .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
-  background-color:#7ea629;
-}
-/** End Forms**/
-/** Tables **/
-.table-style-1 thead th {
-    color: #efefef; 
-    font-size: 17px;
-    font-weight: 500;    
-}
-/* */
-/** Buttons **/
-.btn-style-1 {
-    border-radius:20px; 
-    -moz-border-radius:20px;
-    -webkit-border-radius:20px;
-    margin-left: 5px;
-    border-style: solid;
-    border-width: 0 0 4px 0;
-    padding: 10px 20px 8px 20px;
-}
-/*** Modals ***/
-/* Modal Style 1 */
-.modal-style-1{
-    border-radius:20px; 
-    -moz-border-radius:20px;
-    -webkit-border-radius:20px;
-    background: #fff;
-    border-style: solid;
-    border-width: 0 0 4px 0;
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);      
-}
-.modal-style-1 .modal-header{
-    font-family: 'Boogaloo', cursive !important;
-    font-size: 26px;    
-    border-radius:20px 20px 0 0; 
-    -moz-border-radius:20px 20px 0 0;
-    -webkit-border-radius:20px 20px 0 0;
-    padding: 10px 20px 8px 20px;
-}
-.modal-style-1 .modal-header > button.close {
-    font-family: 'Boogaloo', cursive !important;
-    font-size: 18px; 
-    border-radius:10px; 
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    margin: 8px 0 2px 0;
-    padding: 3px 4px 3px 4px;
-    background-color: rgba(255, 255, 255, 0.5);    
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;    
-}
-.modal-style-1 .modal-header > button.close:hover {
-    background-color: rgba(0, 0, 0, 0.2); 
-    color: #000;
-}
-.modal-style-1 .modal-header h1, h2, h3, h4, h5, h6 {
-    font-family: 'Boogaloo', cursive !important;
-    font-size: 26px;      
-}
-.modal-style-1 .modal-footer{   
-    border-radius:0 0 20px 20px; 
-    -moz-border-radius:0 0 20px 20px;
-    -webkit-border-radius:0 0 20px 20px;
-    padding: 10px 20px 8px 20px;
-    background-color: #efefef;
-}
-/* End Modal Style 1 */
-/* */
-/** Nav-tabs **/
-.nav-tabs-style-1 .nav-link-style-1 {
-    font-family: 'Boogaloo', cursive !important;
-    font-size: 22px;    
-    background-color: #7ea629;
-    color: #eeeeee;
-    border-radius:20px 20px 0 0; 
-    -moz-border-radius:20px 20px 0 0;
-    -webkit-border-radius:20px 20px 0 0;
-    margin-left: 5px;
-    border-style: solid;
-    border-color: #709522;
-    border-width: 0 0 4px 0;     
-}
-.tab-content-style-1>.active{
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius:0 0 20px 20px; 
-    -moz-border-radius:0 0 20px 20px;
-    -webkit-border-radius:0 0 10px 10px;
-    border-style: solid;
-    border-color: #dee2e6;
-    border-width: 0 1px 4px 1px;   
-}
-.nav-tabs-style-1 .nav-link-style-1.active {
-  background-color: #ffffff;
-  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.3);    
-}
-/* End Nav-tabs */
 .section-title {
   padding-bottom: 70px;
 }
@@ -1103,7 +920,6 @@ td, th {
   font-weight: 300;
   color: #222222;
 }
-
 .progressBar,
 .progressBar-contentCircle {
   display: table;
@@ -1557,7 +1373,7 @@ font-size: 25px;
 
 @media (max-width: 991px) {
   .coaboxt-area:before {
-    background: rgba(59, 175, 42, 0.95);
+    background: rgba(64, 69, 152, 0.95);
     width: 100%;
   }
 }
@@ -1724,18 +1540,6 @@ font-size: 25px;
   outline: none;
   border: 1px solid transparent;
   box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2);
-}
-
-.main-area {
-  background: #efefef;
-  padding: 100px 0;
-  display: block !important;
-}
-
-@media (max-width: 767px) {
-  .main-area .primary-btn {
-    margin-top: 10px;
-  }
 }
 
 .cta-area {

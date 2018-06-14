@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/escuelacoahuilense/';
 
 /*
 |--------------------------------------------------------------------------
@@ -137,6 +137,7 @@ $config['subclass_prefix'] = 'MY_';
 |	autoloading (application/config/autoload.php)
 */
 $config['composer_autoload'] = FALSE;
+
 
 /*
 |--------------------------------------------------------------------------
