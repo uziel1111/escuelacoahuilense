@@ -74,25 +74,31 @@ function get_xidcct($idcct){
       if($siguiente == true && $nivel < 10){
         $nivel = $nivel+1;
       }
-       $this->db->select("mu.municipio, tu.turno, id_cct,cve_centro, nombre_centro, latitud, longitud, id_nivel, ( 6371 * ACOS( 
-                                       COS( RADIANS({$latitud}) ) 
-                                       * COS(RADIANS( latitud ) ) 
-                                       * COS(RADIANS( longitud ) 
-                                       - RADIANS({$longitud}) ) 
-                                       + SIN( RADIANS({$latitud}) ) 
-                                       * SIN(RADIANS( latitud ) ) 
+       $this->db->select("mu.municipio, tu.turno, id_cct,cve_centro, nombre_centro, latitud, longitud, id_nivel, ( 6371 * ACOS(
+                                       COS( RADIANS({$latitud}) )
+                                       * COS(RADIANS( latitud ) )
+                                       * COS(RADIANS( longitud )
+                                       - RADIANS({$longitud}) )
+                                       + SIN( RADIANS({$latitud}) )
+                                       * SIN(RADIANS( latitud ) )
                                       )
                          ) AS distance");
       $this->db->from('escuela as es');
       $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
       $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
       $this->db->where('es.id_nivel', $nivel);
-      $this->db->having('distance < 1000 ');                     
-      $this->db->order_by('distance');                    
+      $this->db->having('distance < 1000 ');
+      $this->db->order_by('distance');
       $this->db->limit(6);
       //  $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
       return  $this->db->get()->result_array();
     }
+    function get_nivel_xidcct($id_cct){
+        $this->db->select('id_nivel');
+        $this->db->from('escuela');
+        $this->db->where('id_cct', $id_cct);
+        return  $this->db->get()->row('id_nivel');
+    }// get_nivel()
 }// Municipio_model

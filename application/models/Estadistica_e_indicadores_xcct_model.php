@@ -590,4 +590,41 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
 
   }// get_infraest_xzona
+
+  function get_nalumnos_xesc($id_cct){
+    $this->db->select('alumn_t_1,alumn_t_2,alumn_t_3,alumn_t_4,alumn_t_5,alumn_t_6,alumn_t_t');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_corte', 2);
+    $this->db->where('id_ciclo', 2);
+    // $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
+    return  $this->db->get()->result_array();
+  }//get_nalumnos_xesc()
+
+
+  function get_ndocentes_xesc($id_cct){
+    $this->db->select('docentes_1_g,docentes_2_g,docentes_3_g,docentes_4_g,docentes_5_g,docentes_6_g');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_corte', 2);
+    $this->db->where('id_ciclo', 2);
+    // $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
+    return  $this->db->get()->result_array();
+  }//get_ndocentes_xesc()
+
+  function get_ngrupos_xesc($id_cct){
+    $this->db->select('grupos_1,grupos_2,grupos_3,grupos_4,grupos_5,grupos_6');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_corte', 2);
+    $this->db->where('id_ciclo', 2);
+    // $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
+    return  $this->db->get()->result_array();
+  }//get_ngrupos_xesc()
 }

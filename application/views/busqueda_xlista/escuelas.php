@@ -132,8 +132,8 @@
     form.name = "form_escuelas_getinfo";
     form.id = "form_escuelas_getinfo";
     form.method = "POST";
-    form.target = "_self";
-    form.action = base_url+"Escuela/get_info/";
+    // form.target = "_self";
+    form.action = base_url+"info/index/";
 
     document.body.appendChild(form);
     form.appendChild(element1);
