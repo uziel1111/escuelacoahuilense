@@ -108,7 +108,7 @@ function form(id_cct){
   form.id = "form_getinfo";
   form.method = "POST";
   form.target = "_self";
-  form.action = base_url+"Escuela/get_info";
+  form.action = base_url+"info/index/";
 
   var element1 = document.createElement("input");
   element1.type="hidden";

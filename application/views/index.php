@@ -79,7 +79,6 @@
                                                 <ul class="list-group">
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Modelo Coahuilense</a></li>
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Calendario escolar</a></li>
-                                                  <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">face</i></span> Sismo</a></li>
                                                   <li class="list-group-item"><a href="#"></a></li>
                                                 </ul>
                                             </div>
