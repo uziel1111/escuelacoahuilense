@@ -271,14 +271,14 @@
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
-<script src="<?= base_url('assets/js/graficos_1.js'); ?>"></script>
+<script src="<?= base_url('assets/js/info/graficos_1.js'); ?>"></script>
 <script type="text/javascript">
 $(function() {
 $.ajax({
+
 	url: base_url+"info/info_graficas",
-	type: 'POST',
-	dataType: 'JSON',
-	data: {'id_cct':$("#in_id_cct").val()},
+    method: 'POST',
+    data: {'id_cct':$("#in_id_cct").val()},
 	beforeSend: function( xhr ) {
 		obj_loader.show();
 	}
