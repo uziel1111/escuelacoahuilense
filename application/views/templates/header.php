@@ -41,10 +41,7 @@
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
-
   <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
-
-  <script src="<?= base_url('assets/js/general.js') ?>"></script>
   <script src="<?= base_url('assets/js/loader.js') ?>"></script>
 
 
@@ -105,7 +102,6 @@
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
                                           <a class="dropdown-item hcolor-4" href="#">Calendario escolar</a>
-                                          <a class="dropdown-item hcolor-4" href="#">Sismo</a>
                                         </div>
                                     </li>
                                 </ul>
