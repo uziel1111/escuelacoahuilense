@@ -115,6 +115,7 @@
         </button>
       </div>
       <div class="modal-body">
+
         <?= form_open('Info_escuela/get_info', array('class' => '', 'id' => '')) ?>
         <div class="row">
           <div class="col-12">
@@ -126,7 +127,6 @@
             <?= form_submit('mysubmit', 'Ver', array('id' => '', 'class'=>'btn btn-info btn-block' )); ?>
           </div>
         </div>
-
         <?= form_close() ?>
 
       </div>
