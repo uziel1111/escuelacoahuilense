@@ -289,9 +289,18 @@ $.ajax({
 	var graf = new HaceGraficas(data);
 	switch(nivel) {
 	case '3':
-						graf.GraficoEstadisticaSecundaria_alumn();
-						graf.GraficoEstadisticaSecundaria_grupos();
-						graf.GraficoEstadisticaSecundaria_docentes();
+					graf.GraficoEstadisticaSecundaria_alumn();
+					graf.GraficoEstadisticaSecundaria_grupos();
+					graf.GraficoEstadisticaSecundaria_docentes();
+					if (data.graph_cont_tema_lyc.length==0) {
+							$("#dv_info_aprendizaje").empty();
+						}
+					 // Por Unidades de Análisis lyc
+					 if (data.graph_cont_tema_mate.length==0) {
+							$("#dv_info_graf_contmat").empty();
+              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
+						}
+
 					aux=1;
 	break;
 	case '4':
@@ -300,8 +309,21 @@ $.ajax({
 					graf.GraficoEstadisticaPrimaria_docentes();
 					// graf.TablaPieGraficaBarPrimaria();
 					// if (arr_graficas['graph_unidad_analisis_lyc']!='') {
-					graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct); // Por Unidades de Análisis lyc
-					graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct); // Por Unidades de Análisis mate
+						if (data.graph_cont_tema_lyc.length>0) {
+							graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct);
+						}
+						else{
+							$("#dv_info_graf_contlyc").empty();
+              				$("#dv_info_graf_contlyc").append('<input type="text" value="No se encontraron datos">');
+						}
+					 // Por Unidades de Análisis lyc
+					 if (data.graph_cont_tema_mate.length>0) {
+							graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct);
+						}
+						else{
+							$("#dv_info_graf_contmat").empty();
+              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
+						}
 					// }
 					aux=1;
 
@@ -312,8 +334,24 @@ $.ajax({
 					graf.GraficoEstadisticaSecundaria_docentes();
 					// graf.TablaPieGraficaBarSecundaria();
 					// if (arr_graficas['graph_unidad_analisis_lyc']!='') {
-					graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct); // Por Unidades de Análisis lyc
-					graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct); // Por Unidades de Análisis mate
+						if (data.graph_cont_tema_lyc.length>0) {
+							graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+						}
+						else{
+							$("#dv_info_graf_contlyc").empty();
+              				$("#dv_info_graf_contlyc").append('<input type="text" value="No se encontraron datos">');
+						}
+					 // Por Unidades de Análisis lyc
+					 if (data.graph_cont_tema_mate.length>0) {
+							graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+						}
+						else{
+							$("#dv_info_graf_contmat").empty();
+              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
+						}
+
+					 // Por Unidades de Análisis lyc
+					 // Por Unidades de Análisis mate
 					// }
 					aux=1;
 
@@ -324,12 +362,14 @@ $.ajax({
 					//   graf.graficoplanea_ud_ms_mate(arr_graficas['graph_unidad_analisis_mate']); // Por Unidades de Análisis mate
 					// }
 					//
+					$("#dv_info_aprendizaje").empty();
 					graf.GraficoEstadisticaOtros();
 					aux=1;
 
 	break;
 
 	default:
+					$("#dv_info_aprendizaje").empty();
 					graf.GraficoEstadisticaOtros();
 					aux=1;
 	break;
@@ -345,7 +385,18 @@ $.ajax({
             // graf.DibujarRadialProgressBarR();
             // graf.DibujarRadialProgressBarA();
             // graf.DibujarRadialProgressBarET();
-            graf.PieDrilldownPlanea05y06();
+            console.log(data.planea16_escuela.length);
+            if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
+            	graf.PieDrilldownPlanea05y06();
+            }
+            else{
+            	$("#tabla_planea").empty();
+            	$("#dv_info_graf_nlogrolyc").empty();
+              	$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
+              	$("#dv_info_graf_nlogromat").empty();
+            }
+
+            
 
 
             // graf.TablaPieGraficaPie();

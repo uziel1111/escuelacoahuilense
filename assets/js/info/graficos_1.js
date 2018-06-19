@@ -7,7 +7,7 @@ function HaceGraficas(arr_datos){
     //
     // var valor_bim =  '';
     // var valor_cic =  '';
-    console.log(arr_datos);
+    // console.log(arr_datos);
     // obj_graficas.arr_estadistica = [];
 
       // obj_graficas.arr_estadistica = arr_datos['estadistica'];
@@ -25,32 +25,39 @@ function HaceGraficas(arr_datos){
 
 
     // Variables para guardar las cifras correspondiente a estadísticas de alumnos, grupos y docentes.
-    var a_g1 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
+    if (arr_datos.estadis_alumnos_escuela.length>0) {
+      var a_g1 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
     var a_g2 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
     var a_g3 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_3']);//7;
     var a_g4 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_4']);//8;
     var a_g5 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_5']);//8;
     var a_g6 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_6']);//8;
-
+    var t_alumnos  =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_t']);//10;
+    }
+    if (arr_datos.estadis_grupos_escuela.length>0) {
     var g_g1 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_1']);//3;
     var g_g2 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_2']);//3;
     var g_g3 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_3']);//3;
     var g_g4 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_4']);//3;
     var g_g5 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_5']);//3;
     var g_g6 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_6']);//3;
-
+    var t_grupos   =  g_g1+g_g2+g_g3+g_g4+g_g5+g_g6;//10;
+  }
+    if (arr_datos.estadis_docentes_escuela.length>0) {
     var d_g1 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_1_g']);//3;
     var d_g2 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_2_g']);//3;
     var d_g3 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_3_g']);//3;
     var d_g4 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_4_g']);//3;
     var d_g5 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_5_g']);//3;
     var d_g6 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_6_g']);//3;
+    var t_docentes =  d_g1+d_g2+d_g3+d_g4+d_g5+d_g6;//10;
+  }
 
     // var g_mg =  20;//3;
     //
-    var t_docentes =  d_g1+d_g2+d_g3+d_g4+d_g5+d_g6;//10;
-    var t_alumnos  =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_t']);//10;
-    var t_grupos   =  g_g1+g_g2+g_g3+g_g4+g_g5+g_g6;//10;
+    
+    
+    
 
     //
     // var q1 = parseInt(obj_graficas.arr_riesgo['muyalto']);
@@ -85,6 +92,7 @@ function HaceGraficas(arr_datos){
     // obj_graficas.array_planea = arr_datos['planea'];
     //
     //
+    if (arr_datos.planea15_escuela.length>0) {
     var lyc1_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_i']);
     var lyc2_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_ii']);
     var lyc3_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_iii']);
@@ -93,7 +101,9 @@ function HaceGraficas(arr_datos){
     var mat2_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_ii']);
     var mat3_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_iii']);
     var mat4_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_iv']);
-
+  }
+  
+if (arr_datos.planea16_escuela.length>0) {
     var lyc1_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_i']);
     var lyc2_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_ii']);
     var lyc3_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_iii']);
@@ -102,6 +112,7 @@ function HaceGraficas(arr_datos){
     var mat2_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_ii']);
     var mat3_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_iii']);
     var mat4_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_iv']);
+  }
 
 
  this.GraficoEstadisticaPrimaria_alumn = function(){
