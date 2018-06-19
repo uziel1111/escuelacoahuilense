@@ -35,14 +35,7 @@ $(document).ready(function(){
     });
      
 
-    // $(function(){
-    //     $('#Container').mixItUp();
-    // });
-    var mixer = mixitup('#filter-content');
-    $(".controls .filter").on('click', function(event){
-        $(".controls .filter").removeClass('active');
-        $(this).addClass('active');
-    });
+
     // Add smooth scrolling to Menu links
          $(".main-menu li a, .smooth").on('click', function(event) {
                 if (this.hash !== "") {
@@ -57,29 +50,6 @@ $(document).ready(function(){
             } 
         });
 
-    $('.active-test-carousel').owlCarousel({
-        loop:true,
-        dot: true,
-        items: 3,
-        margin: 30,
-        autoplay:true,
-        autoplayTimeout:3000,
-        autoplayHoverPause:true,
-        animateOut: 'fadeOutLeft',
-        animateIn: 'fadeInRight',
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-             }
-        }
-    })
-
-     $(document).ready(function() {
-        $('#mc_embed_signup').find('form').ajaxChimp();
-    });
  });
 (function ($){
 
