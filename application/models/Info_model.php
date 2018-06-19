@@ -13,8 +13,9 @@ class Info_model extends CI_Model
       $this->db->join('modalidad as m', 'm.id_modalidad = es.id_modalidad');
       $this->db->join('subsostenimiento as subs', 'subs.id_subsostenimiento = es.id_subsostenimiento');
       $this->db->join('sostenimiento as sos', 'sos.id_sostenimiento = subs.id_sostenimiento');
-      $this->db->join('localidad as l', 'l.id_localidad = es.id_localidad');
+      
       $this->db->join('municipio as mun', 'mun.id_municipio = es.id_municipio');
+      $this->db->join('localidad as l', 'mun.id_municipio = l.id_municipio and l.cve_localidad = es.id_localidad');
       $this->db->join('region as re', 're.id_region = es.id_region');
       $this->db->join('estatus as sta', 'sta.id_estatus = es.id_estatus');
       $this->db->where('es.id_cct', $id_cct);

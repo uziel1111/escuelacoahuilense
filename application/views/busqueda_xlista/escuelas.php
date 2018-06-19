@@ -101,7 +101,7 @@
               <td><?= $escuela['nombre_centro'] ?></td>
               <td><?= $escuela['nivel'] ?></td>
               <td><?= $escuela['municipio'] ?></td>
-              <td>Pendiente</td>
+              <td><?= $escuela['localidad'] ?></td>
               <td><?= $escuela['domicilio'] ?></td>
             </tr>
           <?php } ?>
