@@ -60,7 +60,7 @@
     </div>
 
 <!-- CONTENEDOR DEL MAPA -->
-      <div id="map"></div>
+      <div class="h-50 p-3" id="map"></div>
 
     
     <script src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script> //added the file

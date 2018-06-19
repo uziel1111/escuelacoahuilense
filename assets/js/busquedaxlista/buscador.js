@@ -1,3 +1,8 @@
+$(function () {
+ this_buscador = new Buscador();
+});
+
+
 $("#slc_busquedalista_municipio").change(function (){
   // $("input[name=hidden_municipio]").val( $("#slc_busquedalista_municipio option:selected").text() );
   $("input[name=hidden_municipio]").val( $('option:selected',this).text() );
@@ -9,7 +14,7 @@ $("#slc_busquedalista_municipio").change(function (){
   }else{
       $("#slc_busquedalista_sostenimiento").empty();
       $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
-      get_niveles(cve_municipio);
+      this_buscador.get_niveles(cve_municipio);
   }
 });
 
@@ -23,7 +28,7 @@ $("#slc_busquedalista_nivel").change(function (){
     $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
   }else{
       $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
-      get_sostenimientos(cve_nivel);
+      this_buscador.get_sostenimientos(cve_nivel);
   }
 });
 
@@ -31,7 +36,24 @@ $("#slc_busquedalista_sostenimiento").change(function (){
   $("input[name=hidden_sostenimiento]").val( $('option:selected',this).text() );
 });
 
-function get_niveles(cve_municipio){
+$("#itxt_busquedalista_cct").keyup(function() {
+  if($(this).val().length==8){
+      let obj_re = new Regularexpression();
+      let valid = obj_re.cct(this.value);
+      if(valid){
+        this_buscador.get_xcvecentro(this.value);
+      }
+  }
+  else if ($(this).val().length>8) {
+    alert('longitud incorrecta');
+    this.value = this.value.substring(0, this.value.length - 1);
+  }
+});
+
+function Buscador(){
+}
+
+Buscador.prototype.get_niveles = function(cve_municipio){
   let ruta = base_url+"Catalogos/getniveles_xcvemunicipio";
       $.ajax({
         url: ruta,
@@ -45,8 +67,9 @@ function get_niveles(cve_municipio){
       .fail(function(e) {
         console.error("Error in get_niveles()"); console.table(e);
       });
-}// get_niveles()
-function get_sostenimientos(cve_nivel){
+};
+
+Buscador.prototype.get_sostenimientos = function(cve_nivel){
   let ruta = base_url+"Catalogos/getsostenimientos_xcvenivel";
       $.ajax({
         url: ruta,
@@ -60,25 +83,10 @@ function get_sostenimientos(cve_nivel){
       .fail(function(e) {
         console.error("Error in get_sostenimientos()"); console.table(e);
       });
-}// get_niveles()
+};
 
-$("#itxt_busquedalista_cct").keyup(function() {
-  if($(this).val().length==8){
-      let obj_re = new Regularexpression();
-      let valid = obj_re.cct(this.value);
-      if(valid){
-        get_xcvecentro(this.value);
-      }
-  }
-  else if ($(this).val().length>8) {
-    alert('longitud incorrecta');
-    this.value = this.value.substring(0, this.value.length - 1);
-  }
-
-});
-
-function get_xcvecentro(cve_centro){
-  let ruta = base_url+"Busqueda_xlista/escuelas_xcvecentro";
+Buscador.prototype.get_xcvecentro = function(cve_centro){
+    let ruta = base_url+"Busqueda_xlista/escuelas_xcvecentro";
       $.ajax({
         url: ruta,
         method: 'POST',
@@ -89,7 +97,7 @@ function get_xcvecentro(cve_centro){
           alert('sin resultados');
         }
         if(data.total_escuelas==1){
-          form(data.id_cct);
+          this_buscador.form(data.id_cct);
         }
         else if (data.total_escuelas>1) {
           $("#id_cct").empty();
@@ -100,9 +108,9 @@ function get_xcvecentro(cve_centro){
       .fail(function(e) {
         console.error("Error in get_xcvecentro()"); console.table(e);
       });
-}// get_xcvecentro()
+};
 
-function form(id_cct){
+Buscador.prototype.form = function(id_cct){
   var form = document.createElement("form");
   form.name = "form_getinfo";
   form.id = "form_getinfo";
@@ -118,6 +126,19 @@ function form(id_cct){
 
   document.body.appendChild(form);
   form.submit();
+};
+
+
+function get_niveles(cve_municipio){
+}// get_niveles()
+function get_sostenimientos(cve_nivel){
+
+}// get_niveles()
+function get_xcvecentro(cve_centro){
+}// get_xcvecentro()
+
+function form(id_cct){
+
 }// form()
 
 $('#busquedalista_modal').on('hidden.bs.modal', function (e) {
