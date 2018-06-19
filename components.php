@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="icon" type="image/png" href="http://coahuila.gob.mx/images/favicon-electoral.png">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="icon" type="image/png" href="http://coahuila.gob.mx/images/favicon-electoral.png">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
     <title>Escuela Coahuilense</title>
     <!-- Site Title -->
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">        
-	<!-- CSS -->
+    <!-- CSS -->
                
     <link rel="stylesheet" href="assets/css/linearicons.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
