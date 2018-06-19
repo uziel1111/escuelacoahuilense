@@ -23,7 +23,7 @@
              <?=form_label('Clave centro de trabajo(Opcional)', 'cct');?>
             <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text" id="btnGroupAddon">21</div>
+                  <div class="input-group-text" id="btnGroupAddon">05</div>
                 </div>
                 <?=form_input('cct', '', array('class' => 'form-control', 'id' => 'txt_cct_escuela'));?>
               </div>

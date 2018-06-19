@@ -93,7 +93,7 @@ class Mapa extends CI_Controller {
 			$vfinal = array();
 
 			if(isset($cct) && $cct != ""){
-				$escuelas = $this->Escuela_model->get_xcvecentro($cct);
+				$escuelas = $this->Escuela_model->get_xcvecentro("05".$cct);
 			}else{
 				$escuelas = $this->Escuela_model->get_xparams($idmunicipio,$idnivel,$id_sostenimiento,$nombre_centro);
 			}
