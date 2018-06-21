@@ -25,11 +25,11 @@ Mapa.prototype.get_Niveles =function(){
 		dataType: 'JSON',
 		data: {idmunicipio: $("#slt_municipio_mapa").val()},
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        // obj_loader.show();
 	    },
 	})
 	.done(function(result) {
-		obj_loader.hide();
+		// obj_loader.hide();
 		$("#slt_nivel_mapa").empty();
 		$("#slt_nivel_mapa").append(result.options);
 	})
@@ -39,7 +39,7 @@ Mapa.prototype.get_Niveles =function(){
 	.always(function() {
 		console.log("complete");
 	});
-	
+
 }
 
 Mapa.prototype.get_Sostenimientos =function(){
@@ -49,11 +49,11 @@ Mapa.prototype.get_Sostenimientos =function(){
 		dataType: 'JSON',
 		data: {idnivel: $("#slt_nivel_mapa").val()},
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        // obj_loader.show();
 	    },
 	})
 	.done(function(result) {
-		obj_loader.hide();
+		// obj_loader.hide();
 		$("#slt_sostenimiento_mapa").empty();
 		$("#slt_sostenimiento_mapa").append(result.options);
 	})
@@ -70,14 +70,14 @@ Mapa.prototype.get_marcadores_filtro =function(){
 		url: base_url+'mapa/get_marcadores_filtro',
 		type: 'POST',
 		dataType: 'JSON',
-		data: {idmunicipio: $("#slt_municipio_mapa").val(), idnivel: $("#slt_nivel_mapa").val(), 
+		data: {idmunicipio: $("#slt_municipio_mapa").val(), idnivel: $("#slt_nivel_mapa").val(),
 		idsostenimiento: $("#slt_sostenimiento_mapa").val(), nombre: $("#txt_nombre_escuela").val(), cct: $("#txt_cct_escuela").val()},
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        // obj_loader.show();
 	    },
 	})
 	.done(function(result) {
-		obj_loader.hide();
+		// obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -87,7 +87,7 @@ Mapa.prototype.get_marcadores_filtro =function(){
 	.always(function() {
 		console.log("complete");
 	});
-	
+
 }
 
 Mapa.prototype.retur_icon = function(nivel){
@@ -133,11 +133,11 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 		dataType: 'json',
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        // obj_loader.show();
 	    },
 	})
 	.done(function(result) {
-		obj_loader.hide();
+		// obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -147,7 +147,7 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 	.always(function(complete) {
 		console.log("complete");
 	});
-	
+
 }
 
 Mapa.prototype.cct_siguiente_nivel = function(idcct){
@@ -157,11 +157,11 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 		dataType: 'json',
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        // obj_loader.show();
 	    },
 	})
 	.done(function(result) {
-		obj_loader.hide();
+		// obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -171,7 +171,7 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 	.always(function(complete) {
 		console.log("complete");
 	});
-	
+
 }
 
 Mapa.prototype.pinta_en_mapa = function(marcadores){

@@ -102,6 +102,53 @@
 	</center>
 </div>
 
+<div hidden id="dv_info_permanencia" class="container">
+	<?php
+	$arr_bimestres['1'] = '1er BIMESTRE';
+	$arr_bimestres['2'] = '2do BIMESTRE';
+	$arr_bimestres['3'] = '3er BIMESTRE';
+	$arr_bimestres['4'] = '4to BIMESTRE';
+	$arr_bimestres['5'] = '5to BIMESTRE';
+
+	$arr_ciclos['2017-2018'] = '2017-2018'; ?>
+	<center>
+		<div class="row">
+			<div class="col">
+				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#riesgo_esc' title='Clic para desplegar'><h3>Riesgo de abandono escolar</h3></div>
+			</div>
+		</div>
+		<div id='riesgo_esc' class='collapse panel-body'>
+			<div class="row">
+				<div class="col col-md-12">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
+			</div>
+			<div class="row">
+			<div class="col col-md-4">
+					<?=form_label('Bimestre', 'bimestre');?>
+					<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
+			</div>
+			<div class="col col-md-4">
+					<?=form_label('Ciclo', 'ciclo');?>
+					<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
+			</div>
+			<div class="col col-md-1">
+				<?=form_label('_', '_');?>
+					<button class="btn btn-primary" id="btn_buscar_ries_esc">Buscar</button>
+			</div>
+			</div>
+			<div class="row">
+					<div class="col">
+						<div id="dv_riesgo_esc_pie"></div>
+					</div>
+			</div>
+			<div class="row">
+					<div class="col">
+						<div id="dv_riesgo_esc_bar"></div>
+					</div>
+			</div>
+		</div>
+	</center>
+</div>
+
 <div hidden id="dv_info_aprendizaje" class="container">
 	<center>
 		<div class="row">
@@ -272,178 +319,5 @@
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
 <script src="<?= base_url('assets/js/info/graficos_1.js'); ?>"></script>
-<script type="text/javascript">
-$(function() {
-$.ajax({
-
-	url: base_url+"info/info_graficas",
-    method: 'POST',
-    data: {'id_cct':$("#in_id_cct").val()},
-	beforeSend: function( xhr ) {
-		obj_loader.show();
-	}
-})
-.done(function( data ) {
-	obj_loader.hide();
-	var nivel = data.nivel;
-	var graf = new HaceGraficas(data);
-	switch(nivel) {
-	case '3':
-					graf.GraficoEstadisticaSecundaria_alumn();
-					graf.GraficoEstadisticaSecundaria_grupos();
-					graf.GraficoEstadisticaSecundaria_docentes();
-					if (data.graph_cont_tema_lyc.length==0) {
-							$("#dv_info_aprendizaje").empty();
-						}
-					 // Por Unidades de Análisis lyc
-					 if (data.graph_cont_tema_mate.length==0) {
-							$("#dv_info_graf_contmat").empty();
-              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
-						}
-
-					aux=1;
-	break;
-	case '4':
-					graf.GraficoEstadisticaPrimaria_alumn();
-					graf.GraficoEstadisticaPrimaria_grupos();
-					graf.GraficoEstadisticaPrimaria_docentes();
-					// graf.TablaPieGraficaBarPrimaria();
-					// if (arr_graficas['graph_unidad_analisis_lyc']!='') {
-						if (data.graph_cont_tema_lyc.length>0) {
-							graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct);
-						}
-						else{
-							$("#dv_info_graf_contlyc").empty();
-              				$("#dv_info_graf_contlyc").append('<input type="text" value="No se encontraron datos">');
-						}
-					 // Por Unidades de Análisis lyc
-					 if (data.graph_cont_tema_mate.length>0) {
-							graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct);
-						}
-						else{
-							$("#dv_info_graf_contmat").empty();
-              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
-						}
-					// }
-					aux=1;
-
-	break;
-	case '5':
-					graf.GraficoEstadisticaSecundaria_alumn();
-					graf.GraficoEstadisticaSecundaria_grupos();
-					graf.GraficoEstadisticaSecundaria_docentes();
-					// graf.TablaPieGraficaBarSecundaria();
-					// if (arr_graficas['graph_unidad_analisis_lyc']!='') {
-						if (data.graph_cont_tema_lyc.length>0) {
-							graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
-						}
-						else{
-							$("#dv_info_graf_contlyc").empty();
-              				$("#dv_info_graf_contlyc").append('<input type="text" value="No se encontraron datos">');
-						}
-					 // Por Unidades de Análisis lyc
-					 if (data.graph_cont_tema_mate.length>0) {
-							graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
-						}
-						else{
-							$("#dv_info_graf_contmat").empty();
-              				$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
-						}
-
-					 // Por Unidades de Análisis lyc
-					 // Por Unidades de Análisis mate
-					// }
-					aux=1;
-
-	break;
-	case '6':
-					// if (arr_graficas['graph_unidad_analisis_lyc']!='') {
-					//   graf.graficoplanea_ud_ms_lyc(arr_graficas['graph_unidad_analisis_lyc']); // Por Unidades de Análisis lyc
-					//   graf.graficoplanea_ud_ms_mate(arr_graficas['graph_unidad_analisis_mate']); // Por Unidades de Análisis mate
-					// }
-					//
-					$("#dv_info_aprendizaje").empty();
-					graf.GraficoEstadisticaOtros();
-					aux=1;
-
-	break;
-
-	default:
-					$("#dv_info_aprendizaje").empty();
-					graf.GraficoEstadisticaOtros();
-					aux=1;
-	break;
-
-	}
-
-	// if (arr_graficas['ind_perma']['valor_ete']!=0) {
-  //             graf.DibujarRadialProgressBarAete();
-  //           }
-	//
-  //           graf.click_riesgo();
-
-            // graf.DibujarRadialProgressBarR();
-            // graf.DibujarRadialProgressBarA();
-            // graf.DibujarRadialProgressBarET();
-            console.log(data.planea16_escuela.length);
-            if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
-            	graf.PieDrilldownPlanea05y06();
-            }
-            else{
-            	$("#tabla_planea").empty();
-            	$("#dv_info_graf_nlogrolyc").empty();
-              	$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
-              	$("#dv_info_graf_nlogromat").empty();
-            }
-
-            
-
-
-            // graf.TablaPieGraficaPie();
-
-
-	// alert(data.id_cct);
-		// var result = data.respuesta;
-		// var html = result.html;
-		// var total = result.total;
-		// var mensaje = result.mensaje;
-		// var arr_graficas = result.array_graficas;
-		// var nivel_g = result.nivel;
-		 //console.info(arr_graficas['graph_unidad_analisis_lyc']);
-		// console.table(arr_graficas);
-		// console.info("Sólo preescolar");
-		// console.info(arr_graficas['preescolar']);
-		// console.info("Sólo primaria");
-		// console.info(arr_graficas['primaria']);
-		// return false;
-
-		// obj_escuela.concatena_dom(html, function(result){
-		//     if(result==1){
-		//         obj_escuela.hace_graficas(arr_graficas, nivel_g, function(result2){
-		//             if(result2==1){
-		//                 obj_escuela.infoEscuela();
-		//             }
-		//         });
-		//     }
-		// });
-		// obj_escuela.infoEscuela(html);
-		swal.close();
-})
-.fail(function(e) {
-		console.error("Error in getInfoEscuela()"); console.table(e);
-});
-});
-$("#btn_info_asist").click(function(e){
-              e.preventDefault();
-							$("#dv_info_aprendizaje").attr('hidden',true);
-							$("#dv_info_asistencia").removeAttr('hidden');
-            });
-$("#btn_info_aprendiz").click(function(e){
-              e.preventDefault();
-							$("#dv_info_asistencia").attr('hidden',true);
-							$("#dv_info_aprendizaje").removeAttr('hidden');
-
-            });
-
-
-</script>
+<script src="<?= base_url('assets/js/info/graficos_riesgo.js'); ?>"></script>
+<script src="<?= base_url('assets/js/info/info_funcionalidad.js'); ?>"></script>

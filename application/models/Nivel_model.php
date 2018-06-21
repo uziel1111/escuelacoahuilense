@@ -59,4 +59,18 @@ class Nivel_model extends CI_Model
 
     }// get_nivel()
 
+    function get_xidmunicipio_riesgo($id_municipio){
+      $this->db->select('ni.id_nivel, ni.nivel');
+      $this->db->from('nivel as ni');
+      $this->db->join('escuela as es', 'ni.id_nivel = es.id_nivel');
+      $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+      $this->db->where('ni.id_nivel', 4);
+      $this->db->or_where('ni.id_nivel', 5);
+      if($id_municipio>0){
+        $this->db->where('mu.id_municipio', $id_municipio);
+      }
+      $this->db->group_by('ni.id_nivel');
+      return  $this->db->get()->result_array();
+    }// get_xidmunicipio()
+
 }// Nivel_model
