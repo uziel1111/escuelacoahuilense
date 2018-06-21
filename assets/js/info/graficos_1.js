@@ -1,121 +1,11 @@
 
-
-
-function HaceGraficas(arr_datos){
-
+function HaceGraficas(){
     obj_graficas = this;
-    //
-    // var valor_bim =  '';
-    // var valor_cic =  '';
-    // console.log(arr_datos);
-    // obj_graficas.arr_estadistica = [];
-
-      // obj_graficas.arr_estadistica = arr_datos['estadistica'];
-      // obj_graficas.arr_riesgo = [];
-      // obj_graficas.arr_riesgo = arr_datos['riesgo'];
-      // obj_graficas.arr_riesgot = [];
-      // obj_graficas.arr_riesgot = arr_datos['riesgot'];
-      // obj_graficas.arr_btnnewriesgo = [];
-      // obj_graficas.arr_btnnewriesgo = arr_datos['btnnewriesgo'];
-
-      // var valor_cct =  obj_graficas.arr_btnnewriesgo['cct'];
-      // var valor_nvl =  obj_graficas.arr_btnnewriesgo['nivel'];
-      // var valor_tno =  obj_graficas.arr_btnnewriesgo['turno'];
-      /* Obtenemos el valor de los select correspondientes a riesgo de abandono*/
-
-
-    // Variables para guardar las cifras correspondiente a estadísticas de alumnos, grupos y docentes.
-    if (arr_datos.estadis_alumnos_escuela.length>0) {
-      var a_g1 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
-    var a_g2 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
-    var a_g3 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_3']);//7;
-    var a_g4 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_4']);//8;
-    var a_g5 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_5']);//8;
-    var a_g6 =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_6']);//8;
-    var t_alumnos  =  parseInt(arr_datos.estadis_alumnos_escuela[0]['alumn_t_t']);//10;
-    }
-    if (arr_datos.estadis_grupos_escuela.length>0) {
-    var g_g1 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_1']);//3;
-    var g_g2 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_2']);//3;
-    var g_g3 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_3']);//3;
-    var g_g4 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_4']);//3;
-    var g_g5 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_5']);//3;
-    var g_g6 =  parseInt(arr_datos.estadis_grupos_escuela[0]['grupos_6']);//3;
-    var t_grupos   =  g_g1+g_g2+g_g3+g_g4+g_g5+g_g6;//10;
-  }
-    if (arr_datos.estadis_docentes_escuela.length>0) {
-    var d_g1 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_1_g']);//3;
-    var d_g2 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_2_g']);//3;
-    var d_g3 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_3_g']);//3;
-    var d_g4 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_4_g']);//3;
-    var d_g5 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_5_g']);//3;
-    var d_g6 =  parseInt(arr_datos.estadis_docentes_escuela[0]['docentes_6_g']);//3;
-    var t_docentes =  d_g1+d_g2+d_g3+d_g4+d_g5+d_g6;//10;
-  }
-
-    // var g_mg =  20;//3;
-    //
-    
-    
-    
-
-    //
-    // var q1 = parseInt(obj_graficas.arr_riesgo['muyalto']);
-    // var q2 = parseInt(obj_graficas.arr_riesgo['alto']);
-    // var q3 = parseInt(obj_graficas.arr_riesgo['medio']);
-    // var q4 = parseInt(obj_graficas.arr_riesgo['bajo']);
-    //
-    //
-    // var t1 = parseInt(obj_graficas.arr_riesgot['total1']);
-    // var t2 = parseInt(obj_graficas.arr_riesgot['total2']);
-    // var t3 = parseInt(obj_graficas.arr_riesgot['total3']);
-    // var t4 = parseInt(obj_graficas.arr_riesgot['total4']);
-    // var t5 = parseInt(obj_graficas.arr_riesgot['total5']);
-    // var t6 = parseInt(obj_graficas.arr_riesgot['total6']);
-    //
-    // var cadena_nivel = '';
-    //
-    // obj_graficas.arr_ind_perma = [];
-    // obj_graficas.arr_ind_perma = arr_datos['ind_perma'];
-    //
-    // var valor_retencion =  obj_graficas.arr_ind_perma['valor_retencion'];
-    // var valor_aprobacion =  obj_graficas.arr_ind_perma['valor_aprobacion'];
-    // var valor_et =  obj_graficas.arr_ind_perma['valor_et'];
-    // var valor_ete =  obj_graficas.arr_ind_perma['valor_ete'];
-    //
-    // var valor_retencion  = parseFloat(valor_retencion);
-    // var valor_aprobacion = parseFloat(valor_aprobacion);
-    // var valor_et = parseFloat(valor_et);
-    // var valor_ete = parseFloat(valor_ete);
-    //
-    // obj_graficas.array_planea = [];
-    // obj_graficas.array_planea = arr_datos['planea'];
-    //
-    //
-    if (arr_datos.planea15_escuela.length>0) {
-    var lyc1_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_i']);
-    var lyc2_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_ii']);
-    var lyc3_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_iii']);
-    var lyc4_15  = parseFloat(arr_datos.planea15_escuela[0]['lyc_iv']);
-    var mat1_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_i']);
-    var mat2_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_ii']);
-    var mat3_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_iii']);
-    var mat4_15  = parseFloat(arr_datos.planea15_escuela[0]['mat_iv']);
-  }
-  
-if (arr_datos.planea16_escuela.length>0) {
-    var lyc1_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_i']);
-    var lyc2_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_ii']);
-    var lyc3_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_iii']);
-    var lyc4_16  = parseFloat(arr_datos.planea16_escuela[0]['lyc_iv']);
-    var mat1_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_i']);
-    var mat2_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_ii']);
-    var mat3_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_iii']);
-    var mat4_16  = parseFloat(arr_datos.planea16_escuela[0]['mat_iv']);
   }
 
 
- this.GraficoEstadisticaPrimaria_alumn = function(){
+
+ HaceGraficas.prototype.GraficoEstadisticaPrimaria_alumn = function(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos){
       Highcharts.theme = {
             colors: ['#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2', '#3C5AA2', '#3C5AA2',
                      '#3C5AA2', '#3C5AA2', '#3C5AA2'],
@@ -258,7 +148,7 @@ if (arr_datos.planea16_escuela.length>0) {
 
     }//GraficoEstadisticaPrimaria_alumn
 
-  this.GraficoEstadisticaPrimaria_grupos = function(){
+  HaceGraficas.prototype.GraficoEstadisticaPrimaria_grupos = function(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos){
          Highcharts.theme = {
                colors: ['#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462', '#ECC462', '#ECC462',
                         '#ECC462', '#ECC462', '#ECC462'],
@@ -404,7 +294,7 @@ if (arr_datos.planea16_escuela.length>0) {
          }
        }//GraficoEstadisticaPrimaria_grupos
 
-       this.GraficoEstadisticaPrimaria_docentes = function(){
+       HaceGraficas.prototype.GraficoEstadisticaPrimaria_docentes = function(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes){
             Highcharts.theme = {
                   colors: ['#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C', '#D5831C', '#D5831C',
                            '#D5831C', '#D5831C', '#D5831C'],
@@ -446,7 +336,7 @@ if (arr_datos.planea16_escuela.length>0) {
 
             // Codigo para graficar la seccion estadistica de la escuela
             // Create the chart
-            var defaultSubtitle = "Total de docentes: "+t_grupos
+            var defaultSubtitle = "Total de docentes: "+t_docentes
             var estadPrimaria = new Highcharts.chart('dv_info_graf_docen', {
                 lang: {
                     drillUpText: ''
@@ -552,7 +442,7 @@ if (arr_datos.planea16_escuela.length>0) {
 
 
 
-          this.GraficoEstadisticaSecundaria_alumn = function(){
+          HaceGraficas.prototype.GraficoEstadisticaSecundaria_alumn = function(a_g1,a_g2,a_g3,t_alumnos){
                Highcharts.theme = {
                      colors: ['#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2','#3C5AA2', '#3C5AA2', '#3C5AA2',
                               '#3C5AA2', '#3C5AA2', '#3C5AA2'],
@@ -682,7 +572,7 @@ if (arr_datos.planea16_escuela.length>0) {
                }
              }//GraficoEstadisticaSecundaria_alumn
 
-           this.GraficoEstadisticaSecundaria_grupos = function(){
+           HaceGraficas.prototype.GraficoEstadisticaSecundaria_grupos = function(g_g1,g_g2,g_g3,t_grupos){
                   Highcharts.theme = {
                         colors: ['#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462','#ECC462', '#ECC462', '#ECC462',
                                  '#ECC462', '#ECC462', '#ECC462'],
@@ -812,7 +702,7 @@ if (arr_datos.planea16_escuela.length>0) {
                   }
                 }//GraficoEstadisticaSecundaria_grupos
 
-                this.GraficoEstadisticaSecundaria_docentes = function(){
+                HaceGraficas.prototype.GraficoEstadisticaSecundaria_docentes = function(d_g1,d_g2,d_g3,t_docentes){
                      Highcharts.theme = {
                            colors: ['#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C','#D5831C', '#D5831C', '#D5831C',
                                     '#D5831C', '#D5831C', '#D5831C'],
@@ -854,7 +744,7 @@ if (arr_datos.planea16_escuela.length>0) {
 
                      // Codigo para graficar la seccion estadistica de la escuela
                      // Create the chart
-                     var defaultSubtitle = "Total de docentes: "+t_grupos
+                     var defaultSubtitle = "Total de docentes: "+t_docentes
                      var estadPrimaria = new Highcharts.chart('dv_info_graf_docen', {
                          lang: {
                              drillUpText: ''
@@ -947,7 +837,7 @@ if (arr_datos.planea16_escuela.length>0) {
 
 
 
-this.GraficoEstadisticaOtros = function(){
+HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_docentes){
       Highcharts.theme = {
             //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
             //colors: ['#50B432', '#ED561B', '#8B4513', '#006080', '#24CBE5', '#64E572',
@@ -1072,190 +962,7 @@ this.GraficoEstadisticaOtros = function(){
 
 
 
-this.DibujarRadialProgressBarR = function(){
-    //  Dibujamos el radial progress bar para Retención
-    var bar = new ProgressBar.Circle(containerRPB01, {
-      color: '#888888',
-      strokeWidth: 8,
-      trailWidth: 5,
-      easing: 'easeInOut',
-      duration: 9400,
-      text: {
-        autoStyleContainer: false
-      },
-      from: { color: '#D6DADC', width: 5 },
-      to: { color: '#3C5AA2', width: 8 }, //#07A4B5
-      // Set default step function for all animate calls
-      step: function(state, circle) {
-        circle.path.setAttribute('stroke', state.color);
-        circle.path.setAttribute('stroke-width', state.width);
-
-        if(circle.value()==1.0){
-          var value = Math.round(circle.value() * 100);
-        }
-        else {
-          var value = circle.value() * 100;
-        value = value.toFixed(2);
-        }
-        if (value === 0) {
-          circle.setText('');
-        } else {
-          if (value>1) {
-            circle.setText(valor_retencion+'%');
-          }
-          else {
-            circle.setText(value+'%');
-          }
-
-        }
-
-      }
-    });
-    bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-
-    bar.animate(Math.min(valor_retencion/100, 1));  // Number from 0.0 to 1.0
-  }
-
-  this.DibujarRadialProgressBarAete = function(){
-      // Dibujamos el radial progress bar para Eficiencia Terminal
-      var bar = new ProgressBar.Circle(containerRPB03ete, {
-        color: '#888888',
-        // This has to be the same size as the maximum width to
-        // prevent clipping
-        strokeWidth: 8,
-        trailWidth: 5,
-        easing: 'easeInOut',
-        duration: 7400,
-        text: {
-          autoStyleContainer: false
-        },
-        from: { color: '#FFA500', width: 5 },
-        to: { color: '#ECC462', width: 8 },
-        // Set default step function for all animate calls
-        step: function(state, circle) {
-          circle.path.setAttribute('stroke', state.color);
-          circle.path.setAttribute('stroke-width', state.width);
-
-          if(circle.value()==1.0){
-            var value = Math.round(circle.value() * 100);
-          }
-          else {
-            var value = circle.value() * 100;
-          value = value.toFixed(2);
-          }
-          if (value === 0) {
-            circle.setText('');
-          } else {
-            if (value>1) {
-              circle.setText(valor_ete.toFixed(2)+'%');
-            }
-            else {
-              circle.setText(value+'%');
-            }
-          }
-
-        }
-      });
-      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
-      bar.text.style.fontSize = '2rem';
-
-      bar.animate(Math.min(valor_ete/100, 1));  // Number from 0.0 to 1.0
-    }
-
-  this.DibujarRadialProgressBarA = function(){
-    // Dibujamos el radial progress bar para Aprobación
-    var bar = new ProgressBar.Circle(containerRPB02, {
-      color: '#888888',
-      // This has to be the same size as the maximum width to
-      // prevent clipping
-      strokeWidth: 8,
-      trailWidth: 5,
-      easing: 'easeInOut',
-      duration: 6400,
-      text: {
-        autoStyleContainer: false
-      },
-      from: { color: '#D6DADC', width: 5 },
-      to: { color: '#FF9900', width: 8 }, /*e50016 rojo negativo para el usuario*/
-      // Set default step function for all animate calls
-      step: function(state, circle) {
-        circle.path.setAttribute('stroke', state.color);
-        circle.path.setAttribute('stroke-width', state.width);
-
-        if(circle.value()==1.0){
-          var value = Math.round(circle.value() * 100);
-        }
-        else {
-          var value = circle.value() * 100;
-        value = value.toFixed(2);
-        }
-        if (value === 0) {
-          circle.setText('');
-        } else {
-          if (value>1) {
-            circle.setText(valor_aprobacion+'%');
-          }
-          else {
-            circle.setText(value+'%');
-          }
-        }
-
-      }
-    });
-    bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-
-    bar.animate(Math.min(valor_aprobacion/100, 1));  // Number from 0.0 to 1.0
-  }
-  this.DibujarRadialProgressBarET = function(){
-    // Dibujamos el radial progress bar para Eficiencia Terminal
-    var bar = new ProgressBar.Circle(containerRPB03, {
-      color: '#888888',
-      // This has to be the same size as the maximum width to
-      // prevent clipping
-      strokeWidth: 8,
-      trailWidth: 5,
-      easing: 'easeInOut',
-      duration: 7400,
-      text: {
-        autoStyleContainer: false
-      },
-      from: { color: '#D6DADC', width: 5 },
-      to: { color: '#ECC462', width: 8 },
-      // Set default step function for all animate calls
-      step: function(state, circle) {
-        circle.path.setAttribute('stroke', state.color);
-        circle.path.setAttribute('stroke-width', state.width);
-
-        if(circle.value()==1.0){
-          var value = Math.round(circle.value() * 100);
-        }
-        else {
-          var value = circle.value() * 100;
-        value = value.toFixed(2);
-        }
-        if (value === 0) {
-          circle.setText('');
-        } else {
-          if (value>1) {
-            circle.setText(valor_et+'%');
-          }
-          else {
-            circle.setText(value+'%');
-          }
-        }
-
-      }
-    });
-    bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-
-    bar.animate(Math.min(valor_et/100, 1));  // Number from 0.0 to 1.0
-  }
-
-
-  this.PieDrilldownPlanea05y06 = function(){
+HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16){
 
         Highcharts.theme = {
             colors: ['#ECC462','#D5831C','#935116','#CCCC00','#FF9900','#3C5AA2'],
@@ -1474,7 +1181,7 @@ this.DibujarRadialProgressBarR = function(){
 
     }
 
-    this.TablaPieGraficaPie = function(){
+  HaceGraficas.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 
           Highcharts.theme = {
               //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
@@ -1517,7 +1224,7 @@ this.DibujarRadialProgressBarR = function(){
           Highcharts.setOptions(Highcharts.theme);
 
           // Build the chart
-          estadPrimaria= new Highcharts.chart('containerpiechartRiesgo', {
+          estadPrimaria= new Highcharts.chart('dv_riesgo_esc_pie', {
               credits: {
                   enabled: false
               },
@@ -1589,7 +1296,7 @@ this.DibujarRadialProgressBarR = function(){
 
 
 
-this.TablaPieGraficaBarPrimaria= function(){
+HaceGraficas.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 
         Highcharts.theme = {
             colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
@@ -1631,7 +1338,7 @@ this.TablaPieGraficaBarPrimaria= function(){
         Highcharts.setOptions(Highcharts.theme);
 
         // Gráfica opcion 2 para distribucion por grado Riesgo de abandono escolar
-        estadPrimaria = new Highcharts.chart('containerbarchartRiesgo', {
+        estadPrimaria = new Highcharts.chart('dv_riesgo_esc_bar', {
             credits: {
                 enabled: false
             },
@@ -1639,7 +1346,7 @@ this.TablaPieGraficaBarPrimaria= function(){
                 type: 'column'
             },
             title: {
-                text: '<b style="font-size: 2.3vw;"><br>Distribución por grado</b>'
+                text: '<b style="font-size: 2.1vw;"><br>Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
             },
             subtitle: {
                 text: ''
@@ -1703,7 +1410,7 @@ this.TablaPieGraficaBarPrimaria= function(){
 
 
 
-this.TablaPieGraficaBarSecundaria= function(){
+HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
         Highcharts.theme = {
             colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
@@ -1745,7 +1452,7 @@ this.TablaPieGraficaBarSecundaria= function(){
         Highcharts.setOptions(Highcharts.theme);
 
         // Gráfica opcion 2 para distribucion por grado Riesgo de abandono escolar
-        estadPrimaria = new Highcharts.chart('containerbarchartRiesgo', {
+        estadPrimaria = new Highcharts.chart('dv_riesgo_esc_bar', {
             credits: {
                 enabled: false
             },
@@ -1753,7 +1460,7 @@ this.TablaPieGraficaBarSecundaria= function(){
                 type: 'column'
             },
             title: {
-                text: '<b style="font-size: 2.3vw;">Distribución por grado</b>'
+                text: '<b style="font-size: 2.1vw;">Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
             },
             subtitle: {
                 text: ''
@@ -1814,54 +1521,8 @@ this.TablaPieGraficaBarSecundaria= function(){
 
 
 
-      this.click_riesgo = function(){
-      }
 
 
-
-
-
-      this.get_riesgo_abandono = function(){
-          var bimes = $("#select_opcbimestre").val();
-          var ciclo = $("#select_opcciclo").val();
-          var global_cct = $("#global_cct").val();
-          var global_nombre_turno = $("#global_nombre_turno").val();
-          var global_nivel = $("#global_nivel").val();
-          if (bimes!=1 && ciclo=='2017-2018') {
-            alert("AUN NO DISPONIBLE");
-
-          }
-          else {
-
-          var ruta = base_url+"escuela/info_escuela_riesgoabandono";
-          $.ajax({
-            url: ruta,
-            method: 'POST',
-            data: {'bimestre':bimes,'ciclo':ciclo,
-                   'global_cct':global_cct, 'global_nombre_turno':global_nombre_turno,
-                   'global_nivel':global_nivel},
-            beforeSend: function( xhr ) {
-              obj_message.loading("Descargando datos");
-            }
-          })
-          .done(function( data ) {
-              swal.close();
-              var result = data.respuesta;
-              var html = result.html;
-              $("#div_info_riesgoabandono").empty();
-              $("#div_info_riesgoabandono").append(html);
-
-              var arr_graficas = result.array_graficas;
-              obj_graficas.hace_graficas(arr_graficas, global_nivel, function(result2){
-                  if(result2==1){
-                  }
-              });
-          })
-          .fail(function(e) {
-              console.error("Error in get_riesgo_abandono()"); console.table(e);
-          });
-        }
-      }// get_riesgo_abandono()
 
 
 
@@ -1870,7 +1531,7 @@ this.TablaPieGraficaBarSecundaria= function(){
 
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
-      this.graficoplanea_ud_prim_lyc = function(arr_lyc,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_cct){
         // console.info(id_cct);
 
         arr_lyc.sort(function (a, b) {
@@ -2013,7 +1674,7 @@ this.TablaPieGraficaBarSecundaria= function(){
           // }
       }// graficoplanea_ud_prim_lyc()
 
-      this.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
         // console.info(arr_mate);
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -2153,7 +1814,7 @@ this.TablaPieGraficaBarSecundaria= function(){
 
       }// graficoplanea_ud_prim_mate()
 
-      this.graficoplanea_ud_secu_lyc = function(arr_lyc,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_secu_lyc = function(arr_lyc,id_cct){
         // console.info(arr_lyc);
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -2180,20 +1841,20 @@ this.TablaPieGraficaBarSecundaria= function(){
                     },
                 },
                 */
-                title: {
-                    style: {
-                        color: '#000',
-                        font: 'bold 18px'
-                    },
-                    text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
-                },
-                subtitle: {
-                    style: {
-                        color: 'blue',
-                        font: 'bold 20px'
-                    },
-                    text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
-                },
+                // title: {
+                //     style: {
+                //         color: '#000',
+                //         font: 'bold 18px'
+                //     },
+                //     text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
+                // },
+                // subtitle: {
+                //     style: {
+                //         color: 'blue',
+                //         font: 'bold 20px'
+                //     },
+                //     text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluadoos: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
+                // },
                 legend: {
                     itemStyle: {
                         font: '9pt',
@@ -2240,14 +1901,12 @@ this.TablaPieGraficaBarSecundaria= function(){
                   width: ($(document).width()/10)*6,
                   height: ($(document).width()/10)*12
               },
-              /*
               title: {
                   text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
               },
-              */
               xAxis: {
                   type: 'category'
               },
@@ -2329,7 +1988,7 @@ this.TablaPieGraficaBarSecundaria= function(){
           */
       }// graficoplanea_ud_secu_lyc()
 
-      this.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
         // console.info(arr_mate);
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -2471,304 +2130,9 @@ this.TablaPieGraficaBarSecundaria= function(){
 
       }// graficoplanea_ud_secu_mate()
 
-      this.graficoplanea_ud_ms_lyc = function(arr_lyc){
-        // console.info(arr_lyc);
 
 
-          Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                chart: {
-                    backgroundColor: {
-                        linearGradient: [0, 0, 0, 0],
-                        stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
-                        ]
-                    },
-                    width: ($(document).width()/10)*6,
-                    height: ($(document).width()/10)*12
-                },
-                title: {
-                    style: {
-                        color: '#000',
-                        font: 'bold 18px'
-                    }
-                },
-                subtitle: {
-                    style: {
-                        color: 'blue',
-                        font: 'bold 20px'
-                    }
-                },
-
-                legend: {
-                    itemStyle: {
-                        font: '9pt',
-                        color: 'black'
-                    },
-                    itemHoverStyle:{
-                        color: 'gray'
-                    }
-                }
-          };
-          var arr_lyc_aux = new Array();;
-          for (var i = 0; i < arr_lyc.length; i++){
-             arr_lyc_aux.push({'name': arr_lyc[i]['contenidos'],'y': arr_lyc[i]['porcen_alum_respok'],'drilldown': arr_lyc[i]['total_rea_xua']});
-          }
-          //console.log( arr_lyc );
-
-          // Apply the theme
-          Highcharts.setOptions(Highcharts.theme);
-          // Codigo para graficar la seccion estadistica de la escuela
-          var estadPreescolar = new Highcharts.chart('containerbar_unidad_analisis_lyc', {
-              lang: {
-                  //drillUpText: '◁ Regresar a {series.name}'
-              },
-              credits: {
-                  enabled: false
-              },
-              chart: {
-                  type: 'bar'
-              },
-              title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
-              },
-              subtitle: {
-                  text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
-              },
-              xAxis: {
-                  type: 'category'
-              },
-              yAxis: {
-                  title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
-                  }
-              },
-              legend: {
-                  enabled: false
-              },
-              plotOptions: {
-                  series: {
-                    events: {
-                      click: function (event) {
-                        // nada...
-                      }
-              },
-                      borderWidth: 0,
-                      dataLabels: {
-                          enabled: true,
-                          format: '{point.y:.1f}%'
-                      }
-                  },
-
-                  // agregamos a la columna la propiedad para el clik y enviar el nombre a una función
-                  bar :{
-                       point:{
-                           events:{
-                               click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,"lyc", "ms");
-                               }
-                           }
-                       }
-                   }
-                  //
-              },
-
-              tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><b>{point.y}%</b><br>',
-                pointFormat: '<span style="font-size:11px">Total de preguntas en el contenido temático: </span><b>{point.drilldown}</b><br><span style="color:{point.color}">{point.name}</span>'
-              },
-
-
-              series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
-                  colorByPoint: true,
-                  data: arr_lyc_aux
-              }],
-
-          });
-
-          $(".highcharts-background").css("fill","#FFF");
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1400,
-          //      false
-          //   );
-          // }
-      }// graficoplanea_ud_ms_lyc()
-
-
-
-      this.graficoplanea_ud_ms_mate = function(arr_mate){
-        // console.info(arr_mate);
-          Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                chart: {
-                    backgroundColor: {
-                        linearGradient: [0, 0, 0, 0],
-                        stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
-                        ]
-                    },
-                    width: ($(document).width()/10)*6,
-                    height: ($(document).width()/10)*10
-                },
-                title: {
-                    style: {
-                        color: '#000',
-                        font: 'bold 18px'
-                    }
-                },
-                subtitle: {
-                    style: {
-                        color: 'blue',
-                        font: 'bold 20px'
-                    }
-                },
-                legend: {
-                    itemStyle: {
-                        font: '9pt',
-                        color: 'black'
-                    },
-                    itemHoverStyle:{
-                        color: 'gray'
-                    }
-                }
-          };
-
-          var arr_mate_aux = new Array();;
-          for (var i = 0; i < arr_mate.length; i++){
-             arr_mate_aux.push({'name': arr_mate[i]['contenidos'],'y': arr_mate[i]['porcen_alum_respok'],'drilldown': arr_mate[i]['total_rea_xua']});
-          }
-
-          // Apply the theme
-          Highcharts.setOptions(Highcharts.theme);
-          // Codigo para graficar la seccion estadistica de la escuela
-          var estadPreescolar = new Highcharts.chart('containerbar_unidad_analisis_mate', {
-              lang: {
-                  //drillUpText: '◁ Regresar a {series.name}'
-              },
-              credits: {
-                  enabled: false
-              },
-              chart: {
-                  type: 'bar'
-                  // width: 1000
-              },
-              title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
-              },
-              subtitle: {
-                  text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
-              },
-              xAxis: {
-                  type: 'category'
-              },
-              yAxis: {
-                  title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
-                  }
-              },
-              legend: {
-                  enabled: false
-              },
-              plotOptions: {
-                  series: {
-                    events: {
-                      click: function (event) {
-                        // nada...
-                      }
-              },
-                      borderWidth: 0,
-                      dataLabels: {
-                          enabled: true,
-                          format: '{point.y:.1f}%'
-                      }
-                  },
-                  // agregamos a la columna la propiedad para el clik y enviar el nombre a una función
-                  bar :{
-                       point:{
-                           events:{
-                               click:function(){
-                                // console.info(this);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,"mat","ms");
-                               }
-                           }
-                       }
-                   }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><b>{point.y}%</b><br>',
-                pointFormat: '<span style="font-size:11px">Total de preguntas en el contenido temático: </span><b>{point.drilldown}</b><br><span style="color:{point.color}">{point.name}</span>'
-
-              },
-              series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
-                  colorByPoint: true,
-                  data: arr_mate_aux
-              }],
-          });
-
-          $(".highcharts-background").css("fill","#FFF");
-          // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       600,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
-
-      }// graficoplanea_ud_ms_mate()
-
-
-      this.hace_graficas = function(arr_graficas, nivel_g, callback){
-          var aux = 0;
-          var graf = new HaceGraficas(arr_graficas,true);
-          switch(nivel_g) {
-              case "PREESCOLAR":
-              break;
-              case "PRIMARIA":
-                  graf.TablaPieGraficaBarPrimaria();
-
-              break;
-              case "SECUNDARIA":
-                  graf.TablaPieGraficaBarSecundaria();
-              break;
-              default:
-              break;
-          }
-          graf.TablaPieGraficaPie();
-          return callback(aux);
-      }// hace_graficas()
-
-      this.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis){
+      HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis){
 
           // alert(id_cont);
           var ruta = base_url+"info/info_xcont_xcct";
@@ -2778,11 +2142,11 @@ this.TablaPieGraficaBarSecundaria= function(){
             data: { 'id_cont':id_cont,'id_cct':id_cct,'periodo':periodo,'idcampodis':idcampodis
                   },
             beforeSend: function( xhr ) {
-              obj_loader.show();
+              // obj_loader.show();
             }
           })
           .done(function( data ) {
-            obj_loader.hide();
+            // obj_loader.hide();
               swal.close();
               var result = data.graph_cont_reactivos_xcctxcont;
 
@@ -2813,18 +2177,3 @@ this.TablaPieGraficaBarSecundaria= function(){
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
           });
       }// get_reactivos_xunidad_de_analisis()
-
-
-
-
-
-}// HaceGraficas()
-
-
-
-
-
-
-function get_riesgo_abandono(){
-    obj_graficas.get_riesgo_abandono();
-}
