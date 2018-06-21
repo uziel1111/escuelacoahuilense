@@ -1,0 +1,60 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Riesgo extends CI_Controller {
+
+		function __construct() {
+			parent::__construct();
+			$this->load->library('Utilerias');
+			$this->load->model('Escuela_model');
+			$this->load->model('Municipio_model');
+			$this->load->model('Nivel_model');
+			$this->load->model('Sostenimiento_model');
+			$this->load->helper('form');
+		}
+
+		public function riesgo_x_muni_zona(){
+			$data = array();
+			$data2 = array();
+			$arr_municipios = array();
+			$arr_niveles = array();
+			$arr_sostenimientos = array();
+			$arr_federales = array();
+
+			// echo "<pre>";
+			// print_r($options);
+			// die();
+			$municipios = $this->Municipio_model->all();
+			$arr_municipios['0'] = 'TODOS';
+			foreach ($municipios as $municipio){
+				 $arr_municipios[$municipio['id_municipio']] = $municipio['municipio'];
+			}
+
+			$niveles = $this->Nivel_model->get_xidmunicipio_riesgo(0);
+			foreach ($niveles as $nivel){
+				 $arr_niveles[$nivel['id_nivel']] = $nivel['nivel'];
+			}
+
+			// $sostenimientos = $this->Sostenimiento_model->all();
+			$arr_bimestres['1'] = '1er BIMESTRE';
+			$arr_bimestres['2'] = '2do BIMESTRE';
+			$arr_bimestres['3'] = '3er BIMESTRE';
+			$arr_bimestres['4'] = '4to BIMESTRE';
+			$arr_bimestres['5'] = '5to BIMESTRE';
+
+			$arr_ciclos['1'] = '2017 - 2018';
+
+			// foreach ($sostenimientos as $sostenimiento){
+			// 	 $arr_sostenimientos[$sostenimiento['id_sostenimiento']] = $sostenimiento['sostenimiento'];
+			// }
+
+			$data2['municipios'] = $arr_municipios;
+			$data2['niveles'] = $arr_niveles;
+			$data2['bimestres'] = $arr_bimestres;
+			$data2['ciclos'] = $arr_ciclos;
+			$string = $this->load->view('riesgo/buscador_riesgo_muni_zona', $data2, TRUE);
+			$data['buscador'] = $string;
+			Utilerias::pagina_basica($this, "riesgo/index", $data);
+		}// riesgo_x_muni_zona()
+
+}// Riesgo

@@ -12,6 +12,7 @@ class Info extends CI_Controller {
 			$this->load->model('Planeaxescuela_model');
 			$this->load->model('Planea_nacionalxnivel_model');
 			$this->load->model('Planeaxesc_reactivo_model');
+			$this->load->model('Riesgo_alumn_esc_bim_model');
 		}
 
 	public function index(){
@@ -57,11 +58,12 @@ class Info extends CI_Controller {
 		$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
 		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 
-		$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
-		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
-
 		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
 		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+
+		// $graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,1,"2017-2018");
+		// $graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,1,"2017-2018");
+		// echo "<pre>";print_r($graph_bar_riesgo);die();
 
 		// echo "<pre>";print_r($graph_cont_tema_lyc);die();
 		$response = array(
@@ -93,6 +95,68 @@ class Info extends CI_Controller {
 		// echo "<pre>";print_r($graph_cont_tema_lyc);die();
 		$response = array(
 			'graph_cont_reactivos_xcctxcont'=>$graph_cont_reactivos_xcctxcont
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_riesgo_graf(){
+		$id_cct = $this->input->post("id_cct");
+		$id_bim = $this->input->post("id_bim");
+		$ciclo = $this->input->post("ciclo");
+
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+		$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,$id_bim,$ciclo);
+		$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,$id_bim,$ciclo);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'graph_pie_riesgo'=>$graph_pie_riesgo,
+			'graph_bar_riesgo'=>$graph_bar_riesgo
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_estadistica_graf(){
+		$id_cct = $this->input->post("id_cct");
+		$estadis_alumnos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xesc($id_cct);
+		$estadis_docentes_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ndocentes_xesc($id_cct);
+		$estadis_grupos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ngrupos_xesc($id_cct);
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'estadis_alumnos_escuela'=>$estadis_alumnos_escuela,
+			'estadis_docentes_escuela'=>$estadis_docentes_escuela,
+			'estadis_grupos_escuela'=>$estadis_grupos_escuela
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_plaea_graf(){
+		$id_cct = $this->input->post("id_cct");
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
+		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
+
+		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
+		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'planea15_escuela'=>$planea15_escuela,
+			'planea16_escuela'=>$planea16_escuela,
+			'graph_cont_tema_lyc'=>$graph_cont_tema_lyc,
+			'graph_cont_tema_mate'=>$graph_cont_tema_mate
 		);
 
 		Utilerias::enviaDataJson(200, $response, $this);
