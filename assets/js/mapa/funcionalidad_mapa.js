@@ -1,9 +1,10 @@
 $(function() {
     obj_mapa = new Mapa();
+    // obj_loader = new Loader();
 });
 
 function Mapa(){
-  _this = this;
+  _thismap = this;
 }
 
 $("#slt_municipio_mapa").change(function() {

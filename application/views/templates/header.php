@@ -41,7 +41,7 @@
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
-  <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
+  <script src="<?= base_url('assets/js/Utiles.js') ?>"></script>
   <script src="<?= base_url('assets/js/loader.js') ?>"></script>
 
 

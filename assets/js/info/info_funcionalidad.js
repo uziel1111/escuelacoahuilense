@@ -1,17 +1,55 @@
+$(function() {
+    obj_info = new Info_esc();
+    obj_loader = new Loader();
+    graf = new HaceGraficas();
+    grafr = new GraficasRiesgo();
+});
+
+function Info_esc(){
+  _thisinfo = this;
+}
 $("#btn_info_asist").click(function(e){
               e.preventDefault();
-							$("#dv_info_aprendizaje").attr('hidden',true);
+              obj_info.get_alumn_doc_grup();
+							
+            });
+$("#btn_info_perma").click(function(e){
+              e.preventDefault();
+              obj_info.get_riesgo();
+							
+            });
+$("#btn_info_aprendiz").click(function(e){
+              e.preventDefault();
+              obj_info.get_planea();
+							
+            });
+
+
+
+$("#btn_buscar_ries_esc").click(function(e){
+              e.preventDefault();
+              obj_info.get_riesgo2();
+
+            });
+
+Info_esc.prototype.get_alumn_doc_grup =function(){
+	$("#dv_info_aprendizaje").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_asistencia").removeAttr('hidden');
 							let id_cct = $("#in_id_cct").val();
-							let grafr = new HaceGraficas();
+							// let grafr = new HaceGraficas();
+							// let obj_loader = new Loader();
 							// alert(ciclo);
 							$.ajax({
 				        url:  base_url+"info/info_estadistica_graf",
 				        method: 'POST',
-				        data: {'id_cct':id_cct}
+				        data: {'id_cct':id_cct},
+				        beforeSend: function(xhr) {
+					        // obj_loader.show();
+					    },
 				      })
 				      .done(function( data ) {
+				      	// obj_loader.hide();
 								let nivel = data.nivel;
 
 								if (data.estadis_alumnos_escuela.length>0) {
@@ -46,26 +84,26 @@ $("#btn_info_asist").click(function(e){
 
 								switch(nivel) {
 									case '3':
-													grafr.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
-													grafr.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
-													grafr.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
+													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
+													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
+													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
 
 									break;
 									case '4':
-													grafr.GraficoEstadisticaPrimaria_alumn(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos);
-													grafr.GraficoEstadisticaPrimaria_grupos(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos);
-													grafr.GraficoEstadisticaPrimaria_docentes(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes);
+													graf.GraficoEstadisticaPrimaria_alumn(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos);
+													graf.GraficoEstadisticaPrimaria_grupos(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos);
+													graf.GraficoEstadisticaPrimaria_docentes(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes);
 
 									break;
 									case '5':
-													grafr.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
-													grafr.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
-													grafr.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
+													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
+													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
+													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
 
 									break;
 
 									default:
-													grafr.GraficoEstadisticaOtros(t_alumnos,t_grupos,t_docentes);
+													graf.GraficoEstadisticaOtros(t_alumnos,t_grupos,t_docentes);
 									break;
 
 								}
@@ -73,21 +111,27 @@ $("#btn_info_asist").click(function(e){
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
 				      });
-            });
-$("#btn_info_perma").click(function(e){
-              e.preventDefault();
-							$("#dv_info_asistencia").attr('hidden',true);
+	
+
+}
+Info_esc.prototype.get_riesgo =function(){
+	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").removeAttr('hidden');
 							$("#dv_info_aprendizaje").attr('hidden',true);
 							let id_cct = $("#in_id_cct").val();
-							let grafr = new GraficasRiesgo();
+							// let grafr = new GraficasRiesgo();
+							// let obj_loader = new Loader();
 							// alert(ciclo);
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
-				        data: {'id_cct':id_cct,'id_bim':1,'ciclo':"2017-2018"}
+				        data: {'id_cct':id_cct,'id_bim':1,'ciclo':"2017-2018"},
+				        beforeSend: function(xhr) {
+					        // obj_loader.show();
+					    },
 				      })
 				      .done(function( data ) {
+							// obj_loader.hide();
 								var nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -125,21 +169,27 @@ $("#btn_info_perma").click(function(e){
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
 				      });
-            });
-$("#btn_info_aprendiz").click(function(e){
-              e.preventDefault();
-							$("#dv_info_asistencia").attr('hidden',true);
+	
+
+}
+Info_esc.prototype.get_planea =function(){
+	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_aprendizaje").removeAttr('hidden');
 							let id_cct = $("#in_id_cct").val();
-							let grafr = new HaceGraficas();
+							// let grafr = new HaceGraficas();
+							// let obj_loader = new Loader();
 							// alert(ciclo);
 							$.ajax({
 								url:  base_url+"info/info_plaea_graf",
 								method: 'POST',
-								data: {'id_cct':id_cct}
+								data: {'id_cct':id_cct},
+								beforeSend: function(xhr) {
+							        // obj_loader.show();
+							    },
 							})
 							.done(function( data ) {
+								// obj_loader.hide();
 								let nivel = data.nivel;
 
 								if (data.planea15_escuela.length>0) {
@@ -178,7 +228,7 @@ $("#btn_info_aprendiz").click(function(e){
 									case '4':
 
 														if (data.graph_cont_tema_lyc.length>0) {
-															grafr.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct);
+															graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct);
 														}
 														else{
 															$("#dv_info_graf_contlyc").empty();
@@ -186,7 +236,7 @@ $("#btn_info_aprendiz").click(function(e){
 														}
 													 // Por Unidades de Análisis lyc
 													 if (data.graph_cont_tema_mate.length>0) {
-															grafr.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct);
+															graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct);
 														}
 														else{
 															$("#dv_info_graf_contmat").empty();
@@ -197,7 +247,7 @@ $("#btn_info_aprendiz").click(function(e){
 									case '5':
 
 														if (data.graph_cont_tema_lyc.length>0) {
-															grafr.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+															graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
 														}
 														else{
 															$("#dv_info_graf_contlyc").empty();
@@ -205,7 +255,7 @@ $("#btn_info_aprendiz").click(function(e){
 														}
 													 // Por Unidades de Análisis lyc
 													 if (data.graph_cont_tema_mate.length>0) {
-															grafr.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+															graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
 														}
 														else{
 															$("#dv_info_graf_contmat").empty();
@@ -223,7 +273,7 @@ $("#btn_info_aprendiz").click(function(e){
 								}
 
 								if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
-									grafr.PieDrilldownPlanea05y06(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16);
+									graf.PieDrilldownPlanea05y06(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16);
 								}
 								else{
 									$("#tabla_planea").empty();
@@ -231,27 +281,32 @@ $("#btn_info_aprendiz").click(function(e){
 										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
 										$("#dv_info_graf_nlogromat").empty();
 								}
+								// obj_loader.hide();
+
 							})
 							.fail(function(e) {
 								console.error("Error in "); console.table(e);
 							});
-            });
+	
 
-
-
-$("#btn_buscar_ries_esc").click(function(e){
-              e.preventDefault();
-							let id_bim = $("#slt_bimestre_ries").val();
+}
+Info_esc.prototype.get_riesgo2 =function(){
+	let id_bim = $("#slt_bimestre_ries").val();
 							let ciclo = $("#slt_ciclo_ries").val();
 							let id_cct = $("#in_id_cct").val();
-							let grafr = new GraficasRiesgo();
+							// let grafr = new GraficasRiesgo();
+							// let obj_loader = new Loader();
 							// alert(ciclo);
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
-				        data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo}
+				        data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo},
+				        beforeSend: function(xhr) {
+							        obj_loader.show();
+							    },
 				      })
 				      .done(function( data ) {
+				      	obj_loader.hide();
 								let nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -289,7 +344,6 @@ $("#btn_buscar_ries_esc").click(function(e){
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
 				      });
+	
 
-
-
-            });
+}

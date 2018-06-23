@@ -1,6 +1,6 @@
-$(function() {
-    obj_loader = new Loader();
-});
+// $(function() {
+//     obj_loader = new Loader();
+// });
 
 function Loader(){
   _this = this;
@@ -11,5 +11,5 @@ Loader.prototype.show = function(){
 }
 
 Loader.prototype.hide = function(){
-	$('#idmodalloader').modal('toggle');
+	$('#idmodalloader').modal('hide');
 }
