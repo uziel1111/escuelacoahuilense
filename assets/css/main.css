@@ -289,8 +289,8 @@ td, th {
   font-weight: 500;
 }
 
-.f700 {
-  font-weight: 700;
+.fw800 {
+  font-weight: 800 !important;
 }
 
 .fsi {
@@ -999,7 +999,9 @@ td, th {
 .table-style-1 thead th {
     color: #efefef; 
     font-size: 17px;
-    font-weight: 500;    
+    font-weight: 500;
+   /* border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;*/
+
 }
 /* */
 /** Buttons **/
