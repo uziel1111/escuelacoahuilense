@@ -270,25 +270,22 @@ class Estadistica extends CI_Controller {
 
 		function tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
-			$str_html_alumn='<table class="table">
-          	<thead>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+          	<thead class="bg-info">
           		<tr>
-          			<th rowspan="3">Nivel Educativo</th>
-          			<th colspan="21">Alumnos</th>
+          			<th rowspan="3" class="text-center align-middle">Nivel Educativo</th>
+          			<th colspan="21" class="text-center">Alumnos</th>
           		</tr>
           		<tr>
-          			<th  colspan="3">Total</th>
-          			<th  rowspan="2">1°</th>
-          			<th rowspan="2">2°</th>
-          			<th rowspan="2">3°</th>
-          			<th rowspan="2">4°</th>
-          			<th rowspan="2">5°</th>
-          			<th rowspan="2">6°</th>
-          		</tr>
-          		<tr>
-          			<th>M</th>
-          			<th>H</th>
-          			<th>T</th>
+							<th><i class="fa fa-female"></i></th>
+									<th><i class="fa fa-male"></i></th>
+									<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+									<th>1°</th>
+									<th>2°</th>
+									<th>3°</th>
+									<th>4°</th>
+									<th>5°</th>
+									<th>6°</th>
           		</tr>
           	</thead>
 						<tbody>';
@@ -302,7 +299,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento) {
@@ -312,7 +309,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['sostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento && $row['id_modalidad']==$id_modalidad) {
@@ -343,25 +340,22 @@ class Estadistica extends CI_Controller {
 		function tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
 			// echo "<pre>";print_r($result_alumnos);die();
-			$str_html_alumn='<table class="table">
-          	<thead>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+          	<thead class="bg-info">
           		<tr>
-          			<th rowspan="3">Nivel Educativo</th>
-          			<th colspan="21">Alumnos</th>
+          			<th rowspan="3" class="text-center align-middle">Nivel Educativo</th>
+          			<th colspan="21" class="text-center">Alumnos</th>
           		</tr>
           		<tr>
-          			<th  colspan="3">Total</th>
-          			<th  rowspan="2">1°</th>
-          			<th rowspan="2">2°</th>
-          			<th rowspan="2">3°</th>
-          			<th rowspan="2">4°</th>
-          			<th rowspan="2">5°</th>
-          			<th rowspan="2">6°</th>
-          		</tr>
-          		<tr>
-          			<th>M</th>
-          			<th>H</th>
-          			<th>T</th>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+								<th>1°</th>
+								<th>2°</th>
+								<th>3°</th>
+								<th>4°</th>
+								<th>5°</th>
+								<th>6°</th>
           		</tr>
           	</thead>
 						<tbody>';
@@ -375,7 +369,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z) {
@@ -385,7 +379,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['subsostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z ) {
@@ -415,25 +409,25 @@ class Estadistica extends CI_Controller {
 		function tabla_pdocentes($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xmunciclo($id_municipio, $id_ciclo);
 			// echo "<pre>";print_r($result_alumnos);die();
-			$str_html_alumn='<table class="table">
-          	<thead>
-          		<tr>
-          	    	<th rowspan="2">Nivel educativo</th>
-          	    	<th colspan="3">Docentes</th>
-          	    	<th colspan="3">Directivo con grupo</th>
-          	    	<th colspan="3">Directivo sin grupo</th>
-          	    </tr>
-          	    <tr>
-          	    	<th>Mujeres</th>
-          	    	<th>Hombres</th>
-          	    	<th>Total</th>
-									<th>Mujeres</th>
-          	    	<th>Hombres</th>
-          	    	<th>Total</th>
-									<th>Mujeres</th>
-          	    	<th>Hombres</th>
-          	    	<th>Total</th>
-          	    </tr>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+          	<thead class="bg-info">
+							<tr>
+								<th rowspan="2" class="text-center align-middle">Nivel educativo</th>
+								<th colspan="3" class="text-center align-middle">Docentes</th>
+								<th colspan="3" class="text-center align-middle">Directivo con grupo</th>
+								<th colspan="3" class="text-center align-middle">Directivo sin grupo</th>
+							</tr>
+							<tr>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+							</tr>
 						</thead>
 						<tbody>';
 
@@ -446,7 +440,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento) {
@@ -456,7 +450,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['sostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento && $row['id_modalidad']==$id_modalidad) {
@@ -489,25 +483,25 @@ class Estadistica extends CI_Controller {
 		function tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
 			// echo "<pre>";print_r($result_alumnos);die();
-			$str_html_alumn='<table class="table">
-						<thead>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+						<thead class="bg-info">
 							<tr>
-									<th rowspan="2">Nivel educativo</th>
-									<th colspan="3">Docentes</th>
-									<th colspan="3">Directivo con grupo</th>
-									<th colspan="3">Directivo sin grupo</th>
-								</tr>
-								<tr>
-									<th>Mujeres</th>
-									<th>Hombres</th>
-									<th>Total</th>
-									<th>Mujeres</th>
-									<th>Hombres</th>
-									<th>Total</th>
-									<th>Mujeres</th>
-									<th>Hombres</th>
-									<th>Total</th>
-								</tr>
+								<th rowspan="2" class="text-center align-middle">Nivel educativo</th>
+								<th colspan="3" class="text-center align-middle">Docentes</th>
+								<th colspan="3" class="text-center align-middle">Directivo con grupo</th>
+								<th colspan="3" class="text-center align-middle">Directivo sin grupo</th>
+							</tr>
+							<tr>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i></th>
+								<th><i class="fa fa-male"></i></th>
+								<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+							</tr>
 						</thead>
 						<tbody>';
 
@@ -520,7 +514,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z) {
@@ -530,7 +524,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['subsostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z ) {
@@ -561,23 +555,23 @@ class Estadistica extends CI_Controller {
 
 		function tabla_infraestructura($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xmunciclo($id_municipio, $id_ciclo);
-			$str_html_alumn='<table class="table">
-          	<thead>
-          		  	<tr>
-          	    	<th rowspan="2">Nivel Educativo</th>
-          	    	<th rowspan="2">Escuelas</th>
-          	    	<th colspan="8">Grupos</th>
-          	    </tr>
-          		<tr>
-          		  	<th>1°</th>
-          		  	<th>2°</th>
-          		  	<th>3°</th>
-          		  	<th>4°</th>
-          		  	<th>5°</th>
-          		  	<th>6°</th>
-          		  	<th>Multigrado</th>
-          		  	<th>Total</th>
-          		</tr>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+          	<thead class="bg-info">
+						<tr>
+							<th rowspan="2" class="text-center align-middle">Nivel Educativo</th>
+							<th rowspan="2" class="text-center align-middle">Escuelas</th>
+							<th colspan="8" class="text-center align-middle">Grupos</th>
+						</tr>
+						<tr>
+								<th>1°</th>
+								<th>2°</th>
+								<th>3°</th>
+								<th>4°</th>
+								<th>5°</th>
+								<th>6°</th>
+								<th class="text-center align-middle">Multigrado</th>
+								<th>Total</th>
+						</tr>
           	</thead>
 						<tbody>';
 
@@ -590,7 +584,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento) {
@@ -600,7 +594,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['sostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['sostenimiento'].'</td>';
 				}
 				elseif ($row['sostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel && $row['id_sostenimiento']==$id_sostenimiento && $row['id_modalidad']==$id_modalidad) {
@@ -633,23 +627,23 @@ class Estadistica extends CI_Controller {
 		function tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
 			// echo "<pre>";print_r($result_alumnos);die();
-			$str_html_alumn='<table class="table">
-						<thead>
-									<tr>
-									<th rowspan="2">Nivel Educativo</th>
-									<th rowspan="2">Escuelas</th>
-									<th colspan="8">Grupos</th>
-								</tr>
-							<tr>
-									<th>1°</th>
-									<th>2°</th>
-									<th>3°</th>
-									<th>4°</th>
-									<th>5°</th>
-									<th>6°</th>
-									<th>Multigrado</th>
-									<th>Total</th>
-							</tr>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+						<thead class="bg-info">
+						<tr>
+							<th rowspan="2" class="text-center align-middle">Nivel Educativo</th>
+							<th rowspan="2" class="text-center align-middle">Escuelas</th>
+							<th colspan="8" class="text-center align-middle">Grupos</th>
+						</tr>
+						<tr>
+								<th>1°</th>
+								<th>2°</th>
+								<th>3°</th>
+								<th>4°</th>
+								<th>5°</th>
+								<th>6°</th>
+								<th class="text-center align-middle">Multigrado</th>
+								<th>Total</th>
+						</tr>
 						</thead>
 						<tbody>';
 
@@ -662,7 +656,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
 					}
 
-					$str_html_alumn.='<td class="pl-0"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
+					$str_html_alumn.='<td class="pl-1"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['nivel'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z) {
@@ -672,7 +666,7 @@ class Estadistica extends CI_Controller {
 						$str_html_alumn.='<tr class="child-'.str_replace(' ', '', $row['nivel']).' child-parent hide-ini" id="'.str_replace(' ', '', $row['nivel']).$row['subsostenimiento'].'">';
 					}
 
-					$str_html_alumn.='<td class="pl-3"><img style="width:20px" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
+					$str_html_alumn.='<td class="pl-4"><img style="width:12px" class="mr-5" src="'.base_url("assets/img/expand-button.svg").'" >'.$row['subsostenimiento'].'</td>';
 				}
 				elseif ($row['subsostenimiento']!='total' && $row['modalidad']!='total') {
 					if ($row['id_nivel']==$id_nivel_z && $row['id_subsostenimiento']==$id_sostenimiento_z ) {
@@ -704,30 +698,30 @@ class Estadistica extends CI_Controller {
 		function tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			 $result_planea = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $id_ciclo);
 			 // echo "<pre>";print_r($result_planea); die();
-			$str_html_alumn='<table class="table">
-							<thead>
-				<tr>
-					<th rowspan="2">Resultados de la prueba Planea</th>
-					<th colspan="5">Lenguaje y Comunicación</th>
-				<th colspan="5">Matemáticas</th>
-				</tr>
-				<tr>
-					<th colspan="4">Nivel de dominio</th>
-					<th rowspan="2">Porcentaje de alumnos con nivel bueno y excelente</th>
-					<th colspan="4">Nivel de dominio</th>
-					<th rowspan="2">Porcentaje de alumnos con nivel bueno y excelente</th>
-				</tr>
-				<tr>
-					<th>Nivel</th>
-					<th><center>I<br><sub>Insuficiente</sub></center></th>
-					<th><center>II<br><sub>Elemental</sub></center></th>
-					<th><center>III<br><sub>Bueno</sub></center></th>
-					<th><center>IV<br><sub>Excelente</sub></center></th>
-					<th><center>I<br><sub>Insuficiente</sub></center></th>
-					<th><center>II<br><sub>Elemental</sub></center></th>
-					<th><center>III<br><sub>Bueno</sub></center></th>
-					<th><center>IV<br><sub>Excelente</sub></center></th>
-				</tr>
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+							<thead class="bg-info">
+							<tr>
+								<th rowspan="2" class="text-center align-middle">Resultados de la prueba Planea</th>
+								<th colspan="5" class="text-center align-middle">Lenguaje y Comunicación</th>
+								<th colspan="5" class="text-center align-middle">Matemáticas</th>
+							</tr>
+							<tr>
+								<th colspan="4" class="text-center align-middle">Nivel de dominio</th>
+								<th rowspan="2" class="text-center align-middle">Alumnos con nivel bueno y excelente</th>
+								<th colspan="4" class="text-center align-middle">Nivel de dominio</th>
+								<th rowspan="2" class="text-center align-middle">Alumnos con nivel bueno y excelente</th>
+							</tr>
+							<tr>
+								<th class="text-center align-middle">Nivel</th>
+								<th class="text-center align-middle">I<br><sub>Insuficiente</sub></th>
+								<th class="text-center align-middle">II<br><sub>Elemental</sub></th>
+								<th class="text-center align-middle">III<br><sub>Bueno</sub></th>
+								<th class="text-center align-middle">IV<br><sub>Excelente</sub></th>
+								<th class="text-center align-middle">I<br><sub>Insuficiente</sub></th>
+								<th class="text-center align-middle">II<br><sub>Elemental</sub></th>
+								<th class="text-center align-middle">III<br><sub>Bueno</sub></th>
+								<th class="text-center align-middle">IV<br><sub>Excelente</sub></th>
+							</tr>
 				</thead>
 				<tbody>';
 
@@ -758,20 +752,21 @@ class Estadistica extends CI_Controller {
 		function tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
 			 // echo "<pre>";print_r($result_rezinegi); die();
-			$str_html_rezinegi='<table class="table">
-          <tr>
+			$str_html_rezinegi='<table class="table table-style-1 table-striped table-hover">
+				<thead class="bg-info">
+					<tr>
             <th>Inasistencia escolar</th>
             <th colspan="3">Población total</th>
             <th colspan="3">Población que no asiste a la escuela</th>
           </tr>
           <tr>
             <th id="rezago">Población por grupo de edad que no asiste a la escuela</th>
-            <th>Hombres</th>
-            <th>Mujeres</th>
-            <th>Total</th>
-            <th>Hombres</th>
-            <th>Mujeres</th>
-            <th>Total</th>
+						<th><i class="fa fa-male"></i></th>
+						<th><i class="fa fa-female"></i></th>
+						<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+						<th><i class="fa fa-male"></i></th>
+						<th><i class="fa fa-female"></i></th>
+						<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
           </tr>
 	</thead>
 	<tbody>';
@@ -820,13 +815,14 @@ class Estadistica extends CI_Controller {
 		function tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
 			 // echo "<pre>";print_r($result_analfinegi); die();
-			$str_html_analfinegi='<table class="table">
-					 <tr>
-						 <th></th>
-						 <th>Hombres</th>
-						 <th>Mujeres</th>
-						 <th>Total</th>
-					 </tr>
+			$str_html_analfinegi='<table class="table table-style-1 table-striped table-hover">
+			<thead class="bg-info">
+			<tr>
+				<th>Población</th>
+					 <th><i class="fa fa-male"></i></th>
+					 <th><i class="fa fa-female"></i></th>
+					 <th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
+			</tr>
 	</thead>
 	<tbody>';
 
@@ -834,11 +830,11 @@ class Estadistica extends CI_Controller {
 
 				$str_html_analfinegi.='
 				<tr>
-				<td>Población de 8 a 14 años que no saben leer ni escribir</td>
+				<td>De 8 a 14 años que no saben leer ni escribir</td>
 				<td>'.number_format($row['P8A14AN_M']).'</td><td>'.number_format($row['P8A14AN_F']).'</td><td>'.number_format($row['P8A14AN_M']+$row['P8A14AN_F']).'</td>
 				</tr>
 				<tr>
-				<td>Población mayor de 15 años que no saben leer ni escribir</td>
+				<td>Mayor de 15 años que no saben leer ni escribir</td>
 				<td>'.number_format($row['P15YM_AN_M']).'</td><td>'.number_format($row['P15YM_AN_F']).'</td><td>'.number_format($row['P15YM_AN_M']+$row['P15YM_AN_F']).'</td>
 				</tr>
 				';
