@@ -1,85 +1,78 @@
+<section class="main-area">
 <div class="container">
-	<br><br><br><br><br><br>
-	<div class="card">
-	  <div class="card-header">
-	    <center><h5 class="card-title">DATOS GENERALES</h5></center>
+	<div class="card mb-3 card-style-1">
+	  <div class="card-header card-1-header bg-light">
+	    Datos generales
 			<input hidden type="text" id="in_id_cct" value="<?=$id_cct?>">
 	  </div>
 	  <div class="card-body">
 	  	<div class="row">
 	  		<div class="col">
-	  			Nombre del centro de trabajo: <label><h6><?=$nombre_centro?></h6></label>
+	  			Nombre del centro de trabajo: <label class="fw800"><?=$nombre_centro?></label>
 	  		</div>
 	  	</div>
 	    <div class="row">
 	  		<div class="col">
-	  			CCT: <label><h6><?=$cve_centro?></h6></label>
+	  			CCT: <label class="fw800"><?=$cve_centro?></label>
 	  		</div>
 	  		<div class="col">
-	  			Turno: <label><h6><?=$turno?></h6></label>
+	  			Turno: <label class="fw800"><?=$turno?></label>
 	  		</div>
 	  		<div class="col">
-	  			Nivel: <label><h6><?=$nivel?></h6></label>
-	  		</div>
-	  	</div>
-	  	<div class="row">
-	  		<div class="col">
-	  			Modalidad: <label><h6><?=$modalidad?></h6></label>
-	  		</div>
-	  		<div class="col">
-	  			Sostenimiento: <label><h6><?=$sostenimiento?></h6></label>
-	  		</div>
-	  		<div class="col">
-	  			Región: <label><h6><?=$region?></h6></label>
+	  			Nivel: <label class="fw800"><?=$nivel?></label>
 	  		</div>
 	  	</div>
 	  	<div class="row">
 	  		<div class="col">
-	  			Domicilio: <label><h6><?=$domicilio?></h6></label>
+	  			Modalidad: <label class="fw800"><?=$modalidad?></label>
 	  		</div>
 	  		<div class="col">
-	  			Localidad: <label><h6><?=$localidad?></h6></label>
+	  			Sostenimiento: <label class="fw800"><?=$sostenimiento?></label>
 	  		</div>
 	  		<div class="col">
-	  			Municipio: <label><h6><?=$municipio?></h6></label>
+	  			Región: <label class="fw800"><?=$region?></label>
 	  		</div>
 	  	</div>
 	  	<div class="row">
 	  		<div class="col">
-	  			Nombre del director: <label><h6><?=$nombre_director?></h6></label>
+	  			Domicilio: <label class="fw800"><?=$domicilio?></label>
 	  		</div>
 	  		<div class="col">
-	  			Estatus de la escuela: <label><h6><?=$estatus?></h6></label>
+	  			Localidad: <label class="fw800"><?=$localidad?></label>
+	  		</div>
+	  		<div class="col">
+	  			Municipio: <label class="fw800"><?=$municipio?></label>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col">
+	  			Nombre del director: <label class="fw800"><?=$nombre_director?></label>
+	  		</div>
+	  		<div class="col">
+	  			Estatus de la escuela: <label class="fw800"><?=$estatus?></label>
 	  		</div>
 	  	</div>
 	  </div>
 	</div>
-</div>
-<div class="container">
-	<center>
-		<div class="row">
-			<div class="col">
-				<h1>CONSULTA LOS INDICADORES DEL MODELO EDUCATIVO COAHUILA</h1>
-			</div>
+
+                    <div class="card mb-3 card-style-1">
+                      <div class="card-header card-1-header bgcolor-2 text-white">Indicadores del modelo educativo de Coahuila</div>
+                      <div class="card-body">
+
+ 		<div class="row">
+                    <div class="col-12 text-center">
+                    <div class="btn-group" role="group" aria-label="Indicadores">
+                      <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_asist"><span class="fz-30"><i class="material-icons">done_all</i></span><br><span class="h3 color-6">Asistencia</span></button>
+                      <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_perma"><span class="fz-30"><i class="material-icons">timeline</i></span><br><span class="h3 color-6">Permanencia</span></button>
+                      <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_aprendiz"><span class="fz-30"><i class="material-icons">school</i></span><br><span class="h3 color-6">Aprendizaje</span></button>
+                    </div>
+                   </div>
 		</div>
+		<div hidden id="dv_info_asistencia" class="container mt-3">
+		<div class="alert alert-primary" role="alert">
 		<div class="row">
 			<div class="col">
-				<button class="btn btn-info btn-md" id="btn_info_asist">Asistencia</button>
-			</div>
-			<div class="col">
-				<button class="btn btn-info btn-md" id="btn_info_perma">Permanencia</button>
-			</div>
-			<div class="col">
-				<button class="btn btn-info btn-md" id="btn_info_aprendiz">Aprendizaje</button>
-			</div>
-		</div>
-	</center>
-</div>
-<div hidden id="dv_info_asistencia" class="container">
-	<center>
-		<div class="row">
-			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#est_alum_doc_grup' title='Clic para desplegar'><h3>Estadística escolar: alumnos, grupos y docentes</h3></div>
+				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#est_alum_doc_grup' title='Clic para desplegar'><h3 class="text-secondary">Estadística escolar: alumnos, grupos y docentes</h3></div>
 			</div>
 		</div>
 		<div id='est_alum_doc_grup' class='collapse panel-body'>
@@ -99,10 +92,11 @@
 					</div>
 			</div>
 		</div>
-	</center>
+	</div>
 </div>
 
-<div hidden id="dv_info_permanencia" class="container">
+<div hidden id="dv_info_permanencia" class="container mt-3">
+	<div class="alert alert-primary" role="alert">
 	<?php
 	$arr_bimestres['1'] = '1er BIMESTRE';
 	$arr_bimestres['2'] = '2do BIMESTRE';
@@ -111,28 +105,31 @@
 	$arr_bimestres['5'] = '5to BIMESTRE';
 
 	$arr_ciclos['2017-2018'] = '2017-2018'; ?>
-	<center>
 		<div class="row">
 			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#riesgo_esc' title='Clic para desplegar'><h3>Riesgo de abandono escolar</h3></div>
+				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#riesgo_esc' title='Clic para desplegar'><h3 class="text-secondary">Riesgo de abandono escolar</h3></div>
 			</div>
 		</div>
 		<div id='riesgo_esc' class='collapse panel-body'>
-			<div class="row">
-				<div class="col col-md-12">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
+			<div class="row mt-2">
+				<div class="col col-md-12 text-secondary fw800">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
 			</div>
-			<div class="row">
+			<div class="row mt-3">
 			<div class="col col-md-4">
+				<div class="form-group form-group-style-1">
 					<?=form_label('Bimestre', 'bimestre');?>
 					<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
 			</div>
+			</div>
 			<div class="col col-md-4">
+				<div class="form-group form-group-style-1">
 					<?=form_label('Ciclo', 'ciclo');?>
 					<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
+			  </div>
 			</div>
 			<div class="col col-md-1">
-				<?=form_label('_', '_');?>
-					<button class="btn btn-primary" id="btn_buscar_ries_esc">Buscar</button>
+				<?=form_label(' ', ' ');?>
+					<button class="btn btn-info btn-style-1" id="btn_buscar_ries_esc">Buscar</button>
 			</div>
 			</div>
 			<div class="row">
@@ -148,14 +145,13 @@
 					</div>
 			</div>
 		</div>
-	</center>
 </div>
-
-<div hidden id="dv_info_aprendizaje" class="container">
-	<center>
+</div>
+<div hidden id="dv_info_aprendizaje" class="container mt-3">
+<div class="alert alert-primary" role="alert">
 		<div class="row">
 			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_lyc' title='Clic para desplegar'><h3>PLANEA por contenido temático <br>Lenguaje y Comunicación
+				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_lyc' title='Clic para desplegar'><h3 class="text-secondary">PLANEA por contenido temático <br>Lenguaje y Comunicación
 </h3></div>
 			</div>
 		</div>
@@ -168,7 +164,7 @@
 	</div>
 	<div class="row">
 		<div class="col">
-			<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_mat' title='Clic para desplegar'><h3>PLANEA por contenido temático <br>Matemáticas</h3></div>
+			<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_mat' title='Clic para desplegar'><h3 class="text-secondary">PLANEA por contenido temático <br>Matemáticas</h3></div>
 		</div>
 	</div>
 	<div id='planea_cont_mat' class='collapse panel-body'>
@@ -181,7 +177,7 @@
 
 		<div class="row">
 			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_n_logro' title='Clic para desplegar'><h3>PLANEA por niveles de logro</h3></div>
+				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_n_logro' title='Clic para desplegar'><h3 class="text-secondary">PLANEA por niveles de logro</h3></div>
 			</div>
 		</div>
 		<div id='planea_n_logro' class='collapse panel-body'>
@@ -295,7 +291,7 @@
       </div>
 		</div>
 	</div>
-	</center>
+</div>
 </div>
 <div id="modal_visor_reactivos" class="modal fade modal100 grises in" role="dialog" data-keyboard="false" data-backdrop="static" >
    <div class="modal-dialog modal-lg">
@@ -317,6 +313,12 @@
         </div>
     </div>
 </div>
+
+</div>
+</div>
+</div>
+
+</section>
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->

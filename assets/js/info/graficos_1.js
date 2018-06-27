@@ -861,7 +861,7 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
             subtitle: {
                 style: {
                     color: '#666666',
-                    font: 'bold 14px'
+                    font: 'bold 16px'
                 }
             },
 
@@ -892,10 +892,12 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
               type: 'column'
           },
           title: {
-              text: ''
+              text: '',
+              font: 'bold 16px'
           },
           subtitle: {
-              text: ''
+              text: '',
+              font: 'bold 16px'
           },
           xAxis: {
               type: 'category'
@@ -943,7 +945,7 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
           }]
       });
 
-      $(".highcharts-background").css("fill","#FFF");
+      $(".highcharts-background").css("fill","none");
       if (screen.width<600){
         estadPrimaria.setSize(
             ($(document).width()/10)*5,

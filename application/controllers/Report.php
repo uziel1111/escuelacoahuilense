@@ -94,6 +94,7 @@ class Report extends CI_Controller {
 				$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela_reporte');
 
 				$result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+				// echo "<pre>"; print_r($result_escuelas); die();
 
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Lista de escuelas');
@@ -121,7 +122,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['cve_centro']) );
 					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['turno']) );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['nombre_centro']) );
-					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, utf8_encode($row['nivel_educativo']) );
+					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, utf8_encode($row['nivel']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, utf8_encode($row['municipio']) );
 					$obj_excel->getActiveSheet()->SetCellValue('F'.$aux, utf8_encode($row['localidad']) );
 					$obj_excel->getActiveSheet()->SetCellValue('G'.$aux, utf8_encode($row['domicilio']) );
