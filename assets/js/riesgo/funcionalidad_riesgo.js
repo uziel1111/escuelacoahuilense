@@ -37,8 +37,41 @@ $("#btn_buscar_ries_muni").click(function() {
 		case '4':
 							$("#dv_graf_riesgo_mun_zona").empty();
 							$("#dv_tab_riesgo_mun_zona").empty();
+              $("#dv_tabla_riesgo_mun_zona").empty();
+							$("#dv_tablam_riesgo_mun_zona").empty();
               obj_grafica.TablaPieGraficaPie(q1,q2,q3,q4);
               obj_grafica.TablaPieGraficaBarPrimaria(t1,t2,t3,t4,t5,t6);
+
+              var html_tbm_riego='';
+              html_tbm_riego += '<div class="col-sm-6">';
+              html_tbm_riego += '                    <table id="tabla_bar_info" class="table table-gray table-hover">';
+              html_tbm_riego += '                      <thead>';
+              html_tbm_riego += '                        <tr>';
+              html_tbm_riego += '                          <th class="text-center"></th>';
+              html_tbm_riego += '                          <th class="text-center">1°</th>';
+              html_tbm_riego += '                          <th class="text-center">2°</th>';
+              html_tbm_riego += '                          <th class="text-center">3°</th>';
+              html_tbm_riego += '                          <th class="text-center">4°</th>';
+              html_tbm_riego += '                          <th class="text-center">5°</th>';
+              html_tbm_riego += '                          <th class="text-center">6°</th>';
+              html_tbm_riego += '                        </tr>';
+              html_tbm_riego += '                      </thead>';
+              html_tbm_riego += '                      <tbody>';
+              html_tbm_riego += '                        <tr>';
+              html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+              html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t4)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t5)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t6)+'</td>';
+              html_tbm_riego += '                        </tr>';
+              html_tbm_riego += '                      </tbody>';
+              html_tbm_riego += '                    </table>';
+              html_tbm_riego += '';
+              html_tbm_riego += '                  </div>';
+
+          $("#dv_tablam_riesgo_mun_zona").append(html_tbm_riego);
 
 		break;
 		case '5':
@@ -46,6 +79,30 @@ $("#btn_buscar_ries_muni").click(function() {
 							$("#dv_tab_riesgo_mun_zona").empty();
               obj_grafica.TablaPieGraficaPie(q1,q2,q3,q4);
               obj_grafica.TablaPieGraficaBarSecundaria(t1,t2,t3);
+              var html_tbm_riego='';
+              html_tbm_riego += '<div class="col-sm-6">';
+              html_tbm_riego += '                    <table id="tabla_bar_info" class="table table-gray table-hover">';
+              html_tbm_riego += '                      <thead>';
+              html_tbm_riego += '                        <tr>';
+              html_tbm_riego += '                          <th class="text-center"></th>';
+              html_tbm_riego += '                          <th class="text-center">1°</th>';
+              html_tbm_riego += '                          <th class="text-center">2°</th>';
+              html_tbm_riego += '                          <th class="text-center">3°</th>';
+              html_tbm_riego += '                        </tr>';
+              html_tbm_riego += '                      </thead>';
+              html_tbm_riego += '                      <tbody>';
+              html_tbm_riego += '                        <tr>';
+              html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+              html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
+              html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
+              html_tbm_riego += '                        </tr>';
+              html_tbm_riego += '                      </tbody>';
+              html_tbm_riego += '                    </table>';
+              html_tbm_riego += '';
+              html_tbm_riego += '                  </div>';
+
+          $("#dv_tablam_riesgo_mun_zona").append(html_tbm_riego);
 		break;
 
 
@@ -54,6 +111,34 @@ $("#btn_buscar_ries_muni").click(function() {
 		break;
 
 		}
+
+    var html_tb_riego='';
+    html_tb_riego +='<div class="row">';
+    html_tb_riego +='  <div class="col-sm-6">';
+    html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
+    html_tb_riego+='      <thead>';
+    html_tb_riego+='        <tr>';
+    html_tb_riego+='          <th class="text-center">Total</th>';
+    html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+    html_tb_riego+='          <th class="text-center">Alto</th>';
+    html_tb_riego+='          <th class="text-center">Medio</th>';
+    html_tb_riego+='          <th class="text-center">Bajo</th>';
+    html_tb_riego+='        </tr>';
+    html_tb_riego+='      </thead>';
+    html_tb_riego+='      <tbody>';
+    html_tb_riego+='        <tr>';
+    html_tb_riego+='          <td class="text-center" style="font-size:1.2em; font-weight:500;">'+(q1+q2+q3+q4)+'</td>';
+    html_tb_riego+='          <td class="text-center" style="background-color:#FF0000; color:white; font-size:1.2em; font-weight:600;">'+(q1)+'</td>';
+    html_tb_riego+='          <td class="text-center" style="background-color:#FF9900; font-size:1.2em; font-weight:500;">'+(q2)+'</td>';
+    html_tb_riego+='          <td class="text-center" style="background-color:#FFFF00; font-size:1.2em; font-weight:500;">'+(q3)+'</td>';
+    html_tb_riego+='          <td class="text-center" style="background-color:#3CB371; font-size:1.2em; font-weight:500;">'+(q4)+'</td>';
+    html_tb_riego+='        </tr>';
+    html_tb_riego+='      </tbody>';
+    html_tb_riego+='    </table>';
+  html_tb_riego+='</div>';
+html_tb_riego+='</div>';
+
+$("#dv_tabla_riesgo_mun_zona").append(html_tb_riego);
   })
   .fail(function(e) {
     console.error("Error in "); console.table(e);

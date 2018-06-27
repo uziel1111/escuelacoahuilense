@@ -138,11 +138,13 @@
 			<div class="row">
 					<div class="col">
 						<div id="dv_riesgo_esc_pie"></div>
+						<div id="dv_riesgotab_esc_pie"></div>
 					</div>
 			</div>
 			<div class="row">
 					<div class="col">
 						<div id="dv_riesgo_esc_bar"></div>
+						<div id="dv_riesgtab_esc_bar"></div>
 					</div>
 			</div>
 		</div>
