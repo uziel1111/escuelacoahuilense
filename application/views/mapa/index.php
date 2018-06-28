@@ -14,58 +14,82 @@
         margin-top: 10px;
       }
     </style>
-  </head>
-  <body>
     <!-- BUSCADOR IMPLEMENTADO EN OTRA VISTA -->
-    <div class="container">
-      <div class="row">
-          <?=$buscador;?>
-      </div>
-    </div>
+ <section class="main-area">
+<div class="container">   
+    <div class="card mb-3 card-style-1">
+    <div class="card-header card-1-header bg-light">Busca tu escuela</div>
+    <div class="card-body">
+      <div><?=$buscador;?> </div>
+    </div><!-- card-body -->
+  </div><!-- card -->  
+     
+          
+   <div class="card mb-3 card-style-1">
+    <div class="card-header card-1-header bgcolor-2 text-white">Mapa</div>
+    <div class="card-body">
+      <div>   
+    
 
     <!-- DIV DE IMAGENES -->
     <div class="container-fluid margintop">
       <div class="row">
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker1.png" width="20px" height="20px"> Especial</label>
+        <div class="col-12 alert alert-dark pb-0 pt-25" role="alert">
+            <div class="row">    
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#000000;">place</i> Especial</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker2.png" width="20px" height="20px"> Inicial</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#810000;">place</i> Inicial</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker3.png" width="20px" height="20px"> Prescolar</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#0101ff;">place</i> Preescolar</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker4.png" width="20px" height="20px"> Primaria</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#6b8f1e;">place</i> Primaria</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker5.png" width="20px" height="20px"> Secundaria</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#2ece2e;">place</i> Secundaria</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker6.png" width="20px" height="20px"> Media superior</label>
+        </div>        
+        <div class="row">         
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#9471dc;">place</i> Media Superior</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker7.png" width="20px" height="20px"> Superior</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#ff8d00;">place</i> Superior</label>
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker8.png" width="20px" height="20px"> Fromación para el trabajo</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#ff0000;">place</i> Formación para el trabajo</label>            
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker9.png" width="20px" height="20px"> Otro nivel educativo</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#ff00ff;">place</i> Otro nivel educativo</label>              
         </div>
-        <div class="col">
-          <label><img src="../../assets/img/markets/marker10.png" width="20px" height="20px"> No aplica</label>
+        <div class="col-sm mb-3">
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#ffff00;">place</i> No aplica</label>  
         </div>
+       </div>
+     </div>       
       </div>
     </div>
 
 <!-- CONTENEDOR DEL MAPA -->
-      <div class="h-50 p-3" id="map"></div>
-
+<div class="row">
+    <div class="col-12">
+        <div class="p-3" style="height: 400px" id="map"></div>
+    </div>
+</div>      
+      </div>
+    </div><!-- card-body -->
+  </div><!-- card -->      
+      
+      
+      
+  </div>
+</section>
     
-    <script src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script> //added the file
+    <script src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script> 
     <script src="<?= base_url('assets/js/mapa/mapa.js') ?>"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-mxcs6tJeQWzLDQHLzefGqB79Clbj0I&callback=initMap"
-    async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-mxcs6tJeQWzLDQHLzefGqB79Clbj0I&callback=initMap" async defer>
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
