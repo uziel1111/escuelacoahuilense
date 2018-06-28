@@ -4,7 +4,7 @@
 /* Mobile Layout: 320px */
 /* Wide Mobile Layout: 480px */
 /* =================================== */
-/*  Basic Style 
+/*  Basic Style
 /* =================================== */
 /* Theme Colors        */
 /* color-1: #f22727;   */
@@ -796,47 +796,47 @@ td, th {
 /*** Buttons ***/
 /** Borders **/
 .border-color-1 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 .border-color-2 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 .border-color-3 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 .border-color-4 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 .border-color-5 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 .border-color-6 {
-  border: 2px solid rgba(247, 247, 247, 0.5) !important;    
+  border: 2px solid rgba(247, 247, 247, 0.5) !important;
 }
 /**Hover Fill Color**/
 .btn-color-1:hover {
   background: #f22727 !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .btn-color-2:hover {
   background: #7ea629 !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .btn-color-3:hover {
   background: #f27304 !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .btn-color-4:hover {
   background: #ff006c !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .btn-color-5:hover {
   background: #202020 !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .btn-color-6:hover {
   background: #f7f7f7 !important;
-  border: 2px solid transparent !important; 
+  border: 2px solid transparent !important;
 }
 .primary-btn {
   line-height: 40px;
@@ -910,10 +910,10 @@ td, th {
 /*** End Buttons ***/
 /** Cards **/
 .card-style-1 {
-  border-radius: 20px; 
+  border-radius: 20px;
   -moz-border-radius: 20px;
-  -webkit-border-radius: 20px; 
-   
+  -webkit-border-radius: 20px;
+
 }
 .card-1-header {
     font-family: 'Boogaloo', cursive !important;
@@ -932,60 +932,60 @@ td, th {
 /* Form Group 1 */
 .form-group-style-1 .form-control {
     font-size: 15px;
-    border-radius: 20px; 
+    border-radius: 20px;
     -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
+    -webkit-border-radius: 20px;
     border-style: solid;
     border-color: #cccccc;
-    border-width: 2px; 
-    height: 40px;  
+    border-width: 2px;
+    height: 40px;
 }
 .form-group-style-1 label {
     color: #7ea629;
 }
 .form-group-style-1 .input-group-text {
-    border-radius:20px 0 0 20px; 
+    border-radius:20px 0 0 20px;
     -moz-border-radius:20px 0 0 20px;
-    -webkit-border-radius:20px 0 0 20px; 
+    -webkit-border-radius:20px 0 0 20px;
     border-style: solid;
     border-color: #cccccc;
-    border-width: 2px 0 2px 2px;  
+    border-width: 2px 0 2px 2px;
     height: 40px;
 }
 .form-group-style-1 .input-group > .custom-select {
-    border-radius: 20px; 
+    border-radius: 20px;
     -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
+    -webkit-border-radius: 20px;
     border-style: solid;
     border-color: #cccccc;
-    border-width: 2px; 
+    border-width: 2px;
     height: 40px;
 }
 .form-group-style-1 .input-group-prepend > label {
-    border-radius: 20px; 
+    border-radius: 20px;
     -moz-border-radius: 20px;
-    -webkit-border-radius: 20px; 
+    -webkit-border-radius: 20px;
     border-style: solid;
     border-color: #ccc;
-    border-width: 2px; 
+    border-width: 2px;
     height: 40px;
 }
 .form-group-style-1 div.input-group-prepend + select.custom-select {
-    border-radius: 0 20px 20px 0; 
+    border-radius: 0 20px 20px 0;
     -moz-border-radius: 0 20px 20px 0;
-    -webkit-border-radius: 0 20px 20px 0; 
+    -webkit-border-radius: 0 20px 20px 0;
     border-style: solid;
     border-color: #cccccc;
-    border-width: 2px 2px 2px 1px; 
+    border-width: 2px 2px 2px 1px;
     height: 40px;
 }
 .form-group-style-1 input.form-control + div.input-group-append > span.input-group-text {
-    border-radius: 0 20px 20px 0; 
+    border-radius: 0 20px 20px 0;
     -moz-border-radius: 0 20px 20px 0;
-    -webkit-border-radius: 0 20px 20px 0; 
+    -webkit-border-radius: 0 20px 20px 0;
     border-style: solid;
     border-color: #ccc;
-    border-width: 2px 2px 2px 1px; 
+    border-width: 2px 2px 2px 1px;
     height: 40px;
 }
 .form-group-style-1 .custom-control-label:before{
@@ -997,7 +997,7 @@ td, th {
 /** End Forms**/
 /** Tables **/
 .table-style-1 thead th {
-    color: #efefef; 
+    color: #efefef;
     font-size: 17px;
     font-weight: 500;
    /* border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;*/
@@ -1006,7 +1006,7 @@ td, th {
 /* */
 /** Buttons **/
 .btn-style-1 {
-    border-radius:20px; 
+    border-radius:20px;
     -moz-border-radius:20px;
     -webkit-border-radius:20px;
     margin-left: 5px;
@@ -1017,46 +1017,46 @@ td, th {
 /*** Modals ***/
 /* Modal Style 1 */
 .modal-style-1{
-    border-radius:20px; 
+    border-radius:20px;
     -moz-border-radius:20px;
     -webkit-border-radius:20px;
     background: #fff;
     border-style: solid;
     border-width: 0 0 4px 0;
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);      
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);
 }
 .modal-style-1 .modal-header{
     font-family: 'Boogaloo', cursive !important;
-    font-size: 26px;    
-    border-radius:20px 20px 0 0; 
+    font-size: 26px;
+    border-radius:20px 20px 0 0;
     -moz-border-radius:20px 20px 0 0;
     -webkit-border-radius:20px 20px 0 0;
     padding: 10px 20px 8px 20px;
 }
 .modal-style-1 .modal-header > button.close {
     font-family: 'Boogaloo', cursive !important;
-    font-size: 18px; 
-    border-radius:10px; 
+    font-size: 18px;
+    border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     margin: 8px 0 2px 0;
     padding: 3px 4px 3px 4px;
-    background-color: rgba(255, 255, 255, 0.5);    
+    background-color: rgba(255, 255, 255, 0.5);
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;    
+    transition: all 0.3s ease 0s;
 }
 .modal-style-1 .modal-header > button.close:hover {
-    background-color: rgba(0, 0, 0, 0.2); 
+    background-color: rgba(0, 0, 0, 0.2);
     color: #000;
 }
 .modal-style-1 .modal-header h1, h2, h3, h4, h5, h6 {
     font-family: 'Boogaloo', cursive !important;
-    font-size: 26px;      
+    font-size: 26px;
 }
-.modal-style-1 .modal-footer{   
-    border-radius:0 0 20px 20px; 
+.modal-style-1 .modal-footer{
+    border-radius:0 0 20px 20px;
     -moz-border-radius:0 0 20px 20px;
     -webkit-border-radius:0 0 20px 20px;
     padding: 10px 20px 8px 20px;
@@ -1067,30 +1067,30 @@ td, th {
 /** Nav-tabs **/
 .nav-tabs-style-1 .nav-link-style-1 {
     font-family: 'Boogaloo', cursive !important;
-    font-size: 22px;    
+    font-size: 22px;
     background-color: #7ea629;
     color: #eeeeee;
-    border-radius:20px 20px 0 0; 
+    border-radius:20px 20px 0 0;
     -moz-border-radius:20px 20px 0 0;
     -webkit-border-radius:20px 20px 0 0;
     margin-left: 5px;
     border-style: solid;
     border-color: #709522;
-    border-width: 0 0 4px 0;     
+    border-width: 0 0 4px 0;
 }
 .tab-content-style-1>.active{
     background-color: #ffffff;
     padding: 20px;
-    border-radius:0 0 20px 20px; 
+    border-radius:0 0 20px 20px;
     -moz-border-radius:0 0 20px 20px;
     -webkit-border-radius:0 0 10px 10px;
     border-style: solid;
     border-color: #dee2e6;
-    border-width: 0 1px 4px 1px;   
+    border-width: 0 1px 4px 1px;
 }
 .nav-tabs-style-1 .nav-link-style-1.active {
   background-color: #ffffff;
-  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.3);    
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.3);
 }
 /* End Nav-tabs */
 .section-title {
@@ -1267,10 +1267,10 @@ td, th {
     background-color: #fff;
     background-clip: padding-box;
     border-top: 0;
-    border-radius:0px 0px 20px 20px; 
+    border-radius:0px 0px 20px 20px;
     -moz-border-radius:0px 0px 20px 20px;
     -webkit-border-radius:0px 0px 20px 20px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);     
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 }
 .dropdown-menu:before {
   position: absolute;
@@ -1325,13 +1325,13 @@ td, th {
     padding: 10px 20px 10px 20px;
     text-transform: uppercase;
     font-size: 16px;
-    font-weight: 500;     
+    font-weight: 500;
 }
 .dropdown-menu a:last-child:hover{
     background-color: rgba(200, 200, 200, 0.1);
-    border-radius:0 0 20px 20px; 
+    border-radius:0 0 20px 20px;
     -moz-border-radius:0 0 20px 20px;
-    -webkit-border-radius:0 0 20px 20px;      
+    -webkit-border-radius:0 0 20px 20px;
 }
 .footer-social {
   margin-right: -5px;
@@ -1350,13 +1350,13 @@ td, th {
 }
 
 .title-bg {
-  background: 
+  background:
     linear-gradient(
-      rgba(0, 0, 0, 0.70), 
+      rgba(0, 0, 0, 0.70),
       rgba(0, 0, 0, 0.70)
     ),
     /* Main background 'Classroom' image */
-    url("../img/jumbo-bg1.jpg");    
+    url("../img/jumbo-bg2.jpg");    
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -1378,7 +1378,7 @@ td, th {
 .main-boxes {
   margin-top: 30px;
   background: transparent;
-  border-radius:20px 20px 20px 20px; 
+  border-radius:20px 20px 20px 20px;
   -moz-border-radius:20px 20px 20px 20px;
   -webkit-border-radius:20px 20px 20px 20px;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
@@ -1395,20 +1395,20 @@ td, th {
   font-family: 'Boogaloo', cursive !important;
   text-align: center;
   padding: 10px 20px;
-  border-radius:20px 20px 0 0; 
+  border-radius:20px 20px 0 0;
   -moz-border-radius:20px 20px 0 0;
   -webkit-border-radius:20px 20px 0 0;
-  font-weight: normal;   
+  font-weight: normal;
 }
 .main-boxes .card-header h3 {
   font-family: 'Boogaloo', cursive !important;
-  font-weight: normal; 
-font-size: 25px;  
+  font-weight: normal;
+font-size: 25px;
 }
 .main-boxes .card-body {
   padding: 0;
   background-color: #f2f2f2;
-  border-radius:0 0 20px 20px; 
+  border-radius:0 0 20px 20px;
   -moz-border-radius:0 0 20px 20px;
   -webkit-border-radius:0 0 20px 20px;
   -webkit-transition: alsl 0.3s ease 0s;
@@ -1438,7 +1438,7 @@ font-size: 25px;
     border-bottom: 1px solid #dbdbdb;
     border-left: 0;
     border-right: 0;
-    border-radius: 0;   
+    border-radius: 0;
    -webkit-transition: all 0.3s ease 0s;
    -moz-transition: all 0.3s ease 0s;
    -o-transition: all 0.3s ease 0s;
@@ -1449,23 +1449,23 @@ font-size: 25px;
 .main-boxes ul li:last-child{
     background: transparent;
     border: 0;
-    
+
 }
 .main-boxes ul li:hover{
     background-color: rgba(200, 200, 200, 0.1);
 }
 .main-boxes ul li:last-child:hover{
     background-color: rgba(200, 200, 200, 0.1);
-    border-radius:0 0 20px 20px; 
+    border-radius:0 0 20px 20px;
     -moz-border-radius:0 0 20px 20px;
-    -webkit-border-radius:0 0 20px 20px;      
+    -webkit-border-radius:0 0 20px 20px;
 }
 .main-boxes ul li a{
     vertical-align:middle;
     margin: 30px 10px 30px 10px;
 }
 .main-boxes ul li a span i{
-    
+
     vertical-align: middle;
 }
 .main-boxes ul li {
