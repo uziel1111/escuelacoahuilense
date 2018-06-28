@@ -41,7 +41,7 @@
                                                 <!-- List group -->
                                                 <ul class="list-group">
                                                   <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Servicio profesional docente</a></li>
-                                                  <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/docentes.php" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Reconocimientos estatales</a></li>
+                                                  <li class="list-group-item"><a id="btn_index_reconocimientosEstatales" href="javascript:void(0)"><span class="color-2"><i class="material-icons">face</i></span> Reconocimientos estatales</a></li>
                                                   <li class="list-group-item"><a href="http://www.inee.edu.mx/" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Instituto Nacional para la Evaluación de la Educación</a></li>
                                                   <li class="list-group-item"><a href="#"></a></li>
                                                 </ul>
@@ -110,3 +110,7 @@
                 </div>
         </section>
   <!-- End Coa Box Txt -->
+
+    <div id="div_generico"></div>
+
+    <script src="<?= base_url('assets/js/index/index.js') ?>"></script>
