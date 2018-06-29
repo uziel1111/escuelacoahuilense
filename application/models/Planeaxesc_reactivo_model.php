@@ -101,6 +101,10 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
 
     function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idcampodis){
+      $where = "";
+      if($id_municipio != 0 || $id_municipio != '0'){
+        $where = "AND m.id_municipio = {$id_municipio}";
+      }
       $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.reactivo AS descripcion
         FROM municipio m
         INNER JOIN escuela e ON e.id_municipio = m.id_municipio
@@ -110,7 +114,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
         JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
         JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-        WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} AND m.id_municipio = {$id_municipio}
+        WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
         AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
       return $this->db->query($str_query)->result_array();
 
@@ -118,6 +122,10 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
 
     function get_reactivos_xcctxcont_zona($id_zona,$id_cont,$periodo,$idcampodis){
+      $where = "";
+      if($id_zona != 0 || $id_zona != '0'){
+        $where = "AND s.id_supervision = ${id_zona}";
+      }
       $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.reactivo AS descripcion
                   FROM supervision s
                   INNER JOIN escuela e ON e.id_supervision = s.id_supervision
@@ -128,7 +136,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                   JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
                   JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
-                  WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} AND s.id_supervision = ${id_zona}
+                  WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
                   AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
                   return $this->db->query($str_query)->result_array();
 
