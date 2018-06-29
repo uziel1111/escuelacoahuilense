@@ -1397,11 +1397,11 @@ td, th {
 .title-bg {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.70), 
-      rgba(0, 0, 0, 0.70)
+      rgba(0, 0, 0, 0.60), 
+      rgba(0, 0, 0, 0.60)
     ),
     /* Main background 'Classroom' image */
-    url("../img/jumbo-bg1.jpg");    
+    url("../img/jumbo-bg2.jpg");    
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
