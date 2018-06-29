@@ -176,11 +176,12 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 }
 
 Mapa.prototype.pinta_en_mapa = function(marcadores){
-	console.table(marcadores);
-	console.log(marcadores[0][4]);
+	document.getElementById('contenedor_mapa_id').scrollIntoView();
+	// console.table(marcadores);
+	// console.log(marcadores[0][4]);
 	var map = new google.maps.Map(document.getElementById('map'), {
-	         zoom: 8,
-	         center: new google.maps.LatLng(27.95805681558072,-101.85515216406247),
+	         zoom: 10,
+	         center: new google.maps.LatLng(marcadores[0][1],marcadores[0][2]),
 	         mapTypeId: google.maps.MapTypeId.ROADMAP
 	     });
 	      var infowindow = new google.maps.InfoWindow({
