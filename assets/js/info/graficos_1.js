@@ -2176,8 +2176,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "    <tr>";
                   html += "      <td>"+result[i]['n_reactivo']+"</td>";
                   html += "      <td>"+result[i]['descripcion']+"</td>";
-                  html += "      <td><button type='button' class='btn color-6 bgcolor-2'>Argumento</button></td>";
-                  html += "      <td><button type='button' class='btn color-6 bgcolor-3'>Especificación</button></td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button></td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button></td>";
                   html += "    </tr>";
                 }
                 html += "</tbody>";
@@ -2198,3 +2198,13 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
           });
       }// get_reactivos_xunidad_de_analisis()
+
+      HaceGraficas.prototype.argumento_reactivo = function(){
+        // alert("entro");
+         window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+
+      }
+      HaceGraficas.prototype.especificacion_reactivo = function(){
+          // alert("entro1");
+          window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+      }
