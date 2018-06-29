@@ -34,7 +34,7 @@ $("#btn_buscar_ries_esc").click(function(e){
 
 Info_esc.prototype.get_alumn_doc_grup =function(){
 	$("#dv_info_aprendizaje").attr('hidden',true);
-							$("#dv_info_permanencia").attr('hidden',true);
+						$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_asistencia").removeAttr('hidden');
 							let id_cct = $("#in_id_cct").val();
 							// let grafr = new HaceGraficas();
@@ -46,7 +46,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 				        data: {'id_cct':id_cct},
 				        beforeSend: function(xhr) {
 					        // obj_loader.show();
-					    },
+					    }
 				      })
 				      .done(function( data ) {
 				      	// obj_loader.hide();
@@ -113,7 +113,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 				      });
 
 
-}
+};
 Info_esc.prototype.get_riesgo =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").removeAttr('hidden');
@@ -128,7 +128,7 @@ Info_esc.prototype.get_riesgo =function(){
 				        data: {'id_cct':id_cct,'id_bim':1,'ciclo':"2017-2018"},
 				        beforeSend: function(xhr) {
 					        // obj_loader.show();
-					    },
+					    }
 				      })
 				      .done(function( data ) {
 							// obj_loader.hide();
@@ -256,7 +256,7 @@ Info_esc.prototype.get_riesgo =function(){
 				      });
 
 
-}
+},
 Info_esc.prototype.get_planea =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
@@ -374,7 +374,7 @@ Info_esc.prototype.get_planea =function(){
 							});
 
 
-}
+},
 Info_esc.prototype.get_riesgo2 =function(){
 	let id_bim = $("#slt_bimestre_ries").val();
 							let ciclo = $("#slt_ciclo_ries").val();
@@ -484,10 +484,10 @@ Info_esc.prototype.get_riesgo2 =function(){
 
                 $("#dv_riesgotab_esc_pie").empty();
                 var html_tb_riego='';
-                html_tb_riego +='<div class="row">';
-                html_tb_riego +='  <div class="col-sm-6">';
-                html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
-                html_tb_riego+='      <thead>';
+                html_tb_riego +='<div class="row">';              
+                html_tb_riego +='  <div class="col-12 flex-center">';
+                html_tb_riego+='    <table id="tabla_pie_info" class="table table-style-1 table-striped table-hover no-margin">';
+                html_tb_riego+='      <thead class="bg-info">';
                 html_tb_riego+='        <tr>';
                 html_tb_riego+='          <th class="text-center">Total</th>';
                 html_tb_riego+='          <th class="text-center">Muy Alto</th>';
@@ -506,8 +506,8 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='        </tr>';
                 html_tb_riego+='      </tbody>';
                 html_tb_riego+='    </table>';
-              html_tb_riego+='</div>';
-            html_tb_riego+='</div>';
+                html_tb_riego+='</div>';                
+            html_tb_riego+='</div><hr>';
 
             $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 

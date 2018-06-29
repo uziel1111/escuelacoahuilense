@@ -1015,6 +1015,51 @@ td, th {
     padding: 10px 20px 8px 20px;
 }
 /*** Modals ***/
+/*** Accordion  ***/
+.accordion_style_1 .card-accordion-style-1  {
+    padding: 0 0 0 0 !important;
+}
+
+.accordion-style-1 .accordion-style-1-header a:not(.collapsed){
+ /* font-family: 'Fira Sans Condensed', sans-serif !important;*/
+    font-family: 'Boogaloo', cursive !important; 
+    font-size: 23px; 
+    color: #fff;    
+    background: #3baf29;
+    padding: 20px;
+    border-radius:20px 20px 0 0; 
+    -moz-border-radius:20px 20px 0 0;
+    -webkit-border-radius:20px 20px 0 0;    
+}
+.accordion-style-1 .accordion-style-1-header a.collapsed {
+    font-family: 'Boogaloo', cursive !important;     
+    font-size: 23px;
+    color: #777777;    
+    background: #dfdfdf;
+    padding: 20px;
+    border-radius:20px; 
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+}
+.accordion-style-1 .accordion-style-1-header .fa {
+  transition: .5s transform ease-in-out;
+  color: #fff;
+  font-size: 18px;  
+}
+.accordion-style-1 .accordion-style-1-header .collapsed .fa {
+  transform: rotate(90deg);
+  color: #777777;
+  font-size: 18px;   
+}
+.accordion-style-1 .card-body {
+    border-radius: 0 0 20px 20px; 
+    -moz-border-radius: 0 0 20px 20px;
+    -webkit-border-radius: 0 0 20px 20px; 
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0 2px 4px 2px; 
+}
+
 /* Modal Style 1 */
 .modal-style-1{
     border-radius:20px; 
@@ -1352,11 +1397,11 @@ td, th {
 .title-bg {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.70), 
-      rgba(0, 0, 0, 0.70)
+      rgba(0, 0, 0, 0.60), 
+      rgba(0, 0, 0, 0.60)
     ),
     /* Main background 'Classroom' image */
-    url("../img/jumbo-bg1.jpg");    
+    url("../img/jumbo-bg2.jpg");    
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
