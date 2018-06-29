@@ -1557,7 +1557,7 @@ Graficasm.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                             [1, 'rgb(255, 255, 255)']
                         ]
                     },
-                    width: ($(document).width()/10)*6,
+                    width: ($(document).width()/10)*5,
                     height: ($(document).width()/10)*15
                 },
                 title: {
@@ -1700,7 +1700,7 @@ Graficasm.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                             [1, 'rgb(255, 255, 255)']
                         ]
                     },
-                    width: ($(document).width()/10)*6,
+                    width: ($(document).width()/10)*5,
                     height: ($(document).width()/10)*12
                 },
                 title: {
