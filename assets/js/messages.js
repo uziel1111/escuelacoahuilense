@@ -1,17 +1,15 @@
-function Message(){
-  tmp_message = this;
+let Notification = {
 
-  this.notification = function(title,text,type){
+  notification : (title,text,type) => {
       swal({
         title : title,
         text : text,
         type: type,
-        confirmButtonText: 'ok',
+        confirmButtonText: 'Aceptar',
         width:'350px'
       });
-  }// notification()
-
-  this.loading = function(texto){
+	},
+  loading : (texto) => {
     swal({
         title: "<div class='loader'></div><br>",
         text: texto,
@@ -22,6 +20,6 @@ function Message(){
         allowEscapeKey:false,
         allowOutsideClick:false
       });
-  }// loading()
+	}
 
-}// Message
+};
