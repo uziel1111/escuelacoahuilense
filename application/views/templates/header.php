@@ -75,7 +75,7 @@
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
-                                          <a class="dropdown-item hcolor-1" href="#">Resultados PLANEA por contenido temetico municipal/zona escolar</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados PLANEA por contenido temetico municipal/zona escolar</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
