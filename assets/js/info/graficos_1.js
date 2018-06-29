@@ -551,7 +551,19 @@ function HaceGraficas(){
                                    a_g3
                                ]
                            ]
-                   }]
+                   }],
+                   responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 600
+                        },
+                        chartOptions: {
+                            chart: {
+                                className: 'd-flex'
+                            }
+                        }
+                    }]
+                }
 
                });
 
