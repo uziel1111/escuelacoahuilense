@@ -1,6 +1,5 @@
 $(function() {
     obj_info = new Info_esc();
-    obj_loader = new Loader();
     graf = new HaceGraficas();
     grafr = new GraficasRiesgo();
 });
@@ -24,8 +23,6 @@ $("#btn_info_aprendiz").click(function(e){
 
             });
 
-
-
 $("#btn_buscar_ries_esc").click(function(e){
               e.preventDefault();
               obj_info.get_riesgo2();
@@ -33,26 +30,22 @@ $("#btn_buscar_ries_esc").click(function(e){
             });
 
 Info_esc.prototype.get_alumn_doc_grup =function(){
-	$("#dv_info_aprendizaje").attr('hidden',true);
+						$("#dv_info_aprendizaje").attr('hidden',true);
 						$("#dv_info_permanencia").attr('hidden',true);
-							$("#dv_info_asistencia").removeAttr('hidden');
-							let id_cct = $("#in_id_cct").val();
-							// let grafr = new HaceGraficas();
-							// let obj_loader = new Loader();
-							// alert(ciclo);
+						$("#dv_info_asistencia").removeAttr('hidden');
+						let id_cct = $("#in_id_cct").val();
 							$.ajax({
 				        url:  base_url+"info/info_estadistica_graf",
 				        method: 'POST',
 				        data: {'id_cct':id_cct},
 				        beforeSend: function(xhr) {
-					        // obj_loader.show();
-					    }
+				        	Notification.loading("");
+					  	},
 				      })
 				      .done(function( data ) {
-				      	// obj_loader.hide();
-								let nivel = data.nivel;
+							let nivel = data.nivel;
 
-								if (data.estadis_alumnos_escuela.length>0) {
+							if (data.estadis_alumnos_escuela.length>0) {
 						    var a_g1 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
 						    var a_g2 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
 						    var a_g3 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_3']);//7;
@@ -107,31 +100,30 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 									break;
 
 								}
+
 				      })
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
-				      });
+				      })
+				      .always(function() {
+							swal.close();
+						});
+},
 
-
-};
 Info_esc.prototype.get_riesgo =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").removeAttr('hidden');
 							$("#dv_info_aprendizaje").attr('hidden',true);
 							let id_cct = $("#in_id_cct").val();
-							// let grafr = new GraficasRiesgo();
-							// let obj_loader = new Loader();
-							// alert(ciclo);
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
 				        data: {'id_cct':id_cct,'id_bim':1,'ciclo':"2017-2018"},
 				        beforeSend: function(xhr) {
-					        // obj_loader.show();
+					        Notification.loading("");
 					    }
 				      })
 				      .done(function( data ) {
-							// obj_loader.hide();
 								var nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -253,28 +245,26 @@ Info_esc.prototype.get_riesgo =function(){
 				      })
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
-				      });
-
-
+				      })
+				      .always(function() {
+							swal.close();
+						});
 },
+
 Info_esc.prototype.get_planea =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_aprendizaje").removeAttr('hidden');
 							let id_cct = $("#in_id_cct").val();
-							// let grafr = new HaceGraficas();
-							// let obj_loader = new Loader();
-							// alert(ciclo);
 							$.ajax({
 								url:  base_url+"info/info_plaea_graf",
 								method: 'POST',
 								data: {'id_cct':id_cct},
 								beforeSend: function(xhr) {
-							        // obj_loader.show();
+							        Notification.loading("");
 							    },
 							})
 							.done(function( data ) {
-								// obj_loader.hide();
 								let nivel = data.nivel;
 
 								if (data.planea15_escuela.length>0) {
@@ -366,32 +356,29 @@ Info_esc.prototype.get_planea =function(){
 										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
 										$("#dv_info_graf_nlogromat").empty();
 								}
-								// obj_loader.hide();
 
 							})
 							.fail(function(e) {
 								console.error("Error in "); console.table(e);
-							});
-
-
+							})
+							.always(function() {
+							swal.close();
+						});
 },
+
 Info_esc.prototype.get_riesgo2 =function(){
 	let id_bim = $("#slt_bimestre_ries").val();
 							let ciclo = $("#slt_ciclo_ries").val();
 							let id_cct = $("#in_id_cct").val();
-							// let grafr = new GraficasRiesgo();
-							// let obj_loader = new Loader();
-							// alert(ciclo);
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
 				        data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo},
 				        beforeSend: function(xhr) {
-							        obj_loader.show();
+							        Notification.loading("");
 							    },
 				      })
 				      .done(function( data ) {
-				      	obj_loader.hide();
 								let nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -484,7 +471,7 @@ Info_esc.prototype.get_riesgo2 =function(){
 
                 $("#dv_riesgotab_esc_pie").empty();
                 var html_tb_riego='';
-                html_tb_riego +='<div class="row">';              
+                html_tb_riego +='<div class="row">';
                 html_tb_riego +='  <div class="col-12 flex-center">';
                 html_tb_riego+='    <table id="tabla_pie_info" class="table table-style-1 table-striped table-hover no-margin">';
                 html_tb_riego+='      <thead class="bg-info">';
@@ -506,7 +493,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='        </tr>';
                 html_tb_riego+='      </tbody>';
                 html_tb_riego+='    </table>';
-                html_tb_riego+='</div>';                
+                html_tb_riego+='</div>';
             html_tb_riego+='</div><hr>';
 
             $("#dv_riesgotab_esc_pie").append(html_tb_riego);
@@ -514,7 +501,10 @@ Info_esc.prototype.get_riesgo2 =function(){
 				      })
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
-				      });
+				      })
+						.always(function() {
+							swal.close();
+						});
 
 
 }
