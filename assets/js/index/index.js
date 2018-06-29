@@ -29,16 +29,3 @@ const Index = {
 	}
 
 };
-
-/*
-function Index(){
-}
-
-function getReconocimientosEstatales(){
-  objIndex.getReconocimientosEstatales();
-}
-
-Index.prototype.getReconocimientosEstatales = function(){
-
-};
-*/
