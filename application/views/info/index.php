@@ -68,7 +68,7 @@
                     </div>
                    </div>
 		</div>
-		<div hidden id="dv_info_asistencia" class="container mt-3">
+		<div id="dv_info_asistencia" class="container mt-3">
 		<div class="alert alert-primary" role="alert">
 		<div class="row">
 			<div class="col">
@@ -95,7 +95,7 @@
 	</div>
 </div>
 
-<div hidden id="dv_info_permanencia" class="container mt-3">
+<div id="dv_info_permanencia" class="container mt-3">
 	<div class="alert alert-primary" role="alert">
 	<?php
 	$arr_bimestres['1'] = '1er BIMESTRE';
@@ -147,7 +147,7 @@
 		</div>
 </div>
 </div>
-<div hidden id="dv_info_aprendizaje" class="container mt-3">
+<div id="dv_info_aprendizaje" class="container mt-3">
 <div class="alert alert-primary" role="alert">
 		<div class="row">
 			<div class="col">
