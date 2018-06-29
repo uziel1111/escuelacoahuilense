@@ -68,51 +68,7 @@
                     </div>
                    </div>
 		</div>
-<<<<<<< HEAD
-		<div id="dv_info_asistencia" class="container mt-3">
-		<div class="alert alert-primary" role="alert">
-		<div class="row">
-			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#est_alum_doc_grup' title='Clic para desplegar'><h3 class="text-secondary">Estadística escolar: alumnos, grupos y docentes</h3></div>
-			</div>
-		</div>
-		<div id='est_alum_doc_grup' class='collapse panel-body'>
-			<div class="row">
-					<div class="col">
-						<div id="dv_info_graf_alumn"></div>
-					</div>
-			</div>
-			<div class="row">
-					<div class="col">
-						<div id="dv_info_graf_docen"></div>
-					</div>
-			</div>
-			<div class="row">
-					<div class="col">
-						<div id="dv_info_graf_grupos"></div>
-					</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div id="dv_info_permanencia" class="container mt-3">
-	<div class="alert alert-primary" role="alert">
-	<?php
-	$arr_bimestres['1'] = '1er BIMESTRE';
-	$arr_bimestres['2'] = '2do BIMESTRE';
-	$arr_bimestres['3'] = '3er BIMESTRE';
-	$arr_bimestres['4'] = '4to BIMESTRE';
-	$arr_bimestres['5'] = '5to BIMESTRE';
-
-	$arr_ciclos['2017-2018'] = '2017-2018'; ?>
-		<div class="row">
-			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#riesgo_esc' title='Clic para desplegar'><h3 class="text-secondary">Riesgo de abandono escolar</h3></div>
-			</div>
-		</div>
-		<div id='riesgo_esc' class='collapse panel-body'>
-=======
 
 <div hidden id="dv_info_asistencia" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
@@ -164,7 +120,6 @@
             </div>
             <div id="riesgo_esc" class="collapse" aria-labelledby="chriesgo" data-parent="#accordion">
                 <div class="card-body">
->>>>>>> bd0ebead8e0de79803afb9ef1cac49e6a1a02b2a
 			<div class="row mt-2">
 				<div class="col col-md-12 text-secondary fw800">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
 			</div>
@@ -205,37 +160,7 @@
     </div>
 
 
-</div>
-<<<<<<< HEAD
-<div id="dv_info_aprendizaje" class="container mt-3">
-<div class="alert alert-primary" role="alert">
-		<div class="row">
-			<div class="col">
-				<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_lyc' title='Clic para desplegar'><h3 class="text-secondary">PLANEA por contenido temático <br>Lenguaje y Comunicación
-</h3></div>
-			</div>
-		</div>
-		<div id='planea_cont_lyc' class='collapse panel-body'>
-			<div class="row">
-					<div class="col">
-						<div id="dv_info_graf_contlyc"></div>
-					</div>
-			</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<div class='panel-heading panel_head ft-responsive' role='button' data-toggle='collapse' data-target='#planea_cont_mat' title='Clic para desplegar'><h3 class="text-secondary">PLANEA por contenido temático <br>Matemáticas</h3></div>
-		</div>
-	</div>
-	<div id='planea_cont_mat' class='collapse panel-body'>
-		<div class="row">
-				<div class="col">
-					<div id="dv_info_graf_contmat"></div>
-				</div>
-		</div>
-</div>
-=======
-                          
+</div>                          
 <div hidden id="dv_info_aprendizaje" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
         <div class="card-accordion-style-1 mb-3">
@@ -284,7 +209,6 @@
             <div id="planea_n_logro" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
                 <div class="card-body">
                     <div class="row">
->>>>>>> bd0ebead8e0de79803afb9ef1cac49e6a1a02b2a
 
 	    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
@@ -409,7 +333,7 @@
    <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header modal_head">
-            <span class="modal-title" id="modal_reactivos_title">Contenido temático: Aspectos que se consideran en una obra de teatro para pasar de la lectura a la representación.</span>
+            <span  class="modal-title card-header card-1-header bgcolor-2 text-white" id="modal_reactivos_title"></span>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>

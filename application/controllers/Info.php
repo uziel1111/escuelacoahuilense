@@ -92,7 +92,7 @@ class Info extends CI_Controller {
 
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis);
 
-		// echo "<pre>";print_r($graph_cont_tema_lyc);die();
+		// echo "<pre>";print_r($graph_cont_reactivos_xcctxcont);die();
 		$response = array(
 			'graph_cont_reactivos_xcctxcont'=>$graph_cont_reactivos_xcctxcont
 		);

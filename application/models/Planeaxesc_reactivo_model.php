@@ -25,7 +25,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     function get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis){
 
-      $this->db->select('t1.id_reactivo, t2.reactivo as descripcion');
+      $this->db->select('t1.id_reactivo, t2.n_reactivo, t2.reactivo as descripcion');
       $this->db->from('planeaxesc_reactivo t1');
       $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
       $this->db->join('planea_contenido t3', 't2.id_contenido= t3.id_contenido');
