@@ -75,7 +75,7 @@
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
-                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados PLANEA por contenido temetico municipal/zona escolar</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados PLANEA por contenido temático municipal/zona escolar</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -84,7 +84,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-2" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio profesional docente</a>
-                                          <a class="dropdown-item hcolor-2" href="http://www.escuelatransparente.gob.mx/transparencia/docentes.php" target="_blank">Reconocimientos estatales</a>
+                                          <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
                                           <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
                                         </div>
@@ -112,7 +112,7 @@
                                           <a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/calendario_2017.pdf" target="_blank">Calendario escolar</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
-                                          <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiasles y útiles autorizados</a>
+                                          <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiales y útiles autorizados</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
                                         </div>
                                     </li>
@@ -132,3 +132,6 @@
   <center><div class="loader"></div></center>
   </div>
 </div>
+
+<div id="div_generico"></div>
+<script src="<?= base_url('assets/js/index/index.js') ?>"></script>

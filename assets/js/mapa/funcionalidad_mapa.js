@@ -1,6 +1,5 @@
 $(function() {
     obj_mapa = new Mapa();
-    // obj_loader = new Loader();
 });
 
 function Mapa(){
@@ -26,19 +25,18 @@ Mapa.prototype.get_Niveles =function(){
 		dataType: 'JSON',
 		data: {idmunicipio: $("#slt_municipio_mapa").val()},
 		beforeSend: function(xhr) {
-	        // obj_loader.show();
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
-		// obj_loader.hide();
 		$("#slt_nivel_mapa").empty();
 		$("#slt_nivel_mapa").append(result.options);
 	})
-	.fail(function() {
-		console.log("error");
+	.fail(function(e) {
+		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-		console.log("complete");
+    swal.close();
 	});
 
 }
@@ -50,23 +48,22 @@ Mapa.prototype.get_Sostenimientos =function(){
 		dataType: 'JSON',
 		data: {idnivel: $("#slt_nivel_mapa").val()},
 		beforeSend: function(xhr) {
-	        // obj_loader.show();
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
-		// obj_loader.hide();
 		$("#slt_sostenimiento_mapa").empty();
 		$("#slt_sostenimiento_mapa").append(result.options);
 	})
 	.fail(function() {
-		console.log("error");
+		console.error("Error in get_Sostenimientos()"); console.table(e);
 	})
 	.always(function() {
-		console.log("complete");
+		swal.close();
 	});
 }
 
-Mapa.prototype.get_marcadores_filtro =function(){
+Mapa.prototype.get_marcadores_filtro = function(){
 	$.ajax({
 		url: base_url+'mapa/get_marcadores_filtro',
 		type: 'POST',
@@ -74,19 +71,19 @@ Mapa.prototype.get_marcadores_filtro =function(){
 		data: {idmunicipio: $("#slt_municipio_mapa").val(), idnivel: $("#slt_nivel_mapa").val(),
 		idsostenimiento: $("#slt_sostenimiento_mapa").val(), nombre: $("#txt_nombre_escuela").val(), cct: $("#txt_cct_escuela").val()},
 		beforeSend: function(xhr) {
-	        // obj_loader.show();
-	    },
+	        Notification.loading("Cargando");
+	  },
 	})
 	.done(function(result) {
-		// obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
-	.fail(function() {
-		console.log("error");
+	.fail(function(e) {
+		console.error("Error in get_marcadores_filtro()"); console.table(e);
+
 	})
 	.always(function() {
-		console.log("complete");
+    swal.close();
 	});
 
 }
