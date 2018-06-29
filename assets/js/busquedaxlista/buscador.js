@@ -4,7 +4,6 @@ $(function () {
 
 
 $("#slc_busquedalista_municipio").change(function (){
-  // $("input[name=hidden_municipio]").val( $("#slc_busquedalista_municipio option:selected").text() );
   $("input[name=hidden_municipio]").val( $('option:selected',this).text() );
 
   let cve_municipio = $('#slc_busquedalista_municipio').val();
@@ -19,7 +18,6 @@ $("#slc_busquedalista_municipio").change(function (){
 });
 
 $("#slc_busquedalista_nivel").change(function (){
-  // $("input[name=hidden_nivel]").val( $("#slc_busquedalista_nivel option:selected").text() );
   $("input[name=hidden_nivel]").val( $('option:selected',this).text() );
 
   let cve_nivel = $('#slc_busquedalista_nivel').val();
@@ -58,7 +56,10 @@ Buscador.prototype.get_niveles = function(cve_municipio){
       $.ajax({
         url: ruta,
         method: 'POST',
-        data: {'cve_municipio':cve_municipio}
+        data: {'cve_municipio':cve_municipio},
+        beforeSend: function(xhr) {
+    	        Notification.loading("");
+    	    },
       })
       .done(function( data ) {
         $("#slc_busquedalista_nivel").empty();
@@ -66,7 +67,11 @@ Buscador.prototype.get_niveles = function(cve_municipio){
       })
       .fail(function(e) {
         console.error("Error in get_niveles()"); console.table(e);
-      });
+      })
+      .always(function() {
+        swal.close();
+    	});
+
 };
 
 Buscador.prototype.get_sostenimientos = function(cve_nivel){
@@ -74,7 +79,10 @@ Buscador.prototype.get_sostenimientos = function(cve_nivel){
       $.ajax({
         url: ruta,
         method: 'POST',
-        data: {'cve_nivel':cve_nivel}
+        data: {'cve_nivel':cve_nivel},
+        beforeSend: function(xhr) {
+    	        Notification.loading("");
+    	  },
       })
       .done(function( data ) {
         $("#slc_busquedalista_sostenimiento").empty();
@@ -82,7 +90,10 @@ Buscador.prototype.get_sostenimientos = function(cve_nivel){
       })
       .fail(function(e) {
         console.error("Error in get_sostenimientos()"); console.table(e);
-      });
+      })
+      .always(function() {
+        swal.close();
+    	});
 };
 
 Buscador.prototype.get_xcvecentro = function(cve_centro){
@@ -90,7 +101,10 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
       $.ajax({
         url: ruta,
         method: 'POST',
-        data: {'cve_centro':cve_centro}
+        data: {'cve_centro':cve_centro},
+        beforeSend: function(xhr) {
+    	        Notification.loading("");
+    	  },
       })
       .done(function( data ) {
         if(data.total_escuelas==0){
@@ -107,7 +121,10 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
       })
       .fail(function(e) {
         console.error("Error in get_xcvecentro()"); console.table(e);
-      });
+      })
+      .always(function() {
+        swal.close();
+    	});
 };
 
 Buscador.prototype.form = function(id_cct){
@@ -127,19 +144,6 @@ Buscador.prototype.form = function(id_cct){
   document.body.appendChild(form);
   form.submit();
 };
-
-
-function get_niveles(cve_municipio){
-}// get_niveles()
-function get_sostenimientos(cve_nivel){
-
-}// get_niveles()
-function get_xcvecentro(cve_centro){
-}// get_xcvecentro()
-
-function form(id_cct){
-
-}// form()
 
 $('#busquedalista_modal').on('hidden.bs.modal', function (e) {
   $("#id_cct").empty();
