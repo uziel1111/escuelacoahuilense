@@ -43,6 +43,7 @@
                                                   <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Servicio profesional docente</a></li>
                                                   <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/docentes.php" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Reconocimientos estatales</a></li>
                                                   <li class="list-group-item"><a href="http://www.inee.edu.mx/" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Instituto Nacional para la Evaluación de la Educación</a></li>
+                                                  <li class="list-group-item"><a href="#" target="_blank"><span class="color-2"><i class="material-icons">face</i></span> Nuevo Modelo Educativo</a></li>
 
                                                 </ul>
                                             </div>

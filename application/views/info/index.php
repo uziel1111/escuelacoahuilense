@@ -297,7 +297,7 @@
    <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header modal_head">
-            <span class="modal-title" id="modal_reactivos_title">Contenido temático: Aspectos que se consideran en una obra de teatro para pasar de la lectura a la representación.</span>
+            <span  class="modal-title card-header card-1-header bgcolor-2 text-white" id="modal_reactivos_title"></span>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>

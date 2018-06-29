@@ -2158,12 +2158,19 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               }
               else {
                 html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
+                html += "<table class='table table-condensed'>";
+                html += "<tbody>";
                 for (var i = 0; i < result.length; i++) {
-                  html += "<p><li>"+result[i]['descripcion']+"</li></p>";
+                  html += "    <tr>";
+                  html += "      <td>"+result[i]['n_reactivo']+"</td>";
+                  html += "      <td>"+result[i]['descripcion']+"</td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-2'>Argumento</button></td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-3'>Especificación</button></td>";
+                  html += "    </tr>";
                 }
+                html += "</tbody>";
+                html += "</table>";
               }
-
-
               html += "</ul></div>";
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
