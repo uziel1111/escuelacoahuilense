@@ -22,5 +22,7 @@
           <?=$buscador;?>
       </div>
       <div id="dv_graf_riesgo_mun_zona"></div>
+      <div id="dv_tabla_riesgo_mun_zona"></div>
       <div id="dv_tab_riesgo_mun_zona"></div>
+      <div id="dv_tablam_riesgo_mun_zona"></div>
     </div>

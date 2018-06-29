@@ -29,4 +29,22 @@ class Index extends CI_Controller {
 		$data = array();
 		Utilerias::pagina_basica($this, "index", $data);
 	}
+
+	public function getReconocimientosEstatales(){
+		// echo "<pre>"; print_r($_SERVER); die();
+
+		$cve_centro = $this->input->post('folder');
+		$cve_centro = $this->input->post('file');
+
+
+		$strView = $this->load->view("index/reconocimientosEstatales", array(), TRUE);
+
+
+		$response = array(
+											'strView' => $strView
+											);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getReconocimientosEstatales()
 }

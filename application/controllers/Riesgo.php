@@ -10,6 +10,7 @@ class Riesgo extends CI_Controller {
 			$this->load->model('Municipio_model');
 			$this->load->model('Nivel_model');
 			$this->load->model('Sostenimiento_model');
+			$this->load->model('Riesgo_alumn_esc_bim_model');
 			$this->load->helper('form');
 		}
 
@@ -56,5 +57,24 @@ class Riesgo extends CI_Controller {
 			$data['buscador'] = $string;
 			Utilerias::pagina_basica($this, "riesgo/index", $data);
 		}// riesgo_x_muni_zona()
+
+		public function riesgoxmuni_graf(){
+			$id_municipio = $this->input->post("id_minicipio");
+			$id_nivel = $this->input->post("id_nivel");
+			$id_bim = $this->input->post("id_bimestre");
+			$ciclo = $this->input->post("ciclo");
+
+			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidmuni($id_municipio,$id_nivel,$id_bim,$ciclo);
+			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidmuni($id_municipio,$id_nivel,$id_bim,$ciclo);
+
+			$response = array(
+				'graph_pie_riesgo'=>$graph_pie_riesgo,
+				'graph_bar_riesgo'=>$graph_bar_riesgo
+			);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+
+		}//riesgoxmuni_graf
 
 }// Riesgo

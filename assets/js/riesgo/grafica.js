@@ -17,11 +17,11 @@ function Grafica(){
 // });
 
 
-Grafica.prototype.TablaPieGraficaPie = function(){
-  var q1 = parseInt(10);
-  var q2 = parseInt(5);
-  var q3 = parseInt(3);
-  var q4 = parseInt(2);
+Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
+  // var q1 = parseInt(10);
+  // var q2 = parseInt(5);
+  // var q3 = parseInt(3);
+  // var q4 = parseInt(2);
 
       Highcharts.theme = {
           //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
@@ -132,14 +132,14 @@ Grafica.prototype.TablaPieGraficaPie = function(){
       }
     }
 
-    Grafica.prototype.TablaPieGraficaBarPrimaria= function(){
+    Grafica.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 
-      var t1 = parseInt(10);
-      var t2 = parseInt(5);
-      var t3 = parseInt(6);
-      var t4 = parseInt(8);
-      var t5 = parseInt(5);
-      var t6 = parseInt(3);
+      // var t1 = parseInt(10);
+      // var t2 = parseInt(5);
+      // var t3 = parseInt(6);
+      // var t4 = parseInt(8);
+      // var t5 = parseInt(5);
+      // var t6 = parseInt(3);
 
             Highcharts.theme = {
                 colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
@@ -253,10 +253,10 @@ Grafica.prototype.TablaPieGraficaPie = function(){
 
 
 
-    Grafica.prototype.TablaPieGraficaBarSecundaria= function(){
-      var t1 = parseInt(10);
-      var t2 = parseInt(5);
-      var t3 = parseInt(6);
+    Grafica.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
+      // var t1 = parseInt(10);
+      // var t2 = parseInt(5);
+      // var t3 = parseInt(6);
 
             Highcharts.theme = {
                 colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',

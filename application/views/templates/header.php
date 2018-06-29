@@ -41,7 +41,7 @@
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
-  <script src="<?= base_url('assets/js/utiles.js') ?>"></script>
+  <script src="<?= base_url('assets/js/Utiles.js') ?>"></script>
   <script src="<?= base_url('assets/js/loader.js') ?>"></script>
 
 
@@ -86,6 +86,7 @@
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio profesional docente</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.escuelatransparente.gob.mx/transparencia/docentes.php" target="_blank">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
+                                          <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">

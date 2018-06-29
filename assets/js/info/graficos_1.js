@@ -551,7 +551,19 @@ function HaceGraficas(){
                                    a_g3
                                ]
                            ]
-                   }]
+                   }],
+                   responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 600
+                        },
+                        chartOptions: {
+                            chart: {
+                                className: 'd-flex'
+                            }
+                        }
+                    }]
+                }
 
                });
 
@@ -861,7 +873,7 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
             subtitle: {
                 style: {
                     color: '#666666',
-                    font: 'bold 14px'
+                    font: 'bold 16px'
                 }
             },
 
@@ -892,10 +904,12 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
               type: 'column'
           },
           title: {
-              text: ''
+              text: '',
+              font: 'bold 16px'
           },
           subtitle: {
-              text: ''
+              text: '',
+              font: 'bold 16px'
           },
           xAxis: {
               type: 'category'
@@ -943,7 +957,7 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
           }]
       });
 
-      $(".highcharts-background").css("fill","#FFF");
+      $(".highcharts-background").css("fill","none");
       if (screen.width<600){
         estadPrimaria.setSize(
             ($(document).width()/10)*5,
@@ -2156,12 +2170,19 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               }
               else {
                 html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
+                html += "<table class='table table-condensed'>";
+                html += "<tbody>";
                 for (var i = 0; i < result.length; i++) {
-                  html += "<p><li>"+result[i]['descripcion']+"</li></p>";
+                  html += "    <tr>";
+                  html += "      <td>"+result[i]['n_reactivo']+"</td>";
+                  html += "      <td>"+result[i]['descripcion']+"</td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-2'>Argumento</button></td>";
+                  html += "      <td><button type='button' class='btn color-6 bgcolor-3'>Especificación</button></td>";
+                  html += "    </tr>";
                 }
+                html += "</tbody>";
+                html += "</table>";
               }
-
-
               html += "</ul></div>";
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
