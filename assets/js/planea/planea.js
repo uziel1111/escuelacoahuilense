@@ -12,7 +12,7 @@ $("#btn_busqueda_xestadomun").click(function(){
 })
 
 $("#btn_busqueda_xregion").click(function(){
-	if($("#slt_nivel_planeaxm").val() == 0){
+	if($("#slt_nivel_planeaxz").val() == 0){
 		Notification.notification("", "Seleccione nivel", "info");
 	}else{
 		Planea.get_xregion();
