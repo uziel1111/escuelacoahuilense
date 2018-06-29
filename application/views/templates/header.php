@@ -84,7 +84,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-2" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio profesional docente</a>
-                                          <a class="dropdown-item hcolor-2" href="http://www.escuelatransparente.gob.mx/transparencia/docentes.php" target="_blank">Reconocimientos estatales</a>
+                                          <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
                                           <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
                                         </div>
@@ -132,3 +132,6 @@
   <center><div class="loader"></div></center>
   </div>
 </div>
+
+<div id="div_generico"></div>
+<script src="<?= base_url('assets/js/index/index.js') ?>"></script>
