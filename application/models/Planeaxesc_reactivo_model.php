@@ -111,35 +111,26 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
         JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} AND m.id_municipio = {$id_municipio}
-        AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos 
-                    ";
-                    // echo $str_query; die();
-
+        AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
       return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()
 
 
     function get_reactivos_xcctxcont_zona($id_zona,$id_cont,$periodo,$idcampodis){
-      $this->db->select('t1.id_reactivo, t2.reactivo as descripcion');
-      $this->db->from('planeaxesc_reactivo t1');
-      $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
-      $this->db->join('planea_contenido t3', 't2.id_contenido= t3.id_contenido');
-      $this->db->join('planea_unidad_analisis t4', 't3.id_unidad_analisis=t4.id_unidad_analisis');
-      $this->db->join('planea_camposdisciplinares t5', 't4.id_campodisiplinario=t5.id_campodisiplinario');
-      $this->db->join('escuela e', 'e.id_cct = t1.id_ct');
-      $this->db->join('supervision s', 's.id_supervision = e.id_supervision');
-      $this->db->where('s.id_supervision', $id_zona);
-      $this->db->where('t3.id_contenido', $id_cont);
-      $this->db->where('t1.id_periodo', $periodo);
-      $this->db->where('t5.id_campodisiplinario', $idcampodis);
-      $this->db->where('(((t1.n_aciertos*100)/t1.n_almn_eval)<50)');
-      $this->db->group_by('s.id_supervision');
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.reactivo AS descripcion
+                  FROM supervision s
+                  INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+                  INNER JOIN nivel n ON n.id_nivel = e.id_nivel
+                  INNER JOIN planeaxesc_reactivo t1 ON t1.`id_ct` = e.`id_cct`
+                  JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
+                  JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
+                  JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
+                  JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
-     //  $this->db->get();
-     // $str = $this->db->last_query();
-     // echo $str; die();
-      return  $this->db->get()->result_array();
+                  WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} AND s.id_supervision = ${id_zona}
+                  AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
+                  return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()
 
