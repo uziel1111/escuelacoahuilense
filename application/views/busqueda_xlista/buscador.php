@@ -105,6 +105,8 @@
   </div><!-- card -->
 </div><!-- container -->
 
+</section>
+
 <div id='busquedalista_modal' class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -132,7 +134,7 @@
       </div>
     </div>
   </div>
-</div>
-</section>
+</div><!-- modal -->
+
 <script src="<?= base_url('assets/js/regularexpression.js') ?>"></script>
 <script src="<?= base_url('assets/js/busquedaxlista/buscador.js') ?>"></script>
