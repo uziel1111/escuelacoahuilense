@@ -28,7 +28,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     function get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis){
 
-      $this->db->select('t1.id_reactivo, t2.reactivo as descripcion');
+      $this->db->select('t1.id_reactivo,t2.n_reactivo, t2.reactivo as descripcion');
       $this->db->from('planeaxesc_reactivo t1');
       $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
       $this->db->join('planea_contenido t3', 't2.id_contenido= t3.id_contenido');
@@ -64,7 +64,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
                           JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
-                          WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo} 
+                          WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo}
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
                           GROUP BY id_contenido
@@ -90,7 +90,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
                           JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
-                          WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo} 
+                          WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo}
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
                           GROUP BY id_contenido

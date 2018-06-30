@@ -2219,7 +2219,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               html += "      <td><a href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
               html += "    </tr>";
               html += "    <tr>";
-              html += "      <td><a href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
+              html += "      <td><a href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></td>";
               html += "    </tr>";
             html += "</tbody>";
             html += "</table>";
