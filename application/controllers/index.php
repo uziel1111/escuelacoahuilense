@@ -44,17 +44,23 @@ class Index extends CI_Controller {
 	}// getReconocimientosEstatales()
 
 	public function getMaterialesUtiles(){
-
 		$strView = $this->load->view("index/materialesUtiles", array(), TRUE);
-
-
 		$response = array(
 											'strView' => $strView
 											);
-
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}// getMaterialesUtiles()
+
+	public function getCalendarioEscolar(){
+		$strView = $this->load->view("index/calendarioEscolar", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getCalendarioEscolar()
+
 
 
 }

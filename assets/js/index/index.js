@@ -8,6 +8,13 @@ $("#btn_index_materialesUtiles").click(function(e){
   Index.getMaterialesUtiles();
 });
 
+$("#btn_index_calendarioEscolar").click(function(e){
+  e.preventDefault();
+  Index.getCalendarioEscolar();
+});
+
+
+
 var Index = {
 
   getReconocimientosEstatales : function() {
@@ -54,6 +61,31 @@ var Index = {
     .always(function() {
 			swal.close();
 		});
-	}
+	},
+
+  getCalendarioEscolar : function() {
+    var ruta = base_url+"Index/getCalendarioEscolar";
+    $.ajax({
+      url: ruta,
+      method: 'POST',
+      data: { 'folder':1, 'file':1 },
+      beforeSend: function(xhr) {
+        Notification.loading("");
+      }
+    })
+    .done(function( data ) {
+      $("#div_generico").empty();
+      $("#div_generico").append(data.strView);
+      Utiles.showPDF("modal_calendarioEscolar", "index/calendarioEscolar/calendario_2017.pdf");
+    })
+    .fail(function(e) {
+      console.error("Error in getCalendarioEscolar()"); console.table(e);
+    })
+    .always(function() {
+			swal.close();
+		});
+	},
+
+
 
 };

@@ -86,7 +86,7 @@
                                                 <!-- List group -->
                                                 <ul class="list-group">
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a></li>
-                                                  <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/calendario_2017.pdf" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
+                                                  <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
                                                   <li class="list-group-item"><a href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Becas escolares</a></li>
 
                                                   <li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca digital Coahuila</a></li>
