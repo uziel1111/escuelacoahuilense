@@ -31,11 +31,6 @@ class Index extends CI_Controller {
 	}
 
 	public function getReconocimientosEstatales(){
-		// echo "<pre>"; print_r($_SERVER); die();
-
-		$cve_centro = $this->input->post('folder');
-		$cve_centro = $this->input->post('file');
-
 
 		$strView = $this->load->view("index/reconocimientosEstatales", array(), TRUE);
 
@@ -47,4 +42,25 @@ class Index extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}// getReconocimientosEstatales()
+
+	public function getMaterialesUtiles(){
+		$strView = $this->load->view("index/materialesUtiles", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getMaterialesUtiles()
+
+	public function getCalendarioEscolar(){
+		$strView = $this->load->view("index/calendarioEscolar", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getCalendarioEscolar()
+
+
+
 }

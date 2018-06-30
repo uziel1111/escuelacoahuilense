@@ -64,7 +64,7 @@
                                                 <ul class="list-group">
                                                   <li class="list-group-item"><a href="#"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a></li>
                                                   <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a></li>
-                                                  <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a></li>
+                                                  <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a></li>
                                                   <li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a></li>
                                                   <li class="list-group-item"><a href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al Bullying</a></li>
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
@@ -86,7 +86,7 @@
                                                 <!-- List group -->
                                                 <ul class="list-group">
                                                   <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a></li>
-                                                  <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/calendario_2017.pdf" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
+                                                  <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
                                                   <li class="list-group-item"><a href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Becas escolares</a></li>
 
                                                   <li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca digital Coahuila</a></li>

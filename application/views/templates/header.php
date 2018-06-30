@@ -112,9 +112,10 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
-                                          <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/calendario_2017.pdf" target="_blank">Calendario escolar</a>
+                                          <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
-                                          <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiales y útiles autorizados</a>
+                                          <a class="dropdown-item hcolor-4" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
+                                          <!-- <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiales y útiles autorizados</a> -->
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
                                         </div>
                                     </li>
