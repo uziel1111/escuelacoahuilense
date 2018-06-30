@@ -1,6 +1,6 @@
-const Notification = {
+var Notification = {
 
-  notification(title,text,type){
+  notification : function(title,text,type){
       swal({
         title : title,
         text : text,
@@ -9,7 +9,7 @@ const Notification = {
         width:'350px'
       });
 	},
-  loading(texto) {
+  loading : function(texto) {
     swal({
         // title: "<div class='loader'></div>",
         title:"<i class='fa fa-circle-o-notch fa-spin' style='font-size:100px; color:#7ea629'></i>",
