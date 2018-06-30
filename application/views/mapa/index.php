@@ -21,6 +21,7 @@
     <div class="card-header card-1-header bg-light">Busca tu escuela</div>
     <div class="card-body">
       <div><?=$buscador;?> </div>
+      <div id="contenedor_mapa_id"></div>
     </div><!-- card-body -->
   </div><!-- card -->  
      

@@ -77,7 +77,7 @@
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#est_alum_doc_grup" aria-expanded="true" aria-controls="est_alum_doc_grup">
                     <i class="fa fa-chevron-down pull-right"></i>
                     Estadística escolar: alumnos, grupos y docentes
-                </a>                
+                </a>
             </div>
             <div id="est_alum_doc_grup" class="collapse" aria-labelledby="estadEsc" data-parent="#accordion">
                 <div class="card-body">
@@ -109,14 +109,14 @@
     $arr_bimestres['3'] = '3er BIMESTRE';
     $arr_bimestres['4'] = '4to BIMESTRE';
     $arr_bimestres['5'] = '5to BIMESTRE';
-    $arr_ciclos['2017-2018'] = '2017-2018'; ?>    
+    $arr_ciclos['2017-2018'] = '2017-2018'; ?>
     <div id="accordion" class="accordion-style-1">
         <div class="card-accordion-style-1" class="accordion-style-1">
             <div class="accordion-style-1-header" id="chriesgo">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#riesgo_esc" aria-expanded="true" aria-controls="riesgo_esc">
                     <i class="fa fa-chevron-down pull-right"></i>
                     Riesgo de abandono escolar
-                </a>                 
+                </a>
             </div>
             <div id="riesgo_esc" class="collapse" aria-labelledby="chriesgo" data-parent="#accordion">
                 <div class="card-body">
@@ -147,7 +147,7 @@
 						<div id="dv_riesgotab_esc_pie"></div>
 					</div>
 			</div>
-                        
+
 			<div class="row">
 					<div class="col">
 						<div id="dv_riesgo_esc_bar"></div>
@@ -160,7 +160,7 @@
     </div>
 
 
-</div>                          
+</div>
 <div hidden id="dv_info_aprendizaje" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
         <div class="card-accordion-style-1 mb-3">
@@ -168,7 +168,7 @@
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_cont_lyc" aria-expanded="true" aria-controls="planea_cont_lyc">
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por contenido temático: Lenguaje y Comunicación
-                </a>                 
+                </a>
             </div>
             <div id="planea_cont_lyc" class="collapse" aria-labelledby="chplaneaLC" data-parent="#accordion">
                 <div class="card-body">
@@ -186,7 +186,7 @@
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_cont_mat" aria-expanded="true" aria-controls="planea_cont_mat">
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por contenido temático: Matemáticas
-                </a>                 
+                </a>
             </div>
             <div id="planea_cont_mat" class="collapse" aria-labelledby="chplaneaMAT" data-parent="#accordion">
                 <div class="card-body">
@@ -204,7 +204,7 @@
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_n_logro" aria-expanded="true" aria-controls="planea_n_logro">
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por niveles de logro
-                </a>                
+                </a>
             </div>
             <div id="planea_n_logro" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
                 <div class="card-body">
@@ -319,14 +319,14 @@
       </table>
       </div>
 		</div>
-	
+
                     </div>
                 </div>
             </div>
         </div>
-        
-        
-    </div>    
+
+
+    </div>
 
 </div>
 <div id="modal_visor_reactivos" class="modal fade modal100 grises in" role="dialog" data-keyboard="false" data-backdrop="static" >
@@ -345,6 +345,27 @@
            </center>
 
             <div id="div_reactivos"></div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal_visor_apoyos_academ" class="modal fade modal100 grises in" role="dialog" data-keyboard="false" data-backdrop="static" >
+   <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header modal_head">
+            <span  class="modal-title card-header card-1-header bgcolor-2 text-white" id="modal_apoyos_academ_title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+          </div>
+          <div class="modal-body">
+            <center style="fontSize:24px;">
+
+              <!-- <label id="lbl_unidad_de_analisis"></label></p> -->
+           </center>
+
+            <div id="div_listalinks"></div>
           </div>
         </div>
     </div>
