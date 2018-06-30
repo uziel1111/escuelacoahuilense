@@ -1,26 +1,26 @@
 $("#btn_reconocimientosEstatales_candelaria").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientos_estatales/CANDELARIA.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/CANDELARIA.pdf");
 });
 
 $("#btn_reconocimientosEstatales_felix").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientos_estatales/FELIX.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/FELIX.pdf");
 });
 
 $("#btn_reconocimientosEstatales_ignacio").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientos_estatales/IGNACIO.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/IGNACIO.pdf");
 });
 
 $("#btn_reconocimientosEstatales_leopoldo").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientos_estatales/LEOPOLDO.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/LEOPOLDO.pdf");
 });
 
 $("#btn_reconocimientosEstatales_rafael").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientos_estatales/RAFAEL.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/RAFAEL.pdf");
 });
 
 $('#modal_reconocimientosEstatales').on('hidden.bs.modal', function (e) {
