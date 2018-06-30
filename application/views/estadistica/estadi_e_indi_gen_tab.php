@@ -1,8 +1,9 @@
 <section class="main-area">
 <div class="container">
+  <a href="javascript:" id="return-to-top"><span class="color-4"><i class="material-icons">keyboard_arrow_up</i></span></a>
     <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bg-light">Resultados de búsqueda</div>
-  <div class="card-body">
+  <div class="pb-1 pt-1 card-body">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <center>
@@ -14,7 +15,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <p><center>
         <?php if ($tipo_busqueda=="municipal"): ?>
-          <div id="filtros_est_gen">Municipio: <strong><?= $municipio?></strong>, Nivel: <strong><?= $nivel?></strong>, Sostenimiento: <strong><?= $sostenimiento?></strong>, Modalidad: <strong><?= $modalidad?></strong>, Ciclo escolar: <strong><?= $ciclo?></strong>.
+          <div id="filtros_est_gen">Municipio: <strong class="color-6 bgcolor-3"><?= $municipio?></strong>, Nivel: <strong class="color-6 bgcolor-3"><?= $nivel?></strong>, Sostenimiento: <strong class="color-6 bgcolor-3"><?= $sostenimiento?></strong>, Modalidad: <strong class="color-6 bgcolor-3"><?= $modalidad?></strong>, Ciclo escolar: <strong class="color-6 bgcolor-3" ><?= $ciclo?></strong>.
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
               <?= form_open('Report/est_generales_xmuni') ?>
               <?= form_hidden('id_municipio', $id_municipio) ?>
@@ -37,9 +38,59 @@
               ?>
               <?= form_close() ?>
             </div><!-- col-md-1 -->
+          </div>
+              </center></p>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
+            <div class="card-body">
+              <div><?= $srt_tab_alumnos?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Personal docente</div>
+            <div class="card-body">
+              <div><?= $srt_tab_pdocentes?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Infraestructura</div>
+            <div class="card-body">
+              <div><?= $srt_tab_infraestructura?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de aprendizaje</div>
+            <div class="card-body">
+              <div><?= $srt_tab_planea?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Rezago educativo</div>
+            <div class="card-body">
+              <div><?= $srt_tab_rezag_inegi?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Analfabetismo</div>
+            <div class="card-body">
+              <div><?= $srt_tab_analf_inegi?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
         <?php endif; ?>
         <?php if ($tipo_busqueda=="zona"): ?>
-          <div id="filtros_est_gen">Nivel: <?= $nivel_z?>, Sostenimiento: <?= $sostenimiento_z?>, Zona escolar:<?= $zona_z?>, Ciclo escolar:<?= $ciclo_z?>.
+          <div id="filtros_est_gen">Nivel: <?= $nivel_z?>, Sostenimiento: <strong class="color-6 bgcolor-3"><?= $sostenimiento_z?></strong>, Zona escolar:<strong class="color-6 bgcolor-3"><?= $zona_z?></strong>, Ciclo escolar:<strong class="color-6 bgcolor-3"><?= $ciclo_z?></strong>
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
               <?= form_open('Report/est_generales_xzona') ?>
               <?= form_hidden('id_nivel_z', $id_nivel_z) ?>
@@ -61,59 +112,39 @@
               ?>
               <?= form_close() ?>
             </div><!-- col-md-1 -->
+          </div>
+              </center></p>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
+            <div class="card-body">
+              <div><?= $srt_tab_alumnos?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Personal docente</div>
+            <div class="card-body">
+              <div><?= $srt_tab_pdocentes?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Infraestructura</div>
+            <div class="card-body">
+              <div><?= $srt_tab_infraestructura?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
 
         <?php endif; ?>
 
-  </div>
-      </center></p>
-    </div>
-  </div>
 
-  </div>
-</div>
-
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
-    <div class="card-body">
-      <div><?= $srt_tab_alumnos?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Personal docente</div>
-    <div class="card-body">
-      <div><?= $srt_tab_pdocentes?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Infraestructura</div>
-    <div class="card-body">
-      <div><?= $srt_tab_infraestructura?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de aprendizaje</div>
-    <div class="card-body">
-      <div><?= $srt_tab_planea?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Rezago educativo</div>
-    <div class="card-body">
-      <div><?= $srt_tab_rezag_inegi?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
-
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bgcolor-2 text-white">Analfabetismo</div>
-    <div class="card-body">
-      <div><?= $srt_tab_analf_inegi?>  </div>
-    </div><!-- card-body -->
-  </div><!-- card -->
 
 </div><!-- container -->
 

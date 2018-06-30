@@ -9,10 +9,10 @@ $("#slc_busquedalista_municipio").change(function (){
   let cve_municipio = $('#slc_busquedalista_municipio').val();
   if(cve_municipio=='-1'){
     $("#slc_busquedalista_nivel").empty();
-    $("#slc_busquedalista_nivel").append('<option value=-1> Todos </option>');
+    $("#slc_busquedalista_nivel").append('<option value=-1> TODOS </option>');
   }else{
       $("#slc_busquedalista_sostenimiento").empty();
-      $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
+      $("#slc_busquedalista_sostenimiento").append('<option value=-1> TODOS </option>');
       this_buscador.get_niveles(cve_municipio);
   }
 });
@@ -23,9 +23,9 @@ $("#slc_busquedalista_nivel").change(function (){
   let cve_nivel = $('#slc_busquedalista_nivel').val();
   $("#slc_busquedalista_sostenimiento").empty();
   if(cve_nivel=='-a'){
-    $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
+    $("#slc_busquedalista_sostenimiento").append('<option value=-1> TODOS </option>');
   }else{
-      $("#slc_busquedalista_sostenimiento").append('<option value=-1> Todos </option>');
+      $("#slc_busquedalista_sostenimiento").append('<option value=-1> TODOS </option>');
       this_buscador.get_sostenimientos(cve_nivel);
   }
 });

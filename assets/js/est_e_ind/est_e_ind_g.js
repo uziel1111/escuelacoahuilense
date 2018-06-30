@@ -153,6 +153,8 @@ $("#slc_xest_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
   var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
   var id_zona = $( "#slc_xest_zona" ).val();
+
+
   $.ajax({
     url:base_url+"Estadistica/estad_indi_generales_getcicloxnxsubxz_zona",
     method:"POST",

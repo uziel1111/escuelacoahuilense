@@ -29,6 +29,7 @@
 
   <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/css/src_up.css') ?>" rel="stylesheet" media="screen">
 
 
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
@@ -45,6 +46,7 @@
   <script src="<?= base_url('assets/js/loader.js') ?>"></script>
 
 
+<script src="<?= base_url('assets/js/src_up.js') ?>"></script>
   <script>
     $(function() {
       base_url = live_url = "<?= base_url(); ?>";

@@ -21,7 +21,7 @@ class Busqueda_xlista extends CI_Controller {
 			if(count($result_municipios)==0){
 				$data['arr_municipios'] = array(	'-1' => 'Error recuperando los municipios' );
 			}else{
-				$arr_municipios['-1'] = 'Todos';
+				$arr_municipios['-1'] = 'TODOS';
 				foreach ($result_municipios as $row){
 					 $arr_municipios[$row['id_municipio']] = $row['municipio'];
 				}
@@ -31,7 +31,7 @@ class Busqueda_xlista extends CI_Controller {
 			if(count($result_niveles)==0){
 				$data['arr_niveles'] = array(	'-1' => 'Error recuperando los niveles' );
 			}else{
-				$arr_niveles['-1'] = 'Todos';
+				$arr_niveles['-1'] = 'TODOS';
 				foreach ($result_niveles as $row){
 					 $arr_niveles[$row['id_nivel']] = $row['nivel'];
 				}
@@ -42,7 +42,7 @@ class Busqueda_xlista extends CI_Controller {
 			if(count($result_sostenimientos)==0){
 				$data['arr_sostenimientos'] = array(	'-1' => 'Error recuperando los sostenimientos' );
 			}else{
-				$arr_sostenimientos['-1'] = 'Todos';
+				$arr_sostenimientos['-1'] = 'TODOS';
 				foreach ($result_sostenimientos as $row){
 					 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
 				}

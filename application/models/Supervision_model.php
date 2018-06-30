@@ -14,13 +14,16 @@ class Supervision_model extends CI_Model
     }// all()
 
     function getzona_idnivel_xsost($id_nivel,$id_subsostenimiento){
+
       $this->db->select('su.id_supervision, su.zona_escolar');
       $this->db->from('escuela as es');
       $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
       $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
       $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
       $this->db->join('supervision as su', 'es.id_supervision = su.id_supervision');
-      $this->db->where('ni.id_nivel', $id_nivel);
+      if ($id_nivel>0) {
+        $this->db->where('ni.id_nivel', $id_nivel);
+      }
       $this->db->where('sso.id_subsostenimiento', $id_subsostenimiento);
       // $this->db->get();
       // $str = $this->db->last_query();
