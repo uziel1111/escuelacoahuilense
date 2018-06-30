@@ -139,7 +139,7 @@ function HaceGraficas(){
       }
       else {
         estadPrimaria.setSize(
-            ($(document).width()/10)*7,
+            ($(document).width()/10)*5,
             400,
            false
         );
@@ -286,7 +286,7 @@ function HaceGraficas(){
          }
          else {
            estadPrimaria.setSize(
-               ($(document).width()/10)*7,
+               ($(document).width()/10)*5,
                400,
               false
            );
@@ -432,7 +432,7 @@ function HaceGraficas(){
             }
             else {
               estadPrimaria.setSize(
-                  ($(document).width()/10)*7,
+                  ($(document).width()/10)*5,
                   400,
                  false
               );
@@ -576,7 +576,7 @@ function HaceGraficas(){
                }
                else {
                  estadPrimaria.setSize(
-                     ($(document).width()/10)*7,
+                     ($(document).width()/10)*5,
                      400,
                     false
                  );
@@ -706,7 +706,7 @@ function HaceGraficas(){
                   }
                   else {
                     estadPrimaria.setSize(
-                        ($(document).width()/10)*7,
+                        ($(document).width()/10)*5,
                         400,
                        false
                     );
@@ -836,7 +836,7 @@ function HaceGraficas(){
                      }
                      else {
                        estadPrimaria.setSize(
-                           ($(document).width()/10)*7,
+                           ($(document).width()/10)*5,
                            400,
                           false
                        );
@@ -966,7 +966,7 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
       }
       else {
         estadPrimaria.setSize(
-            ($(document).width()/10)*7,
+            ($(document).width()/10)*5,
             400,
            false
         );
@@ -1170,7 +1170,7 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
         }
         else {
           chartp2015.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*5,
               400,
              false
           );
@@ -1185,7 +1185,7 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
         }
         else {
           chartp2016.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*5,
               400,
              false
           );
@@ -1298,7 +1298,7 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
           }
           else {
             estadPrimaria.setSize(
-                ($(document).width()/10)*7,
+                ($(document).width()/10)*5,
                 400,
                false
             );
@@ -1413,7 +1413,7 @@ HaceGraficas.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
         }
         else {
           estadPrimaria.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*5,
               400,
              false
           );
@@ -1524,7 +1524,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         }
         else {
           estadPrimaria.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*5,
               400,
              false
           );
@@ -1671,20 +1671,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
+          if (screen.width<600){
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                500,
+               false
+            );
+          }
+          else {
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                1000,
+               false
+            );
+          }
       }// graficoplanea_ud_prim_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
@@ -1809,21 +1809,21 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
+          $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
+          if (screen.width<600){
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                500,
+               false
+            );
+          }
+          else {
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                1000,
+               false
+            );
+          }
 
       }// graficoplanea_ud_prim_mate()
 
@@ -1983,7 +1983,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
 
           $(".highcharts-background").css("fill","#FFF");
-          /*
+
           if (screen.width<600){
             estadPreescolar.setSize(
                 ($(document).width()/10)*5,
@@ -1993,12 +1993,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           }
           else {
             estadPreescolar.setSize(
-                ($(document).width()/10)*7,
+                ($(document).width()/10)*5,
                 900,
                false
             );
           }
-          */
       }// graficoplanea_ud_secu_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
@@ -2126,20 +2125,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
           // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
+          if (screen.width<600){
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                500,
+               false
+            );
+          }
+          else {
+            estadPreescolar.setSize(
+                ($(document).width()/10)*5,
+                1000,
+               false
+            );
+          }
 
       }// graficoplanea_ud_secu_mate()
 

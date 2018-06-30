@@ -18,7 +18,7 @@ $("#btn_buscar_ries_muni").click(function() {
     method: 'POST',
     data: {'id_minicipio':id_minicipio,'id_nivel':id_nivel,'id_bimestre':id_bimestre,'ciclo':"2017-2018"},
     beforeSend: function(xhr) {
-      // obj_loader.show();
+      Notification.loading("");
   },
   })
   .done(function( data ) {
@@ -75,8 +75,11 @@ $("#btn_buscar_ries_muni").click(function() {
 
 		break;
 		case '5':
-							$("#dv_graf_riesgo_mun_zona").empty();
-							$("#dv_tab_riesgo_mun_zona").empty();
+              $("#dv_graf_riesgo_mun_zona").empty();
+              $("#dv_tab_riesgo_mun_zona").empty();
+              $("#dv_tabla_riesgo_mun_zona").empty();
+              $("#dv_tablam_riesgo_mun_zona").empty();
+
               obj_grafica.TablaPieGraficaPie(q1,q2,q3,q4);
               obj_grafica.TablaPieGraficaBarSecundaria(t1,t2,t3);
               var html_tbm_riego='';
@@ -142,7 +145,10 @@ $("#dv_tabla_riesgo_mun_zona").append(html_tb_riego);
   })
   .fail(function(e) {
     console.error("Error in "); console.table(e);
-  });
+  })
+  .always(function() {
+  swal.close();
+});
 
   // alert(id_minicipio);
   // obj_riesgo.get_Niveles();
@@ -157,7 +163,7 @@ Riesgo.prototype.get_Niveles =function(){
 		dataType: 'JSON',
 		data: {idmunicipio: $("#slt_municipio_mapa").val()},
 		beforeSend: function(xhr) {
-	        obj_loader.show();
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {

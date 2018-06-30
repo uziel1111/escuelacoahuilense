@@ -108,7 +108,7 @@ GraficasRiesgo.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
         }
         else {
           estadPrimaria.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*4,
               400,
              false
           );
@@ -221,7 +221,7 @@ GraficasRiesgo.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6)
         }
         else {
           estadPrimaria.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*4,
               400,
              false
           );
@@ -332,7 +332,7 @@ GraficasRiesgo.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         }
         else {
           estadPrimaria.setSize(
-              ($(document).width()/10)*7,
+              ($(document).width()/10)*4,
               400,
              false
           );

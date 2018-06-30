@@ -1,5 +1,6 @@
 <section class="main-area">
 <div class="container">
+	<a href="javascript:" id="return-to-top"><span class="color-4"><i class="material-icons">keyboard_arrow_up</i></span></a>
 	<div class="card mb-3 card-style-1">
 	  <div class="card-header card-1-header bg-light">
 	    Datos generales
@@ -57,6 +58,7 @@
 
                     <div class="card mb-3 card-style-1">
                       <div class="card-header card-1-header bgcolor-2 text-white">Indicadores del modelo educativo de Coahuila</div>
+											<center><p>*Conozca datos relevantes de la escuela haciendo clic en cada sección</p></center>
                       <div class="card-body">
 
  		<div class="row">

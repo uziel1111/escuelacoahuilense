@@ -4,7 +4,7 @@
   <div class="card bg-light mb-3 card-style-1">
     <div class="card-header card-1-header">Estadisticas generales</div>
     <div class="card-body">
-       
+
       <?= form_label('<h4>Seleccione tipo de búsqueda</h4>', 'lb_titbusq') ?>
       <ul class="nav nav-tabs nav-tabs-style-1" id="tab_busqg" role="tablist">
         <li class="nav-item">
@@ -19,33 +19,33 @@
                 <div class="tab-pane fade show active" id="xest_muni" role="tabpanel" aria-labelledby="xest_muni-tab">
                   <?= form_open('estadistica/xest_muni_x', array('class' => 'form', 'id' => 'form_xest_muni')) ?>
                   <div class="row">
-                       
+
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
-                    <div class="form-group form-group-style-1">     
+                    <div class="form-group form-group-style-1">
                         <?= form_label('Estado / Municipio', 'slc_xest_muni_estmunicipio') ?>
                         <?= form_dropdown('slc_xest_muni_estmunicipio', $arr_municipios, '', array('id' => 'slc_xest_muni_estmunicipio', 'class'=>'form-control')) ?>
                     </div><!-- col-md-4 -->
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
-                    <div class="form-group form-group-style-1">     
+                    <div class="form-group form-group-style-1">
                         <?= form_label('Nivel', 'slc_xest_muni_nivel') ?>
                         <?= form_dropdown('slc_xest_muni_nivel', $arr_niveles, '', array('id' => 'slc_xest_muni_nivel', 'class'=>'form-control')) ?>
                     </div><!-- col-md-4 -->
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
-                        <div class="form-group form-group-style-1"> 
+                        <div class="form-group form-group-style-1">
                         <?= form_label('Sostenimiento', 'slc_xest_muni_sostenimiento') ?>
                         <?= form_dropdown('slc_xest_muni_sostenimiento', $arr_sostenimientos, '', array('id' => 'slc_xest_muni_sostenimiento', 'class'=>'form-control')) ?>
                     </div><!-- col-md-4 -->
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
-                        <div class="form-group form-group-style-1"> 
+                        <div class="form-group form-group-style-1">
                         <?= form_label('Modalidad', 'slc_xest_muni_modalidad') ?>
                         <?= form_dropdown('slc_xest_muni_modalidad', $arr_modalidad, '', array('id' => 'slc_xest_muni_modalidad', 'class'=>'form-control')) ?>
                     </div><!-- col-md-4 -->
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
-                        <div class="form-group form-group-style-1"> 
+                        <div class="form-group form-group-style-1">
                         <?= form_label('Ciclo escolar', 'slc_xest_muni_cicloe') ?>
                         <?= form_dropdown('slc_xest_muni_cicloe', $arr_ciclos, '', array('id' => 'slc_xest_muni_cicloe', 'class'=>'form-control')) ?>
                         </div><!-- col-md-4 -->
@@ -59,10 +59,10 @@
                     </div><!--  col-sm-6 -->
 
                     <div class="col-6 col-sm-6 col-md-2 col-lg-2 mt-2">
-                      <?= form_submit('mysubmit', 'Buscar', array('id' => '', 'class'=>'btn btn-info btn-block btn-style-1' )); ?>
+                      <?= form_submit('mysubmit', 'Buscar', array('id' => 'btn_buscar_mun_est', 'class'=>'btn btn-info btn-block btn-style-1' )); ?>
                     </div><!--  col-sm-6 -->
                   </div><!-- row -->
-                  
+
                   <?= form_close() ?>
                 </div><!-- xest_muni -->
 
@@ -110,7 +110,7 @@
                     </div><!--  col-sm-6 -->
 
                     <div class="col-6 col-sm-6 col-md-2 col-lg-2 mt-2">
-                      <?= form_submit('mysubmit', 'Buscar', array('id' => '', 'class'=>'btn btn-info btn-block btn-style-1' )); ?>
+                      <?= form_submit('mysubmit', 'Buscar', array('id' => 'btn_buscar_zona', 'class'=>'btn btn-info btn-block btn-style-1' )); ?>
                     </div><!--  col-sm-6 -->
                   </div><!-- row -->
                   <?= form_close() ?>
