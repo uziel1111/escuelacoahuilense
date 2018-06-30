@@ -33,6 +33,12 @@
                             <?=form_dropdown('periodo', $periodos, 'large', array('class' => 'form-control', 'id' => 'slt_periodo_planeaxm'));?>
                           </div>
                         </div><!-- col-md-4 -->
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
+                          <div class="form-group form-group-style-1">
+                            <?=form_label('Campo Disciplinario:', 'campoD');?>
+                            <?=form_dropdown('campoD', $camposd, 'large', array('class' => 'form-control', 'id' => 'slt_campod_planeaxm'));?>
+                          </div>
+                        </div><!-- col-md-4 -->
                       </div><!-- row -->
 
                       <div class="row">
@@ -51,6 +57,18 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                                 <div class="row">
+                                  <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
+                                      <div class="form-group form-group-style-1">
+                                        <?=form_label('Nivel:', 'nivel');?>
+                                        <?=form_dropdown('nivel', $niveles, 'large', array('class' => 'form-control', 'id' => 'slt_nivel_planeaxz'));?>
+                                      </div>
+                                    </div><!-- col-md-4 -->
+                                    <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
+                                      <div class="form-group form-group-style-1">
+                                        <?=form_label('Subsostenimiento:', 'subsostenimiento');?>
+                                        <?=form_dropdown('subsostenimiento', $subsostenimientos, 'large', array('class' => 'form-control', 'id' => 'slt_subsostenimiento_planeaxz'));?>
+                                      </div>
+                                    </div><!-- col-md-4 -->
                                   <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
                                     <div class="form-group form-group-style-1">
                                         <?=form_label('Zona:', 'zona', array('class' => 'mr-sm-2'));?>
@@ -59,16 +77,16 @@
                                   </div><!-- col-md-4 -->
                                   <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
                                       <div class="form-group form-group-style-1">
-                                        <?=form_label('Nivel:', 'nivel');?>
-                                        <?=form_dropdown('nivel', $niveles, 'large', array('class' => 'form-control', 'id' => 'slt_nivel_planeaxz'));?>
-                                      </div>
-                                    </div><!-- col-md-4 -->
-                                  <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
-                                      <div class="form-group form-group-style-1">
                                         <?=form_label('Periodo:', 'periodo');?>
                                         <?=form_dropdown('periodo', $periodos, 'large', array('class' => 'form-control', 'id' => 'slt_periodo_planeaxz'));?>
                                       </div>
                                     </div><!-- col-md-4 -->
+                                  <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
+                                    <div class="form-group form-group-style-1">
+                                      <?=form_label('Campo Disciplinario:', 'campoD');?>
+                                      <?=form_dropdown('campoD', $camposd, 'large', array('class' => 'form-control', 'id' => 'slt_campod_planeaxz'));?>
+                                    </div>
+                                  </div><!-- col-md-4 -->
                                 </div><!-- row -->
                               <!-- </form> -->
                         </div>
@@ -89,8 +107,8 @@
     </div><!-- card-body -->
     <div class="row">
         <div class="col-12">
-            <div id="div_graficas_masivo_lyc"></div>
-            <div id="div_graficas_masivo_matematicas"></div>
+            <div id="div_graficas_masivo"></div>
+            <!-- <div id="div_graficas_masivo_matematicas"></div> -->
         </div>
     </div>
   </div><!-- card -->

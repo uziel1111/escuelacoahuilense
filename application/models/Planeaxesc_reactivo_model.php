@@ -142,4 +142,23 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     }// get_reactivos_xcctxcont()
 
+     function zonaxnivel($nivel, $idsubsostenimiento){
+      $str_query = "SELECT s.zona_escolar, s.id_supervision FROM escuela e
+                    INNER JOIN supervision s ON e.id_supervision = s.id_supervision
+                    WHERE e.id_nivel = {$nivel} AND e.id_subsostenimiento = {$idsubsostenimiento}
+                    GROUP BY s.id_supervision
+                    ORDER BY s.zona_escolar
+                    ";
+                    // echo $str_query; die();
+      return $this->db->query($str_query)->result_array();
+     }
+
+     function subsostenimientoxnivel($nivel){
+      $str_query = "SELECT s.id_subsostenimiento, s.subsostenimiento FROM escuela e
+                  INNER JOIN subsostenimiento s ON e.id_subsostenimiento = s.id_subsostenimiento
+                  WHERE e.id_nivel = {$nivel}
+                  GROUP BY s.id_subsostenimiento";
+      return $this->db->query($str_query)->result_array();
+     }
+
 }// Planeaxesc_reactivo_model
