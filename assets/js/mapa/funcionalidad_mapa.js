@@ -210,9 +210,9 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
 	              var contentString = '<div class="container-fluid"><center>NOMBRE ESCUELA: <b style="font-size: 150%;">'+marcadores[i][0]+'</b><br>';
-	              contentString +='CCT: <b>'+marcadores[i][3]+'</b>, NIVEL: <b>'+marcadores[i][4]+'</b>, SOSTENIMIENTO: <b>no lo tengo</b><br> ';
-	              contentString += 'LOCALIDAD: <b>no la tengo</b>, MUNICIPIO: <b>'+marcadores[i][5]+'<br></b> ';
-	              contentString += 'TURNO: <b>'+marcadores[i][6]+'</b>, ZONA: <b>no lo tengo<br> <b style="font-size: 120%; color:red;"><b> ';
+	              contentString +='CCT: <b>'+marcadores[i][3]+'</b>, NIVEL: <b>'+marcadores[i][8]+'</b>, SOSTENIMIENTO: <b>'+marcadores[i][11]+'</b><br> ';
+	              contentString += 'LOCALIDAD: <b>'+marcadores[i][9]+'</b>, MUNICIPIO: <b>'+marcadores[i][5]+'<br></b> ';
+	              contentString += 'TURNO: <b>'+marcadores[i][6]+'</b>, ZONA: <b>'+marcadores[i][10]+'<br> <b style="font-size: 120%; color:red;"><b> ';
 	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_mismo_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del mismo nivel educativo</button></div></div> ';
 	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_siguiente_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del siguiente nivel educativo</button></div></div>';
 	              contentString += '<div class="row margintop" ><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.get_info('+marcadores[i][7]+')">Conozca información relevante de esta escuela</button></div></div>';

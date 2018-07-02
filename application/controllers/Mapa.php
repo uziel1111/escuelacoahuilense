@@ -107,6 +107,10 @@ class Mapa extends CI_Controller {
 	            array_push($marcadorb, $marcador['municipio']);
 	            array_push($marcadorb, $marcador['turno']);
 	            array_push($marcadorb, $marcador['id_cct']);
+	            array_push($marcadorb, $marcador['nivel']);
+	            array_push($marcadorb, $marcador['localidad']);
+	            array_push($marcadorb, $marcador['zona_escolar']);
+	            array_push($marcadorb, $marcador['sostenimiento']);
 	            array_push($vfinal, $marcadorb);
 	            $marcadorb = array();
 	        }

@@ -72,7 +72,7 @@
                                   <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
                                     <div class="form-group form-group-style-1">
                                         <?=form_label('Zona:', 'zona', array('class' => 'mr-sm-2'));?>
-                                        <?=form_dropdown('zona', $zonas, 'large', array('class' => 'form-control', 'id' => 'slt_zona_planea'));?>
+                                        <?=form_dropdown('zona', array("0" => "SELCCIONE"), 'large', array('class' => 'form-control', 'id' => 'slt_zona_planea'));?>
                                     </div>
                                   </div><!-- col-md-4 -->
                                   <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
