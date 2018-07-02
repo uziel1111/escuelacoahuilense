@@ -2173,10 +2173,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                 for (var i = 0; i < result.length; i++) {
                   html += "    <tr>";
                   html += "      <td>"+result[i]['n_reactivo']+"</td>";
-                  html += "      <td>"+result[i]['descripcion']+"</td>";
-                  html += "      <td><button type='button' class='btn color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button></td>";
-                  html += "      <td><button type='button' class='btn color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button></td>";
-                  html += "      <td><button type='button' class='btn color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem()'>Apoyos académicos</button></td>";
+                  html += "      <td>"+result[i]['descripcion']+"<br>";
+                  html += "      <center><button type='button' class='btn color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button>";
+                  html += "      <button type='button' class='btn color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
+                  html += "      <button type='button' class='btn color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem()'>Apoyos académicos</button>";
+                  html += "      </center></td>";
                   html += "    </tr>";
                 }
                 html += "</tbody>";
@@ -2216,10 +2217,17 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             html += "<table class='table table-condensed'>";
             html += "<tbody>";
               html += "    <tr>";
-              html += "      <td><a href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
+              html += "    <td>";
+              html += "    <center>Ofrece conocimiento para mejorar tu calidad de vida:";
+              html += "    <a type='button' class='btn color-6 bgcolor-4' href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></center></td>";
               html += "    </tr>";
+
               html += "    <tr>";
-              html += "      <td><a href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></td>";
+              html += "      <td>";
+              html += "      <center>Contenido y recursos creados por expertos para cada meteria y nivel:";
+              html += "      <a type='button' class='btn color-6 bgcolor-4' href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></center></td>";
+
+
               html += "    </tr>";
             html += "</tbody>";
             html += "</table>";
