@@ -167,7 +167,7 @@ GraficasRiesgo.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6)
                 type: 'column'
             },
             title: {
-                text: '<b style="font-size: 2.1vw;"><br>Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
+                text: '<b style="font-size: 0.9vw;">Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
             },
             subtitle: {
                 text: ''
@@ -281,7 +281,7 @@ GraficasRiesgo.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                 type: 'column'
             },
             title: {
-                text: '<b style="font-size: 2.1vw;">Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
+                text: '<b style="font-size: 0.9vw;">Distribución por grado de alumnos con muy alto riesgo de abandono escolar</b>'
             },
             subtitle: {
                 text: ''
