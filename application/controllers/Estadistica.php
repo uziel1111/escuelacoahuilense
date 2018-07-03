@@ -330,7 +330,7 @@ class Estadistica extends CI_Controller {
           			</table>
 
           			<div class="pie_tabla">
-          			        <div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+          			        <div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
           			</div>';
 
 			return $str_html_alumn;
@@ -400,7 +400,7 @@ class Estadistica extends CI_Controller {
           			</table>
 
           			<div class="pie_tabla">
-          			        <div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+          			        <div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
           			</div>';
 
 			return $str_html_alumn;
@@ -473,7 +473,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -546,7 +546,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -617,7 +617,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -689,7 +689,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP Puebla con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
 								</div>';
 
 			return $str_html_alumn;
