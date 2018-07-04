@@ -20,6 +20,7 @@ $("#btn_info_perma").click(function(e){
 $("#btn_info_aprendiz").click(function(e){
               e.preventDefault();
               obj_info.get_planea();
+              // alert("entramos");
 
             });
 
@@ -252,6 +253,7 @@ Info_esc.prototype.get_riesgo =function(){
 },
 
 Info_esc.prototype.get_planea =function(){
+	// alert("Entramos");
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_aprendizaje").removeAttr('hidden');
@@ -289,6 +291,7 @@ Info_esc.prototype.get_planea =function(){
 								var mat4_16  = parseFloat(data.planea16_escuela[0]['mat_iv']);
 							}
 								switch(nivel) {
+
 									case '3':
 
 													if (data.graph_cont_tema_lyc.length==0) {

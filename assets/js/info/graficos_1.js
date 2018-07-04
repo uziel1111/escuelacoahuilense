@@ -1545,7 +1545,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       HaceGraficas.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_cct){
-        // console.info(id_cct);
 
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -1688,7 +1687,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }// graficoplanea_ud_prim_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
-        // console.info(arr_mate);
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -1740,6 +1738,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           for (var i = 0; i < arr_mate.length; i++){
              arr_mate_aux.push({'id_cont': arr_mate[i]['id_contenido'],'name': arr_mate[i]['contenidos'],'y': parseFloat(arr_mate[i]['porcen_alum_respok']),'drilldown': arr_mate[i]['total_reac_xua']});
           }
+
           // Apply the theme
           Highcharts.setOptions(Highcharts.theme);
           // Codigo para graficar la seccion estadistica de la escuela
@@ -1789,7 +1788,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                 //console.info(this);
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
                                }
                            }
@@ -1809,7 +1807,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
           if (screen.width<600){
             estadPreescolar.setSize(
                 ($(document).width()/10)*5,
@@ -1828,7 +1825,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }// graficoplanea_ud_prim_mate()
 
       HaceGraficas.prototype.graficoplanea_ud_secu_lyc = function(arr_lyc,id_cct){
-        // console.info(arr_lyc);
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2001,7 +1997,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }// graficoplanea_ud_secu_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
-        // console.info(arr_mate);
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2104,7 +2099,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                 //console.info(this);
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
                                }
                            }
