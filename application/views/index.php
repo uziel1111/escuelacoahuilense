@@ -25,7 +25,7 @@
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
-                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados PLANEA por contenido temático municipal/zona escolar</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados PLANEA por contenido temático estatal/municipal/zona escolar</a></li>
 
                                                 </ul>
                                             </div>

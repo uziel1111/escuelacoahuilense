@@ -15,7 +15,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <p><center>
         <?php if ($tipo_busqueda=="municipal"): ?>
-          <div id="filtros_est_gen">Municipio: <strong class="color-6 bgcolor-3"><?= $municipio?></strong>, Nivel: <strong class="color-6 bgcolor-3"><?= $nivel?></strong>, Sostenimiento: <strong class="color-6 bgcolor-3"><?= $sostenimiento?></strong>, Modalidad: <strong class="color-6 bgcolor-3"><?= $modalidad?></strong>, Ciclo escolar: <strong class="color-6 bgcolor-3" ><?= $ciclo?></strong>.
+          <div id="filtros_est_gen"><p style="background:#ffff00">Municipio: <?= $municipio?>, Nivel: <?= $nivel?>, Sostenimiento: <?= $sostenimiento?>, Modalidad: <?= $modalidad?>, Ciclo escolar: <?= $ciclo?>.<p>
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
               <?= form_open('Report/est_generales_xmuni') ?>
               <?= form_hidden('id_municipio', $id_municipio) ?>
@@ -90,7 +90,7 @@
           </div><!-- card -->
         <?php endif; ?>
         <?php if ($tipo_busqueda=="zona"): ?>
-          <div id="filtros_est_gen">Nivel: <?= $nivel_z?>, Sostenimiento: <strong class="color-6 bgcolor-3"><?= $sostenimiento_z?></strong>, Zona escolar:<strong class="color-6 bgcolor-3"><?= $zona_z?></strong>, Ciclo escolar:<strong class="color-6 bgcolor-3"><?= $ciclo_z?></strong>
+          <div id="filtros_est_gen"><p style="background:#ffff00">Nivel: <?= $nivel_z?>, Sostenimiento: <?= $sostenimiento_z?>, Zona escolar: <?= $zona_z?>, Ciclo escolar: <?= $ciclo_z?>.</p>
             <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
               <?= form_open('Report/est_generales_xzona') ?>
               <?= form_hidden('id_nivel_z', $id_nivel_z) ?>
