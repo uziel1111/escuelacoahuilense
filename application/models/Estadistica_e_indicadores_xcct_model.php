@@ -374,6 +374,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   }// get_pdocente_xzona()
 
   function get_infraest_xmunciclo($id_municipio, $id_ciclo){
+    $where_aux="(ci.id_ciclo= {$id_ciclo} OR ci.id_ciclo IS NULL)";
     $this->db->select('ni.id_nivel,ni.nivel, "0" as id_sostenimiento, "total" as sostenimiento, "0" as id_modalidad, "total" as modalidad,
     COUNT(es.id_cct) as nescuelas,
     	SUM(est.grupos_1) AS grupos_1,
@@ -385,15 +386,15 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     	SUM(est.grupos_multi) AS grupos_multi,
     	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_municipio>0){
       $this->db->where('mu.id_municipio', $id_municipio);
     }
     if($id_ciclo>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
@@ -411,18 +412,18 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 	SUM(est.grupos_multi) AS grupos_multi,
 	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_municipio>0){
       $this->db->where('mu.id_municipio', $id_municipio);
     }
     if($id_ciclo>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
@@ -441,18 +442,18 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 	SUM(est.grupos_multi) AS grupos_multi,
 	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_municipio>0){
       $this->db->where('mu.id_municipio', $id_municipio);
     }
     if($id_ciclo>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
@@ -473,6 +474,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
 
   function get_infraest_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
+    $where_aux="(ci.id_ciclo= {$id_ciclo_z} OR ci.id_ciclo IS NULL)";
     $this->db->select('ni.id_nivel,ni.nivel, "0" as id_subsostenimiento, "total" as subsostenimiento, "0" as id_modalidad, "total" as modalidad,
     COUNT(es.id_cct) as nescuelas,
       SUM(est.grupos_1) AS grupos_1,
@@ -484,11 +486,11 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       SUM(est.grupos_multi) AS grupos_multi,
       SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_nivel_z>0){
       $this->db->where('ni.id_nivel', $id_nivel_z);
     }
@@ -499,7 +501,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       $this->db->where('su.id_supervision', $id_zona_z);
     }
     if($id_ciclo_z>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo_z);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
@@ -517,14 +519,14 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   SUM(est.grupos_multi) AS grupos_multi,
   SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
     $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_nivel_z>0){
       $this->db->where('ni.id_nivel', $id_nivel_z);
     }
@@ -535,7 +537,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       $this->db->where('su.id_supervision', $id_zona_z);
     }
     if($id_ciclo_z>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo_z);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
@@ -554,14 +556,14 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   SUM(est.grupos_multi) AS grupos_multi,
   SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
     $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
-    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
+    $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
     if($id_nivel_z>0){
       $this->db->where('ni.id_nivel', $id_nivel_z);
     }
@@ -572,7 +574,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       $this->db->where('su.id_supervision', $id_zona_z);
     }
     if($id_ciclo_z>0){
-      $this->db->where('ci.id_ciclo', $id_ciclo_z);
+      $this->db->where($where_aux);
     }
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
