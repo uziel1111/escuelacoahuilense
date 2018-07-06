@@ -5,7 +5,7 @@
                         <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                         <div class="mainbox-area-title text-center">
-                                                <h1 class="text-white h1">Asistencia Técnica a la Escuela de Coahuila</h1>
+                                                <h1 class="text-white h1">Servicio de Asistencia Técnica a la Escuela de Coahuila</h1>
                                         </div>
                                 </div>
                         </div>
@@ -25,7 +25,7 @@
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
                                                     <li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
-                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados PLANEA por contenido temático estatal/municipal/zona escolar</a></li>
+                                                    <li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de PLANEA</a></li>
 
                                                 </ul>
                                             </div>
@@ -47,6 +47,7 @@
                                                   <li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a></li>
                                                   <li class="list-group-item"><a href="http://www.inee.edu.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> INEE</a></li>
                                                   <li class="list-group-item"><a href="#" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
+                                                  <li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a></li>
                                                 </ul>
                                             </div>
                                         </div>
