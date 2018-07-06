@@ -77,7 +77,7 @@
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
-                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados PLANEA por contenido temático estatal/municipal/zona escolar</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados estatales de PLANEA</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -89,6 +89,7 @@
                                           <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
                                           <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
+                                          <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Supervisor/supervision'); ?>">Supervisión escolar</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">

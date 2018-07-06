@@ -126,16 +126,21 @@ Info_esc.prototype.get_riesgo =function(){
 				      })
 				      .done(function( data ) {
 								var nivel = data.nivel;
-							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
+                if (data.graph_pie_riesgo.length>0) {
+							  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
 								var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
 								var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
-							var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
+                }
+                if (data.graph_bar_riesgo.length>0) {
+							  var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
 								var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
 								var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
 								var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
 								var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
 								var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+              }
+
 								switch(nivel) {
 
 								case '4':
@@ -175,6 +180,35 @@ Info_esc.prototype.get_riesgo =function(){
 
                       $("#dv_riesgtab_esc_bar").append(html_tbm_riego);
 
+                      $("#dv_riesgotab_esc_pie").empty();
+                      var html_tb_riego='';
+                      html_tb_riego +='<div class="row">';
+                      html_tb_riego +='  <div class="col-sm-6">';
+                      html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
+                      html_tb_riego+='      <thead>';
+                      html_tb_riego+='        <tr>';
+                      html_tb_riego+='          <th class="text-center">Total</th>';
+                      html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Medio</th>';
+                      html_tb_riego+='          <th class="text-center">Bajo</th>';
+                      html_tb_riego+='        </tr>';
+                      html_tb_riego+='      </thead>';
+                      html_tb_riego+='      <tbody>';
+                      html_tb_riego+='        <tr>';
+                      html_tb_riego+='          <td class="text-center" style="font-size:1.2em; font-weight:500;">'+(q1+q2+q3+q4)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FF0000; color:white; font-size:1.2em; font-weight:600;">'+(q1)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FF9900; font-size:1.2em; font-weight:500;">'+(q2)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FFFF00; font-size:1.2em; font-weight:500;">'+(q3)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#3CB371; font-size:1.2em; font-weight:500;">'+(q4)+'</td>';
+                      html_tb_riego+='        </tr>';
+                      html_tb_riego+='      </tbody>';
+                      html_tb_riego+='    </table>';
+                    html_tb_riego+='</div>';
+                  html_tb_riego+='</div>';
+
+                  $("#dv_riesgotab_esc_pie").append(html_tb_riego);
+
 								break;
 								case '5':
 													$("#dv_riesgo_esc_pie").empty();
@@ -206,8 +240,36 @@ Info_esc.prototype.get_riesgo =function(){
                           html_tbm_riego += '                  </div>';
 
                       $("#dv_riesgtab_esc_bar").append(html_tbm_riego);
-								break;
 
+                      $("#dv_riesgotab_esc_pie").empty();
+                      var html_tb_riego='';
+                      html_tb_riego +='<div class="row">';
+                      html_tb_riego +='  <div class="col-sm-6">';
+                      html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
+                      html_tb_riego+='      <thead>';
+                      html_tb_riego+='        <tr>';
+                      html_tb_riego+='          <th class="text-center">Total</th>';
+                      html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Medio</th>';
+                      html_tb_riego+='          <th class="text-center">Bajo</th>';
+                      html_tb_riego+='        </tr>';
+                      html_tb_riego+='      </thead>';
+                      html_tb_riego+='      <tbody>';
+                      html_tb_riego+='        <tr>';
+                      html_tb_riego+='          <td class="text-center" style="font-size:1.2em; font-weight:500;">'+(q1+q2+q3+q4)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FF0000; color:white; font-size:1.2em; font-weight:600;">'+(q1)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FF9900; font-size:1.2em; font-weight:500;">'+(q2)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#FFFF00; font-size:1.2em; font-weight:500;">'+(q3)+'</td>';
+                      html_tb_riego+='          <td class="text-center" style="background-color:#3CB371; font-size:1.2em; font-weight:500;">'+(q4)+'</td>';
+                      html_tb_riego+='        </tr>';
+                      html_tb_riego+='      </tbody>';
+                      html_tb_riego+='    </table>';
+                    html_tb_riego+='</div>';
+                  html_tb_riego+='</div>';
+
+                  $("#dv_riesgotab_esc_pie").append(html_tb_riego);
+								break;
 
 								default:
 
@@ -215,34 +277,7 @@ Info_esc.prototype.get_riesgo =function(){
 
 								}
 
-                $("#dv_riesgotab_esc_pie").empty();
-                var html_tb_riego='';
-                html_tb_riego +='<div class="row">';
-                html_tb_riego +='  <div class="col-sm-6">';
-                html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
-                html_tb_riego+='      <thead>';
-                html_tb_riego+='        <tr>';
-                html_tb_riego+='          <th class="text-center">Total</th>';
-                html_tb_riego+='          <th class="text-center">Muy Alto</th>';
-                html_tb_riego+='          <th class="text-center">Alto</th>';
-                html_tb_riego+='          <th class="text-center">Medio</th>';
-                html_tb_riego+='          <th class="text-center">Bajo</th>';
-                html_tb_riego+='        </tr>';
-                html_tb_riego+='      </thead>';
-                html_tb_riego+='      <tbody>';
-                html_tb_riego+='        <tr>';
-                html_tb_riego+='          <td class="text-center" style="font-size:1.2em; font-weight:500;">'+(q1+q2+q3+q4)+'</td>';
-                html_tb_riego+='          <td class="text-center" style="background-color:#FF0000; color:white; font-size:1.2em; font-weight:600;">'+(q1)+'</td>';
-                html_tb_riego+='          <td class="text-center" style="background-color:#FF9900; font-size:1.2em; font-weight:500;">'+(q2)+'</td>';
-                html_tb_riego+='          <td class="text-center" style="background-color:#FFFF00; font-size:1.2em; font-weight:500;">'+(q3)+'</td>';
-                html_tb_riego+='          <td class="text-center" style="background-color:#3CB371; font-size:1.2em; font-weight:500;">'+(q4)+'</td>';
-                html_tb_riego+='        </tr>';
-                html_tb_riego+='      </tbody>';
-                html_tb_riego+='    </table>';
-              html_tb_riego+='</div>';
-            html_tb_riego+='</div>';
 
-            $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 				      })
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
@@ -290,6 +325,17 @@ Info_esc.prototype.get_planea =function(){
 								var mat3_16  = parseFloat(data.planea16_escuela[0]['mat_iii']);
 								var mat4_16  = parseFloat(data.planea16_escuela[0]['mat_iv']);
 							}
+
+              if (data.planea17_escuela.length>0) {
+  								var lyc1_17  = parseFloat(data.planea17_escuela[0]['lyc_i']);
+  								var lyc2_17  = parseFloat(data.planea17_escuela[0]['lyc_ii']);
+  								var lyc3_17  = parseFloat(data.planea17_escuela[0]['lyc_iii']);
+  								var lyc4_17  = parseFloat(data.planea17_escuela[0]['lyc_iv']);
+  								var mat1_17  = parseFloat(data.planea17_escuela[0]['mat_i']);
+  								var mat2_17  = parseFloat(data.planea17_escuela[0]['mat_ii']);
+  								var mat3_17  = parseFloat(data.planea17_escuela[0]['mat_iii']);
+  								var mat4_17  = parseFloat(data.planea17_escuela[0]['mat_iv']);
+  							}
 								switch(nivel) {
 
 									case '3':
@@ -321,6 +367,16 @@ Info_esc.prototype.get_planea =function(){
 															$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
 														}
 
+                            if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
+            									graf.PieDrilldownPlanea05y06(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16);
+            								}
+            								else{
+            									$("#tabla_planea").empty();
+            									$("#dv_info_graf_nlogrolyc").empty();
+            										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
+            										$("#dv_info_graf_nlogromat").empty();
+            								}
+
 									break;
 									case '5':
 
@@ -340,24 +396,54 @@ Info_esc.prototype.get_planea =function(){
 															$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
 														}
 
+                            if (data.planea16_escuela.length>0 && data.planea17_escuela.length>0) {
+            									graf.PieDrilldownPlanea05y06(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_17,lyc2_17,lyc3_17,lyc4_17,mat1_17,mat2_17,mat3_17,mat4_17);
+            								}
+            								else{
+            									$("#tabla_planea").empty();
+            									$("#dv_info_graf_nlogrolyc").empty();
+            										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
+            										$("#dv_info_graf_nlogromat").empty();
+            								}
+
 
 									break;
+
+                  case '6':
+
+                  if (data.graph_cont_tema_lyc.length>0) {
+                    graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+                  }
+                  else{
+                    $("#dv_info_graf_contlyc").empty();
+                    $("#dv_info_graf_contlyc").append('<input type="text" value="No se encontraron datos">');
+                  }
+                 // Por Unidades de Análisis lyc
+                 if (data.graph_cont_tema_mate.length>0) {
+                    graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+                  }
+                  else{
+                    $("#dv_info_graf_contmat").empty();
+                    $("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
+                  }
+
+                  if (data.planea16_escuela.length>0 && data.planea17_escuela.length>0) {
+                    graf.PieDrilldownPlanea05y06(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_17,lyc2_17,lyc3_17,lyc4_17,mat1_17,mat2_17,mat3_17,mat4_17);
+                  }
+                  else{
+                    $("#tabla_planea").empty();
+                    $("#dv_info_graf_nlogrolyc").empty();
+                      $("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
+                      $("#dv_info_graf_nlogromat").empty();
+                  }
+
+                  break;
 
 									default:
 													$("#dv_info_aprendizaje").empty();
 									break;
 
 
-								}
-
-								if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
-									graf.PieDrilldownPlanea05y06(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16);
-								}
-								else{
-									$("#tabla_planea").empty();
-									$("#dv_info_graf_nlogrolyc").empty();
-										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
-										$("#dv_info_graf_nlogromat").empty();
 								}
 
 							})

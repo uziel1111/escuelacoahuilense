@@ -103,66 +103,68 @@
         </div>
     </div>
 </div>
+<?php if ($nivel=="PRIMARIA" || $nivel=="SECUNDARIA"): ?>
+	<div hidden id="dv_info_permanencia" class="container mt-3">
+	    <?php
+	    $arr_bimestres['1'] = '1er BIMESTRE';
+	    $arr_bimestres['2'] = '2do BIMESTRE';
+	    $arr_bimestres['3'] = '3er BIMESTRE';
+	    $arr_bimestres['4'] = '4to BIMESTRE';
+	    $arr_bimestres['5'] = '5to BIMESTRE';
+	    $arr_ciclos['2017-2018'] = '2017-2018'; ?>
+	    <div id="accordion" class="accordion-style-1">
+	        <div class="card-accordion-style-1" class="accordion-style-1">
+	            <div class="accordion-style-1-header" id="chriesgo">
+	                <a class="collapsed d-block" data-toggle="collapse" data-target="#riesgo_esc" aria-expanded="true" aria-controls="riesgo_esc">
+	                    <i class="fa fa-chevron-down pull-right"></i>
+	                    Riesgo de abandono escolar
+	                </a>
+	            </div>
+	            <div id="riesgo_esc" class="collapse" aria-labelledby="chriesgo" data-parent="#accordion">
+	                <div class="card-body">
+				<div class="row mt-2">
+					<div class="col col-md-12 text-secondary fw800">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
+				</div>
+				<div class="row mt-3">
+				<div class="col col-md-4">
+					<div class="form-group form-group-style-1">
+						<?=form_label('Bimestre', 'bimestre');?>
+						<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
+				</div>
+				</div>
+				<div class="col col-md-4">
+					<div class="form-group form-group-style-1">
+						<?=form_label('Ciclo', 'ciclo');?>
+						<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
+				  </div>
+				</div>
+				<div class="col col-md-1">
+					<?=form_label(' ', ' ');?>
+						<button class="btn btn-info btn-style-1" id="btn_buscar_ries_esc">Buscar</button>
+				</div>
+				</div>
+				<div class="row">
+						<div class="col">
+							<div id="dv_riesgo_esc_pie"></div>
+							<div id="dv_riesgotab_esc_pie"></div>
+						</div>
+				</div>
 
-<div hidden id="dv_info_permanencia" class="container mt-3">
-    <?php
-    $arr_bimestres['1'] = '1er BIMESTRE';
-    $arr_bimestres['2'] = '2do BIMESTRE';
-    $arr_bimestres['3'] = '3er BIMESTRE';
-    $arr_bimestres['4'] = '4to BIMESTRE';
-    $arr_bimestres['5'] = '5to BIMESTRE';
-    $arr_ciclos['2017-2018'] = '2017-2018'; ?>
-    <div id="accordion" class="accordion-style-1">
-        <div class="card-accordion-style-1" class="accordion-style-1">
-            <div class="accordion-style-1-header" id="chriesgo">
-                <a class="collapsed d-block" data-toggle="collapse" data-target="#riesgo_esc" aria-expanded="true" aria-controls="riesgo_esc">
-                    <i class="fa fa-chevron-down pull-right"></i>
-                    Riesgo de abandono escolar
-                </a>
-            </div>
-            <div id="riesgo_esc" class="collapse" aria-labelledby="chriesgo" data-parent="#accordion">
-                <div class="card-body">
-			<div class="row mt-2">
-				<div class="col col-md-12 text-secondary fw800">Por combinar inasistencias, bajas calificaciones y/o años sobre la edad ideal del grado.</div>
-			</div>
-			<div class="row mt-3">
-			<div class="col col-md-4">
-				<div class="form-group form-group-style-1">
-					<?=form_label('Bimestre', 'bimestre');?>
-					<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
-			</div>
-			</div>
-			<div class="col col-md-4">
-				<div class="form-group form-group-style-1">
-					<?=form_label('Ciclo', 'ciclo');?>
-					<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
-			  </div>
-			</div>
-			<div class="col col-md-1">
-				<?=form_label(' ', ' ');?>
-					<button class="btn btn-info btn-style-1" id="btn_buscar_ries_esc">Buscar</button>
-			</div>
-			</div>
-			<div class="row">
-					<div class="col">
-						<div id="dv_riesgo_esc_pie"></div>
-						<div id="dv_riesgotab_esc_pie"></div>
-					</div>
-			</div>
-
-			<div class="row">
-					<div class="col">
-						<div id="dv_riesgo_esc_bar"></div>
-						<div id="dv_riesgtab_esc_bar"></div>
-					</div>
-			</div>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="row">
+						<div class="col">
+							<div id="dv_riesgo_esc_bar"></div>
+							<div id="dv_riesgtab_esc_bar"></div>
+						</div>
+				</div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 
 
-</div>
+	</div>
+<?php endif; ?>
+
 <div hidden id="dv_info_aprendizaje" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
         <div class="card-accordion-style-1 mb-3">
@@ -212,14 +214,28 @@
                 <div class="card-body">
                     <div class="row">
 
-	    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
-            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2015</p>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-             <div style="display:inline-block; width:20px; height:20px; background-color:#D5831C; border: 1px solid black;"></div>
-            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
-          </div>
+	    		<?php if ($nivel == "PRIMARIA"): ?>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			            <div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
+			            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2015</p>
+			      </div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	             <div style="display:inline-block; width:20px; height:20px; background-color:#D5831C; border: 1px solid black;"></div>
+	            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
+	          </div>
+	    		<?php endif; ?>
+
+					<?php if ($nivel != "PRIMARIA"): ?>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			            <div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
+			            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
+			      </div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	             <div style="display:inline-block; width:20px; height:20px; background-color:#D5831C; border: 1px solid black;"></div>
+	            <p style="display:inline-block; font-size:1.5em; margin-left:10px;">2017</p>
+	          </div>
+	    		<?php endif; ?>
+
 			<div class="row">
 					<div class="col">
 						<div id="dv_info_graf_nlogrolyc"></div>
@@ -257,36 +273,51 @@
       <br><span style='font-weight:normal'>Excelente</span></th></tr>
 		</thead>
 			<tbody>
-				<tr><td colspan='9' style='background-color:silver;'>PLANEA 2015</td></tr>
-				<tr>
-				<th class='text-center'>Tu escuela</th>
-				<?php foreach ($planea15_escuela as $key => $value): ?>
-					<th class='text-center'><?=$value['lyc_i'] ?>%</th>
-					<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
-					<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
-					<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
-					<th class='text-center'><?=$value['mat_i'] ?>%</th>
-					<th class='text-center'><?=$value['mat_ii'] ?>%</th>
-					<th class='text-center'><?=$value['mat_iii'] ?>%</th>
-					<th class='text-center'><?=$value['mat_iv'] ?>%</th>
-				<?php endforeach; ?>
-				</tr>
-				<tr>
-				<th class='text-center'>Estado de Coahuila</th>
-				</tr>
-				<tr>
-				<th class='text-center'>Nacional</th>
-				<?php foreach ($planea15_nacional as $key => $value): ?>
-					<th class='text-center'><?=$value['lyc_i'] ?></th>
-					<th class='text-center'><?=$value['lyc_ii'] ?></th>
-					<th class='text-center'><?=$value['lyc_iii'] ?></th>
-					<th class='text-center'><?=$value['lyc_iv'] ?></th>
-					<th class='text-center'><?=$value['mat_i'] ?></th>
-					<th class='text-center'><?=$value['mat_ii'] ?></th>
-					<th class='text-center'><?=$value['mat_iii'] ?></th>
-					<th class='text-center'><?=$value['mat_iv'] ?></th>
-				<?php endforeach; ?>
-				</tr>
+				<?php if ($nivel=="PRIMARIA"): ?>
+
+					<tr><td colspan='9' style='background-color:silver;'>PLANEA 2015</td></tr>
+					<tr>
+					<th class='text-center'>Tu escuela</th>
+					<?php foreach ($planea15_escuela as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
+						<th class='text-center'><?=$value['mat_i'] ?>%</th>
+						<th class='text-center'><?=$value['mat_ii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iv'] ?>%</th>
+					<?php endforeach; ?>
+					</tr>
+					<tr>
+					<th class='text-center'>Estado de Coahuila</th>
+					<?php foreach ($planea15_estado as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
+						<th class='text-center'><?=$value['mat_i'] ?>%</th>
+						<th class='text-center'><?=$value['mat_ii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iv'] ?>%</th>
+					<?php endforeach; ?>
+					</tr>
+					<tr>
+					<th class='text-center'>Nacional</th>
+					<?php foreach ($planea15_nacional as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?></th>
+						<th class='text-center'><?=$value['lyc_ii'] ?></th>
+						<th class='text-center'><?=$value['lyc_iii'] ?></th>
+						<th class='text-center'><?=$value['lyc_iv'] ?></th>
+						<th class='text-center'><?=$value['mat_i'] ?></th>
+						<th class='text-center'><?=$value['mat_ii'] ?></th>
+						<th class='text-center'><?=$value['mat_iii'] ?></th>
+						<th class='text-center'><?=$value['mat_iv'] ?></th>
+					<?php endforeach; ?>
+					</tr>
+
+				<?php endif; ?>
+
 				<tr><td colspan='9' style='background-color:silver;'>PLANEA 2016</td></tr>
 				<tr>
 				<th class='text-center'>Tu escuela</th>
@@ -303,6 +334,16 @@
 				</tr>
 				<tr>
 				<th class='text-center'>Estado de Coahuila</th>
+				<?php foreach ($planea16_estado as $key => $value): ?>
+					<th class='text-center'><?=$value['lyc_i'] ?>%</th>
+					<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
+					<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
+					<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
+					<th class='text-center'><?=$value['mat_i'] ?>%</th>
+					<th class='text-center'><?=$value['mat_ii'] ?>%</th>
+					<th class='text-center'><?=$value['mat_iii'] ?>%</th>
+					<th class='text-center'><?=$value['mat_iv'] ?>%</th>
+				<?php endforeach; ?>
 				</tr>
 				<tr>
 				<th class='text-center'>Nacional</th>
@@ -317,6 +358,49 @@
 					<th class='text-center'><?=$value['mat_iv'] ?></th>
 				<?php endforeach; ?>
 				</tr>
+				<?php if ($nivel != "PRIMARIA"): ?>
+					<tr><td colspan='9' style='background-color:silver;'>PLANEA 2017</td></tr>
+					<tr>
+					<th class='text-center'>Tu escuela</th>
+					<?php foreach ($planea17_escuela as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
+						<th class='text-center'><?=$value['mat_i'] ?>%</th>
+						<th class='text-center'><?=$value['mat_ii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iv'] ?>%</th>
+					<?php endforeach; ?>
+					</tr>
+					<tr>
+					<th class='text-center'>Estado de Coahuila</th>
+					<?php foreach ($planea17_estado as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_ii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iii'] ?>%</th>
+						<th class='text-center'><?=$value['lyc_iv'] ?>%</th>
+						<th class='text-center'><?=$value['mat_i'] ?>%</th>
+						<th class='text-center'><?=$value['mat_ii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iii'] ?>%</th>
+						<th class='text-center'><?=$value['mat_iv'] ?>%</th>
+					<?php endforeach; ?>
+					</tr>
+					<tr>
+					<th class='text-center'>Nacional</th>
+					<?php foreach ($planea17_nacional as $key => $value): ?>
+						<th class='text-center'><?=$value['lyc_i'] ?></th>
+						<th class='text-center'><?=$value['lyc_ii'] ?></th>
+						<th class='text-center'><?=$value['lyc_iii'] ?></th>
+						<th class='text-center'><?=$value['lyc_iv'] ?></th>
+						<th class='text-center'><?=$value['mat_i'] ?></th>
+						<th class='text-center'><?=$value['mat_ii'] ?></th>
+						<th class='text-center'><?=$value['mat_iii'] ?></th>
+						<th class='text-center'><?=$value['mat_iv'] ?></th>
+					<?php endforeach; ?>
+					</tr>
+
+				<?php endif; ?>
       </tbody>
       </table>
       </div>
@@ -349,9 +433,9 @@
                             </div>
                             </div>
                     </div>
-                </div>        
-                <!-- End Modal -->                          
-                          
+                </div>
+                <!-- End Modal -->
+
                 <!-- Modal Apoyos -->
                 <div class="modal fade" id="modal_visor_apoyos_academ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
                     <div class="modal-dialog modal-md" role="document">
@@ -367,8 +451,8 @@
                             </div>
                             </div>
                     </div>
-                </div>        
-                <!-- End Modal -->                            
+                </div>
+                <!-- End Modal -->
 
 
 
