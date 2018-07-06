@@ -72,18 +72,18 @@
 
 <script type="text/javascript">
 $("#EP_pf1").click(function(e){
-  Utiles.showPDF("modal_trayectoformativoPdf", "index/supervision_escolar/3.TRAYECTO_FORMATIVO/3.1DIPLOMADO_UNA_SUPERVISION_EFECTIVA/Una supervisión efectiva para la mejora del aprendizaje de nuestros alumnos.pdf");
+  Utiles.showPDF("modal_trayectoformativoPdf", "supervision_escolar/3.TRAYECTO_FORMATIVO/3.1DIPLOMADO_UNA_SUPERVISION_EFECTIVA/Una supervisión efectiva para la mejora del aprendizaje de nuestros alumnos.pdf");
 });
 $("#EP_pf2").click(function(e){
-  Utiles.showPDF("modal_trayectoformativoPdf", "index/supervision_escolar/3.TRAYECTO_FORMATIVO/3.2TALLER_DE_GESTION_DE_PROYECTOS/GESTIÓN DE PROYECTOS.pdf");
+  Utiles.showPDF("modal_trayectoformativoPdf", "supervision_escolar/3.TRAYECTO_FORMATIVO/3.2TALLER_DE_GESTION_DE_PROYECTOS/GESTIÓN DE PROYECTOS.pdf");
 });
 $("#EP_pf3").click(function(e){
-  Utiles.showPDF("modal_trayectoformativoPdf", "index/supervision_escolar/3.TRAYECTO_FORMATIVO/3.3TALLER_DE_CONVIVENCIA_ESCOLAR/TALLER DE CONVIVENCIA ESCOLAR.pdf");
+  Utiles.showPDF("modal_trayectoformativoPdf", "supervision_escolar/3.TRAYECTO_FORMATIVO/3.3TALLER_DE_CONVIVENCIA_ESCOLAR/TALLER DE CONVIVENCIA ESCOLAR.pdf");
 });
 $("#EP_pf4").click(function(e){
-  Utiles.showPDF("modal_trayectoformativoPdf", "index/supervision_escolar/3.TRAYECTO_FORMATIVO/3.4TALLER_DE_ALFABETIZACION_INICIAL_Y_PROBLEMATIZACION_MATEMATICA/Alfabetización inicial y problematización matemática.pdf");
+  Utiles.showPDF("modal_trayectoformativoPdf", "supervision_escolar/3.TRAYECTO_FORMATIVO/3.4TALLER_DE_ALFABETIZACION_INICIAL_Y_PROBLEMATIZACION_MATEMATICA/Alfabetización inicial y problematización matemática.pdf");
 });
 $("#EP_pf5").click(function(e){
-  Utiles.showPDF("modal_trayectoformativoPdf", "index/supervision_escolar/3.TRAYECTO_FORMATIVO/3.5OBSERVACION_DE_CLASE/Observación de clase.pdf");
+  Utiles.showPDF("modal_trayectoformativoPdf", "supervision_escolar/3.TRAYECTO_FORMATIVO/3.5OBSERVACION_DE_CLASE/Observación de clase.pdf");
 });
 </script>
