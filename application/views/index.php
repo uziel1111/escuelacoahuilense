@@ -16,7 +16,7 @@
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-chart-bars"></span>
                                                 </div>
-                                              <h3 class="card-title color-6">Estadística e Indicadores</h3>
+                                              <h3 class="card-title color-6">Estadística e indicadores</h3>
                                             </div>
                                             <div class="card-body">
                                                 <!-- List group -->
@@ -43,7 +43,7 @@
                                                 <!-- List group -->
                                                 <ul class="list-group">
 
-                                                  <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio profesional docente</a></li>
+                                                  <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docent</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a></li>
                                                   <li class="list-group-item"><a href="http://www.inee.edu.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> INEE</a></li>
                                                   <li class="list-group-item"><a href="#" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
@@ -58,7 +58,7 @@
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-bubble"></span>
                                                 </div>
-                                              <h3 class="card-title color-6">Padres de familia y niños</h3>
+                                              <h3 style="font-size:20px !important;" class="card-title color-6">Padres de familia y estudiantes</h3>
                                             </div>
                                             <div class="card-body">
                                                 <!-- List group -->
@@ -67,7 +67,7 @@
                                                   <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a></li>
                                                   <li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a></li>
-                                                  <li class="list-group-item"><a href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al Bullying</a></li>
+                                                  <li class="list-group-item"><a href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al acoso escolar <i>(bullying)</i></a></li>
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Cursos y convocatorias</a></li> -->
@@ -90,7 +90,7 @@
                                                   <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
                                                   <li class="list-group-item"><a href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Becas escolares</a></li>
 
-                                                  <li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca digital Coahuila</a></li>
+                                                  <li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca Digital Coahuila</a></li>
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank"><span class="color-4"><i class="material-icons">face</i></span> Escuelas de alta demanda</a></li> -->
                                                 </ul>
                                             </div>
@@ -108,7 +108,7 @@
                                         <div class="coaboxt-content">
                                                 <h2 class="h1 text-white text-uppercase mb-20">Fortaleciendo a <br>la escuela coahuilense</h2>
                                                 <p class="text-white mb-30">Dotando al Sistema Educativo del Estado de acceso a la información en los contenidos de los programas educativos y en el proceso de enseñanza-aprendizaje.</p>
-                                                <a href="#" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer mas<span class="lnr lnr-arrow-right"></span></a>
+                                                <a href="#" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer más<span class="lnr lnr-arrow-right"></span></a>
                                         </div>
                                 </div>
                         </div>

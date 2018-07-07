@@ -22,13 +22,13 @@
     <div class="row">
         <div class="col-4">
             <div class="form-group form-group-style-1">
-            <?=form_label('Nombre de la escuela (Opcional)', 'n_escuela');?>
+            <?=form_label('Nombre de la escuela (opcional)', 'n_escuela');?>
             <?=form_input('n_escuela', '', array('class' => 'form-control', 'id' => 'txt_nombre_escuela'));?>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group form-group-style-1">
-             <?=form_label('Clave centro de trabajo(Opcional)', 'cct');?>
+             <?=form_label('Clave Centro de Trabajo (opcional)', 'cct');?>
             <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text fw800" id="btnGroupAddon">05</div>

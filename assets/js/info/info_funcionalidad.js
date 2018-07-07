@@ -102,6 +102,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 
 								}
 
+
 				      })
 				      .fail(function(e) {
 				        console.error("Error in "); console.table(e);
@@ -165,7 +166,7 @@ Info_esc.prototype.get_riesgo =function(){
                           html_tbm_riego += '                      </thead>';
                           html_tbm_riego += '                      <tbody>';
                           html_tbm_riego += '                        <tr>';
-                          html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+                          html_tbm_riego += '                          <th class="text-center">Muy alto</th>';
                           html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
@@ -188,7 +189,7 @@ Info_esc.prototype.get_riesgo =function(){
                       html_tb_riego+='      <thead>';
                       html_tb_riego+='        <tr>';
                       html_tb_riego+='          <th class="text-center">Total</th>';
-                      html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Muy alto</th>';
                       html_tb_riego+='          <th class="text-center">Alto</th>';
                       html_tb_riego+='          <th class="text-center">Medio</th>';
                       html_tb_riego+='          <th class="text-center">Bajo</th>';
@@ -229,7 +230,7 @@ Info_esc.prototype.get_riesgo =function(){
                           html_tbm_riego += '                      </thead>';
                           html_tbm_riego += '                      <tbody>';
                           html_tbm_riego += '                        <tr>';
-                          html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+                          html_tbm_riego += '                          <th class="text-center">Muy alto</th>';
                           html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
@@ -249,7 +250,7 @@ Info_esc.prototype.get_riesgo =function(){
                       html_tb_riego+='      <thead>';
                       html_tb_riego+='        <tr>';
                       html_tb_riego+='          <th class="text-center">Total</th>';
-                      html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+                      html_tb_riego+='          <th class="text-center">Muy alto</th>';
                       html_tb_riego+='          <th class="text-center">Alto</th>';
                       html_tb_riego+='          <th class="text-center">Medio</th>';
                       html_tb_riego+='          <th class="text-center">Bajo</th>';
@@ -445,6 +446,7 @@ Info_esc.prototype.get_planea =function(){
 
 
 								}
+                graf.DibujarRadialProgressBarET();
 
 							})
 							.fail(function(e) {
@@ -503,7 +505,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                           html_tbm_riego += '                      </thead>';
                           html_tbm_riego += '                      <tbody>';
                           html_tbm_riego += '                        <tr>';
-                          html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+                          html_tbm_riego += '                          <th class="text-center">Muy alto</th>';
                           html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
@@ -538,7 +540,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                           html_tbm_riego += '                      </thead>';
                           html_tbm_riego += '                      <tbody>';
                           html_tbm_riego += '                        <tr>';
-                          html_tbm_riego += '                          <th class="text-center">Muy Alto</th>';
+                          html_tbm_riego += '                          <th class="text-center">Muy alto</th>';
                           html_tbm_riego += '                          <td class="text-center">'+(t1)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t2)+'</td>';
                           html_tbm_riego += '                          <td class="text-center">'+(t3)+'</td>';
@@ -566,7 +568,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='      <thead class="bg-info">';
                 html_tb_riego+='        <tr>';
                 html_tb_riego+='          <th class="text-center">Total</th>';
-                html_tb_riego+='          <th class="text-center">Muy Alto</th>';
+                html_tb_riego+='          <th class="text-center">Muy alto</th>';
                 html_tb_riego+='          <th class="text-center">Alto</th>';
                 html_tb_riego+='          <th class="text-center">Medio</th>';
                 html_tb_riego+='          <th class="text-center">Bajo</th>';

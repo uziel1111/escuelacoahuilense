@@ -50,42 +50,42 @@
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
             <div class="card-body">
-              <div><?= $srt_tab_alumnos?>  </div>
+              <div class="table-responsive"><?= $srt_tab_alumnos?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Personal docente</div>
             <div class="card-body">
-              <div><?= $srt_tab_pdocentes?>  </div>
+              <div class="table-responsive"><?= $srt_tab_pdocentes?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Infraestructura</div>
             <div class="card-body">
-              <div><?= $srt_tab_infraestructura?>  </div>
+              <div class="table-responsive"><?= $srt_tab_infraestructura?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de aprendizaje</div>
             <div class="card-body">
-              <div><?= $srt_tab_planea?>  </div>
+              <div class="table-responsive"><?= $srt_tab_planea?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Rezago educativo</div>
             <div class="card-body">
-              <div><?= $srt_tab_rezag_inegi?>  </div>
+              <div class="table-responsive"><?= $srt_tab_rezag_inegi?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Analfabetismo</div>
             <div class="card-body">
-              <div><?= $srt_tab_analf_inegi?>  </div>
+              <div class="table-responsive"><?= $srt_tab_analf_inegi?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
         <?php endif; ?>
@@ -124,21 +124,21 @@
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
             <div class="card-body">
-              <div><?= $srt_tab_alumnos?>  </div>
+              <div class="table-responsive"><?= $srt_tab_alumnos?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Personal docente</div>
             <div class="card-body">
-              <div><?= $srt_tab_pdocentes?>  </div>
+              <div class="table-responsive"><?= $srt_tab_pdocentes?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Infraestructura</div>
             <div class="card-body">
-              <div><?= $srt_tab_infraestructura?>  </div>
+              <div class="table-responsive"><?= $srt_tab_infraestructura?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
