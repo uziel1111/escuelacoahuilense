@@ -142,8 +142,8 @@ Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
       // var t6 = parseInt(3);
 
             Highcharts.theme = {
-                colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
-                         '#FF9655', '#FFF263', '#058DC7'],
+                colors: ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000',
+                         '#FF0000', '#FF0000', '#FF0000'],
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 500, 500],
@@ -259,8 +259,8 @@ Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
       // var t3 = parseInt(6);
 
             Highcharts.theme = {
-                colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
-                         '#FF9655', '#FFF263', '#058DC7'],
+                colors: ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000',
+                         '#FF0000', '#FF0000', '#FF0000'],
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 500, 500],

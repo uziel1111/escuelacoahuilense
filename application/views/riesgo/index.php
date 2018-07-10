@@ -25,4 +25,5 @@
       <div id="dv_tabla_riesgo_mun_zona"></div>
       <div id="dv_tab_riesgo_mun_zona"></div>
       <div id="dv_tablam_riesgo_mun_zona"></div>
+      <h4>Alumnos que posiblemente han abandonado la escuela</h4> <h6 style="color:red;" id="total_bajas_muni"></h6>
     </div>

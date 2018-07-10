@@ -122,15 +122,31 @@ class Info extends CI_Controller {
 		$ciclo = $this->input->post("ciclo");
 
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
-		$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,$id_bim,$ciclo);
-		$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,$id_bim,$ciclo);
+		// echo "<pre>";
+		// print_r($nivel);
+		// die();
+		if($nivel == 4 || $nivel == 5){
+			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,$id_bim,$ciclo, $nivel);
+			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,$id_bim,$ciclo, $nivel);
+			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($id_cct, $nivel, $id_bim);
 
-		$response = array(
-			'id_cct'=>$id_cct,
-			'nivel'=>$nivel,
-			'graph_pie_riesgo'=>$graph_pie_riesgo,
-			'graph_bar_riesgo'=>$graph_bar_riesgo
-		);
+			$response = array(
+				'id_cct'=>$id_cct,
+				'nivel'=>$nivel,
+				'graph_pie_riesgo'=>$graph_pie_riesgo,
+				'graph_bar_riesgo'=>$graph_bar_riesgo,
+				'numero_bajas'=>$numero_bajas
+			);
+		}else{
+			$response = array(
+				'id_cct'=>$id_cct,
+				'nivel'=>$nivel,
+				'graph_pie_riesgo'=>array(),
+				'graph_bar_riesgo'=>array(),
+				'numero_bajas'=>array()
+			);
+		}
+		
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
