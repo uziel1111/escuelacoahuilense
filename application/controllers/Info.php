@@ -146,7 +146,7 @@ class Info extends CI_Controller {
 				'numero_bajas'=>array()
 			);
 		}
-		
+
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
@@ -178,9 +178,20 @@ class Info extends CI_Controller {
 		$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
 		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 		$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
+		if ($nivel==4) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+		}
+		elseif ($nivel==5) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
+		}
+		elseif ($nivel==6) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
+		}
 
-		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
-		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+
 
 		$response = array(
 			'id_cct'=>$id_cct,

@@ -418,7 +418,7 @@ Info_esc.prototype.get_planea =function(){
                   case '6':
 
                   if (data.graph_cont_tema_lyc.length>0) {
-                    graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+                    graf.graficoplanea_ud_ms_lyc(data.graph_cont_tema_lyc, data.id_cct);
                   }
                   else{
                     $("#dv_info_graf_contlyc").empty();
@@ -426,7 +426,7 @@ Info_esc.prototype.get_planea =function(){
                   }
                  // Por Unidades de Análisis lyc
                  if (data.graph_cont_tema_mate.length>0) {
-                    graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+                    graf.graficoplanea_ud_ms_mate(data.graph_cont_tema_mate, data.id_cct);
                   }
                   else{
                     $("#dv_info_graf_contmat").empty();
