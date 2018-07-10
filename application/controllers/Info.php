@@ -47,7 +47,7 @@ class Info extends CI_Controller {
 			$data['planea17_nacional'] = $planea17_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
-			$data['turno'] = $escuela[0]['turno'];
+			$data['turno'] = $escuela[0]['turno_single'];
 			$data['nivel'] = $escuela[0]['nivel'];
 			$data['modalidad'] = $escuela[0]['modalidad'];
 			$data['sostenimiento'] = $escuela[0]['sostenimiento'];

@@ -97,7 +97,7 @@ class Busqueda_xlista extends CI_Controller {
 			if(count($result_escuelas)>0){
 				foreach ($result_escuelas as $key => $value) {
 					$id_cct = $value['id_cct'];
-					$str_select .= "<option value={$value['id_cct']}>{$value['cve_centro']} - {$value['turno']}</option>";
+					$str_select .= "<option value={$value['id_cct']}>{$value['cve_centro']} - {$value['turno_single']}</option>";
 				}
 			}
 			// echo "<pre>"; print_r($id_cct); die();
