@@ -973,6 +973,53 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
       }
     }
 
+    HaceGraficas.prototype.DibujarRadialProgressBarET = function(){
+      // Dibujamos el radial progress bar para Eficiencia Terminal
+      var valor_et=80;
+      var bar = new ProgressBar.Circle(containerRPB03ete, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(valor_et+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(valor_et/100, 1));  // Number from 0.0 to 1.0
+    }
+
 
 
 HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16){
@@ -1623,7 +1670,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
               yAxis: {
                   title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente </div>'
                   }
               },
               legend: {
@@ -1662,7 +1709,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
 
               series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  name: 'Porcentaje de alumnos que contestó correctamente: ',
                   colorByPoint: true,
                   data: arr_lyc_aux
               }],
@@ -1764,7 +1811,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
               yAxis: {
                   title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                   }
               },
               legend: {
@@ -1800,7 +1847,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
               },
               series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  name: 'Porcentaje de alumnos que contestó correctamente: ',
                   colorByPoint: true,
                   data: arr_mate_aux
               }],
@@ -1922,7 +1969,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
               yAxis: {
                   title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                       // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
                   /*
@@ -1970,7 +2017,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
 
               series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  name: 'Porcentaje de alumnos que contestó correctamente: ',
                   colorByPoint: true,
                   data: arr_lyc_aux
               }],
@@ -2075,7 +2122,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
               yAxis: {
                   title: {
-                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                   }
               },
               legend: {
@@ -2111,7 +2158,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
               },
               series: [{
-                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  name: 'Porcentaje de alumnos que contestó correctamente: ',
                   colorByPoint: true,
                   data: arr_mate_aux
               }],
@@ -2161,7 +2208,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                 html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<div class='alert alert-warning' role='alert'>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</div>";
+                html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
                 html += "<table class='table table-condensed'>";
                 html += "<tbody>";
                 for (var i = 0; i < result.length; i++) {
@@ -2170,7 +2217,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "      <td>"+result[i]['descripcion']+"</td>";
                   html += "    </tr>";
                   html += "    <tr class='bgcolor-6'>";
-                  html += "      <td></td>";                  
+                  html += "      <td></td>";
                   html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem()'>Apoyos académicos</button>";
@@ -2214,20 +2261,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             html += "<table class='table table-condensed'>";
             html += "<tbody>";
               html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";              
+              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
               html += "      <td>Ofrece conocimiento para mejorar tu calidad de vida:</td>";
               html += "    </tr>";
               html += "    <tr class='bgcolor-6'>";
-              html += "      <td></td>";               
+              html += "      <td></td>";
               html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
               html += "    </tr>";
 
               html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>"; 
-              html += "      <td>Contenido y recursos creados por expertos para cada meteria y nivel:</td>";              
+              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
+              html += "      <td>Contenido y recursos creados por expertos para cada meteria y nivel:</td>";
               html += "    </tr>";
               html += "    <tr class='bgcolor-6'>";
-              html += "      <td></td>";               
+              html += "      <td></td>";
               html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></td>";
               html += "    </tr>";
             html += "</tbody>";

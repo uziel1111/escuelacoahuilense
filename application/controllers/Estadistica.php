@@ -273,7 +273,7 @@ class Estadistica extends CI_Controller {
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
           		<tr>
-          			<th rowspan="3" class="text-center align-middle">Nivel Educativo</th>
+          			<th rowspan="3" class="text-center align-middle">Nivel educativo</th>
           			<th colspan="21" class="text-center">Alumnos</th>
           		</tr>
           		<tr>
@@ -343,7 +343,7 @@ class Estadistica extends CI_Controller {
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
           		<tr>
-          			<th rowspan="3" class="text-center align-middle">Nivel Educativo</th>
+          			<th rowspan="3" class="text-center align-middle">Nivel educativo</th>
           			<th colspan="21" class="text-center">Alumnos</th>
           		</tr>
           		<tr>
@@ -558,7 +558,7 @@ class Estadistica extends CI_Controller {
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
 						<tr>
-							<th rowspan="2" class="text-center align-middle">Nivel Educativo</th>
+							<th rowspan="2" class="text-center align-middle">Nivel educativo</th>
 							<th rowspan="2" class="text-center align-middle">Escuelas</th>
 							<th colspan="8" class="text-center align-middle">Grupos</th>
 						</tr>
@@ -630,7 +630,7 @@ class Estadistica extends CI_Controller {
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
 						<tr>
-							<th rowspan="2" class="text-center align-middle">Nivel Educativo</th>
+							<th rowspan="2" class="text-center align-middle">Nivel educativo</th>
 							<th rowspan="2" class="text-center align-middle">Escuelas</th>
 							<th colspan="8" class="text-center align-middle">Grupos</th>
 						</tr>
@@ -712,9 +712,9 @@ class Estadistica extends CI_Controller {
 							</tr>
 							<tr>
 								<th colspan="4" class="text-center align-middle">Nivel de dominio</th>
-								<th rowspan="2" class="text-center align-middle">Alumnos con nivel bueno y excelente</th>
+								<th rowspan="2" class="text-center align-middle">Alumnos que superaron el nivel I</th>
 								<th colspan="4" class="text-center align-middle">Nivel de dominio</th>
-								<th rowspan="2" class="text-center align-middle">Alumnos con nivel bueno y excelente</th>
+								<th rowspan="2" class="text-center align-middle">Alumnos que superaron el nivel I</th>
 							</tr>
 							<tr>
 								<th class="text-center align-middle">Nivel</th>
@@ -735,10 +735,10 @@ class Estadistica extends CI_Controller {
 				$str_html_alumn.='
 				<tr>
 				<td>'.$row['nivel'].'</td>
-				<td>'.($row['lyc_i']).'%</td><td>'.($row['lyc_ii']).'%</td><td>'.($row['lyc_iii']).'%</td><td>'.($row['lyc_iv']).'%</td>
-				<td>'.($row['lyc_iii']+$row['lyc_iv']).'%</td>
-				<td>'.($row['mat_i']).'%</td><td>'.($row['mat_ii']).'%</td><td>'.($row['mat_iii']).'%</td><td>'.($row['mat_iv']).'%</td>
-				<td>'.($row['mat_iii']+$row['mat_iv']).'%</td>
+				<td style="text-align: center;">'.($row['lyc_i']).'%</td><td style="text-align: center;">'.($row['lyc_ii']).'%</td><td  style="text-align: center;">'.($row['lyc_iii']).'%</td><td style="text-align: center;">'.($row['lyc_iv']).'%</td>
+				<td style="text-align: center;">'.($row['lyc_ii']+$row['lyc_iii']+$row['lyc_iv']).'%</td>
+				<td style="text-align: center;">'.($row['mat_i']).'%</td><td style="text-align: center;">'.($row['mat_ii']).'%</td><td style="text-align: center;">'.($row['mat_iii']).'%</td><td style="text-align: center;">'.($row['mat_iv']).'%</td>
+				<td style="text-align: center;">'.($row['mat_ii']+$row['mat_iii']+$row['mat_iv']).'%</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>
@@ -765,7 +765,7 @@ class Estadistica extends CI_Controller {
             <th colspan="3">Población que no asiste a la escuela</th>
           </tr>
           <tr>
-            <th id="rezago">Población por grupo de edad que no asiste a la escuela</th>
+            <th id="rezago">Población por grupo de edad<br> que no asiste a la escuela</th>
 						<th><i class="fa fa-male"></i></th>
 						<th><i class="fa fa-female"></i></th>
 						<th><i class="fa fa-female"></i><i class="fa fa-male"></i></th>
@@ -810,7 +810,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente:  INEGI. 2010</div>
+												<div id="fuentes_pie">Fuente: INEGI, 2010</div>
 								</div>';
 
 			return $str_html_rezinegi;
@@ -835,11 +835,11 @@ class Estadistica extends CI_Controller {
 
 				$str_html_analfinegi.='
 				<tr>
-				<td>De 8 a 14 años que no saben leer ni escribir</td>
+				<td>De 8 a 14 años que no saben leer y escribir</td>
 				<td>'.number_format($row['P8A14AN_M']).'</td><td>'.number_format($row['P8A14AN_F']).'</td><td>'.number_format($row['P8A14AN_M']+$row['P8A14AN_F']).'</td>
 				</tr>
 				<tr>
-				<td>Mayor de 15 años que no saben leer ni escribir</td>
+				<td>Mayor de 15 años que no saben leer y escribir</td>
 				<td>'.number_format($row['P15YM_AN_M']).'</td><td>'.number_format($row['P15YM_AN_F']).'</td><td>'.number_format($row['P15YM_AN_M']+$row['P15YM_AN_F']).'</td>
 				</tr>
 				';
@@ -848,7 +848,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente:  INEGI. 2010</div>
+												<div id="fuentes_pie">Fuente: INEGI, 2010</div>
 								</div>';
 
 			return $str_html_analfinegi;

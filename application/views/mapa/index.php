@@ -55,7 +55,7 @@
         </div>
         <div class="row">
         <div class="col-sm mb-1">
-            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#9471dc;">place</i> Media Superior</label>
+            <label class="d-inline-flex fw500"><i class="material-icons" style="color:#9471dc;">place</i> Media superior</label>
         </div>
         <div class="col-sm mb-1">
             <label class="d-inline-flex fw500"><i class="material-icons" style="color:#ff8d00;">place</i> Superior</label>

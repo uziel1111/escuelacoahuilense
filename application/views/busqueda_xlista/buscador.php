@@ -50,7 +50,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group form-group-style-1">
-                          <?= form_label('Nombre de la escuela, opcional', 'itxt_busquedalista_nombreescuela') ?>
+                          <?= form_label('Nombre de la escuela (opcional)', 'itxt_busquedalista_nombreescuela') ?>
                           <?= form_input('itxt_busquedalista_nombreescuela', '', array('id' => 'itxt_busquedalista_nombreescuela', 'class'=>'form-control' )) ?>
                       </div>
                     </div><!--  col-sm-12 -->
@@ -77,7 +77,7 @@
                   <div class="row">
                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-2">
                       <div class="form-group form-group-style-1">
-                          <?= form_label('Clave de centro de trabajo', 'itxt_busquedalista_cct') ?>
+                          <?= form_label('Escriba su CCT', 'itxt_busquedalista_cct') ?>
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text label_cct">05</span>

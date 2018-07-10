@@ -6,7 +6,7 @@
       <label for="lb_titbusq">Seleccione tipo de búsqueda</label>
         <ul class="nav nav-tabs nav-tabs-style-1" id="tab_busqg" role="tablist">
             <li class="nav-item">
-              <a class="nav-link nav-link-style-1 active" id="xest_muni-tab" data-toggle="tab" href="#xest_muni" role="tab" aria-controls="xest_muni" aria-selected="true">Por Estado / Municipio</a>
+              <a class="nav-link nav-link-style-1 active" id="xest_muni-tab" data-toggle="tab" href="#xest_muni" role="tab" aria-controls="xest_muni" aria-selected="true">Por estado / municipio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-style-1" id="xzona-tab" data-toggle="tab" href="#xzona" role="tab" aria-controls="xzona" aria-selected="false">Por zona escolar</a>
@@ -35,7 +35,7 @@
                         </div><!-- col-md-4 -->
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
                           <div class="form-group form-group-style-1">
-                            <?=form_label('Campo Disciplinario:', 'campoD');?>
+                            <?=form_label('Campo disciplinario:', 'campoD');?>
                             <?=form_dropdown('campoD', $camposd, 'large', array('class' => 'form-control', 'id' => 'slt_campod_planeaxm'));?>
                           </div>
                         </div><!-- col-md-4 -->
@@ -65,7 +65,7 @@
                                     </div><!-- col-md-4 -->
                                     <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
                                       <div class="form-group form-group-style-1">
-                                        <?=form_label('Subsostenimiento:', 'subsostenimiento');?>
+                                        <?=form_label('Sostenimiento:', 'subsostenimiento');?>
                                         <?=form_dropdown('subsostenimiento', $subsostenimientos, 'large', array('class' => 'form-control', 'id' => 'slt_subsostenimiento_planeaxz'));?>
                                       </div>
                                     </div><!-- col-md-4 -->

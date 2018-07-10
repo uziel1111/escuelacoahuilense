@@ -155,12 +155,19 @@ class Report extends CI_Controller {
 				$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
 				$result_docentes = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xmunciclo($id_municipio, $id_ciclo);
 				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xmunciclo($id_municipio, $id_ciclo);
-				$result_planea = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $id_ciclo);
+				$result_planea = array();
+				 $result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2016, 4);
+				 $result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 5);
+				 $result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 6);
+				 array_push($result_planea, $result_planea_prim[0]);
+				 array_push($result_planea, $result_planea_sec[0]);
+				 array_push($result_planea, $result_planea_msuperior[0]);
+
 				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
 				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
 				// echo "<pre>";print_r($result_rezinegi); die();
 				$obj_excel = new PHPExcel();
-				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadistica e indicadores educativos generales');
+				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
 				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Municipio: '.$this->Municipio_model->get_muncipio($id_municipio).', Nivel: '.$this->Nivel_model->get_nivel($id_nivel).', Sostenimiento: '.$this->Sostenimiento_model->get_sostenimiento($id_sostenimiento).', Modalidad: '.$this->Modalidad_model->get_modalidad($id_modalidad).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo).'');
 				$obj_excel->getActiveSheet()->SetCellValue('A3', 'Alumnos');
 				$obj_excel->getActiveSheet()->SetCellValue('A4', 'Nivel educativo');
@@ -475,7 +482,7 @@ class Report extends CI_Controller {
 				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
 
 				$obj_excel = new PHPExcel();
-				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadistica e indicadores educativos generales');
+				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
 				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Nivel: '.$this->Nivel_model->get_nivel($id_nivel_z).', Sostenimiento: '.$this->Subsostenimiento_model->get_subsostenimiento($id_sostenimiento_z).', Zona escolar: '.$this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo_z).'');
 				$obj_excel->getActiveSheet()->SetCellValue('A3', 'Alumnos');
 				$obj_excel->getActiveSheet()->SetCellValue('A4', 'Nivel educativo');

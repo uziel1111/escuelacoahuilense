@@ -70,13 +70,13 @@
                                 <ul class="main-menu">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link hcolor-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Estadística e Indicadores
+                                          Estadística e indicadores
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
-                                          <a class="dropdown-item hcolor-1" href="#">Riesgo de abandono</a>
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>">Riesgo de abandono</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados estatales de PLANEA</a>
                                         </div>
                                     </li>
@@ -85,7 +85,7 @@
                                           Docentes
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-2" aria-labelledby="navbarDropdownMenuLink">
-                                          <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio profesional docente</a>
+                                          <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio Profesional Docent</a>
                                           <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
                                           <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
@@ -94,16 +94,17 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Padres de familia y niños
+                                          Padres de familia y estudiantes
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-3" href="#" target="_blank">Guía para padres de familia</a>
                                           <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
-                                          <a class="dropdown-item hcolor-3" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca digital Coahuila</a>
+                                          <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
+                                          <!-- <a class="dropdown-item hcolor-3" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a> -->
                                           <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
-                                          <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al Bullying</a>
+                                          <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
                                           <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
-                                          <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank">Ingresa a tu correo electronico</a>
+                                          <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank">Ingresa a tu correo electrónico</a>
                                           <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank">Cursos y convocatorias</a>
                                         </div>
                                     </li>
@@ -115,7 +116,8 @@
                                           <a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
                                           <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
-                                          <a class="dropdown-item hcolor-4" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
+                                          <!-- <a class="dropdown-item hcolor-4" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->
+                                          <a class="dropdown-item hcolor-4" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a>
                                           <!-- <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiales y útiles autorizados</a> -->
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
                                         </div>

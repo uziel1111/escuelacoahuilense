@@ -57,7 +57,7 @@
 	</div>
 
                     <div class="card mb-3 card-style-1">
-                      <div class="card-header card-1-header bgcolor-2 text-white">Indicadores del modelo educativo de Coahuila</div>
+                      <div class="card-header card-1-header bgcolor-2 text-white">Indicadores del Modelo Educativo de Coahuila</div>
 											<center><p>*Conozca datos relevantes de la escuela haciendo clic en cada sección</p></center>
                       <div class="card-body">
 
@@ -134,7 +134,7 @@
 				</div>
 				<div class="col col-md-4">
 					<div class="form-group form-group-style-1">
-						<?=form_label('Ciclo', 'ciclo');?>
+						<?=form_label('Ciclo escolar', 'ciclo');?>
 						<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
 				  </div>
 				</div>
@@ -414,6 +414,33 @@
             </div>
         </div>
 
+				<div class="card-accordion-style-1 mb-3">
+					 <div class="accordion-style-1-header" id="ch_ete">
+							 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_ete" aria-expanded="true" aria-controls="planea_ete">
+									 <i class="fa fa-chevron-down pull-right"></i>
+									 Eficiencia Terminal Efectiva
+							 </a>
+					 </div>
+					 <div id="planea_ete" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
+							 <div class="card-body">
+									 <div class="row">
+										 <p>De quienes inician el nivel educativo, ¿Qué porcentaje lo termina y además aprende lo esencial?</p>
+										 <p>A esta pregunta responde el nuevo indicador de Eficiencia Terminal Efectiva (ETE), que toma como base la eficiencia terminal tradicional y le aplica el porcentaje de estudiantes que supera el nivel I en PLANEA.</p>
+											<div class='col-sm-4'></div>
+                      <div class='col-sm-4'>
+                      	<div id='containerRPB03ete'></div>
+		                      <center>
+			                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal Efectiva
+			                        <span class='tooltiptext2'><p>Porcentaje de alumnos egresados con aprendizajes suficientes.</p><i>- (SEP)</i></span>
+			                      </div>
+		                      </center>
+                      	</div>
+                      <div class='col-sm-4'></div>
+									 </div>
+							 </div>
+					 </div>
+			 </div>
+
 
     </div>
 
@@ -467,6 +494,7 @@
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
+<script  src="<?= base_url('assets/js/info/progressbar.min.js');?>"></script>
 <script src="<?= base_url('assets/js/info/graficos_1.js'); ?>"></script>
 <script src="<?= base_url('assets/js/info/graficos_riesgo.js'); ?>"></script>
 <script src="<?= base_url('assets/js/info/info_funcionalidad.js'); ?>"></script>
