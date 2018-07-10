@@ -20,7 +20,7 @@ class Mapa extends CI_Controller {
 			$arr_niveles = array();
 			$arr_sostenimientos = array();
 			$arr_federales = array();
-			
+
 			// echo "<pre>";
 			// print_r($options);
 			// die();
@@ -45,7 +45,7 @@ class Mapa extends CI_Controller {
 			// foreach ($sostenimientos as $sostenimiento){
 			// 	 $arr_sostenimientos[$sostenimiento['id_sostenimiento']] = $sostenimiento['sostenimiento'];
 			// }
-			
+
 			$data2['municipios'] = $arr_municipios;
 			$data2['niveles'] = $arr_niveles;
 			$data2['sostenimientos'] = $arr_sostenimientos;
@@ -83,7 +83,7 @@ class Mapa extends CI_Controller {
 		}
 
 		public function get_marcadores_filtro(){
-			$idmunicipio       = $this->input->post("idmunicipio"); 
+			$idmunicipio       = $this->input->post("idmunicipio");
 			$idnivel           = $this->input->post("idnivel");
 			$id_sostenimiento  = $this->input->post("idsostenimiento");
 			$nombre_centro     = $this->input->post("nombre");
@@ -97,7 +97,7 @@ class Mapa extends CI_Controller {
 			}else{
 				$escuelas = $this->Escuela_model->get_xparams($idmunicipio,$idnivel,$id_sostenimiento,$nombre_centro);
 			}
-			
+
 			foreach ($escuelas as $marcador) {
 	            array_push($marcadorb, $marcador['nombre_centro']);
 	            array_push($marcadorb, (float) $marcador['latitud']);
@@ -105,7 +105,7 @@ class Mapa extends CI_Controller {
 	            array_push($marcadorb, $marcador['cve_centro']);
 	            array_push($marcadorb, $marcador['id_nivel']);
 	            array_push($marcadorb, $marcador['municipio']);
-	            array_push($marcadorb, $marcador['turno']);
+	            array_push($marcadorb, $marcador['turno_single']);
 	            array_push($marcadorb, $marcador['id_cct']);
 	            array_push($marcadorb, $marcador['nivel']);
 	            array_push($marcadorb, $marcador['localidad']);
@@ -120,7 +120,7 @@ class Mapa extends CI_Controller {
 		}
 
 		public function get_mismo_nivel(){
-			
+
 			$idcct = $this->input->post('idcct');
 			$marcadorb = array();
 			$vfinal = array();
@@ -150,7 +150,7 @@ class Mapa extends CI_Controller {
 		}
 
 		public function get_siguiente_nivel(){
-			
+
 			$idcct = $this->input->post('idcct');
 			$marcadorb = array();
 			$vfinal = array();

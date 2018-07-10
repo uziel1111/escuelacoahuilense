@@ -102,7 +102,7 @@
               <td>
                 <?= $escuela['cve_centro'] ?>
               </td>
-              <td><?= $escuela['turno'] ?></td>
+              <td><?= $escuela['turno_single'] ?></td>
               <td><?= $escuela['nombre_centro'] ?></td>
               <td><?= $escuela['nivel'] ?></td>
               <td><?= $escuela['municipio'] ?></td>
