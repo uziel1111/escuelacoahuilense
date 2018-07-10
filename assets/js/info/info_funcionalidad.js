@@ -125,6 +125,9 @@ Info_esc.prototype.get_riesgo =function(){
 					    }
 				      })
 				      .done(function( data ) {
+				      	console.log("DATOS BAJADOS");
+				      	console.log(data);
+				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								var nivel = data.nivel;
                 if (data.graph_pie_riesgo.length>0) {
 							  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
@@ -267,6 +270,8 @@ Info_esc.prototype.get_riesgo =function(){
                       html_tb_riego+='    </table>';
                     html_tb_riego+='</div>';
                   html_tb_riego+='</div>';
+
+                  $("#total_bajas").text("4");
 
                   $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 								break;
@@ -468,6 +473,10 @@ Info_esc.prototype.get_riesgo2 =function(){
 							    },
 				      })
 				      .done(function( data ) {
+				      	console.log("DATOS BAJADOS");
+				      	console.log(data);
+				      	// $("#total_bajas").text("4");
+				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -584,6 +593,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='    </table>';
                 html_tb_riego+='</div>';
             html_tb_riego+='</div><hr>';
+
 
             $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 

@@ -66,10 +66,12 @@ class Riesgo extends CI_Controller {
 
 			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidmuni($id_municipio,$id_nivel,$id_bim,$ciclo);
 			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidmuni($id_municipio,$id_nivel,$id_bim,$ciclo);
+			$numero_total_bajas = $this->Riesgo_alumn_esc_bim_model->get_riesgo_totalb_xidmuni($id_municipio,$id_nivel,$id_bim);
 
 			$response = array(
 				'graph_pie_riesgo'=>$graph_pie_riesgo,
-				'graph_bar_riesgo'=>$graph_bar_riesgo
+				'graph_bar_riesgo'=>$graph_bar_riesgo,
+				'total_bajas'=>$numero_total_bajas
 			);
 
 			Utilerias::enviaDataJson(200, $response, $this);

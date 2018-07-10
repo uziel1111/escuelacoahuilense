@@ -156,9 +156,12 @@
 							<div id="dv_riesgtab_esc_bar"></div>
 						</div>
 				</div>
+				<h4>Alumnos que posiblemente han abandonado la escuela</h4> <h6 style="color:red;" id="total_bajas"></h6>
 	                </div>
 	            </div>
+
 	        </div>
+
 	    </div>
 
 
