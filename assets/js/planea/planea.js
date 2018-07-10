@@ -39,6 +39,13 @@ $("#btn_busqueda_xregion").click(function(){
 });
 
 $("#slt_nivel_planeaxz").change(function(){
+	$("#slt_periodo_planeaxz").empty();
+	if($("#slt_nivel_planeaxz").val() == '4'){
+		$("#slt_periodo_planeaxz").append("<option value='1'>2016</option>");
+	}else if($("#slt_nivel_planeaxz").val() == '5' || $("#slt_nivel_planeaxz").val() == '6'){
+		$("#slt_periodo_planeaxz").append("<option value='2'>2017</option>");
+	}
+	
 	if($("#slt_nivel_planeaxz").val() == 0 || $("#slt_nivel_planeaxz") == '0'){
 		Notification.notification("", "Seleccione nivel", "info");
 	}else{
@@ -55,6 +62,15 @@ $("#slt_subsostenimiento_planeaxz").change(function(){
 	
 });
 
+$("#slt_nivel_planeaxm").change(function(){
+	$("#slt_periodo_planeaxm").empty();
+	if($("#slt_nivel_planeaxm").val() == '4'){
+		$("#slt_periodo_planeaxm").append("<option value='1'>2016</option>");
+	}else if($("#slt_nivel_planeaxm").val() == '5' || $("#slt_nivel_planeaxm").val() == '6'){
+		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
+	}
+	
+});
 
 const Planea = {
 
