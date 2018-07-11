@@ -126,9 +126,9 @@ Info_esc.prototype.get_riesgo =function(){
 					    }
 				      })
 				      .done(function( data ) {
-				      	console.log("DATOS BAJADOS");
-				      	console.log(data);
-				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
+				      	// console.log("DATOS BAJADOS");
+				      	// console.log(data);
+
 								var nivel = data.nivel;
                 if (data.graph_pie_riesgo.length>0) {
 							  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
@@ -148,6 +148,7 @@ Info_esc.prototype.get_riesgo =function(){
 								switch(nivel) {
 
 								case '4':
+                          $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
@@ -215,6 +216,7 @@ Info_esc.prototype.get_riesgo =function(){
 
 								break;
 								case '5':
+                          $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
@@ -278,7 +280,7 @@ Info_esc.prototype.get_riesgo =function(){
 								break;
 
 								default:
-
+                  // alert("no hubo");
 								break;
 
 								}
@@ -451,6 +453,7 @@ Info_esc.prototype.get_planea =function(){
 
 
 								}
+                $("#containerRPB03ete").empty();
                 graf.DibujarRadialProgressBarET();
 
 							})

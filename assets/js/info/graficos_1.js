@@ -2003,7 +2003,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
                                }
                            }
                        }
@@ -2145,7 +2145,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
                                }
                            }
                        }
@@ -2311,7 +2311,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
                                }
                            }
                        }
@@ -2454,7 +2454,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
                                }
                            }
                        }
