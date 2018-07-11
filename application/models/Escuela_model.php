@@ -48,7 +48,7 @@ class Escuela_model extends CI_Model
       $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
       $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
       $this->db->where('es.cve_centro', $cve_centro);
-      $this->db->group_by("tu.id_turno");
+      $this->db->group_by("tu.id_turno_single");
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
