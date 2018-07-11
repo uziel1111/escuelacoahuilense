@@ -104,32 +104,41 @@
                 </div><!-- row -->
             </div>
         </div>
-    </div><!-- card-body -->
-    <div class="row">
-        <div class="col-12">
-            <div id="div_graficas_masivo"></div>
-            <!-- <div id="div_graficas_masivo_matematicas"></div> -->
+        <div class="card mb-3 card-style-1 mt-3">
+            <div class="card-header card-1-header bgcolor-2 text-white">Resultados de búsqueda</div>
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-12">
+                        <div id="div_graficas_masivo"></div>
+                        <!-- <div id="div_graficas_masivo_matematicas"></div> -->
+                    </div>
+                </div>
+            </div><!-- card-body -->                          
         </div>
-    </div>
+    </div>    
   </div><!-- card -->
 </div>
 </section>
+                <!-- Modal Reactivos -->
+                <div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-2">
+                                <h5 class="modal-title text-white" id="exampleModalLabel">Consulta por reactivos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span class="fz-18 fw800" id="modal_reactivos_title"></span>
+                                <hr>
+                                <div id="div_reactivos"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
 
-<div id="modal_visor_reactivos" class="modal fade modal100 grises in" role="dialog" data-keyboard="false" data-backdrop="static" >
-   <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bgcolor-2">
-            <h5 class="modal-title color-6" id="modal_reactivos_title">Contenido temático: Aspectos que se consideran en una obra de teatro para pasar de la lectura a la representación.</h5>
-                <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-          </div>
-          <div class="modal-body">
-            <div id="div_reactivos"></div>
-          </div>
-        </div>
-    </div>
-</div><!-- modal -->
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
