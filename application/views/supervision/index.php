@@ -5,24 +5,11 @@
     <div class="card-body">
       <p>La supervisión escolar es un componente de vital importancia para la implementación del Modelo Educativo Coahuilense: es la instancia sobre la que descansa el reto de lograr que las escuelas cumplan con los objetivos de atender a todos los niños y jóvenes; crear las condiciones para que concluyan al menos la educación media superior; y asegurar que todos ellos adquieran al menos las competencias básicas que establecen los planes y programas.</p>
       <p>Con la finalidad de apoyar el desempeño y fortalecimiento de las y los Supervisores Escolares, se ha creado este espacio en el cual podrán encontrar información sobre los siguientes temas:</p>
-      <div class="row">
-        <div class="col-lg-3 col-sm-3">
-        </div>
-        <div class="col-lg-6 col-sm-6">
-                <div class="card main-boxes">
-                    <div class="card-body">
-                        <!-- List group -->
-                        <ul class="list-group">
-                          <li class="list-group-item"><a id="btn_super_trayecto" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Trayecto formativo para supervisores escolares</a></li>
-                          <li class="list-group-item"><a id="btn_super_mundo" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Bibliografía sobre "La supervisión escolar en el mundo"</a></li>
-                        </ul>
-                    </div>
-                </div>
-        </div>
-        <div class="col-lg-3 col-sm-3">
-        </div>
+      <div class="row ml-5 mr-5">
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_trayecto">Trayecto formativo para supervisores escolares</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id="btn_super_mundo" >Bibliografía sobre "La supervisión escolar en el mundo"</button>    
+ </div>
 
-    </div>
     </div>
   </div>
 </section>
