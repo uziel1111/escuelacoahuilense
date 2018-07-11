@@ -47,7 +47,7 @@ class Info extends CI_Controller {
 			$data['planea17_nacional'] = $planea17_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
-			$data['turno'] = $escuela[0]['turno'];
+			$data['turno'] = $escuela[0]['turno_single'];
 			$data['nivel'] = $escuela[0]['nivel'];
 			$data['modalidad'] = $escuela[0]['modalidad'];
 			$data['sostenimiento'] = $escuela[0]['sostenimiento'];
@@ -122,15 +122,31 @@ class Info extends CI_Controller {
 		$ciclo = $this->input->post("ciclo");
 
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
-		$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,$id_bim,$ciclo);
-		$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,$id_bim,$ciclo);
+		// echo "<pre>";
+		// print_r($nivel);
+		// die();
+		if($nivel == 4 || $nivel == 5){
+			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,$id_bim,$ciclo, $nivel);
+			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,$id_bim,$ciclo, $nivel);
+			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($id_cct, $nivel, $id_bim);
 
-		$response = array(
-			'id_cct'=>$id_cct,
-			'nivel'=>$nivel,
-			'graph_pie_riesgo'=>$graph_pie_riesgo,
-			'graph_bar_riesgo'=>$graph_bar_riesgo
-		);
+			$response = array(
+				'id_cct'=>$id_cct,
+				'nivel'=>$nivel,
+				'graph_pie_riesgo'=>$graph_pie_riesgo,
+				'graph_bar_riesgo'=>$graph_bar_riesgo,
+				'numero_bajas'=>$numero_bajas
+			);
+		}else{
+			$response = array(
+				'id_cct'=>$id_cct,
+				'nivel'=>$nivel,
+				'graph_pie_riesgo'=>array(),
+				'graph_bar_riesgo'=>array(),
+				'numero_bajas'=>array()
+			);
+		}
+
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
@@ -162,9 +178,20 @@ class Info extends CI_Controller {
 		$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
 		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 		$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
+		if ($nivel==4) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+		}
+		elseif ($nivel==5) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
+		}
+		elseif ($nivel==6) {
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,2);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
+		}
 
-		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
-		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+
 
 		$response = array(
 			'id_cct'=>$id_cct,

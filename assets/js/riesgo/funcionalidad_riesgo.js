@@ -23,6 +23,7 @@ $("#btn_buscar_ries_muni").click(function() {
   })
   .done(function( data ) {
 	// obj_loader.hide();
+  $("#total_bajas_muni").text(data.total_bajas[0]['total']);
 	var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 		var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
 		var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);

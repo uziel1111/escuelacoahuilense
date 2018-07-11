@@ -126,6 +126,9 @@ Info_esc.prototype.get_riesgo =function(){
 					    }
 				      })
 				      .done(function( data ) {
+				      	// console.log("DATOS BAJADOS");
+				      	// console.log(data);
+
 								var nivel = data.nivel;
                 if (data.graph_pie_riesgo.length>0) {
 							  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
@@ -145,6 +148,7 @@ Info_esc.prototype.get_riesgo =function(){
 								switch(nivel) {
 
 								case '4':
+                          $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
@@ -212,6 +216,7 @@ Info_esc.prototype.get_riesgo =function(){
 
 								break;
 								case '5':
+                          $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
@@ -269,11 +274,13 @@ Info_esc.prototype.get_riesgo =function(){
                     html_tb_riego+='</div>';
                   html_tb_riego+='</div>';
 
+                  $("#total_bajas").text("4");
+
                   $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 								break;
 
 								default:
-
+                  // alert("no hubo");
 								break;
 
 								}
@@ -413,7 +420,7 @@ Info_esc.prototype.get_planea =function(){
                   case '6':
 
                   if (data.graph_cont_tema_lyc.length>0) {
-                    graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+                    graf.graficoplanea_ud_ms_lyc(data.graph_cont_tema_lyc, data.id_cct);
                   }
                   else{
                     $("#dv_info_graf_contlyc").empty();
@@ -421,7 +428,7 @@ Info_esc.prototype.get_planea =function(){
                   }
                  // Por Unidades de Análisis lyc
                  if (data.graph_cont_tema_mate.length>0) {
-                    graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+                    graf.graficoplanea_ud_ms_mate(data.graph_cont_tema_mate, data.id_cct);
                   }
                   else{
                     $("#dv_info_graf_contmat").empty();
@@ -446,6 +453,7 @@ Info_esc.prototype.get_planea =function(){
 
 
 								}
+                $("#containerRPB03ete").empty();
                 graf.DibujarRadialProgressBarET();
 
 							})
@@ -470,6 +478,10 @@ Info_esc.prototype.get_riesgo2 =function(){
 							    },
 				      })
 				      .done(function( data ) {
+				      	console.log("DATOS BAJADOS");
+				      	console.log(data);
+				      	// $("#total_bajas").text("4");
+				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
 							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
@@ -586,6 +598,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='    </table>';
                 html_tb_riego+='</div>';
             html_tb_riego+='</div><hr>';
+
 
             $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 

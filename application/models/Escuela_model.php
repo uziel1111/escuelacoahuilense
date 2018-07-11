@@ -6,9 +6,9 @@ class Escuela_model extends CI_Model
     }
 
     function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
-      $this->db->select('es.id_cct, es.cve_centro, tu.turno, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
+      $this->db->select('es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
       $this->db->from('escuela as es');
-      $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
+      $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
       $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
       $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
       $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
@@ -37,9 +37,9 @@ class Escuela_model extends CI_Model
     }// get_xparams()
 
     function get_xcvecentro($cve_centro){
-      $this->db->select('es.id_cct,es.cve_centro,es.nombre_centro,ni.nivel, tu.turno, es.latitud, es.longitud, es.id_nivel, mu.municipio, loc.localidad, s.zona_escolar, so.sostenimiento');
+      $this->db->select('es.id_cct,es.cve_centro,es.nombre_centro,ni.nivel, tu.turno_single, es.latitud, es.longitud, es.id_nivel, mu.municipio, loc.localidad, s.zona_escolar, so.sostenimiento');
       $this->db->from('escuela as es');
-      $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
+      $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
       $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
       $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
       $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
@@ -48,7 +48,7 @@ class Escuela_model extends CI_Model
       $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
       $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
       $this->db->where('es.cve_centro', $cve_centro);
-      $this->db->group_by("tu.id_turno");
+      $this->db->group_by("tu.id_turno_single");
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();

@@ -105,7 +105,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_municipio != 0 || $id_municipio != '0'){
         $where = "AND m.id_municipio = {$id_municipio}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.reactivo AS descripcion
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo, t2.reactivo AS descripcion
         FROM municipio m
         INNER JOIN escuela e ON e.id_municipio = m.id_municipio
         INNER JOIN nivel n ON n.id_nivel = e.id_nivel
@@ -116,6 +116,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
         AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
+        // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()
@@ -126,7 +127,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_zona != 0 || $id_zona != '0'){
         $where = "AND s.id_supervision = ${id_zona}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.reactivo AS descripcion
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t2.n_reactivo, t1.id_reactivo, t2.reactivo AS descripcion
                   FROM supervision s
                   INNER JOIN escuela e ON e.id_supervision = s.id_supervision
                   INNER JOIN nivel n ON n.id_nivel = e.id_nivel

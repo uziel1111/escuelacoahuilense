@@ -26,6 +26,8 @@ class Planea extends CI_Controller {
 			$arr_niveles['0'] = 'SELECCIONE';
 			$arr_niveles['4'] = 'PRIMARIA';
 			$arr_niveles['5'] = 'SECUNDARIA';
+			$arr_niveles['6'] = 'MEDIA SUPERIOR';
+
 
 			//CAMPOS DICIPLINARIOS
 			$arr_campod['0'] = 'SELECCIONE';
@@ -92,6 +94,9 @@ class Planea extends CI_Controller {
 		}
 
 		public function planea_xcont_xmunicipio(){
+			// echo "<pre>";
+			// print_r($_POST);
+			// die();
 			$id_contenido = $this->input->post("id_cont");
 		    $id_zona_municipio = $this->input->post("id_xzona_o_municipio");
 		    $id_perioso = $this->input->post("periodo");
