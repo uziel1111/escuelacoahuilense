@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div id="modal_superenmundo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content modal-style-1">
       <div class="modal-header  bgcolor-2">
         <h5 class="modal-title color-6" id="exampleModalLongTitle">La supervisión escolar en el mundo</h5>
         <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
@@ -9,24 +9,50 @@
         </button>
       </div>
       <div class="modal-body">
-
-        <div class="row">
-          <div class="col-12 col-sm-12">
-            <div class="card">
-              <div class="card-body">
-                <label>4. LA SUPERVISIÓN ESCOLAR EN EL MUNDO</label>
-                <p style="cursor:pointer;" id="EP_pm1">4.1 ASIA_A comparative analysis</p>
-                <p style="cursor:pointer;" id="EP_pm2">4.2 EUROPA_Comparing school inspection systems in Europe</p>
-                <p style="cursor:pointer;" id="EP_pm3">4.3 EUROPA_Assuring quality in education</p>
-                <p style="cursor:pointer;" id="EP_pm4">4.4 INGLATERRA_School inspection handbook</p>
-                <p style="cursor:pointer;" id="EP_pm5">4.5 MÉXICO_Modelo de gestion para supervision</p>
-                <p style="cursor:pointer;" id="EP_pm6">4.6  MÉXICO_Taller de supervisión efectiva</p>
-                <p style="cursor:pointer;" id="EP_pm7">4.7 MÉXICO_ Transformar la supervisión escolar</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
+<div class="list-group">
+  <a href="#" id="EP_pm1" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">ASIA, A comparative analysis</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.1</span>
+    </div>
+  </a>
+  <a href="#" id="EP_pm2" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">EUROPA, Comparing school inspection systems in Europe</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.2</span>
+    </div>
+  </a>
+  <a href="#" id="EP_pm3" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">EUROPA, Assuring quality in education</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.3</span>
+    </div>
+  </a>
+  <a href="#" id="EP_pm4" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">INGLATERRA, School inspection handbook</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.4</span>
+    </div>
+  </a>  
+  <a href="#" id="EP_pm5" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">MÉXICO, Modelo de gestion para supervision</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.5</span>
+    </div>
+  </a>
+  <a href="#" id="EP_pm6" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">MÉXICO, Taller de supervisión efectiva</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.6</span>
+    </div>
+  </a>
+  <a href="#" id="EP_pm7" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 color-2">MÉXICO, Transformar la supervisión escolar</h5>
+      <span class="badge badge-secondary mt-2 mb-2 text-white fz-18">4.7</span>
+    </div>
+  </a>    
+</div>  
 
       </div>
 
@@ -36,8 +62,8 @@
 
 <div id="modal_superenmundoPdf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header bgcolor-2">
+    <div class="modal-content modal-style-1">
+      <div class="modal-header  bgcolor-4">
         <h5 class="modal-title color-6" id="exampleModalLongTitle"></h5>
         <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
