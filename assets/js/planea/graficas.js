@@ -2157,10 +2157,10 @@ function Graficasm(){
 
               var html = "<div style='text-align:left !important;'><ul>";
               if (result[0]['mostrar'] == 'no') {
-                html += "<p><li>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</li></p><br>";
+                html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
+                html += "<div class='alert alert-warning' role='alert'>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</div>";
                 for (var i = 0; i < result.length; i++) {
                   html += "<p><li>"+result[i]['descripcion']+"</li></p>";
                 }
