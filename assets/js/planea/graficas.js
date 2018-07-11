@@ -363,7 +363,7 @@ function Graficasm(){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -408,7 +408,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
                                }
                            }
                        }
@@ -518,7 +518,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
@@ -553,7 +553,7 @@ function Graficasm(){
                            events:{
                                click:function(){
                                  //console.info(this);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
                                }
                            }
                        }
@@ -607,23 +607,34 @@ function Graficasm(){
           })
           .done(function( data ) {
             // obj_loader.hide();
-              swal.close();
+            swal.close();
               var result = data.graph_cont_reactivos_xcctxcont;
-              console.log(result[0]['mostrar']);
 
-              var html = "<div style='text-align:left !important;'><ul>";
+              var html = "<div style='text-align:left !important;'>";
               if (result[0]['mostrar'] == 'no') {
-                html += "<p><li>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</li></p><br>";
+                html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
+                html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
+                html += "<table class='table table-condensed'>";
+                html += "<tbody>";
                 for (var i = 0; i < result.length; i++) {
-                  html += "<p><li>"+result[i]['descripcion']+"</li></p>";
+                  html += "    <tr>";
+                  html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5></td>";
+                  html += "      <td>"+result[i]['descripcion']+"</td>";
+                  html += "    </tr>";
+                  html += "    <tr class='bgcolor-6'>";
+                  html += "      <td></td>";
+                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='graficar.argumento_reactivo()'>Argumento</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='graficar.especificacion_reactivo()'>Especificación</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='graficar.apoyosacadem()'>Apoyos académicos</button>";
+                  html += "      </td>";
+                  html += "    </tr>";
                 }
+                html += "</tbody>";
+                html += "</table>";
               }
-
-
-              html += "</ul></div>";
+              html += "</div>";
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
               $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
@@ -632,6 +643,32 @@ function Graficasm(){
               $("#modal_reactivos_title").html("Contenido temático: "+nombre);
 
               $("#modal_visor_reactivos").modal("show");
+
+              // swal.close();
+              // var result = data.graph_cont_reactivos_xcctxcont;
+              // console.log(result[0]['mostrar']);
+
+              // var html = "<div style='text-align:left !important;'><ul>";
+              // if (result[0]['mostrar'] == 'no') {
+              //   html += "<p><li>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</li></p><br>";
+              // }
+              // else {
+              //   html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
+              //   for (var i = 0; i < result.length; i++) {
+              //     html += "<p><li>"+result[i]['descripcion']+"</li></p>";
+              //   }
+              // }
+
+
+              // html += "</ul></div>";
+
+              // $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
+              // $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
+
+              // $("#modal_reactivos_title").empty();
+              // $("#modal_reactivos_title").html("Contenido temático: "+nombre);
+
+              // $("#modal_visor_reactivos").modal("show");
 
           })
           .fail(function(e) {
@@ -745,7 +782,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
                                }
                            }
                        }
@@ -888,7 +925,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
                                }
                            }
                        }
@@ -924,3 +961,52 @@ function Graficasm(){
           }
 
       }// graficoplanea_ud_ms_mate()
+
+
+       Graficasm.prototype.argumento_reactivo = function(){
+        // alert("entro");
+         window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+
+      }
+      Graficasm.prototype.especificacion_reactivo = function(){
+          // alert("entro1");
+          window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+      }
+
+      Graficasm.prototype.apoyosacadem = function(){
+          swal.close();
+
+
+          var html = "<div style='text-align:left !important;'><ul>";
+            html += "<table class='table table-condensed'>";
+            html += "<tbody>";
+              html += "    <tr>";
+              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
+              html += "      <td>Ofrece conocimiento para mejorar tu calidad de vida:</td>";
+              html += "    </tr>";
+              html += "    <tr class='bgcolor-6'>";
+              html += "      <td></td>";
+              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
+              html += "    </tr>";
+
+              html += "    <tr>";
+              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
+              html += "      <td>Contenido y recursos creados por expertos para cada meteria y nivel:</td>";
+              html += "    </tr>";
+              html += "    <tr class='bgcolor-6'>";
+              html += "      <td></td>";
+              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></td>";
+              html += "    </tr>";
+            html += "</tbody>";
+            html += "</table>";
+
+          html += "</div>";
+
+          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
+          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+
+          $("#modal_apoyos_academ_title").empty();
+          $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
+
+          $("#modal_visor_apoyos_academ").modal("show");
+      }

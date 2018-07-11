@@ -94,6 +94,9 @@ class Planea extends CI_Controller {
 		}
 
 		public function planea_xcont_xmunicipio(){
+			// echo "<pre>";
+			// print_r($_POST);
+			// die();
 			$id_contenido = $this->input->post("id_cont");
 		    $id_zona_municipio = $this->input->post("id_xzona_o_municipio");
 		    $id_perioso = $this->input->post("periodo");
