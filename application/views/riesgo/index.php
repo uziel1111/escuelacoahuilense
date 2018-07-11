@@ -14,15 +14,19 @@
         margin-top: 10px;
       }
     </style>
-  </head>
-  <body>
     <!-- BUSCADOR IMPLEMENTADO EN OTRA VISTA -->
-    <div class="container">
-      <div class="row">
+    <section class="main-area">
           <?=$buscador;?>
-      </div>
+      <div class="container">
+         <div class="card mb-3 card-style-1 mt-3">
+            <div class="card-header card-1-header bgcolor-2 text-white">Resultados de búsqueda</div>
+                <div class="card-body">
       <div id="dv_graf_riesgo_mun_zona"></div>
       <div id="dv_tabla_riesgo_mun_zona"></div>
       <div id="dv_tab_riesgo_mun_zona"></div>
       <div id="dv_tablam_riesgo_mun_zona"></div>
+            </div><!-- card-body -->                          
+        </div>  
+
     </div>
+    </section>
