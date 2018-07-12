@@ -63,12 +63,19 @@
 
  		<div class="row">
                     <div class="col-12 text-center">
-                    <div class="btn-group" role="group" aria-label="Indicadores">
+                    <div class="btn-group d-none d-sm-block" role="group" aria-label="Indicadores">
                       <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_asist"><span class="fz-30"><i class="material-icons">done_all</i></span><br><span class="h3 color-6">Asistencia</span></button>
-                      <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_perma"><span class="fz-30"><i class="material-icons">timeline</i></span><br><span class="h3 color-6">Permanencia</span></button>
+                      <button type="button" class="btn btn-info btn-style-1" id="btn_info_perma"><span class="fz-30"><i class="material-icons">timeline</i></span><br><span class="h3 color-6">Permanencia</span></button>
                       <button type="button" class="btn btn-secondary btn-style-1" id="btn_info_aprendiz"><span class="fz-30"><i class="material-icons">school</i></span><br><span class="h3 color-6">Aprendizaje</span></button>
                     </div>
+
+                    <div class="btn-group-vertical d-block d-sm-none" role="group" aria-label="Indicadores">
+                      <button type="button" class="btn btn-secondary btn-style-1 m-0" id="btn_info_asist"><span class="fz-30"><i class="material-icons">done_all</i></span><br><span class="h3 color-6">Asistencia</span></button>
+                      <button type="button" class="btn btn-info btn-style-1 m-0" id="btn_info_perma"><span class="fz-30"><i class="material-icons">timeline</i></span><br><span class="h3 color-6">Permanencia</span></button>
+                      <button type="button" class="btn btn-secondary btn-style-1 m-0" id="btn_info_aprendiz"><span class="fz-30"><i class="material-icons">school</i></span><br><span class="h3 color-6">Aprendizaje</span></button>
+                    </div>                        
                    </div>
+                    
 		</div>
 
 
@@ -491,6 +498,7 @@
 </div>
 
 </section>
+
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
