@@ -1232,7 +1232,7 @@ td, th {
   -moz-align-items: center;
   align-items: center;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .default-header nav .main-menu {
     display: none;
   }
@@ -1257,8 +1257,13 @@ td, th {
   display: none;
   font-size: 36px;
   color: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px; 
+    margin-top: -27px;
+
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .default-header .main-menu {
     -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
@@ -1266,14 +1271,25 @@ td, th {
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    position: absolute;
-    top: 40px;
+    position: fixed;
+    width: 100%;
+    top: 84px;
     right: 0;
-    background: #4a4fad;
-    padding: 30px 20px;
+    background: rgba(0, 0, 0, 0.91);
+  -webkit-box-shadow:0px 0px 1px 0 #6d6d6d ;
+  -moz-box-shadow:0px 0px 1px 0 #6d6d6d ;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);    
   }
-  .default-header .main-menu a {
-    margin: 5px 20px !important;
+  .default-header .main-menu li.dropdown{
+    list-style-type: circle !important; 
+    list-style-position: outside;   
+    padding: 10px 0 10px 20px;
+    color: #fff !important;
+  }
+  .default-header .main-menu li.dropdown a {
+    font-size: 20px;  
+    color: #fff;
+    width: 100%;
   }
   .default-header .mobile-btn {
     display: block !important;
@@ -1282,6 +1298,83 @@ td, th {
     top: 0;
     right: 0;
   }
+/* Dropdown menu */
+.dropdown-menu {
+    min-width: 12rem;
+    padding: 0;
+    margin: -40px 0 70px 0 !important;
+    left: -25px !important;  
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    position: inherit !important; 
+    background: rgba(255, 255, 255, 0.8) !important;
+    background-clip: padding-box;
+    border-top: 0;
+     
+}
+.dropdown-menu:before {
+  position: absolute;
+  top: -11px;
+  right: 20px;
+  display: inline-block;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid #ccc;
+  border-left: 11px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+    -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; 
+}
+
+.dropdown-menu:after {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  display: inline-block;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ffffff;
+  border-left: 10px solid transparent;
+  content: '';
+  max-height: 200px;
+
+}
+.dropdown-menu a {
+    color: #000 !important;
+    padding: 20px 10px 20px 10px !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+}
+/* Dropdown border top colors */
+.ddm-color-1{
+    border-top: 4px solid #f22727;
+}
+.ddm-color-2{
+    border-top: 4px solid #7ea629;
+}
+.ddm-color-3{
+    border-top: 4px solid #f27304;
+}
+.ddm-color-4{
+    border-top: 4px solid #ff006c;
+}
+.ddm-color-5{
+    border-top: 4px solid #202020;
+}
+.ddm-color-6{
+    border-top: 4px solid #f7f7f7;
+}
+.dropdown-menu a{
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0 !important;
+    padding: 10px 20px 10px 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 }
 .sticky-header {
   padding: 15px 0;
@@ -1302,6 +1395,8 @@ td, th {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
 }
 /* Dropdown menu */
+@media (min-width: 991px) {
+
 .dropdown-menu {
     min-width: 12rem;
     padding: 0;
@@ -1316,6 +1411,7 @@ td, th {
     -moz-border-radius:0px 0px 20px 20px;
     -webkit-border-radius:0px 0px 20px 20px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+   
 }
 .dropdown-menu:before {
   position: absolute;
@@ -1327,6 +1423,7 @@ td, th {
   border-left: 11px solid transparent;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   content: '';
+ 
 }
 
 .dropdown-menu:after {
@@ -1377,6 +1474,7 @@ td, th {
     border-radius:0 0 20px 20px;
     -moz-border-radius:0 0 20px 20px;
     -webkit-border-radius:0 0 20px 20px;
+}
 }
 .footer-social {
   margin-right: -5px;
