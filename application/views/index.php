@@ -10,7 +10,7 @@
                                 </div>
                         </div>
                         <div class="row">
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                                         <div class="card main-boxes">
                                             <div class="card-header bgcolor-1">
                                                 <div class="icon color-6">
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                                         <div class="card main-boxes">
                                             <div class="card-header bgcolor-2">
                                                 <div class="icon color-6">
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                                         <div class="card main-boxes">
                                             <div class="card-header bgcolor-3">
                                                 <div class="icon color-6">
@@ -75,7 +75,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                                         <div class="card main-boxes">
                                             <div class="card-header bgcolor-4">
                                                 <div class="icon color-6">
