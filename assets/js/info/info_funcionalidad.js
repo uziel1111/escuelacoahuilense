@@ -575,9 +575,9 @@ Info_esc.prototype.get_riesgo2 =function(){
                 $("#dv_riesgotab_esc_pie").empty();
                 var html_tb_riego='';
                 html_tb_riego +='<div class="row">';
-                html_tb_riego +='  <div class="col-12 flex-center">';
-                html_tb_riego+='    <table id="tabla_pie_info" class="table table-style-1 table-striped table-hover no-margin">';
-                html_tb_riego+='      <thead class="bg-info">';
+                html_tb_riego +='  <div class="col-sm-6">';
+                html_tb_riego+='    <table id="tabla_pie_info" class="table table-gray table-hover">';
+                html_tb_riego+='      <thead>';
                 html_tb_riego+='        <tr>';
                 html_tb_riego+='          <th class="text-center">Total</th>';
                 html_tb_riego+='          <th class="text-center">Muy alto</th>';
@@ -596,8 +596,8 @@ Info_esc.prototype.get_riesgo2 =function(){
                 html_tb_riego+='        </tr>';
                 html_tb_riego+='      </tbody>';
                 html_tb_riego+='    </table>';
-                html_tb_riego+='</div>';
-            html_tb_riego+='</div><hr>';
+              html_tb_riego+='</div>';
+            html_tb_riego+='</div>';
 
 
             $("#dv_riesgotab_esc_pie").append(html_tb_riego);
