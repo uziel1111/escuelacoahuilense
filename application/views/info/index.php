@@ -484,6 +484,79 @@
                 </div>
                 <!-- End Modal -->
 
+								<!-- Modal Apoyos -->
+                <div class="modal fade" id="modal_visor_apoyos_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-4">
+                                <h5 class="modal-title text-white" id="exampleModalLabel">Texto / imagen complementario del reactivo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div_listalinks"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
+								<!-- Modal Apoyos -->
+                <div class="modal fade" id="modal_visor_pdfc2" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-2">
+                                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div_listalinks"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
+								<!-- Modal Apoyos -->
+                <div class="modal fade" id="modal_visor_pdfc3" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-3">
+                                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div_listalinks"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
+								<!-- Modal Apoyos -->
+                <div class="modal fade" id="modal_visor_material_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-4">
+                                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" id="md_close_iframe" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div_listalinks"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
+
 
 
 </div>
