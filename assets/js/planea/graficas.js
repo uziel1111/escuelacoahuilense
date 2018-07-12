@@ -615,7 +615,7 @@ function Graficasm(){
                 html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
+                html += "<div class='alert alert-warning' role='alert'>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</div>";
                 html += "<table class='table table-condensed'>";
                 html += "<tbody>";
                 for (var i = 0; i < result.length; i++) {
