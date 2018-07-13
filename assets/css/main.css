@@ -619,7 +619,28 @@ td, th {
 .section-full {
   padding: 130px 0;
 }
+.section-full .mainbox-area-title h1{
+  font-family: 'Fira Sans Condensed', sans-serif !important;
+  color: #222222;
+  line-height: 1.5em;
+  margin-bottom: 5px;
+  margin-top: 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-style: double; 
+  border-bottom: 5px double rgba(255, 255, 255, 0.3);
+  letter-spacing: 3px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.section-full .mainbox-area-title h2{
+  color: #222222;
+  line-height: 1.5em;
+  margin-bottom: 0;
+  margin-top: 0;
 
+}
 .section-half {
   padding: 75px 0;
 }
@@ -1232,6 +1253,11 @@ td, th {
   -moz-align-items: center;
   align-items: center;
 }
+@media (max-width: 576px) {
+  .logo {
+      margin-right: 80px;
+  }
+}
 @media (max-width: 991px) {
   .default-header nav .main-menu {
     display: none;
@@ -1382,7 +1408,7 @@ td, th {
   background:-o-linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
   background:-moz-linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
   background:linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
-
+  max-height: 85px;
 }
 
 .is-sticky .sticky-header {
@@ -1641,6 +1667,29 @@ font-size: 25px;
 
 .main-boxes:hover .icon span, .main-boxes:hover .desc h4, .main-boxes:hover .desc p {
   color: #fff;
+}
+/* CARD MAP */
+@media (max-width: 576px) {
+    .card-map{
+        top: 40px;
+        border:white !important;
+    }
+}
+
+.card-map{
+    background-color: transparent; 
+}
+.card-map .cardmap-body .card-title{
+  font-family: 'Fira Sans Condensed', sans-serif !important;   
+  color: #000;
+  font-size: 18px;
+  line-height: 1em;    
+}
+.card-map .cardmap-body .card-subtitle{
+  font-family: 'Fira Sans Condensed', sans-serif !important;   
+  color: #777777;
+  font-size: 16px;
+  line-height: 1.5em;    
 }
 
 .controls .filter {
