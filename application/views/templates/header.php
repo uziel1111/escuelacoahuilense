@@ -19,21 +19,22 @@
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <!-- CSS -->
-
+    <link href="<?= base_url('assets/css/main.css'); ?>" rel="stylesheet" media="screen"> 
     <link rel="stylesheet" href="<?= base_url('assets/css/linearicons.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
+     
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
 
-  <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/css/all.css') ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/src_up.css') ?>" rel="stylesheet" media="screen">
 
 
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
-
+<link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome5/css/all.css'); ?>">
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
   <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -63,7 +64,8 @@
                 <div class="container">
                     <div class="header-content d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="<?= base_url() ?>" class="smooth"><img src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+
                         </div>
                         <div class="right-bar d-flex align-items-center">
                             <nav class="d-flex align-items-center">

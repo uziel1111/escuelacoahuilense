@@ -17,6 +17,7 @@
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  z-index: 10000;
 }
 #return-to-top i {
   color: #fff;
@@ -29,6 +30,7 @@
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  z-index: 10000;
 }
 #return-to-top:hover {
   background: rgba(224,168,0, 0.9);

@@ -209,14 +209,35 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           oms.addMarker(marker);  // <-- here attempted to add markers
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
-	              var contentString = '<div class="container-fluid"><center>NOMBRE ESCUELA: <b style="font-size: 150%;">'+marcadores[i][0]+'</b><br>';
-	              contentString +='CCT: <b>'+marcadores[i][3]+'</b>, NIVEL: <b>'+marcadores[i][8]+'</b>, SOSTENIMIENTO: <b>'+marcadores[i][11]+'</b><br> ';
-	              contentString += 'LOCALIDAD: <b>'+marcadores[i][9]+'</b>, MUNICIPIO: <b>'+marcadores[i][5]+'<br></b> ';
-	              contentString += 'TURNO: <b>'+marcadores[i][6]+'</b>, ZONA: <b>'+marcadores[i][10]+'<br> <b style="font-size: 120%; color:red;"><b> ';
-	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_mismo_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del mismo nivel educativo</button></div></div> ';
-	              contentString += '<div class="row margintop"><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.cct_siguiente_nivel('+marcadores[i][7]+')">Localice 5 escuelas más cercanas del siguiente nivel educativo</button></div></div>';
-	              contentString += '<div class="row margintop" ><div class="col"><button class="btn btn-primary btn-sm" onclick="obj_mapa.get_info('+marcadores[i][7]+')">Conozca información relevante de esta escuela</button></div></div>';
-	              contentString += '</div>'
+	              var contentString = '<div class="card-map">';
+                      contentString +='<div class="cardmap-body">';
+                      contentString +='<h5 class="card-title fw-800">'+marcadores[i][0]+'</h5>';
+	              contentString +='<h6 class="card-subtitle mb-2 fw-800 text-muted">'+marcadores[i][3]+'</h6>';
+                      contentString +='<table class="table table-sm">';
+                      contentString +='<tbody>';
+                      contentString +='<tr>';
+                      contentString +='<td colspan="2"><span class="fw800" data-toggle="tooltip" data-placement="right" title="Municipio"><i class="fas fa-globe-americas"></i>: '+marcadores[i][5]+'</span></td>';                   
+                      contentString +='</tr>';
+                      contentString +='<tr>';
+                      contentString +='<td colspan="2"><span class="fw800" data-toggle="tooltip" data-placement="right" title="Localidad"><i class="fa fa-map-marker-alt"></i>: '+marcadores[i][9]+'</span></td>';                   
+                      contentString +='</tr>';                      
+                      contentString +='<tr>';
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Nivel"><i class="fa fa-chalkboard-teacher"></i>: '+marcadores[i][8]+'</span></td>';
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Sostenimiento"><i class="fa fa-hand-holding-usd"><span data-toggle="tooltip" data-placement="right" title="Municipio"></i>: '+marcadores[i][11]+'</span></td>';                     
+                      contentString +='</tr>';
+                      contentString +='<tr>';
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Turno"><i class="fa fa-clock"></i>: '+marcadores[i][6]+'</span></td>';
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Zona"><i class="fa fa-crosshairs"></i>: '+marcadores[i][10]+'</span></td>';                     
+                      contentString +='</tr>';                      
+                      contentString +='</tbody>';
+                      contentString +='</table>';
+                      contentString +='<p class="text-center">';                      
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_mismo_nivel('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del mismo nivel"><i class="far fa-clone"></i></button>'; 
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_siguiente_nivel('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del siguiente nivel"><i class="fa fa-share-square"></i></button>';
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
+                      contentString +='</p>';
+                      contentString +='</div>';                      
+                      contentString +='</div>';
 	              infowindow.setContent(contentString);
 	              infowindow.open(map, marker);
 	          }
