@@ -43,8 +43,8 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
                 <div class="footer-bottom d-flex justify-content-between align-items-center">
                     <p class="footer-text m-0">Copyright &copy; 2018  |  Algunos derechos reservados.</p>
                     <div class="footer-social d-flex align-items-center">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
