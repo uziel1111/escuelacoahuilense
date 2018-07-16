@@ -2626,7 +2626,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               html += "    <tr>";
               html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
               var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>CONCIENTE DE POTENCIAS CON LA MISA BASE</a></td>";
+              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>COCIENTE DE POTENCIAS CON LA MISA BASE</a></td>";
               html += "    </tr>";
             }
             else {
