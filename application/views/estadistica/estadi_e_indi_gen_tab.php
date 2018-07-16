@@ -29,7 +29,7 @@
                   'value' => 'true',
                   'type' => 'submit',
                   'class'=>'btn btn-primary btn-style-1 btn-block',
-                  'content' => '<i class="fa fa-file-excel-o"></i>',
+                  'content' => '<i class="fas fa-file-excel"></i>',
                   'data-toggle' => "tooltip",
                   'data-placement' => "top",
                   'title' => 'Exportar los resultados'
