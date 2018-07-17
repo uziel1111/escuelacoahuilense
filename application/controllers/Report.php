@@ -17,6 +17,7 @@ class Report extends CI_Controller {
 		$this->load->model('Inegixmuni_model');
 		$this->load->model('Supervision_model');
 		$this->load->model('Subsostenimiento_model');
+		$this->load->model('Indicadoresxmuni_model');
 
 		$this->style_encabezado = array(
 			'borders' => array(
@@ -162,6 +163,9 @@ class Report extends CI_Controller {
 				 array_push($result_planea, $result_planea_prim[0]);
 				 array_push($result_planea, $result_planea_sec[0]);
 				 array_push($result_planea, $result_planea_msuperior[0]);
+
+				 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
 
 				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
 				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
@@ -321,6 +325,52 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
 				$obj_excel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
 				$obj_excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Indicadores de Asistencia');
+				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':C'.$aux);
+				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':C'.$aux)->applyFromArray($this->style_titulo);
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'ciclo escolar 2017-2018');
+				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':C'.$aux);
+				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':C'.$aux)->applyFromArray($this->style_titulo);
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux.'', 'Nivel');
+				$obj_excel->getActiveSheet()->SetCellValue('B'.$aux.'', 'Cobertura');
+				$obj_excel->getActiveSheet()->SetCellValue('C'.$aux.'', 'Absorción');
+				$obj_excel->getActiveSheet()->getStyle('A'.($aux-1).':C'.$aux)->applyFromArray($this->style_encabezado);
+				$aux++;
+				foreach ($result_asistencia_nv as $row) {
+					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, ($row['cobertura']).'%' );
+					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, ($row['absorcion']).'%' );
+					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':C'.$aux)->applyFromArray($this->style_contenido);
+					$aux++;
+				}
+
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Indicadores de Permanencia');
+				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':D'.$aux);
+				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':D'.$aux)->applyFromArray($this->style_titulo);
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'ciclo escolar 2016-2017');
+				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':D'.$aux);
+				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':D'.$aux)->applyFromArray($this->style_titulo);
+				$aux++;
+				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux.'', 'Nivel');
+				$obj_excel->getActiveSheet()->SetCellValue('B'.$aux.'', 'Retención');
+				$obj_excel->getActiveSheet()->SetCellValue('C'.$aux.'', 'Aprobación');
+				$obj_excel->getActiveSheet()->SetCellValue('D'.$aux.'', 'Eficiencia Terminal');
+				$obj_excel->getActiveSheet()->getStyle('A'.($aux-1).':D'.$aux)->applyFromArray($this->style_encabezado);
+				$aux++;
+				foreach ($result_permanencia_nv as $row) {
+					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, ($row['retencion']).'%' );
+					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, ($row['aprobacion']).'%' );
+					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, ($row['et']).'%' );
+					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':D'.$aux)->applyFromArray($this->style_contenido);
+					$aux++;
+				}
 
 				$aux++;
 				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Indicadores de aprendizaje');

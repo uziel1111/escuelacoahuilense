@@ -80,8 +80,8 @@
 
 
 <div hidden id="dv_info_asistencia" class="container mt-3">
-    <div id="accordion" class="accordion-style-1">
-        <div class="card-accordion-style-1">
+    <div id="accordion" class="accordion-style-1 mb-3">
+        <div class="card-accordion-style-1 mb-3">
             <div class="accordion-style-1-header" id="estadEsc">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#est_alum_doc_grup" aria-expanded="true" aria-controls="est_alum_doc_grup">
                     <i class="fa fa-chevron-down pull-right"></i>
@@ -108,6 +108,44 @@
                 </div>
             </div>
         </div>
+
+				<div class="card-accordion-style-1 mb-3">
+            <div class="accordion-style-1-header" id="indiasis">
+                <a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_asisten" aria-expanded="true" aria-controls="indicadores_asisten">
+                    <i class="fa fa-chevron-down pull-right"></i>
+                    Indicadores de Asistencia
+                </a>
+            </div>
+            <div id="indicadores_asisten" class="collapse" aria-labelledby="indiasis" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div id="dv_info_graf_Cobertura"></div>
+														<center>
+				                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Cobertura
+				                        <span class='tooltiptext2'><p>Porcentaje de alumnos en edades idóneas o típica para cursar educación básica, media superior y superior, inscritos en el nivel o tipo educativo correspondiente al inicio del ciclo escolar, por cada cien personas de la población en esas edades.
+</p><i>- (INEE)</i></span>
+				                      </div>
+			                      </center>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <!-- <div id="dv_info_graf_docen"></div> -->
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div id="dv_info_graf_Absorcion"></div>
+														<center>
+				                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Absorción
+				                        <span class='tooltiptext2'><p>Porcentaje de alumnos de nuevo ingreso al primer grado de secundaria, media superior o superior en un determinado ciclo escolar por cada cien egresados del nivel educativo precedente del ciclo escolar previo.</p><i>- (INEE)</i></span>
+				                      </div>
+			                      </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?php if ($nivel=="PRIMARIA" || $nivel=="SECUNDARIA"): ?>
@@ -120,7 +158,7 @@
 	    $arr_bimestres['5'] = '5to BIMESTRE';
 	    $arr_ciclos['2017-2018'] = '2017-2018'; ?>
 	    <div id="accordion" class="accordion-style-1">
-	        <div class="card-accordion-style-1" class="accordion-style-1">
+	        <div class="card-accordion-style-1 mb-3" class="accordion-style-1">
 	            <div class="accordion-style-1-header" id="chriesgo">
 	                <a class="collapsed d-block" data-toggle="collapse" data-target="#riesgo_esc" aria-expanded="true" aria-controls="riesgo_esc">
 	                    <i class="fa fa-chevron-down pull-right"></i>
@@ -167,6 +205,50 @@
 	                </div>
 	            </div>
 
+	        </div>
+
+					<div class="card-accordion-style-1 mb-3">
+	            <div class="accordion-style-1-header" id="indiperma">
+	                <a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_permanen" aria-expanded="true" aria-controls="indicadores_permanen">
+	                    <i class="fa fa-chevron-down pull-right"></i>
+	                    Indicadores de Permanencia
+	                </a>
+	            </div>
+	            <div id="indicadores_permanen" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
+	                <div class="card-body">
+	                    <div class="row">
+	                        <div class="col-sm-4">
+	                            <div id="dv_info_graf_Retencion"></div>
+															<center>
+					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Retención
+					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que permanecen en la escuela entre ciclos escolares consecutivos antes de concluir el nivel educativo de referencia, por cada cien alumnos matriculados al inicio del ciclo escolar.
+	</p><i>- (INEE)</i></span>
+					                      </div>
+				                      </center>
+	                        </div>
+
+	                        <div class="col-sm-4">
+	                            <div id="dv_info_graf_Aprobacion"></div>
+															<center>
+					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Aprobación
+					                        <span class='tooltiptext2'><p>Porcentaje de alumnos aprobados de un determinado grado, por cada cien alumnos que están matriculados al final del ciclo escolar.
+	</p><i>- (INEE)</i></span>
+					                      </div>
+				                      </center>
+	                        </div>
+
+	                        <div class="col-sm-4">
+	                            <div id="dv_info_graf_Eficiencia_Terminal"></div>
+															<center>
+					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal
+					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión. 
+	</p><i>- (INEE)</i></span>
+					                      </div>
+				                      </center>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
 	        </div>
 
 	    </div>

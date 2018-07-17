@@ -629,4 +629,37 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     // echo $str; die();
     return  $this->db->get()->result_array();
   }//get_ngrupos_xesc()
+
+  function get_ind_asistenciaxcct($id_cct,$id_ciclo,$id_corte){
+
+    $this->db->select('cobertura, absorcion');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_ciclo', $id_ciclo);
+    $this->db->where('id_corte', $id_corte);
+    return  $this->db->get()->result_array();
+  }// get_ind_asistenciaxcct
+
+  function get_ind_permananciaxcct($id_cct,$id_ciclo,$id_corte){
+
+    $this->db->select('retencion,aprobacion, et');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_ciclo', $id_ciclo);
+    $this->db->where('id_corte', $id_corte);
+    return  $this->db->get()->result_array();
+  }// get_ind_asistenciaxcct
+
+  function get_ind_efixcct($id_cct,$id_ciclo,$id_corte){
+
+    $this->db->select('et');
+    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->where('id_cct', $id_cct);
+    $this->db->where('id_ciclo', $id_ciclo);
+    $this->db->where('id_corte', $id_corte);
+    return  $this->db->get()->result_array();
+  }// get_ind_efixcct
+
+
+
 }

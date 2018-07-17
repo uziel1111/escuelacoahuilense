@@ -12,6 +12,14 @@ class Ciclo_model extends CI_Model
             return  $this->db->get()->result_array();
     }// all()
 
+    function ciclo_est_e_ind(){
+      $this->db->select('id_ciclo, ciclo');
+      $this->db->from('ciclo');
+      $this->db->order_by("id_ciclo", "desc");
+      $this->db->where('id_ciclo', 2);
+            return  $this->db->get()->result_array();
+    }// all()
+
     function getciclo_xidmun_idnivel_xsost_idmod($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad){
       $this->db->select('ci.id_ciclo, ci.ciclo');
       $this->db->from('ciclo ci');
@@ -55,7 +63,9 @@ class Ciclo_model extends CI_Model
       if($id_zona>0){
         $this->db->where('es.id_supervision', $id_zona);
       }
+      $this->db->where('ci.id_ciclo', 2);
       $this->db->group_by(" ci.id_ciclo");
+
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();

@@ -171,6 +171,60 @@ class Info extends CI_Controller {
 		exit;
 	}
 
+	public function info_indica_asis(){
+		$id_cct = $this->input->post("id_cct");
+		$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,1);
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'indica_asisten'=>$indica_asisten
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_indica_perma(){
+		$id_cct = $this->input->post("id_cct");
+		$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,1);
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'indica_perma'=>$indica_perma
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_ete(){
+		$id_cct = $this->input->post("id_cct");
+		$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,1);
+		$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2016);
+
+		if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
+			$ete = $indica_planea_superai[0]['mat'];
+		}
+		else {
+			$ete = $indica_planea_superai[0]['lyc'];
+		}
+
+		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		$response = array(
+			'id_cct'=>$id_cct,
+			'nivel'=>$nivel,
+			'ete'=>$ete
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 	public function info_plaea_graf(){
 		$id_cct = $this->input->post("id_cct");
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);

@@ -973,9 +973,8 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
       }
     }
 
-    HaceGraficas.prototype.DibujarRadialProgressBarET = function(){
+    HaceGraficas.prototype.DibujarRadialProgressBarET = function(valor_et){
       // Dibujamos el radial progress bar para Eficiencia Terminal
-      var valor_et=80;
       var bar = new ProgressBar.Circle(containerRPB03ete, {
         color: '#888888',
         // This has to be the same size as the maximum width to
@@ -1018,6 +1017,241 @@ HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_d
       bar.text.style.fontSize = '2rem';
 
       bar.animate(Math.min(valor_et/100, 1));  // Number from 0.0 to 1.0
+    }
+
+    HaceGraficas.prototype.DibujarRadialProgressBarcobertura = function(cobertura){
+      // Dibujamos el radial progress bar para cobertura
+      // var valor_et=80;
+      var bar = new ProgressBar.Circle(dv_info_graf_Cobertura, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(cobertura+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(cobertura/100, 1));  // Number from 0.0 to 1.0
+    }
+
+    HaceGraficas.prototype.DibujarRadialProgressBarabsorcion = function(absorcion){
+      // Dibujamos el radial progress bar para cobertura
+      // var valor_et=80;
+      var bar = new ProgressBar.Circle(dv_info_graf_Absorcion, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(absorcion+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(absorcion/100, 1));  // Number from 0.0 to 1.0
+    }
+
+    HaceGraficas.prototype.DibujarRadialProgressBarretencion = function(varix){
+      // Dibujamos el radial progress bar para cobertura
+      // var valor_et=80;
+      var bar = new ProgressBar.Circle(dv_info_graf_Retencion, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(varix+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(varix/100, 1));  // Number from 0.0 to 1.0
+    }
+
+    HaceGraficas.prototype.DibujarRadialProgressBaraprobacion = function(varix){
+      // Dibujamos el radial progress bar para cobertura
+      // var valor_et=80;
+      var bar = new ProgressBar.Circle(dv_info_graf_Aprobacion, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(varix+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(varix/100, 1));  // Number from 0.0 to 1.0
+    }
+
+    HaceGraficas.prototype.DibujarRadialProgressBaraefi = function(varix){
+      // Dibujamos el radial progress bar para cobertura
+      // var valor_et=80;
+      var bar = new ProgressBar.Circle(dv_info_graf_Eficiencia_Terminal, {
+        color: '#888888',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 8,
+        trailWidth: 5,
+        easing: 'easeInOut',
+        duration: 7400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: { color: '#D6DADC', width: 5 },
+        to: { color: '#ECC462', width: 8 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+
+          if(circle.value()==1.0){
+            var value = Math.round(circle.value() * 100);
+          }
+          else {
+            var value = circle.value() * 100;
+          value = value.toFixed(2);
+          }
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            if (value>1) {
+              circle.setText(varix+'%');
+            }
+            else {
+              circle.setText(value+'%');
+            }
+          }
+
+        }
+      });
+      bar.text.style.fontFamily = '"Arial", Helvetica, sans-serif';
+      bar.text.style.fontSize = '2rem';
+
+      bar.animate(Math.min(varix/100, 1));  // Number from 0.0 to 1.0
     }
 
 
