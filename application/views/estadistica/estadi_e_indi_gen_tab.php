@@ -69,6 +69,20 @@
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de Asistencia</div>
+            <div class="card-body">
+              <div class="table-responsive"><?= $srt_tab_in_asis?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
+            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de Permanencia</div>
+            <div class="card-body">
+              <div class="table-responsive"><?= $srt_tab_in_perm?>  </div>
+            </div><!-- card-body -->
+          </div><!-- card -->
+
+          <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de aprendizaje</div>
             <div class="card-body">
               <div class="table-responsive"><?= $srt_tab_planea?>  </div>

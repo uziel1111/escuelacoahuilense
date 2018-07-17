@@ -10,16 +10,19 @@ function Info_esc(){
 $("#btn_info_asist").click(function(e){
               e.preventDefault();
               obj_info.get_alumn_doc_grup();
+              obj_info.get_indica_asist();
 
             });
 $("#btn_info_perma").click(function(e){
               e.preventDefault();
               obj_info.get_riesgo();
+              obj_info.get_indica_perma();
 
             });
 $("#btn_info_aprendiz").click(function(e){
               e.preventDefault();
               obj_info.get_planea();
+              obj_info.get_ete();
               // alert("entramos");
 
             });
@@ -101,6 +104,75 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 									break;
 
 								}
+
+
+				      })
+				      .fail(function(e) {
+				        console.error("Error in "); console.table(e);
+				      })
+				      .always(function() {
+							swal.close();
+						});
+},
+
+Info_esc.prototype.get_indica_asist =function(){
+            $("#dv_info_graf_Cobertura").empty();
+            $("#dv_info_graf_Absorcion").empty();
+						let id_cct = $("#in_id_cct").val();
+							$.ajax({
+				        url:  base_url+"info/info_indica_asis",
+				        method: 'POST',
+				        data: {'id_cct':id_cct},
+				        beforeSend: function(xhr) {
+				        	Notification.loading("");
+					  	},
+				      })
+				      .done(function( data ) {
+							let nivel = data.nivel;
+							if (data.indica_asisten.length>0) {
+						    var a_cob =  (data.indica_asisten[0]['cobertura']);//5;
+						    var a_abs =  (data.indica_asisten[0]['absorcion']);//5;
+                graf.DibujarRadialProgressBarcobertura(a_cob);
+                graf.DibujarRadialProgressBarabsorcion(a_abs);
+                }
+
+
+
+				      })
+				      .fail(function(e) {
+				        console.error("Error in "); console.table(e);
+				      })
+				      .always(function() {
+							swal.close();
+						});
+},
+
+Info_esc.prototype.get_indica_perma =function(){
+            $("#dv_info_graf_Retencion").empty();
+            $("#dv_info_graf_Aprobacion").empty();
+            $("#dv_info_graf_Eficiencia_Terminal").empty();
+						let id_cct = $("#in_id_cct").val();
+							$.ajax({
+				        url:  base_url+"info/info_indica_perma",
+				        method: 'POST',
+				        data: {'id_cct':id_cct},
+				        beforeSend: function(xhr) {
+				        	Notification.loading("");
+					  	},
+				      })
+				      .done(function( data ) {
+							let nivel = data.nivel;
+							if (data.indica_perma.length>0) {
+						    var a_ret =  (data.indica_perma[0]['retencion']);//5;
+						    var a_apr =  (data.indica_perma[0]['aprobacion']);//5;
+                var a_efi =  (data.indica_perma[0]['et']);//5;
+
+                graf.DibujarRadialProgressBarretencion(a_ret);
+                graf.DibujarRadialProgressBaraprobacion(a_apr);
+                graf.DibujarRadialProgressBaraefi(a_efi);
+                }
+
+
 
 
 				      })
@@ -453,8 +525,39 @@ Info_esc.prototype.get_planea =function(){
 
 
 								}
-                $("#containerRPB03ete").empty();
-                graf.DibujarRadialProgressBarET();
+
+
+							})
+							.fail(function(e) {
+								console.error("Error in "); console.table(e);
+							})
+							.always(function() {
+							swal.close();
+						});
+},
+
+Info_esc.prototype.get_ete =function(){
+	// alert("Entramos");
+            $("#containerRPB03ete").empty();
+							let id_cct = $("#in_id_cct").val();
+							$.ajax({
+								url:  base_url+"info/info_ete",
+								method: 'POST',
+								data: {'id_cct':id_cct},
+								beforeSend: function(xhr) {
+							        Notification.loading("");
+							    },
+							})
+							.done(function( data ) {
+								let nivel = data.nivel;
+                
+								if (data.ete.length>0) {
+								var a_ete  = (data.ete);
+                graf.DibujarRadialProgressBarET(a_ete);
+							}
+
+
+
 
 							})
 							.fail(function(e) {

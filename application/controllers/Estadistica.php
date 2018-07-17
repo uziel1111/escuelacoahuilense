@@ -17,6 +17,7 @@ class Estadistica extends CI_Controller {
 			$this->load->model('Inegixmuni_model');
 			$this->load->model('Supervision_model');
 			$this->load->model('Subsostenimiento_model');
+			$this->load->model('Indicadoresxmuni_model');
 
 		}
 
@@ -78,7 +79,7 @@ class Estadistica extends CI_Controller {
 				}
 			}
 
-			$result_ciclo = $this->Ciclo_model->all();
+			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			if(count($result_ciclo)==0){
 				$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
 			}else{
@@ -260,6 +261,8 @@ class Estadistica extends CI_Controller {
 			$data["srt_tab_alumnos"] = $this->tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_pdocentes"] = $this->tabla_pdocentes($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_infraestructura"] = $this->tabla_infraestructura($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
+			$data["srt_tab_in_asis"] = $this->tabla_asistencia($id_municipio, $id_ciclo);
+			$data["srt_tab_in_perm"] = $this->tabla_permanencia($id_municipio, $id_ciclo);
 			$data["srt_tab_planea"] = $this->tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_rezag_inegi"] = $this->tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_analf_inegi"] = $this->tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
@@ -750,6 +753,75 @@ class Estadistica extends CI_Controller {
 
 			return $str_html_alumn;
 		}//tabla_planea()
+
+		function tabla_asistencia($id_municipio, $id_ciclo){
+			$result_asistencia = array();
+			 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+							<thead class="bg-info">
+							<tr>
+							<th class="text-center align-middle">Nivel</th>
+							<th class="text-center align-middle">Cobertura</th>
+							<th class="text-center align-middle">Absorción</th>
+							</tr>
+				</thead>
+				<tbody>';
+				// echo "<pre>";print_r($result_asistencia_nv);die();
+
+			foreach ($result_asistencia_nv as $row){
+
+				$str_html_alumn.='
+				<tr>
+				<td>'.$row['nivel'].'</td>
+				<td style="text-align: center;">'.($row['cobertura']).'%</td>
+				<td style="text-align: center;">'.($row['absorcion']).'%</td>
+				</tr>';
+			}
+			$str_html_alumn.='</tbody>
+								</table>
+
+								<div class="pie_tabla">
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911- ciclo escolar 2017-2018</div>
+								</div>';
+
+			return $str_html_alumn;
+		}//tabla_asistencia()
+
+		function tabla_permanencia($id_municipio, $id_ciclo){
+			$result_planea = array();
+			$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+
+			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
+							<thead class="bg-info">
+							<tr>
+								<th class="text-center align-middle">Nivel</th>
+								<th class="text-center align-middle">Retención</th>
+								<th class="text-center align-middle">Aprobación</th>
+								<th class="text-center align-middle">Eficiencia Terminal</th>
+							</tr>
+				</thead>
+				<tbody>';
+
+			foreach ($result_permanencia_nv as $row){
+
+				$str_html_alumn.='
+				<tr>
+				<td>'.$row['nivel'].'</td>
+				<td style="text-align: center;">'.($row['retencion']).'%</td>
+				<td style="text-align: center;">'.($row['aprobacion']).'%</td>
+				<td style="text-align: center;">'.($row['et']).'%</td>
+				</tr>';
+			}
+			$str_html_alumn.='</tbody>
+								</table>
+
+								<div class="pie_tabla">
+												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911- ciclo escolar 2016-2017</div>
+								</div>';
+
+			return $str_html_alumn;
+		}//tabla_permanencia()
 
 
 
