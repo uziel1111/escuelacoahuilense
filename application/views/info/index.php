@@ -118,7 +118,9 @@
             </div>
             <div id="indicadores_asisten" class="collapse" aria-labelledby="indiasis" data-parent="#accordion">
                 <div class="card-body">
+									<center><p id="lb_ind_asisten"></p></center>
                     <div class="row">
+
                         <div class="col-sm-4">
                             <div id="dv_info_graf_Cobertura"></div>
 														<center>
@@ -148,7 +150,7 @@
         </div>
     </div>
 </div>
-<?php if ($nivel=="PRIMARIA" || $nivel=="SECUNDARIA"): ?>
+
 	<div hidden id="dv_info_permanencia" class="container mt-3">
 	    <?php
 	    $arr_bimestres['1'] = '1er BIMESTRE';
@@ -157,7 +159,9 @@
 	    $arr_bimestres['4'] = '4to BIMESTRE';
 	    $arr_bimestres['5'] = '5to BIMESTRE';
 	    $arr_ciclos['2017-2018'] = '2017-2018'; ?>
+
 	    <div id="accordion" class="accordion-style-1">
+				<?php if ($nivel=="PRIMARIA" || $nivel=="SECUNDARIA"): ?>
 	        <div class="card-accordion-style-1 mb-3" class="accordion-style-1">
 	            <div class="accordion-style-1-header" id="chriesgo">
 	                <a class="collapsed d-block" data-toggle="collapse" data-target="#riesgo_esc" aria-expanded="true" aria-controls="riesgo_esc">
@@ -195,7 +199,7 @@
 						</div>
 				</div>
 
-				<div class="row">
+				<div class="row" hidden id="dv_barras_muyaltor">
 						<div class="col">
 							<div id="dv_riesgo_esc_bar"></div>
 							<div class="table-responsive" id="dv_riesgtab_esc_bar"></div>
@@ -206,6 +210,7 @@
 	            </div>
 
 	        </div>
+					<?php endif; ?>
 
 					<div class="card-accordion-style-1 mb-3">
 	            <div class="accordion-style-1-header" id="indiperma">
@@ -216,6 +221,7 @@
 	            </div>
 	            <div id="indicadores_permanen" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
 	                <div class="card-body">
+										<center><p id="lb_ind_perma"></p></center>
 	                    <div class="row">
 	                        <div class="col-sm-4">
 	                            <div id="dv_info_graf_Retencion"></div>
@@ -241,7 +247,7 @@
 	                            <div id="dv_info_graf_Eficiencia_Terminal"></div>
 															<center>
 					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal
-					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión. 
+					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión.
 	</p><i>- (INEE)</i></span>
 					                      </div>
 				                      </center>
@@ -255,7 +261,7 @@
 
 
 	</div>
-<?php endif; ?>
+
 
 <div hidden id="dv_info_aprendizaje" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
@@ -526,6 +532,8 @@
                       	</div>
                       <div class='col-sm-4'></div>
 									 </div>
+									 <center><p id="lb_ind_efi"></p></center>
+									 <center><p id="lb_ind_planea"></p></center>
 							 </div>
 					 </div>
 			 </div>

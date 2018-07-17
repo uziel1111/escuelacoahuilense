@@ -120,7 +120,7 @@ GraficasRiesgo.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 GraficasRiesgo.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 
         Highcharts.theme = {
-            colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
+            colors: ['#FF0000','#228B22','#696969','#8B008B','#228B22','#DAA520',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {
                 backgroundColor: {
@@ -234,7 +234,7 @@ GraficasRiesgo.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6)
 GraficasRiesgo.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
         Highcharts.theme = {
-            colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
+            colors: ['#FF0000','#228B22','#696969','#8B008B','#228B22','#DAA520',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {
                 backgroundColor: {

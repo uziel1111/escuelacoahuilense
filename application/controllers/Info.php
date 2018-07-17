@@ -173,8 +173,14 @@ class Info extends CI_Controller {
 
 	public function info_indica_asis(){
 		$id_cct = $this->input->post("id_cct");
-		$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,1);
+
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+		if ($nivel == '4') {
+			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,3);
+		}
+		elseif ($nivel == '5' || $nivel == '6') {
+			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,1);
+		}
 
 		$response = array(
 			'id_cct'=>$id_cct,
@@ -188,8 +194,15 @@ class Info extends CI_Controller {
 
 	public function info_indica_perma(){
 		$id_cct = $this->input->post("id_cct");
-		$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,1);
+
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
+		if ($nivel == '4') {
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,3);
+		}
+		elseif ($nivel == '5' || $nivel == '6') {
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,1);
+		}
 
 		$response = array(
 			'id_cct'=>$id_cct,
@@ -203,17 +216,24 @@ class Info extends CI_Controller {
 
 	public function info_ete(){
 		$id_cct = $this->input->post("id_cct");
-		$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,1);
-		$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2016);
-
-		if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
-			$ete = $indica_planea_superai[0]['mat'];
-		}
-		else {
-			$ete = $indica_planea_superai[0]['lyc'];
-		}
 
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+		if ($nivel == '4') {
+			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,3);
+			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2016);
+		}
+		elseif ($nivel == '5' || $nivel == '6') {
+			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,1);
+			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2017);
+		}
+
+
+		if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
+			$ete = round(($indica_planea_superai[0]['mat']*100)/(($indica_efi[0]['et'])),2);
+		}
+		else {
+			$ete = round(($indica_planea_superai[0]['lyc']*100)/(($indica_efi[0]['et'])),2);
+		}
 
 		$response = array(
 			'id_cct'=>$id_cct,

@@ -1593,7 +1593,7 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
 HaceGraficas.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 
         Highcharts.theme = {
-            colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
+            colors: ['#FF0000','#228B22','#696969','#8B008B','#228B22','#DAA520',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {
                 backgroundColor: {
@@ -1707,7 +1707,7 @@ HaceGraficas.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
         Highcharts.theme = {
-            colors: ['#DAA520','#228B22','#696969','#8B008B','#228B22','#DAA520',
+            colors: ['#FF0000','#228B22','#696969','#8B008B','#228B22','#DAA520',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {
                 backgroundColor: {

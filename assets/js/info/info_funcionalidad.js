@@ -118,6 +118,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 Info_esc.prototype.get_indica_asist =function(){
             $("#dv_info_graf_Cobertura").empty();
             $("#dv_info_graf_Absorcion").empty();
+            $("#lb_ind_asisten").empty();
 						let id_cct = $("#in_id_cct").val();
 							$.ajax({
 				        url:  base_url+"info/info_indica_asis",
@@ -129,6 +130,12 @@ Info_esc.prototype.get_indica_asist =function(){
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
+              if (nivel=='4') {
+                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2015-2016");
+              }
+              else if (nivel=='5' || nivel=='6') {
+                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2016-2017");
+              }
 							if (data.indica_asisten.length>0) {
 						    var a_cob =  (data.indica_asisten[0]['cobertura']);//5;
 						    var a_abs =  (data.indica_asisten[0]['absorcion']);//5;
@@ -151,6 +158,7 @@ Info_esc.prototype.get_indica_perma =function(){
             $("#dv_info_graf_Retencion").empty();
             $("#dv_info_graf_Aprobacion").empty();
             $("#dv_info_graf_Eficiencia_Terminal").empty();
+            $("#lb_ind_perma").empty();
 						let id_cct = $("#in_id_cct").val();
 							$.ajax({
 				        url:  base_url+"info/info_indica_perma",
@@ -162,6 +170,12 @@ Info_esc.prototype.get_indica_perma =function(){
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
+              if (nivel=='4') {
+                $("#lb_ind_perma").text("Ciclo escolar: FIN- 2015-2016");
+              }
+              else if (nivel=='5' || nivel=='6') {
+                $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
+              }
 							if (data.indica_perma.length>0) {
 						    var a_ret =  (data.indica_perma[0]['retencion']);//5;
 						    var a_apr =  (data.indica_perma[0]['aprobacion']);//5;
@@ -216,6 +230,12 @@ Info_esc.prototype.get_riesgo =function(){
 								var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
 								var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
               }
+              if (q1==0) {
+                $("#dv_barras_muyaltor").attr('hidden',true);
+              }
+              else {
+                $("#dv_barras_muyaltor").removeAttr('hidden');
+              }
 
 								switch(nivel) {
 
@@ -224,6 +244,7 @@ Info_esc.prototype.get_riesgo =function(){
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
+
 													grafr.TablaPieGraficaBarPrimaria(t1,t2,t3,t4,t5,t6);
                           $("#dv_riesgtab_esc_bar").empty();
                           var html_tbm_riego='';
@@ -539,6 +560,8 @@ Info_esc.prototype.get_planea =function(){
 Info_esc.prototype.get_ete =function(){
 	// alert("Entramos");
             $("#containerRPB03ete").empty();
+            $("#lb_ind_efi").empty();
+            $("#lb_ind_planea").empty();
 							let id_cct = $("#in_id_cct").val();
 							$.ajax({
 								url:  base_url+"info/info_ete",
@@ -550,9 +573,17 @@ Info_esc.prototype.get_ete =function(){
 							})
 							.done(function( data ) {
 								let nivel = data.nivel;
-                
-								if (data.ete.length>0) {
+                if (nivel=='4') {
+                  $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2015-2016");
+                  $("#lb_ind_planea").text("PLANEA 2016");
+                }
+                else if (nivel=='5' || nivel=='6') {
+                  $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2016-2017");
+                  $("#lb_ind_planea").text("PLANEA 2017");
+                }
+								if (data.ete>0) {
 								var a_ete  = (data.ete);
+
                 graf.DibujarRadialProgressBarET(a_ete);
 							}
 
@@ -596,12 +627,19 @@ Info_esc.prototype.get_riesgo2 =function(){
 								var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
 								var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
 								var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+                if (q1==0) {
+                  $("#dv_barras_muyaltor").attr('hidden',true);
+                }
+                else {
+                  $("#dv_barras_muyaltor").removeAttr('hidden');
+                }
 								switch(nivel) {
 
 								case '4':
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
+
 													grafr.TablaPieGraficaBarPrimaria(t1,t2,t3,t4,t5,t6);
                           $("#dv_riesgtab_esc_bar").empty();
                           var html_tbm_riego='';
