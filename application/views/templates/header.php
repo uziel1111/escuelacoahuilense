@@ -28,13 +28,13 @@
      
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
 
-  <link href="<?= base_url('assets/css/all.css') ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/loader.css') ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/src_up.css') ?>" rel="stylesheet" media="screen">
 
 
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome5/css/all.css'); ?>">
+
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
   <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
