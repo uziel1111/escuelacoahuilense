@@ -22,11 +22,16 @@ class Planea extends CI_Controller {
 			foreach ($municipios as $municipio){
 				 $arr_municipios[$municipio['id_municipio']] = $municipio['municipio'];
 			}
-			// NIVEL POR PLANEA
+			// NIVEL POR PLANEA MUN
 			$arr_niveles['0'] = 'SELECCIONE';
 			$arr_niveles['4'] = 'PRIMARIA';
 			$arr_niveles['5'] = 'SECUNDARIA';
 			$arr_niveles['6'] = 'MEDIA SUPERIOR';
+
+			// NIVEL POR PLANEA ZONA
+			$arr_nivelesz['0'] = 'SELECCIONE';
+			$arr_nivelesz['4'] = 'PRIMARIA';
+			$arr_nivelesz['5'] = 'SECUNDARIA';
 
 
 			//CAMPOS DICIPLINARIOS
@@ -52,6 +57,7 @@ class Planea extends CI_Controller {
 
 			$data['municipios'] = $arr_municipios;
 			$data['niveles'] = $arr_niveles;
+			$data['nivelesz'] = $arr_nivelesz;
 			$data['periodos'] = $arr_periodos;
 			$data['zonas'] = $arr_zonas;
 			$data['camposd'] = $arr_campod;
@@ -65,13 +71,13 @@ class Planea extends CI_Controller {
 			$periodo = $this->input->post("periodo");
 			$campodisip = $this->input->post("campodisip");
 			if($campodisip == 1 || $campodisip == '1'){
-				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_estadomunicipio($municipio, $nivel, $periodo, 2);
-			}else{
 				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_estadomunicipio($municipio, $nivel, $periodo, 1);
+			}else{
+				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_estadomunicipio($municipio, $nivel, $periodo, 2);
 			}
 
-			
-			
+
+
 			$response = array('datos' => $datos, 'id_municipio' => $municipio);
 		        Utilerias::enviaDataJson(200, $response, $this);
 		        exit;
@@ -83,11 +89,11 @@ class Planea extends CI_Controller {
 			$periodo = $this->input->post("periodo");
 			$campodisip = $this->input->post("campodisip");
 			if($campodisip == 1 || $campodisip == '1'){
-				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_region($region, $nivel, $periodo, 2);
-			}else{
 				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_region($region, $nivel, $periodo, 1);
+			}else{
+				$datos = $this->Planeaxesc_reactivo_model->estadisticas_x_region($region, $nivel, $periodo, 2);
 			}
-			
+
 			$response = array('datos' => $datos, 'id_region' => $region);
 		        Utilerias::enviaDataJson(200, $response, $this);
 		        exit;
@@ -111,7 +117,7 @@ class Planea extends CI_Controller {
 		    $response = array('graph_cont_reactivos_xcctxcont' => $datos);
 		        Utilerias::enviaDataJson(200, $response, $this);
 		        exit;
-			
+
 		}
 
 		public function get_zonaxnivel(){

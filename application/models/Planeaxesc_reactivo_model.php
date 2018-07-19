@@ -28,7 +28,24 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     function get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis){
 
-      $this->db->select('t1.id_reactivo,t2.n_reactivo, t2.reactivo as descripcion');
+      $this->db->select('t1.id_reactivo,t2.n_reactivo,
+      CONCAT(
+      IF(t4.id_nivel=4,"primaria",IF(t4.id_nivel=5,"secundaria",IF(t4.id_nivel=6,"ms","nada"))),
+      IF(t4.id_periodo=1,"2016",IF(t4.id_periodo=2,"2017","nada")),
+      "/reactivo_",
+      IF(t4.id_campodisiplinario=1,"lyc",IF(t4.id_campodisiplinario=2,"mat","nada")),
+      "/r",
+      t2.n_reactivo,
+      ".JPG") as path_react,
+      CONCAT(
+      IF(t4.id_nivel=4,"primaria",IF(t4.id_nivel=5,"secundaria",IF(t4.id_nivel=6,"ms","nada"))),
+      IF(t4.id_periodo=1,"2016",IF(t4.id_periodo=2,"2017","nada")),
+      "/apoyo_",
+      IF(t4.id_campodisiplinario=1,"lyc",IF(t4.id_campodisiplinario=2,"mat","nada")),
+      "/apoyo",
+      t2.apoyo,
+      ".JPG") as path_apoyo
+      ');
       $this->db->from('planeaxesc_reactivo t1');
       $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
       $this->db->join('planea_contenido t3', 't2.id_contenido= t3.id_contenido');
@@ -105,7 +122,9 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_municipio != 0 || $id_municipio != '0'){
         $where = "AND m.id_municipio = {$id_municipio}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo, t2.reactivo AS descripcion
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo,
+        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/reactivo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/r', t2.n_reactivo, '.JPG') as path_react,
+       CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo
         FROM municipio m
         INNER JOIN escuela e ON e.id_municipio = m.id_municipio
         INNER JOIN nivel n ON n.id_nivel = e.id_nivel
@@ -127,8 +146,10 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_zona != 0 || $id_zona != '0'){
         $where = "AND s.id_supervision = ${id_zona}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t2.n_reactivo, t1.id_reactivo, t2.reactivo AS descripcion
-                  FROM supervision s
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t2.n_reactivo, t1.id_reactivo,
+        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/reactivo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/r', t2.n_reactivo, '.JPG') as path_react,
+       CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo
+        FROM supervision s
                   INNER JOIN escuela e ON e.id_supervision = s.id_supervision
                   INNER JOIN nivel n ON n.id_nivel = e.id_nivel
                   INNER JOIN planeaxesc_reactivo t1 ON t1.`id_ct` = e.`id_cct`
@@ -139,6 +160,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
                   WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
                   AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
+                  // echo $str_query; die();
                   return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()

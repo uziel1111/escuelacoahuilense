@@ -110,7 +110,7 @@ function Graficasm(){
                            events:{
                                click:function(){
                                   // alert("funciona");
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,1, va_por);
                                }
                            }
                        }
@@ -252,7 +252,7 @@ function Graficasm(){
                                click:function(){
                                 // alert("mate");
                                  console.info(this);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,1, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
                                   // obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
                                }
                            }
@@ -408,7 +408,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
                                }
                            }
                        }
@@ -553,7 +553,7 @@ function Graficasm(){
                            events:{
                                click:function(){
                                  //console.info(this);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
                                }
                            }
                        }
@@ -621,13 +621,18 @@ function Graficasm(){
                 for (var i = 0; i < result.length; i++) {
                   html += "    <tr>";
                   html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5></td>";
-                  html += "      <td>"+result[i]['descripcion']+"</td>";
+                  html += "      <td>";
+                  if (result[i]['path_apoyo']!=null) {
+                    html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
+                  }
+                  html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "     </td>";
                   html += "    </tr>";
                   html += "    <tr class='bgcolor-6'>";
                   html += "      <td></td>";
-                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='graficar.argumento_reactivo()'>Argumento</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='graficar.especificacion_reactivo()'>Especificación</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='graficar.apoyosacadem()'>Apoyos académicos</button>";
+                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem("+result[i]['n_reactivo']+")'>Apoyos académicos</button>";
                   html += "      </td>";
                   html += "    </tr>";
                 }
@@ -683,6 +688,9 @@ function Graficasm(){
         });
           Highcharts.theme = {
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
@@ -782,7 +790,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
                                }
                            }
                        }
@@ -835,7 +843,7 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -925,7 +933,7 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
                                }
                            }
                        }
@@ -963,50 +971,150 @@ function Graficasm(){
       }// graficoplanea_ud_ms_mate()
 
 
-       Graficasm.prototype.argumento_reactivo = function(){
-        // alert("entro");
-         window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
-
-      }
-      Graficasm.prototype.especificacion_reactivo = function(){
-          // alert("entro1");
-          window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
-      }
-
-      Graficasm.prototype.apoyosacadem = function(){
-          swal.close();
+         Graficasm.prototype.argumento_reactivo = function(){
+           // alert("entro");
+           var html = "<div style='text-align:left !important;'><ul>";
+             html += "<table class='table table-condensed'>";
+             html += "<tbody> <center>";
 
 
-          var html = "<div style='text-align:left !important;'><ul>";
-            html += "<table class='table table-condensed'>";
-            html += "<tbody>";
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-              html += "      <td>Ofrece conocimiento para mejorar tu calidad de vida:</td>";
-              html += "    </tr>";
-              html += "    <tr class='bgcolor-6'>";
-              html += "      <td></td>";
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='https://aprende.org/pages.php?r=.index' target='_blank'>aprende.org</a></td>";
-              html += "    </tr>";
+             html += "</center></tbody>";
+             html += "</table>";
 
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
-              html += "      <td>Contenido y recursos creados por expertos para cada meteria y nivel:</td>";
-              html += "    </tr>";
-              html += "    <tr class='bgcolor-6'>";
-              html += "      <td></td>";
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='https://es.khanacademy.org/' target='_blank'>khanacademy.org</a></td>";
-              html += "    </tr>";
-            html += "</tbody>";
-            html += "</table>";
+             html += "</div>";
 
-          html += "</div>";
+             $('#modal_visor_pdfc2 .modal-header #exampleModalLabel').empty();
+             $('#modal_visor_pdfc2 .modal-header #exampleModalLabel').html("");
 
-          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
-          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+           $('#modal_visor_pdfc2 .modal-body #div_listalinks').empty();
+           $('#modal_visor_pdfc2 .modal-body #div_listalinks').html(html);
 
-          $("#modal_apoyos_academ_title").empty();
-          $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
+           Utiles.showPDF("modal_visor_pdfc2", "info/arg_r1_lyc_17_sec.pdf");
+           $("#modal_visor_pdfc2").modal("show");
 
-          $("#modal_visor_apoyos_academ").modal("show");
-      }
+            // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+
+         }
+         Graficasm.prototype.especificacion_reactivo = function(){
+             // alert("entro1");
+             var html = "<div style='text-align:left !important;'><ul>";
+               html += "<table class='table table-condensed'>";
+               html += "<tbody> <center>";
+
+
+               html += "</center></tbody>";
+               html += "</table>";
+
+               html += "</div>";
+
+               $('#modal_visor_pdfc3 .modal-header #exampleModalLabel').empty();
+               $('#modal_visor_pdfc3 .modal-header #exampleModalLabel').html("");
+
+             $('#modal_visor_pdfc3 .modal-body #div_listalinks').empty();
+             $('#modal_visor_pdfc3 .modal-body #div_listalinks').html(html);
+
+             Utiles.showPDF("modal_visor_pdfc3", "info/esp_r1_lyc_17_sec.pdf");
+             $("#modal_visor_pdfc3").modal("show");
+             // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+         }
+
+         Graficasm.prototype.apoyosacadem = function(n_react){
+             swal.close();
+
+
+             var html = "<div style='text-align:left !important;'><ul>";
+               html += "<table class='table table-condensed'>";
+               html += "<tbody>";
+               if (n_react=='26') {
+                 html += "    <tr>";
+                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
+                 var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
+                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>ÁREA DE UN TRAPECIO</a></td>";
+                 html += "    </tr>";
+
+                 html += "    <tr>";
+                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
+                 var srturl2='https://upload.wikimedia.org/wikipedia/commons/b/bd/Trapecios_clasificaci%C3%B3n.png';
+                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='#' onclick=obj_graficas.material_reactivo('"+srturl2+"')>TIPOS DE TRAPECIOS</a></td>";
+                 html += "    </tr>";
+               }
+               else if (n_react=='4') {
+                 html += "    <tr>";
+                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
+                 var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
+                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>COCIENTE DE POTENCIAS CON LA MISA BASE</a></td>";
+                 html += "    </tr>";
+               }
+               else {
+                 html += "    <tr>";
+                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
+                 var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
+                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
+                 html += "    </tr>";
+                 html += "    <tr>";
+                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
+                 var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
+                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
+                 html += "    </tr>";
+
+               }
+
+
+
+               html += "</tbody>";
+               html += "</table>";
+
+             html += "</div>";
+
+             $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
+             $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+
+             $("#modal_apoyos_academ_title").empty();
+             $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
+
+             $("#modal_visor_apoyos_academ").modal("show");
+         }
+
+         Graficasm.prototype.apoyo_reactivo = function(path_apoyo){
+             swal.close();
+
+
+             var html = "<div style='text-align:left !important;'>";
+               html += "<table class='table table-condensed'>";
+               html += "<tbody> ";
+               html += "    <tr>";
+               html += "      <td><center>";
+                 html += "<img style='width: 100%;' src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+                 html += "      </center></td>";
+                 html += "    </tr>";
+             html += "</tbody>";
+               html += "</table>";
+
+               html += "</div>";
+
+             $('#modal_visor_apoyos_reactivos .modal-body #div_listalinks').empty();
+             $('#modal_visor_apoyos_reactivos .modal-body #div_listalinks').html(html);
+
+
+             $("#modal_visor_apoyos_reactivos").modal("show");
+         }
+
+         Graficasm.prototype.material_reactivo = function(url){
+             swal.close();
+
+             var html = "<div class='embed-responsive embed-responsive-16by9'>";
+             html += "  <iframe class='embed-responsive-item' src='"+url+"' allowfullscreen></iframe>";
+             html += "</div>";
+
+
+
+             $('#modal_visor_material_reactivos .modal-body #div_listalinks').empty();
+             $('#modal_visor_material_reactivos .modal-body #div_listalinks').html(html);
+
+
+             $("#modal_visor_material_reactivos").modal("show");
+         }
+         $("#md_close_iframe").click(function(){
+         $('#modal_visor_material_reactivos .modal-body #div_listalinks').empty();
+         $("#modal_visor_material_reactivos").modal("hide");
+         });

@@ -1929,7 +1929,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
                                }
                            }
                        }
@@ -2069,7 +2069,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,1,2);
                                }
                            }
                        }
@@ -2237,7 +2237,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
                                }
                            }
                        }
@@ -2379,7 +2379,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
                                }
                            }
                        }
@@ -2422,6 +2422,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         });
           Highcharts.theme = {
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
@@ -2545,7 +2548,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
                                }
                            }
                        }
@@ -2598,7 +2601,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -2688,7 +2691,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
                                }
                            }
                        }
@@ -2757,10 +2760,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "    <tr>";
                   html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5></td>";
                   html += "      <td>";
-                  if (result[i]['n_reactivo']=='26' || result[i]['n_reactivo']=='4') {
-                    html += "      <center><a style='color:blue;'href='#' onclick='obj_graficas.apoyo_reactivo("+result[i]['n_reactivo']+")'>Texto/imagen (apoyo)</a></center>";
+                  if (result[i]['path_apoyo']!=null) {
+                    html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
                   }
-                  html += "      "+result[i]['descripcion']+"</td>";
+                  html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "     </td>";
                   html += "    </tr>";
                   html += "    <tr class='bgcolor-6'>";
                   html += "      <td></td>";
@@ -2893,20 +2897,19 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           $("#modal_visor_apoyos_academ").modal("show");
       }
 
-      HaceGraficas.prototype.apoyo_reactivo = function(n_react){
+      HaceGraficas.prototype.apoyo_reactivo = function(path_apoyo){
           swal.close();
 
 
-          var html = "<div style='text-align:left !important;'><ul>";
+          var html = "<div style='text-align:left !important;'>";
             html += "<table class='table table-condensed'>";
-            html += "<tbody> <center>";
-            if (n_react=='26') {
-              html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/img/complemetos_reactivos/prim_2016_mat_r26.png' class='img-responsive center-block' />";
-            }
-            else if (n_react=='4') {
-              html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/img/complemetos_reactivos/secu_2017_mat_r4.png' class='img-responsive center-block' />";
-            }
-          html += "</center></tbody>";
+            html += "<tbody> ";
+            html += "    <tr>";
+            html += "      <td><center>";
+              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+              html += "      </center></td>";
+              html += "    </tr>";
+          html += "</tbody>";
             html += "</table>";
 
             html += "</div>";

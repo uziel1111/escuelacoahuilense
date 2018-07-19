@@ -60,7 +60,7 @@
                                   <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
                                       <div class="form-group form-group-style-1">
                                         <?=form_label('Nivel:', 'nivel');?>
-                                        <?=form_dropdown('nivel', $niveles, 'large', array('class' => 'form-control', 'id' => 'slt_nivel_planeaxz'));?>
+                                        <?=form_dropdown('nivel', $nivelesz, 'large', array('class' => 'form-control', 'id' => 'slt_nivel_planeaxz'));?>
                                       </div>
                                     </div><!-- col-md-4 -->
                                     <div class="col-12 col-sm-12 col-md-3 col-lg-2 mt-2">
@@ -113,31 +113,121 @@
                         <!-- <div id="div_graficas_masivo_matematicas"></div> -->
                     </div>
                 </div>
-            </div><!-- card-body -->                          
+            </div><!-- card-body -->
         </div>
-    </div>    
+    </div>
   </div><!-- card -->
 </div>
 </section>
-                <!-- Modal Reactivos -->
-                <div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content modal-style-1">
-                            <div class="modal-header bgcolor-2">
-                                <h5 class="modal-title text-white" id="exampleModalLabel">Consulta por reactivos</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <span class="fz-18 fw800" id="modal_reactivos_title"></span>
-                                <hr>
-                                <div id="div_reactivos"></div>
-                            </div>
-                            </div>
-                    </div>
-                </div>
-                <!-- End Modal -->
+<!-- Modal Reactivos -->
+<div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-2">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Consulta por reactivos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="fz-18 fw800" id="modal_reactivos_title"></span>
+                <hr>
+                <div id="div_reactivos"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Apoyos -->
+<div class="modal fade" id="modal_visor_apoyos_academ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-4">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Apoyos académicos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Apoyos -->
+<div class="modal fade" id="modal_visor_apoyos_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-4">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Texto / imagen complementario del reactivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Apoyos -->
+<div class="modal fade" id="modal_visor_pdfc2" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-2">
+                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Apoyos -->
+<div class="modal fade" id="modal_visor_pdfc3" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-3">
+                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Apoyos -->
+<div class="modal fade" id="modal_visor_material_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-4">
+                <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+                <button type="button" class="close" id="md_close_iframe" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
 
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
