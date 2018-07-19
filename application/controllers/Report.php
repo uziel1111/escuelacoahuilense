@@ -121,7 +121,7 @@ class Report extends CI_Controller {
 				$aux = 3;
 				foreach ($result_escuelas as $row) {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['cve_centro']) );
-					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['turno']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['turno_single']) );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['nombre_centro']) );
 					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, utf8_encode($row['nivel']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, utf8_encode($row['municipio']) );
