@@ -2851,7 +2851,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           swal.close();
 
           var html = "<div class='embed-responsive embed-responsive-16by9'>";
-          html += "  <iframe class='embed-responsive-item' src='"+url+"' allowfullscreen></iframe>";
+          html += "  <iframe class='embed-responsive-item' src='"+"http://proyectoeducativo.org/sarape/"+url+"' allowfullscreen></iframe>";
           html += "</div>";
 
 

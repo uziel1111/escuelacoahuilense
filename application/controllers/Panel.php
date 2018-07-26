@@ -28,7 +28,7 @@ class Panel extends CI_Controller {
 					$nivel = "MEDIA SUPERIOR";
 				}
 				$data = $this->data;
-			    $data['error'] = ''; 
+			    $data['error'] = '';
 			    $periodos = $this->Planeaxmuni_model->allperiodos();
 				$arr_periodos = array();
 				foreach ($periodos as $periodo){
@@ -80,7 +80,7 @@ class Panel extends CI_Controller {
 							    </tr>
 							  </thead>
 							  <tbody>';
-							    
+
 				foreach ($reactivos as $reactivo) {
 					$table .=  '<tr>
 							      <th scope="row">'.$reactivo["id_reactivo"].'</th>
@@ -89,7 +89,7 @@ class Panel extends CI_Controller {
 							      <td>'.$reactivo["total_img"].'</td>
 							      <td>'.$reactivo["total_link"].'</td>
 							      <td>'.$reactivo["total_video"].'</td>
-							      <td><img src="'.$reactivo["path_react"].'" face" height="100%" width="100%"></td>
+							      <td><img src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" height="100%" width="100%"></td>
 							      <td><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
 							    </tr>';
 				}
@@ -118,7 +118,7 @@ class Panel extends CI_Controller {
 							    </tr>
 							  </thead>
 							  <tbody>';
-							    
+
 			if(count($recursos) > 0){
 				foreach ($recursos as $recurso) {
 					$table .=  '<tr>
@@ -135,7 +135,7 @@ class Panel extends CI_Controller {
 			$table .=  '</tbody>
 							</table>';
 			$data['tabla'] = $table;
-			
+
 			$str_view = $this->load->view("panel/recursos", $data, TRUE);
 			$response = array('str_view' => $str_view);
 			Utilerias::enviaDataJson(200, $response, $this);
@@ -176,7 +176,7 @@ class Panel extends CI_Controller {
 							    </tr>
 							  </thead>
 							  <tbody>';
-							    
+
 			if(count($recursos) > 0){
 				foreach ($recursos as $recurso) {
 					$table .=  '<tr>
@@ -228,7 +228,7 @@ class Panel extends CI_Controller {
 	                                $fileData = $this->upload->data();
 	                                $str_view = true;
 	                            }
-			
+
 			$response = array('str_view' => $str_view);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
