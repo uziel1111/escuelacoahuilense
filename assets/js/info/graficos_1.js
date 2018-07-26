@@ -2663,6 +2663,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             // obj_loader.hide();
               swal.close();
               var result = data.graph_cont_reactivos_xcctxcont;
+              // var result_apoyoxreact = data.graph_cont_reactivos_xcctxcont_apoyo;
 
               var html = "<div style='text-align:left !important;'>";
               if (result.length==0) {
@@ -2686,7 +2687,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "      <td></td>";
                   html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem("+result[i]['n_reactivo']+")'>Apoyos académicos</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
                   html += "      </td>";
                   html += "    </tr>";
                 }
@@ -2756,61 +2757,70 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
       }
 
-      HaceGraficas.prototype.apoyosacadem = function(n_react){
+      HaceGraficas.prototype.apoyosacadem = function(id_reactivo){
           swal.close();
-
-
-          var html = "<div style='text-align:left !important;'><ul>";
-            html += "<table class='table table-condensed'>";
-            html += "<tbody>";
-            if (n_react=='26') {
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-              var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>ÁREA DE UN TRAPECIO</a></td>";
-              html += "    </tr>";
-
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
-              var srturl2='https://upload.wikimedia.org/wikipedia/commons/b/bd/Trapecios_clasificaci%C3%B3n.png';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='#' onclick=obj_graficas.material_reactivo('"+srturl2+"')>TIPOS DE TRAPECIOS</a></td>";
-              html += "    </tr>";
+          var ruta = base_url+"info/apoyos_academxid_reac";
+          $.ajax({
+            url: ruta,
+            method: 'POST',
+            data: { 'id_reactivo':id_reactivo
+                  },
+            beforeSend: function( xhr ) {
+              // obj_loader.show();
             }
-            else if (n_react=='4') {
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-              var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>COCIENTE DE POTENCIAS CON LA MISA BASE</a></td>";
-              html += "    </tr>";
-            }
-            else {
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-              var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
-              html += "    </tr>";
-              html += "    <tr>";
-              html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
-              var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
-              html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
-              html += "    </tr>";
+          })
+          .done(function( data ) {
+            // obj_loader.hide();
+              swal.close();
+              var result = data.arr_apoyosacade_xidreact;
+              // console.table(result);
+              var html = "<div style='text-align:left !important;'><ul>";
+                html += "<table class='table table-condensed'>";
+                html += "<tbody>";
 
-            }
+              result.forEach(function(result, index) {
+                html += "    <tr>";
+                html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+(1+index)+"</span></h5></td>";
+                switch (result.idtipo) {
+                  case '1':
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                    break;
+                  case '2':
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                    break;
+                  case '3':
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                    break;
+                  case '4':
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                    break;
+                  default:
+                    break;
+                }
+                html += "    </tr>";
+
+              console.log("Persona " + index + " | tipo: " + result.idtipo + " ruta: " + result.ruta)
+              });
 
 
+                html += "</tbody>";
+                html += "</table>";
 
-            html += "</tbody>";
-            html += "</table>";
+              html += "</div>";
 
-          html += "</div>";
+              $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
+              $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
 
-          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
-          $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+              $("#modal_apoyos_academ_title").empty();
+              $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
 
-          $("#modal_apoyos_academ_title").empty();
-          $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
+              $("#modal_visor_apoyos_academ").modal("show");
 
-          $("#modal_visor_apoyos_academ").modal("show");
+
+          })
+          .fail(function(e) {
+              console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
+          });
       }
 
       HaceGraficas.prototype.apoyo_reactivo = function(path_apoyo){

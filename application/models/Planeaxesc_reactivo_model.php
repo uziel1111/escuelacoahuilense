@@ -64,6 +64,18 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     }// get_reactivos_xcctxcont()
 
+    function get_apoyos_academ_xidreact($id_reactivo){
+
+      $this->db->select('idtipo, ruta, titulo, fuente');
+      $this->db->from('recursos_apoyo');
+      $this->db->where('id_reactivo', $id_reactivo);
+     //  $this->db->get();
+     // $str = $this->db->last_query();
+     // echo $str; die();
+      return  $this->db->get()->result_array();
+
+    }// get_reactivos_xcctxcont_apoyo()
+
     function estadisticas_x_estadomunicipio($municipio, $nivel, $periodo, $idcampodis){
       $where = "";
       if($municipio != 0 ){
