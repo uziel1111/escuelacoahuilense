@@ -73,8 +73,8 @@
                           <li class="nav-item">
                             <a class="nav-link nav-link-apa bgcolor-3 mt-2" class="btn btn-secondary btn-style-1" id="btn_info_aprendiz" data-toggle="tab"><span class="fz-30"><i class="material-icons">school</i></span><br><span class="fz-30">Aprendizaje</span></a>
                           </li>
-                        </ul>                        
-                       
+                        </ul>
+
 
 		</div>
 
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-				<div class="card-accordion-style-1 mb-3">
+				<div hidden class="card-accordion-style-1 mb-3">
             <div class="accordion-style-1-header" id="indiasis">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_asisten" aria-expanded="true" aria-controls="indicadores_asisten">
                     <i class="fa fa-chevron-down pull-right"></i>
@@ -126,7 +126,7 @@
 														<center>
 				                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Cobertura
 				                        <span class='tooltiptext2'><p>Porcentaje de alumnos en edades idóneas o típica para cursar educación básica, media superior y superior, inscritos en el nivel o tipo educativo correspondiente al inicio del ciclo escolar, por cada cien personas de la población en esas edades.
-</p><i>- (INEE)</i></span>
+</p></span>
 				                      </div>
 			                      </center>
                         </div>
@@ -140,7 +140,7 @@
                             <div id="dv_info_graf_Absorcion"></div>
 														<center>
 				                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Absorción
-				                        <span class='tooltiptext2'><p>Porcentaje de alumnos de nuevo ingreso al primer grado de secundaria, media superior o superior en un determinado ciclo escolar por cada cien egresados del nivel educativo precedente del ciclo escolar previo.</p><i>- (INEE)</i></span>
+				                        <span class='tooltiptext2'><p>Porcentaje de alumnos de nuevo ingreso al primer grado de secundaria, media superior o superior en un determinado ciclo escolar por cada cien egresados del nivel educativo precedente del ciclo escolar previo.</p></span>
 				                      </div>
 			                      </center>
                         </div>
@@ -228,7 +228,7 @@
 															<center>
 					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Retención
 					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que permanecen en la escuela entre ciclos escolares consecutivos antes de concluir el nivel educativo de referencia, por cada cien alumnos matriculados al inicio del ciclo escolar.
-	</p><i>- (INEE)</i></span>
+	</p></span>
 					                      </div>
 				                      </center>
 	                        </div>
@@ -238,7 +238,7 @@
 															<center>
 					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Aprobación
 					                        <span class='tooltiptext2'><p>Porcentaje de alumnos aprobados de un determinado grado, por cada cien alumnos que están matriculados al final del ciclo escolar.
-	</p><i>- (INEE)</i></span>
+	</p></span>
 					                      </div>
 				                      </center>
 	                        </div>
@@ -248,7 +248,7 @@
 															<center>
 					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal
 					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión.
-	</p><i>- (INEE)</i></span>
+	</p></span>
 					                      </div>
 				                      </center>
 	                        </div>
@@ -275,7 +275,7 @@
             <div id="planea_cont_lyc" class="collapse" aria-labelledby="chplaneaLC" data-parent="#accordion">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12">
                             <div id="dv_info_graf_contlyc"></div>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
             <div id="planea_cont_mat" class="collapse" aria-labelledby="chplaneaMAT" data-parent="#accordion">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12">
                             <div id="dv_info_graf_contmat"></div>
                         </div>
                     </div>
@@ -526,7 +526,7 @@
                       	<div id='containerRPB03ete'></div>
 		                      <center>
 			                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal Efectiva
-			                        <span class='tooltiptext2'><p>Porcentaje de alumnos egresados con aprendizajes suficientes.</p><i>- (SEP)</i></span>
+			                        <span class='tooltiptext2'><p>Porcentaje de alumnos egresados con aprendizajes suficientes.</p><i>- (SEDU)</i></span>
 			                      </div>
 		                      </center>
                       	</div>

@@ -16,7 +16,8 @@ class Escuela_model extends CI_Model
       $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
       $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
       $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
-
+      $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
+      $this->db->where($where_au);
       if($id_municipio>0){
         $this->db->where('es.id_municipio', $id_municipio);
       }
@@ -29,7 +30,9 @@ class Escuela_model extends CI_Model
       if($nombre_escuela!=''){
         $this->db->like('es.nombre_centro', $nombre_escuela);
       }
+
       $this->db->group_by("es.id_cct");
+      $this->db->order_by("ni.id_nivel");
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
@@ -48,6 +51,8 @@ class Escuela_model extends CI_Model
       $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
       $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
       $this->db->where('es.cve_centro', $cve_centro);
+      $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
+      $this->db->where($where_au);
       $this->db->group_by("tu.id_turno_single");
       // $this->db->get();
       // $str = $this->db->last_query();
@@ -94,6 +99,8 @@ function get_xidcct($idcct){
       $this->db->from('escuela as es');
       $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
       $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+      $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
+      $this->db->where($where_au);
       $this->db->where('es.id_nivel', $nivel);
       $this->db->having('distance < 1000 ');
       $this->db->order_by('distance');

@@ -76,7 +76,7 @@
                           <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
                             <div class="form-group">
                               <?= form_label('Nivel', 'slc_xest_nivel_zona') ?>
-                              <?= form_dropdown('slc_xest_nivel_zona', $arr_niveles, '', array('id' => 'slc_xest_nivel_zona', 'class'=>'form-control')) ?>
+                              <?= form_dropdown('slc_xest_nivel_zona', $arr_nivelesz, '', array('id' => 'slc_xest_nivel_zona', 'class'=>'form-control')) ?>
                             </div>
                           </div><!-- col-md-4 -->
                           <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
@@ -98,7 +98,6 @@
                             </div>
                           </div><!-- col-md-4 -->
                         </div><!-- row -->
-
                       </div>
                     </div><!--  col-sm-12 -->
                   </div><!-- row -->

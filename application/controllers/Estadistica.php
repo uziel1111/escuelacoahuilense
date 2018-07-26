@@ -18,6 +18,7 @@ class Estadistica extends CI_Controller {
 			$this->load->model('Supervision_model');
 			$this->load->model('Subsostenimiento_model');
 			$this->load->model('Indicadoresxmuni_model');
+			$this->load->model('Indicadoresxestado_model');
 
 		}
 
@@ -28,6 +29,7 @@ class Estadistica extends CI_Controller {
 			$arr_sostenimientos = array();
 			$arr_modalidad = array();
 			$arr_niveles = array();
+			$arr_nivelesz = array();
 			$arr_ciclo = array();
 
 			if(count($result_municipios)==0){
@@ -46,6 +48,16 @@ class Estadistica extends CI_Controller {
 				$arr_niveles['0'] = 'TODOS';
 				foreach ($result_niveles as $row){
 					 $arr_niveles[$row['id_nivel']] = $row['nivel'];
+				}
+			}
+
+			$result_nivelesz = $this->Nivel_model->getall_est_indz();
+			if(count($result_nivelesz)==0){
+				$data['arr_nivelesz'] = array(	'0' => 'Error recuperando los niveles' );
+			}else{
+				$arr_nivelesz['0'] = 'SELECCIONE UN NIVEL EDUCATIVO';
+				foreach ($result_nivelesz as $row){
+					 $arr_nivelesz[$row['id_nivel']] = $row['nivel'];
 				}
 			}
 
@@ -73,7 +85,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_subsostenimientos)==0){
 				$data['arr_subsostenimientos'] = array(	'0' => 'Error recuperando los subsostenimientos' );
 			}else{
-				$arr_subsostenimientos['0'] = 'TODOS';
+				$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
 				foreach ($result_subsostenimientos as $row){
 					 $arr_subsostenimientos[$row['id_subsostenimiento']] = $row['subsostenimiento'];
 				}
@@ -93,7 +105,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_nzonae)==0){
 				$data['arr_nzonae'] = array(	'0' => 'Error recuperando los sostenimientos' );
 			}else{
-				$arr_nzonae['0'] = 'ELIGE UNA ZONA ESCOLAR';
+				$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
 				foreach ($result_nzonae as $row){
 					 $arr_nzonae[$row['id_supervision']] = $row['zona_escolar'];
 				}
@@ -101,6 +113,7 @@ class Estadistica extends CI_Controller {
 
 			$data['arr_municipios'] = $arr_municipios;
 			$data['arr_niveles'] = $arr_niveles;
+			$data['arr_nivelesz'] = $arr_nivelesz;
 			$data['arr_sostenimientos'] =$arr_sostenimientos;
 			$data['arr_modalidad'] =$arr_modalidad;
 			$data['arr_subsostenimientos'] =$arr_subsostenimientos;
@@ -194,7 +207,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_subsost)==0){
 				$data['arr_subsost'] = array(	'0' => 'Error recuperando subsostenimientos' );
 			}else{
-				$arr_subsost['0'] = 'TODOS';
+				$arr_subsost['0'] = 'SELECCIONE SOSTENIMIENTO';
 				foreach ($result_subsost as $row){
 					 $arr_subsost[$row['id_subsostenimiento']] = $row['subsostenimiento'];
 				}
@@ -212,12 +225,19 @@ class Estadistica extends CI_Controller {
 			if(count($result_nzonae)==0){
 				$data['arr_nzonae'] = array(	'0' => 'Error recuperando nuemro de zona escolar' );
 			}else{
-				$arr_nzonae['0'] = 'TODOS';
+				$select = "";
+				$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
+				$select .= "<option value = '0'>SELECCIONE UNA ZONA ESCOLAR</option>";
 				foreach ($result_nzonae as $row){
-					 $arr_nzonae[$row['id_supervision']] = $row['zona_escolar'];
+					 // $arr_nzonae[$row['id_supervision']] = $row['zona_escolar'];
+					 $select .= "<option value = '".$row['id_supervision']."'>".$row['zona_escolar']."</option>";
 				}
 			}
-			Utilerias::enviaDataJson(200, $arr_nzonae, $this);
+			// echo "<pre>";
+			// print_r($select);
+			// die();
+			$response= array("array" => $select);
+			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}//estad_indi_generales_getzonassubsost_zona()
 
@@ -333,7 +353,7 @@ class Estadistica extends CI_Controller {
           			</table>
 
           			<div class="pie_tabla">
-          			        <div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+          			        <div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
           			</div>';
 
 			return $str_html_alumn;
@@ -403,7 +423,7 @@ class Estadistica extends CI_Controller {
           			</table>
 
           			<div class="pie_tabla">
-          			        <div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+          			        <div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
           			</div>';
 
 			return $str_html_alumn;
@@ -476,7 +496,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -549,7 +569,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -573,7 +593,7 @@ class Estadistica extends CI_Controller {
 								<th>5°</th>
 								<th>6°</th>
 								<th class="text-center align-middle">Multigrado</th>
-								<th>Total</th>
+								<th class="text-center">Total</th>
 						</tr>
           	</thead>
 						<tbody>';
@@ -611,16 +631,16 @@ class Estadistica extends CI_Controller {
 				}
 
 				$str_html_alumn.='
-				<td>'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
+				<td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
 				<td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				<td>'.number_format($row['grupos_6']).'</td><td>'.number_format($row['grupos_multi']).'</td><td>'.number_format($row['grupos_t']).'</td>
+				<td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -645,7 +665,7 @@ class Estadistica extends CI_Controller {
 								<th>5°</th>
 								<th>6°</th>
 								<th class="text-center align-middle">Multigrado</th>
-								<th>Total</th>
+								<th class="text-center">Total</th>
 						</tr>
 						</thead>
 						<tbody>';
@@ -683,16 +703,16 @@ class Estadistica extends CI_Controller {
 				}
 
 				$str_html_alumn.='
-				<td>'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
+				<td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
 				<td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				<td>'.number_format($row['grupos_6']).'</td><td>'.number_format($row['grupos_multi']).'</td><td>'.number_format($row['grupos_t']).'</td>
+				<td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911.</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -756,7 +776,13 @@ class Estadistica extends CI_Controller {
 
 		function tabla_asistencia($id_municipio, $id_ciclo){
 			$result_asistencia = array();
-			 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+			if ($id_municipio==0) {
+				$result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo(1);
+			}
+			else {
+				$result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+			}
+
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 							<thead class="bg-info">
@@ -782,7 +808,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911- ciclo escolar 2017-2018</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911).</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -790,7 +816,13 @@ class Estadistica extends CI_Controller {
 
 		function tabla_permanencia($id_municipio, $id_ciclo){
 			$result_planea = array();
-			$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+			if ($id_municipio==0) {
+				$result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
+			}
+			else {
+				$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+			}
+
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 							<thead class="bg-info">
@@ -817,7 +849,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEP con base en el Formato 911- ciclo escolar 2016-2017</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911) - ciclo escolar 2016-2017</div>
 								</div>';
 
 			return $str_html_alumn;
@@ -827,7 +859,7 @@ class Estadistica extends CI_Controller {
 
 
 		function tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
-			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
+			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
 			 // echo "<pre>";print_r($result_rezinegi); die();
 			$str_html_rezinegi='<table class="table table-style-1 table-striped table-hover">
 				<thead class="bg-info">
@@ -882,7 +914,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: INEGI, 2010</div>
+												<div id="fuentes_pie">Fuente: INEGI, 2015</div>
 								</div>';
 
 			return $str_html_rezinegi;
@@ -890,7 +922,7 @@ class Estadistica extends CI_Controller {
 
 
 		function tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
-			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
+			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
 			 // echo "<pre>";print_r($result_analfinegi); die();
 			$str_html_analfinegi='<table class="table table-style-1 table-striped table-hover">
 			<thead class="bg-info">
@@ -920,7 +952,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: INEGI, 2010</div>
+												<div id="fuentes_pie">Fuente: INEGI, 2015</div>
 								</div>';
 
 			return $str_html_analfinegi;
@@ -932,26 +964,32 @@ class Estadistica extends CI_Controller {
 			$id_zona_z = $this->input->post('slc_xest_zona');
 			$id_ciclo_z = $this->input->post('slc_xest_cicloe_zona');
 			// echo "<pre>";print_r($_POST);die();
+			if ($id_nivel_z=='0' || $id_sostenimiento_z=='0' || $id_zona_z=='0') {
+				$this->estad_indi_generales();
 
-			$data["tipo_busqueda"] = "zona";
-			$data["id_nivel_z"] = $id_nivel_z;
-			$data["id_sostenimiento_z"] = $id_sostenimiento_z;
-			$data["id_zona_z"] = $id_zona_z;
-			$data["id_ciclo_z"] = $id_ciclo_z;
-			$data["nivel_z"] = $this->Nivel_model->get_nivel($id_nivel_z);
-			$data["sostenimiento_z"] = $this->Subsostenimiento_model->get_subsostenimiento($id_sostenimiento_z);
-			$data["zona_z"] = $this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z);
-			$data["ciclo_z"] = $this->Ciclo_model->get_ciclo($id_ciclo_z);
+			}
+			else {
+				$data["tipo_busqueda"] = "zona";
+				$data["id_nivel_z"] = $id_nivel_z;
+				$data["id_sostenimiento_z"] = $id_sostenimiento_z;
+				$data["id_zona_z"] = $id_zona_z;
+				$data["id_ciclo_z"] = $id_ciclo_z;
+				$data["nivel_z"] = $this->Nivel_model->get_nivel($id_nivel_z);
+				$data["sostenimiento_z"] = $this->Subsostenimiento_model->get_subsostenimiento($id_sostenimiento_z);
+				$data["zona_z"] = $this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z);
+				$data["ciclo_z"] = $this->Ciclo_model->get_ciclo($id_ciclo_z);
 
 
-			$data["srt_tab_alumnos"] = $this->tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-			$data["srt_tab_pdocentes"] = $this->tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-			$data["srt_tab_infraestructura"] =$this->tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-			$data["srt_tab_planea"] = "";
-			$data["srt_tab_rezag_inegi"] = "";
-			$data["srt_tab_analf_inegi"] = "";
+				$data["srt_tab_alumnos"] = $this->tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
+				$data["srt_tab_pdocentes"] = $this->tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
+				$data["srt_tab_infraestructura"] =$this->tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
+				$data["srt_tab_planea"] = "";
+				$data["srt_tab_rezag_inegi"] = "";
+				$data["srt_tab_analf_inegi"] = "";
 
-			Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data);
+				Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data);
+			}
+
 
 		}//xest_zona_x
 

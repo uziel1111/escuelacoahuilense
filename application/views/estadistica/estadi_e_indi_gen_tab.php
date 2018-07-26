@@ -69,14 +69,14 @@
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
-            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de Asistencia</div>
+            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de asistencia</div>
             <div class="card-body">
               <div class="table-responsive"><?= $srt_tab_in_asis?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
 
           <div class="card mb-3 card-style-1">
-            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de Permanencia</div>
+            <div class="card-header card-1-header bgcolor-2 text-white">Indicadores de permanencia</div>
             <div class="card-body">
               <div class="table-responsive"><?= $srt_tab_in_perm?>  </div>
             </div><!-- card-body -->
@@ -117,11 +117,12 @@
                   'value' => 'true',
                   'type' => 'submit',
                   'class'=>'btn btn-primary btn-style-1 btn-block',
-                  'content' => '<i class="fa fa-file-excel-o"></i>',
+                  'content' => '<i class="fas fa-file-excel"></i>',
                   'data-toggle' => "tooltip",
                   'data-placement' => "top",
                   'title' => 'Exportar los resultados'
               );
+
               echo form_button($data);
               ?>
               <?= form_close() ?>

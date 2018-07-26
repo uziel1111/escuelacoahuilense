@@ -256,6 +256,9 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       $this->db->where('ci.id_ciclo', $id_ciclo);
     }
     $this->db->where('ni.id_nivel <',8);
+    $this->db->where('ni.id_nivel !=',6);
+    $this->db->where('ni.id_nivel !=',7);
+
     $this->db->group_by("ni.id_nivel");
     $this->db->group_by("so.sostenimiento");
     $this->db->group_by("mo.modalidad");
@@ -265,7 +268,9 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $this->db->order_by("modalidad", "DESC");
 
     $query3 = $this->db->get_compiled_select();
-
+    // $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
+    // $str = $this->db->last_query();
+    // echo $str; die();
 
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
 
@@ -358,6 +363,8 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       $this->db->where('ci.id_ciclo', $id_ciclo_z);
     }
     $this->db->where('ni.id_nivel <',8);
+    $this->db->where('ni.id_nivel !=',6);
+    $this->db->where('ni.id_nivel !=',7);
     $this->db->group_by("ni.id_nivel");
     $this->db->group_by("sso.subsostenimiento");
     $this->db->group_by("mo.modalidad");

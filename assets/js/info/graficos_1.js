@@ -1951,20 +1951,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                1000,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       1000,
+          //      false
+          //   );
+          // }
       }// graficoplanea_ud_prim_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
@@ -2088,20 +2088,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                1000,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       1000,
+          //      false
+          //   );
+          // }
 
       }// graficoplanea_ud_prim_mate()
 
@@ -2116,35 +2116,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                  /*
-                chart: {
-                    backgroundColor: {
-                        linearGradient: [0, 0, 0, 0],
-                        stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
-                        ]
-                    },
-                },
-                */
-                // title: {
-                //     style: {
-                //         color: '#000',
-                //         font: 'bold 18px'
-                //     },
-                //     text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
-                // },
-                // subtitle: {
-                //     style: {
-                //         color: 'blue',
-                //         font: 'bold 20px'
-                //     },
-                //     text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluadoos: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
-                // },
+
                 legend: {
                     itemStyle: {
                         font: '9pt',
@@ -2206,17 +2180,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                       // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
-                  /*
-                  labels: {
-                      overflow: 'justify'
-                  }
-                  */
               },
-              /*
-              legend: {
-                  enabled: false
-              },
-              */
               plotOptions: {
                   series: {
                     events: {
@@ -2261,20 +2225,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
 
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                900,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       900,
+          //      false
+          //   );
+          // }
       }// graficoplanea_ud_secu_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
@@ -2289,7 +2253,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -2399,20 +2362,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
           // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                1000,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       1000,
+          //      false
+          //   );
+          // }
 
       }// graficoplanea_ud_secu_mate()
 
@@ -2427,35 +2390,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                  /*
-                chart: {
-                    backgroundColor: {
-                        linearGradient: [0, 0, 0, 0],
-                        stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
-                        ]
-                    },
-                },
-                */
-                // title: {
-                //     style: {
-                //         color: '#000',
-                //         font: 'bold 18px'
-                //     },
-                //     text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
-                // },
-                // subtitle: {
-                //     style: {
-                //         color: 'blue',
-                //         font: 'bold 20px'
-                //     },
-                //     text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluadoos: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
-                // },
+
                 legend: {
                     itemStyle: {
                         font: '9pt',
@@ -2485,11 +2422,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               credits: {
                   enabled: false
               },
-              /*
-              chart: {
-                  type: 'bar'
-              },
-              */
               chart: {
                   type: 'bar',
                   backgroundColor: {
@@ -2517,17 +2449,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                       // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
-                  /*
-                  labels: {
-                      overflow: 'justify'
-                  }
-                  */
               },
-              /*
-              legend: {
-                  enabled: false
-              },
-              */
               plotOptions: {
                   series: {
                     events: {
@@ -2572,20 +2494,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
 
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                900,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       900,
+          //      false
+          //   );
+          // }
       }// graficoplanea_ud_ms_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_ms_mate = function(arr_mate,id_cct){
@@ -2594,12 +2516,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         });
           Highcharts.theme = {
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
@@ -2711,20 +2627,20 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
           // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                1000,
-               false
-            );
-          }
+          // if (screen.width<600){
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       500,
+          //      false
+          //   );
+          // }
+          // else {
+          //   estadPreescolar.setSize(
+          //       ($(document).width()/10)*5,
+          //       1000,
+          //      false
+          //   );
+          // }
 
       }// graficoplanea_ud_ms_mate()
 
@@ -2763,12 +2679,12 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   if (result[i]['path_apoyo']!=null) {
                     html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
                   }
-                  html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "<img src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "     </td>";
                   html += "    </tr>";
                   html += "    <tr class='bgcolor-6'>";
                   html += "      <td></td>";
-                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button>";
+                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem("+result[i]['n_reactivo']+")'>Apoyos académicos</button>";
                   html += "      </td>";
@@ -2793,7 +2709,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
       }// get_reactivos_xunidad_de_analisis()
 
-      HaceGraficas.prototype.argumento_reactivo = function(){
+      HaceGraficas.prototype.argumento_reactivo = function(url_argumento){
         // alert("entro");
         var html = "<div style='text-align:left !important;'><ul>";
           html += "<table class='table table-condensed'>";
@@ -2811,10 +2727,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         $('#modal_visor_pdfc2 .modal-body #div_listalinks').empty();
         $('#modal_visor_pdfc2 .modal-body #div_listalinks').html(html);
 
-        Utiles.showPDF("modal_visor_pdfc2", "info/arg_r1_lyc_17_sec.pdf");
+        Utiles.showPDF("modal_visor_pdfc2", url_argumento);
         $("#modal_visor_pdfc2").modal("show");
 
-         // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+         // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
 
       }
       HaceGraficas.prototype.especificacion_reactivo = function(){
@@ -2837,7 +2753,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           Utiles.showPDF("modal_visor_pdfc3", "info/esp_r1_lyc_17_sec.pdf");
           $("#modal_visor_pdfc3").modal("show");
-          // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+          // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
       }
 
       HaceGraficas.prototype.apoyosacadem = function(n_react){
@@ -2906,7 +2822,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             html += "<tbody> ";
             html += "    <tr>";
             html += "      <td><center>";
-              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
               html += "      </center></td>";
               html += "    </tr>";
           html += "</tbody>";

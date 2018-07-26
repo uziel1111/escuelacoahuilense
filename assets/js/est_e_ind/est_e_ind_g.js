@@ -102,6 +102,18 @@ $("#slc_xest_muni_modalidad").change(function(){
 
 $("#slc_xest_nivel_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
+  $("#slc_xest_zona").prop('disabled', 'disabled');
+  $('#slc_xest_zona').css( 'cursor', 'no-drop' );
+  if (id_nivel!=0) {
+    $("#slc_xest_sostenimiento_zona").removeAttr("disabled");
+    $('#slc_xest_sostenimiento_zona').css( 'cursor', 'pointer' );
+  }
+  else {
+    $("#slc_xest_sostenimiento_zona").prop('disabled', 'disabled');
+    $('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
+  }
+
+  $("#slc_xest_zona").val('0');
   $.ajax({
     url:base_url+"Estadistica/estad_indi_generales_getsubsost_zona",
     method:"POST",
@@ -127,6 +139,14 @@ $("#slc_xest_nivel_zona").change(function(){
 $("#slc_xest_sostenimiento_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
   var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
+  if (id_subsost!=0) {
+    $("#slc_xest_zona").removeAttr("disabled");
+    $('#slc_xest_zona').css( 'cursor', 'pointer' );
+  }
+  else {
+    $("#slc_xest_zona").prop('disabled', 'disabled');
+    $('#slc_xest_zona').css( 'cursor', 'no-drop' );
+  }
   $.ajax({
     url:base_url+"Estadistica/estad_indi_generales_getzonassubsost_zona",
     method:"POST",
@@ -135,11 +155,13 @@ $("#slc_xest_sostenimiento_zona").change(function(){
       // $("#wait").modal("show");
     },
     success:function(data){
+      console.table(data.array);
       // $("#wait").modal("hide");
       $("#slc_xest_zona").empty();
-      $.each(data, function (index, item) {
-          $("#slc_xest_zona").append('<option value="'+index+'">'+item+'</option>');
-        });
+      $("#slc_xest_zona").append(data.array);
+      // $.each(data, function (index, item) {
+      //     $("#slc_xest_zona").append('<option value="'+index+'">'+item+'</option>');
+      //   });
       // console.log(data);
     },
     error: function(error){
@@ -176,3 +198,23 @@ $("#slc_xest_zona").change(function(){
   });
 
 });
+$("#btn_buscar_zona").click(function(){
+  var id_nivel = $( "#slc_xest_nivel_zona" ).val();
+  var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
+  var id_zona = $( "#slc_xest_zona" ).val();
+
+  if (id_nivel=='0') {
+    alert("Seleccione nivel");
+  }
+  else if (id_subsost=='0') {
+    alert("Seleccione sostenimiento");
+  }
+  else if (id_zona=='0') {
+    alert("Seleccione número de zona escolar");
+  }
+});
+
+$("#slc_xest_sostenimiento_zona").prop('disabled', 'disabled');
+$("#slc_xest_zona").prop('disabled', 'disabled');
+$('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
+$('#slc_xest_zona').css( 'cursor', 'no-drop' );

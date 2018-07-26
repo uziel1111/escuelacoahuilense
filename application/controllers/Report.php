@@ -18,6 +18,7 @@ class Report extends CI_Controller {
 		$this->load->model('Supervision_model');
 		$this->load->model('Subsostenimiento_model');
 		$this->load->model('Indicadoresxmuni_model');
+		$this->load->model('Indicadoresxestado_model');
 
 		$this->style_encabezado = array(
 			'borders' => array(
@@ -164,8 +165,15 @@ class Report extends CI_Controller {
 				 array_push($result_planea, $result_planea_sec[0]);
 				 array_push($result_planea, $result_planea_msuperior[0]);
 
-				 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
-				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+				 if ($id_municipio==0) {
+					 $result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo(1);
+  				 $result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
+				 }
+				 else {
+					 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+  				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+				 }
+
 
 				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
 				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');

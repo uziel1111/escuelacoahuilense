@@ -287,9 +287,7 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                   /*
                 chart: {
@@ -462,7 +460,6 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -625,12 +622,12 @@ function Graficasm(){
                   if (result[i]['path_apoyo']!=null) {
                     html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
                   }
-                  html += "<img src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "<img src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "     </td>";
                   html += "    </tr>";
                   html += "    <tr class='bgcolor-6'>";
                   html += "      <td></td>";
-                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick='obj_graficas.argumento_reactivo()'>Argumento</button>";
+                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
                   html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem("+result[i]['n_reactivo']+")'>Apoyos académicos</button>";
                   html += "      </td>";
@@ -693,9 +690,7 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
 
                 legend: {
@@ -838,12 +833,6 @@ function Graficasm(){
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -971,7 +960,7 @@ function Graficasm(){
       }// graficoplanea_ud_ms_mate()
 
 
-         Graficasm.prototype.argumento_reactivo = function(){
+         Graficasm.prototype.argumento_reactivo = function(url_argumento){
            // alert("entro");
            var html = "<div style='text-align:left !important;'><ul>";
              html += "<table class='table table-condensed'>";
@@ -989,10 +978,10 @@ function Graficasm(){
            $('#modal_visor_pdfc2 .modal-body #div_listalinks').empty();
            $('#modal_visor_pdfc2 .modal-body #div_listalinks').html(html);
 
-           Utiles.showPDF("modal_visor_pdfc2", "info/arg_r1_lyc_17_sec.pdf");
+           Utiles.showPDF("modal_visor_pdfc2", url_argumento);
            $("#modal_visor_pdfc2").modal("show");
 
-            // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+            // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
 
          }
          Graficasm.prototype.especificacion_reactivo = function(){
@@ -1015,7 +1004,7 @@ function Graficasm(){
 
              Utiles.showPDF("modal_visor_pdfc3", "info/esp_r1_lyc_17_sec.pdf");
              $("#modal_visor_pdfc3").modal("show");
-             // window.open("http://proyectoeducativo.org/escuelacoahuilense/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+             // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
          }
 
          Graficasm.prototype.apoyosacadem = function(n_react){
@@ -1084,7 +1073,7 @@ function Graficasm(){
                html += "<tbody> ";
                html += "    <tr>";
                html += "      <td><center>";
-                 html += "<img style='width: 100%;' src='http://proyectoeducativo.org/escuelacoahuilense/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+                 html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
                  html += "      </center></td>";
                  html += "    </tr>";
              html += "</tbody>";

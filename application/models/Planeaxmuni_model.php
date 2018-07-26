@@ -8,7 +8,7 @@ class Planeaxmuni_model extends CI_Model
 
     function get_planea_xmunciclo($id_municipio, $periodo, $nivel){
       if($id_municipio>0){
-      $this->db->select('CONCAT(nivel, "(", periodo, ")") AS nivel, lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
+      $this->db->select('CONCAT(nivel, " (", periodo, ")") AS nivel, lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
       $this->db->from('planeaxmuni');
       $this->db->where('id_municipio', $id_municipio);
       $this->db->where('periodo', $periodo);
@@ -16,7 +16,7 @@ class Planeaxmuni_model extends CI_Model
       return  $this->db->get()->result_array();
       }
       else {
-      $this->db->select('CONCAT(nivel, "(", periodo, ")") AS nivel, lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
+      $this->db->select('CONCAT(nivel, " (", periodo, ")") AS nivel, lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
       $this->db->from('planeaxestado');
       $this->db->where('periodo', $periodo);
       $this->db->where('id_nivel', $nivel);

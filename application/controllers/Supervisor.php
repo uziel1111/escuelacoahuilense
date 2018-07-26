@@ -39,4 +39,15 @@ class Supervisor extends CI_Controller {
 			exit;
 		}// getsuperenmundo()
 
+		public function getsupercte(){
+
+			$strView = $this->load->view("supervision/cte", array(), TRUE);
+			$response = array(
+												'strView' => $strView
+												);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}// getsupercte()
+
 }// Supervisor

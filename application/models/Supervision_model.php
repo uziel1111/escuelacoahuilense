@@ -25,11 +25,12 @@ class Supervision_model extends CI_Model
         $this->db->where('ni.id_nivel', $id_nivel);
       }
       $this->db->where('sso.id_subsostenimiento', $id_subsostenimiento);
+
+      $this->db->group_by("su.id_supervision");
+      $this->db->order_by("su.zona_escolar");
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
-      $this->db->group_by("su.id_supervision");
-
       return  $this->db->get()->result_array();
 
     }// getzona_idnivel_xsost
