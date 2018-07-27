@@ -151,6 +151,19 @@ class Planea extends CI_Controller {
 		        exit;
 		}
 
+		public function apoyos_academxid_reac(){
+			$id_reactivo = $this->input->post("id_reactivo");
+
+			$arr_apoyosacade_xidreact = $this->Planeaxesc_reactivo_model->get_apoyos_academ_xidreact($id_reactivo);
+			// echo "<pre>";print_r($arr_apoyosacade_xidreact);die();
+			$response = array(
+				'arr_apoyosacade_xidreact'=>$arr_apoyosacade_xidreact
+			);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+
 
 
 }// Planea

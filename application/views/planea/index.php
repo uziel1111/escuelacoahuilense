@@ -229,6 +229,24 @@
 </div>
 <!-- End Modal -->
 
+<!-- Modal react -->
+<div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-style-1">
+            <div class="modal-header bgcolor-4">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Reactivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_listalinks"></div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- End Modal -->
+
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/data.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/modules/data.js"></script>-->
 <script src="<?= base_url('assets/highcharts5.0.3/modules/drilldown.js'); ?>"></script><!--Problemas con esta versión<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->

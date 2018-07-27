@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();  
 	"use strict";
 
 	var window_width 	 = $(window).width(),
@@ -13,13 +14,13 @@ $(document).ready(function(){
  //        // Animate loader off screen
  //        $(".preloader").fadeOut("slow");;
  //    });
-	
+
 	$(".fullscreen").css("height", window_height)
 	$(".fitscreen").css("height", fitscreen);
 
     //-------- Active Sticky Js ----------//
      $(".sticky-header").sticky({topSpacing:0});
-     
+
      // -------   Active Mobile Menu-----//
 
      $(".mobile-btn").on('click', function(e){
@@ -33,7 +34,7 @@ $(document).ready(function(){
     //     $(".mobile-menu").slideUp();
     //     $(".mobile-btn span").toggleClass("lnr-menu lnr-cross");
     // });
-     
+
 
 
     // Add smooth scrolling to Menu links
@@ -44,10 +45,10 @@ $(document).ready(function(){
                   $('html, body').animate({
                     scrollTop: $(hash).offset().top - (-10)
                 }, 600, function(){
-                 
+
                     window.location.hash = hash;
                 });
-            } 
+            }
         });
 
  });
@@ -61,14 +62,14 @@ $(document).ready(function(){
         }, options);
 
         var $this = $(this);
-      
+
         var $progressBar = $this;
         var $progressCount = $progressBar.find('.progressBar-percentage-count');
         var $circle = $progressBar.find('.progressBar-circle');
         var percentageProgress = $progressBar.attr('data-progress');
         var percentageRemaining = (100 - percentageProgress);
         var percentageText = $progressCount.parent().attr('data-progress');
-      
+
         //Calculate circonference od circle
         var radius = $circle.attr('r');
         var diameter = radius * 2;
@@ -81,7 +82,7 @@ $(document).ready(function(){
           'stroke-dasharray' : circumference,
           'stroke-dashoffset' : percentage
         })
-        
+
         //Animation bar progression
         if(options.animate === true){
           $circle.css({
@@ -90,10 +91,10 @@ $(document).ready(function(){
             'stroke-dashoffset' : percentage
           }, 3000 )
         }
-        
+
         //Animation text (%)
         if(options.animateText == true){
- 
+
           $({ Counter: 0 }).animate(
             { Counter: percentageText },
             { duration: 3000,
@@ -105,28 +106,28 @@ $(document).ready(function(){
         }else{
           $progressCount.text( percentageText + '%');
         }
-      
+
     };
 
 })(jQuery);
 
 $(document).ready(function(){
-  
+
   $('.progressBar--animateNone').bekeyProgressbar({
     animate : false,
     animateText : false
   });
-  
+
   $('.progressBar--animateCircle').bekeyProgressbar({
     animate : true,
     animateText : false
   });
-  
+
   $('.progressBar--animateText').bekeyProgressbar({
     animate : false,
     animateText : true
   });
-  
+
   $('.progressBar--animateAll').bekeyProgressbar();
-  
+
 })
