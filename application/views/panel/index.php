@@ -126,12 +126,31 @@
 					    <input type="hidden" name="idreactivo" id="idreactivofileform">
 					    <input type="hidden" name="idseleccionadofile" id="idseleccionadofile" value="false">
 					</form>
-					
+
                 </div>
             </div>
             </div>
     </div>
 </div>
 <!-- End Modal -->
+
+<!-- Modal react -->
+<div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+		<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content modal-style-1">
+						<div class="modal-header bgcolor-4">
+								<h5 class="modal-title text-white" id="exampleModalLabel">Reactivo</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								<div id="div_listalinks"></div>
+						</div>
+						</div>
+		</div>
+</div>
+<!-- End Modal -->
+
 <script src="<?= base_url('assets/js/panel/panel.js') ?>"></script>
 <script src="<?= base_url('assets/js/panel/recursos.js') ?>"></script>

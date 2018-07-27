@@ -8,6 +8,7 @@ $("#btn_mostrar_datos_rec").click(function(){
 
 $("#md_close_visor_recursos").click(function(){
 	$("#modal_visor_recursos").modal('hide');
+  obj_panel.get_reactivos();
 })
 
 function Panel(){
@@ -29,7 +30,7 @@ Panel.prototype.get_reactivos =function(){
 		console.log(result);
 		var table = "";
 		$("#contenedor_tabla").append(result);
-		
+
 	})
 	.fail(function(e) {
 		console.error("Error in get_Niveles()"); console.table(e);
@@ -64,4 +65,26 @@ Panel.prototype.get_tabla = function(idreactivo){
 	.always(function() {
     // swal.close();
 	});
+}
+
+Panel.prototype.modal_reactivo = function(path_react){
+
+    var html = "<div style='text-align:left !important;'>";
+      html += "<table class='table table-condensed'>";
+      html += "<tbody> ";
+      html += "    <tr>";
+      html += "      <td><center>";
+        html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
+        html += "      </center></td>";
+        html += "    </tr>";
+    html += "</tbody>";
+      html += "</table>";
+
+      html += "</div>";
+
+    $('#modal_visor_reactivos_zom .modal-body #div_listalinks').empty();
+    $('#modal_visor_reactivos_zom .modal-body #div_listalinks').html(html);
+
+
+    $("#modal_visor_reactivos_zom").modal("show");
 }

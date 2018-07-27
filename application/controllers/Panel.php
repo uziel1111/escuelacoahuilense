@@ -69,7 +69,7 @@ class Panel extends CI_Controller {
 				$table = '<table class="table table-bordered">
 							  <thead>
 							    <tr>
-							      <th scope="col">ID REACTIVO</th>
+
 							      <th scope="col">NUMERO DE REACTIVO</th>
 							      <th scope="col">NUMERO DE PDF´S</th>
 							      <th scope="col">NUMERO DE IMAGENES</th>
@@ -83,13 +83,13 @@ class Panel extends CI_Controller {
 
 				foreach ($reactivos as $reactivo) {
 					$table .=  '<tr>
-							      <th scope="row">'.$reactivo["id_reactivo"].'</th>
+							      <th hidden scope="row">'.$reactivo["id_reactivo"].'</th>
 							      <td>'.$reactivo["n_reactivo"].'</td>
 							      <td>'.$reactivo["total_pdf"].'</td>
 							      <td>'.$reactivo["total_img"].'</td>
 							      <td>'.$reactivo["total_link"].'</td>
 							      <td>'.$reactivo["total_video"].'</td>
-							      <td><img src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" height="100%" width="100%"></td>
+							      <td><img style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" height="100%" width="100%"></td>
 							      <td><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
 							    </tr>';
 				}
