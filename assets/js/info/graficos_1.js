@@ -2671,30 +2671,52 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               }
               else {
                 html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
-                html += "<table class='table table-condensed'>";
-                html += "<tbody>";
+                // html += "<table class='table-responsive table table-condensed'>";
+                // html += "<tbody>";
+                html += "    <div class='container'>";
                 for (var i = 0; i < result.length; i++) {
-                  html += "    <tr>";
-                  html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5></td>";
-                  html += "      <td>";
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-2'>";
+                  html += "      <h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5>";
+                  html += "      </div>";
+                  html += "      <div class='col-10'>";
                   if (result[i]['path_apoyo']!=null) {
                     html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
                   }
-                  html += "<img src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
-                  html += "     </td>";
-                  html += "    </tr>";
-                  html += "    <tr class='bgcolor-6'>";
-                  html += "      <td></td>";
-                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
-                  html += "      </td>";
-                  html += "    </tr>";
+                  html += "      </div>";
+                  html += "    </div>";
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-12'>";
+                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "      </div>";
+                  html += "    </div>";
+
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+
+                  html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
+
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      </div>";
+                  html += "    </div>";
                 }
-                html += "</tbody>";
-                html += "</table>";
+                html += "    </div>";
+                // html += "</tbody>";
+                // html += "</table>";
               }
-              html += "</div>";
+              // html += "</div>";
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
               $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
@@ -2821,6 +2843,29 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           .fail(function(e) {
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
           });
+      }
+
+      HaceGraficas.prototype.modal_reactivo = function(path_react){
+          swal.close();
+
+          var html = "<div style='text-align:left !important;'>";
+            html += "<table class='table table-condensed'>";
+            html += "<tbody> ";
+            html += "    <tr>";
+            html += "      <td><center>";
+              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
+              html += "      </center></td>";
+              html += "    </tr>";
+          html += "</tbody>";
+            html += "</table>";
+
+            html += "</div>";
+
+          $('#modal_visor_reactivos_zom .modal-body #div_listalinks').empty();
+          $('#modal_visor_reactivos_zom .modal-body #div_listalinks').html(html);
+
+
+          $("#modal_visor_reactivos_zom").modal("show");
       }
 
       HaceGraficas.prototype.apoyo_reactivo = function(path_apoyo){

@@ -5,13 +5,15 @@
     <div class="card-body">
       <p>La supervisión escolar es un componente de vital importancia, ya que es la instancia sobre la que descansa el reto de lograr que las escuelas cumplan con los objetivos de atender a todos los niños y jóvenes; crear las condiciones para que concluyan al menos la educación media superior; y asegurar que todos ellos adquieran al menos las competencias básicas que establecen los planes y programas.</p>
       <p>Con la finalidad de apoyar el desempeño y fortalecimiento de las y los Supervisores Escolares, se ha creado este espacio en el cual podrán encontrar información sobre los siguientes temas:</p>
-      <div class="row ml-5 mr-5">
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_trayecto">Trayecto formativo para supervisores escolares</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_mundo" >Bibliografía sobre "La supervisión escolar en el mundo"</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_cte" >Consejos Técnicos Escolares (CTE)</button>
- </div>
-
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_trayecto" value="Trayecto formativo para supervisores escolares">
+        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_mundo" value='Bibliografía sobre "La supervisión escolar en el mundo"'>
+        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_cte" value="Consejos Técnicos Escolares (CTE)">
+      </div>
+      </div>
     </div>
+  </div>
   </div>
 </section>
 <script type="text/javascript">

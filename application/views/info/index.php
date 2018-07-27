@@ -226,9 +226,8 @@
 	                        <div class="col-sm-4">
 	                            <div id="dv_info_graf_Retencion"></div>
 															<center>
-					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Retención
-					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que permanecen en la escuela entre ciclos escolares consecutivos antes de concluir el nivel educativo de referencia, por cada cien alumnos matriculados al inicio del ciclo escolar.
-	</p></span>
+					                      <div data-toggle='tooltip' title='Porcentaje de alumnos que permanecen en la escuela entre ciclos escolares consecutivos antes de concluir el nivel educativo de referencia, por cada cien alumnos matriculados al inicio del ciclo escolar.
+' style='cursor:default; font-size:1.5em;'>  Retención
 					                      </div>
 				                      </center>
 	                        </div>
@@ -236,9 +235,8 @@
 	                        <div class="col-sm-4">
 	                            <div id="dv_info_graf_Aprobacion"></div>
 															<center>
-					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Aprobación
-					                        <span class='tooltiptext2'><p>Porcentaje de alumnos aprobados de un determinado grado, por cada cien alumnos que están matriculados al final del ciclo escolar.
-	</p></span>
+					                      <div data-toggle='tooltip' title='Porcentaje de alumnos aprobados de un determinado grado, por cada cien alumnos que están matriculados al final del ciclo escolar.
+' style='cursor:default; font-size:1.5em;'>  Aprobación
 					                      </div>
 				                      </center>
 	                        </div>
@@ -246,9 +244,8 @@
 	                        <div class="col-sm-4">
 	                            <div id="dv_info_graf_Eficiencia_Terminal"></div>
 															<center>
-					                      <div class='tooltip2' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal
-					                        <span class='tooltiptext2'><p>Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión.
-	</p></span>
+					                      <div data-toggle='tooltip' title='Porcentaje de alumnos que egresan de cierto nivel o tipo educativo en un determinado ciclo escolar por cada cien alumnos de nuevo ingreso, inscritos tantos ciclos escolares atrás como dure el nivel o tipo educativo en cuestión.
+' style='cursor:default; font-size:1.5em;'>  Eficiencia Terminal
 					                      </div>
 				                      </center>
 	                        </div>
@@ -310,7 +307,6 @@
             </div>
             <div id="planea_n_logro" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
                 <div class="card-body">
-                    <div class="row">
 
 	    		<?php if ($nivel == "PRIMARIA"): ?>
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -345,7 +341,8 @@
 					</div>
 			</div>
 			<div class="row">
-      <div class='table-responsive col-sm-12'  style='whith:80%;'>
+				<div class="col">
+      <div class='table-responsive'>
 
       <table id='tabla_planea' class='table table-gray table-hover'>
       <thead>
@@ -502,9 +499,10 @@
       </tbody>
       </table>
       </div>
+			</div>
 		</div>
 
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -587,6 +585,24 @@
                         <div class="modal-content modal-style-1">
                             <div class="modal-header bgcolor-4">
                                 <h5 class="modal-title text-white" id="exampleModalLabel">Texto / imagen complementario del reactivo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div_listalinks"></div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
+								<!-- Modal react -->
+                <div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content modal-style-1">
+                            <div class="modal-header bgcolor-4">
+                                <h5 class="modal-title text-white" id="exampleModalLabel">Reactivo</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

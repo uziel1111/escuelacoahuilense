@@ -19,13 +19,13 @@
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <!-- CSS -->
-    <link href="<?= base_url('assets/css/main.css'); ?>" rel="stylesheet" media="screen"> 
+    <link href="<?= base_url('assets/css/main.css'); ?>" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="<?= base_url('assets/css/linearicons.css'); ?>">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
-     
+
   <link href="<?= base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" media="screen">
 
   <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">

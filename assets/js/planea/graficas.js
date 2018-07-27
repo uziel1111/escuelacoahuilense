@@ -608,35 +608,57 @@ function Graficasm(){
               var result = data.graph_cont_reactivos_xcctxcont;
 
               var html = "<div style='text-align:left !important;'>";
-              if (result[0]['mostrar'] == 'no') {
+              if (result.length==0) {
                 html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<div class='alert alert-warning' role='alert'>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</div>";
-                html += "<table class='table table-condensed'>";
-                html += "<tbody>";
+                html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
+                // html += "<table class='table-responsive table table-condensed'>";
+                // html += "<tbody>";
+                html += "    <div class='container'>";
                 for (var i = 0; i < result.length; i++) {
-                  html += "    <tr>";
-                  html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5></td>";
-                  html += "      <td>";
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-2'>";
+                  html += "      <h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5>";
+                  html += "      </div>";
+                  html += "      <div class='col-10'>";
                   if (result[i]['path_apoyo']!=null) {
                     html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
                   }
-                  html += "<img src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
-                  html += "     </td>";
-                  html += "    </tr>";
-                  html += "    <tr class='bgcolor-6'>";
-                  html += "      <td></td>";
-                  html += "      <td><button type='button' class='btn btn-style-1 color-6 bgcolor-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4' onclick='obj_graficas.apoyosacadem("+result[i]['n_reactivo']+")'>Apoyos académicos</button>";
-                  html += "      </td>";
-                  html += "    </tr>";
+                  html += "      </div>";
+                  html += "    </div>";
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-12'>";
+                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "      </div>";
+                  html += "    </div>";
+
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+
+                  html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
+
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <center>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      </div>";
+                  html += "    </div>";
                 }
-                html += "</tbody>";
-                html += "</table>";
+                html += "    </div>";
+                // html += "</tbody>";
+                // html += "</table>";
               }
-              html += "</div>";
+              // html += "</div>";
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
               $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
@@ -645,32 +667,6 @@ function Graficasm(){
               $("#modal_reactivos_title").html("Contenido temático: "+nombre);
 
               $("#modal_visor_reactivos").modal("show");
-
-              // swal.close();
-              // var result = data.graph_cont_reactivos_xcctxcont;
-              // console.log(result[0]['mostrar']);
-
-              // var html = "<div style='text-align:left !important;'><ul>";
-              // if (result[0]['mostrar'] == 'no') {
-              //   html += "<p><li>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</li></p><br>";
-              // }
-              // else {
-              //   html += "<p><label>Reactivos donde al menos el 50% de los alumnos de esta escuela no contestaron o lo hicieron en forma incorrecta.</label><br>";
-              //   for (var i = 0; i < result.length; i++) {
-              //     html += "<p><li>"+result[i]['descripcion']+"</li></p>";
-              //   }
-              // }
-
-
-              // html += "</ul></div>";
-
-              // $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
-              // $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
-
-              // $("#modal_reactivos_title").empty();
-              // $("#modal_reactivos_title").html("Contenido temático: "+nombre);
-
-              // $("#modal_visor_reactivos").modal("show");
 
           })
           .fail(function(e) {
@@ -1007,61 +1003,93 @@ function Graficasm(){
              // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
          }
 
-         Graficasm.prototype.apoyosacadem = function(n_react){
+         Graficasm.prototype.apoyosacadem = function(id_reactivo){
+             swal.close();
+             var ruta = base_url+"Planea/apoyos_academxid_reac";
+             $.ajax({
+               url: ruta,
+               method: 'POST',
+               data: { 'id_reactivo':id_reactivo
+                     },
+               beforeSend: function( xhr ) {
+                 // obj_loader.show();
+               }
+             })
+             .done(function( data ) {
+               // obj_loader.hide();
+                 swal.close();
+                 var result = data.arr_apoyosacade_xidreact;
+                 // console.table(result);
+                 var html = "<div style='text-align:left !important;'><ul>";
+                   html += "<table class='table table-condensed'>";
+                   html += "<tbody>";
+
+                 result.forEach(function(result, index) {
+                   html += "    <tr>";
+                   html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+(1+index)+"</span></h5></td>";
+                   switch (result.idtipo) {
+                     case '1':
+                         html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                       break;
+                     case '2':
+                         html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                       break;
+                     case '3':
+                         html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                       break;
+                     case '4':
+                         html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                       break;
+                     default:
+                       break;
+                   }
+                   html += "    </tr>";
+
+                 console.log("Persona " + index + " | tipo: " + result.idtipo + " ruta: " + result.ruta)
+                 });
+
+
+                   html += "</tbody>";
+                   html += "</table>";
+
+                 html += "</div>";
+
+                 $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
+                 $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+
+                 $("#modal_apoyos_academ_title").empty();
+                 $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
+
+                 $("#modal_visor_apoyos_academ").modal("show");
+
+
+             })
+             .fail(function(e) {
+                 console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
+             });
+         }
+
+         Graficasm.prototype.modal_reactivo = function(path_react){
              swal.close();
 
-
-             var html = "<div style='text-align:left !important;'><ul>";
+             var html = "<div style='text-align:left !important;'>";
                html += "<table class='table table-condensed'>";
-               html += "<tbody>";
-               if (n_react=='26') {
-                 html += "    <tr>";
-                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-                 var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
-                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>ÁREA DE UN TRAPECIO</a></td>";
+               html += "<tbody> ";
+               html += "    <tr>";
+               html += "      <td><center>";
+                 html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
+                 html += "      </center></td>";
                  html += "    </tr>";
-
-                 html += "    <tr>";
-                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
-                 var srturl2='https://upload.wikimedia.org/wikipedia/commons/b/bd/Trapecios_clasificaci%C3%B3n.png';
-                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-3' href='#' onclick=obj_graficas.material_reactivo('"+srturl2+"')>TIPOS DE TRAPECIOS</a></td>";
-                 html += "    </tr>";
-               }
-               else if (n_react=='4') {
-                 html += "    <tr>";
-                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-                 var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
-                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>COCIENTE DE POTENCIAS CON LA MISA BASE</a></td>";
-                 html += "    </tr>";
-               }
-               else {
-                 html += "    <tr>";
-                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>1</span></h5></td>";
-                 var srturl1='https://www.youtube.com/embed/Of2t3zcNtuM';
-                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
-                 html += "    </tr>";
-                 html += "    <tr>";
-                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>2</span></h5></td>";
-                 var srturl1='https://www.youtube.com/embed/hbz9ZlnRBG4';
-                 html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+srturl1+"')>EJEMPLO</a></td>";
-                 html += "    </tr>";
-
-               }
-
-
-
-               html += "</tbody>";
+             html += "</tbody>";
                html += "</table>";
 
-             html += "</div>";
+               html += "</div>";
 
-             $('#modal_visor_apoyos_academ .modal-body #div_listalinks').empty();
-             $('#modal_visor_apoyos_academ .modal-body #div_listalinks').html(html);
+             $('#modal_visor_reactivos_zom .modal-body #div_listalinks').empty();
+             $('#modal_visor_reactivos_zom .modal-body #div_listalinks').html(html);
 
-             $("#modal_apoyos_academ_title").empty();
-             $("#modal_apoyos_academ_title").html("Pregunta: 1, campo disciplinario: lenguaje y comunicación, periodo: 2016.");
 
-             $("#modal_visor_apoyos_academ").modal("show");
+             $("#modal_visor_reactivos_zom").modal("show");
          }
 
          Graficasm.prototype.apoyo_reactivo = function(path_apoyo){
