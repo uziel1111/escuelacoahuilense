@@ -44,7 +44,7 @@ $("#btn_crear_nuevo_recurso").click(function(){
 });
 
 $("#btn_guarda_link").click(function(){
-	alert("entramos");
+	// alert("entramos");
 	obj_recursos.envia_url();
 });
 
@@ -70,6 +70,7 @@ Recursos.prototype.genera_campo_file = function(idtipo, idreactivo){
 Recursos.prototype.ocultamesaje_link = function(){
 	$("#mensaje_alertattitulo").hide();
     $("#mensaje_alertaurl").hide();
+    $("#mensaje_alertaur2").hide();
     $("#mensaje_alertafuente").hide();
 }
 Recursos.prototype.ocultamesaje_file = function(){
@@ -84,8 +85,11 @@ Recursos.prototype.clean_campos = function(){
 }
 Recursos.prototype.envia_url =function(){
 	obj_recursos.ocultamesaje_link();
-	if($("#inputtitulo").val() ==""){
-		$("#mensaje_alertattitulo").show();																
+  if (!obj_recursos.valida_url($("#inputcampourl").val())) {
+    $("#mensaje_alertaur2").show();
+  }
+  else if($("#inputtitulo").val() ==""){
+		$("#mensaje_alertattitulo").show();
 	}else if($("#inputcampourl").val() ==""){
     	$("#mensaje_alertaurl").show();
 	}else if($("#inputcampofuente").val() ==""){
@@ -112,7 +116,7 @@ Recursos.prototype.envia_url =function(){
 	    // swal.close();
 		});
 	}
-	
+
 }
 
 Recursos.prototype.elimina_recurso = function(idrecurso){
@@ -210,8 +214,8 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 Recursos.prototype.subir_recurso = function(){
     //información del formulario
     var formData = new FormData($(".formulario")[0]);
-    var message = ""; 
-    //hacemos la petición ajax  
+    var message = "";
+    //hacemos la petición ajax
     $.ajax({
         url: base_url+'panel/set_file',
         type: 'POST',
@@ -225,7 +229,7 @@ Recursos.prototype.subir_recurso = function(){
         //mientras enviamos el archivo
         beforeSend: function(){
             message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-            showMessage(message)        
+            showMessage(message)
         },
         //una vez finalizado correctamente
         success: function(data){
@@ -247,6 +251,23 @@ Recursos.prototype.subir_recurso = function(){
     });
 }
 
+Recursos.prototype.valida_url = function(url){
+  var expression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
+var regex = new RegExp(expression);
+if (url.match(regex)) {
+  // alert("entro1");
+  var expression_adul = /porn|xxx|gay|redtube|porin|lesbian|culo|pinga|verga|pelos|teta|titi|chichi/;
+  var regex_a = new RegExp(expression_adul);
+  if (url.match(regex_a)) {
+    return false;
+  }
+  else {
+    return true;
+  }
+} else {
+  return false;
+}
+}
 
 $(".messages").hide();
     //queremos que esta variable sea global
@@ -269,7 +290,7 @@ $(".messages").hide();
         showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
         obj_recursos.validaExisteArchivo(fileName);
     });
- 
+
     //al enviar el formulario
     $('#btn_subir_pdf_imagen').click(function(){
     	obj_recursos.ocultamesaje_file();
@@ -298,19 +319,19 @@ $(".messages").hide();
     		obj_recursos.subir_recurso();
 	    }
     });
- 
-//como la utilizamos demasiadas veces, creamos una función para 
+
+//como la utilizamos demasiadas veces, creamos una función para
 //evitar repetición de código
 function showMessage(message){
     $(".messages").html("").show();
     $(".messages").html(message);
 }
- 
+
 //comprobamos si el archivo a subir es una imagen
 //para visualizarla una vez haya subido
 function isImage(extension)
 {
-    switch(extension.toLowerCase()) 
+    switch(extension.toLowerCase())
     {
         case 'jpg': case 'gif': case 'png': case 'jpeg':
             return true;

@@ -95,6 +95,7 @@
 					    <label for="inputcampourl">Introdusca url: </label>
 					    <input type="text" class="form-control" id="inputcampourl" placeholder="https://misitiodeapoyo.com">
 					    <p id="mensaje_alertaurl" style="color:red;">*El url es requerido</p>
+							<p id="mensaje_alertaur2" style="color:red;">*El url no esta permitido</p>
 					  	</div>
 					  	<div class="form-group">
 					    <label for="inputcampofuente">Introdusca fuente: </label>
@@ -137,7 +138,7 @@
 
 <!-- Modal react -->
 <div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
-		<div class="modal-dialog modal-md" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content modal-style-1">
 						<div class="modal-header bgcolor-4">
 								<h5 class="modal-title text-white" id="exampleModalLabel">Reactivo</h5>
