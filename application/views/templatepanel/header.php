@@ -6,7 +6,7 @@
 	<link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
 	<script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
 	<script src="<?= base_url('assets/bootstrap-411/js/bootstrap.min.js'); ?>"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.2/dist/sweetalert2.all.min.js"></script>
 	<script>
     $(function() {
       base_url = live_url = "<?= base_url(); ?>";

@@ -16,9 +16,6 @@ class Panel extends CI_Controller {
 		public function index(){
 			if(Utilerias::haySesionAbierta($this)){
 				$usuario = Utilerias::get_usuario_sesion($this);
-				// echo "<pre>";
-				// print_r($usuario);
-				// die();
 				$nivel = "";
 				if($usuario[0]['id_nivel'] == 4){
 					$nivel = "PRIMARIA";
@@ -32,7 +29,15 @@ class Panel extends CI_Controller {
 			    $periodos = $this->Planeaxmuni_model->allperiodos();
 				$arr_periodos = array();
 				foreach ($periodos as $periodo){
-					 $arr_periodos[$periodo['id_periodo']] = $periodo['periodo'];
+					if($usuario[0]['id_nivel'] == 4){
+						if($periodo['id_periodo'] == 1){
+							$arr_periodos[$periodo['id_periodo']] = $periodo['periodo'];
+						}
+					}else{
+						if($periodo['id_periodo'] != 1){
+							$arr_periodos[$periodo['id_periodo']] = $periodo['periodo'];
+						}
+					}
 				}
 
 				$contenidos = $this->Recursos_model->get_tipo_contenidos();
@@ -206,7 +211,8 @@ class Panel extends CI_Controller {
 			$idusuario = $usuario[0]['idusuario'];
 			$carpeta = ($idtipo == "1")?"pdf":"img";
 			$ruta_archivos = "recursos/{$id_reactivo}/{$carpeta}/";
-			$ruta_archivos_save = "recursos/{$id_reactivo}/{$carpeta}/{$_FILES['archivo']['name']}";
+			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+			$ruta_archivos_save = "recursos/{$id_reactivo}/{$carpeta}/$nombre_archivo";
 
 			$insert = $this->Recursos_model->inserta_url($id_reactivo, $ruta_archivos_save, $idusuario, $idtipo, $titulo);
 
@@ -220,7 +226,7 @@ class Panel extends CI_Controller {
 
 	                            $uploadPath              = $ruta_archivos;
 	                            $config['upload_path']   = $uploadPath;
-	                            $config['allowed_types'] = 'gif|jpg|png|pdf';
+	                            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
 	                            $this->load->library('upload', $config);
 	                            $this->upload->initialize($config);
@@ -236,9 +242,31 @@ class Panel extends CI_Controller {
 
 		public function delet_recurso(){
 			$id_recurso = $this->input->post('id_recurso');
+			$url = $this->Recursos_model->get_url_recurso($id_recurso);
+
+			if($url[0]['idtipo'] == 1 || $url[0]['idtipo'] == 2){
+				unlink($url[0]['ruta']);
+			}
 			$delete = $this->Recursos_model->delete_recurso($id_recurso);
 
 			Utilerias::enviaDataJson(200, $delete, $this);
+			exit;
+		}
+
+		public function validaExisteArchivo(){
+			$id_reactivo = $this->input->post('id_reactivo');
+			$nombre_archivo = $this->input->post('nombrefile');
+			$idtipo = $this->input->post('tipo');
+			$respuesta = false;
+			$carpeta = ($idtipo == "1")?"pdf":"img";
+			$nombre_archivo = str_replace(" ", "_", $nombre_archivo);
+			$ruta_archivo = "recursos/{$id_reactivo}/{$carpeta}/$nombre_archivo";
+			$existe = $this->Recursos_model->busca_archivo($ruta_archivo);
+			if(count($existe) > 0){
+				$respuesta = true;
+			}
+			$response = array('respuesta' => $respuesta);
+			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
 }// Panel

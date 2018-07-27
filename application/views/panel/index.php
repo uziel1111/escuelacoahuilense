@@ -110,7 +110,7 @@
 						<label>Titulo</label><br />
 					    <input name="titulo" type="text" id="titulofile" class="form-control"/>
 					    <p id="mensaje_alertatitulo_file" style="color:red;">*El titulo es requerido</p>
-					    <input name="archivo" type="file" id="imagen" />
+					    <input name="archivo" type="file" id="imagen" accept="application/pdf" />
 					    <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p>
 					    <div class="form-group">
 					    <label for="inputcampofuentefile">Introdusca fuente: </label>
@@ -125,6 +125,7 @@
 					    <input type="hidden" name="tipo" id="idtipofileform">
 					    <input type="hidden" name="idreactivo" id="idreactivofileform">
 					    <input type="hidden" name="idseleccionadofile" id="idseleccionadofile" value="false">
+					    <input type="hidden" name="validaexixtente" id="validaexixtente" value="false">
 					</form>
 					
                 </div>

@@ -60,6 +60,18 @@ class Recursos_model extends CI_Model
 		return $this->db->delete('recursos_apoyo');
     }
 
+    function get_url_recurso($idrecurso){
+    	$str_query = "SELECT idtipo, ruta FROM recursos_apoyo
+						WHERE idrecurso = {$idrecurso}";
+		return $this->db->query($str_query)->result_array();
+    }
+
+    function busca_archivo($ruta_search){
+    	$str_query = "SELECT ruta FROM recursos_apoyo
+						WHERE ruta = '{$ruta_search}'";
+		return $this->db->query($str_query)->result_array();
+    }
+
 
 }// Sostenimiento_model
 

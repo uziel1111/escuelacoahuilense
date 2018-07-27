@@ -20,9 +20,11 @@ $("#tipodematerial").change(function(){
 	switch(tipo_contenido){
 		case "1":
 		obj_recursos.genera_campo_file(tipo_contenido);
+		$(':file').attr("accept", ".pdf");
 		break;
 		case "2":
 		obj_recursos.genera_campo_file(tipo_contenido);
+		$(':file').attr("accept", "image/*");
 		break;
 		case "3":
 		obj_recursos.genera_campo_url(tipo_contenido, id_reactivo);
@@ -114,25 +116,42 @@ Recursos.prototype.envia_url =function(){
 }
 
 Recursos.prototype.elimina_recurso = function(idrecurso){
-	$.ajax({
-		url: base_url+'panel/delet_recurso',
-		type: 'POST',
-		dataType: 'JSON',
-		data: {id_recurso: idrecurso},
-		beforeSend: function(xhr) {
-	        // Notification.loading("");
-	    },
+	swal({
+	  title: '¿Esta seguro de eliminar este contenido?',
+	  text: "Una vez eliminado no se podra tener acceso al recurso",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Eliminar',
+	  cancelButtonText: 'Cancelar'
+	}).then((result) => {
+	  if (result.value) {
+	    $.ajax({
+			url: base_url+'panel/delet_recurso',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {id_recurso: idrecurso},
+			beforeSend: function(xhr) {
+		        // Notification.loading("");
+		    },
+		})
+		.done(function(result) {
+			swal(
+		      'Eliminado!',
+		      'Se elimino correctamente!',
+		      'success'
+		    )
+			obj_recursos.get_tabla();
+		})
+		.fail(function(e) {
+			console.error("Error in get_Niveles()"); console.table(e);
+		})
+		.always(function() {
+	    // swal.close();
+		});
+	  }
 	})
-	.done(function(result) {
-		alert(result);
-		obj_recursos.get_tabla();
-	})
-	.fail(function(e) {
-		console.error("Error in get_Niveles()"); console.table(e);
-	})
-	.always(function() {
-    // swal.close();
-	});
 }
 
 Recursos.prototype.get_tabla = function(){
@@ -157,6 +176,77 @@ Recursos.prototype.get_tabla = function(){
 	});
 }
 
+Recursos.prototype.validaExisteArchivo = function(nombre){
+	$.ajax({
+		url: base_url+'panel/validaExisteArchivo',
+		type: 'POST',
+		dataType: 'JSON',
+		data: {id_reactivo: $("#input_id_reactivo").val(), nombrefile: nombre, tipo: $("#tipodematerial").val()},
+		beforeSend: function(xhr) {
+	        // Notification.loading("");
+	    },
+	})
+	.done(function(result) {
+		console.log(result);
+		if(result.respuesta == true){
+			$("#validaexixtente").val("true");
+			swal(
+			  'Alerta',
+			  'El archivo que intenta subir ya existe, si continua remplazara al archivo existente.',
+			  'warning'
+			);
+		}else{
+			$("#validaexixtente").val("false");
+		}
+	})
+	.fail(function(e) {
+		console.error("Error in get_Niveles()"); console.table(e);
+	})
+	.always(function() {
+    // swal.close();
+	});
+}
+
+Recursos.prototype.subir_recurso = function(){
+    //información del formulario
+    var formData = new FormData($(".formulario")[0]);
+    var message = ""; 
+    //hacemos la petición ajax  
+    $.ajax({
+        url: base_url+'panel/set_file',
+        type: 'POST',
+        // Form data
+        //datos del formulario
+        data: formData,
+        //necesario para subir archivos via ajax
+        cache: false,
+        contentType: false,
+        processData: false,
+        //mientras enviamos el archivo
+        beforeSend: function(){
+            message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+            showMessage(message)        
+        },
+        //una vez finalizado correctamente
+        success: function(data){
+        	swal(
+		      'Listo!',
+		      'Su archivo se subio correctamente',
+		      'success'
+		    );
+        	$("#modal_operacion_recursos").modal('hide');
+        	obj_recursos.get_tabla();
+        	$("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
+        	$("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
+        },
+        //si ha ocurrido un error
+        error: function(){
+            message = $("<span class='error'>Ha ocurrido un error.</span>");
+            showMessage(message);
+        }
+    });
+}
+
 
 $(".messages").hide();
     //queremos que esta variable sea global
@@ -177,6 +267,7 @@ $(".messages").hide();
         var fileType = file.type;
         //mensaje con la información del archivo
         showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
+        obj_recursos.validaExisteArchivo(fileName);
     });
  
     //al enviar el formulario
@@ -188,39 +279,23 @@ $(".messages").hide();
     		$("#mensaje_alertafile").show();
     	}else if($("#inputcampofuentefile").val() == ""){
     		$("#mensaje_alertafuente_file").show();
+    	}else if($("#validaexixtente").val() == "true"){
+    		swal({
+			  title: '¿Esta seguro de remplazar el archivo?',
+			  text: "Puede que algunos recursos no se visualicen correctamente",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Si, reemplazar!',
+			  cancelButtonText: 'Cancelar'
+			}).then((result) => {
+			  if (result.value) {
+			  	obj_recursos.subir_recurso();
+			  }
+			})
     	}else{
-	        //información del formulario
-	        var formData = new FormData($(".formulario")[0]);
-	        console.table(formData);
-	        var message = ""; 
-	        //hacemos la petición ajax  
-	        $.ajax({
-	            url: base_url+'panel/set_file',
-	            type: 'POST',
-	            // Form data
-	            //datos del formulario
-	            data: formData,
-	            //necesario para subir archivos via ajax
-	            cache: false,
-	            contentType: false,
-	            processData: false,
-	            //mientras enviamos el archivo
-	            beforeSend: function(){
-	                message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-	                showMessage(message)        
-	            },
-	            //una vez finalizado correctamente
-	            success: function(data){
-	            	$("#modal_operacion_recursos").modal('hide');
-	            	obj_recursos.get_tabla();
-	            	$("#idseleccionadofile").val("false");
-	            },
-	            //si ha ocurrido un error
-	            error: function(){
-	                message = $("<span class='error'>Ha ocurrido un error.</span>");
-	                showMessage(message);
-	            }
-	        });
+    		obj_recursos.subir_recurso();
 	    }
     });
  
