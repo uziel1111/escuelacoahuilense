@@ -1,16 +1,11 @@
-<style type="text/css">
-	.margintop{
-		margin-top: 25px;
-	}
-</style>
+<section class="main-area-panel">
 <div class="container">
-	<div class="row margintop">
 		<div class="col-12">
-			<div class="card">
-				  <div class="card-header">
+			<div class="card mb-3 card-style-1">
+				  <div class="card-header card-1-header bg-light">
 				    Opciones
 				  </div>
-				  <div class="container-fluid">
+				  <div class="card-body">
 				  	<div class="row">
 				    	<div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-6">
                           <div class="form-group form-group-style-1">
@@ -25,8 +20,8 @@
                           </div>
                         </div><!-- col-md-4 -->
 				    </div>
-				    <div class="row float-right">
-				    	<button type="button" class="btn btn-secondary" id="btn_mostrar_datos_rec">Mostrar</button>
+				    <div class="row float-right mb-15 mr-10">
+				    	<button type="button" class="btn btn-secondary btn-style-1" id="btn_mostrar_datos_rec">Mostrar</button>
 				    </div>
 				    <!-- <div class="container-fluid"> -->
 								<div class="margintop" id="contenedor_tabla"></div>
@@ -34,9 +29,9 @@
 					</div>
 				  </div>
 			</div>
-		</div>
+		
 	</div>
-</div>
+
 
 <!-- Modal Apoyos -->
 <div class="modal fade" id="modal_visor_recursos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
@@ -153,6 +148,6 @@
 		</div>
 </div>
 <!-- End Modal -->
-
+</section>
 <script src="<?= base_url('assets/js/panel/panel.js') ?>"></script>
 <script src="<?= base_url('assets/js/panel/recursos.js') ?>"></script>

@@ -71,31 +71,31 @@ class Panel extends CI_Controller {
 
 				$reactivos = $this->Recursos_model->get_reactivo_recurso($periodo, $campo_dis, $nivel);
 
-				$table = '<table class="table table-bordered">
-							  <thead>
+				$table = '<table class="table table-style-1">
+							  <thead class="bgcolor-2">
 							    <tr>
 
-							      <th scope="col">NUMERO DE REACTIVO</th>
-							      <th scope="col">NUMERO DE PDF´S</th>
-							      <th scope="col">NUMERO DE IMAGENES</th>
-							      <th scope="col">NUMERO DE VIDEOS</th>
-							      <th scope="col">NUMERO DE LINK´S</th>
-							      <th scope="col">REACTIVO</th>
-							      <th scope="col"></th>
+							      <th scope="col">Número de reactivo</th>
+							      <th scope="col"><i class="far fa-file-pdf"></i></th>
+							      <th scope="col"><i class="far fa-file-image"></i></th>
+							      <th scope="col"><i class="far fa-file-video"></i></th>
+							      <th scope="col"><i class="fas fa-link"></i></th>
+							      <th scope="col">Reactivo</th>
+							      <th scope="col"><i class="far fa-eye"></i></th>
 							    </tr>
 							  </thead>
 							  <tbody>';
 
 				foreach ($reactivos as $reactivo) {
 					$table .=  '<tr>
-							      <th hidden scope="row">'.$reactivo["id_reactivo"].'</th>
-							      <td>'.$reactivo["n_reactivo"].'</td>
-							      <td>'.$reactivo["total_pdf"].'</td>
-							      <td>'.$reactivo["total_img"].'</td>
-							      <td>'.$reactivo["total_link"].'</td>
-							      <td>'.$reactivo["total_video"].'</td>
-							      <td><img style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" height="100%" width="100%"></td>
-							      <td><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
+							      <th hidden scope="row" width="10%">'.$reactivo["id_reactivo"].'</th>
+							      <td width="5%">'.$reactivo["n_reactivo"].'</td>
+							      <td width="5%">'.$reactivo["total_pdf"].'</td>
+							      <td width="5%">'.$reactivo["total_img"].'</td>
+							      <td width="5%">'.$reactivo["total_link"].'</td>
+							      <td width="5%">'.$reactivo["total_video"].'</td>
+							      <td width="60%"><img class="img-fluid" style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" ></td>
+							      <td width="5%"><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
 							    </tr>';
 				}
 				$table .=  '</tbody>

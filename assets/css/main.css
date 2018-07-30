@@ -1951,7 +1951,11 @@ font-size: 25px;
   border: 1px solid transparent;
   box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2);
 }
-
+.main-area-panel {
+  background: #efefef;
+  padding: 30px 0;
+  display: block !important;
+}
 .main-area {
   background: #efefef;
   padding: 100px 0;

@@ -675,7 +675,7 @@
 </div>
 </div>
 </div>
-
+</div>
 </section>
 
 <script src="<?= base_url('assets/highcharts5.0.3/highcharts.js'); ?>"></script><!--Problemas con esta versión <script src="https://code.highcharts.com/highcharts.js"></script>-->
