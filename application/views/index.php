@@ -4,10 +4,7 @@
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 mt-0">
-                                        <div class="mainbox-area-title text-center">
-                                            <h1 class="text-white fw800">SARAPE</h1>
-                                                <h2 class="text-white">Sistema de Apoyo y Reforzamiento Académico para la Planeación Educativa</h2>
-                                        </div>
+                                        
                                 </div>
                         </div>
                         <div class="row">
