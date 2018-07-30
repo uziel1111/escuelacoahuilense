@@ -71,7 +71,7 @@ class Estadistica extends CI_Controller {
 				}
 			}
 
-			$result_modalidad = $this->Modalidad_model->all();
+			$result_modalidad = $this->Modalidad_model->allest();
 			if(count($result_modalidad)==0){
 				$data['arr_modalidad'] = array(	'0' => 'Error recuperando los modalidad' );
 			}else{
@@ -92,14 +92,16 @@ class Estadistica extends CI_Controller {
 			}
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			if(count($result_ciclo)==0){
-				$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			}else{
-				// $arr_ciclo['0'] = 'ELIGE UN CLICO ESCOLAR';
-				foreach ($result_ciclo as $row){
-					 $arr_ciclo[$row['id_ciclo']] = $row['ciclo'];
-				}
-			}
+			$arr_ciclo['2'] = '2017-2018';
+
+			// if(count($result_ciclo)==0){
+			// 	$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
+			// }else{
+			// 	// $arr_ciclo['0'] = 'ELIGE UN CLICO ESCOLAR';
+			// 	foreach ($result_ciclo as $row){
+			// 		 $arr_ciclo[$row['id_ciclo']] = $row['ciclo'];
+			// 	}
+			// }
 
 			$result_nzonae = $this->Supervision_model->allzonas();
 			if(count($result_nzonae)==0){

@@ -2694,8 +2694,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "    <div class='row'>";
                   html += "      <div class='col-md-4 col-sm-12'>";
                   html += "      <center>";
-
-                  html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
+                  if (periodo!='1') {
+                    html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
+                  }
 
                   html += "      </center>";
                   html += "      </div>";
@@ -2805,16 +2806,16 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                 html += "      <td class='text-center'><h5><span class='h3 badge badge-secondary text-white'>"+(1+index)+"</span></h5></td>";
                 switch (result.idtipo) {
                   case '1':
-                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Tipo: PDF.   Fuente: "+result.fuente+"</li></td>";
                     break;
                   case '2':
-                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='#'  onclick=obj_graficas.material_reactivo('"+result.ruta+"')>"+result.titulo+"</a><li>Tipo: IMAGEN.   Fuente: "+result.fuente+"</li></td>";
                     break;
                   case '3':
-                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Tipo: LINK.     Fuente: "+result.fuente+"</li></td>";
                     break;
                   case '4':
-                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Fuente: "+result.fuente+"</li></td>";
+                      html += "      <td><a class='btn btn-style-1 color-6 bgcolor-4' href='"+result.ruta+"' target='_blank'>"+result.titulo+"</a><li>Tipo: VIDEO.     Fuente: "+result.fuente+"</li></td>";
                     break;
                   default:
                     break;

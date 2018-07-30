@@ -36,8 +36,8 @@ class Planea extends CI_Controller {
 
 			//CAMPOS DICIPLINARIOS
 			$arr_campod['0'] = 'SELECCIONE';
-			$arr_campod['1'] = 'Lenguaje y comunicación';
-			$arr_campod['2'] = 'Matemáticas';
+			$arr_campod['1'] = 'LENGUAJE Y COMUNICACIÓN';
+			$arr_campod['2'] = 'MATEMÁTICAS';
 
 			//CAMPO SUBSOSTENIMIENTO
 			$arr_subsostenimientos['0'] = 'SELECCIONE';

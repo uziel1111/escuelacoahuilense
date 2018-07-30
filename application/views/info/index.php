@@ -83,7 +83,7 @@
     <div id="accordion" class="accordion-style-1 mb-3">
         <div class="card-accordion-style-1 mb-3">
             <div class="accordion-style-1-header" id="estadEsc">
-                <a class="collapsed d-block" data-toggle="collapse" data-target="#est_alum_doc_grup" aria-expanded="true" aria-controls="est_alum_doc_grup">
+                <a id="est_alumn_escolar_colaps" class="collapsed d-block" data-toggle="collapse" data-target="#est_alum_doc_grup" aria-expanded="true" aria-controls="est_alum_doc_grup">
                     <i class="fa fa-chevron-down pull-right"></i>
                     Estadística escolar: alumnos, grupos y docentes
                 </a>

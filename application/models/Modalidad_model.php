@@ -9,6 +9,13 @@ class Modalidad_model extends CI_Model
       return  $this->db->get('modalidad')->result_array();
     }// all()
 
+    function allest(){
+      $this->db->select('mo.id_modalidad, mo.modalidad');
+      $this->db->from('modalidad as mo');
+      $this->db->where('mo.id_modalidad <', '10');
+      return  $this->db->get()->result_array();
+    }// all()
+
 
 
     function getmodali_xidmun_idnivel_idsost($id_municipio,$id_nivel,$id_sost){

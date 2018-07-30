@@ -11,6 +11,8 @@ $("#btn_info_asist").click(function(e){
               e.preventDefault();
               obj_info.get_alumn_doc_grup();
               obj_info.get_indica_asist();
+              $( "#est_alumn_escolar_colaps" ).trigger( "click" );
+
 
             });
 $("#btn_info_perma").click(function(e){

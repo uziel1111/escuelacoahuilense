@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content modal-style-1">
       <div class="modal-header  bgcolor-2">
-        <h5 class="modal-title color-6" id="exampleModalLongTitle">Consejos técnicos escolares (CTE)</h5>
+        <h5 class="modal-title color-6" id="exampleModalLongTitle">Consejos Técnicos Escolares (CTE)</h5>
         <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

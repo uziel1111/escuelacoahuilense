@@ -73,32 +73,32 @@ $("#slc_xest_muni_sostenimiento").change(function(){
 
 });
 
-$("#slc_xest_muni_modalidad").change(function(){
-  var id_municipio = $( "#slc_xest_muni_estmunicipio" ).val();
-  var id_nivel = $( "#slc_xest_muni_nivel" ).val();
-  var id_sostenimiento = $( "#slc_xest_muni_sostenimiento" ).val();
-  var id_modalidad = $( "#slc_xest_muni_modalidad" ).val();
-  $.ajax({
-    url:base_url+"Estadistica/estad_indi_generales_getciclo",
-    method:"POST",
-    data:{"id_municipio":id_municipio,"id_nivel":id_nivel,"id_sostenimiento":id_sostenimiento,"id_modalidad":id_modalidad},
-    beforeSend: function(xhr) {
-      // $("#wait").modal("show");
-    },
-    success:function(data){
-      // $("#wait").modal("hide");
-      $("#slc_xest_muni_cicloe").empty();
-      $.each(data, function (index, item) {
-          $("#slc_xest_muni_cicloe").append('<option value="'+index+'">'+item+'</option>');
-        });
-      // console.log(data);
-    },
-    error: function(error){
-      console.log(error);
-    }
-  });
-
-});
+// $("#slc_xest_muni_modalidad").change(function(){
+//   var id_municipio = $( "#slc_xest_muni_estmunicipio" ).val();
+//   var id_nivel = $( "#slc_xest_muni_nivel" ).val();
+//   var id_sostenimiento = $( "#slc_xest_muni_sostenimiento" ).val();
+//   var id_modalidad = $( "#slc_xest_muni_modalidad" ).val();
+//   $.ajax({
+//     url:base_url+"Estadistica/estad_indi_generales_getciclo",
+//     method:"POST",
+//     data:{"id_municipio":id_municipio,"id_nivel":id_nivel,"id_sostenimiento":id_sostenimiento,"id_modalidad":id_modalidad},
+//     beforeSend: function(xhr) {
+//       // $("#wait").modal("show");
+//     },
+//     success:function(data){
+//       // $("#wait").modal("hide");
+//       $("#slc_xest_muni_cicloe").empty();
+//       $.each(data, function (index, item) {
+//           $("#slc_xest_muni_cicloe").append('<option value="'+index+'">'+item+'</option>');
+//         });
+//       // console.log(data);
+//     },
+//     error: function(error){
+//       console.log(error);
+//     }
+//   });
+//
+// });
 
 $("#slc_xest_nivel_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
