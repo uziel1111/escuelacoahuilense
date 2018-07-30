@@ -99,14 +99,18 @@ Recursos.prototype.envia_url =function(){
 			url: base_url+'panel/envia_url',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_reactivo: $("#idreactivoform").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val() },
+			data: {id_reactivo: $("#idreactivoform").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
 			beforeSend: function(xhr) {
 		        // Notification.loading("");
 		    },
 		})
 		.done(function(result) {
-			alert(result.response);
 			$("#modal_operacion_recursos").modal('hide');
+			swal(
+		      'Listo!',
+		      result.response,
+		      'success'
+		    );
 			obj_recursos.get_tabla();
 		})
 		.fail(function(e) {

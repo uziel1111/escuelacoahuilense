@@ -40,7 +40,7 @@ class Recursos_model extends CI_Model
 		return $this->db->query($str_query)->result_array();
     }
 
-    function inserta_url($idreactivo, $url, $idusuario, $idtipo, $titulo){
+    function inserta_url($idreactivo, $url, $idusuario, $idtipo, $titulo, $fuente){
     	$fecha= date("Y-m-d H:i:s");
     	$data = array(
 		        'id_reactivo' => $idreactivo,
@@ -48,7 +48,8 @@ class Recursos_model extends CI_Model
 		        'ruta' => $url,
 		        'idusuario' => $idusuario,
 		        'fcreacion' => $fecha,
-		        'titulo' => $titulo
+		        'titulo' => $titulo,
+		        'fuente' => $fuente
 
 		);
 
