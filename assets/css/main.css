@@ -1434,12 +1434,12 @@ td, th {
 
 }
 .sticky-header {
-  padding: 15px 0;
+  padding: 10px 0 15px 0;
   background:-webkit-linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
   background:-o-linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
   background:-moz-linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
   background:linear-gradient(50deg, rgba(255, 255, 255, 0.8) 40%, rgba(219, 219, 219, 0.8) 90%);
-  max-height: 85px;
+  max-height: 90px;
 }
 
 .is-sticky .sticky-header {
