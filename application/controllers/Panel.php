@@ -76,10 +76,10 @@ class Panel extends CI_Controller {
 							    <tr>
 
 							      <th scope="col">Número de reactivo</th>
-							      <th scope="col"><i class="far fa-file-pdf"></i></th>
-							      <th scope="col"><i class="far fa-file-image"></i></th>
-							      <th scope="col"><i class="far fa-file-video"></i></th>
-							      <th scope="col"><i class="fas fa-link"></i></th>
+							      <th scope="col"><i class="far fa-file-pdf" data-toggle="tooltip" data-placement="top" title="Archivos PDF"></i></th>
+							      <th scope="col"><i class="far fa-file-image" data-toggle="tooltip" data-placement="top" title="Imagenes"></i></th>
+							      <th scope="col"><i class="fas fa-link" data-toggle="tooltip" data-placement="top" title="URL´s de contenido web"></i></th>
+							      <th scope="col"><i class="far fa-file-video" data-toggle="tooltip" data-placement="top" title="Videos"></i></th>
 							      <th scope="col">Reactivo</th>
 							      <th scope="col"><i class="far fa-eye"></i></th>
 							    </tr>
@@ -152,10 +152,11 @@ class Panel extends CI_Controller {
 			$url = $this->input->post('url');
 			$idtipo = $this->input->post('tipo');
 			$titulo = $this->input->post('titulo');
+			$fuente = $this->input->post('fuenteurlvideo');
 			$usuario = Utilerias::get_usuario_sesion($this);
 			$idusuario = $usuario[0]['idusuario'];
 
-			$insert = $this->Recursos_model->inserta_url($id_reactivo, $url, $idusuario, $idtipo, $titulo);
+			$insert = $this->Recursos_model->inserta_url($id_reactivo, $url, $idusuario, $idtipo, $titulo, $fuente);
 			if($insert){
 				$response = array('response' => "Se guardo correctamente");
 				Utilerias::enviaDataJson(200, $response, $this);
@@ -207,6 +208,7 @@ class Panel extends CI_Controller {
 			$id_reactivo = $this->input->post('idreactivo');
 			$idtipo = $this->input->post('tipo');
 			$titulo = $this->input->post('titulo');
+			$fuente = $this->input->post('fuentefile');
 			$usuario = Utilerias::get_usuario_sesion($this);
 			$idusuario = $usuario[0]['idusuario'];
 			$carpeta = ($idtipo == "1")?"pdf":"img";
@@ -214,7 +216,7 @@ class Panel extends CI_Controller {
 			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
 			$ruta_archivos_save = "recursos/{$id_reactivo}/{$carpeta}/$nombre_archivo";
 
-			$insert = $this->Recursos_model->inserta_url($id_reactivo, $ruta_archivos_save, $idusuario, $idtipo, $titulo);
+			$insert = $this->Recursos_model->inserta_url($id_reactivo, $ruta_archivos_save, $idusuario, $idtipo, $titulo, $fuente);
 
 			if(!is_dir($ruta_archivos)){
 				mkdir($ruta_archivos, 0777, true);}

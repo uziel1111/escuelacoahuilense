@@ -82,19 +82,19 @@
 				  </div>
                 <div id="div_contenedor_operaciones">
                 	<div class="form-group">
-					    <label for="inputtitulo">Introdusca un titulo para su contenido: </label>
+					    <label for="inputtitulo">Introduzca un título para su contenido: </label>
 					    <input type="text" class="form-control" id="inputtitulo" placeholder="Titulo">
-					    <p id="mensaje_alertattitulo" style="color:red;">*El titulo es requerido</p>
+					    <p id="mensaje_alertattitulo" style="color:red;">*El título es requerido</p>
 					  	</div>
 						<div class="form-group">
-					    <label for="inputcampourl">Introdusca url: </label>
+					    <label for="inputcampourl">Introduzca url: </label>
 					    <input type="text" class="form-control" id="inputcampourl" placeholder="https://misitiodeapoyo.com">
 					    <p id="mensaje_alertaurl" style="color:red;">*El url es requerido</p>
 							<p id="mensaje_alertaur2" style="color:red;">*El url no esta permitido</p>
 					  	</div>
 					  	<div class="form-group">
-					    <label for="inputcampofuente">Introdusca fuente: </label>
-					    <input type="text" class="form-control" id="inputcampofuente">
+					    <label for="inputcampofuente">Introduzca fuente: </label>
+					    <input type="text" class="form-control" id="inputcampofuente" name="fuenteurlvideo">
 					    <p id="mensaje_alertafuente" style="color:red;">*La fuente es requerida</p>
 					  	</div>
 					  	<input type="hidden" name="idreactivo" id="idreactivoform">
@@ -103,14 +103,14 @@
                 <div id="div_contenedor_operaciones_files">
                 	<!--el enctype debe soportar subida de archivos con multipart/form-data-->
 					<form enctype="multipart/form-data" class="formulario">
-						<label>Titulo</label><br />
+						<label>Título</label><br />
 					    <input name="titulo" type="text" id="titulofile" class="form-control"/>
-					    <p id="mensaje_alertatitulo_file" style="color:red;">*El titulo es requerido</p>
+					    <p id="mensaje_alertatitulo_file" style="color:red;">*El título es requerido</p>
 					    <input name="archivo" type="file" id="imagen" accept="application/pdf" />
 					    <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p>
 					    <div class="form-group">
-					    <label for="inputcampofuentefile">Introdusca fuente: </label>
-					    <input type="text" class="form-control" id="inputcampofuentefile">
+					    <label for="inputcampofuentefile">Introduzca fuente: </label>
+					    <input type="text" class="form-control" id="inputcampofuentefile" name="fuentefile">
 					    <p id="mensaje_alertafuente_file" style="color:red;">*La fuente es requerida</p>
 					  	</div>
 					    <!--div para visualizar mensajes-->
