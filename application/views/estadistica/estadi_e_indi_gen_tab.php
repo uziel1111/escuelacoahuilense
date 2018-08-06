@@ -1,18 +1,21 @@
-<section class="main-area">
+<section  class="main-area">
 <div class="container">
   <a href="javascript:" id="return-to-top"><span class="color-4"><i class="material-icons">keyboard_arrow_up</i></span></a>
     <div class="card mb-3 card-style-1">
-            <div class="card-header card-1-header bg-light">Resultados de búsqueda</div>
   <div class="pb-1 pt-1 card-body">
-  <div class="row">
+    <div><?=$buscador;?> </div>
+    <div id="title_bsq_est" class="card-header card-1-header bg-light"></div>
+  <!-- <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <center>
         <button type="button" class="btn btn-warning btn-style-1 color-6 flex-center" name="button"><?= anchor('Estadistica/estad_indi_generales', 'Regrese a la búsqueda', 'class="link-class"') ?></button>
       </center>
     </div>
-  </div>
+  </div> -->
+  <div class="dv_filtro">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+    <div id="dv_flot_est" class="pt-5 col-12 col-sm-12 col-lg-12">
       <p><center>
         <?php if ($tipo_busqueda=="municipal"): ?>
           <div id="filtros_est_gen"><p style="background:#ffff00">Municipio: <?= $municipio?>, Nivel: <?= $nivel?>, Sostenimiento: <?= $sostenimiento?>, Modalidad: <?= $modalidad?>, Ciclo escolar: <?= $ciclo?>.<p>
@@ -42,11 +45,12 @@
               </center></p>
             </div>
           </div>
+          </div>
 
           </div>
         </div>
 
-
+        <div class="dv_tablas_estmuni">
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
             <div class="card-body">
@@ -128,6 +132,7 @@
               <?= form_close() ?>
             </div><!-- col-md-1 -->
           </div>
+          </div>
               </center></p>
             </div>
           </div>
@@ -135,7 +140,7 @@
           </div>
         </div>
 
-
+        <div class="dv_tablas_estzona">
           <div class="card mb-3 card-style-1">
             <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
             <div class="card-body">
@@ -156,7 +161,7 @@
               <div class="table-responsive"><?= $srt_tab_infraestructura?>  </div>
             </div><!-- card-body -->
           </div><!-- card -->
-
+        </div>
         <?php endif; ?>
 
 
@@ -167,6 +172,18 @@
 
 <script>
 $(function () {
+  $(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  var position=300;
+// alert("111111");
+  if (scroll > position) {
+      $( "#dv_flot_est" ).addClass("dv_flotante");
+  } else {
+      $( "#dv_flot_est" ).removeClass("dv_flotante");
+  }
+
+});
+
   $(".hide-ini").css("display","none");
 
   $('tr.parent').css("cursor","pointer").attr("title","Click para expander/contraer").click(function()

@@ -13,6 +13,17 @@
 /* color-4: #ff006c;   */
 /* color-5: #202020;   */
 /* color-6: #f7f7f7;   */
+.dv_flotante{
+  position: fixed;
+  top: 3% !important;
+  width: 100%;
+  left: 0 !important;
+  right: 0 !important;
+  z-index:99;
+}
+.sticky + .content {
+  padding-top: 102px;
+}
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -630,7 +641,7 @@ td, th {
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-style: double; 
+  border-style: double;
   border-bottom: 5px double rgba(255, 255, 255, 0.3);
   letter-spacing: 3px;
   margin-left: 25%;
@@ -1046,43 +1057,43 @@ td, th {
 .accordion-style-1 .accordion-style-1-header a:not(.collapsed){
  font-family: 'Fira Sans Condensed', sans-serif !important;
    /* font-family: 'Boogaloo', cursive !important; */
-    font-size: 20px; 
+    font-size: 20px;
     color: #fff;
     font-weight: 800;
     background: #3baf29;
     padding: 20px;
-    border-radius:20px 20px 0 0; 
+    border-radius:20px 20px 0 0;
     -moz-border-radius:20px 20px 0 0;
-    -webkit-border-radius:20px 20px 0 0;    
+    -webkit-border-radius:20px 20px 0 0;
 }
 .accordion-style-1 .accordion-style-1-header a.collapsed {
-    font-family: 'Fira Sans Condensed', sans-serif !important;     
+    font-family: 'Fira Sans Condensed', sans-serif !important;
     font-size: 20px;
-    color: #777777; 
+    color: #777777;
     font-weight: 800;
     background: #dfdfdf;
     padding: 20px;
-    border-radius:20px; 
+    border-radius:20px;
     -moz-border-radius:20px;
     -webkit-border-radius:20px;
 }
 .accordion-style-1 .accordion-style-1-header .fa {
   transition: .5s transform ease-in-out;
   color: #fff;
-  font-size: 18px;  
+  font-size: 18px;
 }
 .accordion-style-1 .accordion-style-1-header .collapsed .fa {
   transform: rotate(90deg);
   color: #777777;
-  font-size: 18px;   
+  font-size: 18px;
 }
 .accordion-style-1 .card-body {
-    border-radius: 0 0 20px 20px; 
+    border-radius: 0 0 20px 20px;
     -moz-border-radius: 0 0 20px 20px;
-    -webkit-border-radius: 0 0 20px 20px; 
+    -webkit-border-radius: 0 0 20px 20px;
     border-style: solid;
     border-color: #ccc;
-    border-width: 0 2px 4px 2px; 
+    border-width: 0 2px 4px 2px;
 }
 
 /* Modal Style 1 */
@@ -1179,7 +1190,7 @@ td, th {
     padding: 20px 10px 20px 10px;
 }
 .nav-apa .nav-link-apa:hover {
-  color: #777 !important;  
+  color: #777 !important;
   background-color: #e8e7e7;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.3);
 
@@ -1187,7 +1198,7 @@ td, th {
 .nav-apa .nav-link-apa.active {
     color: #fff !important;
   background-color: #7ea629;
-  
+
 }
 /* End Nav-tabs */
 .section-title {
@@ -1316,7 +1327,7 @@ td, th {
   color: rgba(255, 255, 255, 0.5);
     border-radius: 25px;
     background: rgba(0, 0, 0, 0.5);
-    padding: 10px; 
+    padding: 10px;
     margin-top: -27px;
 
 }
@@ -1335,16 +1346,16 @@ td, th {
     background: rgba(0, 0, 0, 0.91);
   -webkit-box-shadow:0px 0px 1px 0 #6d6d6d ;
   -moz-box-shadow:0px 0px 1px 0 #6d6d6d ;
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);    
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);
   }
   .default-header .main-menu li.dropdown{
-    list-style-type: circle !important; 
-    list-style-position: outside;   
+    list-style-type: circle !important;
+    list-style-position: outside;
     padding: 10px 0 10px 20px;
     color: #fff !important;
   }
   .default-header .main-menu li.dropdown a {
-    font-size: 20px;  
+    font-size: 20px;
     color: #fff;
     width: 100%;
   }
@@ -1360,15 +1371,15 @@ td, th {
     min-width: 12rem;
     padding: 0;
     margin: -40px 0 70px 0 !important;
-    left: -25px !important;  
+    left: -25px !important;
     color: #212529;
     text-align: left;
     list-style: none;
-    position: inherit !important; 
+    position: inherit !important;
     background: rgba(255, 255, 255, 0.8) !important;
     background-clip: padding-box;
     border-top: 0;
-     
+
 }
 .dropdown-menu:before {
   position: absolute;
@@ -1383,7 +1394,7 @@ td, th {
     -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s; 
+  transition: all 0.3s ease 0s;
 }
 
 .dropdown-menu:after {
@@ -1468,7 +1479,7 @@ td, th {
     -moz-border-radius:0px 0px 20px 20px;
     -webkit-border-radius:0px 0px 20px 20px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
-   
+
 }
 .dropdown-menu:before {
   position: absolute;
@@ -1480,7 +1491,7 @@ td, th {
   border-left: 11px solid transparent;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   content: '';
- 
+
 }
 
 .dropdown-menu:after {
@@ -1552,12 +1563,12 @@ td, th {
 .title-bg {
   background:
     linear-gradient(
-      rgba(0, 0, 0, 0.60), 
+      rgba(0, 0, 0, 0.60),
       rgba(0, 0, 0, 0.60)
 
     ),
     /* Main background 'Classroom' image */
-    url("../img/jumbo-bg2.jpg");    
+    url("../img/jumbo-bg2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -1708,19 +1719,19 @@ font-size: 25px;
 }
 
 .card-map{
-    background-color: transparent; 
+    background-color: transparent;
 }
 .card-map .cardmap-body .card-title{
-  font-family: 'Fira Sans Condensed', sans-serif !important;   
+  font-family: 'Fira Sans Condensed', sans-serif !important;
   color: #000;
   font-size: 18px;
-  line-height: 1em;    
+  line-height: 1em;
 }
 .card-map .cardmap-body .card-subtitle{
-  font-family: 'Fira Sans Condensed', sans-serif !important;   
+  font-family: 'Fira Sans Condensed', sans-serif !important;
   color: #777777;
   font-size: 16px;
-  line-height: 1.5em;    
+  line-height: 1.5em;
 }
 
 .controls .filter {

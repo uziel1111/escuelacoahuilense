@@ -218,3 +218,18 @@ $("#slc_xest_sostenimiento_zona").prop('disabled', 'disabled');
 $("#slc_xest_zona").prop('disabled', 'disabled');
 $('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
 $('#slc_xest_zona').css( 'cursor', 'no-drop' );
+
+$("#btn_buscar_mun_est").click(function(){
+});
+
+$("#xest_muni-tab").click(function(){
+  $(".dv_tablas_estzona").empty();
+  $(".dv_tablas_estmuni").empty();
+  $(".dv_filtro").empty();
+});
+
+$("#xzona-tab").click(function(){
+  $(".dv_tablas_estmuni").empty();
+  $(".dv_tablas_estzona").empty();
+  $(".dv_filtro").empty();
+});

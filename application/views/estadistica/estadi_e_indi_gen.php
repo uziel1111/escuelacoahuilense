@@ -1,23 +1,21 @@
         <!-- Start Main Area -->
-        <section class="main-area">
-<div class="container">
-  <div class="card bg-light mb-3 card-style-1">
-    <div class="card-header card-1-header">Estadisticas generales</div>
-    <div class="card-body">
 
-      <?= form_label('<h4>Seleccione tipo de búsqueda</h4>', 'lb_titbusq') ?>
+        <div class="row">
+          <div data-toggle="collapse" data-target="#demo" class="card-header card-1-header bg-light">Seleccione tipo de búsqueda:</div>
+          <div id="demo" class="collapse show">
+      <?= form_label('', 'lb_titbusq') ?>
       <ul class="nav nav-tabs nav-tabs-style-1" id="tab_busqg" role="tablist">
         <li class="nav-item">
-          <a class="nav-link nav-link-style-1 active" id="xest_muni-tab" data-toggle="tab" href="#xest_muni" role="tab" aria-controls="xest_muni" aria-selected="true">Por Estado / Municipio</a>
+          <a class='<?=$tmuni?>' id="xest_muni-tab" data-toggle="tab" href="#xest_muni" role="tab" aria-controls="xest_muni" aria-selected="true">Por Estado / Municipio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-style-1" id="xzona-tab" data-toggle="tab" href="#xzona" role="tab" aria-controls="xzona" aria-selected="false">Por zona escolar</a>
+          <a class='<?=$tzona?>' id="xzona-tab" data-toggle="tab" href="#xzona" role="tab" aria-controls="xzona" aria-selected="false">Por zona escolar</a>
         </li>
       </ul>
               <div class="tab-content tab-content-style-1" id="myTabContent_busqg">
 
-                <div class="tab-pane fade show active" id="xest_muni" role="tabpanel" aria-labelledby="xest_muni-tab">
-                  <?= form_open('estadistica/xest_muni_x', array('class' => 'form', 'id' => 'form_xest_muni')) ?>
+                <div class="tab-pane fade show <?=$tmuni?>" id="xest_muni" role="tabpanel" aria-labelledby="xest_muni-tab">
+                  <?= form_open('estadistica/xest_muni_x/', array('class' => 'form', 'id' => 'form_xest_muni')) ?>
                   <div class="row">
 
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
@@ -67,7 +65,7 @@
                 </div><!-- xest_muni -->
 
 
-                <div class="tab-pane fade" id="xzona" role="tabpanel" aria-labelledby="xzona-tab">
+                <div class="tab-pane fade show <?=$tzona?>" id="xzona" role="tabpanel" aria-labelledby="xzona-tab">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group form-group-style-1">
@@ -113,13 +111,12 @@
                     </div><!--  col-sm-6 -->
                   </div><!-- row -->
                   <?= form_close() ?>
+                  </div>
                 </div>
               </div>
 
-    </div><!-- card-body -->
-  </div><!-- card -->
-</div><!-- container -->
-        </section>
+
+        </div>
         <!-- End Main Area -->
 
 
