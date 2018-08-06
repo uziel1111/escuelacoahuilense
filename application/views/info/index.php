@@ -542,7 +542,7 @@
 </div>
 
                 <!-- Modal Reactivos -->
-                <div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content modal-style-1">
                             <div class="modal-header bgcolor-2">
