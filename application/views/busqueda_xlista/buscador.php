@@ -25,7 +25,7 @@
               </ul>
               <div class="tab-content tab-content-style-1" id="myTabContent">
                 <div class="tab-pane fade show active" id="xmunicipio" role="tabpanel" aria-labelledby="xmunicipio-tab">
-                  <?= form_open('estadistica/escuelas', array('class' => 'form', 'id' => 'form_busquedalista')) ?>
+                  <?= form_open('estadistica/escuelas', array('method'=>'get', 'class' => 'form', 'id' => 'form_busquedalista')) ?>
                   <div class="row">
                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-2">
                       <div class="form-group form-group-style-1">
