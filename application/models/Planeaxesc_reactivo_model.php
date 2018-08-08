@@ -18,6 +18,13 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t1.id_ct', $id_cct);
       $this->db->where('t1.id_periodo', $periodo);
       $this->db->where('t5.id_campodisiplinario', $idcampodis);
+
+      $this->db->where('t2.id_reactivo !=', 118);
+      $this->db->where('t2.id_reactivo !=', 123);
+      $this->db->where('t2.id_reactivo !=', 126);
+      $this->db->where('t2.id_reactivo !=', 176);
+      $this->db->where('t2.id_reactivo !=', 152);
+      $this->db->where('t2.id_reactivo !=', 197);
       $this->db->group_by("t3.id_contenido");
      //  $this->db->get();
      // $str = $this->db->last_query();
@@ -56,6 +63,12 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t3.id_contenido', $id_cont);
       $this->db->where('t1.id_periodo', $periodo);
       $this->db->where('t5.id_campodisiplinario', $idcampodis);
+      $this->db->where('t2.id_reactivo !=', 118);
+      $this->db->where('t2.id_reactivo !=', 123);
+      $this->db->where('t2.id_reactivo !=', 126);
+      $this->db->where('t2.id_reactivo !=', 176);
+      $this->db->where('t2.id_reactivo !=', 152);
+      $this->db->where('t2.id_reactivo !=', 197);
       $this->db->where('(((t1.n_aciertos*100)/t1.n_almn_eval)<50)');
      //  $this->db->get();
      // $str = $this->db->last_query();
@@ -95,6 +108,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
                           WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo}
+                          AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
+                          AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
                           GROUP BY id_contenido
@@ -121,6 +136,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
                           WHERE n.id_nivel = {$nivel}  AND `t1`.`id_periodo` = {$periodo}
+                          AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
+                          AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
                           GROUP BY id_contenido
@@ -148,6 +165,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
         JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
+        AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
+        AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
         AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
         // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
@@ -174,6 +193,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                   JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
 
                   WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
+                  AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
+                  AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                   AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
                   // echo $str_query; die();
                   return $this->db->query($str_query)->result_array();

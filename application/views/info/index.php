@@ -213,7 +213,7 @@
 					<?php endif; ?>
 
 					<div class="card-accordion-style-1 mb-3">
-	            <div class="accordion-style-1-header" id="indiperma">
+	            <div class="accordion-style-1-header" id="indiperma" hidden>
 	                <a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_permanen" aria-expanded="true" aria-controls="indicadores_permanen">
 	                    <i class="fa fa-chevron-down pull-right"></i>
 	                    Indicadores de Permanencia
@@ -262,7 +262,7 @@
 
 <div hidden id="dv_info_aprendizaje" class="container mt-3">
     <div id="accordion" class="accordion-style-1">
-        <div class="card-accordion-style-1 mb-3">
+        <div class="card-accordion-style-1 mb-3" id="dv_lyc_esc" hidden>
             <div class="accordion-style-1-header" id="chplaneaLC">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_cont_lyc" aria-expanded="true" aria-controls="planea_cont_lyc">
                     <i class="fa fa-chevron-down pull-right"></i>
@@ -280,7 +280,7 @@
             </div>
         </div>
 
-        <div class="card-accordion-style-1 mb-3">
+        <div class="card-accordion-style-1 mb-3" id="dv_mat_esc" hidden>
             <div class="accordion-style-1-header" id="chplaneaMAT">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_cont_mat" aria-expanded="true" aria-controls="planea_cont_mat">
                     <i class="fa fa-chevron-down pull-right"></i>
@@ -298,7 +298,7 @@
             </div>
         </div>
 
-         <div class="card-accordion-style-1 mb-3">
+         <div class="card-accordion-style-1 mb-3" id="dv_lyc_mat_esc_nl" hidden>
             <div class="accordion-style-1-header" id="chplaneaLO">
                 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_n_logro" aria-expanded="true" aria-controls="planea_n_logro">
                     <i class="fa fa-chevron-down pull-right"></i>
@@ -507,7 +507,7 @@
             </div>
         </div>
 
-				<div class="card-accordion-style-1 mb-3">
+				<div class="card-accordion-style-1 mb-3" id="dv_ete_esc" hidden>
 					 <div class="accordion-style-1-header" id="ch_ete">
 							 <a class="collapsed d-block" data-toggle="collapse" data-target="#planea_ete" aria-expanded="true" aria-controls="planea_ete">
 									 <i class="fa fa-chevron-down pull-right"></i>

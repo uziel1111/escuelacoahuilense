@@ -179,6 +179,7 @@ Info_esc.prototype.get_indica_perma =function(){
                 $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
               }
 							if (data.indica_perma.length>0) {
+                $("#indiperma").removeAttr('hidden');
 						    var a_ret =  (data.indica_perma[0]['retencion']);//5;
 						    var a_apr =  (data.indica_perma[0]['aprobacion']);//5;
                 var a_efi =  (data.indica_perma[0]['et']);//5;
@@ -186,6 +187,9 @@ Info_esc.prototype.get_indica_perma =function(){
                 graf.DibujarRadialProgressBarretencion(a_ret);
                 graf.DibujarRadialProgressBaraprobacion(a_apr);
                 graf.DibujarRadialProgressBaraefi(a_efi);
+                }
+                else{
+    							$("#indiperma").attr('hidden',true);
                 }
 
 
@@ -439,6 +443,27 @@ Info_esc.prototype.get_planea =function(){
   								var mat3_17  = parseFloat(data.planea17_escuela[0]['mat_iii']);
   								var mat4_17  = parseFloat(data.planea17_escuela[0]['mat_iv']);
   							}
+                // alert();
+                if ((lyc1_16+lyc2_16+lyc3_16+lyc4_16+mat1_16+mat2_16+mat3_16+mat4_16)>0) {
+                  $("#dv_lyc_mat_esc_nl").removeAttr('hidden');}
+                else {
+                  $("#dv_lyc_mat_esc_nl").attr('hidden',true);
+                }
+
+                if (data.graph_cont_tema_lyc.length>0) {
+                  $("#dv_lyc_esc").removeAttr('hidden');
+                }
+                else{
+                  $("#dv_lyc_esc").attr('hidden',true);
+                }
+               // Por Unidades de Análisis lyc
+               if (data.graph_cont_tema_mate.length>0) {
+                 $("#dv_mat_esc").removeAttr('hidden');
+                }
+                else{
+                  $("#dv_mat_esc").attr('hidden',true);
+                }
+
 								switch(nivel) {
 
 									case '3':
@@ -584,10 +609,15 @@ Info_esc.prototype.get_ete =function(){
                   $("#lb_ind_planea").text("PLANEA 2017");
                 }
 								if (data.ete>0) {
+                  $("#dv_ete_esc").removeAttr('hidden');
 								var a_ete  = (data.ete);
 
                 graf.DibujarRadialProgressBarET(a_ete);
 							}
+              else {
+
+                $("#dv_ete_esc").attr('hidden',true);
+              }
 
 
 
