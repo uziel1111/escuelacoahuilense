@@ -55,33 +55,36 @@ class Busqueda_xlista extends CI_Controller {
 			Utilerias::pagina_basica($this, "busqueda_xlista/buscador", $data);
 		}// index()
 
-		public function escuelas_xmunicipio(){
-			$cve_municipio = $this->input->post('slc_busquedalista_municipio');
-			$cve_nivel = $this->input->post('slc_busquedalista_nivel');
-			$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento');
-			$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela');
 
-			$data['cve_municipio'] = $cve_municipio;
-			$data['cve_nivel'] = $cve_nivel;
-			$data['cve_sostenimiento'] = $cve_sostenimiento;
-			$data['nombre_escuela'] = $nombre_escuela;
 
-			//hidden
-			$municipio = $this->input->post('hidden_municipio');
-			$nivel = $this->input->post('hidden_nivel');
-			$sostenimiento = $this->input->post('hidden_sostenimiento');
+		public function escuelas_xmunicipio($var_aux=0){
 
-			$result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-			// echo "<pre>"; print_r($result_escuelas); die();
-			$data['municipio'] = $municipio;
-			$data['nivel'] = $nivel;
-			$data['sostenimiento'] = $sostenimiento;
-			$data['escuela'] = $nombre_escuela;
+				$cve_municipio = $this->input->get('slc_busquedalista_municipio');
+				$cve_nivel = $this->input->get('slc_busquedalista_nivel');
+				$cve_sostenimiento = $this->input->get('slc_busquedalista_sostenimiento');
+				$nombre_escuela = $this->input->get('itxt_busquedalista_nombreescuela');
 
-			$data['arr_escuelas'] = $result_escuelas;
-			$data['total_escuelas'] = count($result_escuelas);
-			// echo "<pre>"; print_r($data); die();
-			Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
+				$data['cve_municipio'] = $cve_municipio;
+				$data['cve_nivel'] = $cve_nivel;
+				$data['cve_sostenimiento'] = $cve_sostenimiento;
+				$data['nombre_escuela'] = $nombre_escuela;
+
+				//hidden
+				$municipio = $this->input->get('hidden_municipio');
+				$nivel = $this->input->get('hidden_nivel');
+				$sostenimiento = $this->input->get('hidden_sostenimiento');
+				$result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+				// echo "<pre>"; print_r($result_escuelas); die();
+				$data['municipio'] = $municipio;
+				$data['nivel'] = $nivel;
+				$data['sostenimiento'] = $sostenimiento;
+				$data['escuela'] = $nombre_escuela;
+
+				$data['arr_escuelas'] = $result_escuelas;
+				$data['total_escuelas'] = count($result_escuelas);
+				// echo "<pre>"; print_r($data); die();
+				Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
+
 		}// escuelas_xmunicipio()
 
 		public function escuelas_xcvecentro(){
