@@ -2706,7 +2706,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "      </div>";
                   html += "      <div class='col-md-4 col-sm-12'>";
                   html += "      <center>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  if (result[i]['n_material']!="0") {
+                    html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  }
                   html += "      </center>";
                   html += "      </div>";
                   html += "      </div>";
@@ -2844,6 +2846,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
           });
       }
+
 
       HaceGraficas.prototype.modal_reactivo = function(path_react){
           swal.close();

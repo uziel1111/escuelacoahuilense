@@ -649,7 +649,9 @@ function Graficasm(){
                   html += "      </div>";
                   html += "      <div class='col-md-4 col-sm-12'>";
                   html += "      <center>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  if (result[i]['n_material']!="0") {
+                    html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                  }
                   html += "      </center>";
                   html += "      </div>";
                   html += "      </div>";
