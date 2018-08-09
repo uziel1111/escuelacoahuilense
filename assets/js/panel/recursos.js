@@ -36,11 +36,20 @@ $("#tipodematerial").change(function(){
 });
 
 $("#btn_crear_nuevo_recurso").click(function(){
-	$("#tipodematerial").val('0')
-	obj_recursos.genera_fila();
-	$("#div_contenedor_operaciones").hide();
-    $("#div_contenedor_operaciones_files").hide();
-    $(".formulario")[0].reset();
+	if(parseInt($("#total_reactivos").val()) < 10){
+		$("#tipodematerial").val('0')
+		obj_recursos.genera_fila();
+		$("#div_contenedor_operaciones").hide();
+	    $("#div_contenedor_operaciones_files").hide();
+	    $(".formulario")[0].reset();
+	    $("#total_reactivos").val(parseInt($("#total_reactivos").val())+1);
+	}else{
+			swal(
+		      'Alerta!',
+		      "El numero de recursos por reactivo solo es 10",
+		      'warning'
+		    );
+	}
 });
 
 $("#btn_guarda_link").click(function(){
@@ -276,6 +285,7 @@ if (url.match(regex)) {
 $(".messages").hide();
     //queremos que esta variable sea global
     var fileExtension = "";
+    var fileSize = 0;
     //función que observa los cambios del campo file y obtiene información
     $(':file').change(function()
     {
@@ -287,7 +297,7 @@ $(".messages").hide();
         //obtenemos la extensión del archivo
         fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
         //obtenemos el tamaño del archivo
-        var fileSize = file.size;
+        fileSize = file.size;
         //obtenemos el tipo de archivo image/png ejemplo
         var fileType = file.type;
         //mensaje con la información del archivo
@@ -297,31 +307,39 @@ $(".messages").hide();
 
     //al enviar el formulario
     $('#btn_subir_pdf_imagen').click(function(){
-    	obj_recursos.ocultamesaje_file();
-    	if($("#titulofile").val() == ""){
-    		$("#mensaje_alertatitulo_file").show();
-    	}else if($("#idseleccionadofile").val()== "false"){
-    		$("#mensaje_alertafile").show();
-    	}else if($("#inputcampofuentefile").val() == ""){
-    		$("#mensaje_alertafuente_file").show();
-    	}else if($("#validaexixtente").val() == "true"){
-    		swal({
-			  title: '¿Esta seguro de remplazar el archivo?',
-			  text: "Puede que algunos recursos no se visualicen correctamente",
-			  type: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Si, reemplazar!',
-			  cancelButtonText: 'Cancelar'
-			}).then((result) => {
-			  if (result.value) {
-			  	obj_recursos.subir_recurso();
-			  }
-			})
+    	if(fileSize < 5000000){
+    		obj_recursos.ocultamesaje_file();
+	    	if($("#titulofile").val() == ""){
+	    		$("#mensaje_alertatitulo_file").show();
+	    	}else if($("#idseleccionadofile").val()== "false"){
+	    		$("#mensaje_alertafile").show();
+	    	}else if($("#inputcampofuentefile").val() == ""){
+	    		$("#mensaje_alertafuente_file").show();
+	    	}else if($("#validaexixtente").val() == "true"){
+	    		swal({
+				  title: '¿Esta seguro de remplazar el archivo?',
+				  text: "Puede que algunos recursos no se visualicen correctamente",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Si, reemplazar!',
+				  cancelButtonText: 'Cancelar'
+				}).then((result) => {
+				  if (result.value) {
+				  	obj_recursos.subir_recurso();
+				  }
+				})
+	    	}else{
+	    		obj_recursos.subir_recurso();
+		    }
     	}else{
-    		obj_recursos.subir_recurso();
-	    }
+    		swal(
+		      'Su archivo es demaciado grande!',
+		      'Solo archivos menores de 5Mb',
+		      'warning'
+		    );
+    	}
     });
 
 //como la utilizamos demasiadas veces, creamos una función para

@@ -53,10 +53,12 @@ Panel.prototype.get_tabla = function(idreactivo){
 	    },
 	})
 	.done(function(result) {
+		console.log(result.totalre);
 		$("#div_contenedor_de_tablarec").empty();
 		$("#div_contenedor_hidden").empty();
 		$("#div_contenedor_de_tablarec").append(result.tabla);
 		$("#div_contenedor_hidden").append("<input type='hidden' id='input_id_reactivo' value = "+idreactivo+">");
+		$("#div_contenedor_hidden").append("<input type='hidden' id='total_reactivos' value = "+result.totalre+">");
 		$("#modal_visor_recursos").modal('show');
 	})
 	.fail(function(e) {
