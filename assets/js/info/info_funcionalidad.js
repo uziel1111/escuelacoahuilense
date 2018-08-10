@@ -573,6 +573,26 @@ Info_esc.prototype.get_planea =function(){
 
 
 								}
+                let cont_lyc = data.graph_cont_tema_lyc;
+                let auxsum_lyc=0;
+                for (var i = 0; i < cont_lyc.length; i++){
+                   auxsum_lyc+=parseFloat(cont_lyc[i]['porcen_alum_respok'])
+                }
+                if (auxsum_lyc==0) {
+                  $("#dv_info_graf_contlyc").empty();
+                  $("#dv_info_graf_contlyc").append('<input type="text" value="Información no disponible">');
+                }
+
+                let cont_mate = data.graph_cont_tema_mate;
+                let auxsum_mate=0;
+                for (var i = 0; i < cont_mate.length; i++){
+                   auxsum_mate+=parseFloat(cont_mate[i]['porcen_alum_respok'])
+                }
+                
+                if (auxsum_mate==0) {
+                  $("#dv_info_graf_contmat").empty();
+                  $("#dv_info_graf_contmat").append('<input type="text" value="Información no disponible">');
+                }
 
 
 							})

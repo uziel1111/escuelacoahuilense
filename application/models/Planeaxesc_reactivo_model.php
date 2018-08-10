@@ -71,7 +71,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t2.id_reactivo !=', 176);
       $this->db->where('t2.id_reactivo !=', 152);
       $this->db->where('t2.id_reactivo !=', 197);
-      $this->db->where('(((t1.n_aciertos*100)/t1.n_almn_eval)<50)');
+      $this->db->where('(((t1.n_aciertos*100)/t1.n_almn_eval)<100)');
+      $this->db->group_by('t2.id_reactivo'); 
      //  $this->db->get();
      // $str = $this->db->last_query();
      // echo $str; die();
@@ -154,7 +155,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_municipio != 0 || $id_municipio != '0'){
         $where = "AND m.id_municipio = {$id_municipio}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo,
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <100, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo,
         CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/reactivo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/r', t2.n_reactivo, '.JPG') as path_react,
        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo,
        t2.url_argumento,
@@ -171,7 +172,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
         AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
         AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
-        AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
+        AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY `t2`.`id_reactivo`) datos GROUP BY id_reactivo
+        ";
         // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
 
@@ -183,7 +185,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       if($id_zona != 0 || $id_zona != '0'){
         $where = "AND s.id_supervision = ${id_zona}";
       }
-      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <50, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t2.n_reactivo, t1.id_reactivo,
+      $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <100, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t2.n_reactivo, t1.id_reactivo,
         CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/reactivo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/r', t2.n_reactivo, '.JPG') as path_react,
        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo,
        t2.url_argumento,
@@ -200,7 +202,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                   WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
                   AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
                   AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
-                  AND `t5`.`id_campodisiplinario` = {$idcampodis}) datos ";
+                  AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY`t2`.`id_reactivo`) datos GROUP BY id_reactivo
+                   ";
                   // echo $str_query; die();
                   return $this->db->query($str_query)->result_array();
 

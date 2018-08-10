@@ -2666,10 +2666,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
               var html = "<div style='text-align:left !important;'>";
               if (result.length==0) {
-                html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
+                // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
+                // html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
                 // html += "<table class='table-responsive table table-condensed'>";
                 // html += "<tbody>";
                 html += "    <div class='container'>";

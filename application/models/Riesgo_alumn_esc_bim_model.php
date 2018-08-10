@@ -119,11 +119,16 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
 
     function get_riesgo_totalb_xidmuni($id_municipio,$id_nivel, $id_bim){
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
+      $where = "";
+      if($id_municipio != 0 ){
+        $where = " AND e.id_municipio = {$id_municipio}";
+      }
       $str_query = "SELECT COUNT(ab.id_cct) AS total FROM alumnos_bajas_{$nivel} ab
                     INNER JOIN escuela e ON e.id_cct = ab.id_cct
-                    WHERE e.id_municipio = {$id_municipio} AND e.id_nivel = {$id_nivel} AND ab.bimestre = {$id_bim}";
-
+                    WHERE e.id_nivel = {$id_nivel} AND ab.bimestre = {$id_bim} {$where}";
+                    // echo $str_query; die();
       $query = $this->db->query($str_query);
+
       return $query->result_array();
     }
 
