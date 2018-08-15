@@ -118,7 +118,7 @@
       </div>
       <div class="modal-body">
 
-        <?= form_open('Info_escuela/get_info', array('class' => '', 'id' => '')) ?>
+        <?= form_open('Info/index', array('class' => '', 'id' => '')) ?>
         <div class="row">
           <div class="col-12">
             <?= form_dropdown('id_cct', array(), '', array('id' => 'id_cct', 'class'=>'form-control')) ?>
