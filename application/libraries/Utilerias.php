@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 define('DATOSUSUARIO', "datos_usuario");
+// define("JSON_PRETTY_PRINT", 128);
+// define("JSON_UNESCAPED_UNICODE", 256);
+// define("JSON_UNESCAPED_SLASHES", 64);
 
 	class Utilerias{
 		public function __construct() {
@@ -38,7 +41,7 @@ define('DATOSUSUARIO', "datos_usuario");
 	    Funcion para retornar datos a peticiones ajax
 	     */
 	    public static function enviaDataJson($status, $data, $contexto){
-	        return $contexto->output
+	    	return $contexto->output
 	                    ->set_status_header($status)
 	                    ->set_content_type('application/json', 'utf-8')
 	                    ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))

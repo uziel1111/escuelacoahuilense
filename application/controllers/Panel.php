@@ -94,7 +94,7 @@ class Panel extends CI_Controller {
 							      <td width="5%">'.$reactivo["total_img"].'</td>
 							      <td width="5%">'.$reactivo["total_link"].'</td>
 							      <td width="5%">'.$reactivo["total_video"].'</td>
-							      <td width="60%"><img class="img-fluid" style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" ></td>
+							      <td width="60%"><img class="img-fluid" style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://www.sarape.gob.mx/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" ></td>
 							      <td width="5%"><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
 							    </tr>';
 				}
