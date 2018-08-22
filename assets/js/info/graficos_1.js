@@ -2686,7 +2686,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "    </div>";
                   html += "    <div class='row'>";
                   html += "      <div class='col-12'>";
-                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "      </div>";
                   html += "    </div>";
 
@@ -2696,12 +2696,13 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   if (periodo!='1') {
                     html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   }
-
                   html += "      </center>";
                   html += "      </div>";
                   html += "      <div class='col-md-4 col-sm-12'>";
                   html += "      <center>";
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick='obj_graficas.especificacion_reactivo()'>Especificación</button>";
+                  if (periodo!='1') {
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
+                  }
                   html += "      </center>";
                   html += "      </div>";
                   html += "      <div class='col-md-4 col-sm-12'>";
@@ -2755,10 +2756,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         Utiles.showPDF("modal_visor_pdfc2", url_argumento);
         $("#modal_visor_pdfc2").modal("show");
 
-         // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
+         // window.open("http://www.sarape.gob.mx/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
 
       }
-      HaceGraficas.prototype.especificacion_reactivo = function(){
+      HaceGraficas.prototype.especificacion_reactivo = function(url_especificacion){
           // alert("entro1");
           var html = "<div style='text-align:left !important;'><ul>";
             html += "<table class='table table-condensed'>";
@@ -2776,9 +2777,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           $('#modal_visor_pdfc3 .modal-body #div_listalinks').empty();
           $('#modal_visor_pdfc3 .modal-body #div_listalinks').html(html);
 
-          Utiles.showPDF("modal_visor_pdfc3", "info/esp_r1_lyc_17_sec.pdf");
+          Utiles.showPDF("modal_visor_pdfc3", url_especificacion);
           $("#modal_visor_pdfc3").modal("show");
-          // window.open("http://proyectoeducativo.org/sarape/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
+          // window.open("http://www.sarape.gob.mx/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
       }
 
       HaceGraficas.prototype.apoyosacadem = function(id_reactivo){
@@ -2856,7 +2857,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             html += "<tbody> ";
             html += "    <tr>";
             html += "      <td><center>";
-              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
+              html += "<img style='width: 100%;' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
               html += "      </center></td>";
               html += "    </tr>";
           html += "</tbody>";
@@ -2880,7 +2881,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             html += "<tbody> ";
             html += "    <tr>";
             html += "      <td><center>";
-              html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+              html += "<img style='width: 100%;' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
               html += "      </center></td>";
               html += "    </tr>";
           html += "</tbody>";
@@ -2899,7 +2900,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           swal.close();
 
           var html = "<div class='embed-responsive embed-responsive-16by9'>";
-          html += "  <iframe class='embed-responsive-item' src='"+"http://proyectoeducativo.org/sarape/"+url+"' allowfullscreen></iframe>";
+          html += "  <iframe class='embed-responsive-item' src='"+"http://www.sarape.gob.mx/"+url+"' allowfullscreen></iframe>";
           html += "</div>";
 
 

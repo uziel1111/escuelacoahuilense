@@ -14,7 +14,7 @@
   <!-- meta character set -->
   <meta charset="UTF-8">
   <!-- Site Title -->
-    <title>Escuela Coahuilense</title>
+    <title>SARAPE</title>
     <!-- Site Title -->
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">

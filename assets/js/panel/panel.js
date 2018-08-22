@@ -76,7 +76,7 @@ Panel.prototype.modal_reactivo = function(path_react){
       html += "<tbody> ";
       html += "    <tr>";
       html += "      <td><center>";
-        html += "<img style='width: 100%;' src='http://proyectoeducativo.org/sarape/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
+        html += "<img style='width: 100%;' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+path_react+"' class='img-responsive center-block' />";
         html += "      </center></td>";
         html += "    </tr>";
     html += "</tbody>";

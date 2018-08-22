@@ -26,16 +26,16 @@
     <div class="d-flex w-100 justify-content-between">
       <li class="mb-1 color-2">Materiales de apoyo que acompañan a las guías por nivel educativo y por día de trabajo<p class="pl-1 color-3"> (Descargar)</p></li>
     </div>
-    <p style="cursor: pointer;" class="mb-1"><a href="http://proyectoeducativo.org/sarape/assets/docs/supervision_escolar/cte/201807-RSC-ZhZ1HiLuUr-Materiales_SNA_Preescolar.zip">Materiales de apoyo Preescolar</a></p>
-    <p style="cursor: pointer;" class="mb-1"><a href="http://proyectoeducativo.org/sarape/assets/docs/supervision_escolar/cte/201807-RSC-uhpMzGjmWL-Materiales_SNA_Primaria.zip">Materiales de apoyo Primaria</a></p>
-    <p style="cursor: pointer;" class="mb-1"><a href="http://proyectoeducativo.org/sarape/assets/docs/supervision_escolar/cte/201807-RSC-xtvlRk2nNp-Materiales_SNA_Secundaria.zip">Materiales de apoyo Secundaria</a></p>
+    <p style="cursor: pointer;" class="mb-1"><a href="http://www.sarape.gob.mx/assets/docs/supervision_escolar/cte/201807-RSC-ZhZ1HiLuUr-Materiales_SNA_Preescolar.zip">Materiales de apoyo Preescolar</a></p>
+    <p style="cursor: pointer;" class="mb-1"><a href="http://www.sarape.gob.mx/assets/docs/supervision_escolar/cte/201807-RSC-uhpMzGjmWL-Materiales_SNA_Primaria.zip">Materiales de apoyo Primaria</a></p>
+    <p style="cursor: pointer;" class="mb-1"><a href="http://www.sarape.gob.mx/assets/docs/supervision_escolar/cte/201807-RSC-xtvlRk2nNp-Materiales_SNA_Secundaria.zip">Materiales de apoyo Secundaria</a></p>
   </p>
   <p class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <LI class="mb-1 color-2">Materiales de apoyo para la implementación del Modelo educativo para todos los niveles<p class="pl-1 color-3"> (Descargar)</p></LI>
     </div>
-    <p style="cursor: pointer;" class="mb-1"><a href="http://proyectoeducativo.org/sarape/assets/docs/supervision_escolar/cte/201807-RSC-hdcTQMzsBu-CartelesAprendizajesClave.rar">Carteles</a></p>
-    <p style="cursor: pointer;" class="mb-1"><a href="http://proyectoeducativo.org/sarape/assets/docs/supervision_escolar/cte/201807-RSC-wNyiID8s6e-InfografiasAnimadas.rar">Infografías animadas</a></p>
+    <p style="cursor: pointer;" class="mb-1"><a href="http://www.sarape.gob.mx/assets/docs/supervision_escolar/cte/201807-RSC-hdcTQMzsBu-CartelesAprendizajesClave.rar">Carteles</a></p>
+    <p style="cursor: pointer;" class="mb-1"><a href="http://www.sarape.gob.mx/assets/docs/supervision_escolar/cte/201807-RSC-wNyiID8s6e-InfografiasAnimadas.rar">Infografías animadas</a></p>
   </p>
 <center>
 
