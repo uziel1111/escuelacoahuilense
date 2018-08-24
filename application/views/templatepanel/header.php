@@ -10,7 +10,8 @@
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">   
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
-      <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">
+    <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">
+    <script src="<?= base_url('assets/js/messages.js'); ?>"></script>
 	<script>
     $(function() {
       base_url = live_url = "<?= base_url(); ?>";

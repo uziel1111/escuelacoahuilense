@@ -82,6 +82,7 @@ class Panel extends CI_Controller {
 							      <th scope="col"><i class="far fa-file-video" data-toggle="tooltip" data-placement="top" title="Videos"></i></th>
 							      <th scope="col">Reactivo</th>
 							      <th scope="col"><i class="far fa-eye"></i></th>
+							      <th scope="col"><i class="fa fa-info-circle"></i></th>
 							    </tr>
 							  </thead>
 							  <tbody>';
@@ -95,8 +96,11 @@ class Panel extends CI_Controller {
 							      <td width="5%">'.$reactivo["total_link"].'</td>
 							      <td width="5%">'.$reactivo["total_video"].'</td>
 							      <td width="60%"><img class="img-fluid" style="cursor: zoom-in;" onclick=obj_panel.modal_reactivo("'.$reactivo["path_react"].'") src="'."http://www.sarape.gob.mx/assets/docs/planea_reactivos/".$reactivo["path_react"].'" face" ></td>
-							      <td width="5%"><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>
-							    </tr>';
+							      <td width="5%"><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>';
+							      if($reactivo['path_apoyo'] != null){
+							      	$table .='<td width="5%"><center><button type="button" class="btn btn-warning" id="btn_mostrar_datos_rec" onClick="obj_panel.show_apoyo('.$reactivo["path_apoyo"].')">Apoyo</button></center></td>';
+							      }
+							    $table .='</tr>';
 				}
 				$table .=  '</tbody>
 							</table>';
