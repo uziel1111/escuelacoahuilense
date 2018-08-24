@@ -14,6 +14,14 @@ class Recursos_model extends CI_Model
 					    '/r',
 					    pr.n_reactivo,
 					    '.JPG') AS path_react, 
+					  CONCAT(
+				      IF(pua.id_nivel=4,'primaria',IF(pua.id_nivel=5,'secundaria',IF(pua.id_nivel=6,'ms','nada'))),
+				      IF(pua.id_periodo=1,'2016',IF(pua.id_periodo=2,'2017','nada')),
+				      '/apoyo_',
+				      IF(pua.id_campodisiplinario=1,'lyc',IF(pua.id_campodisiplinario=2,'mat','nada')),
+				      '/apoyo',
+				      pr.apoyo,
+				      '.JPG') as path_apoyo,
 					SUM(IF(ra.idtipo = 1, 1, 0)) AS total_pdf, 
 					SUM(IF(ra.idtipo = 2, 1, 0)) AS total_img,
 					SUM(IF(ra.idtipo = 3, 1, 0)) AS total_link,
@@ -24,6 +32,7 @@ class Recursos_model extends CI_Model
 					WHERE pua.id_periodo = {$periodo} AND pua.id_campodisiplinario = {$campo_dis} AND pua.id_nivel = {$nivel} 
 					GROUP BY pr.id_reactivo
 					ORDER BY pr.id_reactivo ASC";
+					// echo $str_query; die();
       	return $this->db->query($str_query)->result_array();
     }// all()
 

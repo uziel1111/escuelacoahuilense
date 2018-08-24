@@ -110,7 +110,7 @@ Recursos.prototype.envia_url =function(){
 			dataType: 'JSON',
 			data: {id_reactivo: $("#idreactivoform").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
 			beforeSend: function(xhr) {
-		        // Notification.loading("");
+		        Notification.loading("");
 		    },
 		})
 		.done(function(result) {
@@ -126,7 +126,7 @@ Recursos.prototype.envia_url =function(){
 			console.error("Error in get_Niveles()"); console.table(e);
 		})
 		.always(function() {
-	    // swal.close();
+	    swal.close();
 		});
 	}
 
@@ -150,7 +150,7 @@ Recursos.prototype.elimina_recurso = function(idrecurso){
 			dataType: 'JSON',
 			data: {id_recurso: idrecurso},
 			beforeSend: function(xhr) {
-		        // Notification.loading("");
+		        Notification.loading("");
 		    },
 		})
 		.done(function(result) {
@@ -165,7 +165,7 @@ Recursos.prototype.elimina_recurso = function(idrecurso){
 			console.error("Error in get_Niveles()"); console.table(e);
 		})
 		.always(function() {
-	    // swal.close();
+	    swal.close();
 		});
 	  }
 	})
@@ -178,7 +178,7 @@ Recursos.prototype.get_tabla = function(){
 		dataType: 'JSON',
 		data: {id_reactivo: $("#input_id_reactivo").val()},
 		beforeSend: function(xhr) {
-	        // Notification.loading("");
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
@@ -189,7 +189,7 @@ Recursos.prototype.get_tabla = function(){
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    // swal.close();
+    swal.close();
 	});
 }
 
@@ -200,7 +200,7 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 		dataType: 'JSON',
 		data: {id_reactivo: $("#input_id_reactivo").val(), nombrefile: nombre, tipo: $("#tipodematerial").val()},
 		beforeSend: function(xhr) {
-	        // Notification.loading("");
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
@@ -220,7 +220,7 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    // swal.close();
+    swal.close();
 	});
 }
 

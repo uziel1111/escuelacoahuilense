@@ -22,7 +22,7 @@ Panel.prototype.get_reactivos =function(){
 		dataType: 'JSON',
 		data: {periodo: $("#slt_periodo_reactivos").val(), campo_dis: $("#slt_campod_reactivos").val() },
 		beforeSend: function(xhr) {
-	        // Notification.loading("");
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
@@ -36,7 +36,7 @@ Panel.prototype.get_reactivos =function(){
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    // swal.close();
+    swal.close();
 	});
 
 }
@@ -49,7 +49,7 @@ Panel.prototype.get_tabla = function(idreactivo){
 		dataType: 'JSON',
 		data: {id_reactivo: idreactivo},
 		beforeSend: function(xhr) {
-	        // Notification.loading("");
+	        Notification.loading("");
 	    },
 	})
 	.done(function(result) {
@@ -65,8 +65,29 @@ Panel.prototype.get_tabla = function(idreactivo){
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    // swal.close();
+    swal.close();
 	});
+}
+
+Panel.prototype.show_apoyo = function(path_apoyo){
+	var html = "<div style='text-align:left !important;'>";
+      html += "<table class='table table-condensed'>";
+      html += "<tbody> ";
+      html += "    <tr>";
+      html += "      <td><center>";
+        html += "<img style='width: 100%;' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+path_apoyo+"' class='img-responsive center-block' />";
+        html += "      </center></td>";
+        html += "    </tr>";
+    html += "</tbody>";
+      html += "</table>";
+
+      html += "</div>";
+
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').empty();
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').html(html);
+
+
+    $("#modal_visor_apoyo_react").modal("show");
 }
 
 Panel.prototype.modal_reactivo = function(path_react){
