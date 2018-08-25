@@ -160,7 +160,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="div_listalinks"></div>
+                <div id="div_cont_apoyo"></div>
             </div>
             </div>
     </div>
