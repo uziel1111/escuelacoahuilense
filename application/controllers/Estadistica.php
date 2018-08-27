@@ -484,10 +484,26 @@ class Estadistica extends CI_Controller {
 
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
-				$str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td><td>'.number_format($row['alumn_h_t']).'</td><td>'.number_format($row['alumn_t_t']).'</td>
-				<td>'.number_format($row['alumn_t_1']).'</td><td>'.number_format($row['alumn_t_2']).'</td><td>'.number_format($row['alumn_t_3']).'</td>
-				<td>'.number_format($row['alumn_t_4']).'</td><td>'.number_format($row['alumn_t_5']).'</td><td>'.number_format($row['alumn_t_6']).'</td>
-				</tr>';
+				($row['alumn_m_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td>';
+				($row['alumn_h_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_h_t']).'</td>';
+				($row['alumn_t_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_t']).'</td>';
+				($row['alumn_t_1']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_1']).'</td>';
+				($row['alumn_t_2']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_2']).'</td>';
+				($row['alumn_t_3']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_3']).'</td>';
+				($row['alumn_t_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_4']).'</td>';
+				($row['alumn_t_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_5']).'</td>';
+				($row['alumn_t_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_6']).'</td>';
+				// $str_html_alumn.='
+				// <td>'.number_format($row['alumn_m_t']).'</td>
+				// <td>'.number_format($row['alumn_h_t']).'</td>
+				// <td>'.number_format($row['alumn_t_t']).'</td>
+				// <td>'.number_format($row['alumn_t_1']).'</td>
+				// <td>'.number_format($row['alumn_t_2']).'</td>
+				// <td>'.number_format($row['alumn_t_3']).'</td>
+				// <td>'.number_format($row['alumn_t_4']).'</td>
+				// <td>'.number_format($row['alumn_t_5']).'</td>
+				// <td>'.number_format($row['alumn_t_6']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
           			</table>
@@ -554,10 +570,19 @@ class Estadistica extends CI_Controller {
 
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
-				$str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td><td>'.number_format($row['alumn_h_t']).'</td><td>'.number_format($row['alumn_t_t']).'</td>
-				<td>'.number_format($row['alumn_t_1']).'</td><td>'.number_format($row['alumn_t_2']).'</td><td>'.number_format($row['alumn_t_3']).'</td>
-				<td>'.number_format($row['alumn_t_4']).'</td><td>'.number_format($row['alumn_t_5']).'</td><td>'.number_format($row['alumn_t_6']).'</td>
-				</tr>';
+				($row['alumn_m_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td>';
+				($row['alumn_h_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_h_t']).'</td>';
+				($row['alumn_t_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_t']).'</td>';
+				($row['alumn_t_1']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_1']).'</td>';
+				($row['alumn_t_2']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_2']).'</td>';
+				($row['alumn_t_3']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_3']).'</td>';
+				($row['alumn_t_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_4']).'</td>';
+				($row['alumn_t_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_5']).'</td>';
+				($row['alumn_t_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_6']).'</td>';
+				// $str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td><td>'.number_format($row['alumn_h_t']).'</td><td>'.number_format($row['alumn_t_t']).'</td>
+				// <td>'.number_format($row['alumn_t_1']).'</td><td>'.number_format($row['alumn_t_2']).'</td><td>'.number_format($row['alumn_t_3']).'</td>
+				// <td>'.number_format($row['alumn_t_4']).'</td><td>'.number_format($row['alumn_t_5']).'</td><td>'.number_format($row['alumn_t_6']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
           			</table>
@@ -626,11 +651,21 @@ class Estadistica extends CI_Controller {
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
 
-				$str_html_alumn.='
-				<td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
-				<td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
-				<td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
-				</tr>';
+				($row['docente_m']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docente_m']).'</td>';
+				($row['docente_h']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docente_h']).'</td>';
+				($row['docentes_t_g']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docentes_t_g']).'</td>';
+				($row['directivo_m_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_m_congrup']).'</td>';
+				($row['directivo_h_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_congrup']).'</td>';
+				($row['directivo_t_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_congrup']).'</td>';
+				($row['directivo_m_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_m_singrup']).'</td>';
+				($row['directivo_h_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_singrup']).'</td>';
+				($row['directivo_t_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_singrup']).'</td>';
+
+				// $str_html_alumn.='
+				// <td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
+				// <td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
+				// <td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -699,11 +734,21 @@ class Estadistica extends CI_Controller {
 
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
-				$str_html_alumn.='
-				<td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
-				<td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
-				<td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
-				</tr>';
+				($row['docente_m']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docente_m']).'</td>';
+				($row['docente_h']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docente_h']).'</td>';
+				($row['docentes_t_g']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['docentes_t_g']).'</td>';
+				($row['directivo_m_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_m_congrup']).'</td>';
+				($row['directivo_h_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_congrup']).'</td>';
+				($row['directivo_t_congrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_congrup']).'</td>';
+				($row['directivo_m_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_m_singrup']).'</td>';
+				($row['directivo_h_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_singrup']).'</td>';
+				($row['directivo_t_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_singrup']).'</td>';
+
+				// $str_html_alumn.='
+				// <td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
+				// <td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
+				// <td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -770,11 +815,21 @@ class Estadistica extends CI_Controller {
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
 
-				$str_html_alumn.='
-				<td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
-				<td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				<td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
-				</tr>';
+				($row['nescuelas']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['nescuelas']).'</td>';
+				($row['grupos_1']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_1']).'</td>';
+				($row['grupos_2']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_2']).'</td>';
+				($row['grupos_3']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_3']).'</td>';
+				($row['grupos_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_4']).'</td>';
+				($row['grupos_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_5']).'</td>';
+				($row['grupos_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_6']).'</td>';
+				($row['grupos_multi']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_multi']).'</td>';
+				($row['grupos_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_t']).'</td>';
+
+				// $str_html_alumn.='
+				// <td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
+				// <td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
+				// <td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -842,11 +897,21 @@ class Estadistica extends CI_Controller {
 					$str_html_alumn.='<td class="pl-5">'.$row['modalidad'].'</td>';
 				}
 
-				$str_html_alumn.='
-				<td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
-				<td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				<td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
-				</tr>';
+				($row['nescuelas']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['nescuelas']).'</td>';
+				($row['grupos_1']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_1']).'</td>';
+				($row['grupos_2']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_2']).'</td>';
+				($row['grupos_3']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_3']).'</td>';
+				($row['grupos_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_4']).'</td>';
+				($row['grupos_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_5']).'</td>';
+				($row['grupos_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_6']).'</td>';
+				($row['grupos_multi']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_multi']).'</td>';
+				($row['grupos_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_t']).'</td>';
+
+				// $str_html_alumn.='
+				// <td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
+				// <td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
+				// <td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
+				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -920,7 +985,7 @@ class Estadistica extends CI_Controller {
 				$result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo(1);
 			}
 			else {
-				$result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
+				$result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 1);
 			}
 
 
@@ -960,7 +1025,7 @@ class Estadistica extends CI_Controller {
 				$result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
 			}
 			else {
-				$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+				$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 1);
 			}
 
 

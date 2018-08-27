@@ -4,7 +4,7 @@
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 mt-0">
-                                        
+
                                 </div>
                         </div>
                         <div class="row">
@@ -106,7 +106,7 @@
                                         <div class="coaboxt-content">
                                                 <h2 class="h1 text-white text-uppercase mb-20">Fortaleciendo a <br>la escuela coahuilense</h2>
                                                 <p class="text-white mb-30">Dotando al Sistema Educativo del Estado de acceso a la información en los contenidos de los programas educativos y en el proceso de enseñanza-aprendizaje.</p>
-                                                <a href="#" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer más<span class="lnr lnr-arrow-right"></span></a>
+                                                <a onclick="Index.getmsjsarape()" href="javascript:void(0)" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer más<span class="lnr lnr-arrow-right"></span></a>
                                         </div>
                                 </div>
                         </div>

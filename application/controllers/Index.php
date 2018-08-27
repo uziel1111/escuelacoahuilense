@@ -61,6 +61,15 @@ class Index extends CI_Controller {
 		exit;
 	}// getCalendarioEscolar()
 
+	public function sarapemsj(){
+		$strView = $this->load->view("index/sarapemsj", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getCalendarioEscolar()
+
 
 
 }

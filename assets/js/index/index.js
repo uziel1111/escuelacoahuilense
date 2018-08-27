@@ -76,10 +76,33 @@ var Index = {
     .done(function( data ) {
       $("#div_generico").empty();
       $("#div_generico").append(data.strView);
-      Utiles.showPDF("modal_calendarioEscolar", "index/calendarioEscolar/calendario_2017.pdf");
+      Utiles.showPDF("modal_calendarioEscolar", "index/calendarioEscolar/Calendario_2018-2019_web.pdf");
     })
     .fail(function(e) {
       console.error("Error in getCalendarioEscolar()"); console.table(e);
+    })
+    .always(function() {
+			swal.close();
+		});
+	},
+
+  getmsjsarape : function() {
+    var ruta = base_url+"Index/sarapemsj";
+    $.ajax({
+      url: ruta,
+      method: 'POST',
+      data: { 'folder':1, 'file':1 },
+      beforeSend: function(xhr) {
+        Notification.loading("");
+      }
+    })
+    .done(function( data ) {
+      $("#div_generico").empty();
+      $("#div_generico").append(data.strView);
+      Utiles.showPDF("modal_msjsarape", "index/SARAPE.pdf");
+    })
+    .fail(function(e) {
+      console.error("Error in sarapemsj()"); console.table(e);
     })
     .always(function() {
 			swal.close();
