@@ -68,8 +68,24 @@ class Index extends CI_Controller {
 											);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
-	}// getCalendarioEscolar()
+	}// sarapemsj()
 
+	public function guiaparapadres(){
+		$strView = $this->load->view("index/guiaparapadres", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// guiaparapadres()
 
+	public function modeloeducativo(){
+		$strView = $this->load->view("index/modeloeducativo", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// modeloeducativo()
 
 }

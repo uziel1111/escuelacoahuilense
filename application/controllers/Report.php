@@ -131,7 +131,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':G'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Reporte_escuelas_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
@@ -523,7 +523,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->getStyle('A'.$temp.':D'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Estadistica_e_indicadores_generales_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
@@ -695,7 +695,7 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
 				$obj_excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Estadistica_por_zona_escolar_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
