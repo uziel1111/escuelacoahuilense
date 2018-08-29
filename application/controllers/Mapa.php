@@ -138,8 +138,12 @@ class Mapa extends CI_Controller {
 		            array_push($marcadorb, $marcador['cve_centro']);
 		            array_push($marcadorb, $marcador['id_nivel']);
 		            array_push($marcadorb, $marcador['municipio']);
-		            array_push($marcadorb, $marcador['turno']);
-		            array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['turno_single']);
+								array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['nivel']);
+								array_push($marcadorb, $marcador['localidad']);
+								array_push($marcadorb, $marcador['zona_escolar']);
+								array_push($marcadorb, $marcador['sostenimiento']);
 		            array_push($vfinal, $marcadorb);
 		            $marcadorb = array();
 		        }
@@ -159,14 +163,19 @@ class Mapa extends CI_Controller {
 				$escuelas = $this->Escuela_model->get_mismo_nivel($escuela[0]['latitud'], $escuela[0]['longitud'], $escuela[0]['id_nivel'], true);
 
 				foreach ($escuelas as $marcador) {
+
 		            array_push($marcadorb, $marcador['nombre_centro']);
 		            array_push($marcadorb, (float) $marcador['latitud']);
 		            array_push($marcadorb, (float) $marcador['longitud']);
 		            array_push($marcadorb, $marcador['cve_centro']);
 		            array_push($marcadorb, $marcador['id_nivel']);
 		            array_push($marcadorb, $marcador['municipio']);
-		            array_push($marcadorb, $marcador['turno']);
-		            array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['turno_single']);
+								array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['nivel']);
+								array_push($marcadorb, $marcador['localidad']);
+								array_push($marcadorb, $marcador['zona_escolar']);
+								array_push($marcadorb, $marcador['sostenimiento']);
 		            array_push($vfinal, $marcadorb);
 		            $marcadorb = array();
 		        }

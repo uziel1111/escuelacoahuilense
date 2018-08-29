@@ -18,6 +18,9 @@ class Escuela_model extends CI_Model
       $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
       $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
       $this->db->where($where_au);
+      $this->db->where('es.latitud !=',0);
+      $this->db->where('es.latitud !=','');
+      $this->db->where('es.latitud !=','#VALUE!');
       if($id_municipio>0){
         $this->db->where('es.id_municipio', $id_municipio);
       }
@@ -53,6 +56,9 @@ class Escuela_model extends CI_Model
       $this->db->where('es.cve_centro', $cve_centro);
       $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
       $this->db->where($where_au);
+      $this->db->where('es.latitud !=',0);
+      $this->db->where('es.latitud !=','');
+      $this->db->where('es.latitud !=','#VALUE!');
       $this->db->group_by("tu.id_turno_single");
       // $this->db->get();
       // $str = $this->db->last_query();
@@ -87,7 +93,8 @@ function get_xidcct($idcct){
       if($siguiente == true && $nivel < 10){
         $nivel = $nivel+1;
       }
-       $this->db->select("mu.municipio, tu.turno, id_cct,cve_centro, nombre_centro, latitud, longitud, id_nivel, ( 6371 * ACOS(
+
+       $this->db->select("es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento, ( 6371 * ACOS(
                                        COS( RADIANS({$latitud}) )
                                        * COS(RADIANS( latitud ) )
                                        * COS(RADIANS( longitud )
@@ -97,10 +104,19 @@ function get_xidcct($idcct){
                                       )
                          ) AS distance");
       $this->db->from('escuela as es');
-      $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
+      $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
+      $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
+      $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
+      $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
+      $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
       $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+      $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
+      $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
       $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
       $this->db->where($where_au);
+      $this->db->where('es.latitud !=',0);
+      $this->db->where('es.latitud !=','');
+      $this->db->where('es.latitud !=','#VALUE!');
       $this->db->where('es.id_nivel', $nivel);
       $this->db->having('distance < 1000 ');
       $this->db->order_by('distance');

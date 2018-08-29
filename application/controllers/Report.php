@@ -131,7 +131,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':G'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Reporte_escuelas_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
@@ -170,14 +170,14 @@ class Report extends CI_Controller {
   				 $result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
 				 }
 				 else {
-					 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 2);
-  				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 2);
+					 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 1);
+  				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 1);
 				 }
 
 
-				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2010');
-				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2010');
-				// echo "<pre>";print_r($result_rezinegi); die();
+				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
+				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
+				// echo "<pre>";print_r($result_analfinegi); die();
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
 				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Municipio: '.$this->Municipio_model->get_muncipio($id_municipio).', Nivel: '.$this->Nivel_model->get_nivel($id_nivel).', Sostenimiento: '.$this->Sostenimiento_model->get_sostenimiento($id_sostenimiento).', Modalidad: '.$this->Modalidad_model->get_modalidad($id_modalidad).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo).'');
@@ -523,7 +523,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->getStyle('A'.$temp.':D'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Estadistica_e_indicadores_generales_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
@@ -695,7 +695,7 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
 				$obj_excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 
-
+				date_default_timezone_set('America/Mexico_City');
 				$hoy = date("Y-m-d");
 				$name_file = "Estadistica_por_zona_escolar_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);

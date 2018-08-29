@@ -90,7 +90,7 @@
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio Profesional Docente</a>
                                           <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
-                                          <a class="dropdown-item hcolor-2" href="#" target="_blank">Nuevo Modelo Educativo</a>
+                                          <a class="dropdown-item hcolor-2" href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank">Nuevo Modelo Educativo</a>
                                           <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Supervisor/supervision'); ?>">Supervisión escolar</a>
                                         </div>
                                     </li>
@@ -99,7 +99,7 @@
                                           Padres de familia y estudiantes
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
-                                          <a class="dropdown-item hcolor-3" href="#" target="_blank">Guía para padres de familia</a>
+                                          <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
                                           <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
                                           <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
                                           <!-- <a class="dropdown-item hcolor-3" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a> -->
@@ -115,7 +115,7 @@
                                           Otros
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
-                                          <a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
+                                          <a class="dropdown-item hcolor-4" id="btn_index_modeloeducativo" href="javascript:void(0)">Modelo Coahuilense</a>
                                           <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
                                           <!-- <a class="dropdown-item hcolor-4" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->

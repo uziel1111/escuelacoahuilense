@@ -78,9 +78,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("sostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
+    //
+    // $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
+    // $str = $this->db->last_query();
+    // echo $str; die();
 
 
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
@@ -180,7 +184,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("subsostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
 
@@ -194,7 +198,25 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
   function get_pdocente_xmunciclo($id_municipio, $id_ciclo){
     $this->db->select('ni.id_nivel,ni.nivel, "0" as id_sostenimiento, "total" as sostenimiento, "0" as id_modalidad, "total" as modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
     SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
     SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -214,7 +236,25 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $query1 = $this->db->get_compiled_select();
 
     $this->db->select('ni.id_nivel,ni.nivel, so.id_sostenimiento, so.sostenimiento, "0" as id_modalidad, "total" as modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
 SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -238,7 +278,25 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $query2 = $this->db->get_compiled_select();
 
     $this->db->select('ni.id_nivel,ni.nivel, so.id_sostenimiento, so.sostenimiento, mo.id_modalidad, mo.modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
 SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -265,7 +323,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("sostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
     // $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
@@ -280,7 +338,25 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   function get_pdocente_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
     $this->db->select('ni.id_nivel,ni.nivel, "0" as id_subsostenimiento, "total" as subsostenimiento, "0" as id_modalidad, "total" as modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
     SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
     SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -307,7 +383,25 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $query1 = $this->db->get_compiled_select();
 
     $this->db->select('ni.id_nivel,ni.nivel, sso.id_subsostenimiento, sso.subsostenimiento, "0" as id_modalidad, "total" as modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
 SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -338,7 +432,25 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $query2 = $this->db->get_compiled_select();
 
     $this->db->select('ni.id_nivel,ni.nivel, sso.id_subsostenimiento, sso.subsostenimiento, mo.id_modalidad, mo.modalidad,
-    SUM(est.docente_m) as docente_m, SUM(est.docente_h) as docente_h, SUM(est.docentes_t_g) as docentes_t_g,
+    IF(ni.id_nivel=5, (SUM(est.docente_m)
++SUM(est.docente_m_ef)
++SUM(est.docente_m_artis)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
+	IF(ni.id_nivel=5, (SUM(est.docente_h)
++SUM(est.docente_h_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
+	IF(ni.id_nivel=5, (SUM(est.docentes_t_g)
++SUM(est.docente_h_ef)
++SUM(est.docente_m_ef)
++SUM(est.docente_h_artis)
++SUM(est.docente_m_artis)
++SUM(est.docente_h_tecnolo)
++SUM(est.docente_m_tecnolo)
++SUM(est.docente_h_idiomas)
++SUM(est.docente_m_idiomas)) ,SUM(est.docentes_t_g)) AS docentes_t_g,
 SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
     $this->db->from('escuela as es');
@@ -371,7 +483,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("subsostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
 
@@ -393,7 +505,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     	SUM(est.grupos_multi) AS grupos_multi,
     	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
@@ -419,7 +531,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 	SUM(est.grupos_multi) AS grupos_multi,
 	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -449,7 +561,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 	SUM(est.grupos_multi) AS grupos_multi,
 	SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -469,7 +581,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("sostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
     // $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
@@ -493,7 +605,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
       SUM(est.grupos_multi) AS grupos_multi,
       SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
@@ -526,7 +638,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   SUM(est.grupos_multi) AS grupos_multi,
   SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -563,7 +675,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   SUM(est.grupos_multi) AS grupos_multi,
   SUM(est.grupos_t) AS grupos_t');
     $this->db->from('escuela as es');
-    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct','left');
+    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -590,7 +702,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
     $this->db->order_by("id_nivel");
     $this->db->order_by("subsostenimiento", "DESC");
-    $this->db->order_by("modalidad", "DESC");
+    $this->db->order_by("id_modalidad", "ASC");
 
     $query3 = $this->db->get_compiled_select();
     // $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
@@ -639,8 +751,8 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   function get_ind_asistenciaxcct($id_cct,$id_corte,$id_ciclo){
 
-    $this->db->select('cobertura, absorcion');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->select('REPLACE(cobertura,"%","") as cobertura, REPLACE(absorcion,"%","") as absorcion');
+    $this->db->from('indicadores_x_esc');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
@@ -649,18 +761,22 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   function get_ind_permananciaxcct($id_cct,$id_corte,$id_ciclo){
 
-    $this->db->select('retencion,aprobacion, et');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->select('REPLACE(retencion,"%","") as retencion,REPLACE(aprobacion,"%","") as aprobacion, REPLACE(et,"%","") as et');
+    $this->db->from('indicadores_x_esc');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
+    // 
+    // $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
     return  $this->db->get()->result_array();
   }// get_ind_asistenciaxcct
 
   function get_ind_efixcct($id_cct,$id_corte,$id_ciclo){
 
-    $this->db->select('et');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->select('REPLACE(et,"%","") as et');
+    $this->db->from('indicadores_x_esc');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);

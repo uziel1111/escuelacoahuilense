@@ -50,7 +50,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
-
+              // alert("quiubo");
 							if (data.estadis_alumnos_escuela.length>0) {
 						    var a_g1 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
 						    var a_g2 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
@@ -588,7 +588,7 @@ Info_esc.prototype.get_planea =function(){
                 for (var i = 0; i < cont_mate.length; i++){
                    auxsum_mate+=parseFloat(cont_mate[i]['porcen_alum_respok'])
                 }
-                
+
                 if (auxsum_mate==0) {
                   $("#dv_info_graf_contmat").empty();
                   $("#dv_info_graf_contmat").append('<input type="text" value="Información no disponible">');

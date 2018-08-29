@@ -4,7 +4,7 @@
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 mt-0">
-                                        
+
                                 </div>
                         </div>
                         <div class="row">
@@ -44,7 +44,7 @@
                                                   <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a></li>
                                                   <li class="list-group-item"><a href="http://www.inee.edu.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> INEE</a></li>
-                                                  <li class="list-group-item"><a href="#" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
+                                                  <li class="list-group-item"><a href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
                                                   <li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a></li>
                                                 </ul>
                                             </div>
@@ -61,7 +61,7 @@
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
-                                                  <li class="list-group-item"><a href="#"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a></li>
+                                                  <li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a></li>
                                                   <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a></li>
                                                   <li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a></li>
@@ -84,7 +84,7 @@
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
-                                                  <li class="list-group-item"><a href="#"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a></li>
+                                                  <li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a></li>
                                                   <li class="list-group-item"><a href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Becas escolares</a></li>
 
@@ -106,7 +106,7 @@
                                         <div class="coaboxt-content">
                                                 <h2 class="h1 text-white text-uppercase mb-20">Fortaleciendo a <br>la escuela coahuilense</h2>
                                                 <p class="text-white mb-30">Dotando al Sistema Educativo del Estado de acceso a la información en los contenidos de los programas educativos y en el proceso de enseñanza-aprendizaje.</p>
-                                                <a href="#" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer más<span class="lnr lnr-arrow-right"></span></a>
+                                                <a onclick="Index.getmsjsarape()" href="javascript:void(0)" class="primary-btn border-color-1 btn-color-1 text-white d-inline-flex align-items-center">Leer más<span class="lnr lnr-arrow-right"></span></a>
                                         </div>
                                 </div>
                         </div>

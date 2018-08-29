@@ -21,7 +21,7 @@ class Info extends CI_Controller {
 		if(isset($id_cct) && $id_cct != ""){
 			$data = array();
 			$escuela = $this->Info_model->get_info_escuela($id_cct);
-			// echo "<pre>";print_r($estadis_alumnos_escuela);die();
+			// echo "<pre>";print_r($id_cct);die();
 			$planea15_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2015');
 			$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 			$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
@@ -63,6 +63,7 @@ class Info extends CI_Controller {
 	}
 	public function info_graficas(){
 		$id_cct = $this->input->post("id_cct");
+
 		$estadis_alumnos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xesc($id_cct);
 		$estadis_docentes_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ndocentes_xesc($id_cct);
 		$estadis_grupos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ngrupos_xesc($id_cct);
@@ -166,6 +167,7 @@ class Info extends CI_Controller {
 
 	public function info_estadistica_graf(){
 		$id_cct = $this->input->post("id_cct");
+
 		$estadis_alumnos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xesc($id_cct);
 		$estadis_docentes_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ndocentes_xesc($id_cct);
 		$estadis_grupos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ngrupos_xesc($id_cct);
@@ -188,7 +190,7 @@ class Info extends CI_Controller {
 
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 		if ($nivel == '4') {
-			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,3);
+			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,1);
 		}
 		elseif ($nivel == '5' || $nivel == '6') {
 			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($id_cct,1,1);
@@ -210,10 +212,10 @@ class Info extends CI_Controller {
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 
 		if ($nivel == '4') {
-				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,3);
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,2,1);
 		}
 		elseif ($nivel == '5' || $nivel == '6') {
-				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,1,1);
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($id_cct,2,1);
 		}
 
 		$response = array(
@@ -231,20 +233,20 @@ class Info extends CI_Controller {
 
 		$nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 		if ($nivel == '4') {
-			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,3);
+			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,2,3);
 			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2016);
 		}
 		elseif ($nivel == '5' || $nivel == '6') {
-			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,1,1);
+			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($id_cct,2,1);
 			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2017);
 		}
 
 
 		if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
-			$ete = round(($indica_planea_superai[0]['mat']*100)/(($indica_efi[0]['et'])),2);
+			$ete = round(($indica_planea_superai[0]['mat']*($indica_efi[0]['et']))/(100),2);
 		}
 		else {
-			$ete = round(($indica_planea_superai[0]['lyc']*100)/(($indica_efi[0]['et'])),2);
+			$ete = round(($indica_planea_superai[0]['lyc']*($indica_efi[0]['et']))/(100),2);
 		}
 
 		$response = array(
