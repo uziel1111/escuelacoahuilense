@@ -138,7 +138,7 @@ Panel.prototype.show_propuestas = function(id_reactivo){
 
 Panel.prototype.ver_propuesta = function(idpropuesta, tipo, ruta){
 	if(tipo == 1 || tipo == 2){
-		obj_panel.show_apoyo(ruta);
+		obj_panel.modal_propuestarec(ruta);
 	}else{
 		window.open(ruta, '_blank');
 	}
@@ -156,12 +156,36 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 	})
 	.done(function(result) {
 		console.log(result.respuesta);
+		swal.close();
+
+		if(result.respuesta == 'maximovalor'){
+			swal(
+		      'Alerta!',
+		      "El reactivo ya cuenta con el numero maximo permitido de material",
+		      'warning'
+		    );
+		}
+		if(result.respuesta == true){
+			swal(
+		      'Correcto!',
+		      "La propuesta se autorizo correctamente",
+		      'success'
+		    );
+		}
+		if(result.respuesta == false){
+			swal(
+		      'Error!',
+		      "Algo salio mal a intentar autorizar la propuesta",
+		      'danger'
+		    );
+		}
+		$('#modal_visor_propuestas').modal('toggle');
 	})
 	.fail(function(e) {
 		console.error("Error in autorizar_propuesta()"); console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    
 	})
 }
 
@@ -199,4 +223,29 @@ $.ajax({
 	.always(function() {
 		    // swal.close();
 	})
+}
+
+Panel.prototype.modal_propuestarec = function(path_react){
+	var Protocol = location.protocol;
+	var URLactual = window.location.host;
+	var pathname = window.location.pathname;
+// alert(pathname);
+    var html = "<div style='text-align:left !important;'>";
+      html += "<table class='table table-condensed'>";
+      html += "<tbody> ";
+      html += "    <tr>";
+      html += "      <td><center>";
+        html += "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"' class='img-responsive center-block' />";
+        html += "      </center></td>";
+        html += "    </tr>";
+    html += "</tbody>";
+      html += "</table>";
+
+      html += "</div>";
+
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').empty();
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').html(html);
+
+
+    $("#modal_visor_apoyo_react").modal("show");
 }

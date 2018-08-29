@@ -331,40 +331,52 @@ class Panel extends CI_Controller {
 		public function autoriza_propuesta(){
 			if(Utilerias::haySesionAbierta($this)){
 				$id_propuesta = $this->input->post('id_propuesta');
-				$usuario = Utilerias::get_usuario_sesion($this);
-				$idusuario = $usuario[0]['idusuario'];
-				
 				$propuesta = $this->Recursos_model->get_url_propuesta($id_propuesta);
+				$recursos = $this->Recursos_model->get_recursos($propuesta[0]['id_reactivo']);
 
-				if($propuesta[0]['idtipo'] == "1"){
-					$carpeta = "pdf";
-					$ruta_archivos = explode("/", $propuesta[0]['ruta']);
-					$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
+				if(count($recursos) < 10){
+					$usuario = Utilerias::get_usuario_sesion($this);
+					$idusuario = $usuario[0]['idusuario'];
+					
+					
 
-					if(!is_dir($ruta_archivos_save)){
-					mkdir($ruta_archivos_save, 0777, true);}
+					if($propuesta[0]['idtipo'] == "1"){
+						$carpeta = "pdf";
+						$ruta_archivos = explode("/", $propuesta[0]['ruta']);
+						$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
 
-					rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
-				}
-				if($propuesta[0]['idtipo'] == "2"){
-					$carpeta = "img";
-					$ruta_archivos = explode("/", $propuesta[0]['ruta']);
-					$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
+						// echo $ruta_archivos_save;
+						// die();
 
-					if(!is_dir($ruta_archivos)){
-					mkdir($ruta_archivos_save, 0777, true);}
+						if(!is_dir($ruta_archivos_save)){
+						mkdir($ruta_archivos_save, 0777, true);}
 
-					rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
-				}
+						rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
+					}
+					if($propuesta[0]['idtipo'] == "2"){
+						$carpeta = "img";
+						$ruta_archivos = explode("/", $propuesta[0]['ruta']);
+						$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
 
-				$propuesta_autoriza =$this->Recursos_model->autoriza_propuesta($id_propuesta, $idusuario);
-				
+							// echo $ruta_archivos_save;
+							// die();
 
-				if($propuesta_autoriza == true){
-					$response = array('respuesta' => true);
+						if(!is_dir($ruta_archivos_save)){
+						mkdir($ruta_archivos_save, 0777, true);}
+
+						rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
+					}
+
+					$propuesta_autoriza =$this->Recursos_model->autoriza_propuesta($id_propuesta, $idusuario);
+					if($propuesta_autoriza == true){
+						$response = array('respuesta' => true);
+					}else{
+						$response = array('respuesta' => false);
+					}
 				}else{
-					$response = array('respuesta' => false);
+					$response = array('respuesta' => 'maximovalor');
 				}
+				
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}
