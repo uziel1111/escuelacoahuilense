@@ -14,6 +14,8 @@ class Info extends CI_Controller {
 			$this->load->model('Planea_nacionalxnivel_model');
 			$this->load->model('Planeaxesc_reactivo_model');
 			$this->load->model('Riesgo_alumn_esc_bim_model');
+			$this->load->model('Recursos_model');
+			$this->load->model('Propuestas_model');
 		}
 
 	public function index(){
@@ -33,6 +35,15 @@ class Info extends CI_Controller {
 			$planea15_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'14_15');
 			$planea16_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'15_16');
 			$planea17_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'16_17');
+
+			$contenidos = $this->Recursos_model->get_tipo_contenidos();
+			$arr_contenidos = array();
+			$arr_contenidos[0] = "SELECCIONE";
+			foreach ($contenidos as $contenido){
+				 $arr_contenidos[$contenido['idtipo']] = $contenido['tipo'];
+			}
+
+			$data['contenidos'] = $arr_contenidos;
 
 			// echo "<pre>";print_r($planea17_estado);die();
 			$data['id_cct'] = $id_cct;
@@ -128,6 +139,23 @@ class Info extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
+
+	// public function propmapoyo(){
+	// 	$id_reactivo = $this->input->post("id_reactivo");
+	//
+	// 	// $arr_apoyosacade_xidreact = $this->Planeaxesc_reactivo_model->get_apoyos_academ_xidreact($id_reactivo);
+	// 	// echo "<pre>";print_r($arr_apoyosacade_xidreact);die();
+	// 	$contenidos = $this->Recursos_model->get_tipo_contenidos();
+	// 	$arr_contenidos = array();
+	// 	$arr_contenidos[0] = "SELECCIONE";
+	// 	foreach ($contenidos as $contenido){
+	// 		 $arr_contenidos[$contenido['idtipo']] = $contenido['tipo'];
+	// 	}
+	//
+	// 	$data['contenidos'] = $arr_contenidos;
+	//
+	// 	Utilerias::pagina_basica_panel($this, "info/modalprop_material", $data);
+	// }
 
 	public function info_riesgo_graf(){
 		$id_cct = $this->input->post("id_cct");
@@ -241,13 +269,19 @@ class Info extends CI_Controller {
 			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($id_cct,2017);
 		}
 
-
-		if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
-			$ete = round(($indica_planea_superai[0]['mat']*($indica_efi[0]['et']))/(100),2);
+		if (empty($indica_efi) || empty($indica_planea_superai)) {
+			$ete=0;
 		}
 		else {
-			$ete = round(($indica_planea_superai[0]['lyc']*($indica_efi[0]['et']))/(100),2);
+			if ($indica_planea_superai[0]['lyc']>$indica_planea_superai[0]['mat']) {
+				$ete = round(($indica_planea_superai[0]['mat']*($indica_efi[0]['et']))/(100),2);
+			}
+			else {
+				$ete = round(($indica_planea_superai[0]['lyc']*($indica_efi[0]['et']))/(100),2);
+			}
 		}
+
+
 
 		$response = array(
 			'id_cct'=>$id_cct,
@@ -293,6 +327,71 @@ class Info extends CI_Controller {
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
+	}
+
+	public function set_file(){
+			$id_reactivo = $this->input->post('idreactivo');
+			$idtipo = $this->input->post('tipo');
+			$titulo = $this->input->post('titulo');
+			$fuente = $this->input->post('fuentefile');
+			$carpeta = ($idtipo == "1")?"pdf":"img";
+			$ruta_archivos = "propuestas/{$id_reactivo}/{$carpeta}/";
+			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+			$ruta_archivos_save = "propuestas/{$id_reactivo}/{$carpeta}/$nombre_archivo";
+
+			$insert = $this->Propuestas_model->inserta_url($id_reactivo, $ruta_archivos_save, $idtipo, $titulo, $fuente);
+
+			if(!is_dir($ruta_archivos)){
+				mkdir($ruta_archivos, 0777, true);}
+															$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+															$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+															$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+															$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+															$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+
+															$uploadPath              = $ruta_archivos;
+															$config['upload_path']   = $uploadPath;
+															$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+
+															$this->load->library('upload', $config);
+															$this->upload->initialize($config);
+															if ($this->upload->do_upload('userFile')) {
+																	$fileData = $this->upload->data();
+																	$str_view = true;
+															}
+
+			$response = array('str_view' => $str_view);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+
+	}
+
+	public function envia_url(){
+			$id_reactivo = $this->input->post('id_reactivo');
+			$url = $this->input->post('url');
+			$idtipo = $this->input->post('tipo');
+			$titulo = $this->input->post('titulo');
+			$fuente = $this->input->post('fuenteurlvideo');
+
+			$insert = $this->Propuestas_model->inserta_url($id_reactivo, $url, $idtipo, $titulo, $fuente);
+			if($insert){
+				$response = array('response' => "Se guardo correctamente");
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}
+
+	}
+
+	public function get_nprop(){
+			$id_reactivo = $this->input->post('id_reactivo');
+
+			$n_prop = $this->Propuestas_model->n_propxreact($id_reactivo);
+
+				$response = array('n_prop' => $n_prop);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+
+
 	}
 
 

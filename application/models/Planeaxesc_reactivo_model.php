@@ -54,7 +54,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       ".JPG") as path_apoyo,
       t2.url_argumento,
       t2.url_especificacion,
-      (COUNT(t6.idrecurso)) as n_material
+      (COUNT( DISTINCT t6.idrecurso)) AS n_material,
+	    (COUNT( DISTINCT t7.id_propuesta)) as n_prop
       ');
       $this->db->from('planeaxesc_reactivo t1');
       $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
@@ -62,6 +63,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->join('planea_unidad_analisis t4', 't3.id_unidad_analisis=t4.id_unidad_analisis');
       $this->db->join('planea_camposdisciplinares t5', 't4.id_campodisiplinario=t5.id_campodisiplinario');
       $this->db->join('recursos_apoyo t6', 't2.id_reactivo=t6.id_reactivo','left');
+      $this->db->join('prop_mapoyo t7', 't2.id_reactivo = t7.id_reactivo','left');
       $this->db->where('t1.id_ct', $id_cct);
       $this->db->where('t3.id_contenido', $id_cont);
       $this->db->where('t1.id_periodo', $periodo);
