@@ -1,6 +1,15 @@
 
 function Graficasm(){
     obj_graficas = this;
+    $("#div_contenedor_operaciones").hide();
+    $("#div_contenedor_operaciones_files").hide();
+    obj_graficas.ocultamesaje_link();
+    obj_graficas.ocultamesaje_file();
+  }
+
+  function showMessage(message){
+      $(".messages").html("").show();
+      $(".messages").html(message);
   }
 
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
@@ -612,9 +621,6 @@ function Graficasm(){
                 // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
-                // html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
-                // html += "<table class='table-responsive table table-condensed'>";
-                // html += "<tbody>";
                 html += "    <div class='container'>";
                 for (var i = 0; i < result.length; i++) {
                   html += "    <div class='row'>";
@@ -629,33 +635,43 @@ function Graficasm(){
                   html += "    </div>";
                   html += "    <div class='row'>";
                   html += "      <div class='col-12'>";
-                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "      </div>";
                   html += "    </div>";
 
                   html += "    <div class='row'>";
-                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
                   if (periodo!='1') {
-                    html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
-                  }
-
-                  html += "      </center>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-4 col-sm-12'>";
-                  html += "      <center>";
-                  if (periodo!='1') {
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
+                    html += "      <br><button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   }
                   html += "      </center>";
                   html += "      </div>";
-                  html += "      <div class='col-md-4 col-sm-12'>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      <center>";
+                  if (periodo!='1') {
+                  html += "      <br><button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
+                  }
+                  html += "      </center>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
                   if (result[i]['n_material']!="0") {
-                    html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                    html += "      <br><button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
                   }
                   html += "      </center>";
                   html += "      </div>";
+
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      <center>";
+
+                  html += "      <center><a style='color:black;' >Numero de propuestas: <b id='n_propcont'>"+result[i]['n_prop']+"</b></a></center>";
+                  if (result[i]['n_prop']<"5") {
+                    html += "      <button id='btn_prop' type='button' class='btn btn-style-1 color-6 bgcolor-1 mb-2' onclick=obj_graficas.propmapoyo('"+result[i]['id_reactivo']+"')>Proponer material</button>";
+                  }
+                  html += "      </center>";
+                  html += "      </div>";
+
                   html += "      </div>";
                   html += "    </div>";
                 }
@@ -1074,6 +1090,92 @@ function Graficasm(){
              });
          }
 
+         Graficasm.prototype.propmapoyo = function(id_reactivo){
+           swal.close();
+               $("#modal_operacion_recursos").modal("show");
+               $("#idreactivoform_pub").val(id_reactivo);
+               $("#idreactivofileform_pub").val(id_reactivo);
+               $("#input_id_reactivo").val(id_reactivo);
+
+         }
+
+         Graficasm.prototype.envia_url_pub =function(){
+           // alert($("#idreactivoform_pub").val());
+           obj_graficas.ocultamesaje_link();
+           if (!obj_graficas.valida_url($("#inputcampourl").val())) {
+             $("#mensaje_alertaur2").show();
+           }
+           else if($("#inputtitulo").val() ==""){
+             $("#mensaje_alertattitulo").show();
+           }else if($("#inputcampourl").val() ==""){
+               $("#mensaje_alertaurl").show();
+           }else if($("#inputcampofuente").val() ==""){
+               $("#mensaje_alertafuente").show();
+           }else{
+             $.ajax({
+               url: base_url+'info/envia_url',
+               type: 'POST',
+               dataType: 'JSON',
+               data: {id_reactivo: $("#idreactivoform_pub").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
+               beforeSend: function(xhr) {
+                     Notification.loading("");
+                 },
+             })
+             .done(function(result) {
+             swal.close();
+               $("#modal_operacion_recursos").modal('hide');
+
+                       $("#div_contenedor_operaciones").hide();
+                        $("#div_contenedor_operaciones_files").hide();
+                         $("#tipodematerial").val('0');
+                        $(".formulario")[0].reset();
+                         obj_graficas.getn_prop();
+                 // alert(result.response);
+               swal(
+                   'Listo!',
+                   result.response,
+                   'success'
+                 );
+             })
+             .fail(function(e) {
+               console.error("Error in envia_url_pub()"); console.table(e);
+             })
+             .always(function() {
+
+             });
+           }
+
+         }
+
+         Graficasm.prototype.getn_prop =function(){
+
+           $.ajax({
+             url: base_url+'info/get_nprop',
+             type: 'POST',
+             dataType: 'JSON',
+             data: {id_reactivo: $("#idreactivoform_pub").val()},
+             beforeSend: function(xhr) {
+                   // Notification.loading("");
+               },
+           })
+           .done(function(result) {
+             // swal.close();
+             // alert(result.n_prop)
+             if (result.n_prop>4) {
+               $("#btn_prop").hide();
+             }
+             $("#n_propcont").html(result.n_prop);
+
+           })
+           .fail(function(e) {
+             console.error("Error in getn_prop()"); console.table(e);
+           })
+           .always(function() {
+
+           });
+
+         }
+
          Graficasm.prototype.modal_reactivo = function(path_react){
              swal.close();
 
@@ -1140,3 +1242,186 @@ function Graficasm(){
          $('#modal_visor_material_reactivos .modal-body #div_listalinks').empty();
          $("#modal_visor_material_reactivos").modal("hide");
          });
+
+         Graficasm.prototype.subir_recurso = function(){
+             //información del formulario
+             // alert('sadasd');
+             var formData = new FormData($(".formulario")[0]);
+             var message = "";
+             //hacemos la petición ajax
+
+             $.ajax({
+                 url: base_url+'info/set_file',
+                 type: 'POST',
+                 // Form data
+                 //datos del formulario
+                 data: formData,
+                 //necesario para subir archivos via ajax
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+                 //mientras enviamos el archivo
+                 beforeSend: function(){
+                     message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+                     showMessage(message)
+                 },
+                 //una vez finalizado correctamente
+                 success: function(data){
+                 	swal(
+         		      'Listo!',
+         		      'Su archivo se subio correctamente',
+         		      'success'
+         		    );
+                 	$("#modal_operacion_recursos").modal('hide');
+                 	$("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
+                 	$("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
+                   $("#div_contenedor_operaciones").hide();
+               	    $("#div_contenedor_operaciones_files").hide();
+                     $("#tipodematerial").val('0');
+               	    $(".formulario")[0].reset();
+                     obj_graficas.getn_prop();
+                 },
+                 //si ha ocurrido un error
+                 error: function(){
+                     message = $("<span class='error'>Ha ocurrido un error.</span>");
+                     showMessage(message);
+                 }
+             });
+         }
+
+         Graficasm.prototype.ocultamesaje_link = function(){
+         	$("#mensaje_alertattitulo").hide();
+             $("#mensaje_alertaurl").hide();
+             $("#mensaje_alertaur2").hide();
+             $("#mensaje_alertafuente").hide();
+         }
+         Graficasm.prototype.ocultamesaje_file = function(){
+         	$("#mensaje_alertatitulo_file").hide();
+         	$("#mensaje_alertafile").hide();
+         	$("#mensaje_alertafuente_file").hide();
+         }
+         Graficasm.prototype.clean_campos = function(){
+         	$("#inputtitulo").val("");
+             $("#inputcampourl").val("");
+             $("#inputcampofuente").val("");
+         }
+
+         Graficasm.prototype.genera_campo_url = function(idtipo, idreactivo){
+         	$("#div_contenedor_operaciones").show();
+         	$("#div_contenedor_operaciones_files").hide();
+         }
+
+         Graficasm.prototype.genera_campo_file = function(idtipo, idreactivo){
+         	$("#div_contenedor_operaciones").hide();
+         	$("#div_contenedor_operaciones_files").show();
+         }
+
+
+         Graficasm.prototype.valida_url = function(url){
+           var expression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
+         var regex = new RegExp(expression);
+         if (url.match(regex)) {
+           // alert("entro1");
+           var expression_adul = /porn|xxx|gay|redtube|porin|lesbian|culo|pinga|verga|pelos|teta|titi|chichi/;
+           var regex_a = new RegExp(expression_adul);
+           if (url.match(regex_a)) {
+             return false;
+           }
+           else {
+             return true;
+           }
+         } else {
+           return false;
+         }
+         }
+
+
+
+
+
+   //al enviar el formulario
+   $('#btn_subir_pdf_imagen_pub').click(function(){
+
+     // alert('dsfsdf');
+     if(fileSize < 5000000){
+       obj_graficas.ocultamesaje_file();
+       if($("#titulofile").val() == ""){
+         $("#mensaje_alertatitulo_file").show();
+       }else if($("#idseleccionadofile").val()== "false"){
+         $("#mensaje_alertafile").show();
+       }else if($("#inputcampofuentefile").val() == ""){
+         $("#mensaje_alertafuente_file").show();
+       }else if($("#validaexixtente").val() == "true"){
+         swal({
+         title: '¿Esta seguro de remplazar el archivo?',
+         text: "Puede que algunos recursos no se visualicen correctamente",
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Si, reemplazar!',
+         cancelButtonText: 'Cancelar'
+       }).then((result) => {
+         if (result.value) {
+           obj_graficas.subir_recurso();
+         }
+       })
+       }else{
+         obj_graficas.subir_recurso();
+       }
+     }else{
+       swal(
+         'Su archivo es demaciado grande!',
+         'Solo archivos menores de 5Mb',
+         'warning'
+       );
+     }
+   });
+
+
+   $(':file').change(function()
+   {
+     $("#idseleccionadofile").val("true");
+       //obtenemos un array con los datos del archivo
+       var file = $("#imagen")[0].files[0];
+       //obtenemos el nombre del archivo
+       var fileName = file.name;
+       //obtenemos la extensión del archivo
+       fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+       //obtenemos el tamaño del archivo
+       fileSize = file.size;
+       //obtenemos el tipo de archivo image/png ejemplo
+       var fileType = file.type;
+       //mensaje con la información del archivo
+       showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
+       // obj_recursos.validaExisteArchivo(fileName);
+   });
+
+
+   $("#md_close_operacion_recursos").click(function(){
+   	$("#modal_operacion_recursos").modal('hide');
+   })
+   $("#tipodematerial").change(function(){
+   		obj_graficas.clean_campos();
+   	$("#idtipofileform").val($("#tipodematerial").val());
+   	$("#idreactivofileform").val($("#input_id_reactivo").val());
+   	$("#idreactivoform").val($("#input_id_reactivo").val());
+   	var id_reactivo = parseInt($("#input_id_reactivo").val());
+   	var tipo_contenido = $("#tipodematerial").val();
+   	switch(tipo_contenido){
+   		case "1":
+   		obj_graficas.genera_campo_file(tipo_contenido);
+   		$(':file').attr("accept", ".pdf");
+   		break;
+   		case "2":
+   		obj_graficas.genera_campo_file(tipo_contenido);
+   		$(':file').attr("accept", "image/*");
+   		break;
+   		case "3":
+   		obj_graficas.genera_campo_url(tipo_contenido, id_reactivo);
+   		break;
+   		case "4":
+   		obj_graficas.genera_campo_url(tipo_contenido, id_reactivo);
+   		break;
+   	}
+   });

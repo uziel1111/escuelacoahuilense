@@ -163,7 +163,12 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo,
        t2.url_especificacion,
        t2.url_argumento,
-       (COUNT(t6.idrecurso)) as n_material
+       (
+      		COUNT(DISTINCT t6.idrecurso)
+      	) AS n_material,
+      	(
+      		COUNT(DISTINCT t7.id_propuesta)
+      	) AS n_prop
         FROM municipio m
         INNER JOIN escuela e ON e.id_municipio = m.id_municipio
         INNER JOIN nivel n ON n.id_nivel = e.id_nivel
@@ -172,7 +177,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
         JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
         JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-        LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo`=`t6`.`id_reactivo`
+        LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo` = `t6`.`id_reactivo`
+        LEFT JOIN `prop_mapoyo` `t7` ON `t2`.`id_reactivo` = `t7`.`id_reactivo`
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
         AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
         AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
@@ -194,7 +200,12 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
        CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017', 'nada')), '/apoyo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/apoyo', t2.apoyo, '.JPG') as path_apoyo,
        t2.url_especificacion,
        t2.url_argumento,
-       (COUNT(t6.idrecurso)) as n_material
+       (
+      		COUNT(DISTINCT t6.idrecurso)
+      	) AS n_material,
+      	(
+      		COUNT(DISTINCT t7.id_propuesta)
+      	) AS n_prop
         FROM supervision s
                   INNER JOIN escuela e ON e.id_supervision = s.id_supervision
                   INNER JOIN nivel n ON n.id_nivel = e.id_nivel
@@ -203,7 +214,8 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                   JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
                   JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
                   JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-                  LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo`=`t6`.`id_reactivo`
+                  LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo` = `t6`.`id_reactivo`
+                  LEFT JOIN `prop_mapoyo` `t7` ON `t2`.`id_reactivo` = `t7`.`id_reactivo`
                   WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
                   AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
                   AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
