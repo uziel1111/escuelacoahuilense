@@ -81,8 +81,9 @@ class Panel extends CI_Controller {
 							      <th scope="col"><i class="fas fa-link" data-toggle="tooltip" data-placement="top" title="URL´s de contenido web"></i></th>
 							      <th scope="col"><i class="far fa-file-video" data-toggle="tooltip" data-placement="top" title="Videos"></i></th>
 							      <th scope="col">Reactivo</th>
-							      <th scope="col"><i class="far fa-eye"></i></th>
-							      <th scope="col"><i class="fa fa-info-circle"></i></th>
+							      <th scope="col"><center><i class="far fa-eye"></center></i></th>
+							      <th scope="col"><center><i class="fa fa-info-circle"></center></i></th>
+							      <th scope="col"><center><i class="fa fa-bullhorn"></center></i></th>
 							    </tr>
 							  </thead>
 							  <tbody>';
@@ -99,6 +100,9 @@ class Panel extends CI_Controller {
 							      <td width="5%"><center><button type="button" class="btn btn-info" id="btn_mostrar_datos_rec" onClick="obj_panel.get_tabla('.$reactivo["id_reactivo"].')">Ver</button></center></td>';
 							      if($reactivo['path_apoyo'] != null){
 							      	$table .='<td width="5%"><center><button type="button" class="btn btn-warning" id="btn_mostrar_datos_rec" onClick=obj_panel.show_apoyo("'.$reactivo["path_apoyo"].'")>Texto/imagen (apoyo)</button></center></td>';
+							      }
+							      if($reactivo['tpropuesta'] != 'no'){
+							      	$table .='<td width="5%"><center><button type="button" class="btn btn-success" id="btn_mostrar_datos_rec" onClick=obj_panel.show_propuestas("'.$reactivo["id_reactivo"].'")>Ver propuestas</button></center></td>';
 							      }
 							    $table .='</tr>';
 				}
@@ -283,6 +287,105 @@ class Panel extends CI_Controller {
 					$respuesta = true;
 				}
 				$response = array('respuesta' => $respuesta);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}
+		}
+
+		public function get_tabla_propuetas(){
+			if(Utilerias::haySesionAbierta($this)){
+				$id_reactivo = $this->input->post('id_reactivo');
+
+				$propuestas =$this->Recursos_model->get_propuetasxreactivo($id_reactivo);
+
+				$table = '<table class="table table-bordered">
+								  <thead>
+								    <tr>
+								      <th scope="col"><center>ID propuesta</center></th>
+								      <th scope="col"><center>Ver</center></th>
+								      <th scope="col"><center>Autorizar</center></th>
+								      <th scope="col"><center>Eliminar</center></th>
+								    </tr>
+								  </thead>
+								  <tbody>';
+
+				if(count($propuestas) > 0){
+					foreach ($propuestas as $propuesta) {
+						$table .=  '<tr>
+								      <th scope="row"><center>'.$propuesta["id_propuesta"].'</center></th>
+								      <td><center><button type="button" class="btn btn-info" id="btn_eliminar_propuesta" onClick=obj_panel.ver_propuesta('.$propuesta["id_propuesta"].',' .$propuesta["idtipo"].',"' .$propuesta["ruta"].'")>Ver</button></center></td>
+								      <td><center><button type="button" class="btn btn-warning" id="btn_eliminar_propuesta" onClick="obj_panel.autorizar_propuesta('.$propuesta["id_propuesta"].')">Autorizar</button></center></td>
+								      <td><center><button type="button" class="btn btn-danger" id="btn_eliminar_propuesta" onClick="obj_panel.elimina_propuesta('.$propuesta["id_propuesta"].')">Eliminar</button></center></td>
+								    </tr>';
+					}
+				}
+
+				$table .=  '</tbody>
+								</table>';
+				$response = array('respuesta' => $table);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}
+		}
+
+		public function autoriza_propuesta(){
+			if(Utilerias::haySesionAbierta($this)){
+				$id_propuesta = $this->input->post('id_propuesta');
+				$usuario = Utilerias::get_usuario_sesion($this);
+				$idusuario = $usuario[0]['idusuario'];
+				
+				$propuesta = $this->Recursos_model->get_url_propuesta($id_propuesta);
+
+				if($propuesta[0]['idtipo'] == "1"){
+					$carpeta = "pdf";
+					$ruta_archivos = explode("/", $propuesta[0]['ruta']);
+					$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
+
+					if(!is_dir($ruta_archivos_save)){
+					mkdir($ruta_archivos_save, 0777, true);}
+
+					rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
+				}
+				if($propuesta[0]['idtipo'] == "2"){
+					$carpeta = "img";
+					$ruta_archivos = explode("/", $propuesta[0]['ruta']);
+					$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
+
+					if(!is_dir($ruta_archivos)){
+					mkdir($ruta_archivos_save, 0777, true);}
+
+					rename ("propuestas/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]","recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/$ruta_archivos[3]");
+				}
+
+				$propuesta_autoriza =$this->Recursos_model->autoriza_propuesta($id_propuesta, $idusuario);
+				
+
+				if($propuesta_autoriza == true){
+					$response = array('respuesta' => true);
+				}else{
+					$response = array('respuesta' => false);
+				}
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}
+		}
+
+		public function delete_propuesta(){
+			if(Utilerias::haySesionAbierta($this)){
+				$id_propuesta = $this->input->post('id_propuesta');
+
+				$url = $this->Recursos_model->get_url_propuesta($id_propuesta);
+
+				$del_propuesta =$this->Recursos_model->delete_propuesta($id_propuesta);
+
+				if($del_propuesta){
+					if($url[0]['idtipo'] == 1 || $url[0]['idtipo'] == 2){
+						unlink($url[0]['ruta']);
+					}
+					$response = array('respuesta' => true);
+				}else{
+					$response = array('respuesta' => false);
+				}
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}

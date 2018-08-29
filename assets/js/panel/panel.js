@@ -111,3 +111,92 @@ Panel.prototype.modal_reactivo = function(path_react){
 
     $("#modal_visor_reactivos_zom").modal("show");
 }
+
+Panel.prototype.show_propuestas = function(id_reactivo){
+	$.ajax({
+		url: base_url+'panel/get_tabla_propuetas',
+		type: 'POST',
+		dataType: 'JSON',
+		data: {id_reactivo: id_reactivo},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
+	})
+	.done(function(result) {
+		console.log(result.respuesta);
+		$("#div_contenedor_de_propuestas").empty();
+		$("#div_contenedor_de_propuestas").append(result.respuesta);
+		$("#modal_visor_propuestas").modal('show');
+	})
+	.fail(function(e) {
+		console.error("Error in show_propuestas()"); console.table(e);
+	})
+	.always(function() {
+    swal.close();
+	})
+}
+
+Panel.prototype.ver_propuesta = function(idpropuesta, tipo, ruta){
+	if(tipo == 1 || tipo == 2){
+		obj_panel.show_apoyo(ruta);
+	}else{
+		window.open(ruta, '_blank');
+	}
+}
+
+Panel.prototype.autorizar_propuesta = function(idpropuesta){
+	$.ajax({
+		url: base_url+'panel/autoriza_propuesta',
+		type: 'POST',
+		dataType: 'JSON',
+		data: {id_propuesta: idpropuesta},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
+	})
+	.done(function(result) {
+		console.log(result.respuesta);
+	})
+	.fail(function(e) {
+		console.error("Error in autorizar_propuesta()"); console.table(e);
+	})
+	.always(function() {
+    swal.close();
+	})
+}
+
+Panel.prototype.elimina_propuesta = function(idpropuesta){
+$.ajax({
+		url: base_url+'panel/delete_propuesta',
+		type: 'POST',
+		dataType: 'JSON',
+		data: {id_propuesta: idpropuesta},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
+	})
+	.done(function(result) {
+		swal.close();
+		console.log(result.respuesta);
+		if(result.respuesta == true){
+			swal(
+		      'Correcto!',
+		      "La propuesta se elimino correctamente",
+		      'success'
+		    );
+		}else{
+			swal(
+		      'Error!',
+		      "Algo salio mal intente nuevamente",
+		      'danger'
+		    );
+		}
+			$('#modal_visor_propuestas').modal('toggle');
+	})
+	.fail(function(e) {
+		console.error("Error in elimina_propuesta()"); console.table(e);
+	})
+	.always(function() {
+		    // swal.close();
+	})
+}

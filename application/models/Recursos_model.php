@@ -6,7 +6,7 @@ class Recursos_model extends CI_Model
     }
 
     function get_reactivo_recurso($periodo, $campo_dis, $nivel){
-    	$str_query = "SELECT *, pr.id_reactivo, pr.n_reactivo, CONCAT(
+    	$str_query = "SELECT ra.*, pr.id_reactivo, pr.n_reactivo, IFNULL(pma.id_reactivo, 'no') AS tpropuesta, CONCAT(
 					    IF(pua.id_nivel=4,'primaria',IF(pua.id_nivel=5,'secundaria',IF(pua.id_nivel=6,'ms','nada'))),
 					    IF(pua.id_periodo=1,'2016',IF(pua.id_periodo=2,'2017','nada')),
 					    '/reactivo_',
@@ -29,6 +29,7 @@ class Recursos_model extends CI_Model
 					INNER JOIN planea_contenido pc ON pc.id_unidad_analisis = pua.id_unidad_analisis
 					INNER JOIN planea_reactivo pr ON pr.id_contenido = pc.id_contenido
 					LEFT JOIN recursos_apoyo ra ON ra.id_reactivo = pr.id_reactivo
+					LEFT JOIN prop_mapoyo pma ON pma.id_reactivo = ra.id_reactivo
 					WHERE pua.id_periodo = {$periodo} AND pua.id_campodisiplinario = {$campo_dis} AND pua.id_nivel = {$nivel}
 					GROUP BY pr.id_reactivo
 					ORDER BY pr.id_reactivo ASC";
@@ -81,6 +82,37 @@ class Recursos_model extends CI_Model
     	$str_query = "SELECT ruta FROM recursos_apoyo
 						WHERE ruta = '{$ruta_search}'";
 		return $this->db->query($str_query)->result_array();
+    }
+
+    function get_propuetasxreactivo($id_reactivo){
+    	$str_query = "SELECT * FROM prop_mapoyo
+						WHERE id_reactivo = '{$id_reactivo}'";
+		return $this->db->query($str_query)->result_array();
+    }
+
+    function autoriza_propuesta($idpropuesta, $idusuario){
+    	$str_query = "SELECT * FROM prop_mapoyo
+						WHERE id_propuesta = '{$idpropuesta}'";
+		$autorizado = $this->db->query($str_query)->result_array()[0];
+
+		$seinserto = $this->inserta_url($autorizado['id_reactivo'], $autorizado['ruta'], $idusuario, $autorizado['idtipo'], $autorizado['titulo'], $autorizado['fuente']);
+
+		if($seinserto){
+			return $this->delete_propuesta($idpropuesta);
+		}else{
+			return false;
+		}
+    }
+
+    function get_url_propuesta($idpropuesta){
+    	$str_query = "SELECT idtipo, ruta, id_reactivo FROM prop_mapoyo
+						WHERE id_propuesta = {$idpropuesta}";
+		return $this->db->query($str_query)->result_array();
+    }
+
+    function delete_propuesta($idpropuesta){
+    	$this->db->where('id_propuesta', $idpropuesta);
+		return $this->db->delete('prop_mapoyo');
     }
 
 
