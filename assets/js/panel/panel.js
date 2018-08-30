@@ -138,7 +138,7 @@ Panel.prototype.show_propuestas = function(id_reactivo){
 
 Panel.prototype.ver_propuesta = function(idpropuesta, tipo, ruta){
 	if(tipo == 1 || tipo == 2){
-		obj_panel.modal_propuestarec(ruta);
+		obj_panel.modal_propuestarec(ruta, tipo);
 	}else{
 		window.open(ruta, '_blank');
 	}
@@ -238,21 +238,19 @@ Panel.prototype.elimina_propuesta = function(idpropuesta){
 	})
 }
 
-Panel.prototype.modal_propuestarec = function(path_react){
+Panel.prototype.modal_propuestarec = function(path_react, tipo){
 	var Protocol = location.protocol;
 	var URLactual = window.location.host;
 	var pathname = window.location.pathname;
+	if(tipo == 1){
+		tipo = "<iframe style='width:100%; height:500px;' frameborder='0' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"'></iframe>";
+	}else{
+		tipo = "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"' class='img-responsive center-block' />";
+	}
 // alert(pathname);
     var html = "<div style='text-align:left !important;'>";
-      html += "<table class='table table-condensed'>";
-      html += "<tbody> ";
-      html += "    <tr>";
-      html += "      <td><center>";
-        html += "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"' class='img-responsive center-block' />";
-        html += "      </center></td>";
-        html += "    </tr>";
-    html += "</tbody>";
-      html += "</table>";
+
+        html += tipo;
 
       html += "</div>";
 
