@@ -190,38 +190,51 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 }
 
 Panel.prototype.elimina_propuesta = function(idpropuesta){
-$.ajax({
-		url: base_url+'panel/delete_propuesta',
-		type: 'POST',
-		dataType: 'JSON',
-		data: {id_propuesta: idpropuesta},
-		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
-	})
-	.done(function(result) {
-		swal.close();
-		console.log(result.respuesta);
-		if(result.respuesta == true){
-			swal(
-		      'Correcto!',
-		      "La propuesta se elimino correctamente",
-		      'success'
-		    );
-		}else{
-			swal(
-		      'Error!',
-		      "Algo salio mal intente nuevamente",
-		      'danger'
-		    );
-		}
-			$('#modal_visor_propuestas').modal('toggle');
-	})
-	.fail(function(e) {
-		console.error("Error in elimina_propuesta()"); console.table(e);
-	})
-	.always(function() {
-		    // swal.close();
+		swal({
+	  title: '¿Esta seguro de eliminar esta propuesta?',
+	  text: "Una vez eliminado no se podra tener acceso al recurso",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Eliminar',
+	  cancelButtonText: 'Cancelar'
+	}).then((result) => {
+	  if (result.value) {
+	  	$.ajax({
+			url: base_url+'panel/delete_propuesta',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {id_propuesta: idpropuesta},
+			beforeSend: function(xhr) {
+		        Notification.loading("");
+		    },
+		})
+		.done(function(result) {
+			swal.close();
+			console.log(result.respuesta);
+			if(result.respuesta == true){
+				swal(
+			      'Correcto!',
+			      "La propuesta se elimino correctamente",
+			      'success'
+			    );
+			}else{
+				swal(
+			      'Error!',
+			      "Algo salio mal intente nuevamente",
+			      'danger'
+			    );
+			}
+				$('#modal_visor_propuestas').modal('toggle');
+		})
+		.fail(function(e) {
+			console.error("Error in elimina_propuesta()"); console.table(e);
+		})
+		.always(function() {
+			    // swal.close();
+		})
+	  }
 	})
 }
 

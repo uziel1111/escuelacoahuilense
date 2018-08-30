@@ -91,7 +91,7 @@ class Recursos_model extends CI_Model
     }
 
     function autoriza_propuesta($idpropuesta, $idusuario){
-    	$str_query = "SELECT * FROM prop_mapoyo
+    	$str_query = "SELECT id_reactivo, REPLACE ( ruta, 'propuestas/', 'recursos/' ) as ruta, idtipo, titulo, fuente  FROM prop_mapoyo
 						WHERE id_propuesta = '{$idpropuesta}'";
 		$autorizado = $this->db->query($str_query)->result_array()[0];
 

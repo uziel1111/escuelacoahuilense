@@ -188,7 +188,7 @@ class Panel extends CI_Controller {
 								    <tr>
 								      <th scope="col">ID RECURSO</th>
 								      <th scope="col">TIPO</th>
-								      <th scope="col">RUTA</th>
+								      
 								      <th scope="col">FECHA DE CREACION</th>
 								      <th scope="col">TITULO</th>
 								      <th scope="col"></th>
@@ -201,7 +201,7 @@ class Panel extends CI_Controller {
 						$table .=  '<tr>
 								      <th scope="row">'.$recurso["idrecurso"].'</th>
 								      <td>'.$recurso["tipo"].'</td>
-								      <td>'.$recurso["ruta"].'</td>
+								      
 								      <td>'.$recurso["fcreacion"].'</td>
 								      <td>'.$recurso["titulo"].'</td>
 								      <td><button type="button" class="btn btn-danger" id="btn_eliminar_recurso" onClick="obj_recursos.elimina_recurso('.$recurso["idrecurso"].')">X</button></td>
