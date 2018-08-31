@@ -2879,77 +2879,37 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         }else if($("#inputcampofuente").val() ==""){
             $("#mensaje_alertafuente").show();
         }else{
-
           $.ajax({
-              url: base_url+'info/envia_url',
-              type: 'POST',
-              dataType: 'JSON',
-              data: {id_reactivo: $("#idreactivoform_pub").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
-
-              beforeSend: function(xhr){
-                  message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-                  showMessage(message)
+            url: base_url+'info/envia_url',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {id_reactivo: $("#idreactivoform_pub").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
+            beforeSend: function(xhr) {
+                  Notification.loading("");
               },
-              //una vez finalizado correctamente
-              success: function(data){
-                // console.info(data.response);
-                  $("#modal_operacion_recursos").modal('hide');
+          })
+          .done(function(result) {
+          swal.close();
+            $("#modal_operacion_recursos").modal('hide');
 
-                  $("#div_contenedor_operaciones").hide();
-              	    $("#div_contenedor_operaciones_files").hide();
-                    $("#tipodematerial").val('0');
-              	    $(".formulario")[0].reset();
-                    obj_graficas.getn_prop();
-                    // alert(result.response);
-              	swal(
-      		      'Listo!',
-      		      data.response,
-      		      'success'
-      		    );
+                    $("#div_contenedor_operaciones").hide();
+                	    $("#div_contenedor_operaciones_files").hide();
+                      $("#tipodematerial").val('0');
+                	    $(".formulario")[0].reset();
+                      obj_graficas.getn_prop();
+              // alert(result.response);
+            swal(
+                'Listo!',
+                result.response,
+                'success'
+              );
+          })
+          .fail(function(e) {
+            console.error("Error in envia_url_pub()"); console.table(e);
+          })
+          .always(function() {
 
-              },
-              //si ha ocurrido un error
-              error: function(){
-                  message = $("<span class='error'>Ha ocurrido un error.</span>");
-                  showMessage(message);
-              }
           });
-
-
-
-
-          // $.ajax({
-          //   url: base_url+'info/envia_url',
-          //   type: 'POST',
-          //   dataType: 'JSON',
-          //   data: {id_reactivo: $("#idreactivoform_pub").val(), url: $("#inputcampourl").val(), titulo: $("#inputtitulo").val(), tipo: $("#tipodematerial").val(), fuenteurlvideo: $("#inputcampofuente").val() },
-          //   beforeSend: function(xhr) {
-          //         Notification.loading("");
-          //     },
-          // })
-          // .done(function(result) {
-          //
-          //   $("#modal_operacion_recursos").modal('hide');
-          //
-          //   $("#div_contenedor_operaciones").hide();
-        	//     $("#div_contenedor_operaciones_files").hide();
-          //     $("#tipodematerial").val('0');
-        	//     $(".formulario")[0].reset();
-          //     obj_graficas.getn_prop();
-          //     alert(result.response);
-          //   // swal(
-          //   //     'Listo!',
-          //   //     result.response,
-          //   //     'success'
-          //   //   );
-          //   // obj_recursos.get_tabla();
-          // })
-          // .fail(function(e) {
-          //   console.error("Error in envia_url_pub()"); console.table(e);
-          // })
-          // .always(function() {
-          //   swal.close();
-          // });
         }
 
       }
@@ -2957,53 +2917,29 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       HaceGraficas.prototype.getn_prop =function(){
 
         $.ajax({
-            url: base_url+'info/get_nprop',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {id_reactivo: $("#idreactivoform_pub").val()},
-
-            beforeSend: function(xhr){
-                Notification.loading("");
+          url: base_url+'info/get_nprop',
+          type: 'POST',
+          dataType: 'JSON',
+          data: {id_reactivo: $("#idreactivoform_pub").val()},
+          beforeSend: function(xhr) {
+                // Notification.loading("");
             },
-            //una vez finalizado correctamente
-            success: function(data){
-              console.info(data.n_prop);
-              if (data.n_prop>'4') {
-                $("#btn_prop").hide();
-              }
-              $("#n_propcont").html(data.n_prop);
+        })
+        .done(function(result) {
+          // swal.close();
+          // alert(result.n_prop)
+          if (result.n_prop>4) {
+            $("#btn_prop").hide();
+          }
+          $("#n_propcont").html(result.n_prop);
 
-            },
-            //si ha ocurrido un error
-            error: function(){
-                console.error("Error in getn_prop()"); console.table(e);
-            }
+        })
+        .fail(function(e) {
+          console.error("Error in getn_prop()"); console.table(e);
+        })
+        .always(function() {
+
         });
-
-
-        // $.ajax({
-        //   url: base_url+'info/get_nprop',
-        //   type: 'POST',
-        //   dataType: 'JSON',
-        //   data: {id_reactivo: $("#idreactivoform_pub").val()},
-        //   beforeSend: function(xhr) {
-        //         Notification.loading("");
-        //     },
-        // })
-        // .done(function(result) {
-        //   // alert(result.n_prop)
-        //   if (result.n_prop>4) {
-        //     $("#btn_prop").hide();
-        //   }
-        //   $("#n_propcont").html(result.n_prop);
-        //
-        // })
-        // .fail(function(e) {
-        //   console.error("Error in getn_prop()"); console.table(e);
-        // })
-        // .always(function() {
-        //   swal.close();
-        // });
 
       }
 

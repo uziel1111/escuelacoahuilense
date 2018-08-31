@@ -254,6 +254,24 @@
 	            </div>
 	        </div>
 
+					<div class="card-accordion-style-1 mb-3">
+							<div class="accordion-style-1-header" id="prog_apoyo" hidden >
+									<a class="collapsed d-block" data-toggle="collapse" data-target="#prog_apoyo_" aria-expanded="true" aria-controls="indicadores_permanen">
+											<i class="fa fa-chevron-down pull-right"></i>
+											Programas de apoyo
+									</a>
+							</div>
+							<div id="prog_apoyo_" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
+									<div class="card-body">
+										<div class="row">
+											<center><div id="tab_prog_apoyo"></div></center>
+										</div>
+
+
+									</div>
+							</div>
+					</div>
+
 	    </div>
 
 

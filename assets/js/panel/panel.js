@@ -138,7 +138,7 @@ Panel.prototype.show_propuestas = function(id_reactivo){
 
 Panel.prototype.ver_propuesta = function(idpropuesta, tipo, ruta){
 	if(tipo == 1 || tipo == 2){
-		obj_panel.show_apoyo(ruta);
+		obj_panel.modal_propuestarec(ruta, tipo);
 	}else{
 		window.open(ruta, '_blank');
 	}
@@ -156,47 +156,107 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 	})
 	.done(function(result) {
 		console.log(result.respuesta);
+		swal.close();
+
+		if(result.respuesta == 'maximovalor'){
+			swal(
+		      'Alerta!',
+		      "El reactivo ya cuenta con el numero maximo permitido de material",
+		      'warning'
+		    );
+		}
+		if(result.respuesta == true){
+			swal(
+		      'Correcto!',
+		      "La propuesta se autorizo correctamente",
+		      'success'
+		    );
+		}
+		if(result.respuesta == false){
+			swal(
+		      'Error!',
+		      "Algo salio mal a intentar autorizar la propuesta",
+		      'danger'
+		    );
+		}
+		$('#modal_visor_propuestas').modal('toggle');
 	})
 	.fail(function(e) {
 		console.error("Error in autorizar_propuesta()"); console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    
 	})
 }
 
 Panel.prototype.elimina_propuesta = function(idpropuesta){
-$.ajax({
-		url: base_url+'panel/delete_propuesta',
-		type: 'POST',
-		dataType: 'JSON',
-		data: {id_propuesta: idpropuesta},
-		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+		swal({
+	  title: '¿Esta seguro de eliminar esta propuesta?',
+	  text: "Una vez eliminado no se podra tener acceso al recurso",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Eliminar',
+	  cancelButtonText: 'Cancelar'
+	}).then((result) => {
+	  if (result.value) {
+	  	$.ajax({
+			url: base_url+'panel/delete_propuesta',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {id_propuesta: idpropuesta},
+			beforeSend: function(xhr) {
+		        Notification.loading("");
+		    },
+		})
+		.done(function(result) {
+			swal.close();
+			console.log(result.respuesta);
+			if(result.respuesta == true){
+				swal(
+			      'Correcto!',
+			      "La propuesta se elimino correctamente",
+			      'success'
+			    );
+			}else{
+				swal(
+			      'Error!',
+			      "Algo salio mal intente nuevamente",
+			      'danger'
+			    );
+			}
+				$('#modal_visor_propuestas').modal('toggle');
+		})
+		.fail(function(e) {
+			console.error("Error in elimina_propuesta()"); console.table(e);
+		})
+		.always(function() {
+			    // swal.close();
+		})
+	  }
 	})
-	.done(function(result) {
-		swal.close();
-		console.log(result.respuesta);
-		if(result.respuesta == true){
-			swal(
-		      'Correcto!',
-		      "La propuesta se elimino correctamente",
-		      'success'
-		    );
-		}else{
-			swal(
-		      'Error!',
-		      "Algo salio mal intente nuevamente",
-		      'danger'
-		    );
-		}
-			$('#modal_visor_propuestas').modal('toggle');
-	})
-	.fail(function(e) {
-		console.error("Error in elimina_propuesta()"); console.table(e);
-	})
-	.always(function() {
-		    // swal.close();
-	})
+}
+
+Panel.prototype.modal_propuestarec = function(path_react, tipo){
+	var Protocol = location.protocol;
+	var URLactual = window.location.host;
+	var pathname = window.location.pathname;
+	if(tipo == 1){
+		tipo = "<iframe style='width:100%; height:500px;' frameborder='0' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"'></iframe>";
+	}else{
+		tipo = "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"' class='img-responsive center-block' />";
+	}
+// alert(pathname);
+    var html = "<div style='text-align:left !important;'>";
+
+        html += tipo;
+
+      html += "</div>";
+
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').empty();
+    $('#modal_visor_apoyo_react .modal-body #div_cont_apoyo').html(html);
+
+
+    $("#modal_visor_apoyo_react").modal("show");
 }

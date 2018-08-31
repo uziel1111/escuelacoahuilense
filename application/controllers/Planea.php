@@ -13,6 +13,9 @@ class Planea extends CI_Controller {
 			$this->load->model('Planeaxmuni_model');
 			$this->load->model('Planeaxesc_reactivo_model');
 			$this->load->helper('form');
+
+			$this->load->model('Recursos_model');
+			$this->load->model('Propuestas_model');
 		}
 
 		public function index(){
@@ -54,6 +57,15 @@ class Planea extends CI_Controller {
 			foreach ($result_nzonae as $zona){
 				 $arr_zonas[$zona['id_supervision']] = $zona['zona_escolar'];
 			}
+
+			$contenidos = $this->Recursos_model->get_tipo_contenidos();
+			$arr_contenidos = array();
+			$arr_contenidos[0] = "SELECCIONE";
+			foreach ($contenidos as $contenido){
+				 $arr_contenidos[$contenido['idtipo']] = $contenido['tipo'];
+			}
+
+			$data['contenidos'] = $arr_contenidos;
 
 			$data['municipios'] = $arr_municipios;
 			$data['niveles'] = $arr_niveles;
@@ -163,7 +175,7 @@ class Planea extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
-
+		
 
 
 }// Planea
