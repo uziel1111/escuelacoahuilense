@@ -19,6 +19,7 @@ $("#btn_info_perma").click(function(e){
               e.preventDefault();
               obj_info.get_riesgo();
               obj_info.get_indica_perma();
+              obj_info.get_prog_apoyo();
 
             });
 $("#btn_info_aprendiz").click(function(e){
@@ -193,6 +194,78 @@ Info_esc.prototype.get_indica_perma =function(){
                 }
 
 
+
+
+				      })
+				      .fail(function(e) {
+				        console.error("Error in "); console.table(e);
+				      })
+				      .always(function() {
+							swal.close();
+						});
+},
+
+Info_esc.prototype.get_prog_apoyo =function(){
+            $("#tab_prog_apoyo").empty();
+						let id_cct = $("#in_id_cct").val();
+            // alert(id_cct);
+							$.ajax({
+				        url:  base_url+"info/info_prog_apoyo",
+				        method: 'POST',
+				        data: {'id_cct':id_cct},
+				        beforeSend: function(xhr) {
+				        	Notification.loading("");
+					  	},
+				      })
+				      .done(function( data ) {
+							let programas = data.programs;
+              var str_view_table='';
+              // alert(programas);
+              str_view_table+="<div class='col'>";
+            str_view_table+="<div class='table-responsive'>";
+
+            str_view_table+="<table id='tabla_planea' class='table table-gray table-hover'>";
+            str_view_table+="<thead>";
+            str_view_table+="<tr>";
+            str_view_table+="<th class='text-center'>";
+            str_view_table+="<br><span style='font-weight:normal'>No.</span></th>";
+            str_view_table+="<th class='text-center'>";
+            str_view_table+="<br><span style='font-weight:normal'>Nombre del programa</span>";
+            str_view_table+="</th>    <th class='text-center'>";
+            str_view_table+="<br><span style='font-weight:normal'>Nombre corto</span></th>";
+            str_view_table+="<th class='text-center'>";
+            str_view_table+="<br><span style='font-weight:normal'>Ciclo escolar</span></th>";
+            str_view_table+="</tr>";
+      		str_view_table+="</thead>";
+      			str_view_table+="<tbody>";
+            programas.forEach(function(value, index) {
+              str_view_table+="<tr>";
+              str_view_table+="<th class='text-center'>";
+              str_view_table+=""+value.rowNumber+"</th>";
+              str_view_table+="<th class='text-center'>";
+              str_view_table+=""+value.descripcion+"";
+              str_view_table+="</th>    <th class='text-center'>";
+              str_view_table+=""+value.programa_apoyo+"</th>";
+              str_view_table+="<th class='text-center'>";
+              str_view_table+=""+value.ciclo+"</th>";
+              str_view_table+="</tr>";
+            });
+
+
+            str_view_table+="</tbody>";
+            str_view_table+="</table>";
+            str_view_table+="</div>";
+      			str_view_table+="</div>";
+
+            $("#tab_prog_apoyo").empty();
+
+            $("#tab_prog_apoyo").append(str_view_table);
+            if (programas.length>0) {
+              $("#prog_apoyo").removeAttr('hidden');
+              }
+              else{
+                $("#prog_apoyo").attr('hidden',true);
+              }
 
 
 				      })

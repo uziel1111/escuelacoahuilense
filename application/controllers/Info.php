@@ -16,6 +16,7 @@ class Info extends CI_Controller {
 			$this->load->model('Riesgo_alumn_esc_bim_model');
 			$this->load->model('Recursos_model');
 			$this->load->model('Propuestas_model');
+			$this->load->model('Prog_apoyo_xcct_model');
 		}
 
 	public function index(){
@@ -250,6 +251,20 @@ class Info extends CI_Controller {
 			'id_cct'=>$id_cct,
 			'nivel'=>$nivel,
 			'indica_perma'=>$indica_perma
+		);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function info_prog_apoyo(){
+		$id_cct = $this->input->post("id_cct");
+
+		$progs = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcct($id_cct);
+
+
+		$response = array(
+			'programs'=>$progs
 		);
 
 		Utilerias::enviaDataJson(200, $response, $this);
