@@ -699,6 +699,8 @@
 								                </button>
 								            </div>
 								            <div class="modal-body">
+															<p>Ayúdanos a mejorar los materiales de apoyo para nuestros alumnos, en este espacio puedes proponer videos, archivos o textos que  en tu experiencia son efectivos.
+															</p><p>Muchas gracias.</p>
 								            	<div class="form-group">
 												    <label for="tipodematerial">Seleccione tipo de contenido a subir</label>
 												    <select class="form-control" id="tipodematerial">

@@ -93,9 +93,10 @@ class Recursos_model extends CI_Model
     function autoriza_propuesta($idpropuesta, $idusuario){
     	$str_query = "SELECT id_reactivo, REPLACE ( ruta, 'propuestas/', 'recursos/' ) as ruta, idtipo, titulo, fuente  FROM prop_mapoyo
 						WHERE id_propuesta = '{$idpropuesta}'";
-		$autorizado = $this->db->query($str_query)->result_array()[0];
+		$autorizado = $this->db->query($str_query)->result_array();
+		// echo "<pre>";print_r($autorizado[0]);die();
 
-		$seinserto = $this->inserta_url($autorizado['id_reactivo'], $autorizado['ruta'], $idusuario, $autorizado['idtipo'], $autorizado['titulo'], $autorizado['fuente']);
+		$seinserto = $this->inserta_url($autorizado[0]['id_reactivo'], $autorizado[0]['ruta'], $idusuario, $autorizado[0]['idtipo'], $autorizado[0]['titulo'], $autorizado[0]['fuente']);
 
 		if($seinserto){
 			return $this->delete_propuesta($idpropuesta);

@@ -243,9 +243,9 @@ Panel.prototype.modal_propuestarec = function(path_react, tipo){
 	var URLactual = window.location.host;
 	var pathname = window.location.pathname;
 	if(tipo == 1){
-		tipo = "<iframe style='width:100%; height:500px;' frameborder='0' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"'></iframe>";
+		tipo = "<iframe style='width:100%; height:500px;' frameborder='0' src='"+Protocol+"//"+URLactual+"/"+path_react+"'></iframe>";
 	}else{
-		tipo = "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/escuelacoahuilense/"+path_react+"' class='img-responsive center-block' />";
+		tipo = "<img style='width: 100%;' src='"+Protocol+"//"+URLactual+"/"+path_react+"' class='img-responsive center-block' />";
 	}
 // alert(pathname);
     var html = "<div style='text-align:left !important;'>";
