@@ -120,7 +120,7 @@
             <div class="form-group form-group-style-1"> 
             <div class="row">
                 <div class="col-12">
-                        <label>En este ciclo escolar quiero que mi escuela (Identidad de mi escuela):</label>
+                        <label>En este ciclo escolar quiero que mi escuela (Identidad de mi escuela): <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="¿Cúal es la identidad de tu escuela?"></i></label>
                         <textarea id="txt_rm_identidad" class="form-control" rows="5"></textarea>
                 </div>
             </div>            
@@ -153,7 +153,7 @@
                                                                                 <option value="2">SISAT</option>
                                                                                 <option value="3">PLANEA</option>
                                                                                 <option value="4">Listas de cotejo</option>
-                                                                                <option value="5">www.acasonora.org</option>
+                                                                                <option value="5">www.sarape.gob.mx</option>
                                                                                 <option value="6">Otro</option>
                                                                 </select>
                 </div>
@@ -187,14 +187,14 @@
                 </div>
 
             </div>   
-            <div class="row mt-15">
-                <div class="col-12">
+            <!-- <div class="row mt-15"> -->
+                <!-- <div class="col-12">
                             <label>Recomendaciones del Supervisor Escolar con base en la visita de acompañamiento realizada:</label>
                             <textarea id="txt_rm_obssuper" class="form-control" rows="5" disabled="true"></textarea>
-                </div>
+                </div> -->
 
 
-            </div> 
+            <!-- </div>  -->
             <div class="row mt-15">
                 <div class="col-12">
 <button type="button" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
