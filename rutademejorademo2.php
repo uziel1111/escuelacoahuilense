@@ -26,26 +26,32 @@
     <!--<link rel="stylesheet" href="assets/css/bootstrap.css">-->
     <link rel="stylesheet" href="assets/css/main.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-
-  <link href="assets/bootstrap-411/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <!-- <link href="assets/bootstrap-411/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
   <link href="assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" media="screen">
   <link href="assets/fonts/fontawesome5/css/all.css" rel="stylesheet" media="screen">
 
   <link rel="stylesheet" href="assets/css/main.css">  
 
   <!-- CSS -->
-  <script src="assets/jquery-3.3.1.min.js"></script>
-  <script src="assets/jquery.validate.js"></script>
+  <!--<script src="assets/jquery-3.3.1.min.js"></script>-->
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="assets/bootstrap-411/js/bootstrap.min.js"></script>
+
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
+  <!--<script src="assets/bootstrap-411/js/bootstrap.min.js"></script>-->
   <script src="assets/sweetalert2/sweetalert2.min.js"></script>
 
   <script src="assets/js/messages.js"></script>
-  <script src="assets/js/utiles.js"></script>
+
   <!-- Datepicker  -->
-  <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	
+		<!-- Multiselect -->
+<link rel="stylesheet" href="assets/multiselect/css/bootstrap-select.min.css">
+
+
 </head>
 
     <body>
@@ -119,28 +125,27 @@
             <div class="form-group form-group-style-1"> 
             <div class="row">
                 <div class="col-12">
-                        <label>En este ciclo escolar quiero que mi escuela (Misión): <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción 
+                  <label><span class="badge badge-secondary h5 text-white">1.</span> En este ciclo escolar quiero que mi escuela (Misión): <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción 
 breve (de no más de 80 palabras aproximadamente) que clarifique cuál es 
 la contribución que debe hacer la escuela a la comunidad donde radica, 
 dónde se verá su impacto positivo y de qué forma deberá ser vista por 
 quienes interactúan con ella (alumnos, padres de familia, autoridades 
-locales, sociedad en general)"></i></label>
-                        <textarea id="txt_rm_identidad" class="form-control" rows="5"></textarea>
+locales, sociedad en general)"></em></label>
+                  <textarea id="txt_rm_identidad" class="form-control" rows="5"></textarea>
                 </div>
             </div>            
             <div class="row mt-15">
                 <div class="col-md-6">
-                            <label>Prioridad del sistema básico de mejora</label>
-                            <select id="ruta_tema" name="ruta_tema" class="form-control">
-                                    <option value="0">Seleccione</option>
-                                                                                <option value="1">Normalidad mínima</option>
-                                                                                <option value="2">Continuidad</option>
-                                                                                <option value="3">Aprendizajes</option>
-                                                                                <option value="4">Convivencia escolar</option>
-                                                                </select>
+                  <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 3">
+					  <option>Normalidad mínima escolar</option>
+					  <option>Mejora de los aprendizajes</option>
+					  <option>Alto al abandono escolar</option>
+					  <option>Convivencia escolar sana y pacífica</option>						
+					</select>
                 </div>
                 <div class="col-md-6">
-                  <label>Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
+                  <label><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
 inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
 eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
 aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
@@ -158,9 +163,9 @@ omitir este elemento dándolo por entendido)"></em></label>
             </div>  
             <div class="row mt-15">
                 <div class="col-md-6">
-                            <label>Evidencias utilizadas</label>
-                            <select id="ruta_evidenciasutilizadas" class="form-control">
-                                                                                <option value="1">Reporte ACA</option>
+                  <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label>
+                  <select id="ruta_evidenciasutilizadas" class="form-control">
+                    <option value="1">Reporte ACA</option>
                                                                                 <option value="2">SISAT</option>
                                                                                 <option value="3">PLANEA</option>
                                                                                 <option value="4">Listas de cotejo</option>
@@ -169,54 +174,62 @@ omitir este elemento dándolo por entendido)"></em></label>
                                                                 </select>
                 </div>
                 <div class="col-md-6">
-                            <label>Programas de apoyo</label>
-                            <select id="ruta_pproapoy" name="ruta_pproapoy" class="form-control">
-                                                                        <option value="0">Otro</option>
+                  <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label>
+                  <select id="ruta_pproapoy" name="ruta_pproapoy" class="form-control">
+                    <option value="0">Otro</option>
                             </select>
                 </div>
 
             </div>   
             <div class="row mt-15">
                 <div class="col-md-6">
-                        <label>¿En qué nos proponemos avanzar este ciclo escolar?<br>(Objetivo)</label>
-                            <textarea id="txt_rm_objetivo" class="form-control" rows="4"></textarea>
-                </div>
+                  <label><span class="badge badge-secondary h5 text-white">6.</span> ¿En qué nos proponemos avanzar este ciclo escolar? (Programas)</label>
+                  <textarea id="txt_rm_objetivo" class="form-control" rows="4"></textarea>
+              </div>
                 <div class="col-md-6">
-                            <label>¿Cómo ayudan el (los) programa(s) seleccionado(s) a la prioridad del sistema básico de mejora?</label><br>
+                  <label><span class="badge badge-secondary h5 text-white">7.</span> ¿Cómo ayudan los programas de apoyo?</label>
+                  <br>
                             <textarea id="txt_rm_programayuda" class="form-control" rows="4"></textarea>
                 </div>
 
             </div>   
             <div class="row mt-15">
-                <div class="col-md-6">
-                            <label>¿Hasta dónde podemos llegar con los recursos disponibles?(Meta)</label>
-                            <textarea id="txt_rm_meta" class="form-control" rows="5"></textarea>
+                <div class="col-md-12">
+                            <label><span class="badge badge-secondary h5 text-white">8.</span> Observaciones del director</label>
+                            <textarea id="txt_rm_meta" class="form-control" rows="4"></textarea>
                 </div>
-                <div class="col-md-6">
-                            <label>Observaciones del director:</label>
-                            <textarea id="txt_rm_obs" class="form-control" rows="5"></textarea>
-                </div>
-
-            </div>   
+            </div>
             <div class="row mt-15">
                 <div class="col-12">
-                            <label>Recomendaciones del Supervisor Escolar con base en la visita de acompañamiento realizada:</label>
-                            <textarea id="txt_rm_obssuper" class="form-control" rows="5" disabled="true"></textarea>
+                  <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SEDU para lograr estos objetivos?
+                    Catálogo de apoyos</label>
+                  <textarea id="txt_rm_obs" class="form-control" rows="4"></textarea>
+                </div>
+
+
+            </div> 				
+            <div class="row mt-15">
+                <div class="col-12">
+                            <label><span class="badge badge-secondary h5 text-white">10.</span> Recomendaciones del Supervisor Escolar con base en la visita de acompañamiento realizada:</label>
+                            <textarea id="txt_rm_obssuper" class="form-control" rows="4" disabled="true"></textarea>
                 </div>
 
 
             </div> 
             <div class="row mt-15">
                 <div class="col-12">
+			
+                </div>
+            </div> 				
+            <div class="row mt-15">
+                <div class="col-12">
 <button type="button" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
                 </div>
-
-
             </div>                 
                 
-                </div>
+            </div>
         </div>
-        </div>
+    </div>
   </div><!-- card -->
 </div><!-- container -->
 
@@ -448,9 +461,16 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
             </div>
         </footer>
         <!-- Scripts  -->
-        <!-- <script src="assets/js/vendor/jquery-2.2.4.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		  <script src="assets/multiselect/js/bootstrap-select.js"></script>	
+  <script src="assets/jquery.validate.js"></script>		
+  <script src="assets/js/utiles.js"></script>	
+  <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>		
+        <!-- <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <!--<script src="assets/js/vendor/bootstrap.min.js"></script>-->
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
         <!-- <script src="assets/js/jquery.ajaxchimp.min.js"></script> -->
         <script src="assets/js/jquery.sticky.js"></script>
         <!-- <script src="assets/js/owl.carousel.min.js"></script> -->

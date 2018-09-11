@@ -1037,6 +1037,13 @@ td, th {
     border-width: 2px 2px 2px 2px;
     height: auto;
 }
+.bootstrap-select .dropdown-menu {
+	margin: 0 0 0 0 !important;
+    border-radius: 0 0 0 0;
+    -moz-border-radius:0 0 0 0;
+    -webkit-border-radius:0 0 0 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);	
+}
 /** End Forms**/
 /** Tables **/
 .table-style-1 thead th {
@@ -1061,6 +1068,7 @@ td, th {
 /*** Accordion  ***/
 .accordion_style_1 .card-accordion-style-1  {
     padding: 0 0 0 0 !important;
+	border: 0 !important;
 }
 
 .accordion-style-1 .accordion-style-1-header a:not(.collapsed){
@@ -1400,7 +1408,7 @@ td, th {
   border-left: 11px solid transparent;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   content: '';
-    -webkit-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
