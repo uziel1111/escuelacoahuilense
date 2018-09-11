@@ -118,104 +118,132 @@
         <!-- Start Main Area -->
 <section class="main-area">
 <div class="container">
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bg-light">Captura de la Ruta de Mejora</div>
-    <div class="card-body">
-        <div class="card-block">
-            <div class="form-group form-group-style-1"> 
+
+	
+                <div class="row justify-content-center flex-column mb-3">                        
+                    <nav>
+                      <div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Captura de la Ruta de Mejora</a>
+                        <a class="nav-item nav-link nav-link-style-1" id="nav-indicadores-tab" data-toggle="tab" href="#nav-indicadores" role="tab" aria-controls="nav-indicadores" aria-selected="false">Indicadores sugeridos</a>
+                        <a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
+                      </div>
+                    </nav>
+                <div class="tab-content tab-content-style-1" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-ruta" role="tabpanel" aria-labelledby="nav-ruta-tab">
+             <div class="form-group form-group-style-1"> 
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                   <label><span class="badge badge-secondary h5 text-white">1.</span> En este ciclo escolar quiero que mi escuela (Misión): <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción 
 breve (de no más de 80 palabras aproximadamente) que clarifique cuál es 
 la contribución que debe hacer la escuela a la comunidad donde radica, 
 dónde se verá su impacto positivo y de qué forma deberá ser vista por 
 quienes interactúan con ella (alumnos, padres de familia, autoridades 
 locales, sociedad en general)"></em></label>
-                  <textarea id="txt_rm_identidad" class="form-control" rows="5"></textarea>
+                  <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"></textarea>
                 </div>
-            </div>            
-            <div class="row mt-15">
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
-					<select class="selectpicker form-control" multiple data-selected-text-format="count > 3">
-					  <option>Normalidad mínima escolar</option>
-					  <option>Mejora de los aprendizajes</option>
-					  <option>Alto al abandono escolar</option>
-					  <option>Convivencia escolar sana y pacífica</option>						
+					<select class="selectpicker form-control">
+					  <option>NORMALIDAD MÍNIMA ESCOLAR</option>
+					  <option>MEJORA DE LOS APRENDIZAJES (con énfasis en lectura, escritura y matemáticas)</option>
+					  <option>ALTO AL ABANDONO ESCOLAR</option>
+					  <option>CONVIVENCIA ESCOLAR SANA Y PACÍFICA</option>						
 					</select>
+                </div>				
+            </div> 
+            <div class="row mt-15">
+                <div class="col-12">
+					<label><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
+					inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
+					eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
+					aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
+					a un grado en particular, a una asignatura...), continuando con una meta 
+					numérica de mejora del indicador y finalizando con una fecha de 
+					cumplimiento máximo (si es para el final del período escolar se puede 
+					omitir este elemento dándolo por entendido)"></em></label>			
+                </div>				
+            </div>				
+            <div class="row">
+                <div class="col-md-6">
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Objetivo 1</span>
+  </div>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
                 </div>
                 <div class="col-md-6">
-                  <label><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
-inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
-eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
-aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
-a un grado en particular, a una asignatura...), continuando con una meta 
-numérica de mejora del indicador y finalizando con una fecha de 
-cumplimiento máximo (si es para el final del período escolar se puede 
-omitir este elemento dándolo por entendido)"></em></label>
-                  <select id="ruta_pprobematicas" name="ruta_pprobematicas" class="form-control">
-                    <option value="1">Asistencia de profesores</option>
-                                                                                <option value="2">Uso eficiente del tiempo</option>
-                                                                                <option value="3">Otro</option>
-                                                                </select>
-                </div>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Objetivo 2</span>
+  </div>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
+                </div>				
 
             </div>  
             <div class="row mt-15">
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label>
-                  <select id="ruta_evidenciasutilizadas" class="form-control">
-                    <option value="1">Reporte ACA</option>
-                                                                                <option value="2">SISAT</option>
-                                                                                <option value="3">PLANEA</option>
-                                                                                <option value="4">Listas de cotejo</option>
-                                                                                <option value="5">www.acasonora.org</option>
-                                                                                <option value="6">Otro</option>
-                                                                </select>
+					<select class="selectpicker form-control">
+						<option value="1">OPTION 1</option>
+						<option value="2">OPTION 2</option>
+						<option value="6">OTRO</option>
+					</select>
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label>
-                  <select id="ruta_pproapoy" name="ruta_pproapoy" class="form-control">
-                    <option value="0">Otro</option>
-                            </select>
+					<select class="selectpicker form-control">
+						<option value="1">REPORTE APA</option>
+						<option value="2">SISAT</option>
+						<option value="3">PLANEA</option>
+						<option value="4">LISTAS DE COTEJO</option>
+						<option value="5">WWW.SARAPE.GOB.MX</option>
+						<option value="6">OTRO</option>
+					</select>
                 </div>
 
             </div>   
             <div class="row mt-15">
                 <div class="col-md-6">
-                  <label><span class="badge badge-secondary h5 text-white">6.</span> ¿En qué nos proponemos avanzar este ciclo escolar? (Programas)</label>
-                  <textarea id="txt_rm_objetivo" class="form-control" rows="4"></textarea>
+                  <label><span class="badge badge-secondary h5 text-white">6.</span> Programas educativos de apoyo</label>
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 3">
+					  <option>FORTALECIMIENTO DE LA CALIDAD EDUCATIVA</option>
+					  <option>PROGRAMA DE ESCUELAS DE TIEMPO COMPLETO</option>
+					  <option>PROGRAMA PARA LA INCLUSIÓN Y LA EQUIDAD EDUCATIVA</option>
+					  <option>PROGRAMA NACIONAL DE CONVIVENCIA ESCOLAR PROGRAMA DE LA REFORMA EDUCATIVA</option>			 <option>PROGRAMA NACIONAL DE INGLÉS</option>
+					  <option value="6">OTRO</option>
+					</select>
               </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">7.</span> ¿Cómo ayudan los programas de apoyo?</label>
                   <br>
-                            <textarea id="txt_rm_programayuda" class="form-control" rows="4"></textarea>
+                            <textarea id="txt_rm_programayuda" class="form-control" rows="2"></textarea>
                 </div>
 
             </div>   
             <div class="row mt-15">
-                <div class="col-md-12">
+                <div class="col-md-6">
                             <label><span class="badge badge-secondary h5 text-white">8.</span> Observaciones del director</label>
-                            <textarea id="txt_rm_meta" class="form-control" rows="4"></textarea>
-                </div>
-            </div>
-            <div class="row mt-15">
-                <div class="col-12">
-                  <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SEDU para lograr estos objetivos?
-                    Catálogo de apoyos</label>
-                  <textarea id="txt_rm_obs" class="form-control" rows="4"></textarea>
+                            <textarea id="txt_rm_meta" class="form-control" rows="2"></textarea>
+                </div>				
+                <div class="col-6">
+                  <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 3">
+					  <option>PLANEACIÓN Y ESTADÍSTICA</option>
+					  <option>RECURSOS HUMANOS</option>
+					  <option>PROGRAMAS EDUCATIVOS DE APOYO</option>
+					  <option>JURÍDICO</option>	
+					  <option>NIVEL EDUCATIVO</option>
+					  <option>DIRECCIÓN DE EVALUACIÓN</option>
+					  <option>FORMACIÓN DOCENTE</option>
+					  <option>OTRO</option>							
+					</select>
                 </div>
 
 
             </div> 				
-            <div class="row mt-15">
-                <div class="col-12">
-                            <label><span class="badge badge-secondary h5 text-white">10.</span> Recomendaciones del Supervisor Escolar con base en la visita de acompañamiento realizada:</label>
-                            <textarea id="txt_rm_obssuper" class="form-control" rows="4" disabled="true"></textarea>
-                </div>
 
-
-            </div> 
             <div class="row mt-15">
                 <div class="col-12">
 			
@@ -228,9 +256,72 @@ omitir este elemento dándolo por entendido)"></em></label>
             </div>                 
                 
             </div>
-        </div>
-    </div>
-  </div><!-- card -->
+                    </div>
+				    <div class="tab-pane fade" id="nav-indicadores" role="tabpanel" aria-labelledby="nav-indicadores-tab">
+                    <table class="table table-style-1 table-striped table-hover">
+                        <thead class="bgcolor-4">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Indicador</th>
+                                <th scope="col">Resultado</th>
+                                <th scope="col">Meta propuesta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>ALUMNOS EN MUY ALTO RIESGO DE ABANDONO ESCOLAR</td>
+                                <td>30%</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>ALUMNOS EN NIVEL 1 DE PLANEA MATEMÁTICAS</td>
+                                <td>70%</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>ALUMNOS EN EXTRAEDAD EN GRADOS DESFASADOS</td>
+                                <td>20 </td>
+                                <td>10 </td>
+                            </tr>
+                        </tbody>
+                    </table>        
+                </div>					
+             	    <div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
+						<div class="card bg-light mb-3">
+							  <div class="card-header"><span class="badge badge-secondary h5 text-white">1.</span> En este ciclo escolar quiero que mi escuela (Misión)</div>
+							  <div class="card-body">
+								<p class="card-text">En esta sección se hace una descripción 
+							breve (de no más de 80 palabras aproximadamente) que clarifique cuál es 
+							la contribución que debe hacer la escuela a la comunidad donde radica, 
+							dónde se verá su impacto positivo y de qué forma deberá ser vista por 
+							quienes interactúan con ella (alumnos, padres de familia, autoridades 
+							locales, sociedad en general)</p>
+							  </div>
+						</div>
+						<div class="card bg-light mb-3">
+							  <div class="card-header"><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas</div>
+							  <div class="card-body">
+								<p class="card-text">Para la prioridad seleccionada escribe un objetivo que 
+inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
+eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
+aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
+a un grado en particular, a una asignatura...), continuando con una meta 
+numérica de mejora del indicador y finalizando con una fecha de 
+cumplimiento máximo (si es para el final del período escolar se puede 
+omitir este elemento dándolo por entendido)   </p>
+							  </div>
+						</div>						
+                </div>
+
+                </div>                      
+
+                                    </div> 	
+	
+	
+
 </div><!-- container -->
 
 <div class="container">
@@ -269,7 +360,7 @@ omitir este elemento dándolo por entendido)"></em></label>
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content modal-style-1">
                             <div class="modal-header bgcolor-2">
-                                <h5 class="modal-title text-white" id="exampleModalLabel">Edición de prioridad del sistema básico de mejora</h5>
+                                <h5 class="modal-title text-white" id="exampleModalLabel">Edición de prioridad del Sistema Básico de Mejora</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -278,7 +369,7 @@ omitir este elemento dándolo por entendido)"></em></label>
 <div class="alert alert-info" role="alert">
     Escuela: <span class="fw800">NOMBRE DE LA ESCUELA</span><br>
 
-Tema: <span class="fw800">Convivencia escolar</span><br>
+Prioridad: <span class="fw800">Convivencia escolar</span><br>
 
 Problemática(s): <span class="fw800">Asistencia de profesores</span><br>
 
@@ -464,7 +555,7 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		  <script src="assets/multiselect/js/bootstrap-select.js"></script>	
+  <script src="assets/multiselect/js/bootstrap-select.js"></script>	
   <script src="assets/jquery.validate.js"></script>		
   <script src="assets/js/utiles.js"></script>	
   <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>		
