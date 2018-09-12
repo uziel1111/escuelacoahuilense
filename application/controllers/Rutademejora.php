@@ -8,6 +8,7 @@ class Rutademejora extends CI_Controller {
 			$this->data = array( );
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
+			$this->load->model('Rutamejora_model');
 		}
 
 		public function index(){
@@ -28,6 +29,25 @@ class Rutademejora extends CI_Controller {
 			    Utilerias::pagina_basica_panel($this, "ruta/index", $data);
 			}
 		}// index()
+
+
+		public function graba_ruta(){
+			$mision = $this->input->post("txt_rm_identidad");
+			$prioridad = $this->input->post("txt_rm_prioridad");
+			$objetivo1 = $this->input->post("txt_rm_objetivo1");
+			$objetivo2 = $this->input->post("txt_rm_objetivo2");
+			$problematicaxp = $this->input->post("txt_rm_problematicaxprioridad");
+			$evidenciasdp = $this->input->post("txt_rm_evidenciasdproblematicas");
+			$programaseducativos = $this->input->post("txt_rm_programaseducativos");
+			$comoayudanpa = $this->input->post("txt_rm_comoayudanpa");
+			$observacionesdirector = $this->input->post("txt_rm_observacionesdirector");
+			$queapoyorequerimos = $this->input->post("txt_rm_queapoyorequerimos");
+
+			$result = $this->Rutamejora_model->guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos);
+
+
+
+		}
 
 
 
