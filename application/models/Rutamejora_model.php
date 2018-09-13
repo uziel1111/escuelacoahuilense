@@ -50,7 +50,7 @@ class Rutamejora_model extends CI_Model
 			'actividad' => $actividad, 
 			'recurso' => $recursos,
 			'id_ambito' => $idambito
-			'id_responsables' => $idresponsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de evidencias para multiselect=
+			'id_responsables' => $idresponsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
 			'otro_responsable' => $otroresponsable, // validar si el valor seleccionado en el combo es otro y modificar el formulario
 			'f_creacion' => date(),
 			'f_mod' => date(),
@@ -99,6 +99,15 @@ class Rutamejora_model extends CI_Model
 	    }else{
 	        return true;
 	    }
+    }
+
+    function recupera_ruta($idruta){
+
+    	$str_query = "SELECT * FROM rm_metaxcct mxcct
+						INNER JOIN  rm_tema_prioritarioxcct temaxcct ON mxcct.id_cct = temaxcct.id_cct
+						WHERE temaxcct.id_cct = 1";
+
+		return $this->db->query($str_query)->result_array();
     }
 
 

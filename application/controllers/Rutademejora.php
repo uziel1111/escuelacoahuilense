@@ -45,8 +45,19 @@ class Rutademejora extends CI_Controller {
 
 			$result = $this->Rutamejora_model->guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos);
 
+		}
 
+		public function editarRuta(){
+			$idruta = $this->input->post('idrutaeditar');
+			$data = $this->Rutamejora_model->recupera_ruta($idruta);
 
+			Utilerias::enviaDataJson(200, $data, $this);
+			exit;
+		}
+
+		public function eliminaRuta(){
+			$idruta = $this->input->post('idrutaeditar');
+			$data = $this->Rutamejora_model->delete_ruta($idruta);
 		}
 
 
