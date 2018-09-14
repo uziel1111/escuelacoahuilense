@@ -18,7 +18,7 @@ class Rutamejora_model extends CI_Model
 			'id_cct' => 1, //obtenemos el id de la cct cargada en la sesion
 			'id_prioridad' => $prioridad, 
 			'objetivo1' => $objetivo1,
-			'objetivo2' => $objetivo2
+			'objetivo2' => $objetivo2,
 			'id_problematica' => $problematicaxp,
 			'otro_problematica' => $otro, // validar si el valor seleccionado en el combo es otro y modificar el formulario
 			'ids_evidencias' => $evidenciasdp, // el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de evidencias para multiselect=
@@ -49,7 +49,7 @@ class Rutamejora_model extends CI_Model
 			'id_tprioritario' => $idtemaprioritario,
 			'actividad' => $actividad, 
 			'recurso' => $recursos,
-			'id_ambito' => $idambito
+			'id_ambito' => $idambito,
 			'id_responsables' => $idresponsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
 			'otro_responsable' => $otroresponsable, // validar si el valor seleccionado en el combo es otro y modificar el formulario
 			'f_creacion' => date(),
