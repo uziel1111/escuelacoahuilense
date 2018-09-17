@@ -27,10 +27,10 @@
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
   					<select class="selectpicker form-control">
-  					  <option>NORMALIDAD MÍNIMA ESCOLAR</option>
-  					  <option>MEJORA DE LOS APRENDIZAJES CON ÉNFASIS EN LECTURA, ESCRITURA Y MATEMÁTICAS</option>
-  					  <option>ALTO AL ABANDONO ESCOLAR</option>
-  					  <option>CONVIVENCIA ESCOLAR SANA Y PACÍFICA</option>
+              <option value="">SELECCIONE UNA OPCIÓN</option>
+              <?php foreach ($arr_prioridades as $key => $value): ?>
+                    <option value="<?=$key?>"><?=$value?></option>
+            <?php endforeach; ?>
   					</select>
                   </div>
               </div>

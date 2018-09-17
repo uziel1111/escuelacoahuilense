@@ -8,6 +8,7 @@ class Rutademejora extends CI_Controller {
 			$this->data = array( );
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
+			$this->load->model('Prioridad_model');
 			$this->load->model('Rutamejora_model');
 		}
 
@@ -56,12 +57,23 @@ class Rutademejora extends CI_Controller {
 				$data['nivel'] = 'PRIMARIA';//$nivel;
 				$data['nombreuser'] = 'BENITO JUAREZ';
 				if($response->procede == 1 && $response->status == 1){
+					$result_prioridades = $this->Prioridad_model->get_prioridades();
+					if(count($result_prioridades)==0){
+						$data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
+					}else{
+						foreach ($result_prioridades as $row){
+							 $arr_prioridades[$row['id_prioridad']] = $row['prioridad'];
+						}
+						$data['arr_prioridades'] = $arr_prioridades;
+					}
+
+
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
 				}else{
 					$mensaje = $response->statusText;
             		$tipo    = ERRORMESSAGE;
             		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
-					$this->load->view('ruta/login',$data);	
+					$this->load->view('ruta/login',$data);
 				}
 		}// index()
 
