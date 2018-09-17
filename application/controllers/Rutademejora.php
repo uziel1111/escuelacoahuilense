@@ -14,6 +14,7 @@ class Rutademejora extends CI_Controller {
 		public function index(){
 				$data = $this->data;
 			    $data['error'] = '';
+
 			    $this->load->view('ruta/login',$data);
 			// }
 		}// index()
@@ -24,22 +25,44 @@ class Rutademejora extends CI_Controller {
 	    }
 
 		public function acceso(){
-			// if(Utilerias::haySesionAbierta($this)){
-			// 	$usuario = Utilerias::get_usuario_sesion($this);
-			//
-			// 	$nivel = "";
-			// 	if($usuario[0]['id_nivel'] == 4){
-			// 		$nivel = "PRIMARIA";
-			// 	}else if($usuario[0]['id_nivel'] == 5){
-			// 		$nivel = "SECUNDARIA";
-			// 	}else if($usuario[0]['id_nivel'] == 6){
-			// 		$nivel = "MEDIA SUPERIOR";
-			// 	}
+			    $usuario = $this->input->post('usuario');
+			    $pass = $this->input->post('password');
+			    $turno = $this->input->post('turno_id');
+				$curl = curl_init();
+				$method = "POST";
+				$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";
+				$data = array("cct" => $usuario, 'turno' => $turno, 'pwd' => $pass);
+
+			    switch ($method)
+			    {
+			        case "POST":
+			            curl_setopt($curl, CURLOPT_POST, 1);
+			            if ($data)
+			                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			            break;
+			        default:
+			            if ($data)
+			                $url = sprintf("%s?%s", $url, http_build_query($data));
+			    }
+
+			    curl_setopt($curl, CURLOPT_URL, $url);
+			    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+			    $result = curl_exec($curl);
+
+			    curl_close($curl);
+			    $response = json_decode($result);
+
 				$data['nivel'] = 'PRIMARIA';//$nivel;
-				$data['nombreuser'] = 'BENITO JUAREZ';//$usuario[0]['nombre']. " ".$usuario[0]['paterno']." ".$usuario[0]['materno'];
-				// $data = array();
+				$data['nombreuser'] = 'BENITO JUAREZ';
+				if($response->procede == 1 && $response->status == 1){
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
-			// }
+				}else{
+					$mensaje = $response->statusText;
+            		$tipo    = ERRORMESSAGE;
+            		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+					$this->load->view('ruta/login',$data);	
+				}
 		}// index()
 
 

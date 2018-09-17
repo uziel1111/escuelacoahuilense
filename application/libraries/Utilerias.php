@@ -5,6 +5,9 @@ define('DATOSUSUARIO', "datos_usuario");
 // define("JSON_PRETTY_PRINT", 128);
 // define("JSON_UNESCAPED_UNICODE", 256);
 // define("JSON_UNESCAPED_SLASHES", 64);
+define('MESSAGEREQUEST', 'message_request');
+define('SUCCESMESSAGE', '1');
+define('ERRORMESSAGE', '2');
 
 	class Utilerias{
 		public function __construct() {
@@ -80,6 +83,28 @@ define('DATOSUSUARIO', "datos_usuario");
 	        $contexto->session->sess_destroy();
 	        return true;
 	    } // destroy_all_session()
+
+
+	    public static function get_notification_alert($mensaje, $tipo, $cerrar = true)
+	    {
+	        $type = "alert-info";
+
+	        switch ($tipo) {
+	            case SUCCESMESSAGE:
+	                $type = "alert-success ";
+	                break;
+	            case ERRORMESSAGE:
+	                $type = "alert-danger ";
+	                break;
+	        }
+
+	        return "
+	            <div class='alert " . $type . " alert-dismissable'>
+	            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+	            <center>" . $mensaje . "</center>
+	            </div>
+	            ";
+	    } // get_notification_alert()
 
 
 	}

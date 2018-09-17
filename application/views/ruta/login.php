@@ -14,18 +14,19 @@
           <div class="login-form validate-form">
               <div class="card">
             <div class="card-body">
-                                              <center>
-                                            <img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt="">
-                                            <h5 class="card-title mt-3">Sistema de captura de la ruta de mejora escolar</h5>
-                                            <h4 class="card-title mt-3">Iniciar Sesión</h4>
-                                              </center>
-                                              <?= form_open('Rutademejora/acceso');?>
+              <center>
+                <img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt="">
+                <h5 class="card-title mt-3">Sistema de captura de la ruta de mejora escolar</h5>
+                <h4 class="card-title mt-3">Iniciar Sesión</h4>
+              </center>
+              <center class="mensaje-terminado"><?=$this->session->flashdata(MESSAGEREQUEST);?></center>
+              <?= form_open('Rutademejora/acceso');?>
               <div class="form-group">
                 <label for="usuario">CCT</label>               <input type="text" name="usuario" value="" id="usuario" class="form-control" required="required" autofocus="autofocus">
               </div>
               <div class="form-group">
                 <label for="password">Turno</label>
-                <select class="form-control">
+                <select class="form-control" name="turno_id">
                                 <option value="0">Seleccionar turno</option>
                                 <option value="1">Matutino</option>
                                 <option value="2">Vesperino</option>
