@@ -28,8 +28,8 @@
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
                   <select class="selectpicker form-control">
                     <option value="">SELECCIONE UNA OPCIÓN</option>
-                    <?php foreach ($arr_prioridades as $key => $value): ?>
-                      <option value="<?=$key?>"><?=$value?></option>
+                    <?php foreach ($arr_prioridades as $item): ?>
+                            <option value="<?= $item['id_prioridad'] ?>"><?= $item['prioridad'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -87,8 +87,8 @@
                     <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label>
                     <select class="selectpicker form-control" id="slc_problem">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
-                      <?php foreach ($arr_problematicas as $key => $value): ?>
-                        <option value="<?=$key?>"><?=$value?></option>
+                      <?php foreach ($arr_problematicas as $item): ?>
+                              <option value="<?= $item['id_problematica'] ?>"><?= $item['problematica'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <br>
@@ -98,8 +98,8 @@
                     <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label>
                     <select class="selectpicker form-control"multiple data-selected-text-format="count > 3" id="slc_evidencias">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
-                      <?php foreach ($arr_evidencias as $key => $value): ?>
-                        <option value="<?=$key?>"><?=$value?></option>
+                      <?php foreach ($arr_evidencias as $item): ?>
+                              <option value="<?= $item['id_evidencia'] ?>"><?= $item['evidencia'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <br>
@@ -112,8 +112,8 @@
                     <label><span class="badge badge-secondary h5 text-white">6.</span> Programas educativos de apoyo</label>
                     <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_pa">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
-                      <?php foreach ($arr_progsapoyo as $key => $value): ?>
-                        <option value="<?=$key?>"><?=$value?></option>
+                      <?php foreach ($arr_progsapoyo as $item): ?>
+                              <option value="<?= $item['id_programa_apoyo'] ?>"><?= $item['descripcion'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <br>
@@ -136,8 +136,8 @@
                     <br>
                     <!-- <textarea id="txt_rm_apyreq" class="form-control" rows="2"></textarea> -->
                     <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_apoyoreq">
-                      <?php foreach ($arr_apoyosreq as $key => $value): ?>
-                        <option value="<?=$key?>"><?=$value?></option>
+                      <?php foreach ($arr_apoyosreq as $item): ?>
+                              <option value="<?= $item['id_apoyo_req_se'] ?>"><?= $item['apoyo_req_se'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <!--  -->
@@ -775,8 +775,8 @@
                               <div class="col-md-6">
                                 <label>Ámbito</label>
                                 <select class="form-control">
-                                  <?php foreach ($arr_ambitos as $key => $value): ?>
-                                    <option value="<?=$key?>"><?=$value?></option>
+                                  <?php foreach ($arr_ambitos as $item): ?>
+                                          <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
                                   <?php endforeach; ?>
                                 </select>
                               </div>
