@@ -12,22 +12,34 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function index(){
-			if(Utilerias::haySesionAbierta($this)){
-				$usuario = Utilerias::get_usuario_sesion($this);
-				
-				$nivel = "";
-				if($usuario[0]['id_nivel'] == 4){
-					$nivel = "PRIMARIA";
-				}else if($usuario[0]['id_nivel'] == 5){
-					$nivel = "SECUNDARIA";
-				}else if($usuario[0]['id_nivel'] == 6){
-					$nivel = "MEDIA SUPERIOR";
-				}
-				$data['nivel'] = $nivel;
-				$data['nombreuser'] = $usuario[0]['nombre']. " ".$usuario[0]['paterno']." ".$usuario[0]['materno'];
+				$data = $this->data;
+			    $data['error'] = '';
+			    $this->load->view('ruta/login',$data);
+			// }
+		}// index()
+
+		public function cerrar_sesion(){
+			Utilerias::destroy_all_session($this);
+	        redirect('Rutademejora/index');
+	    }
+
+		public function acceso(){
+			// if(Utilerias::haySesionAbierta($this)){
+			// 	$usuario = Utilerias::get_usuario_sesion($this);
+			//
+			// 	$nivel = "";
+			// 	if($usuario[0]['id_nivel'] == 4){
+			// 		$nivel = "PRIMARIA";
+			// 	}else if($usuario[0]['id_nivel'] == 5){
+			// 		$nivel = "SECUNDARIA";
+			// 	}else if($usuario[0]['id_nivel'] == 6){
+			// 		$nivel = "MEDIA SUPERIOR";
+			// 	}
+				$data['nivel'] = 'PRIMARIA';//$nivel;
+				$data['nombreuser'] = 'BENITO JUAREZ';//$usuario[0]['nombre']. " ".$usuario[0]['paterno']." ".$usuario[0]['materno'];
 				// $data = array();
-			    Utilerias::pagina_basica_panel($this, "ruta/index", $data);
-			}
+					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
+			// }
 		}// index()
 
 

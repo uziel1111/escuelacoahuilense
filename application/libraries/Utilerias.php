@@ -37,6 +37,12 @@ define('DATOSUSUARIO', "datos_usuario");
 	        $contexto->load->view('templatepanel/footer');
 	    }
 
+			public static function pagina_basica_rm($contexto, $vista = '', $data) {
+				$contexto->load->view('templaterm/header', $data);
+				$contexto->load->view($vista, $data);
+				$contexto->load->view('templaterm/footer');
+		}
+
 			/*
 	    Funcion para retornar datos a peticiones ajax
 	     */
