@@ -17,5 +17,16 @@ class Prog_apoyo_xcct_model extends CI_Model
         return $this->db->query($str_query)->result_array();
     }// get_prog_apoyo_xcct()
 
+    function get_prog_apoyo_xcctxciclo($id_cct ,$id_ciclo){
+      $str_query = "SELECT
+          t2.id_programa_apoyo, t2.descripcion
+          FROM prog_apoyo_xcct t1
+          INNER JOIN programa_apoyo t2 ON t1.id_prog_apoyo =t2.id_programa_apoyo
+          INNER JOIN ciclo t3 ON t1.id_ciclo = t3.id_ciclo
+          WHERE t1.id_cct={$id_cct} AND t1.id_ciclo={$id_ciclo}";
+          // echo $str_query; die();
+        return $this->db->query($str_query)->result_array();
+    }// get_prog_apoyo_xcct()
+
 
 }// Prog_apoyo_xcct_model
