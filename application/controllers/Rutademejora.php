@@ -9,11 +9,11 @@ class Rutademejora extends CI_Controller {
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
 			$this->load->model('Prioridad_model');
-		  $this->load->model('Problematica_model');
-		  $this->load->model('Evidencia_model');
-		  $this->load->model('Prog_apoyo_xcct_model');
-		  $this->load->model('Apoyo_req_model');
-		  $this->load->model('Ambito_model');
+		  	$this->load->model('Problematica_model');
+		  	$this->load->model('Evidencia_model');
+		  	$this->load->model('Prog_apoyo_xcct_model');
+		  	$this->load->model('Apoyo_req_model');
+		  	$this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
@@ -142,6 +142,44 @@ class Rutademejora extends CI_Controller {
 		public function eliminaRuta(){
 			$idruta = $this->input->post('idrutaeditar');
 			// $data = $this->Rutamejora_model->delete_ruta($idruta);
+		}
+
+		public function bajarutademo(){
+			$ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
+			$ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
+			$ruta3 = array('orden' => 3, 'prioridad' => 'Alto al abandono escolar', 'problematica' => 'Asistencia de niños a clases', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
+
+			$rutas = array();
+			array_push($rutas, $ruta1, $ruta2, $ruta3);
+
+			$tabla = "<div class='table-responsive'>
+			           <table id='' class='table table-condensed table-hover  table-bordered'>
+			            <thead>
+			              <tr class=info>
+	                          <th id='idrutamtema' hidden><center>id</center></th>
+	                          <th id='orden' style='width:4%'><center>Orden</center></th>
+	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
+	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
+	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
+	                          <tbody>";
+	                            
+	                          $tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+			foreach ($rutas as $ruta) {
+				$tabla .= "<tr>
+                          <td id='orden' data='1' >{$ruta['orden']}</td>
+                          <td id='tema' data='Normalidad mínima' >{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['problematica']}</td>
+                          <td id='evidencias' data='SISAT' >{$ruta['evidencias']}</td>
+                          <td id='n_actividades' data='0' >{$ruta['acciones']}</td>
+                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
+	                              </tr>";
+			}
+
+			$response = array('tabla' => $tabla);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 		}
 
 

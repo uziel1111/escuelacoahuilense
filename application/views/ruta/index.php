@@ -184,9 +184,8 @@
 
                       <div class="row mt-15">
                         <div class="col-12">
-                          <div class='table-responsive'><table id='' class='table table-condensed table-hover  table-bordered'><thead>
-                            <tr class=info><th id='idrutamtema' hidden><center>id</center></th><th id='orden' style='width:4%'><center>Orden</center></th><th id='tema' style='width:20%'><center>Prioridad</center></th><th id='problemas' style='width:31%'><center>Problemáticas</center></th><th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead><tbody><tr><td id='idrutamtema' data='108' hidden>108</td><td id='orden' data='1' >1</td><td id='tema' data='Normalidad mínima' >Normalidad mínima</td><td id='problemas' data='Asistencia de profesores' >Asistencia de profesores</td><td id='evidencias' data='SISAT' >SISAT</td><td id='n_actividades' data='0' >0</td><td id=''><center><i class="fas fa-check-circle"></i></center></td></tr>
-                              <tr><td id='idrutamtema' data='109' hidden>109</td><td id='orden' data='2' >2</td><td id='tema' data='Aprendizajes' >Aprendizajes</td><td id='problemas' data='Uso eficiente del tiempo, Otro' >Uso eficiente del tiempo, Otro</td><td id='evidencias' data='SISAT, Listas de cotejo, Otro' >SISAT, Listas de cotejo, Otro</td><td id='n_actividades' data='0' >0</td><td id=''><center><i class="fas fa-check-circle"></i></center></td></tr></tbody></table></div>              </div>
+                          <!-- aqui ira el html de la tabla             -->
+                        </div>
                               <label class="" style="">*Puede modificar el orden de los temas prioritarios arrastando el registro en la posición deseada.</label>
                             </div>
 
