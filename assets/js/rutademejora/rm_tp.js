@@ -4,54 +4,35 @@ $(function() {
 $("#btn_grabar_tp").click(function(){
 
   obj_rm_tp = new Rm_tp();
-  var misioncct = $("#txt_rm_identidad").val();
-  $.ajax({
-  url: base_url+'rutademejora/insert_update_misioncct',
-  type: 'POST',
-  dataType: 'JSON',
-  data: {misioncct:misioncct},
-  beforeSend: function(xhr) {
-        Notification.loading("");
-    },
-})
-.done(function(result) {
-  swal.close();
-  console.log(result.estatus);
 
-})
-.fail(function(e) {
-  console.error("Error in insertar mision cct()"); console.table(e);
-})
-.always(function() {
-      // swal.close();
-})
-  var id_prioridad = $("#slc_rm_prioridad").val();
-  var objetivo1 = $("#txt_rm_ob1").val();
-  var meta1 = $("#txt_rm_met1").val();
-  var objetivo2 = $("#txt_rm_ob2").val();
-  var meta2 = $("#txt_rm_met2").val();
-  var problematica = $("#txt_rm_problem").val();
-  var evidencia = $("#txt_rm_eviden").val();
-  var ids_progapoy="";
-   $("#slc_pa option:selected").each(function() {
-     ids_progapoy += $(this).val() + ",";
-   });
-   ids_progapoy = ids_progapoy.slice(0,-1);
-  var otro_pa = $("#txt_rm_otropa").val();
-  var como_prog_ayuda = $("#txt_rm_programayuda").val();
-  var obs_direct = $("#txt_rm_obs_direc").val();
-  var ids_apoyreq="";
-   $("#slc_apoyoreq option:selected").each(function() {
-     ids_apoyreq += $(this).val() + ",";
-   });
-   ids_apoyreq = ids_apoyreq.slice(0,-1);
-  var otroapoyreq = $("#txt_rm_otroapoyreq").val();
-  var especifiqueapyreq = $("#txt_rm_especifiqueapyreq").val();
+  obj_rm_tp.insert_update_mision_cct();
 
+  var validacion = obj_rm_tp.valida_campos_tp();
 
+  if (validacion == true) {
 
-
-  if (obj_rm_tp.valida_campos_tp()) {
+    var id_prioridad = $("#slc_rm_prioridad").val();
+    var objetivo1 = $("#txt_rm_ob1").val();
+    var meta1 = $("#txt_rm_met1").val();
+    var objetivo2 = $("#txt_rm_ob2").val();
+    var meta2 = $("#txt_rm_met2").val();
+    var problematica = $("#txt_rm_problem").val();
+    var evidencia = $("#txt_rm_eviden").val();
+    var ids_progapoy="";
+     $("#slc_pa option:selected").each(function() {
+       ids_progapoy += $(this).val() + ",";
+     });
+     ids_progapoy = ids_progapoy.slice(0,-1);
+    var otro_pa = $("#txt_rm_otropa").val();
+    var como_prog_ayuda = $("#txt_rm_programayuda").val();
+    var obs_direct = $("#txt_rm_obs_direc").val();
+    var ids_apoyreq="";
+     $("#slc_apoyoreq option:selected").each(function() {
+       ids_apoyreq += $(this).val() + ",";
+     });
+     ids_apoyreq = ids_apoyreq.slice(0,-1);
+    var otroapoyreq = $("#txt_rm_otroapoyreq").val();
+    var especifiqueapyreq = $("#txt_rm_especifiqueapyreq").val();
 
     $.ajax({
     url: base_url+'rutademejora/insert_tema_prioritario',
@@ -134,7 +115,7 @@ if ($("#slc_rm_prioridad").val()!='') {
                   swal(
                       'Error!',
                       "Favor de escribir especificación de los apoyos requeridos ",
-                      'danger'
+                      "error"
                     );
                     return false;
                 }
@@ -143,7 +124,7 @@ if ($("#slc_rm_prioridad").val()!='') {
                 swal(
                     'Error!',
                     "Favor de seleccionar ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos? ",
-                    'danger'
+                    "error"
                   );
                   return false;
               }
@@ -152,7 +133,7 @@ if ($("#slc_rm_prioridad").val()!='') {
               swal(
                   'Error!',
                   "Favor de escribir observaciones del director ",
-                  'danger'
+                  "error"
                 );
                 return false;
             }
@@ -161,7 +142,7 @@ if ($("#slc_rm_prioridad").val()!='') {
             swal(
                 'Error!',
                 "Favor de escribir ¿Cómo ayudan los programas de apoyo? ",
-                'danger'
+                "error"
               );
               return false;
           }
@@ -170,7 +151,7 @@ if ($("#slc_rm_prioridad").val()!='') {
           swal(
               'Error!',
               "Favor de seleccionar programas educativos de apoyo",
-              'danger'
+              "error"
             );
             return false;
         }
@@ -179,7 +160,7 @@ if ($("#slc_rm_prioridad").val()!='') {
         swal(
             'Error!',
             "Favor de escribir evidencia",
-            'danger'
+            "error"
           );
           return false;
       }
@@ -188,7 +169,7 @@ if ($("#slc_rm_prioridad").val()!='') {
       swal(
           'Error!',
           "Favor de escribir problemática ",
-          'danger'
+          "error"
         );
         return false;
     }
@@ -197,7 +178,7 @@ if ($("#slc_rm_prioridad").val()!='') {
     swal(
         'Error!',
         "Favor de escribir metas y objetivos",
-        'danger'
+        "error"
       );
       return false;
   }
@@ -206,12 +187,35 @@ else {
   swal(
       'Error!',
       "Favor de seleccionar una prioridad del sistema básico de mejora",
-      'danger'
+      "error"
     );
     return false;
 }
 
-
 // alert(ids_apoyreq);
 
+};
+
+Rm_tp.prototype.insert_update_mision_cct = function(){
+  var misioncct = $("#txt_rm_identidad").val();
+  $.ajax({
+  url: base_url+'rutademejora/insert_update_misioncct',
+  type: 'POST',
+  dataType: 'JSON',
+  data: {misioncct:misioncct},
+  beforeSend: function(xhr) {
+        // Notification.loading("");
+    },
+})
+.done(function(result) {
+  // swal.close();
+  console.log(result.estatus);
+
+})
+.fail(function(e) {
+  console.error("Error in insertar mision cct()"); console.table(e);
+})
+.always(function() {
+      // swal.close();
+})
 };
