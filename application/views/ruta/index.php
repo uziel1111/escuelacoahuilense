@@ -26,8 +26,8 @@
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
-                  <select class="selectpicker form-control">
-                    <option value="">SELECCIONE UNA OPCIÓN</option>
+                  <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN">
+                    <!-- <option value="">SELECCIONE UNA OPCIÓN</option> -->
                     <?php foreach ($arr_prioridades as $item): ?>
                             <option value="<?= $item['id_prioridad'] ?>"><?= $item['prioridad'] ?></option>
                     <?php endforeach; ?>
@@ -52,7 +52,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 1</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -60,7 +60,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 2</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 1&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -78,14 +78,14 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label>
-                    <textarea id="txt_rm_problem" class="form-control" rows="2"></textarea>
+                    <textarea id="txt_rm_problem" class="form-control" rows="2" maxlength="80"></textarea>
                     <!-- <select class="selectpicker form-control" id="slc_problem">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_problematicas as $item): ?>
@@ -97,7 +97,7 @@
                   </div>
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label>
-                    <textarea id="txt_rm_eviden" class="form-control" rows="2"></textarea>
+                    <textarea id="txt_rm_eviden" class="form-control" rows="2" maxlength="80"></textarea>
                     <!-- <select class="selectpicker form-control"multiple data-selected-text-format="count > 3" id="slc_evidencias">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_evidencias as $item): ?>
@@ -112,11 +112,12 @@
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">6.</span> Programas educativos de apoyo</label>
-                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_pa">
-                      <option value="">SELECCIONE UNA OPCIÓN</option>
+                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_pa" title="SELECCIONE UNA OPCIÓN">
+
                       <?php foreach ($arr_progsapoyo as $item): ?>
                               <option value="<?= $item['id_programa_apoyo'] ?>"><?= $item['descripcion'] ?></option>
                       <?php endforeach; ?>
+                      <option value="0">OTRO</option>
                     </select>
                     <br>
                     <textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
@@ -124,29 +125,29 @@
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">7.</span> ¿Cómo ayudan los programas de apoyo?</label>
                     <br>
-                    <textarea id="txt_rm_programayuda" class="form-control" rows="2"></textarea>
+                    <textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="80"></textarea>
                   </div>
 
                 </div>
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">8.</span> Observaciones del director</label>
-                    <textarea id="txt_rm_meta" class="form-control" rows="2"></textarea>
+                    <textarea id="txt_rm_meta" class="form-control" rows="2" maxlength="80"></textarea>
                   </div>
                   <div class="col-6">
                     <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
                     <br>
                     <!-- <textarea id="txt_rm_apyreq" class="form-control" rows="2"></textarea> -->
-                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_apoyoreq">
+                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_apoyoreq" title="SELECCIONE UNA OPCIÓN">
                       <?php foreach ($arr_apoyosreq as $item): ?>
                               <option value="<?= $item['id_apoyo_req_se'] ?>"><?= $item['apoyo_req_se'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <!--  -->
                     <br>
-                    <textarea id="txt_rm_otroapoyreq" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+                    <textarea id="txt_rm_otroapoyreq" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true" maxlength="80"></textarea>
                     <br>
-                    <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" ></textarea>
+                    <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" maxlength="80"></textarea>
                   </div>
 
 
@@ -159,7 +160,7 @@
                 </div>
                 <div class="row mt-15">
                   <div class="col-12">
-                    <button type="button" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
+                    <button type="button" class="btn btn-primary btn-style-1 mr-10" id="btn_grabar_tp">Grabar</button>
                   </div>
                 </div>
 
@@ -776,7 +777,7 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <label>Ámbito</label>
-                                <select class="form-control">
+                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UNA OPCIÓN">
                                   <?php foreach ($arr_ambitos as $item): ?>
                                           <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
                                   <?php endforeach; ?>
@@ -786,11 +787,11 @@
                             <div class="row mt-15">
                               <div class="col-md-6">
                                 <label>Acción:</label>
-                                <textarea id="txt_rm_meta" class="form-control" rows="5"></textarea>
+                                <textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
                               <div class="col-md-6">
                                 <label>Materiales e insumos a utilizar:</label>
-                                <textarea id="txt_rm_obs" class="form-control" rows="5"></textarea>
+                                <textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
 
                             </div>
@@ -798,7 +799,7 @@
 
                               <div class="col-md-4">
                                 <label>Responsables</label>
-                                <select name="ruta_pproapoy" class="form-control">
+                                <select name="ruta_presp" class="selectpicker form-control" id="slc_rm_presp" title="SELECCIONE UNA OPCIÓN">
                                   <option value="0">Otro</option>
                                 </select>
                               </div>
@@ -825,7 +826,7 @@
                             <div class="row mt-15">
                               <div class="col-md-12">
                                 <label>Indicadores de medicion:</label>
-                                <textarea id="txt_rm_indimed" class="form-control" rows="3"></textarea>
+                                <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
                               </div>
                             </div>
                             <div class="row mt-15">
@@ -887,3 +888,5 @@
         <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
         <script src="<?= base_url('assets/js/jquery.sticky.js'); ?>"></script>
         <script src="<?= base_url('assets/js/main.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
