@@ -188,7 +188,7 @@ class Rutademejora extends CI_Controller {
 			array_push($rutas, $ruta1, $ruta2, $ruta3);
 
 			$tabla = "<div class='table-responsive'>
-			           <table id='' class='table table-condensed table-hover  table-bordered'>
+			           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 			            <thead>
 			              <tr class=info>
 	                          <th id='idrutamtema' hidden><center>id</center></th>
@@ -196,11 +196,9 @@ class Rutademejora extends CI_Controller {
 	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
 	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
 	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
-	                          <tbody>";
+	                          <tbody id='id_tbody_demo'>";
 	                            
-	                          $tabla .= "</tbody>
-	                        </table>
-	                      </div>  ";
+	                          
 			foreach ($rutas as $ruta) {
 				$tabla .= "<tr>
                           <td id='orden' data='1' >{$ruta['orden']}</td>
@@ -211,10 +209,32 @@ class Rutademejora extends CI_Controller {
 	                              </tr>";
 			}
 
+			$tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+
 			$response = array('tabla' => $tabla);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
+	public function update_order(){
+		if (UtilsWrapper::verifica_sesion_redirige($this)) {
+			$usuario = UtilsWrapper::get_usuario_sesion($this);
+			$idcentrocfg = $usuario->idcentrocfg;
+			$datos = $this->input->post('orden');
+			for($i = 0; $i < count($datos); $i++){
+				$arr_datos = $this->Rutademejora_model->update_order($datos[$i][1], $datos[$i][0]);
+			}
+			$arr_datos = $this->get_prioridades($idcentrocfg);
+			$grid = new Grid_paginador();
+			$grid->set_configs($this->arr_columnas_grid,$arr_datos,$this->idkey,"info");
+			$html = $grid->get_table();
+			$response = array('tabla' => $html);
+			UtilsWrapper::enviaDataJson(200, $response, $this);
+			exit;
+		}
+	}
 
 
 
