@@ -110,6 +110,16 @@ class Rutamejora_model extends CI_Model
 		return $this->db->query($str_query)->result_array();
     }
 
+    function getdatoscct($cct, $turno){
+		$this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel');
+      $this->db->from('escuela e');
+      $this->db->join('turno_single AS ts ',' e.id_turno_single = ts.id_turno_single');
+      $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
+      $this->db->where("e.cve_centro = '{$cct}'");
+      $this->db->where("ts.id_turno_single = {$turno}");
+      return  $this->db->get()->result_array();
+    }
+
 
 
 }// Rutamejora_model

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 define('DATOSUSUARIO', "datos_usuario");
+define('DATOCCT', "datos_cct");
 // define("JSON_PRETTY_PRINT", 128);
 // define("JSON_UNESCAPED_UNICODE", 256);
 // define("JSON_UNESCAPED_SLASHES", 64);
@@ -105,6 +106,34 @@ define('ERRORMESSAGE', '2');
 	            </div>
 	            ";
 	    } // get_notification_alert()
+
+
+	    public static function set_cct_sesion($contexto, $datoscct){
+	        $contexto->session->set_userdata(DATOCCT, $datoscct);
+	    } // set_cct_sesion()
+
+	    public static function get_cct_sesion($contexto) {
+	        if (Utilerias::haySesionAbiertacct($contexto)) {
+	            return $contexto->session->userdata(DATOCCT);
+	        } else {
+	            return null;
+	        }
+	    }//get_cct_sesion()
+
+	    public static function destroy_all_session_cct($contexto){
+	        // Vacio los datos
+	        $contexto->session->unset_userdata(DATOCCT);
+	        $contexto->session->sess_destroy();
+	        return true;
+	    } // destroy_all_session_cct()
+
+	    public static function haySesionAbiertacct($contexto) {
+	    	if($contexto->session->has_userdata(DATOCCT)){
+	    		return true;
+	    	}else{
+	    		redirect('Rutademejora/index');
+	    	}
+	    }
 
 
 	}
