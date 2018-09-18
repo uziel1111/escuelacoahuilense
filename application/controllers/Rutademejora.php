@@ -144,6 +144,41 @@ class Rutademejora extends CI_Controller {
 			// $data = $this->Rutamejora_model->delete_ruta($idruta);
 		}
 
+
+		public function insert_tema_prioritario(){
+			$id_prioridad = $this->input->post("id_prioridad");
+			$objetivo1 = $this->input->post("objetivo1");
+			$meta1 = $this->input->post("meta1");
+			$objetivo2 = $this->input->post("objetivo2");
+			$meta2 = $this->input->post("meta2");
+			$problematica = $this->input->post("problematica");
+			$evidencia = $this->input->post("evidencia");
+			$ids_progapoy = $this->input->post("ids_progapoy");
+			$otro_pa = $this->input->post("otro_pa");
+			$como_prog_ayuda = $this->input->post("como_prog_ayuda");
+			$obs_direct = $this->input->post("obs_direct");
+			$ids_apoyreq = $this->input->post("ids_apoyreq");
+			$otroapoyreq = $this->input->post("otroapoyreq");
+			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
+
+			// $data = $this->Rutamejora_model->delete_ruta($idruta);
+			$estatus='ok';
+
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+
+		public function insert_misioncct(){
+			$misioncct = $this->input->post("misioncct");
+			// $data = $this->Rutamejora_model->delete_ruta($idruta);
+			$estatus='ok';
+
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+
 		public function bajarutademo(){
 			$ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
 			$ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
@@ -177,7 +212,6 @@ class Rutademejora extends CI_Controller {
 			}
 
 			$response = array('tabla' => $tabla);
-
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}

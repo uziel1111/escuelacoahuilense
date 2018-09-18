@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
-                  <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN">
+                  <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN" id="slc_rm_prioridad">
                     <!-- <option value="">SELECCIONE UNA OPCIÓN</option> -->
                     <?php foreach ($arr_prioridades as $item): ?>
                             <option value="<?= $item['id_prioridad'] ?>"><?= $item['prioridad'] ?></option>
@@ -52,7 +52,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 1</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_ob1"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -60,7 +60,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 2</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80"id="txt_rm_ob2"></textarea>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 1&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_met1"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -78,7 +78,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_met2"></textarea>
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">8.</span> Observaciones del director</label>
-                    <textarea id="txt_rm_meta" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_obs_direc" class="form-control" rows="2" maxlength="80"></textarea>
                   </div>
                   <div class="col-6">
                     <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
