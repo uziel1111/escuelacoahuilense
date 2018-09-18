@@ -9,11 +9,11 @@ class Rutademejora extends CI_Controller {
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
 			$this->load->model('Prioridad_model');
-		  	$this->load->model('Problematica_model');
-		  	$this->load->model('Evidencia_model');
-		  	$this->load->model('Prog_apoyo_xcct_model');
-		  	$this->load->model('Apoyo_req_model');
-		  	$this->load->model('Ambito_model');
+		  $this->load->model('Problematica_model');
+		  $this->load->model('Evidencia_model');
+		  $this->load->model('Prog_apoyo_xcct_model');
+		  $this->load->model('Apoyo_req_model');
+		  $this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
@@ -115,21 +115,21 @@ class Rutademejora extends CI_Controller {
 		}// index()
 
 
-		public function graba_ruta(){
-			$mision = $this->input->post("txt_rm_identidad");
-			$prioridad = $this->input->post("txt_rm_prioridad");
-			$objetivo1 = $this->input->post("txt_rm_objetivo1");
-			$objetivo2 = $this->input->post("txt_rm_objetivo2");
-			$problematicaxp = $this->input->post("txt_rm_problematicaxprioridad");
-			$evidenciasdp = $this->input->post("txt_rm_evidenciasdproblematicas");
-			$programaseducativos = $this->input->post("txt_rm_programaseducativos");
-			$comoayudanpa = $this->input->post("txt_rm_comoayudanpa");
-			$observacionesdirector = $this->input->post("txt_rm_observacionesdirector");
-			$queapoyorequerimos = $this->input->post("txt_rm_queapoyorequerimos");
-
-			// $result = $this->Rutamejora_model->guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos);
-
-		}
+		// public function graba_ruta(){
+		// 	$mision = $this->input->post("txt_rm_identidad");
+		// 	$prioridad = $this->input->post("txt_rm_prioridad");
+		// 	$objetivo1 = $this->input->post("txt_rm_objetivo1");
+		// 	$objetivo2 = $this->input->post("txt_rm_objetivo2");
+		// 	$problematicaxp = $this->input->post("txt_rm_problematicaxprioridad");
+		// 	$evidenciasdp = $this->input->post("txt_rm_evidenciasdproblematicas");
+		// 	$programaseducativos = $this->input->post("txt_rm_programaseducativos");
+		// 	$comoayudanpa = $this->input->post("txt_rm_comoayudanpa");
+		// 	$observacionesdirector = $this->input->post("txt_rm_observacionesdirector");
+		// 	$queapoyorequerimos = $this->input->post("txt_rm_queapoyorequerimos");
+		//
+		// 	// $result = $this->Rutamejora_model->guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos);
+		//
+		// }
 
 		public function editarRuta(){
 			$idruta = $this->input->post('idrutaeditar');
@@ -144,8 +144,9 @@ class Rutademejora extends CI_Controller {
 			// $data = $this->Rutamejora_model->delete_ruta($idruta);
 		}
 
-
 		public function insert_tema_prioritario(){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
 			$id_prioridad = $this->input->post("id_prioridad");
 			$objetivo1 = $this->input->post("objetivo1");
 			$meta1 = $this->input->post("meta1");
@@ -161,57 +162,24 @@ class Rutademejora extends CI_Controller {
 			$otroapoyreq = $this->input->post("otroapoyreq");
 			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
 
-			// $data = $this->Rutamejora_model->delete_ruta($idruta);
-			$estatus='ok';
-
+			$estatus = $this->Rutamejora_model->insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
 
-		public function insert_misioncct(){
+		public function insert_update_misioncct(){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
 			$misioncct = $this->input->post("misioncct");
-			// $data = $this->Rutamejora_model->delete_ruta($idruta);
-			$estatus='ok';
-
-			$response = array('estatus' => $estatus);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-		}
-
-		public function bajarutademo(){
-			$ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
-			$ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
-			$ruta3 = array('orden' => 3, 'prioridad' => 'Alto al abandono escolar', 'problematica' => 'Asistencia de niños a clases', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
-
-			$rutas = array();
-			array_push($rutas, $ruta1, $ruta2, $ruta3);
-
-			$tabla = "<div class='table-responsive'>
-			           <table id='' class='table table-condensed table-hover  table-bordered'>
-			            <thead>
-			              <tr class=info>
-	                          <th id='idrutamtema' hidden><center>id</center></th>
-	                          <th id='orden' style='width:4%'><center>Orden</center></th>
-	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
-	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
-	                          <tbody>";
-	                            
-	                          $tabla .= "</tbody>
-	                        </table>
-	                      </div>  ";
-			foreach ($rutas as $ruta) {
-				$tabla .= "<tr>
-                          <td id='orden' data='1' >{$ruta['orden']}</td>
-                          <td id='tema' data='Normalidad mínima' >{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['problematica']}</td>
-                          <td id='evidencias' data='SISAT' >{$ruta['evidencias']}</td>
-                          <td id='n_actividades' data='0' >{$ruta['acciones']}</td>
-                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-	                              </tr>";
+			if ($this->Rutamejora_model->existe_misionxidcct($id_cct,'4')) {
+				$estatus = $this->Rutamejora_model->update_misionxidcct($id_cct,$misioncct,'4');
 			}
-
-			$response = array('tabla' => $tabla);
+			else {
+				$estatus = $this->Rutamejora_model->insert_misionxidcct($id_cct,$misioncct,'4');
+			}
+			// $estatus = $this->Rutamejora_model->update_misionxidcct($id_cct,$misioncct,'4');
+			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}

@@ -5,31 +5,28 @@ class Rutamejora_model extends CI_Model
         parent::__construct();
     }
 
-    function guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos){
-
+    function insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){
+      // echo $ids_progapoy;die();
+      $date=date("Y-m-d");
     	$this->db->trans_start();
-        $data = array(
-		        'id_cct' => 1,//obtenemos el id de la cct cargada en la sesion
-		        'meta' => $mision,
-		        'id_ciclo' => 2017 //de donde obtenemos el idciclo?
-		);
-		$this->db->insert('rm_metaxcct', $data);
-		$data2 = array(
-			'id_cct' => 1, //obtenemos el id de la cct cargada en la sesion
-			'id_prioridad' => $prioridad, 
+		$data = array(
+			'id_cct' => $id_cct,
+			'id_prioridad' => $id_prioridad,
 			'objetivo1' => $objetivo1,
 			'objetivo2' => $objetivo2,
-			'id_problematica' => $problematicaxp,
-			'otro_problematica' => $otro, // validar si el valor seleccionado en el combo es otro y modificar el formulario
-			'ids_evidencias' => $evidenciasdp, // el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de evidencias para multiselect=
-			'otro_evidencia' => $otro, // validar si el valor seleccionado en el combo de evidencias es otro y modificar el formulario con un nueva campo de texto
-			'ids_programaapoyo' => $programaseducativos, // el formato debe ser una cadena separa por comas ejem(1, 2, 3)
-			'otro_apoyo_req_se' => $otro, // validar si el valor seleccionado en el combo de programas es otro y modificar el formulario con un nueva campo de texto
-			'especifique_apoyo_req' => $queapoyorequerimos, // el formato debe ser una cadena separa por comas ejem(1, 2, 3)
-			'f_cracion' => date(),
-			'f_mod' => date(),
-			//falta especificar campos en la base de datos para almacenar las observaciones del director, como ayudan los programas de apoyo y cuando en el combo de que apoyo requerimos es otro
-		);
+      'meta1' => $meta1,
+      'meta2' => $meta2,
+			'otro_problematica' => $problematica,
+			'otro_evidencia' => $evidencia,
+			'ids_programapoyo' => $ids_progapoy,
+			'otro_pa' => $otro_pa,
+			'como_ayudan_pa' => $como_prog_ayuda,
+			'obs_direc' => $obs_direct,
+			'ids_apoyo_req_se' => $ids_apoyreq,
+      'otro_apoyo_req_se' => $otroapoyreq,
+      'especifique_apoyo_req' => $especifiqueapyreq,
+			'f_creacion' => $date,
+			);
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
         $this->db->trans_complete();
 
@@ -47,7 +44,7 @@ class Rutamejora_model extends CI_Model
     function guardaactividad($idtemaprioritario, $actividad, $recursos, $idambito, $idresponsables, $otroresponsable, $f_inicio, $f_termino){
     	$data2 = array(
 			'id_tprioritario' => $idtemaprioritario,
-			'actividad' => $actividad, 
+			'actividad' => $actividad,
 			'recurso' => $recursos,
 			'id_ambito' => $idambito,
 			'id_responsables' => $idresponsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
@@ -63,7 +60,7 @@ class Rutamejora_model extends CI_Model
     function guardaAvance($idactividad, $avance){
     	$data2 = array(
 			'id_actividad' => $idactividad,
-			'avance' => $avance, 
+			'avance' => $avance,
 			'f_mod_avance' => date(),
 		);
 		$this->db->insert('rm_avancexactividad', $data);
@@ -120,6 +117,56 @@ class Rutamejora_model extends CI_Model
       return  $this->db->get()->result_array();
     }
 
+    function existe_misionxidcct($id_cct, $id_ciclo){
+		$this->db->select('id_cct');
+      $this->db->from('rm_misionxcct');
+      $this->db->where("id_cct = '{$id_cct}'");
+      $this->db->where("id_ciclo = {$id_ciclo}");
+      if ($this->db->get()->num_rows()>0) {
+        return  true;
+      }
+      else {
+        return false;
+      }
+    }
 
+  function insert_misionxidcct($id_cct,$misioncct, $id_ciclo){
+     $date=date("Y-m-d");
+    $this->db->trans_start();
+      $data = array(
+          'id_cct' => $id_cct,//obtenemos el id de la cct cargada en la sesion
+          'mision' => $misioncct,
+          'id_ciclo' => $id_ciclo, //de donde obtenemos el idciclo?
+          'f_crea' => $date,
+  );
+  $this->db->insert('rm_misionxcct', $data);
+  $this->db->trans_complete();
+  if ($this->db->trans_status() === FALSE)
+      {
+          return false;
+      }else{
+          return true;
+      }
+  }
+
+  function update_misionxidcct($id_cct,$misioncct, $id_ciclo){
+    $date=date("Y-m-d");
+   $this->db->trans_start();
+   $data = array(
+      'mision' => $misioncct,
+      'id_ciclo' => $id_ciclo,
+      'f_mod' => $date
+  );
+
+  $this->db->where('id_cct', $id_cct);
+  $this->db->update('rm_misionxcct', $data);
+  $this->db->trans_complete();
+  if ($this->db->trans_status() === FALSE)
+     {
+         return false;
+     }else{
+         return true;
+     }
+  }
 
 }// Rutamejora_model
