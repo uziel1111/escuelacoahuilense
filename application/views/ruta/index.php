@@ -85,25 +85,27 @@
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label>
-                    <select class="selectpicker form-control" id="slc_problem">
+                    <textarea id="txt_rm_problem" class="form-control" rows="2"></textarea>
+                    <!-- <select class="selectpicker form-control" id="slc_problem">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_problematicas as $item): ?>
                               <option value="<?= $item['id_problematica'] ?>"><?= $item['problematica'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <br>
-                    <textarea id="txt_rm_otroproblematica" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+                    <textarea id="txt_rm_otroproblematica" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea> -->
                   </div>
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label>
-                    <select class="selectpicker form-control"multiple data-selected-text-format="count > 3" id="slc_evidencias">
+                    <textarea id="txt_rm_eviden" class="form-control" rows="2"></textarea>
+                    <!-- <select class="selectpicker form-control"multiple data-selected-text-format="count > 3" id="slc_evidencias">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_evidencias as $item): ?>
                               <option value="<?= $item['id_evidencia'] ?>"><?= $item['evidencia'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <br>
-                    <textarea id="txt_rm_otroevidencia" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+                    <textarea id="txt_rm_otroevidencia" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea> -->
                   </div>
 
                 </div>

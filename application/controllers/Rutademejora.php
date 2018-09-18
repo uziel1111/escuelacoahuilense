@@ -8,6 +8,12 @@ class Rutademejora extends CI_Controller {
 			$this->data = array( );
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
+			$this->load->model('Prioridad_model');
+		  $this->load->model('Problematica_model');
+		  $this->load->model('Evidencia_model');
+		  $this->load->model('Prog_apoyo_xcct_model');
+		  $this->load->model('Apoyo_req_model');
+		  $this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
@@ -57,6 +63,45 @@ class Rutademejora extends CI_Controller {
 					$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 					Utilerias::set_cct_sesion($this, $datoscct);
 					$this->cct = Utilerias::get_cct_sesion($this);
+
+					$result_prioridades = $this->Prioridad_model->get_prioridades();
+				  if(count($result_prioridades)==0){
+				  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
+				  }else{
+				  $data['arr_prioridades'] = $result_prioridades;
+				  }
+				  $result_problematicas = $this->Problematica_model->get_problematicas();
+				  if(count($result_problematicas)==0){
+				  $data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
+				  }else{
+				  $data['arr_problematicas'] = $result_problematicas;
+				  }
+				  $result_evidencias = $this->Evidencia_model->get_evidencias();
+				  if(count($result_evidencias)==0){
+				  $data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
+				  }else{
+				  $data['arr_evidencias'] = $result_evidencias;
+				  }
+				  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo(790,4);//id_cct, id_ciclo
+				  if(count($result_progsapoyo)==0){
+				  $data['arr_progsapoyo'] = array(	'-1' => 'Error recuperando los progsapoyo' );
+				  }else{
+				  $data['arr_progsapoyo'] = $result_progsapoyo;
+				  }
+				  $result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
+				  if(count($result_apoyosreq)==0){
+				  $data['arr_apoyosreq'] = array(	'-1' => 'Error recuperando los apoyosreq' );
+				  }else{
+				  $data['arr_apoyosreq'] = $result_apoyosreq;
+				  }
+				  $result_ambitos = $this->Ambito_model->get_ambitos();
+				  if(count($result_ambitos)==0){
+				  $data['arr_ambitos'] = array(	'-1' => 'Error recuperando los ambitos' );
+				  }else{
+				  $data['arr_ambitos'] = $result_ambitos;
+				  }
+
+
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 					$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
@@ -65,7 +110,7 @@ class Rutademejora extends CI_Controller {
 					$mensaje = $response->statusText;
             		$tipo    = ERRORMESSAGE;
             		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
-					$this->load->view('ruta/login',$data);	
+					$this->load->view('ruta/login',$data);
 				}
 		}// index()
 
