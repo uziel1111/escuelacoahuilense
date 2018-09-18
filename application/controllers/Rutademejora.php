@@ -64,6 +64,9 @@ class Rutademejora extends CI_Controller {
 					Utilerias::set_cct_sesion($this, $datoscct);
 					$this->cct = Utilerias::get_cct_sesion($this);
 
+					$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+					$data['mision'] = $mision;
+
 					$result_prioridades = $this->Prioridad_model->get_prioridades();
 				  if(count($result_prioridades)==0){
 				  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );

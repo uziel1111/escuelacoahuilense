@@ -2,6 +2,7 @@ $(function() {
     obj_rm_tp = new Rm_tp();
 });
 $("#btn_grabar_tp").click(function(){
+
   obj_rm_tp = new Rm_tp();
   var misioncct = $("#txt_rm_identidad").val();
   $.ajax({
@@ -66,6 +67,37 @@ $("#btn_grabar_tp").click(function(){
   .done(function(result) {
     swal.close();
     console.log(result.estatus);
+    if (result.estatus) {
+
+      $("#slc_rm_prioridad").val("");;
+      $("#slc_rm_prioridad").selectpicker("refresh");
+      $("#txt_rm_ob1").val("");
+      $("#txt_rm_met1").val("");
+      $("#txt_rm_ob2").val("");
+      $("#txt_rm_met2").val("");
+      $("#txt_rm_problem").val("");
+      $("#txt_rm_eviden").val("");
+      $("#slc_pa").selectpicker('deselectAll');
+      $("#txt_rm_otropa").val("");
+      $("#txt_rm_programayuda").val("");
+      $("#txt_rm_obs_direc").val("");
+      $("#slc_apoyoreq").selectpicker('deselectAll');
+      $("#txt_rm_otroapoyreq").val("");
+      $("#txt_rm_especifiqueapyreq").val("");
+
+      swal(
+		      'Correcto!',
+		      "Se insertar tema prioritario correctamente",
+		      'success'
+		    );
+    }
+    else {
+      swal(
+          'Error!',
+          "Al insertar tema prioritario ",
+          'danger'
+        );
+    }
 
   })
   .fail(function(e) {

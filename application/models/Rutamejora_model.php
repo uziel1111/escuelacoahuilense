@@ -7,6 +7,11 @@ class Rutamejora_model extends CI_Model
 
     function insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){
       // echo $ids_progapoy;die();
+      $this->db->select('id_cct');
+        $this->db->from('rm_tema_prioritarioxcct');
+        $this->db->where("id_cct = '{$id_cct}'");
+        $orden = $this->db->get()->num_rows()+1;
+
       $date=date("Y-m-d");
     	$this->db->trans_start();
 		$data = array(
@@ -26,6 +31,7 @@ class Rutamejora_model extends CI_Model
       'otro_apoyo_req_se' => $otroapoyreq,
       'especifique_apoyo_req' => $especifiqueapyreq,
 			'f_creacion' => $date,
+      'orden' => $orden,
 			);
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
         $this->db->trans_complete();
@@ -167,6 +173,16 @@ class Rutamejora_model extends CI_Model
      }else{
          return true;
      }
+  }
+
+  function get_misionxcct($id_cct, $id_ciclo){
+  $this->db->select('mision');
+    $this->db->from('rm_misionxcct');
+    $this->db->where("id_cct = '{$id_cct}'");
+    $this->db->where("id_ciclo = {$id_ciclo}");
+
+    return $this->db->get()->row('mision');
+
   }
 
 }// Rutamejora_model

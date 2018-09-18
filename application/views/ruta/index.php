@@ -22,7 +22,7 @@
                   dónde se verá su impacto positivo y de qué forma deberá ser vista por
                   quienes interactúan con ella (alumnos, padres de familia, autoridades
                   locales, sociedad en general)"></em></label>
-                  <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"></textarea>
+                  <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"><?= $mision ?></textarea>
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
@@ -896,4 +896,3 @@
         <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/luis.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
-
