@@ -47,20 +47,25 @@ class Rutamejora_model extends CI_Model
       	return $this->db->query($str_query)->result_array();
     }// guardaruta()
 
-    function guardaactividad($idtemaprioritario, $actividad, $recursos, $idambito, $idresponsables, $otroresponsable, $f_inicio, $f_termino){
+    function insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion){
     	$data2 = array(
-			'id_tprioritario' => $idtemaprioritario,
-			'actividad' => $actividad,
-			'recurso' => $recursos,
-			'id_ambito' => $idambito,
-			'id_responsables' => $idresponsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
-			'otro_responsable' => $otroresponsable, // validar si el valor seleccionado en el combo es otro y modificar el formulario
-			'f_creacion' => date(),
-			'f_mod' => date(),
-			'f_inicio' => $f_inicio,
-			'f_termino' => $f_termino,
+			'id_tprioritario' => $id_tprioritario,
+			'id_ambito' => $id_ambito,
+			'accion' => $accion,
+			'mat_insumos' => $materiales,
+			'ids_responsables' => $id_responsable,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
+			'otro_responsable' => '', // validar si el valor seleccionado en el combo es otro y modificar el formulario
+			'f_creacion' => date("Y-m-d"),
+			'f_mod' => date("Y-m-d"),
+			'accion_f_inicio' => $finicio,
+			'accion_f_termino' => $ffin,
+			'indcrs_medicion' => $medicion
 		);
-		$this->db->insert('rm_tema_prioritarioxcct', $data);
+		return $this->db->insert('rm_accionxtproritario', $data2);
+    }
+
+    function getacciones($id_tprioritario){
+    	$query = $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
     }
 
     function guardaAvance($idactividad, $avance){
@@ -195,18 +200,12 @@ class Rutamejora_model extends CI_Model
   }
 
   function getrutasxcct($idcct){
-//   	SELECT tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia FROM rm_tema_prioritarioxcct tpxcct
-// INNER JOIN rm_c_prioridad rmp ON rmp.id_prioridad = tpxcct.id_prioridad
-// #inner join rm_c_problematica rmproble on rmproble.id_problematica = tpxcct.id_problematica
-// #inner join rm_c_evidencia rme on rme.
-// WHERE tpxcct.id_cct = 4237
-$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad');
-      $this->db->from('rm_tema_prioritarioxcct tpxcct');
-      $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
-      $this->db->where("tpxcct.id_cct = 4237");
-      $this->db->order_by("orden", "asc");
-      return  $this->db->get()->result_array();
-  	// return $this->db->get_where('rm_tema_prioritarioxcct', array('id_cct' => $idcct))->result_array();
+	$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad');
+	      $this->db->from('rm_tema_prioritarioxcct tpxcct');
+	      $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
+	      $this->db->where("tpxcct.id_cct = 4237");
+	      $this->db->order_by("orden", "asc");
+	      return  $this->db->get()->result_array();
   }
 
 function  get_datos_edith_tp($id_tprioritario){

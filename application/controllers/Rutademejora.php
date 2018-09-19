@@ -329,5 +329,28 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
+	public function save_accion(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$id_ambito = $this->input->post('id_ambito');
+  		$accion = $this->input->post('accion');
+  		$materiales = $this->input->post('materiales');
+        $id_responsable = $this->input->post('id_responsable');
+  		$finicio = $this->input->post('finicio');
+  		$ffin = $this->input->post('ffin');
+  		$medicion = $this->input->post('medicion');
+		$finicio = str_replace("/", "-", $finicio);
+		$porciones = explode("-", $finicio);
+		$finicio = $porciones[2]."-".$porciones[0]."-".$porciones[1];
+		$ffin = str_replace("/", "-", $ffin);
+		$porciones = explode("-", $ffin);
+		$ffin = $porciones[2]."-".$porciones[0]."-".$porciones[1];
+
+
+  		$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion);
+  		if($insert){
+  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+  		}
+	}
+
 
 }// Rutamedejora
