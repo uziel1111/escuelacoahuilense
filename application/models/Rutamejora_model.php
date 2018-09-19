@@ -190,8 +190,8 @@ class Rutamejora_model extends CI_Model
         'orden' => $orden
     );
 
-    $this->db->where('idrutamtema', $idtema);
-    $this->db->update('rutam_tema', $data);
+    $this->db->where('id_tprioritario', $idtema);
+    $this->db->update('rm_tema_prioritarioxcct', $data);
   }
 
   function getrutasxcct($idcct){
@@ -204,6 +204,7 @@ $this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.i
       $this->db->from('rm_tema_prioritarioxcct tpxcct');
       $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
       $this->db->where("tpxcct.id_cct = 4237");
+      $this->db->order_by("orden", "asc");
       return  $this->db->get()->result_array();
   	// return $this->db->get_where('rm_tema_prioritarioxcct', array('id_cct' => $idcct))->result_array();
   }
