@@ -188,12 +188,6 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function bajarutamejora(){
-			// $ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
-			// $ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
-			// $ruta3 = array('orden' => 3, 'prioridad' => 'Alto al abandono escolar', 'problematica' => 'Asistencia de niños a clases', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
-
-			// $rutas = array();
-			// array_push($rutas, $ruta1, $ruta2, $ruta3);
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $this->cct[0]['id_cct'];
 			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
@@ -217,7 +211,7 @@ class Rutademejora extends CI_Controller {
 				$tabla .= "<tr>
 						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
                           <td id='orden' data='1'>{$ruta['orden']}</td>
-                          <td id='tema' data='Normalidad mínima'>{$ruta['id_prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
+                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
                           <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
                           <td id='n_actividades' data='0'>{$ruta['otro_evidencia']}</td>
                           <td id=''><center><i class='fas fa-check-circle'></i></center></td>

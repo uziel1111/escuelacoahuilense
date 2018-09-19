@@ -200,7 +200,7 @@ class Rutamejora_model extends CI_Model
 // #inner join rm_c_problematica rmproble on rmproble.id_problematica = tpxcct.id_problematica
 // #inner join rm_c_evidencia rme on rme.
 // WHERE tpxcct.id_cct = 4237
-$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia');
+$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad');
       $this->db->from('rm_tema_prioritarioxcct tpxcct');
       $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
       $this->db->where("tpxcct.id_cct = 4237");
