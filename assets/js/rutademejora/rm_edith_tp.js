@@ -2,9 +2,17 @@ $(function() {
     obj_rm_edith_tp = new Rm_edith_tp();
 });
 $("#btn_rutamejora_editar").click(function(){
-
-// console.log(obj.id_tprioritario);
-obj_rm_edith_tp.get_datos_edith_tp(obj.id_tprioritario);
+  if (obj.id_tprioritario === undefined) {
+    swal(
+        'Error!',
+        "Favor de seleccionar un tema prioritario a editar ",
+        "error"
+      );
+  }
+  else {
+    obj_rm_edith_tp.get_datos_edith_tp(obj.id_tprioritario);
+  }
+//
 });
 
 $("#btn_actualizar_tp").click(function(){
@@ -129,6 +137,7 @@ if (validacion == true) {
         "Se actualizo tema prioritario correctamente",
         'success'
       );
+      obj.get_view();
       document.getElementById('btn_grabar_tp').removeAttribute("hidden");
       document.getElementById('btn_get_reporte').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_editar').removeAttribute("hidden");
@@ -140,7 +149,7 @@ if (validacion == true) {
     swal(
         'Error!',
         "Al actualizar tema prioritario ",
-        'danger'
+        'error'
       );
   }
 
