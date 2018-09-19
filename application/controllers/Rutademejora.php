@@ -187,13 +187,19 @@ class Rutademejora extends CI_Controller {
 			exit;
 		}
 
-		public function bajarutademo(){
-			$ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
-			$ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
-			$ruta3 = array('orden' => 3, 'prioridad' => 'Alto al abandono escolar', 'problematica' => 'Asistencia de niños a clases', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
+		public function bajarutamejora(){
+			// $ruta1 = array('orden' => 1, 'prioridad' => 'Normalidad minima', 'problematica' => 'Asistencia de profesores', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
+			// $ruta2 = array('orden' => 2, 'prioridad' => 'Aprendizajes', 'problematica' => 'Uso eficiente del tiempo, otro', 'evidencias' => 'SISAT, Lista de cotejo, otro', 'acciones' => 0, 'objetivo' => true);
+			// $ruta3 = array('orden' => 3, 'prioridad' => 'Alto al abandono escolar', 'problematica' => 'Asistencia de niños a clases', 'evidencias' => 'SISAT', 'acciones' => 0, 'objetivo' => true);
 
-			$rutas = array();
-			array_push($rutas, $ruta1, $ruta2, $ruta3);
+			// $rutas = array();
+			// array_push($rutas, $ruta1, $ruta2, $ruta3);
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
+			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+			// echo "<pre>";
+			// print_r($rutas);
+			// die();
 
 			$tabla = "<div class='table-responsive'>
 			           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
@@ -209,10 +215,11 @@ class Rutademejora extends CI_Controller {
 
 			foreach ($rutas as $ruta) {
 				$tabla .= "<tr>
-                          <td id='orden' data='1' >{$ruta['orden']}</td>
-                          <td id='tema' data='Normalidad mínima' >{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['problematica']}</td>
-                          <td id='evidencias' data='SISAT' >{$ruta['evidencias']}</td>
-                          <td id='n_actividades' data='0' >{$ruta['acciones']}</td>
+						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
+                          <td id='orden' data='1'>{$ruta['orden']}</td>
+                          <td id='tema' data='Normalidad mínima'>{$ruta['id_prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
+                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
+                          <td id='n_actividades' data='0'>{$ruta['otro_evidencia']}</td>
                           <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 	                              </tr>";
 			}
@@ -228,8 +235,10 @@ class Rutademejora extends CI_Controller {
 
 	public function update_order(){
 		if (UtilsWrapper::verifica_sesion_redirige($this)) {
-			$usuario = UtilsWrapper::get_usuario_sesion($this);
-			$idcentrocfg = $usuario->idcentrocfg;
+			// $usuario = UtilsWrapper::get_usuario_sesion($this);
+			// $idcentrocfg = $usuario->idcentrocfg;
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
 			$datos = $this->input->post('orden');
 			for($i = 0; $i < count($datos); $i++){
 				$arr_datos = $this->Rutademejora_model->update_order($datos[$i][1], $datos[$i][0]);
@@ -239,7 +248,7 @@ class Rutademejora extends CI_Controller {
 			$grid->set_configs($this->arr_columnas_grid,$arr_datos,$this->idkey,"info");
 			$html = $grid->get_table();
 			$response = array('tabla' => $html);
-			UtilsWrapper::enviaDataJson(200, $response, $this);
+			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
 	}

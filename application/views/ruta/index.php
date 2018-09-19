@@ -1,3 +1,11 @@
+<style type="text/css">
+  td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+
+.selected {
+    background-color: #9ccc65;
+    color: #FFF;
+}
+</style>
 <section class="main-area">
   <div class="container">
 
@@ -894,5 +902,5 @@
         <script src="<?= base_url('assets/js/main.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
-        <script src="<?= base_url('assets/js/rutademejora/luis.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
