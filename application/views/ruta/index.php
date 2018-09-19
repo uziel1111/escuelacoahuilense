@@ -768,8 +768,9 @@
         <script src="<?= base_url('assets/jquery.validate.js'); ?>"></script>
         <script src="<?= base_url('assets/js/jquery.sticky.js'); ?>"></script>
         <script src="<?= base_url('assets/js/main.js'); ?>"></script>
-        <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
-        <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rm_delete_tp.js'); ?>"></script>

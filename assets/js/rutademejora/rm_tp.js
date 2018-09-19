@@ -50,11 +50,13 @@ $("#btn_grabar_tp").click(function(){
     console.log(result.estatus);
     if (result.estatus) {
       obj_rm_tp.limpia_campos_tp();
+
       swal(
 		      'Correcto!',
 		      "Se insertar tema prioritario correctamente",
 		      'success'
 		    );
+        obj.get_view();
     }
     else {
       swal(

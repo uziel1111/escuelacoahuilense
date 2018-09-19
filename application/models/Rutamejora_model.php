@@ -269,4 +269,22 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
   }
 
+  function delete_tema_prioritario($id_cct,$id_tprioritario){
+
+      $this->db->trans_start();
+      $tables = array('rm_tema_prioritarioxcct', 'rm_accionxtproritario', 'rm_avance_xcctxtpxaccion');
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->delete($tables);
+      $this->db->trans_complete();
+      if ($this->db->trans_status() === FALSE)
+      {
+          return false;
+      }else{
+          return true;
+      }
+    $str_query = "";
+        // echo $str_query; die();
+      return $this->db->query($str_query)->result_array();
+  }
+
 }// Rutamejora_model
