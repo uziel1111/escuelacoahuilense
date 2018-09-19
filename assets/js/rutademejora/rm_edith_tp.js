@@ -41,7 +41,7 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
   document.getElementById('btn_get_reporte').setAttribute("hidden", true);
   document.getElementById('btn_rutamejora_editar').setAttribute("hidden", true);
   document.getElementById('btn_rutamejora_eliminareg').setAttribute("hidden", true);
-  document.getElementById('btn_grabar_tp').setAttribute("hidden", true);
+  document.getElementById('btn_rutamejora_acciones').setAttribute("hidden", true);
 
 
 
@@ -133,7 +133,7 @@ if (validacion == true) {
       document.getElementById('btn_get_reporte').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_editar').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_eliminareg').removeAttribute("hidden");
-      document.getElementById('btn_grabar_tp').removeAttribute("hidden");
+      document.getElementById('btn_rutamejora_acciones').removeAttribute("hidden");
       document.getElementById('btn_actualizar_tp').setAttribute("hidden", true);
   }
   else {
