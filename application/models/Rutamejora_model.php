@@ -287,4 +287,17 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
   }
 
+  function get_avances_tp_accionxcct($id_cct){
+    $str_query = "SELECT
+    tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion
+    FROM rm_tema_prioritarioxcct tp
+    INNER JOIN rm_c_prioridad p ON tp.id_prioridad=p.id_prioridad
+    LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario
+    WHERE id_cct= {$id_cct}
+    ORDER BY tpa.id_accion DESC";
+        // echo $str_query; die();
+    return $this->db->query($str_query)->result_array();
+
+  }
+
 }// Rutamejora_model

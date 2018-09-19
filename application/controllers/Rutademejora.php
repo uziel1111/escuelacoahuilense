@@ -103,8 +103,12 @@ class Rutademejora extends CI_Controller {
 				  }else{
 				  $data['arr_ambitos'] = $result_ambitos;
 				  }
-
-
+					$data2 = array();
+					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+					$data2['arr_avances'] = $arr_avances;
+					// echo "<pre>";print_r($arr_avances);die();
+					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
+					$data['tab_avances'] = $string_view_avance;
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 					$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
