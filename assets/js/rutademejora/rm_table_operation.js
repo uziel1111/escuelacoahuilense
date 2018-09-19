@@ -54,16 +54,14 @@ function Tabla(){
   }
 
   Tabla.prototype.update_order = function(datos){
-    alert(obj.id_tprioritario);
    $.ajax({
            url:base_url+"rutademejora/update_order",
            method:"POST",
            data:{"orden":datos},
-
            success:function(data){
              var tabla = data.tabla;
-             $("#grid_rutamejora").empty();
-             $("#grid_rutamejora").append(tabla);
+             $("#contenedor_tabla").empty();
+             $("#contenedor_tabla").append(tabla);
              obj.inicio();
            },
            error: function(error){
@@ -74,6 +72,6 @@ function Tabla(){
 
 
 
-$('.ok').on('click', function(e){
-    alert($("#table tr.selected td:first").html());
-});
+// $('.ok').on('click', function(e){
+//     alert($("#table tr.selected td:first").html());
+// });
