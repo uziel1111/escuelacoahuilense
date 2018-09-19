@@ -43,7 +43,7 @@ function Tabla(){
         $("#contenedor_tabla").append(view);
         obj.inicio();
         $("#id_tabla_rutas tr").click(function(){
-           $(this).addClass('selected').siblings().removeClass('selected');    
+           $(this).addClass('selected').siblings().removeClass('selected');
            var value=$(this).find('td:first').text();
            // alert(value);    
            obj.id_tprioritario = value;

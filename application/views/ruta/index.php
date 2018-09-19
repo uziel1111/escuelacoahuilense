@@ -152,6 +152,7 @@
                       <?php endforeach; ?>
                     </select>
                     <!--  -->
+                    <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
                     <br>
                     <textarea id="txt_rm_otroapoyreq" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true" maxlength="80"></textarea>
                     <br>
@@ -167,8 +168,11 @@
                   </div>
                 </div>
                 <div class="row mt-15">
-                  <div class="col-12">
-                    <button type="button" class="btn btn-primary btn-style-1 mr-10" id="btn_grabar_tp">Grabar</button>
+                  <div class="col-1">
+                    <button type="button" class="btn btn-primary btn-style-1 mr-1" id="btn_grabar_tp">Grabar</button>
+                  </div>
+                  <div class="col-1">
+                    <button type="button" class="btn btn-primary btn-style-1 mr-1" id="btn_actualizar_tp" hidden>Actualizar</button>
                   </div>
                 </div>
 
@@ -904,3 +908,4 @@
         <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
         <script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
+        <script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>

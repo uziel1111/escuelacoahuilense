@@ -250,9 +250,45 @@ class Rutademejora extends CI_Controller {
 			$response = array('tabla' => $html);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+			}
 		}
-	}
+		public function get_datos_edith_tp(){
+			// if (UtilsWrapper::verifica_sesion_redirige($this)) {
+				$id_tprioritario = $this->input->post('id_tprioritario');
+				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
+				// echo "<pre>";print_r($arr_datos);die();
+				$response = array('datos' => $arr_datos);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			// }
+		}
 
+
+
+		public function update_tema_prioritario(){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
+			$id_tprioritario = $this->input->post("id_tprioritario");
+			$id_prioridad = $this->input->post("id_prioridad");
+			$objetivo1 = $this->input->post("objetivo1");
+			$meta1 = $this->input->post("meta1");
+			$objetivo2 = $this->input->post("objetivo2");
+			$meta2 = $this->input->post("meta2");
+			$problematica = $this->input->post("problematica");
+			$evidencia = $this->input->post("evidencia");
+			$ids_progapoy = $this->input->post("ids_progapoy");
+			$otro_pa = $this->input->post("otro_pa");
+			$como_prog_ayuda = $this->input->post("como_prog_ayuda");
+			$obs_direct = $this->input->post("obs_direct");
+			$ids_apoyreq = $this->input->post("ids_apoyreq");
+			$otroapoyreq = $this->input->post("otroapoyreq");
+			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
+
+			$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
 
 
 }// Rutamedejora

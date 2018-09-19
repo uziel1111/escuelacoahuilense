@@ -198,7 +198,7 @@ class Rutamejora_model extends CI_Model
 //   	SELECT tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia FROM rm_tema_prioritarioxcct tpxcct
 // INNER JOIN rm_c_prioridad rmp ON rmp.id_prioridad = tpxcct.id_prioridad
 // #inner join rm_c_problematica rmproble on rmproble.id_problematica = tpxcct.id_problematica
-// #inner join rm_c_evidencia rme on rme. 
+// #inner join rm_c_evidencia rme on rme.
 // WHERE tpxcct.id_cct = 4237
 $this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia');
       $this->db->from('rm_tema_prioritarioxcct tpxcct');
@@ -206,6 +206,67 @@ $this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.i
       $this->db->where("tpxcct.id_cct = 4237");
       return  $this->db->get()->result_array();
   	// return $this->db->get_where('rm_tema_prioritarioxcct', array('id_cct' => $idcct))->result_array();
+  }
+
+function  get_datos_edith_tp($id_tprioritario){
+  $this->db->select('
+  id_tprioritario,
+  id_prioridad,
+  objetivo1,
+  objetivo2,
+  meta1,
+  meta2,
+  otro_problematica,
+  otro_evidencia,
+  ids_programapoyo,
+  otro_pa,
+  como_ayudan_pa,
+  obs_direc,
+  ids_apoyo_req_se,
+  otro_apoyo_req_se,
+  especifique_apoyo_req
+  ');
+    $this->db->from('rm_tema_prioritarioxcct');
+    $this->db->where("id_tprioritario = {$id_tprioritario}");
+    return  $this->db->get()->result_array();
+  }
+
+  function update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){
+    // echo $ids_progapoy;die();
+
+    $date=date("Y-m-d");
+    $this->db->trans_start();
+  $data = array(
+    'id_prioridad' => $id_prioridad,
+    'objetivo1' => $objetivo1,
+    'objetivo2' => $objetivo2,
+    'meta1' => $meta1,
+    'meta2' => $meta2,
+    'otro_problematica' => $problematica,
+    'otro_evidencia' => $evidencia,
+    'ids_programapoyo' => $ids_progapoy,
+    'otro_pa' => $otro_pa,
+    'como_ayudan_pa' => $como_prog_ayuda,
+    'obs_direc' => $obs_direct,
+    'ids_apoyo_req_se' => $ids_apoyreq,
+    'otro_apoyo_req_se' => $otroapoyreq,
+    'especifique_apoyo_req' => $especifiqueapyreq,
+    'f_mod' => $date,
+    );
+    $this->db->where('id_tprioritario', $id_tprioritario);
+    $this->db->where('id_cct', $id_cct);
+  $this->db->update('rm_tema_prioritarioxcct', $data);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE)
+      {
+          return false;
+      }else{
+          return true;
+      }
+    $str_query = "";
+        // echo $str_query; die();
+      return $this->db->query($str_query)->result_array();
   }
 
 }// Rutamejora_model
