@@ -58,7 +58,6 @@ function Tabla(){
            url:base_url+"rutademejora/update_order",
            method:"POST",
            data:{"orden":datos},
-
            success:function(data){
              var tabla = data.tabla;
              $("#contenedor_tabla").empty();

@@ -320,5 +320,14 @@ class Rutademejora extends CI_Controller {
 			exit;
 		}
 
+	public function get_view_acciones(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$data = array();
+		$str_view = $this->load->view("ruta/acciones", $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 
 }// Rutamedejora
