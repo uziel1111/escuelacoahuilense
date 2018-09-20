@@ -363,7 +363,25 @@ function  get_datos_edith_tp($id_tprioritario){
   }
 
   function get_indicadoresxcct($id_cct,$nombre_nivel,$bimestre,$anio){
-    
+    $data = array();
+    $str_query1 = "SELECT alumn_t_t as n_alumn911 FROM estadistica_e_indicadores_xcct WHERE id_cct={$id_cct} and id_ciclo=2";
+    $str_query2 = "SELECT
+      COUNT(curp) as n_alumn_ce,
+      IFNULL(SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim1>7, 2,IF(falta_bim1>3, 1,0))) + (IF(espanol_b1<6 AND espanol_b1>0,1,0)) + (IF(matematicas_b1<6 and matematicas_b1>0,1,0)))>2,1,0)), 0) as muy_alto,
+			SUM(extraedad) as n_alum_extraedad
+      FROM alumnos_riesgo_primaria WHERE id_cct={$id_cct} AND ciclo='2017-2018'";
+    $str_query3 = "SELECT lyc_i, mat_i FROM planeaxescuela WHERE id_cct={$id_cct} AND periodo='2016'";
+
+
+    $data['n_alum911'] = $this->db->query($str_query1)->row('n_alumn911');
+    $data['n_alumct'] = $this->db->query($str_query2)->row('n_alumn_ce');
+    $data['n_alum_muyaltoriesgo'] = $this->db->query($str_query2)->row('muy_alto');
+    $data['n_alum_extraedad'] = $this->db->query($str_query2)->row('n_alum_extraedad');
+    $data['lyc1'] = $this->db->query($str_query3)->row('lyc_i');
+    $data['mat1'] = $this->db->query($str_query3)->row('mat_i');
+
+    return $data;
+
   }
 
 }// Rutamejora_model

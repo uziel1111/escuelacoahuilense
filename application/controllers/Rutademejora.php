@@ -113,10 +113,10 @@ class Rutademejora extends CI_Controller {
 					// echo "<pre>";print_r($this->cct[0]);die();
 					$data3 = array();
 					$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
-					$data3['arr_indicadores'] = '';//$arr_indicadoresxct;
+					$data3['arr_indicadores'] = $arr_indicadoresxct;
 					// echo "<pre>";print_r($arr_avances);die();
-					$string_view_avance = $this->load->view('ruta/indicadores', $data2, TRUE);
-					$data['tab_indicadores'] = $string_view_avance;
+					$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
+					$data['tab_indicadores'] = $string_view_indicadores;
 
 					$data4 = array();
 					$string_view_instructivo = $this->load->view('ruta/instructivo', $data2, TRUE);
