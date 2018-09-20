@@ -390,11 +390,9 @@ class Rutademejora extends CI_Controller {
 
 	public function get_table_acciones(){
 		$id_tprioritario = $this->input->post('id_tprioritario');
-		// echo $id_tprioritario;
-		// die();
 		$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 		$tabla = "<div class='table-responsive'>
-                            <table id='' class='table table-condensed table-hover  table-bordered'>
+                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
                               <thead>
                             <tr class=info>
                               <th id='idrutamtema'><center>Acción</center></th>
@@ -427,6 +425,56 @@ class Rutademejora extends CI_Controller {
 	        $response = array('tabla' => $tabla);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+	}
+
+	public function delete_accion(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$idaccion = $this->input->post('idaccion');
+		$delete = $this->Rutamejora_model->deleteaccion($idaccion, $id_tprioritario);
+		if($delete){
+			$tabla = $this->arma_tabla_acciones($id_tprioritario);
+			$response = array("mensaje" => "ok", "tabla" => $tabla);
+		}else{
+			$response = array("mensaje" => "error", "tabla" => '');
+		}
+		Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+	}
+
+	private function arma_tabla_acciones($id_tprioritario){
+		$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+		$tabla = "<div class='table-responsive'>
+                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+                              <thead>
+                            <tr class=info>
+                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+                            </tr>
+                          </thead>
+                          <tbody>";
+            if(count($acciones) > 0){
+            	foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+	                              <td>{$accion['id_accion']}</td>
+	                              <td>{$accion['id_ambito']}</td>
+	                              <td>{$accion['accion_f_inicio']}</td>
+	                              <td>{$accion['accion_f_termino']}</td>
+	                              <td>{$accion['ids_responsables']}</td>
+	                            </tr>";
+				}
+            }else{
+            	$tabla .= "<tr>
+                              <td colspan='5'>No hay datos por mostrar</td>
+                            </tr>";
+            }
+
+			$tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+	    return $tabla;
 	}
 
 

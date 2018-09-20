@@ -20,12 +20,33 @@ $("#btn_agregar_accion").click(function(){
   obj_rm_acciones_tp.save_accion();
 });
 
+$("#id_btn_elimina_accion").click(function(){
+  // alert(Rm_acciones_tp.id_accion_select);
+  if(Rm_acciones_tp.id_accion_select === undefined){
+    swal(
+        'Error!',
+        "Favor de seleccionar una acción para eliminar ",
+        "error"
+      );
+  }else{
+    obj_rm_acciones_tp.delete_accion(Rm_acciones_tp.id_accion_select);
+  }
+});
 
+$("#slc_rm_presp").change(function(){
+  alert('funciona change');
+  if($("#slc_rm_presp").val() == 0){
+    $('#otro_responsable').show();
+  }else{
+    $('#otro_responsable').hide();
+  }
+})
 
 
 
 function Rm_acciones_tp(){
   _thisrm_delete_tp = this;
+  id_accion_select = 0;
 }
 
 
@@ -78,6 +99,42 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            $(this).addClass('selected').siblings().removeClass('selected');
            var value=$(this).find('td:first').text();
            // alert(value);    
-           obj.id_tprioritario = value;
+           Rm_acciones_tp.id_accion_select = value;
+           // alert(Rm_acciones_tp.id_accion_select); 
         });
  }
+
+ Rm_acciones_tp.prototype.delete_accion = function(idaccion){
+   $.ajax({
+           url:base_url+"rutademejora/delete_accion",
+           method:"POST",
+           data:{"idaccion":idaccion, 'id_tprioritario': obj.id_tprioritario},
+           success:function(data){
+            if(data.mensaje == 'ok'){
+              swal(
+                'Correto!',
+                "La accion se elimino correctamente",
+                "success"
+              );
+              var vista = data.tabla;
+               $("#contenedor_acciones_id").empty();
+               $("#contenedor_acciones_id").append(vista);
+               obj_rm_acciones_tp.iniciatabla();
+            }else{
+              swal(
+                'Error!',
+                "La operacion no se pudo completar intente nuevamente",
+                "error"
+              );
+            }
+             var vista = data.tabla;
+             $("#contenedor_acciones_id").empty();
+             $("#contenedor_acciones_id").append(vista);
+             obj_rm_acciones_tp.iniciatabla();
+           },
+           error: function(error){
+             console.log(error);
+           }
+       });
+ };
+

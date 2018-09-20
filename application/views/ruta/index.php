@@ -349,6 +349,12 @@
                               </div>
                             </div>
                             <div class="row mt-15">
+                              <div class="col-md-6">
+                                <label>Otro Responsable:</label>
+                                <input type="text" name="otro_responsable" id="otro_responsable">
+                              </div>
+                            </div>
+                            <div class="row mt-15">
                               <div class="col-md-12">
                                 <label>Indicadores de medicion:</label>
                                 <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
@@ -369,8 +375,8 @@
                       </div><!-- card -->
                       <div class="row mt-15">
                         <div class="col-12">
-                          <button type="button" data-toggle="tooltip" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                          <button type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+                          <button id="id_btn_edita_accion" type="button" data-toggle="tooltip" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                          <button id="id_btn_elimina_accion" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
 
 
                         </div>
