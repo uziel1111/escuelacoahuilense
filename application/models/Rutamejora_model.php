@@ -65,7 +65,7 @@ class Rutamejora_model extends CI_Model
     }
 
     function getacciones($id_tprioritario){
-    	$query = $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
+    	return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
     }
 
     function guardaAvance($idactividad, $avance){

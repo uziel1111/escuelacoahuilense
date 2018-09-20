@@ -103,12 +103,8 @@ class Rutademejora extends CI_Controller {
 				  }else{
 				  $data['arr_ambitos'] = $result_ambitos;
 				  }
-					$data2 = array();
-					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
-					$data2['arr_avances'] = $arr_avances;
-					// echo "<pre>";print_r($arr_avances);die();
-					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
-					$data['tab_avances'] = $string_view_avance;
+
+
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 					$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
@@ -353,7 +349,84 @@ class Rutademejora extends CI_Controller {
   		$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion);
   		if($insert){
   			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+  			$tabla = "<div class='table-responsive'>
+                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+                              <thead>
+                            <tr class=info>
+                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+                            </tr>
+                          </thead>
+                          <tbody>";
+            if(count($acciones) > 0){
+            	foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+	                              <td>{$accion['id_accion']}</td>
+	                              <td>{$accion['id_ambito']}</td>
+	                              <td>{$accion['accion_f_inicio']}</td>
+	                              <td>{$accion['accion_f_termino']}</td>
+	                              <td>{$accion['ids_responsables']}</td>
+	                            </tr>";
+				}
+            }else{
+            	$tabla .= "<tr>
+                              <td colspan='5'>No hay datos por mostrar</td>
+                            </tr>";
+            }
+
+			$tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+	        $response = array('tabla' => $tabla);
+  		}else{
+  			$response = array('tabla' => '');
   		}
+  		Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+	}
+
+	public function get_table_acciones(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		// echo $id_tprioritario;
+		// die();
+		$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+		$tabla = "<div class='table-responsive'>
+                            <table id='' class='table table-condensed table-hover  table-bordered'>
+                              <thead>
+                            <tr class=info>
+                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+                            </tr>
+                          </thead>
+                          <tbody>";
+            if(count($acciones) > 0){
+            	foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+	                              <td>{$accion['id_accion']}</td>
+	                              <td>{$accion['id_ambito']}</td>
+	                              <td>{$accion['accion_f_inicio']}</td>
+	                              <td>{$accion['accion_f_termino']}</td>
+	                              <td>{$accion['ids_responsables']}</td>
+	                            </tr>";
+				}
+            }else{
+            	$tabla .= "<tr>
+                              <td colspan='5'>No hay datos por mostrar</td>
+                            </tr>";
+            }
+
+			$tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+	        $response = array('tabla' => $tabla);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 	}
 
 

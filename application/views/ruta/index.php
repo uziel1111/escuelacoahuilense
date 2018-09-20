@@ -380,23 +380,7 @@
 
                       <div class="row mt-15">
                         <div class="col-12">
-                          <div class='table-responsive'><table id='' class='table table-condensed table-hover  table-bordered'><thead>
-                            <tr class=info>
-                              <th id='idrutamtema'><center>Acción</center></th>
-                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
-                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td colspan="5">No hay datos por mostrar</td>
-                            </tr>
-
-                          </tbody>
-                        </table>
-                      </div>
+                          <div id="contenedor_acciones_id"></div>
                     </div>
                   </div>
 
