@@ -143,23 +143,24 @@
                     <textarea id="txt_rm_obs_direc" class="form-control" rows="2" maxlength="80"></textarea>
                   </div>
                   <div class="col-6">
-                    <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
+                    <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
+                    <label><span class="badge badge-secondary h5 text-white">9.</span> Subir evidencia (imagen o pdf) </label>
                     <br>
-                    <!-- <textarea id="txt_rm_apyreq" class="form-control" rows="2"></textarea> -->
+                    <input name="archivo" type="file" id="imagen" accept="application/pdf" />
+
+                    <!-- <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
+                    <br>
                     <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_apoyoreq" title="SELECCIONE UNA OPCIÓN">
                       <?php foreach ($arr_apoyosreq as $item): ?>
                               <option value="<?= $item['id_apoyo_req_se'] ?>"><?= $item['apoyo_req_se'] ?></option>
                       <?php endforeach; ?>
                     </select>
-                    <!--  -->
-                    <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
+
                     <br>
                     <textarea id="txt_rm_otroapoyreq" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true" maxlength="80"></textarea>
                     <br>
-                    <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" maxlength="80"></textarea> -->
                   </div>
-
-
                 </div>
 
                 <div class="row mt-15">
