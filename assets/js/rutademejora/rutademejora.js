@@ -37,6 +37,35 @@ $("#slc_apoyoreq").change(function(){
             });
 
 
+            $("#nav-avances-tab").click(function(){
+
+              $("#nav-avances").empty();
+              $.ajax({
+              url: base_url+'rutademejora/get_avance',
+              type: 'POST',
+              dataType: 'JSON',
+              data: {'x':'x'},
+              beforeSend: function(xhr) {
+                    Notification.loading("");
+                },
+            })
+            .done(function(result) {
+              swal.close();
+              // console.log(result.srt_html);
+              $("#nav-avances").html(result.srt_html);
+
+
+            })
+            .fail(function(e) {
+              console.error("Error in get avance()"); console.table(e);
+            })
+            .always(function() {
+                  // swal.close();
+            })
+
+            });
+
+
 
 function Rutademejora(){
   _thisrm = this;

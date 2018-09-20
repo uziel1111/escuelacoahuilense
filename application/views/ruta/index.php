@@ -211,7 +211,7 @@
                     </div><!-- container -->
                   </div>
                   <div class="tab-pane fade" id="nav-avances" role="tabpanel" aria-labelledby="nav-avances-tab">
-                    <?= $tab_avances?>
+                    <!-- <?= $tab_avances?> -->
                   </div>
                   <div class="tab-pane fade" id="nav-indicadores" role="tabpanel" aria-labelledby="nav-indicadores-tab">
                     <?= $tab_indicadores?>

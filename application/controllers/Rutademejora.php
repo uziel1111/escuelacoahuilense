@@ -103,12 +103,7 @@ class Rutademejora extends CI_Controller {
 				  }else{
 				  $data['arr_ambitos'] = $result_ambitos;
 				  }
-					$data2 = array();
-					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
-					$data2['arr_avances'] = $arr_avances;
-					// echo "<pre>";print_r($arr_avances);die();
-					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
-					$data['tab_avances'] = $string_view_avance;
+
 
 					// echo "<pre>";print_r($this->cct[0]);die();
 					$data3 = array();
@@ -119,7 +114,7 @@ class Rutademejora extends CI_Controller {
 					$data['tab_indicadores'] = $string_view_indicadores;
 
 					$data4 = array();
-					$string_view_instructivo = $this->load->view('ruta/instructivo', $data2, TRUE);
+					$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
 					$data['tab_instructivo'] = $string_view_instructivo;
 
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
@@ -511,6 +506,18 @@ class Rutademejora extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 
+		}
+
+		public function get_avance(){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$data2 = array();
+			$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+			$data2['arr_avances'] = $arr_avances;
+			// echo "<pre>";print_r($arr_avances);die();
+			$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
+			$response = array('srt_html' => $string_view_avance);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 		}
 
 
