@@ -22,15 +22,24 @@
         <tr>
           <?php if ($value['id_tprioritario'] == $var_aux_id_tprioritario){?>
             <td></td>
+          <?php } else{ ?><td><?=$value['prioridad']?></td><?php } ?>
+          <?php if ($value['id_accion'] == ''){?>
+            <td><b>N/A</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           <?php } else{ ?>
-        <td><?=$value['prioridad']?></td><?php } ?>
-
-
-
         <td><?=$value['accion']?></td>
         <?php for ($x = 1; $x <= 10; $x++) {?>
           <td>
-            <select>
+            <select onchange=obj_rm_avances_acciones.set_avance("<?=$x?>,<?=$value['id_cct']?>,<?=$value['id_tprioritario']?>,<?=$value['id_accion']?>") id="<?=$x?>,<?=$value['id_cct']?>,<?=$value['id_tprioritario']?>,<?=$value['id_accion']?>">
               <option selected>0%</option>
               <option>10%</option>
               <option>20%</option>
@@ -44,6 +53,7 @@
               <option>100%</option>
             </select>
           </td>
+        <?php } ?>
         <?php } ?>
         </tr>
         <?=$var_aux_id_tprioritario = $value['id_tprioritario']?>
