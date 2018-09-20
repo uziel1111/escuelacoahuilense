@@ -22,31 +22,40 @@
         <tr>
           <?php if ($value['id_tprioritario'] == $var_aux_id_tprioritario){?>
             <td></td>
+          <?php } else{ ?><td><?=$value['prioridad']?></td><?php } ?>
+          <?php if ($value['id_accion'] == ''){?>
+            <td><b>N/A</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           <?php } else{ ?>
-        <td><?=$value['prioridad']?></td><?php } ?>
-
-
-
         <td><?=$value['accion']?></td>
         <?php for ($x = 1; $x <= 10; $x++) {?>
           <td>
-            <select>
-              <option selected>0%</option>
-              <option>10%</option>
-              <option>20%</option>
-              <option>30%</option>
-              <option>40%</option>
-              <option>50%</option>
-              <option>60%</option>
-              <option>70%</option>
-              <option>80%</option>
-              <option>90%</option>
-              <option>100%</option>
+            <select onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>") id="<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>">
+              <option value="0" <?=($value["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
+              <option value="10" <?=($value["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
+              <option value="20" <?=($value["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
+              <option value="30" <?=($value["cte{$x}"] == '30')? 'selected':'' ?> >30%</option>
+              <option value="40" <?=($value["cte{$x}"] == '40')? 'selected':'' ?> >40%</option>
+              <option value="50" <?=($value["cte{$x}"] == '50')? 'selected':'' ?> >50%</option>
+              <option value="60" <?=($value["cte{$x}"] == '60')? 'selected':'' ?> >60%</option>
+              <option value="70" <?=($value["cte{$x}"] == '70')? 'selected':'' ?> >70%</option>
+              <option value="80" <?=($value["cte{$x}"] == '80')? 'selected':'' ?> >80%</option>
+              <option value="90" <?=($value["cte{$x}"] == '90')? 'selected':'' ?> >90%</option>
+              <option value="100" <?=($value["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
             </select>
           </td>
         <?php } ?>
+        <?php } ?>
         </tr>
-        <?=$var_aux_id_tprioritario = $value['id_tprioritario']?>
       <?php endforeach; ?>
   </tbody>
 </table>

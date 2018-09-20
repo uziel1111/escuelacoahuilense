@@ -103,6 +103,12 @@ class Rutademejora extends CI_Controller {
 				  }else{
 				  $data['arr_ambitos'] = $result_ambitos;
 				  }
+					$data2 = array();
+					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+					$data2['arr_avances'] = $arr_avances;
+					// echo "<pre>";print_r($arr_avances);die();
+					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
+					$data['tab_avances'] = $string_view_avance;
 
 
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
@@ -476,6 +482,25 @@ class Rutademejora extends CI_Controller {
 	                      </div>  ";
 	    return $tabla;
 	}
+
+		public function set_avance(){
+			$val_slc = $this->input->post('val_slc');
+			$var_id_cte = $this->input->post('var_id_cte');
+			$var_id_cct = $this->input->post('var_id_cct');
+			$var_id_idtp = $this->input->post('var_id_idtp');
+			$var_id_idacc = $this->input->post('var_id_idacc');
+
+			$exite_enavance = $this->Rutamejora_model->existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+			if (!$exite_enavance) {
+				$estatusinsert = $this->Rutamejora_model->insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+			}
+			$estatus = $this->Rutamejora_model->update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$var_id_idtp,$var_id_idacc);
+
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+
+		}
 
 
 }// Rutamedejora
