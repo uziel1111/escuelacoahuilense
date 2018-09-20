@@ -77,12 +77,16 @@ class Rutamejora_model extends CI_Model
 		$this->db->insert('rm_avancexactividad', $data);
     }
 
-    function eliminaActividad($idactividad){
+    function deleteaccion($id_accion, $id_tprioritario){
     	$this->db->trans_start();
-    	$this->db->where('id_actividad', $idactividad);
-		$this->db->delete('rm_avancexactividad');
-		$this->db->where('id_actividad', $idactividad);
-		$this->db->delete('rm_tema_prioritarioxcct');
+    	$this->db->where('id_accion', $id_accion);
+    	$this->db->where('id_tprioritario', $id_tprioritario);
+		$this->db->delete('rm_avance_xcctxtpxaccion');
+		$this->db->where('id_accion', $id_accion);
+		$this->db->where('id_tprioritario', $id_tprioritario);
+		$this->db->delete('rm_accionxtproritario');
+      // $str = $this->db->last_query();
+      // echo $str; die();
 		$this->db->trans_complete();
 
 	    if ($this->db->trans_status() === FALSE)
