@@ -53,7 +53,9 @@
               <option value="100" <?=($value["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
             </select>
           </td>
+
         <?php } ?>
+        <?php$var_aux_id_tprioritario = $value['id_tprioritario']?>
         <?php } ?>
         </tr>
       <?php endforeach; ?>
