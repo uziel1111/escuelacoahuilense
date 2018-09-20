@@ -289,14 +289,72 @@ function  get_datos_edith_tp($id_tprioritario){
 
   function get_avances_tp_accionxcct($id_cct){
     $str_query = "SELECT
-    tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion
-    FROM rm_tema_prioritarioxcct tp
+    tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion,
+    IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
+    IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
+    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10
+FROM rm_tema_prioritarioxcct tp
     INNER JOIN rm_c_prioridad p ON tp.id_prioridad=p.id_prioridad
     LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario
-    WHERE id_cct= {$id_cct}
+    LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct= av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND tpa.id_accion =av.id_accion
+    WHERE tp.id_cct= {$id_cct}
     ORDER BY tpa.id_accion DESC";
         // echo $str_query; die();
     return $this->db->query($str_query)->result_array();
+
+  }
+
+  function existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
+    $this->db->select('id_cct');
+      $this->db->from('rm_avance_xcctxtpxaccion');
+      $this->db->where("id_cct = '{$var_id_cct}'");
+      $this->db->where("id_tprioritario = '{$var_id_idtp}'");
+      $this->db->where("id_accion = '{$var_id_idacc}'");
+   if ($this->db->get()->num_rows() == 0)
+       {
+           return false;
+       }else{
+           return true;
+       }
+
+  }
+
+  function insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
+     $this->db->trans_start();
+       $data = array(
+           'id_cct' => $var_id_cct,//obtenemos el id de la cct cargada en la sesion
+           'id_tprioritario' => $var_id_idtp,
+           'id_accion' => $var_id_idacc, //de donde obtenemos el idciclo?
+   );
+   $this->db->insert('rm_avance_xcctxtpxaccion', $data);
+   $this->db->trans_complete();
+   if ($this->db->trans_status() === FALSE)
+       {
+           return false;
+       }else{
+           return true;
+       }
+
+  }
+
+  function update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$var_id_idtp,$var_id_idacc){
+    $date=date("Y-m-d");
+     $this->db->trans_start();
+       $data = array(
+           "cte{$var_id_cte}" => $val_slc,//
+           "f_mod{$var_id_cte}" => $date,
+   );
+   $this->db->where("id_cct = '{$var_id_cct}'");
+   $this->db->where("id_tprioritario = '{$var_id_idtp}'");
+   $this->db->where("id_accion = '{$var_id_idacc}'");
+   $this->db->update('rm_avance_xcctxtpxaccion', $data);
+   $this->db->trans_complete();
+   if ($this->db->trans_status() === FALSE)
+       {
+           return false;
+       }else{
+           return true;
+       }
 
   }
 

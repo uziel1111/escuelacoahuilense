@@ -435,5 +435,24 @@ class Rutademejora extends CI_Controller {
 			exit;
 	}
 
+		public function set_avance(){
+			$val_slc = $this->input->post('val_slc');
+			$var_id_cte = $this->input->post('var_id_cte');
+			$var_id_cct = $this->input->post('var_id_cct');
+			$var_id_idtp = $this->input->post('var_id_idtp');
+			$var_id_idacc = $this->input->post('var_id_idacc');
+
+			$exite_enavance = $this->Rutamejora_model->existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+			if (!$exite_enavance) {
+				$estatusinsert = $this->Rutamejora_model->insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+			}
+			$estatus = $this->Rutamejora_model->update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$var_id_idtp,$var_id_idacc);
+
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+
+		}
+
 
 }// Rutamedejora
