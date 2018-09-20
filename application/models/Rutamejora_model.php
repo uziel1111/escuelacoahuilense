@@ -47,14 +47,14 @@ class Rutamejora_model extends CI_Model
       	return $this->db->query($str_query)->result_array();
     }// guardaruta()
 
-    function insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion){
+    function insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable){
     	$data2 = array(
 			'id_tprioritario' => $id_tprioritario,
 			'id_ambito' => $id_ambito,
 			'accion' => $accion,
 			'mat_insumos' => $materiales,
 			'ids_responsables' => $id_responsable,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
-			'otro_responsable' => '', // validar si el valor seleccionado en el combo es otro y modificar el formulario
+			'otro_responsable' => ($id_responsable == 0)? $otroresponsable : null, 
 			'f_creacion' => date("Y-m-d"),
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
@@ -360,6 +360,28 @@ FROM rm_tema_prioritarioxcct tp
            return true;
        }
 
+  }
+
+  function edit_accion($id_accion, $id_tprioritario){
+  	return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario, 'id_accion' => $id_accion))->result_array();
+  }
+
+  function update_accion($id_accion, $id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable){
+  	$data2 = array(
+			'id_tprioritario' => $id_tprioritario,
+			'id_ambito' => $id_ambito,
+			'accion' => $accion,
+			'mat_insumos' => $materiales,
+			'ids_responsables' => $id_responsable,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
+			'otro_responsable' => ($id_responsable == 0)? $otroresponsable : null, 
+			'f_creacion' => date("Y-m-d"),
+			'f_mod' => date("Y-m-d"),
+			'accion_f_inicio' => $finicio,
+			'accion_f_termino' => $ffin,
+			'indcrs_medicion' => $medicion
+		);
+		$this->db->where('id_accion', $id_accion);
+  		return $this->db->update('rm_accionxtproritario', $data2);
   }
 
 }// Rutamejora_model

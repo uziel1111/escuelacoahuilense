@@ -351,7 +351,7 @@
                             <div class="row mt-15">
                               <div class="col-md-6">
                                 <label>Otro Responsable:</label>
-                                <input type="text" name="otro_responsable" id="otro_responsable">
+                                <input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
                               </div>
                             </div>
                             <div class="row mt-15">
@@ -363,6 +363,7 @@
                             <div class="row mt-15">
                               <div class="col-12">
                                 <button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar</button>
+                                <button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
                               </div>
                             </div>
 

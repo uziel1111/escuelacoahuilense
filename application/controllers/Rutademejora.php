@@ -341,6 +341,7 @@ class Rutademejora extends CI_Controller {
   		$accion = $this->input->post('accion');
   		$materiales = $this->input->post('materiales');
         $id_responsable = $this->input->post('id_responsable');
+        $otroresponsable = $this->input->post('otroresp');
   		$finicio = $this->input->post('finicio');
   		$ffin = $this->input->post('ffin');
   		$medicion = $this->input->post('medicion');
@@ -351,8 +352,47 @@ class Rutademejora extends CI_Controller {
 		$porciones = explode("-", $ffin);
 		$ffin = $porciones[2]."-".$porciones[0]."-".$porciones[1];
 
+		if(isset($_POST['id_accion'])){
+			$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable);
+			if($update){
+  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+  			$tabla = "<div class='table-responsive'>
+                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+                              <thead>
+                            <tr class=info>
+                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+                            </tr>
+                          </thead>
+                          <tbody>";
+            if(count($acciones) > 0){
+            	foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+	                              <td>{$accion['id_accion']}</td>
+	                              <td>{$accion['id_ambito']}</td>
+	                              <td>{$accion['accion_f_inicio']}</td>
+	                              <td>{$accion['accion_f_termino']}</td>
+	                              <td>{$accion['ids_responsables']}</td>
+	                            </tr>";
+				}
+            }else{
+            	$tabla .= "<tr>
+                              <td colspan='5'>No hay datos por mostrar</td>
+                            </tr>";
+            }
 
-  		$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion);
+			$tabla .= "</tbody>
+	                        </table>
+	                      </div>  ";
+	        $response = array('tabla' => $tabla);
+  		}else{
+  			$response = array('tabla' => '');
+  		}
+		}else{
+			$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable);
   		if($insert){
   			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
   			$tabla = "<div class='table-responsive'>
@@ -390,6 +430,10 @@ class Rutademejora extends CI_Controller {
   		}else{
   			$response = array('tabla' => '');
   		}
+		}
+
+
+  		
   		Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 	}
@@ -501,6 +545,15 @@ class Rutademejora extends CI_Controller {
 			exit;
 
 		}
+
+	public function edit_accion(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$idaccion = $this->input->post('idaccion');
+		$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
+		$response = array("editado" => $editada[0]);
+		Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+	}
 
 
 }// Rutamedejora
