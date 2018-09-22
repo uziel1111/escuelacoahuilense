@@ -2,6 +2,12 @@ $(function() {
     obj_rm_acciones_tp = new Rm_acciones_tp();
     $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
+    
+});
+
+$("#cerrar_modal_acciones").click(function(){
+  obj_rm_acciones_tp.limpia_camposform();
+  $('#exampleModalacciones').modal('toggle');
 });
 
 $("#btn_rutamejora_acciones").click(function(){
@@ -31,7 +37,20 @@ $("#id_btn_elimina_accion").click(function(){
         "error"
       );
   }else{
-    obj_rm_acciones_tp.delete_accion(Rm_acciones_tp.id_accion_select);
+    swal({
+      title: '¿Esta seguro de eliminar esta acción?',
+      text: "Una vez eliminado no se podra recuperar",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        obj_rm_acciones_tp.delete_accion(Rm_acciones_tp.id_accion_select);
+      }
+    })
   }
 });
 
@@ -47,17 +66,24 @@ $("#id_btn_edita_accion").click(function() {
   }
 });
 
-$("#slc_rm_presp").change(function(){
-  if($("#slc_rm_presp").val() == 0){
-    $('#otro_responsable').show();
-  }else{
-    $('#otro_responsable').hide();
-  }
-});
-
-
 $("#btn_editando_accion").click(function(){
   obj_rm_acciones_tp.editar_accion()
+});
+
+$("#slc_responsables").change(function(){
+  var texto="";
+  $("#slc_responsables option:selected").each(function() {
+    texto += $(this).val() + ",";
+   });
+   encargados = texto.split(",");
+   var i = encargados.indexOf("");
+   encargados.splice( i, 1 );
+   // alert(encargados);
+   if( texto.indexOf("0,") > -1){
+     $('#otro_responsable').show();
+   }else{
+      $('#otro_responsable').hide();
+   }
 });
 
 
@@ -98,13 +124,14 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
-           data:{"id_ambito":id_ambito, "accion":accion, "materiales":materiales, "id_responsable":id_responsable,
+           data:{"id_ambito":id_ambito, "accion":accion, "materiales":materiales, "ids_responsables":encargados,
             "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
            success:function(data){
              var vista = data.tabla;
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
              obj_rm_acciones_tp.iniciatabla();
+             obj_rm_acciones_tp.limpia_camposform();
            },
            error: function(error){
              console.log(error);
@@ -112,6 +139,18 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
        });
  };
 
+Rm_acciones_tp.prototype.limpia_camposform = function(){
+  $("#txt_rm_meta").val("");
+  $("#txt_rm_obs").val("");
+  $("#datepicker1").val("");
+  $("#datepicker2").val("");
+  $("#otro_responsable").val("");
+  $("#txt_rm_indimed").val("");
+  $("#otro_responsable").hide();
+  $("#slc_rm_ambito").val("");
+  $("#slc_rm_ambito").selectpicker("refresh");
+  $("#slc_responsables").selectpicker('deselectAll');
+}
 
  Rm_acciones_tp.prototype.editar_accion = function(){
   var id_ambito = $("#slc_rm_ambito").val();
@@ -124,13 +163,15 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
-           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales, "id_responsable":id_responsable,
-            "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
+           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales, 
+           "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion, 
+           'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
            success:function(data){
              var vista = data.tabla;
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
              obj_rm_acciones_tp.iniciatabla();
+             obj_rm_acciones_tp.limpia_camposform();
            },
            error: function(error){
              console.log(error);
@@ -189,15 +230,23 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            data:{"idaccion":idaccion, 'id_tprioritario': obj.id_tprioritario},
            success:function(data){
             var editado = data.editado;
-            alert(editado['id_ambito']);
+            // alert(editado['id_ambito']);
             $("#slc_rm_ambito").val(editado['id_ambito']);
+            $("#slc_rm_ambito").selectpicker("refresh");
             $("#txt_rm_meta").val(editado['accion']);
             $("#txt_rm_obs").val(editado['mat_insumos']);
             $("#slc_rm_presp").val(editado['ids_responsables']);
-            if(editado['ids_responsables'] == 0){
-              $('#otro_responsable').val(editado['otro_responsable']);
-              $('#otro_responsable').show();
+            $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
+            console.log('ids_responsables');
+            var ids = editado['ids_responsables'].split(',');
+            console.log(ids);
+            for(var i = 0; i < ids.length; i++){
+                if(ids[i] == 0){
+                    $('#otro_responsable').val(editado['otro_responsable']);
+                    $('#otro_responsable').show();
+                }
             }
+            
             $("#txt_rm_indimed").val(editado['indcrs_medicion']);
              var inicio = editado['accion_f_inicio'].split("-");
              var fin = editado['accion_f_termino'].split("-");

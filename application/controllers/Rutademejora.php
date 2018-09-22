@@ -63,6 +63,23 @@ class Rutademejora extends CI_Controller {
 					$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 					Utilerias::set_cct_sesion($this, $datoscct);
 					$this->cct = Utilerias::get_cct_sesion($this);
+					$responsables = $this->getPersonal($usuario);
+					// echo "<pre>";
+					// 		print_r($responsables->Personal);
+					// 		die();
+					$personas = $responsables->Personal;
+					$options = "";
+					if($responsables->procede == 1 && $responsables->status == 1){
+						foreach ($personas as $persona) {
+							$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+						}
+                            $options .="<option value='0'>OTRO</option>";
+					}else{
+						$options .="<option value='0'>OTRO</option>";
+					}
+				
+					$data['responsables'] = $options;
+
 
 					$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
 					$data['mision'] = $mision;
@@ -128,6 +145,33 @@ class Rutademejora extends CI_Controller {
 					$this->load->view('ruta/login',$data);
 				}
 		}// index()
+
+		public function getPersonal($cct){
+			$curl = curl_init();
+				$method = "POST";
+				$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
+				$data = array("cct" => $cct);
+
+			    switch ($method)
+			    {
+			        case "POST":
+			            curl_setopt($curl, CURLOPT_POST, 1);
+			            if ($data)
+			                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			            break;
+			        default:
+			            if ($data)
+			                $url = sprintf("%s?%s", $url, http_build_query($data));
+			    }
+
+			    curl_setopt($curl, CURLOPT_URL, $url);
+			    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+			    $result = curl_exec($curl);
+
+			    curl_close($curl);
+			    return $response = json_decode($result);
+		}
 
 
 		// public function graba_ruta(){
@@ -342,11 +386,14 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function save_accion(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$id_ambito = $this->input->post('id_ambito');
   		$accion = $this->input->post('accion');
   		$materiales = $this->input->post('materiales');
-        $id_responsable = $this->input->post('id_responsable');
+        $ids_responsables = $this->input->post('ids_responsables');
         $otroresponsable = $this->input->post('otroresp');
   		$finicio = $this->input->post('finicio');
   		$ffin = $this->input->post('ffin');
@@ -357,9 +404,19 @@ class Rutademejora extends CI_Controller {
 		$ffin = str_replace("/", "-", $ffin);
 		$porciones = explode("-", $ffin);
 		$ffin = $porciones[2]."-".$porciones[0]."-".$porciones[1];
+		$existotroresp = false;
+		$strids_resp = "";
+
+		foreach ($ids_responsables as $responsable) {
+			if($responsable == 0){
+				$existotroresp = true;
+			}
+			$strids_resp .= $responsable.",";
+		}
+		$strids_resp = substr($strids_resp, 0, -1);
 
 		if(isset($_POST['id_accion'])){
-			$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable);
+			$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $id_ambito, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp);
 			if($update){
   			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
   			$tabla = "<div class='table-responsive'>
@@ -398,7 +455,7 @@ class Rutademejora extends CI_Controller {
   			$response = array('tabla' => '');
   		}
 		}else{
-			$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $id_responsable, $finicio, $ffin, $medicion, $otroresponsable);
+			$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp);
   		if($insert){
   			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
   			$tabla = "<div class='table-responsive'>

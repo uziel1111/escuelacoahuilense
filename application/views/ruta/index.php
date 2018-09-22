@@ -231,7 +231,7 @@
                 <div class="modal-content modal-style-1">
                   <div class="modal-header bgcolor-2">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Acciones por prioridad del Sistema Básico de Mejora</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" id="cerrar_modal_acciones" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -275,9 +275,11 @@
 
                               <div class="col-md-4">
                                 <label>Responsables</label>
-                                <select name="ruta_presp" class="selectpicker form-control" id="slc_rm_presp" title="SELECCIONE UNA OPCIÓN">
-                                  <option value="0">Otro</option>
+                                <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONE">
+                                <?= $responsables?>
                                 </select>
+                                <br>
+                                <textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
                               </div>
                               <div class="col-md-4">
                                 <label>Fecha de inicio</label>
