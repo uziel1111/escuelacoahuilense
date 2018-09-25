@@ -32,6 +32,7 @@
                   locales, sociedad en general)"></em></label>
                   <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"><?= $mision ?></textarea>
                 </div>
+                <form enctype="multipart/form-data" class="formulario1">
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
                   <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN" id="slc_rm_prioridad">
@@ -146,8 +147,11 @@
                     <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
                     <label><span class="badge badge-secondary h5 text-white">9.</span> Subir evidencia (imagen o pdf) </label>
                     <br>
-                    <input name="archivo" type="file" id="imagen" accept="application/pdf" />
 
+                    <div class="form-group">
+                      <input name="archivo" type="file" id="imagen" accept="application/pdf" />
+                    </div>
+                    </form>
                     <!-- <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
                     <br>
                     <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_apoyoreq" title="SELECCIONE UNA OPCIÓN">

@@ -34,13 +34,14 @@ class Rutamejora_model extends CI_Model
       'orden' => $orden,
 			);
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
+    $id_insertado_tmp =$this->db->insert_id();
         $this->db->trans_complete();
 
         if ($this->db->trans_status() === FALSE)
         {
             return false;
         }else{
-            return true;
+            return $id_insertado_tmp;
         }
     	$str_query = "";
 					// echo $str_query; die();
@@ -54,7 +55,7 @@ class Rutamejora_model extends CI_Model
 			'accion' => $accion,
 			'mat_insumos' => $materiales,
 			'ids_responsables' => $ids_responsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
-			'otro_responsable' => ($existotroresp == true)? $otroresponsable : null, 
+			'otro_responsable' => ($existotroresp == true)? $otroresponsable : null,
 			'f_creacion' => date("Y-m-d"),
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
@@ -207,7 +208,7 @@ class Rutamejora_model extends CI_Model
 	$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad');
 	      $this->db->from('rm_tema_prioritarioxcct tpxcct');
 	      $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
-	      $this->db->where("tpxcct.id_cct = 4237");
+	      $this->db->where("tpxcct.id_cct = {$idcct}");
 	      $this->db->order_by("orden", "asc");
 	      return  $this->db->get()->result_array();
   }
@@ -373,7 +374,7 @@ function  get_datos_edith_tp($id_tprioritario){
 			'accion' => $accion,
 			'mat_insumos' => $materiales,
 			'ids_responsables' => $ids_responsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
-			'otro_responsable' => ($existotroresp == true)? $otroresponsable : null, 
+			'otro_responsable' => ($existotroresp == true)? $otroresponsable : null,
 			'f_creacion' => date("Y-m-d"),
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
