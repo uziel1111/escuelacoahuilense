@@ -237,16 +237,16 @@
                   </div>
                   <div class="modal-body">
                     <div class="alert alert-info" role="alert">
-                      Escuela: <span class="fw800">NOMBRE DE LA ESCUELA</span><br>
+                      Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-                      Prioridad: <span class="fw800">Convivencia escolar</span><br>
+                      Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
-                      Problemática(s): <span class="fw800">Asistencia de profesores</span><br>
+                      Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 
-                      Evidencia(s): <span class="fw800">www.sarape.org</span>
+                      Evidencia(s): <span class="fw800"><label id="label_evidencia"></label></span>
                     </div>
                     <div class="card mb-3 card-style-1">
-                      <div class="card-header card-1-header bg-light">Estrategia global de mejora</div>
+                      <div class="card-header card-1-header bg-light">ESTRATEGIA GLOBAL DE MEJORA</div>
                       <div class="card-body">
                         <div class="card-block">
                           <div class="form-group form-group-style-1">
@@ -309,7 +309,7 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-12">
-                                <label>Indicadores de medicion:</label>
+                                <label>Indicadores de medición:</label>
                                 <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
                               </div>
                             </div>

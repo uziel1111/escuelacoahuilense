@@ -14,8 +14,17 @@ class PDF_MC_Table extends FPDF{
   var $aligns;
   var $color;
   var $widht;
-
-  // Miguel SetColors
+  var $cct;
+  var $escuela;
+  var $ciclo;
+//inicializacion de variables de encabezado
+  function SetvarHeader($cct, $escuela, $ciclo)
+  {
+    $this->cct=$cct;
+    $this->escuela=$escuela;
+    $this->ciclo=$ciclo;
+  }
+  // SetColors
   function SetColors($color)
   {
     $this->color=$color;
@@ -140,6 +149,29 @@ class PDF_MC_Table extends FPDF{
     // Número de página
     $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'R');
   }// Footer()
+
+  function Header(){
+    // Arial bold 16
+      $this->SetFont('Arial','B',16);
+      // Logo
+      $this->Image(base_url().'assets/img/logoC-SE.png',10,8,70);
+
+      $this->Ln(1);
+      $this->SetFont('Arial','B',11);
+      $this->MultiCell(0,5,utf8_decode($this->cct),0,"R");
+      $this->Ln(2);
+      $this->SetFont('Arial','B',11);
+      $this->MultiCell(0,5,utf8_decode($this->escuela),0,"R");
+      $this->Ln(3);
+      $this->SetFont('Arial','B',11);
+      $this->MultiCell(0,5,utf8_decode($this->ciclo),0,"R");
+
+      // Título
+      $this->SetTextColor(0,0,0);
+      $this->SetFont('Arial','B',16);
+      $this->Cell(75);
+      $this->Cell(40,20,'Ruta de Mejora',0,1,'C');
+}
 
 }
 

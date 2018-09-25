@@ -101,8 +101,13 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            data:{"id_tprioritario":id_tprioritario},
            success:function(data){
              var vista = data.tabla;
+             console.log(data.datos);
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
+             $("#label_escuela").text(data.datos['escuela']);
+             $("#label_prioridad").text(data.datos['prioridad']);
+             $("#label_problematica").text(data.datos['problematicas']);
+             $("#label_evidencia").text(data.datos['evidencias']);
              
              obj_rm_acciones_tp.iniciatabla();
            },
@@ -197,8 +202,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
            success:function(data){
             if(data.mensaje == 'ok'){
               swal(
-                'Correto!',
-                "La accion se elimino correctamente",
+                'Correcto!',
+                "La acción se elimino correctamente",
                 "success"
               );
               var vista = data.tabla;
@@ -208,7 +213,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             }else{
               swal(
                 'Error!',
-                "La operacion no se pudo completar intente nuevamente",
+                "La operación no se pudo completar intente nuevamente",
                 "error"
               );
             }

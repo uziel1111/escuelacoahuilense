@@ -502,6 +502,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function get_table_acciones(){
+		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 		$tabla = "<div class='table-responsive'>
@@ -535,7 +536,10 @@ class Rutademejora extends CI_Controller {
 			$tabla .= "</tbody>
 	                        </table>
 	                      </div>  ";
-	        $response = array('tabla' => $tabla);
+	        $get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
+
+	        $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
+	        $response = array('tabla' => $tabla, 'datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 	}
