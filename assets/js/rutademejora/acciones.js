@@ -14,7 +14,7 @@ $("#btn_rutamejora_acciones").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
         'Error!',
-        "Favor de seleccionar un tema prioritario a eliminar ",
+        "Favor de seleccionar un tema prioritario a Exportar",
         "error"
       );
   }
