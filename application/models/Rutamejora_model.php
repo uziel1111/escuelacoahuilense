@@ -405,4 +405,11 @@ function  get_datos_edith_tp($id_tprioritario){
     return $data;
   }
 
+  function get_datos_modal($id_tprioritario){
+  	$str_query = "SELECT p.prioridad, txcct.otro_problematica, otro_evidencia FROM rm_tema_prioritarioxcct txcct
+		INNER JOIN rm_c_prioridad p ON p.id_prioridad = txcct.id_prioridad
+		WHERE id_tprioritario = {$id_tprioritario}";
+	return $this->db->query($str_query)->result_array();
+  }
+
 }// Rutamejora_model

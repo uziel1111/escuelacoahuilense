@@ -65,8 +65,26 @@ $("#slc_apoyoreq").change(function(){
 
             });
 
+$("#btn_get_reporte").click(function(){
+    obj_rm.get_reporte(obj.id_tprioritario);
+});
 
 
 function Rutademejora(){
   _thisrm = this;
+}
+
+Rutademejora.prototype.get_reporte = function(id_tprioritario){
+  $.ajax({
+     url:base_url+"reporte/get_reporte",
+     method:"POST",
+     data:{"id_tprioritario":id_tprioritario},
+     success:function(data){
+      var pathname = window.location;
+      alert(pathname);
+     },
+     error: function(error){
+       console.log(error);
+     }
+ });
 }
