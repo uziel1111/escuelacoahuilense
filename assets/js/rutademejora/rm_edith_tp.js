@@ -85,6 +85,11 @@ $("#slc_apoyoreq").selectpicker("refresh");
 $("#txt_rm_otroapoyreq").val(datos[0]['otro_apoyo_req_se']);
 $("#txt_rm_especifiqueapyreq").val(datos[0]['especifique_apoyo_req']);
 
+$("#img_evid").prop("src", "http://localhost/escuelacoahuilense/"+datos[0]['path_evidencia']);
+
+$("#glosaArchivos").html(datos[0]['path_evidencia'].split("/")[3]);
+
+
 };
 
 Rm_edith_tp.prototype.update_datos_edith_tp = function(tmp_id_tprioritario){
@@ -116,13 +121,35 @@ if (validacion == true) {
   var otroapoyreq = $("#txt_rm_otroapoyreq").val();
   var especifiqueapyreq = $("#txt_rm_especifiqueapyreq").val();
 
+  $("#id_id_tprioritario").val(tmp_id_tprioritario);
+  $("#id_id_prioridad").val(id_prioridad);
+  $("#id_objetivo1").val(objetivo1);
+  $("#id_meta1").val(meta1);
+  $("#id_objetivo2").val(objetivo2);
+  $("#id_meta2").val(meta2);
+  $("#id_problematica").val(problematica);
+  $("#id_evidencia").val(evidencia);
+  $("#id_ids_progapoy").val(ids_progapoy);
+  $("#id_otro_pa").val(otro_pa);
+  $("#id_como_prog_ayuda").val(como_prog_ayuda);
+  $("#id_obs_direct").val(obs_direct);
+  $("#id_ids_apoyreq").val(ids_apoyreq);
+  $("#id_otroapoyreq").val(otroapoyreq);
+  $("#id_especifiqueapyreq").val(especifiqueapyreq);
+
+  var formData = new FormData($(".formulario1")[0]);
+
   $.ajax({
   url: base_url+'rutademejora/update_tema_prioritario',
   type: 'POST',
   dataType: 'JSON',
-  data: {id_tprioritario:tmp_id_tprioritario,id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
-  evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
-  ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq},
+  data: formData,
+  // {id_tprioritario:tmp_id_tprioritario,id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
+  // evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
+  // ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq},
+  cache: false,
+  contentType: false,
+  processData: false,
   beforeSend: function(xhr) {
         Notification.loading("");
     },

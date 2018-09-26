@@ -146,8 +146,10 @@
                     <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
                     <label><span class="badge badge-secondary h5 text-white">9.</span> Subir evidencia (imagen o pdf) </label>
                     <br>
-                    <form enctype="multipart/form-data" class="formulario1">
+                    <form enctype="multipart/form-data" id="from_aux" class="formulario1">
                     <div class="form-group">
+
+                      <input type="hidden" name="id_id_tprioritario" id="id_id_tprioritario">
                       <input type="hidden" name="id_prioridad" id="id_id_prioridad">
                       <input type="hidden" name="objetivo1" id="id_objetivo1">
                       <input type="hidden" name="meta1" id="id_meta1">
@@ -163,8 +165,16 @@
                       <input type="hidden" name="otroapoyreq" id="id_otroapoyreq">
                       <input type="hidden" name="especifiqueapyreq" id="id_especifiqueapyreq">
 
-                      <input name="archivo" type="file" id="imagen" accept="application/pdf" />
-        					    <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p>
+                      <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
+
+                        <button type="button"
+                                onclick="obj_rm_tp.abrir('imagen')">Escoger archivo</button>
+                        <input type="file"
+                               id="imagen" name="archivo"
+                               onchange="obj_rm_tp.contar(this, 'glosaArchivos')" style="display: none" accept="application/pdf, image/*">
+                        <span id="glosaArchivos">Ningun archivo seleccionado</span>
+                      <img id="img_evid"  alt="" width="280" height="100" />
+        					    <!-- <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p> -->
                     </div>
                     </form>
                     <!-- <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>

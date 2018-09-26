@@ -229,7 +229,8 @@ function  get_datos_edith_tp($id_tprioritario){
   obs_direc,
   ids_apoyo_req_se,
   otro_apoyo_req_se,
-  especifique_apoyo_req
+  especifique_apoyo_req,
+  path_evidencia
   ');
     $this->db->from('rm_tema_prioritarioxcct');
     $this->db->where("id_tprioritario = {$id_tprioritario}");
@@ -411,5 +412,32 @@ function  get_datos_edith_tp($id_tprioritario){
 		WHERE id_tprioritario = {$id_tprioritario}";
 	return $this->db->query($str_query)->result_array();
   }
+
+  function insert_evidencia($id_cct,$estatus,$ruta_archivos_save){
+    $this->db->trans_start();
+      $data = array(
+          "path_evidencia" => $ruta_archivos_save,
+  );
+  $this->db->where("id_cct = '{$id_cct}'");
+  $this->db->where("id_tprioritario = '{$estatus}'");
+  $this->db->update('rm_tema_prioritarioxcct', $data);
+  $this->db->trans_complete();
+  if ($this->db->trans_status() === FALSE)
+      {
+          return false;
+      }else{
+          return true;
+      }
+    }
+
+    function get_url_evidencia($id_cct,$id_tprioritario){
+      $this->db->select('path_evidencia');
+        $this->db->from('rm_tema_prioritarioxcct');
+        $this->db->where("id_cct = '{$id_cct}'");
+        $this->db->where("id_tprioritario = {$id_tprioritario}");
+
+        return $this->db->get()->row('path_evidencia');
+
+    }
 
 }// Rutamejora_model

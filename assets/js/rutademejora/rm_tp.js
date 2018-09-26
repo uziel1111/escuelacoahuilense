@@ -260,7 +260,11 @@ Rm_tp.prototype.limpia_campos_tp = function(){
   $("#slc_apoyoreq").selectpicker('deselectAll');
   $("#txt_rm_otroapoyreq").val("");
   $("#txt_rm_especifiqueapyreq").val("");
-  $("#imagen").val(null);
+
+  $("#from_aux")[0].reset();
+  $("#img_evid").prop("src", "");
+  $("#glosaArchivos").html("Ningun archivo seleccionado");
+
 };
 
 Rm_tp.prototype.subir_archivo = function(){
@@ -301,3 +305,39 @@ Rm_tp.prototype.subir_archivo = function(){
         }
     });
 }
+Rm_tp.prototype.abrir= function(id){
+  var file = document.getElementById(id);
+  file.dispatchEvent(new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true
+  }));
+}
+
+Rm_tp.prototype.contar= function(elem, idGlosa){
+  var glosa = document.getElementById(idGlosa);
+  // console.log(elem.files[0]['name']);
+  if(elem.files.length == 0) {
+      glosa.innerText = "Ningun archivo seleccionado";
+  } else {
+      glosa.innerText = elem.files[0]['name'];
+  }
+}
+
+Rm_tp.prototype.readURL= function(input){
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      // alert(e.target.result);
+      $('#img_evid').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imagen").change(function() {
+  obj_rm_tp.readURL(this);
+});

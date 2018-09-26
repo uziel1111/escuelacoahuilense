@@ -232,6 +232,7 @@ class Rutademejora extends CI_Controller {
 				// echo "<pre>";print_r($estatus);
 				$ruta_archivos = "evidencias_rm/{$id_cct}/{$estatus}/";
 				$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$estatus}/$nombre_archivo";
+				$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$estatus,$ruta_archivos_save);
 				if(!is_dir($ruta_archivos)){
 					mkdir($ruta_archivos, 0777, true);}
 																$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
@@ -375,7 +376,7 @@ class Rutademejora extends CI_Controller {
 		public function update_tema_prioritario(){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $this->cct[0]['id_cct'];
-			$id_tprioritario = $this->input->post("id_tprioritario");
+			$id_tprioritario = $this->input->post("id_id_tprioritario");
 			$id_prioridad = $this->input->post("id_prioridad");
 			$objetivo1 = $this->input->post("objetivo1");
 			$meta1 = $this->input->post("meta1");
@@ -391,8 +392,50 @@ class Rutademejora extends CI_Controller {
 			$otroapoyreq = $this->input->post("otroapoyreq");
 			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
 
-			$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
-			$response = array('estatus' => $estatus);
+			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+			if ($nombre_archivo=='') {
+				$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
+
+			}
+			else {
+				$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
+				if ($estatus != false) {
+					// echo "<pre>";print_r($estatus);
+					$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
+					$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
+
+					// echo "<pre>";print_r($ruta_archivos_save);die();
+					$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
+					if(!is_dir($ruta_archivos)){
+						mkdir($ruta_archivos, 0777, true);}
+																	$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+																	$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+																	$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+																	$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+																	$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+
+																	$uploadPath              = $ruta_archivos;
+																	$config['upload_path']   = $uploadPath;
+																	$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+
+																	$this->load->library('upload', $config);
+																	$this->upload->initialize($config);
+																	if ($this->upload->do_upload('userFile')) {
+																			$fileData = $this->upload->data();
+																			$str_view = true;
+																	}
+
+					// $response = array('str_view' => $str_view);
+					$estatus = true;
+			}
+			else {
+				$estatus = false;
+			}
+		}
+
+			// echo "<pre>";print_r($nombre_archivo);die();
+
+				$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
@@ -401,8 +444,13 @@ class Rutademejora extends CI_Controller {
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $this->cct[0]['id_cct'];
 			$id_tprioritario = $this->input->post("id_tprioritario");
-
+			$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
+			// unlink("{$url}");
+			// echo "<pre>";print_r($url);die();
 			$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
+			if ($estatus) {
+				unlink($url);
+			}
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
