@@ -503,7 +503,7 @@ class Rutademejora extends CI_Controller {
                             <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
                               <thead>
                             <tr class=info>
-                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
                               <th id='orden' style='width:4%'><center>Ámbito</center></th>
                               <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
                               <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
@@ -514,7 +514,7 @@ class Rutademejora extends CI_Controller {
             if(count($acciones) > 0){
             	foreach ($acciones as $accion) {
 					$tabla .= "<tr>
-	                              <td>{$accion['id_accion']}</td>
+								  <td hidden>{$accion['id_accion']}</td>
 	                              <td>{$accion['id_ambito']}</td>
 	                              <td>{$accion['accion_f_inicio']}</td>
 	                              <td>{$accion['accion_f_termino']}</td>
@@ -542,7 +542,7 @@ class Rutademejora extends CI_Controller {
                             <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
                               <thead>
                             <tr class=info>
-                              <th id='idrutamtema'><center>Acción</center></th>
+                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
                               <th id='orden' style='width:4%'><center>Ámbito</center></th>
                               <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
                               <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
@@ -553,7 +553,7 @@ class Rutademejora extends CI_Controller {
             if(count($acciones) > 0){
             	foreach ($acciones as $accion) {
 					$tabla .= "<tr>
-	                              <td>{$accion['id_accion']}</td>
+								  <td hidden>{$accion['id_accion']}</td>
 	                              <td>{$accion['id_ambito']}</td>
 	                              <td>{$accion['accion_f_inicio']}</td>
 	                              <td>{$accion['accion_f_termino']}</td>
@@ -589,7 +589,7 @@ class Rutademejora extends CI_Controller {
                             <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
                               <thead>
                             <tr class=info>
-                              <th id='idrutamtema'><center>Acción</center></th>
+                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
                               <th id='orden' style='width:4%'><center>Ámbito</center></th>
                               <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
                               <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
@@ -600,7 +600,7 @@ class Rutademejora extends CI_Controller {
             if(count($acciones) > 0){
             	foreach ($acciones as $accion) {
 					$tabla .= "<tr>
-	                              <td>{$accion['id_accion']}</td>
+								<td hidden>{$accion['id_accion']}</td>
 	                              <td>{$accion['id_ambito']}</td>
 	                              <td>{$accion['accion_f_inicio']}</td>
 	                              <td>{$accion['accion_f_termino']}</td>
@@ -644,7 +644,7 @@ class Rutademejora extends CI_Controller {
                             <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
                               <thead>
                             <tr class=info>
-                              <th id='idrutamtema'><center>Acción</center></th>
+                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
                               <th id='orden' style='width:4%'><center>Ámbito</center></th>
                               <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
                               <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
@@ -655,7 +655,7 @@ class Rutademejora extends CI_Controller {
             if(count($acciones) > 0){
             	foreach ($acciones as $accion) {
 					$tabla .= "<tr>
-	                              <td>{$accion['id_accion']}</td>
+								<td hidden>{$accion['id_accion']}</td>
 	                              <td>{$accion['id_ambito']}</td>
 	                              <td>{$accion['accion_f_inicio']}</td>
 	                              <td>{$accion['accion_f_termino']}</td>
@@ -697,6 +697,9 @@ class Rutademejora extends CI_Controller {
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$idaccion = $this->input->post('idaccion');
 		$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
+		// echo "<pre>";
+		// print_r($editada);
+		// die();
 		$response = array("editado" => $editada[0]);
 		Utilerias::enviaDataJson(200, $response, $this);
 			exit;

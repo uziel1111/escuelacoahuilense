@@ -365,7 +365,8 @@ function  get_datos_edith_tp($id_tprioritario){
   }
 
   function edit_accion($id_accion, $id_tprioritario){
-  	return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario, 'id_accion' => $id_accion))->result_array();
+  	// echo $id_accion; die();
+  	return $this->db->get_where('rm_accionxtproritario', array('id_accion' => $id_accion, 'id_tprioritario' => $id_tprioritario))->result_array();
   }
 
   function update_accion($id_accion, $id_tprioritario, $id_ambito, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp){
