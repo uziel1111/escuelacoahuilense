@@ -1,16 +1,32 @@
 $(function() {
     obj_rm_tp = new Rm_tp();
 });
+
 $("#btn_grabar_tp").click(function(){
 
   // obj_rm_tp = new Rm_tp();
 
   obj_rm_tp.insert_update_mision_cct();
 
+
   var validacion = obj_rm_tp.valida_campos_tp();
 
   if (validacion == true) {
+    //obtenemos un array con los datos del archivo
+    // var file = $("#imagen")[0].files[0];
+    // //obtenemos el nombre del archivo
+    // var fileName = file.name;
+    // //obtenemos la extensión del archivo
+    // fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+    // //obtenemos el tamaño del archivo
+    // fileSize = file.size;
+    // //obtenemos el tipo de archivo image/png ejemplo
+    // var fileType = file.type;
+    // //mensaje con la información del archivo
+    // var formData = new FormData($(".formulario1")[0]);
 
+    // alert(fileName);
+    // console.log(fileName);
     var id_prioridad = $("#slc_rm_prioridad").val();
     var objetivo1 = $("#txt_rm_ob1").val();
     var meta1 = $("#txt_rm_met1").val();
@@ -33,14 +49,35 @@ $("#btn_grabar_tp").click(function(){
      ids_apoyreq = ids_apoyreq.slice(0,-1);
     var otroapoyreq = $("#txt_rm_otroapoyreq").val();
     var especifiqueapyreq = $("#txt_rm_especifiqueapyreq").val();
+    $("#id_id_prioridad").val(id_prioridad);
+    $("#id_objetivo1").val(objetivo1);
+    $("#id_meta1").val(meta1);
+    $("#id_objetivo2").val(objetivo2);
+    $("#id_meta2").val(meta2);
+    $("#id_problematica").val(problematica);
+    $("#id_evidencia").val(evidencia);
+    $("#id_ids_progapoy").val(ids_progapoy);
+    $("#id_otro_pa").val(otro_pa);
+    $("#id_como_prog_ayuda").val(como_prog_ayuda);
+    $("#id_obs_direct").val(obs_direct);
+    $("#id_ids_apoyreq").val(ids_apoyreq);
+    $("#id_otroapoyreq").val(otroapoyreq);
+    $("#id_especifiqueapyreq").val(especifiqueapyreq);
+
+    var formData = new FormData($(".formulario1")[0]);
 
     $.ajax({
     url: base_url+'rutademejora/insert_tema_prioritario',
     type: 'POST',
     dataType: 'JSON',
-    data: {id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
-    evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
-    ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq},
+    data: formData,
+    // data: {id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
+    // evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
+    // ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq,formData: formData},
+    //necesario para subir archivos via ajax
+    cache: false,
+    contentType: false,
+    processData: false,
     beforeSend: function(xhr) {
           Notification.loading("");
       },
@@ -49,6 +86,7 @@ $("#btn_grabar_tp").click(function(){
     swal.close();
     console.log(result.estatus);
     if (result.estatus) {
+      // obj_rm_tp.subir_archivo();
       obj_rm_tp.limpia_campos_tp();
 
       swal(
@@ -222,4 +260,44 @@ Rm_tp.prototype.limpia_campos_tp = function(){
   $("#slc_apoyoreq").selectpicker('deselectAll');
   $("#txt_rm_otroapoyreq").val("");
   $("#txt_rm_especifiqueapyreq").val("");
+  $("#imagen").val(null);
 };
+
+Rm_tp.prototype.subir_archivo = function(){
+    //información del formulario
+    var formData = new FormData($(".formulario1")[0]);
+    var message = "";
+    //hacemos la petición ajax
+    $.ajax({
+        url: base_url+'rutademejora/set_file',
+        type: 'POST',
+        // Form data
+        //datos del formulario
+        data: formData,
+        //necesario para subir archivos via ajax
+        cache: false,
+        contentType: false,
+        processData: false,
+        //mientras enviamos el archivo
+        beforeSend: function(){
+
+        },
+        //una vez finalizado correctamente
+        success: function(data){
+        	swal(
+		      'Listo!',
+		      'Su archivo se subio correctamente',
+		      'success'
+		    );
+        	// $("#modal_operacion_recursos").modal('hide');
+        	// obj_recursos.get_tabla();
+        	// $("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
+        	// $("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
+        },
+        //si ha ocurrido un error
+        error: function(){
+            // message = $("<span class='error'>Ha ocurrido un error.</span>");
+            // showMessage(message);
+        }
+    });
+}

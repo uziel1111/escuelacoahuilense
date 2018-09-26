@@ -190,5 +190,5 @@ class Reporte extends CI_Controller {
 				}
 	}
 
-	
+
 }// class
