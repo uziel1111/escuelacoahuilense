@@ -31,9 +31,9 @@ class Reporte extends CI_Controller {
 			$dia_i = $arr_aux[2];
 			$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 			$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
-			echo "<pre>";
-			print_r($ciclo);
-			die();
+			// echo "<pre>";
+			// print_r($ciclo);
+			// die();
 			$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
 
 			$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
@@ -52,10 +52,11 @@ class Reporte extends CI_Controller {
 				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
 
 			}
-			$pdf->Output("F", "reportes/ejemplo.pdf");
-			$response = array('link' => "reportes/ejemplo.pdf");
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
+			$pdf->Output();
+			// $pdf->Output("F", "reportes/ejemplo.pdf");
+			// $response = array('link' => "reportes/ejemplo.pdf");
+			// Utilerias::enviaDataJson(200, $response, $this);
+			// exit;
 
 		// }
 	}// get_reporte()
@@ -146,5 +147,5 @@ class Reporte extends CI_Controller {
 				}
 	}
 
-	
+
 }// class

@@ -49,6 +49,20 @@ $("#btn_grabar_tp").click(function(){
      ids_apoyreq = ids_apoyreq.slice(0,-1);
     var otroapoyreq = $("#txt_rm_otroapoyreq").val();
     var especifiqueapyreq = $("#txt_rm_especifiqueapyreq").val();
+    $("#id_id_prioridad").val(id_prioridad);
+    $("#id_objetivo1").val(objetivo1);
+    $("#id_meta1").val(meta1);
+    $("#id_objetivo2").val(objetivo2);
+    $("#id_meta2").val(meta2);
+    $("#id_problematica").val(problematica);
+    $("#id_evidencia").val(evidencia);
+    $("#id_ids_progapoy").val(ids_progapoy);
+    $("#id_otro_pa").val(otro_pa);
+    $("#id_como_prog_ayuda").val(como_prog_ayuda);
+    $("#id_obs_direct").val(obs_direct);
+    $("#id_ids_apoyreq").val(ids_apoyreq);
+    $("#id_otroapoyreq").val(otroapoyreq);
+    $("#id_especifiqueapyreq").val(especifiqueapyreq);
 
     var formData = new FormData($(".formulario1")[0]);
 
@@ -56,7 +70,7 @@ $("#btn_grabar_tp").click(function(){
     url: base_url+'rutademejora/insert_tema_prioritario',
     type: 'POST',
     dataType: 'JSON',
-    data: formData, ids_progapoy:ids_progapoy,ids_apoyreq:ids_apoyreq ,
+    data: formData,
     // data: {id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
     // evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
     // ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq,formData: formData},

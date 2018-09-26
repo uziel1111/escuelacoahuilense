@@ -32,7 +32,6 @@
                   locales, sociedad en general)"></em></label>
                   <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"><?= $mision ?></textarea>
                 </div>
-                <form enctype="multipart/form-data" class="formulario1">
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><br>
                   <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN" id="slc_rm_prioridad">
@@ -147,9 +146,25 @@
                     <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
                     <label><span class="badge badge-secondary h5 text-white">9.</span> Subir evidencia (imagen o pdf) </label>
                     <br>
-
+                    <form enctype="multipart/form-data" class="formulario1">
                     <div class="form-group">
+                      <input type="hidden" name="id_prioridad" id="id_id_prioridad">
+                      <input type="hidden" name="objetivo1" id="id_objetivo1">
+                      <input type="hidden" name="meta1" id="id_meta1">
+                      <input type="hidden" name="objetivo2" id="id_objetivo2">
+                      <input type="hidden" name="meta2" id="id_meta2">
+                      <input type="hidden" name="problematica" id="id_problematica">
+                      <input type="hidden" name="evidencia" id="id_evidencia">
+                      <input type="hidden" name="ids_progapoy" id="id_ids_progapoy">
+                      <input type="hidden" name="otro_pa" id="id_otro_pa">
+                      <input type="hidden" name="como_prog_ayuda" id="id_como_prog_ayuda">
+                      <input type="hidden" name="obs_direct" id="id_obs_direct">
+                      <input type="hidden" name="ids_apoyreq" id="id_ids_apoyreq">
+                      <input type="hidden" name="otroapoyreq" id="id_otroapoyreq">
+                      <input type="hidden" name="especifiqueapyreq" id="id_especifiqueapyreq">
+
                       <input name="archivo" type="file" id="imagen" accept="application/pdf" />
+        					    <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p>
                     </div>
                     </form>
                     <!-- <label><span class="badge badge-secondary h5 text-white">9.</span> ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos?</label>
@@ -241,16 +256,16 @@
                   </div>
                   <div class="modal-body">
                     <div class="alert alert-info" role="alert">
-                      Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
+                      Escuela: <span class="fw800">NOMBRE DE LA ESCUELA</span><br>
 
-                      Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
+                      Prioridad: <span class="fw800">Convivencia escolar</span><br>
 
-                      Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
+                      Problemática(s): <span class="fw800">Asistencia de profesores</span><br>
 
-                      Evidencia(s): <span class="fw800"><label id="label_evidencia"></label></span>
+                      Evidencia(s): <span class="fw800">www.sarape.org</span>
                     </div>
                     <div class="card mb-3 card-style-1">
-                      <div class="card-header card-1-header bg-light">ESTRATEGIA GLOBAL DE MEJORA</div>
+                      <div class="card-header card-1-header bg-light">Estrategia global de mejora</div>
                       <div class="card-body">
                         <div class="card-block">
                           <div class="form-group form-group-style-1">
@@ -313,7 +328,7 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-12">
-                                <label>Indicadores de medición:</label>
+                                <label>Indicadores de medicion:</label>
                                 <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
                               </div>
                             </div>

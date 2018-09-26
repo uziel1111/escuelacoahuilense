@@ -220,17 +220,18 @@ class Rutademejora extends CI_Controller {
 			$ids_apoyreq = $this->input->post("ids_apoyreq");
 			$otroapoyreq = $this->input->post("otroapoyreq");
 			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
+
 			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
 
-			// echo "<pre>";print_r($nombre_archivo);die();
+			// echo "<pre>";print_r($id_prioridad);die();
 
 			// $insert = $this->Recursos_model->inserta_url($id_reactivo, $ruta_archivos_save, $idusuario, $idtipo, $titulo, $fuente);
 
 			$estatus = $this->Rutamejora_model->insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
 			if ($estatus != false) {
 				// echo "<pre>";print_r($estatus);
-				$ruta_archivos = "prueba/id_cct/12/";
-				$ruta_archivos_save = "prueba/id_cct/12/$nombre_archivo";
+				$ruta_archivos = "evidencias_rm/{$id_cct}/{$estatus}/";
+				$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$estatus}/$nombre_archivo";
 				if(!is_dir($ruta_archivos)){
 					mkdir($ruta_archivos, 0777, true);}
 																$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
@@ -250,7 +251,7 @@ class Rutademejora extends CI_Controller {
 																		$str_view = true;
 																}
 
-				$response = array('str_view' => $str_view);
+				// $response = array('str_view' => $str_view);
 				$estatus = true;
 			}
 			$response = array('estatus' => $estatus);
