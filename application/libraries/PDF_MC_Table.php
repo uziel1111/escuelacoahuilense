@@ -81,6 +81,38 @@ class PDF_MC_Table extends FPDF{
     $this->Ln($h);
   }
 
+  function Row2($data)
+  {
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+    $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=1*$nb;
+    //Issue a page break first if needed
+    $this->CheckPageBreak($h);
+    //Draw the cells of the row
+    for($i=0;$i<count($data);$i++)
+    {
+      $w=$this->widths[$i];
+      $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+      $color=isset($this->color[$i]) ? FALSE : FALSE;
+      $widht=isset($this->widht[$i]) ? $this->widht[$i] : 0.2;
+      // echo $widht; die();
+      //Save the current position
+      $x=$this->GetX();
+      $y=$this->GetY();
+      //Draw the border
+      $this->SetLineWidth(0.0);
+      // $this->Rect($x,$y,$w,$h);
+      //Print the text
+      $this->MultiCell($w,5,$data[$i],0,$a,$color);
+      //Put the position to the right of the cell
+      $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+  }
+
   function CheckPageBreak($h)
   {
     //If the height h would cause an overflow, add a new page immediately
