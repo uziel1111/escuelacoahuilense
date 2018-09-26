@@ -204,7 +204,7 @@
                     <div class="card-block">
                       <div class="row mt-15">
                         <div class="col-12">
-                          <button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-primary"><i class="fas fa-print"></i></button>
+                            <a class="btn btn-primary" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print"></i></a>
                           <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                           <button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
                           <button id="btn_rutamejora_acciones" type="button" data-toggle="modal" data-target="#exampleModal" title="Crear actividades" class="btn btn-primary"><i class="fas fa-tasks"></i></button>
@@ -256,16 +256,16 @@
                   </div>
                   <div class="modal-body">
                     <div class="alert alert-info" role="alert">
-                      Escuela: <span class="fw800">NOMBRE DE LA ESCUELA</span><br>
+                      Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-                      Prioridad: <span class="fw800">Convivencia escolar</span><br>
+                      Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
-                      Problemática(s): <span class="fw800">Asistencia de profesores</span><br>
+                      Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 
-                      Evidencia(s): <span class="fw800">www.sarape.org</span>
+                      Evidencia(s): <span class="fw800"><label id="label_evidencia"></label></span>
                     </div>
                     <div class="card mb-3 card-style-1">
-                      <div class="card-header card-1-header bg-light">Estrategia global de mejora</div>
+                      <div class="card-header card-1-header bg-light">ESTRATEGIA GLOBAL DE MEJORA</div>
                       <div class="card-body">
                         <div class="card-block">
                           <div class="form-group form-group-style-1">
@@ -328,7 +328,7 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-12">
-                                <label>Indicadores de medicion:</label>
+                                <label>Indicadores de medición:</label>
                                 <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
                               </div>
                             </div>

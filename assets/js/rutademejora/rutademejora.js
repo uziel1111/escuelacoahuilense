@@ -74,17 +74,30 @@ function Rutademejora(){
   _thisrm = this;
 }
 
-Rutademejora.prototype.get_reporte = function(id_tprioritario){
-  $.ajax({
-     url:base_url+"reporte/get_reporte",
-     method:"POST",
-     data:{"id_tprioritario":id_tprioritario},
-     success:function(data){
-      var pathname = window.location;
-      alert(pathname);
-     },
-     error: function(error){
-       console.log(error);
-     }
- });
-}
+// Rutademejora.prototype.get_reporte = function(id_tprioritario){
+//   $.ajax({
+//      url:base_url+"reporte/get_reporte",
+//      method:"POST",
+//      data:{"id_tprioritario":id_tprioritario},
+//      success:function(data){
+//       console.log(data);
+//       var url = location.origin+"/escuelacoahuilense/"+data.link; 
+//       alert(url);
+//       window.open(url);
+//      },
+//      error: function(error){
+//        console.log(error);
+//      }
+//  });
+// }
+
+// Rutademejora.prototype.get_reporte = function(idcatalogo){
+//       var form = document.createElement("form");
+//       form.name = "form_baja_pdf";
+//       form.id = "form_baja_pdf";
+//       form.method = "POST";
+//       form.target = "_self";
+
+//       form.action = base_url+"reporte/get_reporte";
+//       form.submit();
+//     }/// get_reporte()
