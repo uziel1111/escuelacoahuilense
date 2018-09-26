@@ -2,6 +2,7 @@ $(function() {
     obj_rm_acciones_tp = new Rm_acciones_tp();
     $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
+    sel_encargado = false;
     
 });
 
@@ -25,7 +26,7 @@ $("#btn_rutamejora_acciones").click(function(){
 });
 
 $("#btn_agregar_accion").click(function(){
-  obj_rm_acciones_tp.save_accion();
+  obj_rm_acciones_tp.validaform();
 });
 
 $("#id_btn_elimina_accion").click(function(){
@@ -71,6 +72,7 @@ $("#btn_editando_accion").click(function(){
 });
 
 $("#slc_responsables").change(function(){
+  sel_encargado = true;
   var texto="";
   $("#slc_responsables option:selected").each(function() {
     texto += $(this).val() + ",";
@@ -266,4 +268,85 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
            }
        });
  };
+
+ Rm_acciones_tp.prototype.validaform = function(){
+  if($("#slc_rm_ambito").val() != ""){
+    if($("#txt_rm_meta").val() != ""){
+      if($("#txt_rm_obs").val() != ""){
+        // console.log(encargados);
+        if(sel_encargado == true){
+          if($("#datepicker1").val() != ""){
+            if($("#datepicker2").val() != ""){
+              if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
+                  if($("#txt_rm_indimed").val() != ""){
+                    obj_rm_acciones_tp.save_accion();
+                  }else{
+                    swal(
+                        'Error!',
+                        "Introudzca indicador de medición",
+                        'danger'
+                      );
+                  }
+              }else{
+                if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() == ""){
+                    swal(
+                        'Error!',
+                        "Introudzca nombre del otro responsable",
+                        'danger'
+                      );
+                  }else{
+                    if($("#txt_rm_indimed").val() != ""){
+                      obj_rm_acciones_tp.save_accion();
+                    }else{
+                      swal(
+                        'Error!',
+                        "Introudzca indicador de medición",
+                        'danger'
+                      );
+                    }
+                  }
+              }
+            }else{
+              swal(
+              'Error!',
+              "Introudzca fecha de termino",
+              'danger'
+            );
+            }
+          }else{
+            swal(
+              'Error!',
+              "Introudzca fecha de inicio",
+              'danger'
+            );
+          }
+        }else{
+          swal(
+          'Error!',
+          "Seleccione un encargado",
+          'danger'
+        );
+        }
+      }else{
+        swal(
+          'Error!',
+          "Introudzca materiales o insumos ",
+          'danger'
+        );
+      }
+    }else{
+      swal(
+          'Error!',
+          "Introduzca una acción",
+          'danger'
+        );
+    }
+  }else{
+    swal(
+          'Error!',
+          "Seleccione ámbito ",
+          'danger'
+        );
+  }
+ }
 

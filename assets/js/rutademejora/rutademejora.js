@@ -1,5 +1,11 @@
 $(function() {
     obj_rm = new Rutademejora();
+     $("[data-toggle=popover]").each(function(i, obj) {
+        $(this).popover({
+         html: true,
+        trigger:'hover'
+        });
+      });
 });
 $("#slc_pa").change(function(){
               var texto="";
