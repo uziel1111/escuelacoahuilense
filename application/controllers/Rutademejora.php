@@ -65,7 +65,7 @@ class Rutademejora extends CI_Controller {
 					$this->cct = Utilerias::get_cct_sesion($this);
 					$responsables = $this->getPersonal($usuario);
 					// echo "<pre>";
-					// 		print_r($responsables->Personal);
+					// 		print_r($this->cct);
 					// 		die();
 					$personas = $responsables->Personal;
 					$options = "";
@@ -136,6 +136,8 @@ class Rutademejora extends CI_Controller {
 
 					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 					$data['nombreuser'] = $this->cct[0]['nombre_centro'];
+					$data['turno'] = $this->cct[0]['turno_single'];
+					$data['cct'] = $this->cct[0]['cve_centro'];
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
 
 				}else{
