@@ -125,60 +125,10 @@ function Rm_tp(){
 Rm_tp.prototype.valida_campos_tp = function(){
 
 if ($("#slc_rm_prioridad").val()!='') {
-  if ($("#txt_rm_ob1").val()!='' && $("#txt_rm_ob2").val()!='' && $("#txt_rm_met1").val()!='' && $("#txt_rm_met2").val()!='') {
+  if ($("#txt_rm_ob1").val()!='' && $("#txt_rm_met1").val()!='') {
     if ($("#txt_rm_problem").val() !='') {
       if ($("#txt_rm_eviden").val() !='') {
-        if ($("#slc_pa").val() !='') {
-          if ($("#txt_rm_programayuda").val() !='') {
-            if ($("#txt_rm_obs_direc").val() !='') {
-              if ($("#slc_apoyoreq").val() !='') {
-                if ($("#txt_rm_especifiqueapyreq").val() !='') {
-                  return true;
-                }
-                else {
-                  swal(
-                      'Error!',
-                      "Favor de escribir especificación de los apoyos requeridos ",
-                      "error"
-                    );
-                    return false;
-                }
-              }
-              else {
-                swal(
-                    'Error!',
-                    "Favor de seleccionar ¿Qué apoyo requerimos por parte de la SE para lograr estos objetivos? ",
-                    "error"
-                  );
-                  return false;
-              }
-            }
-            else {
-              swal(
-                  'Error!',
-                  "Favor de escribir observaciones del director ",
-                  "error"
-                );
-                return false;
-            }
-          }
-          else {
-            swal(
-                'Error!',
-                "Favor de escribir ¿Cómo ayudan los programas de apoyo? ",
-                "error"
-              );
-              return false;
-          }
-        }
-        else {
-          swal(
-              'Error!',
-              "Favor de seleccionar programas educativos de apoyo",
-              "error"
-            );
-            return false;
-        }
+        return true;
       }
       else {
         swal(
