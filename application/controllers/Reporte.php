@@ -13,12 +13,8 @@ class Reporte extends CI_Controller {
 
 
 	public function get_reporte(){
-		// if(Utilerias::verifica_sesion_redirige($this)){
-			/**/
+		if(Utilerias::haySesionAbiertacct($this)){
 			$cct = Utilerias::get_cct_sesion($this);
-			// echo "<pre>";
-			// print_r($cct);
-			// die();
 			$id_cct = $cct[0]['id_cct'];
 			$str_cct = "CCT: {$cct[0]['cve_centro']}";
 			$str_nombre = "ESCUELA: {$cct[0]['nombre_centro']}";
@@ -31,9 +27,6 @@ class Reporte extends CI_Controller {
 			$dia_i = $arr_aux[2];
 			$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 			$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
-			// echo "<pre>";
-			// print_r($ciclo);
-			// die();
 			$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
 
 			$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
@@ -44,24 +37,17 @@ class Reporte extends CI_Controller {
 
 			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
 			foreach ($rutas as $ruta) {
-				// echo "<pre>";
-				// print_r($ruta);
-				// die();
 				$id_tprioritario = $ruta['id_tprioritario'];
 				//DATOS
 				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
 
 			}
 			$pdf->Output();
-			// $pdf->Output("F", "reportes/ejemplo.pdf");
-			// $response = array('link' => "reportes/ejemplo.pdf");
-			// Utilerias::enviaDataJson(200, $response, $this);
-			// exit;
-
-		// }
+		}
 	}// get_reporte()
 
 	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario){
+		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = "Orden: {$ruta['orden']}";
 				$tema = "Tema: {$ruta['tema']}";
 				$pdf->Ln(4);
@@ -162,7 +148,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->Row(array(
 					utf8_decode("No."),
-					utf8_decode("Actividad"),
+					utf8_decode("Acción"),
 					utf8_decode("Ámbito"),
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),
@@ -188,6 +174,7 @@ class Reporte extends CI_Controller {
 						utf8_decode($item["avance"])
 					));
 				}
+		}
 	}
 
 
