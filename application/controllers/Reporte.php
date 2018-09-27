@@ -28,12 +28,11 @@ class Reporte extends CI_Controller {
 			$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 			$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
 			$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
-
 			$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
 			//incializamos variables de header
 			$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
 			$pdf->AliasNbPages();
-			$pdf->AddPage();
+			$pdf->AddPage('L');
 
 			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
 			foreach ($rutas as $ruta) {
@@ -49,18 +48,17 @@ class Reporte extends CI_Controller {
 	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario){
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = "Orden: {$ruta['orden']}";
-				$tema = "Tema: {$ruta['tema']}";
+				$tema = "Prioridad: {$ruta['tema']}";
 				$pdf->Ln(4);
 				$pdf->SetFont('Arial','B',11);
-				$pdf->SetWidths(array(50,80,50)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(50,200)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255,255,255);
-				$pdf->SetAligns(array("L","C","C"));
-				$pdf->SetLineW(array(0,0,0));
-				$pdf->SetTextColor(0,0,0);
+				$pdf->SetAligns(array("L","C"));
+				$pdf->SetLineW(array(0,0));
+				$pdf->SetTextColor(0,0);
 					$pdf->Row2(array(
 						utf8_decode($orden),
-						utf8_decode($tema),
-						utf8_decode('Indicador APA:')
+						utf8_decode($tema)
 					));
 
 				$obj1 = "Objetivo1: {$ruta['objetivo1']}";
@@ -136,7 +134,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetFont('Arial','B',11);
 
 				//Table with 4 columns
-				$pdf->SetWidths(array(10,31,30,35,26,26,26)); // ancho de primer columna, segunda, tercera y cuarta
+				$pdf->SetWidths(array(20,41,40,45,46,46,46)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
 

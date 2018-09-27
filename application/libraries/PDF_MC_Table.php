@@ -201,7 +201,7 @@ class PDF_MC_Table extends FPDF{
       // Título
       $this->SetTextColor(0,0,0);
       $this->SetFont('Arial','B',16);
-      $this->Cell(75);
+      $this->Cell(120);
       $this->Cell(40,20,'Ruta de Mejora',0,1,'C');
 }
 
