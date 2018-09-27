@@ -4,8 +4,8 @@ $(function() {
 $("#btn_rutamejora_eliminareg").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
-        'Error!',
-        "Favor de seleccionar un tema prioritario a eliminar ",
+        '¡Error!',
+        "Selecciona un tema prioritario a eliminar ",
         "error"
       );
   }
@@ -52,16 +52,16 @@ Rm_delete_tp.prototype.delete_tp = function(id_tprioritario){
   if (result.estatus) {
     obj_rm_tp.limpia_campos_tp();
     swal(
-        'Correcto!',
-        "Se eliminó tema prioritario correctamente",
+        '¡Correcto!',
+        "Se eliminó el tema prioritario correctamente",
         'success'
       );
       obj.get_view();
   }
   else {
     swal(
-        'Error!',
-        "Al eliminar tema prioritario ",
+        '¡Error!',
+        "Al eliminar el tema prioritario ",
         'error'
       );
   }

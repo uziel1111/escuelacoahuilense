@@ -32,16 +32,16 @@
             <div class="row">
               <div class="col-6">
                 <label><span class="badge badge-secondary h5 text-white">1.</span> En este ciclo escolar quiero que mi escuela (Misión): <em class="fas fa-question-circle" data-toggle="popover" data-placement="top" data-content="En esta sección se hace una descripción
-                  breve (de no más de 80 palabras aproximadamente) que clarifique cuál es
+                  breve (de no más de 80 palabras Aproximadaménte) que clarifique cual es
                   la contribución que debe hacer la escuela a la comunidad donde radica,
-                  dónde se verá su impacto positivo y de qué forma deberá ser vista por
+                  donde se verá su impacto positivo y de que forma deberá ser vista por
                   quienes interactúan con ella (alumnos, padres de familia, autoridades
-                  locales, sociedad en general)"></em></label>
+                  locales y sociedad en general)"></em></label>
                   <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"><?= $mision ?></textarea>
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><label style="color:red;">*</label><br>
-                  <select class="selectpicker form-control" title="SELECCIONE UNA OPCIÓN" id="slc_rm_prioridad">
+                  <select class="selectpicker form-control" title="SELECCIONA UNA OPCIÓN" id="slc_rm_prioridad">
                     <!-- <option value="">SELECCIONE UNA OPCIÓN</option> -->
                     <?php foreach ($arr_prioridades as $item): ?>
                             <option value="<?= $item['id_prioridad'] ?>"><?= $item['prioridad'] ?></option>
@@ -127,7 +127,7 @@
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">6.</span> Programas educativos de apoyo</label>
-                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_pa" title="SELECCIONE UNA OPCIÓN">
+                    <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_pa" title="SELECCIONA UNA OPCIÓN">
 
                       <?php foreach ($arr_progsapoyo as $item): ?>
                               <option value="<?= $item['id_programa_apoyo'] ?>"><?= $item['descripcion'] ?></option>
@@ -177,7 +177,7 @@
                       <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
 
                         <button type="button"
-                                onclick="obj_rm_tp.abrir('imagen')">Escoger archivo</button>
+                                onclick="obj_rm_tp.abrir('imagen')">Escoga un archivo</button>
                         <input type="file"
                                id="imagen" name="archivo"
                                onchange="obj_rm_tp.contar(this, 'glosaArchivos')" style="display: none" accept="application/pdf, image/*">
@@ -244,7 +244,12 @@
                           <!-- aqui ira el html de la tabla             -->
                           <div id="contenedor_tabla"></div>
                         </div>
-                              <label class="" style="">*Puede modificar el orden de los temas prioritarios arrastando el registro en la posición deseada.</label>
+                            </div>
+                            <div class="row">
+                              <div class="col-12">
+                                <label class="" style="">*Selecciona un tema prioritario e inserta sus acciones.</label><br>
+                                <label class="" style="">*Puedes modificar el orden de los temas prioritarios arrastando el registro a la posición deseada.</label>
+                              </div>
                             </div>
 
 
@@ -297,7 +302,7 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <label>Ámbito</label>
-                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UNA OPCIÓN">
+                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UNA OPCIÓN">
                                   <?php foreach ($arr_ambitos as $item): ?>
                                           <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
                                   <?php endforeach; ?>
@@ -319,7 +324,7 @@
 
                               <div class="col-md-4">
                                 <label>Responsables</label>
-                                <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONE">
+                                <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
                                 <?= $responsables?>
                                 </select>
                                 <br>

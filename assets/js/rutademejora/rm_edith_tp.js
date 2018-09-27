@@ -4,8 +4,8 @@ $(function() {
 $("#btn_rutamejora_editar").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
-        'Error!',
-        "Favor de seleccionar un tema prioritario a editar ",
+        '¡Error!',
+        "Selecciona un tema prioritario a editar ",
         "error"
       );
   }
@@ -164,8 +164,8 @@ if (validacion == true) {
   if (result.estatus) {
     obj_rm_tp.limpia_campos_tp();
     swal(
-        'Correcto!',
-        "Se actualizo tema prioritario correctamente",
+        '¡Correcto!',
+        "Se actualizó el tema prioritario correctamente",
         'success'
       );
       obj.get_view();
@@ -179,7 +179,7 @@ if (validacion == true) {
   }
   else {
     swal(
-        'Error!',
+        '¡Error!',
         "Al actualizar tema prioritario ",
         'error'
       );

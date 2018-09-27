@@ -1,4 +1,4 @@
-<div class="card bg-light mb-3">
+<div class="card bg-light mb-3" hidden>
   <div class="card-header"><span class="badge badge-secondary h5 text-white">O</span> Deberá ingresar mediante el usuario y contraseña que utiliza actualmente para hacerlo en el Sistema de Control Escolar (SIECEC).</div>
   <div class="card-body">
     <p class="card-text">

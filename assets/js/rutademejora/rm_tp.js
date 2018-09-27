@@ -90,16 +90,16 @@ $("#btn_grabar_tp").click(function(){
       obj_rm_tp.limpia_campos_tp();
 
       swal(
-		      'Correcto!',
-		      "Se insertar tema prioritario correctamente",
+		      '¡Correcto!',
+		      "Se inserto el tema prioritario correctamente",
 		      'success'
 		    );
         obj.get_view();
     }
     else {
       swal(
-          'Error!',
-          "Al insertar tema prioritario ",
+          '¡Error!',
+          "Al insertar el tema prioritario ",
           'danger'
         );
     }
@@ -132,8 +132,8 @@ if ($("#slc_rm_prioridad").val()!='') {
       }
       else {
         swal(
-            'Error!',
-            "Favor de escribir evidencia",
+            '!Error!',
+            "Escriba evidencia",
             "error"
           );
           return false;
@@ -141,8 +141,8 @@ if ($("#slc_rm_prioridad").val()!='') {
     }
     else {
       swal(
-          'Error!',
-          "Favor de escribir problemática ",
+          '¡Error!',
+          "Escriba problemática ",
           "error"
         );
         return false;
@@ -150,8 +150,8 @@ if ($("#slc_rm_prioridad").val()!='') {
   }
   else {
     swal(
-        'Error!',
-        "Favor de escribir metas y objetivos",
+        '¡Error!',
+        "Escriba metas y objetivos",
         "error"
       );
       return false;
@@ -159,8 +159,8 @@ if ($("#slc_rm_prioridad").val()!='') {
 }
 else {
   swal(
-      'Error!',
-      "Favor de seleccionar una prioridad del sistema básico de mejora",
+      '¡Error!',
+      "Selecciona una prioridad del sistema básico de mejora",
       "error"
     );
     return false;
@@ -240,7 +240,7 @@ Rm_tp.prototype.subir_archivo = function(){
         //una vez finalizado correctamente
         success: function(data){
         	swal(
-		      'Listo!',
+		      '!Listo!',
 		      'Su archivo se subio correctamente',
 		      'success'
 		    );
@@ -267,7 +267,7 @@ Rm_tp.prototype.abrir= function(id){
 
 Rm_tp.prototype.contar= function(elem, idGlosa){
   var glosa = document.getElementById(idGlosa);
-  
+
   if(elem.files.length == 0) {
       glosa.innerText = "Ningun archivo seleccionado";
   } else {
