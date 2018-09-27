@@ -84,7 +84,7 @@ $("#slc_apoyoreq").selectpicker('val', datos[0]['ids_apoyo_req_se'].split(','));
 $("#slc_apoyoreq").selectpicker("refresh");
 $("#txt_rm_otroapoyreq").val(datos[0]['otro_apoyo_req_se']);
 $("#txt_rm_especifiqueapyreq").val(datos[0]['especifique_apoyo_req']);
-if (datos[0]['path_evidencia'] !='') {
+if (datos[0]['path_evidencia'] !='' && datos[0]['path_evidencia'] !== null) {
   $("#img_evid").prop("src", "http://localhost/escuelacoahuilense/"+datos[0]['path_evidencia']);
 
   $("#glosaArchivos").html(datos[0]['path_evidencia'].split("/")[3]);

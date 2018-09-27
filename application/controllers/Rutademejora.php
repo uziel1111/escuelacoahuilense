@@ -229,30 +229,29 @@ class Rutademejora extends CI_Controller {
 
 			$estatus = $this->Rutamejora_model->insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
 			if ($estatus != false) {
-				// echo "<pre>";print_r($estatus);
-				$ruta_archivos = "evidencias_rm/{$id_cct}/{$estatus}/";
-				$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$estatus}/$nombre_archivo";
-				$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$estatus,$ruta_archivos_save);
-				if(!is_dir($ruta_archivos)){
-					mkdir($ruta_archivos, 0777, true);}
-																$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-																$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-																$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-																$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-																$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+				if ($nombre_archivo!='') {
+					$ruta_archivos = "evidencias_rm/{$id_cct}/{$estatus}/";
+					$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$estatus}/$nombre_archivo";
+					$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$estatus,$ruta_archivos_save);
+					if(!is_dir($ruta_archivos)){
+						mkdir($ruta_archivos, 0777, true);}
+																	$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+																	$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+																	$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+																	$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+																	$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
 
-																$uploadPath              = $ruta_archivos;
-																$config['upload_path']   = $uploadPath;
-																$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+																	$uploadPath              = $ruta_archivos;
+																	$config['upload_path']   = $uploadPath;
+																	$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
-																$this->load->library('upload', $config);
-																$this->upload->initialize($config);
-																if ($this->upload->do_upload('userFile')) {
-																		$fileData = $this->upload->data();
-																		$str_view = true;
-																}
-
-				// $response = array('str_view' => $str_view);
+																	$this->load->library('upload', $config);
+																	$this->upload->initialize($config);
+																	if ($this->upload->do_upload('userFile')) {
+																			$fileData = $this->upload->data();
+																			$str_view = true;
+																	}
+				}
 				$estatus = true;
 			}
 			$response = array('estatus' => $estatus);
