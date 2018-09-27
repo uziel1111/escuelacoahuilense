@@ -103,7 +103,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            data:{"id_tprioritario":id_tprioritario},
            success:function(data){
              var vista = data.tabla;
-             console.log(data.datos);
+             // console.log(data.datos);
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
              $("#label_escuela").text(data.datos['escuela']);
@@ -179,6 +179,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
              $("#contenedor_acciones_id").append(vista);
              obj_rm_acciones_tp.iniciatabla();
              obj_rm_acciones_tp.limpia_camposform();
+             $('#btn_editando_accion').hide();
+             $('#btn_agregar_accion').show();
            },
            error: function(error){
              console.log(error);
@@ -244,9 +246,9 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             $("#txt_rm_obs").val(editado['mat_insumos']);
             $("#slc_rm_presp").val(editado['ids_responsables']);
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
-            console.log('ids_responsables');
+            // console.log('ids_responsables');
             var ids = editado['ids_responsables'].split(',');
-            console.log(ids);
+            // console.log(ids);
             for(var i = 0; i < ids.length; i++){
                 if(ids[i] == 0){
                     $('#otro_responsable').val(editado['otro_responsable']);
@@ -261,7 +263,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             $("#datepicker2").val(fin[1]+"/"+fin[2]+"/"+fin[0]);
             $('#btn_editando_accion').show();
             $('#btn_agregar_accion').hide();
-            console.log(editado);
+            // console.log(editado);
            },
            error: function(error){
              console.log(error);
@@ -380,16 +382,26 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   var dia2 = f_termino[1];
   var anio2 = f_termino[2];
   if(anio2 >= anio1){
+    anioval = true;
     valida = true;
     if(mes2 >= mes1){
+      mesval = true;
       valida = true;
       if(dia2 >= dia1){
         valida = true;
       }else{
-        return false;
+        if(mesval == true){
+          valida = true;
+        }else{
+          return false;
+        }
       }
     }else{
-      return false;
+      if(anioval == true){
+        valida = true;
+      }else{
+        return false;
+      }
     }
   }
   return valida;

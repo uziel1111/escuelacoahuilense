@@ -42,12 +42,7 @@ function Tabla(){
         $("#contenedor_tabla").empty();
         $("#contenedor_tabla").append(view);
         obj.inicio();
-        $("#id_tabla_rutas tr").click(function(){
-           $(this).addClass('selected').siblings().removeClass('selected');
-           var value=$(this).find('td:first').text();
-           // alert(value);    
-           obj.id_tprioritario = value;
-        });
+        obj.funcionalidadselect();
       },
       error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
     });
@@ -63,12 +58,22 @@ function Tabla(){
              $("#contenedor_tabla").empty();
              $("#contenedor_tabla").append(tabla);
              obj.inicio();
+             obj.funcionalidadselect();
            },
            error: function(error){
              console.log(error);
            }
        });
- };
+  };
+
+  Tabla.prototype.funcionalidadselect = function(){
+    $("#id_tabla_rutas tr").click(function(){
+       $(this).addClass('selected').siblings().removeClass('selected');
+       var value=$(this).find('td:first').text(); 
+       obj.id_tprioritario = value;
+       id_tprioritario = 0;
+    });
+  }
 
 
 
