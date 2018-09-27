@@ -46,7 +46,7 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
 
   document.getElementById('btn_actualizar_tp').removeAttribute("hidden");
   document.getElementById('btn_grabar_tp').setAttribute("hidden", true);
-  document.getElementById('btn_get_reporte').setAttribute("hidden", true);
+  // document.getElementById('btn_get_reporte').setAttribute("hidden", true);
   document.getElementById('btn_rutamejora_editar').setAttribute("hidden", true);
   document.getElementById('btn_rutamejora_eliminareg').setAttribute("hidden", true);
   document.getElementById('btn_rutamejora_acciones').setAttribute("hidden", true);
@@ -84,10 +84,14 @@ $("#slc_apoyoreq").selectpicker('val', datos[0]['ids_apoyo_req_se'].split(','));
 $("#slc_apoyoreq").selectpicker("refresh");
 $("#txt_rm_otroapoyreq").val(datos[0]['otro_apoyo_req_se']);
 $("#txt_rm_especifiqueapyreq").val(datos[0]['especifique_apoyo_req']);
+if (datos[0]['path_evidencia'] !='') {
+  $("#img_evid").prop("src", "http://localhost/escuelacoahuilense/"+datos[0]['path_evidencia']);
 
-$("#img_evid").prop("src", "http://localhost/escuelacoahuilense/"+datos[0]['path_evidencia']);
+  $("#glosaArchivos").html(datos[0]['path_evidencia'].split("/")[3]);
+  document.getElementById('btn_clr_img').removeAttribute("hidden");
+  $("#edit_img").val(true);
+}
 
-$("#glosaArchivos").html(datos[0]['path_evidencia'].split("/")[3]);
 
 
 };
@@ -166,11 +170,12 @@ if (validacion == true) {
       );
       obj.get_view();
       document.getElementById('btn_grabar_tp').removeAttribute("hidden");
-      document.getElementById('btn_get_reporte').removeAttribute("hidden");
+      // document.getElementById('btn_get_reporte').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_editar').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_eliminareg').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_acciones').removeAttribute("hidden");
       document.getElementById('btn_actualizar_tp').setAttribute("hidden", true);
+
   }
   else {
     swal(

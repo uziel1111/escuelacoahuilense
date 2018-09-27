@@ -172,6 +172,8 @@
                       <input type="hidden" name="otroapoyreq" id="id_otroapoyreq">
                       <input type="hidden" name="especifiqueapyreq" id="id_especifiqueapyreq">
 
+                      <input type="hidden" name="edit_img" id="edit_img" value="false">
+
                       <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
 
                         <button type="button"
@@ -180,7 +182,13 @@
                                id="imagen" name="archivo"
                                onchange="obj_rm_tp.contar(this, 'glosaArchivos')" style="display: none" accept="application/pdf, image/*">
                         <span id="glosaArchivos">Ningun archivo seleccionado</span>
-                      <img id="img_evid"  alt="" width="280" height="100" />
+
+                        <br>
+                        <div class="col-8">
+                          <button id="btn_clr_img" type="button" class="close" aria-label="Close" hidden><span aria-hidden="true">&times;</span></button>
+                          <img id="img_evid"  alt="" class="img-fluid" alt="Responsive image"/>
+                        </div>
+
         					    <!-- <p id="mensaje_alertafile" style="color:red;">*Seleccione un archivo</p> -->
                     </div>
                     </form>

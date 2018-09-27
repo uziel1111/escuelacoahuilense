@@ -76,6 +76,14 @@ $("#btn_get_reporte").click(function(){
 });
 
 
+$("#btn_clr_img").click(function(){
+  $("#img_evid").prop("src", "");
+  $("#glosaArchivos").html("Ningun archivo seleccionado");
+  document.getElementById('btn_clr_img').setAttribute("hidden", true);
+  $("#edit_img").val(false);
+});
+
+
 function Rutademejora(){
   _thisrm = this;
 }
@@ -87,7 +95,7 @@ function Rutademejora(){
 //      data:{"id_tprioritario":id_tprioritario},
 //      success:function(data){
 //       console.log(data);
-//       var url = location.origin+"/escuelacoahuilense/"+data.link; 
+//       var url = location.origin+"/escuelacoahuilense/"+data.link;
 //       alert(url);
 //       window.open(url);
 //      },

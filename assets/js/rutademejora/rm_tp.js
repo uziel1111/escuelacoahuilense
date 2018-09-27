@@ -264,6 +264,7 @@ Rm_tp.prototype.limpia_campos_tp = function(){
   $("#from_aux")[0].reset();
   $("#img_evid").prop("src", "");
   $("#glosaArchivos").html("Ningun archivo seleccionado");
+  document.getElementById('btn_clr_img').setAttribute("hidden", true);
 
 };
 
@@ -330,6 +331,7 @@ Rm_tp.prototype.readURL= function(input){
     var reader = new FileReader();
 
     reader.onload = function(e) {
+      document.getElementById('btn_clr_img').removeAttribute("hidden");
       // alert(e.target.result);
       $('#img_evid').attr('src', e.target.result);
     }
