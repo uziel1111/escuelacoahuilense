@@ -162,7 +162,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->Row(array(
 					utf8_decode("No."),
-					utf8_decode("Actividad"),
+					utf8_decode("Acción"),
 					utf8_decode("Ámbito"),
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),

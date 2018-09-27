@@ -14,7 +14,7 @@ $("#cerrar_modal_acciones").click(function(){
 $("#btn_rutamejora_acciones").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
-        'Error!',
+        '¡Error!',
         "Favor de seleccionar un tema prioritario a Exportar",
         "error"
       );
@@ -33,14 +33,14 @@ $("#id_btn_elimina_accion").click(function(){
   // alert(Rm_acciones_tp.id_accion_select);
   if(Rm_acciones_tp.id_accion_select === undefined){
     swal(
-        'Error!',
+        '¡Error!',
         "Favor de seleccionar una acción para eliminar ",
         "error"
       );
   }else{
     swal({
-      title: '¿Esta seguro de eliminar esta acción?',
-      text: "Una vez eliminado no se podra recuperar",
+      title: '¿Estas seguro de eliminar esta acción?',
+      text: "Una véz eliminado no se podra recuperar",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -58,7 +58,7 @@ $("#id_btn_elimina_accion").click(function(){
 $("#id_btn_edita_accion").click(function() {
   if(Rm_acciones_tp.id_accion_select === undefined){
     swal(
-        'Error!',
+        '¡Error!',
         "Favor de seleccionar una acción para editar ",
         "error"
       );
@@ -206,7 +206,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
            success:function(data){
             if(data.mensaje == 'ok'){
               swal(
-                'Correcto!',
+                '¡Correcto!',
                 "La acción se elimino correctamente",
                 "success"
               );
@@ -216,7 +216,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                obj_rm_acciones_tp.iniciatabla();
             }else{
               swal(
-                'Error!',
+                '¡Error!',
                 "La operación no se pudo completar intente nuevamente",
                 "error"
               );
@@ -285,14 +285,14 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                       obj_rm_acciones_tp.save_accion();
                     }else{
                       swal(
-                        'Error!',
+                        '¡Error!',
                         "La fecha de termino no puede ser menor a la fecha de inicio",
                         'danger'
                       );
                     }
                   }else{
                     swal(
-                        'Error!',
+                        '¡Error!',
                         "Introudzca indicador de medición",
                         'danger'
                       );
@@ -300,8 +300,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               }else{
                 if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() == ""){
                     swal(
-                        'Error!',
-                        "Introudzca nombre del otro responsable",
+                        '¡Error!',
+                        "Introduzca nombre del otro responsable",
                         'danger'
                       );
                   }else{
@@ -310,14 +310,14 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                         obj_rm_acciones_tp.save_accion();
                       }else{
                         swal(
-                          'Error!',
+                          '¡Error!',
                           "La fecha de termino no puede ser menor a la fecha de inicio",
                           'danger'
                         );
                       }
                     }else{
                       swal(
-                        'Error!',
+                        '¡Error!',
                         "Introudzca indicador de medición",
                         'danger'
                       );
@@ -326,42 +326,42 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               }
             }else{
               swal(
-              'Error!',
+              '¡Error!',
               "Introudzca fecha de termino",
               'danger'
             );
             }
           }else{
             swal(
-              'Error!',
+              '¡Error!',
               "Introudzca fecha de inicio",
               'danger'
             );
           }
         }else{
           swal(
-          'Error!',
+          '¡Error!',
           "Seleccione un encargado",
           'danger'
         );
         }
       }else{
         swal(
-          'Error!',
+          '¡Error!',
           "Introudzca materiales o insumos ",
           'danger'
         );
       }
     }else{
       swal(
-          'Error!',
+          '¡Error!',
           "Introduzca una acción",
           'danger'
         );
     }
   }else{
     swal(
-          'Error!',
+          '¡Error!',
           "Seleccione ámbito ",
           'danger'
         );

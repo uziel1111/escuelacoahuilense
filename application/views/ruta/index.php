@@ -296,8 +296,8 @@
                           <div class="form-group form-group-style-1">
                             <div class="row">
                               <div class="col-md-6">
-                                <label>Ámbito</label>
-                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UNA OPCIÓN">
+                                <label><label style="color:red;">*</label>Ámbito</label>
+                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UNA OPCIÓN">
                                   <?php foreach ($arr_ambitos as $item): ?>
                                           <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
                                   <?php endforeach; ?>
@@ -306,11 +306,11 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-6">
-                                <label>Acción:</label>
+                                <label><label style="color:red;">*</label>Acción:</label>
                                 <textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
                               <div class="col-md-6">
-                                <label>Materiales e insumos a utilizar:</label>
+                                <label><label style="color:red;">*</label>Materiales e insumos a utilizar:</label>
                                 <textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
 
@@ -318,15 +318,15 @@
                             <div class="row mt-15">
 
                               <div class="col-md-4">
-                                <label>Responsables</label>
-                                <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONE">
+                                <label><label style="color:red;">*</label>Responsables</label>
+                                <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
                                 <?= $responsables?>
                                 </select>
                                 <br>
                                 <textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
                               </div>
                               <div class="col-md-4">
-                                <label>Fecha de inicio</label>
+                                <label><label style="color:red;">*</label>Fecha de inicio</label>
                                 <input id="datepicker1" />
                                 <script>
                                 $('#datepicker1').datepicker({
@@ -336,7 +336,7 @@
                               </div>
 
                               <div class="col-md-4">
-                                <label>Fecha de término</label>
+                                <label><label style="color:red;">*</label>Fecha de término</label>
                                 <input id="datepicker2" />
                                 <script>
                                 $('#datepicker2').datepicker({
@@ -347,14 +347,19 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-6">
-                                <label>Otro Responsable:</label>
+                                <label>Otro responsable:</label>
                                 <input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
                               </div>
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-12">
-                                <label>Indicadores de medición:</label>
+                                <label><label style="color:red;">*</label>Indicadores de medición:</label>
                                 <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
+                              </div>
+                            </div>
+                            <div class="row mt-15">
+                              <div class="col-md-12">
+                                <label style="color:red;">*Datos requeridos</label>
                               </div>
                             </div>
                             <div class="row mt-15">
