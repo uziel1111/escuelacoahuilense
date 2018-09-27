@@ -279,7 +279,15 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             if($("#datepicker2").val() != ""){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
                   if($("#txt_rm_indimed").val() != ""){
-                    obj_rm_acciones_tp.save_accion();
+                    if(obj_rm_acciones_tp.validadate()){
+                      obj_rm_acciones_tp.save_accion();
+                    }else{
+                      swal(
+                        'Error!',
+                        "La fecha de termino no puede ser menor a la fecha de inicio",
+                        'danger'
+                      );
+                    }
                   }else{
                     swal(
                         'Error!',
@@ -296,7 +304,15 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                       );
                   }else{
                     if($("#txt_rm_indimed").val() != ""){
-                      obj_rm_acciones_tp.save_accion();
+                      if(obj_rm_acciones_tp.validadate()){
+                        obj_rm_acciones_tp.save_accion();
+                      }else{
+                        swal(
+                          'Error!',
+                          "La fecha de termino no puede ser menor a la fecha de inicio",
+                          'danger'
+                        );
+                      }
                     }else{
                       swal(
                         'Error!',
@@ -348,5 +364,34 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           'danger'
         );
   }
+ }
+
+
+ Rm_acciones_tp.prototype.validadate = function(){
+  var valida = false;
+  var f_inicio = $("#datepicker1").val(); //09/27/2018
+  var f_termino = $("#datepicker2").val(); //09/28/2018
+  var f_inicio = f_inicio.split("/");
+  var mes1 = f_inicio[0];
+  var dia1 = f_inicio[1];
+  var anio1 = f_inicio[2];
+  var f_termino = f_termino.split("/");
+  var mes2 = f_termino[0];
+  var dia2 = f_termino[1];
+  var anio2 = f_termino[2];
+  if(anio2 >= anio1){
+    valida = true;
+    if(mes2 >= mes1){
+      valida = true;
+      if(dia2 >= dia1){
+        valida = true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+  return valida;
  }
 
