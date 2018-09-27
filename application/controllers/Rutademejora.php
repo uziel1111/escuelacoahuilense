@@ -149,7 +149,7 @@ class Rutademejora extends CI_Controller {
 		}// index()
 
 		public function getPersonal($cct){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$curl = curl_init();
 				$method = "POST";
 				$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
@@ -194,24 +194,24 @@ class Rutademejora extends CI_Controller {
 		//
 		// }
 
-		public function editarRuta(){
-			if(Utilerias::haySesionAbiertacct()){
-				$idruta = $this->input->post('idrutaeditar');
-				// $data = $this->Rutamejora_model->recupera_ruta($idruta);
+		// public function editarRuta(){
+		// 	if(Utilerias::haySesionAbiertacct()){
+		// 		$idruta = $this->input->post('idrutaeditar');
+		// 		// $data = $this->Rutamejora_model->recupera_ruta($idruta);
 
-				Utilerias::enviaDataJson(200, $data, $this);
-				exit;
-			}
-		}
+		// 		Utilerias::enviaDataJson(200, $data, $this);
+		// 		exit;
+		// 	}
+		// }
 
-		public function eliminaRuta(){
-			if(Utilerias::haySesionAbiertacct()){
-				$idruta = $this->input->post('idrutaeditar');
-			}
-		}
+		// public function eliminaRuta(){
+		// 	if(Utilerias::haySesionAbiertacct()){
+		// 		$idruta = $this->input->post('idrutaeditar');
+		// 	}
+		// }
 
 		public function insert_tema_prioritario(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$id_prioridad = $this->input->post("id_prioridad");
@@ -264,7 +264,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function insert_update_misioncct(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$misioncct = $this->input->post("misioncct");
@@ -282,7 +282,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function bajarutamejora(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
@@ -321,7 +321,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 	public function update_order(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $this->cct[0]['id_cct'];
 			$datos = $this->input->post('orden');
@@ -366,7 +366,7 @@ class Rutademejora extends CI_Controller {
 			}
 		}
 		public function get_datos_edith_tp(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$id_tprioritario = $this->input->post('id_tprioritario');
 				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
 				// echo "<pre>";print_r($arr_datos);die();
@@ -455,7 +455,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function delete_tp(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$id_tprioritario = $this->input->post("id_tprioritario");
@@ -476,7 +476,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 	public function get_view_acciones(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$data = array();
 			$str_view = $this->load->view("ruta/acciones", $data, TRUE);
@@ -487,7 +487,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function save_accion(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$id_ambito = $this->input->post('id_ambito');
 	  		$accion = $this->input->post('accion');
@@ -602,7 +602,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function get_table_acciones(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
@@ -647,7 +647,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function delete_accion(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$idaccion = $this->input->post('idaccion');
 			$delete = $this->Rutamejora_model->deleteaccion($idaccion, $id_tprioritario);
@@ -663,7 +663,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	private function arma_tabla_acciones($id_tprioritario){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
@@ -701,7 +701,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 		public function set_avance(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$val_slc = $this->input->post('val_slc');
 				$var_id_cte = $this->input->post('var_id_cte');
 				$var_id_cct = $this->input->post('var_id_cct');
@@ -721,7 +721,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 	public function edit_accion(){
-		if(Utilerias::haySesionAbiertacct()){
+		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$idaccion = $this->input->post('idaccion');
 			$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
@@ -731,7 +731,7 @@ class Rutademejora extends CI_Controller {
 		}
 	}
 		public function get_avance(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
@@ -745,7 +745,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function set_file(){
-			if(Utilerias::haySesionAbiertacct()){
+			if(Utilerias::haySesionAbiertacct($this)){
 				$ruta_archivos = "prueba/id_cct/12/";
 				$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
 				$ruta_archivos_save = "prueba/id_cct/12/$nombre_archivo";
