@@ -466,7 +466,10 @@ class Rutademejora extends CI_Controller {
 			// echo "<pre>";print_r($url);die();
 			$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
 			if ($estatus) {
-				unlink($url);
+				if ($url!='') {
+					unlink($url);
+				}
+
 			}
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
