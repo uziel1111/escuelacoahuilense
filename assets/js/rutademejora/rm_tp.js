@@ -267,7 +267,7 @@ Rm_tp.prototype.abrir= function(id){
 
 Rm_tp.prototype.contar= function(elem, idGlosa){
   var glosa = document.getElementById(idGlosa);
-  // console.log(elem.files[0]['name']);
+  
   if(elem.files.length == 0) {
       glosa.innerText = "Ningun archivo seleccionado";
   } else {

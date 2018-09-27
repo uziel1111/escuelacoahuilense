@@ -304,7 +304,7 @@ function  get_datos_edith_tp($id_tprioritario){
     LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario
     LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct= av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND tpa.id_accion =av.id_accion
     WHERE tp.id_cct= {$id_cct}
-    ORDER BY tpa.id_accion DESC";
+    ORDER BY tp.id_tprioritario, tpa.id_accion DESC";
         // echo $str_query; die();
     return $this->db->query($str_query)->result_array();
 
