@@ -10,7 +10,21 @@ $("#btn_rutamejora_eliminareg").click(function(){
       );
   }
   else {
-    obj_rm_delete_tp.delete_tp(obj.id_tprioritario);
+    swal({
+      title: '¿Esta seguro de eliminar el tema prioritario?',
+      text: "Una vez eliminado no se podra recuperar",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        obj_rm_delete_tp.delete_tp(obj.id_tprioritario);
+      }
+    })
+
   }
 });
 
