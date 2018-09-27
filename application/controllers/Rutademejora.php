@@ -408,8 +408,8 @@ class Rutademejora extends CI_Controller {
 						unlink($url);
 					}
 					$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,'');
+					$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
 				}
-				$estatus = true;
 			}
 			else {
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
