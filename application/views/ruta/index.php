@@ -37,7 +37,7 @@
                   donde se verá su impacto positivo y de que forma deberá ser vista por
                   quienes interactúan con ella (alumnos, padres de familia, autoridades
                   locales y sociedad en general)"></em></label>
-                  <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="80"><?= $mision ?></textarea>
+                  <textarea id="txt_rm_identidad" class="form-control fz-20" rows="2" maxlength="150"><?= $mision ?></textarea>
                 </div>
                 <div class="col-md-6">
                   <label><span class="badge badge-secondary h5 text-white">2.</span> Prioridad del sistema básico de mejora</label><label style="color:red;">*</label><br>
@@ -67,7 +67,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 1<label style="color:red;">*</label></span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_ob1"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="150" id="txt_rm_ob1"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -75,7 +75,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Objetivo 2</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80"id="txt_rm_ob2"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="150"id="txt_rm_ob2"></textarea>
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 1<label style="color:red;">*</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_met1"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="150" id="txt_rm_met1"></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -93,14 +93,14 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Meta 2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                       </div>
-                      <textarea class="form-control" aria-label="With textarea" maxlength="80" id="txt_rm_met2"></textarea>
+                      <textarea class="form-control" aria-label="With textarea" maxlength="150" id="txt_rm_met2"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label><label style="color:red;">*</label>
-                    <textarea id="txt_rm_problem" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_problem" class="form-control" rows="2" maxlength="150"></textarea>
                     <!-- <select class="selectpicker form-control" id="slc_problem">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_problematicas as $item): ?>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">5.</span> Evidencias de las problematicas</label><label style="color:red;">*</label>
-                    <textarea id="txt_rm_eviden" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_eviden" class="form-control" rows="2" maxlength="150"></textarea>
                     <!-- <select class="selectpicker form-control"multiple data-selected-text-format="count > 3" id="slc_evidencias">
                       <option value="">SELECCIONE UNA OPCIÓN</option>
                       <?php foreach ($arr_evidencias as $item): ?>
@@ -140,18 +140,19 @@
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">7.</span> ¿Cómo ayudan los programas de apoyo?</label>
                     <br>
-                    <textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="150"></textarea>
                   </div>
 
                 </div>
                 <div class="row mt-15">
                   <div class="col-md-6">
                     <label><span class="badge badge-secondary h5 text-white">8.</span> Observaciones del director</label>
-                    <textarea id="txt_rm_obs_direc" class="form-control" rows="2" maxlength="80"></textarea>
+                    <textarea id="txt_rm_obs_direc" class="form-control" rows="2" maxlength="150"></textarea>
                   </div>
                   <div class="col-6">
                     <input type="text" name="" id="inp_tmp_id_tprioritario" value="" hidden>
                     <label><span class="badge badge-secondary h5 text-white">9.</span> Subir evidencia (imagen o pdf) </label>
+                    <label class="" style="color:red;">*Disponible a partir del Consejo Técnico Escolar 2.</label><br>
                     <br>
                     <form enctype="multipart/form-data" id="from_aux" class="formulario1">
                     <div class="form-group">
@@ -176,7 +177,7 @@
 
                       <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
 
-                        <button type="button"
+                        <button type="button" disabled="true"
                                 onclick="obj_rm_tp.abrir('imagen')">Escoga un archivo</button>
                         <input type="file"
                                id="imagen" name="archivo"
@@ -247,7 +248,7 @@
                             </div>
                             <div class="row">
                               <div class="col-12">
-                                <label class="" style="">*Selecciona un tema prioritario e inserta sus acciones.</label><br>
+                                <label class="" style="font-size:15pt;font-weight: bold;">*Selecciona una prioridad e inserta sus acciones.</label><br>
                                 <label class="" style="">*Puedes modificar el orden de los temas prioritarios arrastando el registro a la posición deseada.</label>
                               </div>
                             </div>
@@ -311,11 +312,11 @@
                             <div class="row mt-15">
                               <div class="col-md-6">
                                 <label><label style="color:red;">*</label>Acción:</label>
-                                <textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="80"></textarea>
+                                <textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="150"></textarea>
                               </div>
                               <div class="col-md-6">
                                 <label><label style="color:red;">*</label>Materiales e insumos a utilizar:</label>
-                                <textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="80"></textarea>
+                                <textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="150"></textarea>
                               </div>
 
                             </div>
@@ -357,7 +358,7 @@
                             <div class="row mt-15">
                               <div class="col-md-12">
                                 <label><label style="color:red;">*</label>Indicadores de medición:</label>
-                                <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="80"></textarea>
+                                <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="150"></textarea>
                               </div>
                             </div>
                             <div class="row mt-15">

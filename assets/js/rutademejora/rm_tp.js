@@ -91,7 +91,7 @@ $("#btn_grabar_tp").click(function(){
 
       swal(
 		      '¡Correcto!',
-		      "Se inserto el tema prioritario correctamente",
+		      "Se insertó el tema prioritario correctamente",
 		      'success'
 		    );
         obj.get_view();
