@@ -34,9 +34,10 @@ class Rutademejora extends CI_Controller {
 			if(Utilerias::verifica_sesion_redirige($this)){
 				$this->llenadatos();
 			}else{
-			    $usuario = $this->input->post('usuario');
-			    $pass = $this->input->post('password');
-			    $turno = $this->input->post('turno_id');
+			    $usuario = strtoupper($this->input->post('usuario'));
+			    $pass = strtoupper($this->input->post('password'));
+			    $turno = strtoupper($this->input->post('turno_id'));
+
 				$curl = curl_init();
 				$method = "POST";
 				$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";
