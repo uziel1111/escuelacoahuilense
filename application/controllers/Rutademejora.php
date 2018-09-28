@@ -9,20 +9,23 @@ class Rutademejora extends CI_Controller {
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
 			$this->load->model('Prioridad_model');
-		  $this->load->model('Problematica_model');
-		  $this->load->model('Evidencia_model');
-		  $this->load->model('Prog_apoyo_xcct_model');
-		  $this->load->model('Apoyo_req_model');
-		  $this->load->model('Ambito_model');
+		  	$this->load->model('Problematica_model');
+		  	$this->load->model('Evidencia_model');
+		  	$this->load->model('Prog_apoyo_xcct_model');
+		  	$this->load->model('Apoyo_req_model');
+		  	$this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
 
 		public function index(){
+			if(Utilerias::verifica_sesion_redirige($this)){
+				$this->llenadatos();
+			}else{
 				$data = $this->data;
 			    $data['error'] = '';
 			    $this->load->view('ruta/login',$data);
-			// }
+			}
 		}// index()
 
 		public function cerrar_sesion(){
@@ -78,84 +81,80 @@ class Rutademejora extends CI_Controller {
 		}// index()
 
 		public function llenadatos(){
-					$this->cct = Utilerias::get_cct_sesion($this);
-					$usuario = $this->cct[0]['cve_centro'];
-					$responsables = $this->getPersonal($usuario);
-					// echo "<pre>";
-					// 		print_r($this->cct);
-					// 		die();
-					$personas = $responsables->Personal;
-					$options = "";
-					if($responsables->procede == 1 && $responsables->status == 1){
-						foreach ($personas as $persona) {
-							$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
-						}
-                            $options .="<option value='0'>OTRO</option>";
-					}else{
-						$options .="<option value='0'>OTRO</option>";
-					}
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$usuario = $this->cct[0]['cve_centro'];
+			$responsables = $this->getPersonal($usuario);
 
-					$data['responsables'] = $options;
+			$personas = $responsables->Personal;
+			$options = "";
+			if($responsables->procede == 1 && $responsables->status == 1){
+				foreach ($personas as $persona) {
+					$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+				}
+                    $options .="<option value='0'>OTRO</option>";
+			}else{
+				$options .="<option value='0'>OTRO</option>";
+			}
+
+			$data['responsables'] = $options;
 
 
-					$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
-					$data['mision'] = $mision;
+			$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+			$data['mision'] = $mision;
 
-					$result_prioridades = $this->Prioridad_model->get_prioridades();
-				  if(count($result_prioridades)==0){
-				  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
-				  }else{
-				  $data['arr_prioridades'] = $result_prioridades;
-				  }
-				  $result_problematicas = $this->Problematica_model->get_problematicas();
-				  if(count($result_problematicas)==0){
-				  $data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
-				  }else{
-				  $data['arr_problematicas'] = $result_problematicas;
-				  }
-				  $result_evidencias = $this->Evidencia_model->get_evidencias();
-				  if(count($result_evidencias)==0){
-				  $data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
-				  }else{
-				  $data['arr_evidencias'] = $result_evidencias;
-				  }
-				  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo(790,4);//id_cct, id_ciclo
-				  if(count($result_progsapoyo)==0){
-				  $data['arr_progsapoyo'] = array(	'-1' => 'Error recuperando los progsapoyo' );
-				  }else{
-				  $data['arr_progsapoyo'] = $result_progsapoyo;
-				  }
-				  $result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
-				  if(count($result_apoyosreq)==0){
-				  $data['arr_apoyosreq'] = array(	'-1' => 'Error recuperando los apoyosreq' );
-				  }else{
-				  $data['arr_apoyosreq'] = $result_apoyosreq;
-				  }
-				  $result_ambitos = $this->Ambito_model->get_ambitos();
-				  if(count($result_ambitos)==0){
-				  $data['arr_ambitos'] = array(	'-1' => 'Error recuperando los ambitos' );
-				  }else{
-				  $data['arr_ambitos'] = $result_ambitos;
-				  }
+			$result_prioridades = $this->Prioridad_model->get_prioridades();
+			  if(count($result_prioridades)==0){
+			  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
+			  }else{
+			  $data['arr_prioridades'] = $result_prioridades;
+			  }
+			  $result_problematicas = $this->Problematica_model->get_problematicas();
+			  if(count($result_problematicas)==0){
+			  $data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
+			  }else{
+			  $data['arr_problematicas'] = $result_problematicas;
+			  }
+			  $result_evidencias = $this->Evidencia_model->get_evidencias();
+			  if(count($result_evidencias)==0){
+			  $data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
+			  }else{
+			  $data['arr_evidencias'] = $result_evidencias;
+			  }
+			  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo(790,4);//id_cct, id_ciclo
+			  if(count($result_progsapoyo)==0){
+			  $data['arr_progsapoyo'] = array(	'-1' => 'Error recuperando los progsapoyo' );
+			  }else{
+			  $data['arr_progsapoyo'] = $result_progsapoyo;
+			  }
+			  $result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
+			  if(count($result_apoyosreq)==0){
+			  $data['arr_apoyosreq'] = array(	'-1' => 'Error recuperando los apoyosreq' );
+			  }else{
+			  $data['arr_apoyosreq'] = $result_apoyosreq;
+			  }
+			  $result_ambitos = $this->Ambito_model->get_ambitos();
+			  if(count($result_ambitos)==0){
+			  $data['arr_ambitos'] = array(	'-1' => 'Error recuperando los ambitos' );
+			  }else{
+			  $data['arr_ambitos'] = $result_ambitos;
+			  }
 
+			$data3 = array();
+			$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
+			$data3['arr_indicadores'] = $arr_indicadoresxct;
+			// echo "<pre>";print_r($arr_avances);die();
+			$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
+			$data['tab_indicadores'] = $string_view_indicadores;
 
-					// echo "<pre>";print_r($this->cct[0]);die();
-					$data3 = array();
-					$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
-					$data3['arr_indicadores'] = $arr_indicadoresxct;
-					// echo "<pre>";print_r($arr_avances);die();
-					$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
-					$data['tab_indicadores'] = $string_view_indicadores;
+			$data4 = array();
+			$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
+			$data['tab_instructivo'] = $string_view_instructivo;
 
-					$data4 = array();
-					$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
-					$data['tab_instructivo'] = $string_view_instructivo;
-
-					$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
-					$data['nombreuser'] = $this->cct[0]['nombre_centro'];
-					$data['turno'] = $this->cct[0]['turno_single'];
-					$data['cct'] = $this->cct[0]['cve_centro'];
-					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
+			$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
+			$data['nombreuser'] = $this->cct[0]['nombre_centro'];
+			$data['turno'] = $this->cct[0]['turno_single'];
+			$data['cct'] = $this->cct[0]['cve_centro'];
+			Utilerias::pagina_basica_rm($this, "ruta/index", $data);
 		}
 
 		public function getPersonal($cct){
@@ -218,22 +217,22 @@ class Rutademejora extends CI_Controller {
 						$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$estatus,$ruta_archivos_save);
 						if(!is_dir($ruta_archivos)){
 							mkdir($ruta_archivos, 0777, true);}
-																		$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-																		$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-																		$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-																		$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-																		$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+							$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+							$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+							$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+							$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+							$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
 
-																		$uploadPath              = $ruta_archivos;
-																		$config['upload_path']   = $uploadPath;
-																		$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+							$uploadPath              = $ruta_archivos;
+							$config['upload_path']   = $uploadPath;
+							$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
-																		$this->load->library('upload', $config);
-																		$this->upload->initialize($config);
-																		if ($this->upload->do_upload('userFile')) {
-																				$fileData = $this->upload->data();
-																				$str_view = true;
-																		}
+							$this->load->library('upload', $config);
+							$this->upload->initialize($config);
+							if ($this->upload->do_upload('userFile')) {
+									$fileData = $this->upload->data();
+									$str_view = true;
+							}
 					}
 					$estatus = true;
 				}
@@ -260,6 +259,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -299,6 +300,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('tabla' => $tabla);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -307,9 +310,6 @@ class Rutademejora extends CI_Controller {
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $this->cct[0]['id_cct'];
 			$datos = $this->input->post('orden');
-			// echo "<pre>";
-			// print_r($datos);
-			// die();
 			for($i = 0; $i < count($datos); $i++){
 				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
 			}
@@ -345,16 +345,19 @@ class Rutademejora extends CI_Controller {
 			$response = array('tabla' => $tabla);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 		public function get_datos_edith_tp(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$id_tprioritario = $this->input->post('id_tprioritario');
 				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
-				// echo "<pre>";print_r($arr_datos);die();
 				$response = array('datos' => $arr_datos);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -442,8 +445,6 @@ class Rutademejora extends CI_Controller {
 				$id_cct = $this->cct[0]['id_cct'];
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-				// unlink("{$url}");
-				// echo "<pre>";print_r($url);die();
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
 				if ($estatus) {
 					if ($url!='') {
@@ -454,6 +455,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -465,6 +468,8 @@ class Rutademejora extends CI_Controller {
 			$response = array('str_view' => $str_view);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
@@ -575,11 +580,10 @@ class Rutademejora extends CI_Controller {
 	  			$response = array('tabla' => '');
 	  		}
 			}
-
-
-
 	  		Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
@@ -625,6 +629,8 @@ class Rutademejora extends CI_Controller {
 	        $response = array('tabla' => $tabla, 'datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
@@ -641,6 +647,8 @@ class Rutademejora extends CI_Controller {
 			}
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
@@ -679,6 +687,8 @@ class Rutademejora extends CI_Controller {
 		                        </table>
 		                      </div>  ";
 		    return $tabla;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
@@ -699,6 +709,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -710,6 +722,8 @@ class Rutademejora extends CI_Controller {
 			$response = array("editado" => $editada[0]);
 			Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 		public function get_avance(){
@@ -723,6 +737,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('srt_html' => $string_view_avance);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
@@ -732,32 +748,30 @@ class Rutademejora extends CI_Controller {
 				$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
 				$ruta_archivos_save = "prueba/id_cct/12/$nombre_archivo";
 
-				// echo "<pre>";print_r($nombre_archivo);die();
-
-				// $insert = $this->Recursos_model->inserta_url($id_reactivo, $ruta_archivos_save, $idusuario, $idtipo, $titulo, $fuente);
-
 				if(!is_dir($ruta_archivos)){
 					mkdir($ruta_archivos, 0777, true);}
-																$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-																$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-																$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-																$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-																$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+					$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+					$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+					$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+					$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+					$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
 
-																$uploadPath              = $ruta_archivos;
-																$config['upload_path']   = $uploadPath;
-																$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+					$uploadPath              = $ruta_archivos;
+					$config['upload_path']   = $uploadPath;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
-																$this->load->library('upload', $config);
-																$this->upload->initialize($config);
-																if ($this->upload->do_upload('userFile')) {
-																		$fileData = $this->upload->data();
-																		$str_view = true;
-																}
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+					if ($this->upload->do_upload('userFile')) {
+							$fileData = $this->upload->data();
+							$str_view = true;
+					}
 
 				$response = array('str_view' => $str_view);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 

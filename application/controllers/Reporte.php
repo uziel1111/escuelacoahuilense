@@ -174,6 +174,8 @@ class Reporte extends CI_Controller {
 						utf8_decode($item["avance"])
 					));
 				}
+		}else{
+			redirect('Rutademejora/index');
 		}
 	}
 
