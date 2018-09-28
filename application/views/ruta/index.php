@@ -230,7 +230,7 @@
                     <div class="card-block">
                       <div class="row mt-15">
                         <div class="col-12">
-                            <a class="btn btn-primary" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print"></i></a>
+                          <a class="btn btn-primary" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
                           <button id="btn_rutamejora_editar" type="button" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                           <button id="btn_rutamejora_eliminareg" type="button" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
                           <button id="btn_rutamejora_acciones" type="button" data-toggle="modal" data-target="#exampleModal" title="Crear actividades" class="btn btn-primary"><i class="fas fa-tasks"></i></button>

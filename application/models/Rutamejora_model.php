@@ -3,6 +3,7 @@ class Rutamejora_model extends CI_Model
 {
     function __construct(){
         parent::__construct();
+        date_default_timezone_set('America/Mexico_City');
     }
 
     function insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){

@@ -29,7 +29,7 @@
                 <select class="form-control" name="turno_id">
                                 <option value="0">Seleccionar turno</option>
                                 <option value="1">Matutino</option>
-                                <option value="2">Vesperino</option>
+                                <option value="2">Vespertino</option>
                                 <option value="3">Nocturno</option>
                                 <option value="4">Discontinuo</option>
                                 <option value="5">Mixto</option>
