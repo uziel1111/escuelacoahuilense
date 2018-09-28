@@ -131,13 +131,13 @@ define('ERRORMESSAGE', '2');
 	    	if($contexto->session->has_userdata(DATOCCT)){
 	    		return true;
 	    	}else{
-	    		redirect('Rutademejora/index');
+	    		return false;
 	    	}
 	    }
 
 	    public static function verifica_sesion_redirige($contexto) {
-			if (!UtilsWrapper::haySesionAbiertacct($contexto)) {
-				redirect('');
+			if (!Utilerias::haySesionAbiertacct($contexto)) {
+				return false;
 			}
 			return true;
 		}

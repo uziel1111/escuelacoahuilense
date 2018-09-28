@@ -31,6 +31,9 @@ class Rutademejora extends CI_Controller {
 	    }
 
 		public function acceso(){
+			if(Utilerias::verifica_sesion_redirige($this)){
+				$this->llenadatos();
+			}else{
 			    $usuario = $this->input->post('usuario');
 			    $pass = $this->input->post('password');
 			    $turno = $this->input->post('turno_id');
@@ -62,7 +65,20 @@ class Rutademejora extends CI_Controller {
 				if($response->procede == 1 && $response->status == 1){
 					$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 					Utilerias::set_cct_sesion($this, $datoscct);
+					$this->llenadatos();
+					///Aqui llenamos los datos
+				}else{
+					$mensaje = $response->statusText;
+            		$tipo    = ERRORMESSAGE;
+            		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+					$this->load->view('ruta/login',$data);
+				}
+			}
+		}// index()
+
+		public function llenadatos(){
 					$this->cct = Utilerias::get_cct_sesion($this);
+					$usuario = $this->cct[0]['cve_centro'];
 					$responsables = $this->getPersonal($usuario);
 					// echo "<pre>";
 					// 		print_r($this->cct);
@@ -139,14 +155,7 @@ class Rutademejora extends CI_Controller {
 					$data['turno'] = $this->cct[0]['turno_single'];
 					$data['cct'] = $this->cct[0]['cve_centro'];
 					Utilerias::pagina_basica_rm($this, "ruta/index", $data);
-
-				}else{
-					$mensaje = $response->statusText;
-            		$tipo    = ERRORMESSAGE;
-            		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
-					$this->load->view('ruta/login',$data);
-				}
-		}// index()
+		}
 
 		public function getPersonal($cct){
 			if(Utilerias::haySesionAbiertacct($this)){
@@ -174,41 +183,11 @@ class Rutademejora extends CI_Controller {
 
 			    curl_close($curl);
 			    return $response = json_decode($result);
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
-
-		// public function graba_ruta(){
-		// 	$mision = $this->input->post("txt_rm_identidad");
-		// 	$prioridad = $this->input->post("txt_rm_prioridad");
-		// 	$objetivo1 = $this->input->post("txt_rm_objetivo1");
-		// 	$objetivo2 = $this->input->post("txt_rm_objetivo2");
-		// 	$problematicaxp = $this->input->post("txt_rm_problematicaxprioridad");
-		// 	$evidenciasdp = $this->input->post("txt_rm_evidenciasdproblematicas");
-		// 	$programaseducativos = $this->input->post("txt_rm_programaseducativos");
-		// 	$comoayudanpa = $this->input->post("txt_rm_comoayudanpa");
-		// 	$observacionesdirector = $this->input->post("txt_rm_observacionesdirector");
-		// 	$queapoyorequerimos = $this->input->post("txt_rm_queapoyorequerimos");
-		//
-		// 	// $result = $this->Rutamejora_model->guardaruta($mision, $prioridad, $objetivo1, $objetivo2, $problematicaxp, $evidenciasdp, $programaseducativos, $comoayudanpa, $observacionesdirector, $queapoyorequerimos);
-		//
-		// }
-
-		// public function editarRuta(){
-		// 	if(Utilerias::haySesionAbiertacct()){
-		// 		$idruta = $this->input->post('idrutaeditar');
-		// 		// $data = $this->Rutamejora_model->recupera_ruta($idruta);
-
-		// 		Utilerias::enviaDataJson(200, $data, $this);
-		// 		exit;
-		// 	}
-		// }
-
-		// public function eliminaRuta(){
-		// 	if(Utilerias::haySesionAbiertacct()){
-		// 		$idruta = $this->input->post('idrutaeditar');
-		// 	}
-		// }
 
 		public function insert_tema_prioritario(){
 			if(Utilerias::haySesionAbiertacct($this)){
@@ -260,6 +239,8 @@ class Rutademejora extends CI_Controller {
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
+			}else{
+				redirect('Rutademejora/index');
 			}
 		}
 
