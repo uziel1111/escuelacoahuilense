@@ -37,12 +37,16 @@ function Tabla(){
       },
       success: function(data){
         $("#wait").modal("hide");
-
         var view = data.tabla;
         $("#contenedor_tabla").empty();
         $("#contenedor_tabla").append(view);
         obj.inicio();
         obj.funcionalidadselect();
+        if(data.tamanio == 0){
+          $("#btn_get_reporte").hide();
+        }else{
+          $("#btn_get_reporte").show();
+        }
       },
       error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
     });

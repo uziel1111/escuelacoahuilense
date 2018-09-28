@@ -268,7 +268,9 @@ class Rutademejora extends CI_Controller {
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
+				$tam = 0;
 				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+				$tam = count($rutas);
 
 				$tabla = "<div class='table-responsive'>
 				           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
@@ -297,7 +299,7 @@ class Rutademejora extends CI_Controller {
 		                        </table>
 		                      </div>  ";
 
-				$response = array('tabla' => $tabla);
+				$response = array('tabla' => $tabla, 'tamanio' => $tam);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}else{
