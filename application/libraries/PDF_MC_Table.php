@@ -186,7 +186,7 @@ class PDF_MC_Table extends FPDF{
     // Arial bold 16
       $this->SetFont('Arial','B',16);
       // Logo
-      $this->Image(base_url().'assets/img/logoC-SE.png',10,8,70);
+      $this->Image(base_url().'assets/img/logoreporte.png',10,8,70);
 
       $this->Ln(1);
       $this->SetFont('Arial','B',11);

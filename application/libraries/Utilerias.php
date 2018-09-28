@@ -135,5 +135,12 @@ define('ERRORMESSAGE', '2');
 	    	}
 	    }
 
+	    public static function verifica_sesion_redirige($contexto) {
+			if (!UtilsWrapper::haySesionAbiertacct($contexto)) {
+				redirect('');
+			}
+			return true;
+		}
+
 	}
 ?>

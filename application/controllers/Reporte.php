@@ -40,7 +40,9 @@ class Reporte extends CI_Controller {
 				//DATOS
 				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
 
+
 			}
+
 			$pdf->Output();
 		}
 	}// get_reporte()
@@ -64,7 +66,7 @@ class Reporte extends CI_Controller {
 				$obj1 = "Objetivo1: {$ruta['objetivo1']}";
 				$pdf->Ln(5);
 				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(80)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
 				$pdf->SetAligns(array("L"));
 				// $pdf->SetColors(array(TRUE));
@@ -77,7 +79,7 @@ class Reporte extends CI_Controller {
 				$obj2 = "Objetivo2: {$ruta['objetivo2']}";
 				$pdf->Ln(6);
 				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(80)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
 				$pdf->SetAligns(array("L"));
 				// $pdf->SetColors(array(TRUE));
@@ -90,7 +92,7 @@ class Reporte extends CI_Controller {
 				$problematica = "Problematicas: {$ruta['otro_problematica']}";
 				$pdf->Ln(7);
 				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(80)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
 				$pdf->SetAligns(array("L"));
 				// $pdf->SetColors(array(TRUE));
@@ -104,7 +106,7 @@ class Reporte extends CI_Controller {
 				$evidencia = "Evidencias: {$ruta['otro_evidencia']}";
 				$pdf->Ln(8);
 				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(80)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
 				$pdf->SetAligns(array("L"));
 				// $pdf->SetColors(array(TRUE));
@@ -117,7 +119,7 @@ class Reporte extends CI_Controller {
 				$observaciondir = "Observaciones: {$ruta['obs_direc']}";
 				$pdf->Ln(9);
 				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(80)); // ancho de primer columna, segunda, tercera
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
 				$pdf->SetAligns(array("L"));
 				// $pdf->SetColors(array(TRUE));
