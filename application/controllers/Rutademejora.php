@@ -39,7 +39,7 @@ class Rutademejora extends CI_Controller {
 			}else{
 			    $usuario = strtoupper($this->input->post('usuario'));
 			    $pass = strtoupper($this->input->post('password'));
-			    $turno = strtoupper($this->input->post('turno_id'));
+			    $turno = $this->input->post('turno_id');
 
 				$curl = curl_init();
 				$method = "POST";

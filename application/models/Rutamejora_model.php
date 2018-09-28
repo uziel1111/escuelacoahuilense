@@ -279,7 +279,7 @@ function  get_datos_edith_tp($id_tprioritario){
   function delete_tema_prioritario($id_cct,$id_tprioritario){
 
       $this->db->trans_start();
-      $tables = array('rm_accionxtproritario', 'rm_avance_xcctxtpxaccion','rm_tema_prioritarioxcct');
+      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_tema_prioritarioxcct');
       $this->db->where('id_tprioritario', $id_tprioritario);
       $this->db->delete($tables);
       $this->db->trans_complete();
