@@ -276,18 +276,34 @@ Rm_tp.prototype.contar= function(elem, idGlosa){
 }
 
 Rm_tp.prototype.readURL= function(input){
+  // console.log(input.files[0]['size']);
+  if (input.files[0]['size']>102400) {
+    $("#img_evid").prop("src", "");
+    $("#glosaArchivos").html("El archivo seleccionado excede el tamaño máximo permitido (1mb)");
+    document.getElementById('btn_clr_img').setAttribute("hidden", true);
+    $("#edit_img").val(false);
+    $("#imagen").val(null);
 
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
 
-    reader.onload = function(e) {
-      document.getElementById('btn_clr_img').removeAttribute("hidden");
-      // alert(e.target.result);
-      $('#img_evid').attr('src', e.target.result);
-    }
-
-    reader.readAsDataURL(input.files[0]);
+    // $("#img_evid").prop("src", "");
+    // $("#glosaArchivos").html("Ningun archivo seleccionado");
+    // document.getElementById('btn_clr_img').setAttribute("hidden", true);
+    // $("#edit_img").val(false);
   }
+  else {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        document.getElementById('btn_clr_img').removeAttribute("hidden");
+        // alert(e.target.result);
+        $('#img_evid').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
 }
 
 $("#imagen").change(function() {

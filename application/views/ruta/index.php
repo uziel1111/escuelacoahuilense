@@ -176,8 +176,8 @@
                       <input type="hidden" name="edit_img" id="edit_img" value="false">
 
                       <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
-
-                        <button type="button" disabled="true"
+                      <!-- disabled="true" -->
+                        <button type="button"
                                 onclick="obj_rm_tp.abrir('imagen')">Escoga un archivo</button>
                         <input type="file"
                                id="imagen" name="archivo"
