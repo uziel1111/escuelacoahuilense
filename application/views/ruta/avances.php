@@ -37,9 +37,10 @@
             <td></td>
           <?php } else{ ?>
         <td><?=$value['accion']?></td>
+
         <?php for ($x = 1; $x <= 10; $x++) {?>
           <td>
-            <select <?=($x>1)? 'disabled':'' ?> onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>") id="<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>">
+            <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>") id="<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>">
               <option value="0" <?=($value["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
               <option value="10" <?=($value["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
               <option value="20" <?=($value["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
@@ -55,7 +56,7 @@
           </td>
 
         <?php } $var_aux_id_tprioritario = $value['id_tprioritario']?>
-      
+
         <?php } ?>
         </tr>
       <?php endforeach; ?>

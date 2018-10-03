@@ -442,4 +442,23 @@ function  get_datos_edith_tp($id_tprioritario){
 
     }
 
+    function get_avances_tp_accionxcct_fechas($id_ciclo){
+      $date=date("Y-m-d");
+      $str_query = "SELECT
+      IF(curdate()>cte1_f_ini AND curdate()<cte1_f_fin, 'TRUE', 'FALSE') AS cte1_var,
+      IF(curdate()>cte2_f_ini AND curdate()<cte2_f_fin, 'TRUE', 'FALSE') AS cte2_var,
+      IF(curdate()>cte3_f_ini AND curdate()<cte3_f_fin, 'TRUE', 'FALSE') AS cte3_var,
+      IF(curdate()>cte4_f_ini AND curdate()<cte4_f_fin, 'TRUE', 'FALSE') AS cte4_var,
+      IF(curdate()>cte5_f_ini AND curdate()<cte5_f_fin, 'TRUE', 'FALSE') AS cte5_var,
+      IF(curdate()>cte6_f_ini AND curdate()<cte6_f_fin, 'TRUE', 'FALSE') AS cte6_var,
+      IF(curdate()>cte7_f_ini AND curdate()<cte7_f_fin, 'TRUE', 'FALSE') AS cte7_var,
+      IF(curdate()>cte8_f_ini AND curdate()<cte8_f_fin, 'TRUE', 'FALSE') AS cte8_var,
+      IF(curdate()>cte9_f_ini AND curdate()<cte9_f_fin, 'TRUE', 'FALSE') AS cte9_var,
+      IF(curdate()>cte10_f_ini AND curdate()<cte10_f_fin, 'TRUE', 'FALSE') AS cte10_var
+      FROM rm_f_mod_avancexaccionxcte WHERE id_ciclo={$id_ciclo} ";
+          // echo $str_query; die();
+      return $this->db->query($str_query)->result_array();
+
+    }
+
 }// Rutamejora_model

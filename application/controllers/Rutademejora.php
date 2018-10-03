@@ -734,7 +734,9 @@ class Rutademejora extends CI_Controller {
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
 				$data2['arr_avances'] = $arr_avances;
-				// echo "<pre>";print_r($arr_avances);die();
+				$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
+				$data2['arr_avances_fechas'] = $arr_avances_fechas;
+				// echo "<pre>";print_r($arr_avances_fechas);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
 				Utilerias::enviaDataJson(200, $response, $this);
