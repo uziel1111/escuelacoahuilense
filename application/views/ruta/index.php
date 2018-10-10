@@ -331,7 +331,7 @@
                               </div>
                               <div class="col-md-4">
                                 <label><label style="color:red;">*</label>Fecha de inicio</label>
-                                <input id="datepicker1" />
+                                <input id="datepicker1" disabled />
                                 <script>
                                 $('#datepicker1').datepicker({
                                   uiLibrary: 'bootstrap4'
@@ -341,7 +341,7 @@
 
                               <div class="col-md-4">
                                 <label><label style="color:red;">*</label>Fecha de término</label>
-                                <input id="datepicker2" />
+                                <input id="datepicker2" disabled/>
                                 <script>
                                 $('#datepicker2').datepicker({
                                   uiLibrary: 'bootstrap4'
