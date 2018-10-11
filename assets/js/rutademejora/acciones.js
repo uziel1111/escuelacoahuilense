@@ -371,8 +371,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
 
  Rm_acciones_tp.prototype.validadate = function(){
   var valida = false;
-  var f_inicio = $("#datepicker1").val(); //09/27/2018
-  var f_termino = $("#datepicker2").val(); //09/28/2018
+  var f_inicio = $("#datepicker1").val(); //10/09/2018
+  var f_termino = $("#datepicker2").val(); //09/10/2018
   var f_inicio = f_inicio.split("/");
   var mes1 = f_inicio[0];
   var dia1 = f_inicio[1];
@@ -390,14 +390,14 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
       if(dia2 >= dia1){
         valida = true;
       }else{
-        if(mesval == true){
+        if(mesval == true && dia2 >= dia1){
           valida = true;
         }else{
           return false;
         }
       }
     }else{
-      if(anioval == true){
+      if(anioval == true && mes2 >= mes1){
         valida = true;
       }else{
         return false;
