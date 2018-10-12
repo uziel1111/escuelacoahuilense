@@ -101,8 +101,7 @@ class Rutademejora extends CI_Controller {
 
 			$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
 			$data['mision'] = $mision;
-
-			$result_prioridades = $this->Prioridad_model->get_prioridades();
+			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 			  if(count($result_prioridades)==0){
 			  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
 			  }else{
@@ -120,9 +119,10 @@ class Rutademejora extends CI_Controller {
 			  }else{
 			  $data['arr_evidencias'] = $result_evidencias;
 			  }
-			  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo(790,4);//id_cct, id_ciclo
+				// echo "<pre>";print_r($this->cct[0]['id_cct']);die();
+			  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
 			  if(count($result_progsapoyo)==0){
-			  $data['arr_progsapoyo'] = array(	'-1' => 'Error recuperando los progsapoyo' );
+			  $data['arr_progsapoyo'] = '';
 			  }else{
 			  $data['arr_progsapoyo'] = $result_progsapoyo;
 			  }
