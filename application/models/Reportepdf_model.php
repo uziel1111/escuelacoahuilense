@@ -15,7 +15,7 @@ class Reportepdf_model extends CI_Model
     }
 
     function get_acciones($id_tprioritario){
-      $str_query = "SELECT acc.id_accion, acc.accion, rmca.ambito, acc.accion_f_inicio, acc.accion_f_termino, acc.mat_insumos, CONCAT(IFNULL(av.cte1, '0'), '%') AS avance 
+      $str_query = "SELECT acc.id_accion, acc.accion, rmca.ambito, acc.accion_f_inicio, acc.accion_f_termino, acc.mat_insumos, CONCAT(IFNULL(av.cte1, '0'), '%') AS avance, acc.ids_responsables, acc.otro_responsable 
         FROM rm_accionxtproritario acc
         INNER JOIN rm_c_ambito rmca ON rmca.id_ambito = acc.id_ambito
         LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion AND acc.id_tprioritario = av.id_tprioritario

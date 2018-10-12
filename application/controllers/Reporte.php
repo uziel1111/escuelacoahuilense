@@ -139,6 +139,18 @@ class Reporte extends CI_Controller {
 				$pdf->SetWidths(array(20,41,40,45,46,46,46)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
+				// echo "<pre>";
+				// print_r($result);
+				// die();
+				// $ids_responsables = $result[0]['ids_responsables'];
+
+				$cct = Utilerias::get_cct_sesion($this);
+				// echo "<pre>";
+				// print_r($cct);
+				// die();
+
+				
+				// echo $responsablesc; die();
 
 				$pdf->SetFillColor(255,255,255);
 				// $pdf->SetDrawColor(0, 0, 0);
@@ -162,7 +174,15 @@ class Reporte extends CI_Controller {
 				$pdf->SetColors(array(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE));
 				$pdf->SetLineW(array(0.09,0.09,0.09,0.09,0.09,0.09,0.09));
 				$cont=0;
+				$ids = "";
+				$responsablesc = "";
 				foreach($result as $item){
+					// echo "<pre>";
+					// print_r($item["ids_responsables"]);
+					// die();
+					$ids_responsables = $item["ids_responsables"];
+					$responsablesc .= $this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
+					
 					$cont++;
 					$pdf->Row(array(
 						$cont,
@@ -174,9 +194,88 @@ class Reporte extends CI_Controller {
 						utf8_decode($item["avance"])
 					));
 				}
+
+				// echo $responsablesc; die();
+
+				// $responsables = "Responsables: {$responsablesc}";
+				// $pdf->Ln(12);
+				// $pdf->SetFont('Arial','B',9);
+				// $pdf->SetWidths(array(350)); // ancho de primer columna, segunda, tercera
+				// $pdf->SetFillColor(255);
+				// $pdf->SetAligns(array("L"));
+				// // $pdf->SetColors(array(TRUE));
+				// $pdf->SetLineW(array(0.2));
+				// $pdf->SetTextColor(0,0,0);
+				// 	$pdf->Row2(array(
+				// 		utf8_decode($responsablesc)
+				// 	));
+
+				$resp = "RESPONSABLES: {$responsablesc}";
+				$pdf->Ln();
+				$pdf->SetFont('Arial','B',9);
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				$pdf->SetFillColor(255);
+				$pdf->SetAligns(array("L"));
+				// $pdf->SetColors(array(TRUE));
+				$pdf->SetLineW(array(0.2));
+				$pdf->SetTextColor(93,155,155);
+				// $pdf->SetTextColor(87,166,57);
+					$pdf->Row2(array(
+						utf8_decode($resp)
+					));
+				$pdf->Ln();
+
 		}else{
 			redirect('Rutademejora/index');
 		}
+	}
+
+	public function get_perosonal_mostrar($cct, $ids_responsables){
+		
+		$ids_responsables = explode(",", $ids_responsables);
+		// echo"<pre>"; print_r($ids_responsables); die();
+		$curl = curl_init();
+		$method = "POST";
+		$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
+		$data = array("cct" => $cct);
+
+	    switch ($method)
+	    {
+	        case "POST":
+	            curl_setopt($curl, CURLOPT_POST, 1);
+	            if ($data)
+	                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+	            break;
+	        default:
+	            if ($data)
+	                $url = sprintf("%s?%s", $url, http_build_query($data));
+	    }
+
+	    curl_setopt($curl, CURLOPT_URL, $url);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+	    $result = curl_exec($curl);
+
+	    curl_close($curl);
+	    $response = json_decode($result);
+
+	    // echo "<pre>";
+	    // print_r($response->Personal);
+	    // die();
+	    $personal = $response->Personal;
+	    $listap = "";
+	    foreach ($personal as $persona) {
+	    	// echo "<pre>";
+		    // print_r($persona);
+		    // die();
+		    for($i = 0; $i < count($ids_responsables); $i++){
+		    	if($persona->rfc == $ids_responsables[$i]){
+		    		$listap .= trim($persona->nombre_completo).", ";
+		    	}
+		    }
+	    }
+
+	    return $listap;
 	}
 
 
