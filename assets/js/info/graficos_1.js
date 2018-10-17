@@ -2682,7 +2682,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "    </div>";
                   html += "    <div class='row'>";
                   html += "      <div class='col-12'>";
-                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='"+result[i]['path_react']+"' class='img-responsive center-block' />";
+                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "      </div>";
                   html += "    </div>";
 
