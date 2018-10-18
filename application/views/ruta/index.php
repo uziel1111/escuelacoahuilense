@@ -302,7 +302,8 @@
                           <div class="form-group form-group-style-1">
                             <div class="row">
                               <div class="col-md-6">
-                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UNA OPCIÓN">
+                                <label><label style="color:red;">*</label>Ambitos:</label>
+                                <select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UN AMBITO">
                                   <?php foreach ($arr_ambitos as $item): ?>
                                           <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
                                   <?php endforeach; ?>
@@ -350,7 +351,7 @@
                               </div>
                             </div>
                             <div class="row mt-15">
-                              <div class="col-md-6">
+                              <div class="col-md-6" id="div_otro_responsable">
                                 <label>Otro responsable:</label>
                                 <input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
                               </div>

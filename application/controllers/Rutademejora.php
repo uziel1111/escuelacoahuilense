@@ -512,10 +512,10 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
@@ -523,10 +523,10 @@ class Rutademejora extends CI_Controller {
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									  <td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['id_ambito']}</td>
+		                              <td>{$accion['ambito']}</td>
 		                              <td>{$accion['accion_f_inicio']}</td>
 		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['ids_responsables']}</td>
+		                              <td>{$accion['accion']}</td>
 		                            </tr>";
 					}
 	            }else{
@@ -551,10 +551,10 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
@@ -562,10 +562,10 @@ class Rutademejora extends CI_Controller {
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									  <td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['id_ambito']}</td>
+		                              <td>{$accion['ambito']}</td>
 		                              <td>{$accion['accion_f_inicio']}</td>
 		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['ids_responsables']}</td>
+		                              <td>{$accion['accion']}</td>
 		                            </tr>";
 					}
 	            }else{
@@ -599,10 +599,10 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
@@ -610,10 +610,10 @@ class Rutademejora extends CI_Controller {
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['id_ambito']}</td>
+		                              <td>{$accion['ambito']}</td>
 		                              <td>{$accion['accion_f_inicio']}</td>
 		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['ids_responsables']}</td>
+		                              <td>{$accion['accion']}</td>
 		                            </tr>";
 					}
 	            }else{
@@ -662,10 +662,10 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:4%'><center>Ámbito</center></th>
+	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Responsables</center></th>
+	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
@@ -673,10 +673,10 @@ class Rutademejora extends CI_Controller {
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['id_ambito']}</td>
+		                              <td>{$accion['ambito']}</td>
 		                              <td>{$accion['accion_f_inicio']}</td>
 		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['ids_responsables']}</td>
+		                              <td>{$accion['accion']}</td>
 		                            </tr>";
 					}
 	            }else{

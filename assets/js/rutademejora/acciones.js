@@ -1,6 +1,7 @@
 $(function() {
     obj_rm_acciones_tp = new Rm_acciones_tp();
-    $('#otro_responsable').hide();
+    $("#div_otro_responsable").hide();
+    // $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
     sel_encargado = false;
     
@@ -82,9 +83,11 @@ $("#slc_responsables").change(function(){
    encargados.splice( i, 1 );
    // alert(encargados);
    if( texto.indexOf("0,") > -1){
-     $('#otro_responsable').show();
+    $("#div_otro_responsable").show();
+     // $('#otro_responsable').show();
    }else{
-      $('#otro_responsable').hide();
+      $("#div_otro_responsable").hide();
+      // $('#otro_responsable').hide();
    }
 });
 
@@ -153,7 +156,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#datepicker2").val("");
   $("#otro_responsable").val("");
   $("#txt_rm_indimed").val("");
-  $("#otro_responsable").hide();
+  // $("#otro_responsable").hide();
+  $("#div_otro_responsable").hide();
   $("#slc_rm_ambito").val("");
   $("#slc_rm_ambito").selectpicker("refresh");
   $("#slc_responsables").selectpicker('deselectAll');
@@ -252,7 +256,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             for(var i = 0; i < ids.length; i++){
                 if(ids[i] == 0){
                     $('#otro_responsable').val(editado['otro_responsable']);
-                    $('#otro_responsable').show();
+                    $("#div_otro_responsable").show();
+                    // $('#otro_responsable').show();
                 }
             }
             
