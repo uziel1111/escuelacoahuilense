@@ -270,6 +270,7 @@ class Rutademejora extends CI_Controller {
 				$id_cct = $this->cct[0]['id_cct'];
 				$tam = 0;
 				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+				// echo "<pre>";print_r($rutas);die();
 				$tam = count($rutas);
 
 				$tabla = "<div class='table-responsive'>
@@ -290,7 +291,7 @@ class Rutademejora extends CI_Controller {
 	                          <td id='orden' data='1'>{$ruta['orden']}</td>
 	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
 	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
-	                          <td id='n_actividades' data='0'>{$ruta['otro_evidencia']}</td>
+	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 		                              </tr>";
 				}
@@ -336,7 +337,7 @@ class Rutademejora extends CI_Controller {
                           <td id='orden' data='1'>{$ruta['orden']}</td>
                           <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
                           <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
-                          <td id='n_actividades' data='0'>{$ruta['otro_evidencia']}</td>
+                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
                           <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 	                              </tr>";
 			}

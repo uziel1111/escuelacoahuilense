@@ -3,12 +3,13 @@ $(function() {
     $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
     sel_encargado = false;
-    
+
 });
 
 $("#cerrar_modal_acciones").click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
+  obj.get_view();
 });
 
 $("#btn_rutamejora_acciones").click(function(){
@@ -110,7 +111,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#label_prioridad").text(data.datos['prioridad']);
              $("#label_problematica").text(data.datos['problematicas']);
              $("#label_evidencia").text(data.datos['evidencias']);
-             
+
              obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
@@ -170,8 +171,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
-           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales, 
-           "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion, 
+           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales,
+           "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion,
            'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
            success:function(data){
              var vista = data.tabla;
@@ -192,9 +193,9 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#idtabla_accionestp tr").click(function(){
            $(this).addClass('selected').siblings().removeClass('selected');
            var value=$(this).find('td:first').text();
-           // alert(value);    
+           // alert(value);
            Rm_acciones_tp.id_accion_select = value;
-           // alert(Rm_acciones_tp.id_accion_select); 
+           // alert(Rm_acciones_tp.id_accion_select);
         });
  }
 
@@ -255,7 +256,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                     $('#otro_responsable').show();
                 }
             }
-            
+
             $("#txt_rm_indimed").val(editado['indcrs_medicion']);
              var inicio = editado['accion_f_inicio'].split("-");
              var fin = editado['accion_f_termino'].split("-");
@@ -406,4 +407,3 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   }
   return valida;
  }
-

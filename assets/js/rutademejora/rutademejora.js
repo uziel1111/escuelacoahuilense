@@ -76,6 +76,7 @@ $("#btn_get_reporte").click(function(){
 });
 
 
+
 $("#btn_clr_img").click(function(){
   $("#img_evid").prop("src", "");
   $("#glosaArchivos").html("Ningun archivo seleccionado");
