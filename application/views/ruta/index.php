@@ -323,7 +323,7 @@
                             </div>
                             <div class="row mt-15">
                               <div class="col-md-4">
-                                <label><label style="color:red;">*</label>Responsables</label>
+                                <label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
                                 <select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
                                 <?= $responsables?>
                                 </select>
