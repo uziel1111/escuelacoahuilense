@@ -9,6 +9,7 @@ class Reporte extends CI_Controller {
 		$this->load->library('Utilerias');
 		$this->load->model('Reportepdf_model');
 		$this->load->library('PDF_MC_Table');
+		date_default_timezone_set('America/Mexico_City');
 	}// __construct()
 
 
@@ -101,8 +102,8 @@ class Reporte extends CI_Controller {
 					$pdf->Row2(array(
 						utf8_decode($problematica)
 					));
-				
-				
+
+
 				$evidencia = "Evidencias: {$ruta['otro_evidencia']}";
 				$pdf->Ln(8);
 				$pdf->SetFont('Arial','B',9);
@@ -128,7 +129,7 @@ class Reporte extends CI_Controller {
 					$pdf->Row2(array(
 						utf8_decode($observaciondir)
 					));
-				
+
 
 
 				$pdf->Ln(10);
@@ -149,7 +150,7 @@ class Reporte extends CI_Controller {
 				// print_r($cct);
 				// die();
 
-				
+
 				// echo $responsablesc; die();
 
 				$pdf->SetFillColor(255,255,255);
@@ -182,7 +183,7 @@ class Reporte extends CI_Controller {
 					// die();
 					$ids_responsables = $item["ids_responsables"];
 					$responsablesc .= $this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
-					
+
 					$cont++;
 					$pdf->Row(array(
 						$cont,
@@ -231,7 +232,7 @@ class Reporte extends CI_Controller {
 	}
 
 	public function get_perosonal_mostrar($cct, $ids_responsables){
-		
+
 		$ids_responsables = explode(",", $ids_responsables);
 		// echo"<pre>"; print_r($ids_responsables); die();
 		$curl = curl_init();
