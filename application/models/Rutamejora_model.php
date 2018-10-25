@@ -471,4 +471,27 @@ function  get_datos_edith_tp($id_tprioritario){
 
     }
 
+    //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
+    
+    function valida_supervisor($cct){
+    	$str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
+    	return $this->db->query($str_query)->result_array();
+    }
+
+    function inserta_mensaje_super($idtema, $mensaje_super){
+    	$data = array(
+	        'obs_supervisor' => $mensaje_super
+	    );
+
+	    $this->db->where('id_tprioritario', $idtema);
+	    return $this->db->update('rm_tema_prioritarioxcct', $data);
+    }
+
+    function getdatossupervicion($cct){
+      $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro 
+				      FROM supervision s
+				       WHERE s.id_supervision = '{$cct}'";
+     return $this->db->query($str_query)->result_array();
+    }
+
 }// Rutamejora_model
