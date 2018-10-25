@@ -49,6 +49,63 @@ class PDF_MC_Table extends FPDF{
     $this->aligns=$a;
   }
 
+  function Rowtab($data)
+  {
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+    $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=5*$nb;
+    //Issue a page break first if needed
+    // $this->CheckPageBreak($h);
+    if($this->GetY()+$h>$this->PageBreakTrigger){
+      $this->AddPage($this->CurOrientation, 'Legal');
+      $this->SetFont('Arial','B',11);
+      $this->SetFillColor(255,255,255);
+
+      $this->SetAligns(array("C","C","C","C","C","C","C"));
+      // $pdf->SetColors(array(TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE));
+      $this->SetLineW(array(0.2,0.2,0.2,0.2,0.2,0.2,0.2));
+      $this->SetTextColor(0,0,0);
+      $this->Row(array(
+        utf8_decode("No."),
+        utf8_decode("Acción"),
+        utf8_decode("Ámbito"),
+        utf8_decode("Fecha inicio"),
+        utf8_decode("Fecha fin"),
+        utf8_decode("Recursos"),
+        utf8_decode("Avance"),
+        utf8_decode("Responsables"),
+      ));
+      $this->SetFont('Arial','',10);
+      $this->SetAligns(array("L","L","L","L","L","L","L"));
+      $this->SetColors(array(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE));
+      $this->SetLineW(array(0.09,0.09,0.09,0.09,0.09,0.09,0.09));
+    }
+
+    //Draw the cells of the row
+    for($i=0;$i<count($data);$i++)
+    {
+      $w=$this->widths[$i];
+      $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+      $color=isset($this->color[$i]) ? $this->color[$i] : FALSE;
+      $widht=isset($this->widht[$i]) ? $this->widht[$i] : 0.2;
+      // echo $widht; die();
+      //Save the current position
+      $x=$this->GetX();
+      $y=$this->GetY();
+      //Draw the border
+      $this->SetLineWidth($widht);
+      $this->Rect($x,$y,$w,$h);
+      //Print the text
+      $this->MultiCell($w,5,$data[$i],0,$a,$color);
+      //Put the position to the right of the cell
+      $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+  }
+
   function Row($data)
   {
     //Calculate the height of the row
@@ -117,7 +174,7 @@ class PDF_MC_Table extends FPDF{
   {
     //If the height h would cause an overflow, add a new page immediately
     if($this->GetY()+$h>$this->PageBreakTrigger)
-    $this->AddPage($this->CurOrientation);
+    $this->AddPage($this->CurOrientation, 'Legal');
   }
 
   function NbLines($w,$txt)
