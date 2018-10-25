@@ -377,8 +377,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
 
  Rm_acciones_tp.prototype.validadate = function(){
   var valida = false;
-  var f_inicio = $("#datepicker1").val(); //10/09/2018
-  var f_termino = $("#datepicker2").val(); //09/10/2018
+  var f_inicio = $("#datepicker1").val(); //10/25/2018
+  var f_termino = $("#datepicker2").val(); //01/01/2019
   var f_inicio = f_inicio.split("/");
   var mes1 = f_inicio[0];
   var dia1 = f_inicio[1];
@@ -403,7 +403,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
         }
       }
     }else{
-      if(anioval == true && mes2 >= mes1){
+      if(anioval == true){
         valida = true;
       }else{
         return false;
