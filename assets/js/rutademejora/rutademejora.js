@@ -75,6 +75,48 @@ $("#btn_get_reporte").click(function(){
     obj_rm.get_reporte(obj.id_tprioritario);
 });
 
+$("#btn_rutamejora_obs_super").click(function(){
+  if (obj.id_tprioritario === undefined) {
+    swal(
+        '¡Error!',
+        "Favor de seleccionar un tema prioritario",
+        "error"
+      );
+  }
+  else {
+
+    $.ajax({
+    url: base_url+'rutademejora/get_obs_super',
+    type: 'POST',
+    dataType: 'JSON',
+    data: {id_tprioritario:obj.id_tprioritario},
+    beforeSend: function(xhr) {
+          Notification.loading("");
+      },
+  })
+  .done(function(result) {
+    swal.close();
+    // console.log(result.srt_html);
+    $('#exampleModal_obs_super').modal('toggle');
+    $("#txt_rm_obs_super").empty();
+    $("#txt_rm_obs_super").html(result.str_obs_super);
+
+
+  })
+  .fail(function(e) {
+    console.error("Error in get obs_sup()"); console.table(e);
+  })
+  .always(function() {
+        // swal.close();
+  })
+    //llamado a la vista de acciones
+  }
+
+});
+
+$("#cerrar_modal_obs_super").click(function(){
+  $('#exampleModal_obs_super').modal('toggle');
+});
 
 
 $("#btn_clr_img").click(function(){

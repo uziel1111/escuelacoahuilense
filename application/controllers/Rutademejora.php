@@ -41,7 +41,7 @@ class Rutademejora extends CI_Controller {
 				}else{
 					$this->llenadatos();
 				}
-				
+
 			}else{
 				$usuario = strtoupper($this->input->post('usuario'));
 				$pass = strtoupper($this->input->post('password'));
@@ -52,9 +52,9 @@ class Rutademejora extends CI_Controller {
 					// if($datos_sesion->procede == 1 && $datos_sesion->status == 1){
 					if(1 == 1 && 1 == 1){
 						$datoscct = $this->Rutamejora_model->getdatossupervicion($usuario, $turno);
-						Utilerias::set_cct_sesion($this, $datoscct); 
+						Utilerias::set_cct_sesion($this, $datoscct);
 
-						
+
 					    // if($response->procede == 1 && $response->status == 1){
 							// $datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 							// Utilerias::set_cct_sesion($this, $datoscct);
@@ -118,8 +118,14 @@ class Rutademejora extends CI_Controller {
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$usuario = $this->cct[0]['cve_centro'];
 			$responsables = $this->getPersonal($usuario);
+			// echo "<pre>";print_r($responsables);die();
+			if ($responsables->status==0) {
+				$personas = array();
+			}
+			else {
+				$personas = $responsables->Personal;
+			}
 
-			$personas = $responsables->Personal;
 			$options = "";
 			if($responsables->procede == 1 && $responsables->status == 1){
 				foreach ($personas as $persona) {
@@ -391,6 +397,18 @@ class Rutademejora extends CI_Controller {
 				$id_tprioritario = $this->input->post('id_tprioritario');
 				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
 				$response = array('datos' => $arr_datos);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}else{
+				redirect('Rutademejora/index');
+			}
+		}
+
+		public function get_obs_super(){
+			if(Utilerias::haySesionAbiertacct($this)){
+				$id_tprioritario = $this->input->post('id_tprioritario');
+				$str_obs_super = $this->Rutamejora_model->get_obs_super_tp($id_tprioritario);
+				$response = array('str_obs_super' => $str_obs_super);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}else{
@@ -851,14 +869,14 @@ public function generavistaSupervisor(){
 
     curl_close($curl);
     $escuelas = json_decode($result);
-    
+
 	$data = array();
 	$data['nombreuser'] = $this->cct[0]['nombre_supervision'];
 	$data['nivel'] = $this->cct[0]['zona_escolar'];
 	$data['turno'] = "";
 	$data['cct'] = $this->cct[0]['cve_centro'];
 	$data['escuelas'] = $escuelas->Escuelas;
-
+	// echo "<pre>";print_r($escuelas->Escuelas[0]->b_cct);die();
 	Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
 }
 
@@ -1008,6 +1026,9 @@ public function edit_accion_super(){
 			// print_r($editada);
 			// die();
 			$responsables = $this->getPersonal($cct_log);
+			if (count($responsables)==0) {
+				$responsables = array();
+			}
 	// 		echo "<pre>";
 	// print_r($responsables->Personal);
 	// die();
@@ -1057,7 +1078,7 @@ public function edit_accion_super(){
 	}
 
 	public function get_comentario_super(){
-		
+
 		$idtemap = $this->input->post("idtemarp");
 		$mensaje = $this->Rutamejora_model->get_coment_super($idtemap)[0];
 		// echo "<pre>";

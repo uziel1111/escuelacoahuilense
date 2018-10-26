@@ -7,11 +7,22 @@ $(function() {
 
 function Supervision(){
   _this = this;
-  
+
 }
 
+$("#slt_cct_excuelasxsuper").change(function(){
+  // alert("canallita");
+  var cct = $("#slt_cct_excuelasxsuper").val();
+  var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
+  var turno = selected.data('turno');
+  // alert(cct);
+  $("#dv_btn_imprpdf").empty();
+  $("#dv_btn_imprpdf").html("<br><br><a class='btn btn-primary'  title='Generar reporte' target='_blank' href= "+base_url+"Reporte/get_reporte_desde_sup/?cct="+cct+"&turno="+turno+" ><i class='fas fa-print' ></i></a>");
+
+});
+
 $("#btn_get_rutamejoraxcct").click(function(){
-  var cct = $("#slt_cct_excuelasxsuper").val(); 
+  var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
   // alert(turno);
@@ -106,7 +117,7 @@ Supervision.prototype.get_rutasxcct = function(cct, turno){
  Supervision.prototype.funcionalidadselect = function(){
     $("#id_tabla_rutas_super tr").click(function(){
        $(this).addClass('selected').siblings().removeClass('selected');
-       var value=$(this).find('td:first').text(); 
+       var value=$(this).find('td:first').text();
        // var value2=$(this).find('td:second').text();
        id_tprioritario_sup = value;
        // alert(obj_supervisor.id_tprioritario_sup);

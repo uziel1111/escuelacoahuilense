@@ -207,12 +207,7 @@
                     <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" maxlength="80"></textarea> -->
                   </div>
                 </div>
-                <div class="row mt-15">
-                  <div class="col-md-6" id="dv_obs_super" hidden="true">
-                    <label> Observaciones del supervisor</label>
-                    <textarea id="txt_rm_obs_super" class="form-control" rows="2" maxlength="150" disabled></textarea>
-                  </div>
-                </div>
+
                 <div class="row mt-15">
                   <div class="col-12">
                     <p id="mensaje_alertafile" style="color:red;">*Elementos requeridos</p>
@@ -239,6 +234,7 @@
                           <button id="btn_rutamejora_editar" type="button" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                           <button id="btn_rutamejora_eliminareg" type="button" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
                           <button id="btn_rutamejora_acciones" type="button" data-toggle="modal" data-target="#exampleModal" title="Crear actividades" class="btn btn-primary"><i class="fas fa-tasks"></i></button>
+                          <button id="btn_rutamejora_obs_super" type="button" data-toggle="modal" data-target="#exampleModal" title="Mostrar observacion del supervisor" class="btn btn-primary"><i class="far fa-eye"></i></button>
 
                         </div>
 
@@ -280,6 +276,29 @@
               </div>
             </div><!-- container -->
         </section>
+        <!-- Modal -->
+            <div class="modal fade" id="exampleModal_obs_super" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-style-1">
+                  <div class="modal-header bgcolor-2">
+                    <h5 class="modal-title text-white" id="exampleModalLabel"> Observaciones del supervisor</h5>
+                    <button type="button" class="close" id="cerrar_modal_obs_super" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group form-group-style-1">
+                            <div class="row mt-15">
+                              <div class="col-md-12" id="dv_obs_super">
+                                <textarea id="txt_rm_obs_super" class="form-control" rows="2" maxlength="150" disabled></textarea>
+                              </div>
+                            </div>
+                          </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
         <!-- Modal -->
             <div class="modal fade" id="exampleModalacciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
               <div class="modal-dialog modal-lg" role="document">

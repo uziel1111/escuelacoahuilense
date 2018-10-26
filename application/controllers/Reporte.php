@@ -8,6 +8,7 @@ class Reporte extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('Utilerias');
 		$this->load->model('Reportepdf_model');
+		$this->load->model('Escuela_model');
 		$this->load->library('PDF_MC_Table');
 		date_default_timezone_set('America/Mexico_City');
 	}// __construct()
@@ -47,6 +48,51 @@ class Reporte extends CI_Controller {
 			$pdf->Output();
 		}
 	}// get_reporte()
+
+	public function get_reporte_desde_sup(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$cvecct = $_GET['cct'];
+			$turno_single = $_GET['turno'];
+			// echo "<pre>";print_r($cvecct);die();
+			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
+			// echo "<pre>";print_r(count($arr_cct));die();
+			if (count($arr_cct)==1) {
+				$id_cct = $arr_cct[0]['id_cct'];
+				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
+				$str_nombre = "ESCUELA: {$arr_cct[0]['nombre_centro']}";
+
+				$fecha = date("Y-m-d");
+				$arr_aux = explode("-",$fecha);
+
+				$anio_i = $arr_aux[0];
+				$mes_i = $arr_aux[1];
+				$dia_i = $arr_aux[2];
+				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
+				$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
+				$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
+				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
+				//incializamos variables de header
+				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+				$pdf->AliasNbPages();
+				$pdf->AddPage('L','Legal');
+
+				$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+				foreach ($rutas as $ruta) {
+					$id_tprioritario = $ruta['id_tprioritario'];
+					//DATOS
+					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
+
+
+				}
+
+				$pdf->Output();
+			}
+			else {
+				//mensaje de no tiene que mostrar
+			}
+
+		}
+	}// get_reporte_desde_sup()
 
 	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario){
 		if(Utilerias::haySesionAbiertacct($this)){
@@ -271,7 +317,13 @@ class Reporte extends CI_Controller {
 	    // echo "<pre>";
 	    // print_r($response->Personal);
 	    // die();
-	    $personal = $response->Personal;
+			if ($response->status==0) {
+				$personal = array();
+			}
+			else {
+				$personal = $response->Personal;
+			}
+	    // $personal = $response->Personal;
 	    $listap = "";
 	    foreach ($personal as $persona) {
 	    	// echo "<pre>";

@@ -249,6 +249,16 @@ function  get_datos_edith_tp($id_tprioritario){
     return  $this->db->get()->result_array();
   }
 
+  function  get_obs_super_tp($id_tprioritario){
+    $this->db->select('
+    obs_supervisor
+    ');
+      $this->db->from('rm_tema_prioritarioxcct');
+      $this->db->where("id_tprioritario = {$id_tprioritario}");
+      return  $this->db->get()->row('obs_supervisor');
+
+    }
+
   function update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){
     // echo $ids_progapoy;die();
 

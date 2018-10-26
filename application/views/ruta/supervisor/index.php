@@ -17,19 +17,25 @@
 			  </div>
 		</div>
 
-		<div class="col-6">
+		<div class="col-2">
 			<br>
 			<br>
 			<button class="btn btn-primary" id="btn_get_rutamejoraxcct">Buscar ruta</button>
+
+		</div>
+		<div class="col-2" id="dv_btn_imprpdf">
+			<br>
+			<br>
+			<a class="btn btn-primary"  title="Generar reporte" target="_blank" href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" ><i class="fas fa-print" ></i></a>
 		</div>
 	</div>
 	<br>
 	<div class="row">
 		<div class="col-2">
-			<button class="btn btn-secondary" id="btn_cargar_mensaje_super" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
-			<button class="btn btn-info" id="btn_ver_ruta_super"><i class="far fa-eye"></i></button>
+			<button class="btn btn-secondary" id="btn_cargar_mensaje_super" title="Observación de tema prioritario" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
+			<button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de tema prioritario"><i class="far fa-eye"></i></button>
 		</div>
-	</div>	
+	</div>
 	<br>
 	<!-- <div class="row"> -->
 		<div id="contenedor_tabla_rutas"></div>
