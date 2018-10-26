@@ -19,7 +19,6 @@ $("#btn_get_rutamejoraxcct").click(function(){
 });
 
 $("#btn_cargar_mensaje_super").click(function(){
-  // alert(id_tprioritario_sup);
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
@@ -28,9 +27,12 @@ $("#btn_cargar_mensaje_super").click(function(){
       );
   }
   else {
+    obj_supervisor.get_comentario_super();
     $('#exampleModalLong').modal('show');
   }
 });
+
+
 
 $("#btn_guarda_msg_super").click(function(){
   $.ajax({
@@ -127,6 +129,29 @@ Supervision.prototype.get_vista_acciones = function(){
     $("#contenedor_vista_acciones").empty();
     $("#contenedor_vista_acciones").append(view);
     $("#modal_visor_acciones_id").modal("show");
+  })
+  .fail(function(e) {
+    console.error("Al bajar la informacion"); console.table(e);
+  })
+  .always(function() {
+        // swal.close();
+  })
+}
+
+Supervision.prototype.get_comentario_super = function(){
+  $.ajax({
+    url: base_url+'rutademejora/get_comentario_super',
+    type: 'POST',
+    dataType: 'JSON',
+    data:{"idtemarp":id_tprioritario_sup},
+    beforeSend: function(xhr) {
+          Notification.loading("");
+      },
+  })
+  .done(function(data) {
+    swal.close();
+    var comentario = data.mensaje;
+    $("#mensajesupervisor").val(comentario);
   })
   .fail(function(e) {
     console.error("Al bajar la informacion"); console.table(e);

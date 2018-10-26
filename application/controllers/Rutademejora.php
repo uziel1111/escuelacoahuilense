@@ -1056,5 +1056,17 @@ public function edit_accion_super(){
 	    return $response = json_decode($result);
 	}
 
+	public function get_comentario_super(){
+		
+		$idtemap = $this->input->post("idtemarp");
+		$mensaje = $this->Rutamejora_model->get_coment_super($idtemap)[0];
+		// echo "<pre>";
+		// print_r($mensaje['obs_supervisor']);
+		// die();
+		$response = array('mensaje' => $mensaje['obs_supervisor']);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 
 }// Rutamedejora
