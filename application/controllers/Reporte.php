@@ -117,7 +117,8 @@ class Reporte extends CI_Controller {
 						utf8_decode($evidencia)
 					));
 
-				$observaciondir = "Observaciones: {$ruta['obs_direc']}";
+				$observaciondir = "Observaciones director: {$ruta['obs_direc']}";
+				$observacionsup = "Observaciones supervisor: {$ruta['obs_supervisor']}";
 				$pdf->Ln(9);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
@@ -128,6 +129,10 @@ class Reporte extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 					$pdf->Row2(array(
 						utf8_decode($observaciondir)
+					));
+					$pdf->Ln(9);
+					$pdf->Row2(array(
+						utf8_decode($observacionsup)
 					));
 
 

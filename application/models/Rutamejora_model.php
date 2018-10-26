@@ -238,6 +238,7 @@ function  get_datos_edith_tp($id_tprioritario){
   otro_pa,
   como_ayudan_pa,
   obs_direc,
+  obs_supervisor,
   ids_apoyo_req_se,
   otro_apoyo_req_se,
   especifique_apoyo_req,
@@ -472,7 +473,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
-    
+
     function valida_supervisor($cct){
     	$str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
     	return $this->db->query($str_query)->result_array();
@@ -488,7 +489,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getdatossupervicion($cct){
-      $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro 
+      $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro
 				      FROM supervision s
 				       WHERE s.id_supervision = '{$cct}'";
      return $this->db->query($str_query)->result_array();

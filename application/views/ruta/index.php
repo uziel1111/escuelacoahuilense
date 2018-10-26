@@ -207,7 +207,12 @@
                     <textarea id="txt_rm_especifiqueapyreq" class="form-control" rows="2" maxlength="80"></textarea> -->
                   </div>
                 </div>
-
+                <div class="row mt-15">
+                  <div class="col-md-6" id="dv_obs_super" hidden="true">
+                    <label> Observaciones del supervisor</label>
+                    <textarea id="txt_rm_obs_super" class="form-control" rows="2" maxlength="150" disabled></textarea>
+                  </div>
+                </div>
                 <div class="row mt-15">
                   <div class="col-12">
                     <p id="mensaje_alertafile" style="color:red;">*Elementos requeridos</p>
