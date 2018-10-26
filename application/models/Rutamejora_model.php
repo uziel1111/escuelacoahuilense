@@ -495,4 +495,9 @@ function  get_datos_edith_tp($id_tprioritario){
      return $this->db->query($str_query)->result_array();
     }
 
+    function get_coment_super($idtemap){
+    	$str_query = "SELECT obs_supervisor FROM rm_tema_prioritarioxcct WHERE id_tprioritario = {$idtemap}";
+    	return $this->db->query($str_query)->result_array();
+    }
+
 }// Rutamejora_model
