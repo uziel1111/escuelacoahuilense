@@ -33,7 +33,7 @@ class Reporte extends CI_Controller {
 			//incializamos variables de header
 			$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
 			$pdf->AliasNbPages();
-			$pdf->AddPage('L');
+			$pdf->AddPage('L','Legal');
 
 			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
 			foreach ($rutas as $ruta) {
@@ -137,7 +137,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetFont('Arial','B',11);
 
 				//Table with 4 columns
-				$pdf->SetWidths(array(20,41,40,45,46,46,46)); // ancho de primer columna, segunda, tercera y cuarta
+				$pdf->SetWidths(array(10,41,40,45,46,46,20,85)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
 				// echo "<pre>";
@@ -167,6 +167,7 @@ class Reporte extends CI_Controller {
 					utf8_decode("Fecha fin"),
 					utf8_decode("Recursos"),
 					utf8_decode("Avance"),
+					utf8_decode("Responsables"),
 				));
 
 
@@ -182,17 +183,19 @@ class Reporte extends CI_Controller {
 					// print_r($item["ids_responsables"]);
 					// die();
 					$ids_responsables = $item["ids_responsables"];
-					$responsablesc .= $this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
+					$auxpersonal = ($item["otro_responsable"]=='')?"":strtoupper($item["otro_responsable"]).", ";
+					$responsablesc = $auxpersonal.$this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
 
 					$cont++;
-					$pdf->Row(array(
+					$pdf->Rowtab(array(
 						$cont,
 						utf8_decode($item["accion"]),
 						utf8_decode($item["ambito"]),
 						utf8_decode($item["accion_f_inicio"]),
 						utf8_decode($item["accion_f_termino"]),
 						utf8_decode($item["mat_insumos"]),
-						utf8_decode($item["avance"])
+						utf8_decode($item["avance"]),
+						utf8_decode(substr($responsablesc, 0, -2))
 					));
 				}
 
@@ -211,19 +214,19 @@ class Reporte extends CI_Controller {
 				// 		utf8_decode($responsablesc)
 				// 	));
 
-				$resp = "RESPONSABLES: {$responsablesc}";
-				$pdf->Ln();
-				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				$pdf->SetFillColor(255);
-				$pdf->SetAligns(array("L"));
-				// $pdf->SetColors(array(TRUE));
-				$pdf->SetLineW(array(0.2));
-				$pdf->SetTextColor(93,155,155);
+				// $resp = "RESPONSABLES: {$responsablesc}";
+				// $pdf->Ln();
+				// $pdf->SetFont('Arial','B',9);
+				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				// $pdf->SetFillColor(255);
+				// $pdf->SetAligns(array("L"));
+				// // $pdf->SetColors(array(TRUE));
+				// $pdf->SetLineW(array(0.2));
+				// $pdf->SetTextColor(93,155,155);
 				// $pdf->SetTextColor(87,166,57);
-					$pdf->Row2(array(
-						utf8_decode($resp)
-					));
+					// $pdf->Row2(array(
+					// 	utf8_decode($resp)
+					// ));
 				$pdf->Ln();
 
 		}else{
