@@ -178,7 +178,7 @@
                       <!-- <input name="archivo" type="file" id="imagen" accept="image.*/pdf" /> -->
                       <!-- disabled="true" -->
                         <button type="button"
-                                onclick="obj_rm_tp.abrir('imagen')" disabled>Escoga un archivo</button>
+                                onclick="obj_rm_tp.abrir('imagen')">Escoga un archivo</button>
                         <input type="file"
                                id="imagen" name="archivo"
                                onchange="obj_rm_tp.contar(this, 'glosaArchivos')" style="display: none" accept="application/pdf, image/*" >
