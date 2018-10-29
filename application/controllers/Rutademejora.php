@@ -923,7 +923,12 @@ public function get_table_rutas($idcct){
 	                          <th id='orden' style='width:4%'><center>Orden</center></th>
 	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
 	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
+	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th>
+	                          <th id='n_actividades' style='width:8%'><center>Acciones</center></th>
+	                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
+	                          <th id='objetivo' style='width:6%'><center>Observación</center></th>
+	                       </tr>
+	                    </thead>
 	                          <tbody id='id_tbody_demo'>";
 
 
