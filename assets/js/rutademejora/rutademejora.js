@@ -98,8 +98,8 @@ $("#btn_rutamejora_obs_super").click(function(){
     swal.close();
     // console.log(result.srt_html);
     $('#exampleModal_obs_super').modal('toggle');
-    $("#txt_rm_obs_super").empty();
-    $("#txt_rm_obs_super").html(result.str_obs_super);
+    $("#txt_rm_obs_super1").empty();
+    $("#txt_rm_obs_super1").html(result.str_obs_super);
 
 
   })

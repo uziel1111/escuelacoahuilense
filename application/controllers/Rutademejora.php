@@ -318,10 +318,10 @@ class Rutademejora extends CI_Controller {
 				            <thead>
 				              <tr class=info>
 		                          <th id='idrutamtema' hidden><center>id</center></th>
-		                          <th id='orden' style='width:4%'><center>Orden</center></th>
+		                          <th id='orden' style='width:2%'><center>Orden</center></th>
 		                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
 		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
+		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:4%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th><th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th></tr></thead>
 		                          <tbody id='id_tbody_demo'>";
 
 
@@ -333,6 +333,7 @@ class Rutademejora extends CI_Controller {
 	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
+														<td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
 		                              </tr>";
 				}
 
