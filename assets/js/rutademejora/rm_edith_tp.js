@@ -80,8 +80,8 @@ $("#slc_pa").selectpicker("refresh");
 $("#txt_rm_otropa").val(datos[0]['otro_pa']);
 $("#txt_rm_programayuda").val(datos[0]['como_ayudan_pa']);
 $("#txt_rm_obs_direc").val(datos[0]['obs_direc']);
-// document.getElementById('dv_obs_super').removeAttribute("hidden");
-// $("#txt_rm_obs_super").val(datos[0]['obs_supervisor']);
+document.getElementById('dv_obs_super').removeAttribute("hidden");
+$("#txt_rm_obs_super").val(datos[0]['obs_supervisor']);
 $("#slc_apoyoreq").selectpicker('val', datos[0]['ids_apoyo_req_se'].split(','));
 $("#slc_apoyoreq").selectpicker("refresh");
 $("#txt_rm_otroapoyreq").val(datos[0]['otro_apoyo_req_se']);
@@ -178,7 +178,7 @@ if (validacion == true) {
       document.getElementById('btn_rutamejora_eliminareg').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_acciones').removeAttribute("hidden");
       document.getElementById('btn_actualizar_tp').setAttribute("hidden", true);
-      // document.getElementById('dv_obs_super').setAttribute("hidden", true);
+      document.getElementById('dv_obs_super').setAttribute("hidden", true);
 
   }
   else {
