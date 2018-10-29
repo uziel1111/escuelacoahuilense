@@ -10,7 +10,7 @@ class Reportepdf_model extends CI_Model
       FROM rm_tema_prioritarioxcct rtp
       INNER JOIN rm_c_prioridad p ON p.id_prioridad = rtp.id_prioridad
       WHERE rtp.id_cct = {$idcct} ORDER BY orden ASC";
-
+// echo $str_query; die();
       return $this->db->query($str_query)->result_array();
     }
 

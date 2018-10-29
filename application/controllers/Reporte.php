@@ -40,7 +40,7 @@ class Reporte extends CI_Controller {
 			foreach ($rutas as $ruta) {
 				$id_tprioritario = $ruta['id_tprioritario'];
 				//DATOS
-				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
+				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
 
 
 			}
@@ -80,7 +80,7 @@ class Reporte extends CI_Controller {
 				foreach ($rutas as $ruta) {
 					$id_tprioritario = $ruta['id_tprioritario'];
 					//DATOS
-					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
+					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
 
 
 				}
@@ -94,7 +94,7 @@ class Reporte extends CI_Controller {
 		}
 	}// get_reporte_desde_sup()
 
-	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario){
+	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct){
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = "Orden: {$ruta['orden']}";
 				$tema = "Prioridad: {$ruta['tema']}";
@@ -235,8 +235,10 @@ class Reporte extends CI_Controller {
 					// die();
 					$ids_responsables = $item["ids_responsables"];
 					$auxpersonal = ($item["otro_responsable"]=='')?"":strtoupper($item["otro_responsable"]).", ";
-					$responsablesc = $auxpersonal.$this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
-
+					$responsablesc = $auxpersonal.$this->get_perosonal_mostrar($cvecct, $ids_responsables);
+					// echo "<pre>";
+					// print_r($responsablesc);
+					// die();
 					$cont++;
 					$pdf->Rowtab(array(
 						$cont,
