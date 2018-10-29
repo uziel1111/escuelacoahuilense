@@ -19,7 +19,7 @@
 			    <label for="exampleSelect1">Escuelas:</label>
 			    <select class="form-control" id="slt_cct_excuelasxsuper">
 			    	<?php foreach ($escuelas as $escuela): ?>
-                            <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_desc_turno?>]</option>
+                            <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_cct?> - <?=$escuela->b_desc_turno?>]</option>
                     <?php endforeach; ?>
 			    </select>
 			  </div>

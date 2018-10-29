@@ -287,7 +287,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             if($("#datepicker2").val() != ""){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
                   if($("#txt_rm_indimed").val() != ""){
-                    if(obj_rm_acciones_tp.validadate()){
+                    if(date_diff_indays() >= 0){
                       obj_rm_acciones_tp.save_accion();
                     }else{
                       swal(
@@ -312,7 +312,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                       );
                   }else{
                     if($("#txt_rm_indimed").val() != ""){
-                      if(obj_rm_acciones_tp.validadate()){
+                      if(date_diff_indays() >= 0){
                         obj_rm_acciones_tp.save_accion();
                       }else{
                         swal(
@@ -375,40 +375,10 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  }
 
 
- Rm_acciones_tp.prototype.validadate = function(){
-  var valida = false;
-  var f_inicio = $("#datepicker1").val(); //10/25/2018
-  var f_termino = $("#datepicker2").val(); //01/01/2019
-  var f_inicio = f_inicio.split("/");
-  var mes1 = f_inicio[0];
-  var dia1 = f_inicio[1];
-  var anio1 = f_inicio[2];
-  var f_termino = f_termino.split("/");
-  var mes2 = f_termino[0];
-  var dia2 = f_termino[1];
-  var anio2 = f_termino[2];
-  if(anio2 >= anio1){
-    anioval = true;
-    valida = true;
-    if(mes2 >= mes1){
-      mesval = true;
-      valida = true;
-      if(dia2 >= dia1){
-        valida = true;
-      }else{
-        if(mesval == true && dia2 >= dia1){
-          valida = true;
-        }else{
-          return false;
-        }
-      }
-    }else{
-      if(anioval == true){
-        valida = true;
-      }else{
-        return false;
-      }
-    }
-  }
-  return valida;
- }
+var date_diff_indays = function() {
+  var date1 = $("#datepicker1").val(); //10/25/2018
+  var date2 = $("#datepicker2").val(); //01/01/2019
+  dt1 = new Date(date1);
+  dt2 = new Date(date2);
+return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}
