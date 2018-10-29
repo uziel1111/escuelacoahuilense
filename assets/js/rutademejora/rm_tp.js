@@ -306,6 +306,19 @@ Rm_tp.prototype.readURL= function(input){
 
 }
 
+Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
+  // alert(path_evidencia);
+  var Protocol = location.protocol;
+	var URLactual = window.location.host;
+  var pathname = window.location.pathname;
+  $('#dv_ver_evidencia').empty();
+  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/sarape"+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#exampleModal_ver_evidencia').modal('toggle');
+}
+$("#cerrar_modal_ver_evidencia").click(function(){
+  $('#exampleModal_ver_evidencia').modal('toggle');
+});
+
 $("#imagen").change(function() {
   obj_rm_tp.readURL(this);
 });

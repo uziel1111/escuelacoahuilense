@@ -211,7 +211,7 @@ class Rutamejora_model extends CI_Model
 
   function getrutasxcct($idcct){
 	$this->db->select("tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad,
-	SUM(IF(ISNULL(acc.id_accion),0,1)) as n_acciones,IF(tpxcct.obs_supervisor='','','fas fa-check-circle') AS obs_supervisor");
+	SUM(IF(ISNULL(acc.id_accion),0,1)) as n_acciones,IF(tpxcct.obs_supervisor='','','fas fa-check-circle') AS obs_supervisor,tpxcct.path_evidencia");
 	      $this->db->from('rm_tema_prioritarioxcct tpxcct');
 	      $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
         $this->db->join('rm_accionxtproritario as acc', 'tpxcct.id_tprioritario = acc.id_tprioritario', 'left');
