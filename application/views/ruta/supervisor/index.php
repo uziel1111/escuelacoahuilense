@@ -3,30 +3,34 @@
     background-color: #9ccc65;
     color: #FFF;
 }
+.margintop35{
+  margin-top: 35px;
+}
+
+.margintop10{
+  margin-top: 10px;
+}
 </style>
+
 <div class="container">
 	<div class="row">
-		<div class="col-6">
+		<div class="col-6 margintop10">
 			<div class="form-group">
 			    <label for="exampleSelect1">Escuelas:</label>
 			    <select class="form-control" id="slt_cct_excuelasxsuper">
 			    	<?php foreach ($escuelas as $escuela): ?>
-                            <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?></option>
+                            <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_cct?> - <?=$escuela->b_desc_turno?>]</option>
                     <?php endforeach; ?>
 			    </select>
 			  </div>
 		</div>
 
-		<div class="col-2">
-			<br>
-			<br>
+		<div class="col-2 margintop35">
 			<button class="btn btn-primary" id="btn_get_rutamejoraxcct">Buscar ruta</button>
 
 		</div>
-		<div class="col-2" id="dv_btn_imprpdf">
-			<br>
-			<br>
-			<a class="btn btn-primary"  title="Generar reporte" target="_blank" href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" ><i class="fas fa-print" ></i></a>
+		<div class="col-2 margintop35" id="dv_btn_imprpdf">
+			<a class="btn btn-primary"  title="Generar reporte" target="_blank" href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a>
 		</div>
 	</div>
 	<br>
@@ -34,6 +38,11 @@
 		<div class="col-2">
 			<button class="btn btn-secondary" id="btn_cargar_mensaje_super" title="Observación de tema prioritario" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
 			<button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de tema prioritario"><i class="far fa-eye"></i></button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<small class="form-text text-muted">Selecciona una fila para poder realizar alguna acción</small>
 		</div>
 	</div>
 	<br>
