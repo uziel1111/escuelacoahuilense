@@ -16,9 +16,8 @@ $("#slt_cct_excuelasxsuper").change(function(){
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
   // alert(cct);
-  $("#dv_btn_imprpdf").empty();
-  $("#dv_btn_imprpdf").html("<a class='btn btn-primary'  title='Generar reporte' target='_blank' href= "+base_url+"Reporte/get_reporte_desde_sup/?cct="+cct+"&turno="+turno+">Imprimir ruta de mejora</a>");
-
+  $("#cct_tmp").val(cct);
+  $("#turno_tmp").val(turno);
 });
 
 $("#btn_get_rutamejoraxcct").click(function(){

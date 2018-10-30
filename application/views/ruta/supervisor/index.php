@@ -17,11 +17,12 @@
 		<div class="col-6 margintop10">
 			<div class="form-group">
 			    <label for="exampleSelect1">Escuelas:</label>
-			    <select class="form-control" id="slt_cct_excuelasxsuper">
+			    <select class="form-control" name="slt_cct_excuelasxsuper" id="slt_cct_excuelasxsuper">
 			    	<?php foreach ($escuelas as $escuela): ?>
                             <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_cct?> - <?=$escuela->b_desc_turno?>]</option>
                     <?php endforeach; ?>
 			    </select>
+
 			  </div>
 		</div>
 
@@ -29,10 +30,16 @@
 			<button class="btn btn-primary" id="btn_get_rutamejoraxcct">Buscar ruta</button>
 
 		</div>
+		<?php  echo form_open(''.base_url().'index.php/Reporte/get_reporte_desde_sup', array('target' => '_blank','id' => 'form_imp_rm')); ?>
 		<div class="col-2 margintop35" id="dv_btn_imprpdf">
-			<a class="btn btn-primary"  title="Generar reporte" target="_blank" href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a>
+			<button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir ruta de mejora</button>
+			<!-- <a class="btn btn-primary"   href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a> -->
+			<input type="text" name="cct_tmp" id="cct_tmp" value="<?= $escuelas[0]->b_cct ?>" hidden>
+			<input type="text" name="turno_tmp" id="turno_tmp" value="<?= $escuelas[0]->b_desc_turno ?>" hidden>
 		</div>
+		<?= form_close(); ?>
 	</div>
+
 	<br>
 	<div class="row">
 		<div class="col-2">

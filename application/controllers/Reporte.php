@@ -51,9 +51,12 @@ class Reporte extends CI_Controller {
 
 	public function get_reporte_desde_sup(){
 		if(Utilerias::haySesionAbiertacct($this)){
-			$cvecct = $_GET['cct'];
-			$turno_single = $_GET['turno'];
-			// echo "<pre>";print_r($cvecct);die();
+			// $cvecct = $_GET['cct'];
+			// $turno_single = $_GET['turno'];
+
+				$cvecct = $this->input->post('cct_tmp');
+				$turno_single = $this->input->post('turno_tmp');
+			// echo "<pre>";print_r($turno_single);die();
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
 			// echo "<pre>";print_r(count($arr_cct));die();
 			if (count($arr_cct)==1) {
