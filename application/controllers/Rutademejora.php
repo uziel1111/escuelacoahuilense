@@ -929,6 +929,7 @@ public function get_table_rutas($idcct){
 	                          <th id='n_actividades' style='width:8%'><center>Acciones</center></th>
 	                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 	                          <th id='objetivo' style='width:6%'><center>Observación</center></th>
+	                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
 	                       </tr>
 	                    </thead>
 	                          <tbody id='id_tbody_demo'>";
@@ -943,7 +944,8 @@ public function get_table_rutas($idcct){
                           <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
                           <td id=''><center><i class='fas fa-check-circle'></i></center></td>
                           <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-	                              </tr>";
+                          <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_supervisor.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+	                        </tr>";
 			}
 
 			$tabla .= "</tbody>

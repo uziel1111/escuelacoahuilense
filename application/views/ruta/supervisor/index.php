@@ -84,6 +84,31 @@
   </div>
 </div>
 <div id="contenedor_vista_acciones"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal_ver_evidencia_super" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-style-1">
+      <div class="modal-header bgcolor-2">
+        <h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
+        <button type="button" class="close" id="cerrar_modal_ver_evidencia_super" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+              <div class="form-group form-group-style-1">
+                <div class="row mt-15">
+                  <div class="col-md-12" id="dv_ver_evidencia_super">
+                  </div>
+                </div>
+              </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="<?= base_url('assets/js/rutademejora/supervisor/operacionesindex.js'); ?>"></script>
