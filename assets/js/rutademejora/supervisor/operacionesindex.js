@@ -10,6 +10,10 @@ function Supervision(){
 
 }
 
+$("#cerrar_modal_ver_evidencia_super").click(function(){
+  $('#exampleModal_ver_evidencia_super').modal('toggle');
+});
+
 $("#slt_cct_excuelasxsuper").change(function(){
   // alert("canallita");
   var cct = $("#slt_cct_excuelasxsuper").val();
@@ -169,4 +173,13 @@ Supervision.prototype.get_comentario_super = function(){
   .always(function() {
         // swal.close();
   })
+}
+
+Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
+  var Protocol = location.protocol;
+  var URLactual = window.location.host;
+  var pathname = window.location.pathname;
+  $('#dv_ver_evidencia_super').empty();
+  $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#exampleModal_ver_evidencia_super').modal('toggle');
 }
