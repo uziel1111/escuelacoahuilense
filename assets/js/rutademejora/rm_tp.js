@@ -312,7 +312,7 @@ Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
 	var URLactual = window.location.host;
   var pathname = window.location.pathname;
   $('#dv_ver_evidencia').empty();
-  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/sarape"+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia').modal('toggle');
 }
 $("#cerrar_modal_ver_evidencia").click(function(){

@@ -1,6 +1,7 @@
 <?php
+// error_reporting(0);
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+define('FPDF_FONTPATH','font/');
 require_once('fpdf181/fpdf.php');
 
 class PDF_MC_Table extends FPDF{
@@ -48,8 +49,7 @@ class PDF_MC_Table extends FPDF{
     //Set the array of column alignments
     $this->aligns=$a;
   }
-
-  function Rowtab($data)
+    function Rowtab($data)
   {
     //Calculate the height of the row
     $nb=0;
@@ -243,7 +243,7 @@ class PDF_MC_Table extends FPDF{
     // Arial bold 16
       $this->SetFont('Arial','B',16);
       // Logo
-      $this->Image(base_url().'assets/img/logoreporte.png',10,8,70);
+      $this->Image('assets/img/logoreporte.png',10,8,70);
 
       $this->Ln(1);
       $this->SetFont('Arial','B',11);

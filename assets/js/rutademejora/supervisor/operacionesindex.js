@@ -17,7 +17,7 @@ $("#slt_cct_excuelasxsuper").change(function(){
   var turno = selected.data('turno');
   // alert(cct);
   $("#dv_btn_imprpdf").empty();
-  $("#dv_btn_imprpdf").html("<br><br><a class='btn btn-primary'  title='Generar reporte' target='_blank' href= "+base_url+"Reporte/get_reporte_desde_sup/?cct="+cct+"&turno="+turno+" ><i class='fas fa-print' ></i></a>");
+  $("#dv_btn_imprpdf").html("<a class='btn btn-primary'  title='Generar reporte' target='_blank' href= "+base_url+"Reporte/get_reporte_desde_sup/?cct="+cct+"&turno="+turno+">Imprimir ruta de mejora</a>");
 
 });
 

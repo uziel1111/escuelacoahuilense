@@ -334,7 +334,7 @@ class Rutademejora extends CI_Controller {
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 														<td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-														<td id=''><center><button type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+														<td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
 		                              </tr>";
 				}
 
@@ -1088,11 +1088,11 @@ public function edit_accion_super(){
 	public function get_comentario_super(){
 
 		$idtemap = $this->input->post("idtemarp");
-		$mensaje = $this->Rutamejora_model->get_coment_super($idtemap)[0];
+		$mensaje = $this->Rutamejora_model->get_coment_super($idtemap);
 		// echo "<pre>";
-		// print_r($mensaje['obs_supervisor']);
+		// print_r($mensaje);
 		// die();
-		$response = array('mensaje' => $mensaje['obs_supervisor']);
+		$response = array('mensaje' => $mensaje[0]['obs_supervisor']);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
