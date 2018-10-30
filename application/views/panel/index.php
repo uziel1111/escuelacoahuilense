@@ -34,7 +34,7 @@
 
 
 <!-- Modal Apoyos -->
-<div class="modal fade" id="modal_visor_recursos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll; padding-right: 17px; display: block;">
+<div class="modal fade" id="modal_visor_recursos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll; padding-right: 17px; ">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modal-style-1">
             <div class="modal-header bgcolor-4">
@@ -169,7 +169,7 @@
 <!-- End Modal -->
 
 <!-- Modal APOYO -->
-<div class="modal fade" id="modal_visor_apoyo_react" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;>
+<div class="modal fade" id="modal_visor_apoyo_react" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modal-style-1">
             <div class="modal-header bgcolor-4">
