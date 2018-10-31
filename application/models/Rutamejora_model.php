@@ -67,7 +67,11 @@ class Rutamejora_model extends CI_Model
     }
 
     function getacciones($id_tprioritario){
-    	return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
+    	$str_query = "SELECT * FROM rm_accionxtproritario rma
+						INNER JOIN rm_c_ambito ambito ON ambito.id_ambito = rma.id_ambito
+						WHERE rma.id_tprioritario = {$id_tprioritario}";
+		return $this->db->query($str_query)->result_array();
+    	// return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
     }
 
     function guardaAvance($idactividad, $avance){
@@ -206,11 +210,18 @@ class Rutamejora_model extends CI_Model
   }
 
   function getrutasxcct($idcct){
-	$this->db->select('tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad');
+	$this->db->select("tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad,
+	SUM(IF(ISNULL(acc.id_accion),0,1)) as n_acciones,IF((ISNULL(tpxcct.obs_supervisor) || tpxcct.obs_supervisor = ''),'','fas fa-check-circle') AS obs_supervisor,tpxcct.path_evidencia,
+IF ((ISNULL(tpxcct.path_evidencia) || tpxcct.path_evidencia = ''),'none','') as trae_path");
 	      $this->db->from('rm_tema_prioritarioxcct tpxcct');
 	      $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
+        $this->db->join('rm_accionxtproritario as acc', 'tpxcct.id_tprioritario = acc.id_tprioritario', 'left');
 	      $this->db->where("tpxcct.id_cct = {$idcct}");
-	      $this->db->order_by("orden", "asc");
+        $this->db->group_by("tpxcct.id_tprioritario");
+	      $this->db->order_by("tpxcct.orden", "asc");
+    //      $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
 	      return  $this->db->get()->result_array();
   }
 
@@ -228,6 +239,7 @@ function  get_datos_edith_tp($id_tprioritario){
   otro_pa,
   como_ayudan_pa,
   obs_direc,
+  obs_supervisor,
   ids_apoyo_req_se,
   otro_apoyo_req_se,
   especifique_apoyo_req,
@@ -237,6 +249,16 @@ function  get_datos_edith_tp($id_tprioritario){
     $this->db->where("id_tprioritario = {$id_tprioritario}");
     return  $this->db->get()->result_array();
   }
+
+  function  get_obs_super_tp($id_tprioritario){
+    $this->db->select('
+    obs_supervisor
+    ');
+      $this->db->from('rm_tema_prioritarioxcct');
+      $this->db->where("id_tprioritario = {$id_tprioritario}");
+      return  $this->db->get()->row('obs_supervisor');
+
+    }
 
   function update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq){
     // echo $ids_progapoy;die();
@@ -459,6 +481,34 @@ function  get_datos_edith_tp($id_tprioritario){
           // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
 
+    }
+
+    //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
+
+    function valida_supervisor($cct){
+    	$str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
+    	return $this->db->query($str_query)->result_array();
+    }
+
+    function inserta_mensaje_super($idtema, $mensaje_super){
+    	$data = array(
+	        'obs_supervisor' => $mensaje_super
+	    );
+
+	    $this->db->where('id_tprioritario', $idtema);
+	    return $this->db->update('rm_tema_prioritarioxcct', $data);
+    }
+
+    function getdatossupervicion($cct){
+      $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro
+				      FROM supervision s
+				       WHERE s.id_supervision = '{$cct}'";
+     return $this->db->query($str_query)->result_array();
+    }
+
+    function get_coment_super($idtemap){
+    	$str_query = "SELECT obs_supervisor FROM rm_tema_prioritarioxcct WHERE id_tprioritario = {$idtemap}";
+    	return $this->db->query($str_query)->result_array();
     }
 
 }// Rutamejora_model

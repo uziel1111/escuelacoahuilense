@@ -40,9 +40,14 @@
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
-                                                  <li class="list-group-item"><a class="fw800 fz-16" href="#" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
+
+                                                  
+                                                  <li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
+
                                                   <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a></li>
+                                                  
+
                                                   <li class="list-group-item"><a href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
                                                   <li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a></li>
                                                 </ul>
@@ -64,7 +69,7 @@
                                                   <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a></li>
                                                   <li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a></li>
-                                                  <li class="list-group-item"><a href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al acoso escolar <i>(bullying)</i></a></li>
+                                                  <li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al acoso escolar <i>(bullying)</i></a></li>
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
                                                   <!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Cursos y convocatorias</a></li> -->

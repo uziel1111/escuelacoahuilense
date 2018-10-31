@@ -1,14 +1,16 @@
 $(function() {
     obj_rm_acciones_tp = new Rm_acciones_tp();
-    $('#otro_responsable').hide();
+    $("#div_otro_responsable").hide();
+    // $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
     sel_encargado = false;
-    
+
 });
 
 $("#cerrar_modal_acciones").click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
+  obj.get_view();
 });
 
 $("#btn_rutamejora_acciones").click(function(){
@@ -82,9 +84,11 @@ $("#slc_responsables").change(function(){
    encargados.splice( i, 1 );
    // alert(encargados);
    if( texto.indexOf("0,") > -1){
-     $('#otro_responsable').show();
+    $("#div_otro_responsable").show();
+     // $('#otro_responsable').show();
    }else{
-      $('#otro_responsable').hide();
+      $("#div_otro_responsable").hide();
+      // $('#otro_responsable').hide();
    }
 });
 
@@ -110,7 +114,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#label_prioridad").text(data.datos['prioridad']);
              $("#label_problematica").text(data.datos['problematicas']);
              $("#label_evidencia").text(data.datos['evidencias']);
-             
+
              obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
@@ -153,7 +157,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#datepicker2").val("");
   $("#otro_responsable").val("");
   $("#txt_rm_indimed").val("");
-  $("#otro_responsable").hide();
+  // $("#otro_responsable").hide();
+  $("#div_otro_responsable").hide();
   $("#slc_rm_ambito").val("");
   $("#slc_rm_ambito").selectpicker("refresh");
   $("#slc_responsables").selectpicker('deselectAll');
@@ -170,8 +175,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
-           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales, 
-           "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion, 
+           data:{"id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales,
+           "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion,
            'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
            success:function(data){
              var vista = data.tabla;
@@ -192,9 +197,9 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#idtabla_accionestp tr").click(function(){
            $(this).addClass('selected').siblings().removeClass('selected');
            var value=$(this).find('td:first').text();
-           // alert(value);    
+           // alert(value);
            Rm_acciones_tp.id_accion_select = value;
-           // alert(Rm_acciones_tp.id_accion_select); 
+           // alert(Rm_acciones_tp.id_accion_select);
         });
  }
 
@@ -252,10 +257,11 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             for(var i = 0; i < ids.length; i++){
                 if(ids[i] == 0){
                     $('#otro_responsable').val(editado['otro_responsable']);
-                    $('#otro_responsable').show();
+                    $("#div_otro_responsable").show();
+                    // $('#otro_responsable').show();
                 }
             }
-            
+
             $("#txt_rm_indimed").val(editado['indcrs_medicion']);
              var inicio = editado['accion_f_inicio'].split("-");
              var fin = editado['accion_f_termino'].split("-");
@@ -281,7 +287,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             if($("#datepicker2").val() != ""){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
                   if($("#txt_rm_indimed").val() != ""){
-                    if(obj_rm_acciones_tp.validadate()){
+                    if(date_diff_indays() >= 0){
                       obj_rm_acciones_tp.save_accion();
                     }else{
                       swal(
@@ -306,7 +312,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                       );
                   }else{
                     if($("#txt_rm_indimed").val() != ""){
-                      if(obj_rm_acciones_tp.validadate()){
+                      if(date_diff_indays() >= 0){
                         obj_rm_acciones_tp.save_accion();
                       }else{
                         swal(
@@ -369,41 +375,10 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  }
 
 
- Rm_acciones_tp.prototype.validadate = function(){
-  var valida = false;
-  var f_inicio = $("#datepicker1").val(); //10/09/2018
-  var f_termino = $("#datepicker2").val(); //09/10/2018
-  var f_inicio = f_inicio.split("/");
-  var mes1 = f_inicio[0];
-  var dia1 = f_inicio[1];
-  var anio1 = f_inicio[2];
-  var f_termino = f_termino.split("/");
-  var mes2 = f_termino[0];
-  var dia2 = f_termino[1];
-  var anio2 = f_termino[2];
-  if(anio2 >= anio1){
-    anioval = true;
-    valida = true;
-    if(mes2 >= mes1){
-      mesval = true;
-      valida = true;
-      if(dia2 >= dia1){
-        valida = true;
-      }else{
-        if(mesval == true && dia2 >= dia1){
-          valida = true;
-        }else{
-          return false;
-        }
-      }
-    }else{
-      if(anioval == true && mes2 >= mes1){
-        valida = true;
-      }else{
-        return false;
-      }
-    }
-  }
-  return valida;
- }
-
+var date_diff_indays = function() {
+  var date1 = $("#datepicker1").val(); //10/25/2018
+  var date2 = $("#datepicker2").val(); //01/01/2019
+  dt1 = new Date(date1);
+  dt2 = new Date(date2);
+return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}

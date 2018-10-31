@@ -60,6 +60,11 @@
                       <div class="card-header card-1-header bgcolor-2 text-white">Indicadores del Modelo Educativo de Coahuila</div>
 											<center><p>*Conozca datos relevantes de la escuela haciendo clic en cada sección</p></center>
                       <div class="card-body">
+												<div class="row">
+										     <div class="col-12 text-center">
+										        <button class="btn btn-primary" id="btn_indice_peso">Índice de peso</button>
+										     </div>
+												</div>
 
  		<div class="row">
                     <div class="col-12 text-center">
@@ -558,6 +563,23 @@
     </div>
 
 </div>
+<!-- Modal Reactivos -->
+<div class="modal fade" id="modal_ind_peso" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
+		<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content modal-style-1">
+						<div class="modal-header bgcolor-2">
+								<h5 class="modal-title text-white" id="exampleModalLabel">Índice de peso 2018-2019</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								<div id="div_contenedor_indpeso"></div>
+						</div>
+						</div>
+		</div>
+</div>
+<!-- End Modal -->
 
                 <!-- Modal Reactivos -->
                 <div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
