@@ -49,8 +49,8 @@ class Rutademejora extends CI_Controller {
 
 				if($this->verifica_supervisor($usuario) == TRUE){
 					$datos_sesion = $this->iniciamos_sesion_supervisor($usuario, $pass, $turno);
-					// if($datos_sesion->procede == 1 && $datos_sesion->status == 1){
-					if(1 == 1 && 1 == 1){
+					if($datos_sesion->procede == 1 && $datos_sesion->status == 1){
+					// if(1 == 1 && 1 == 1){
 						$datoscct = $this->Rutamejora_model->getdatossupervicion($usuario, $turno);
 						Utilerias::set_cct_sesion($this, $datoscct);
 

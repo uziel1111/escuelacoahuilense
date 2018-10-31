@@ -58,7 +58,7 @@ class Reporte extends CI_Controller {
 				$turno_single = $this->input->post('turno_tmp');
 			// echo "<pre>";print_r($turno_single);die();
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
-			// echo "<pre>";print_r(count($arr_cct));die();
+			// echo "<pre>";print_r(($arr_cct));die();
 			if (count($arr_cct)==1) {
 				$id_cct = $arr_cct[0]['id_cct'];
 				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
@@ -72,26 +72,29 @@ class Reporte extends CI_Controller {
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 				$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
-				$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
-				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
-				//incializamos variables de header
-				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
-				$pdf->AliasNbPages();
-				$pdf->AddPage('L','Legal');
+				// echo "<pre>";print_r(count($ciclo));die();
+				if (count($ciclo)==1) {
+					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
+					$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
+					//incializamos variables de header
+					$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+					$pdf->AliasNbPages();
+					$pdf->AddPage('L','Legal');
 
-				$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
-				foreach ($rutas as $ruta) {
-					$id_tprioritario = $ruta['id_tprioritario'];
-					//DATOS
-					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
-
-
+					$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+					foreach ($rutas as $ruta) {
+						$id_tprioritario = $ruta['id_tprioritario'];
+						//DATOS
+						$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
+					}
+					$pdf->Output();
 				}
-
-				$pdf->Output();
+				else {
+					echo "error";
+				}
 			}
 			else {
-				//mensaje de no tiene que mostrar
+				echo "error";
 			}
 
 		}
