@@ -568,7 +568,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content modal-style-1">
 						<div class="modal-header bgcolor-2">
-								<h5 class="modal-title text-white" id="exampleModalLabel">Índice de peso</h5>
+								<h5 class="modal-title text-white" id="exampleModalLabel">Índice de peso 2018-2019</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>

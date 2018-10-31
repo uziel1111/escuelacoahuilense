@@ -145,11 +145,12 @@ function get_xidcct($idcct){
         $this->db->where('id_cct', $id_cct);
         return  $this->db->get()->row('id_nivel');
     }// get_nivel()
-    
-    function get_indicpeso_xidcct($id_cct){
+
+    function get_indicpeso_xidcct($id_cct,$id_ciclo){
         $this->db->select('`Bajo-peso` as bajo,Normal,Sobrepeso,Obesidad');
         $this->db->from('pesoxcct');
         $this->db->where('id_cct', $id_cct);
+        $this->db->where('id_ciclo', $id_ciclo);
         return  $this->db->get()->result_array();
     }// get_indicpeso_xidcct()
 }// Municipio_model

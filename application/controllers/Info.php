@@ -217,7 +217,7 @@ class Info extends CI_Controller {
 	public function get_indice_peso(){
 		$id_cct = $this->input->post("id_cct");
 
-		$arr_indi_peso = $this->Escuela_model->get_indicpeso_xidcct($id_cct);
+		$arr_indi_peso = $this->Escuela_model->get_indicpeso_xidcct($id_cct,4);
 		// echo "<pre>";print_r($arr_indi_peso);die();
     $data['arr_indi_peso'] = $arr_indi_peso;
     $dom = $this->load->view("indice_peso/index",$data,TRUE);
