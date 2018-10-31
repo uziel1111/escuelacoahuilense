@@ -66,6 +66,19 @@ class Escuela_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_xcentro()
 
+    function get_xcvecentro_turnosingle($cve_centro, $turno_single){
+      $this->db->select('es.id_cct, es.cve_centro, es.nombre_centro');
+      $this->db->from('escuela as es');
+      $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
+
+      $this->db->where('es.cve_centro =',$cve_centro);
+      $this->db->where('tu.turno_single =',$turno_single);
+      // $this->db->get();
+      // $str = $this->db->last_query();
+      // echo $str; die();
+      return  $this->db->get()->result_array();
+    }// get_xcvecentro_turnosingle()
+
 
     function get_marcadores(){
       $this->db->select('latitud, longitud, nombre_centro');
@@ -132,4 +145,12 @@ function get_xidcct($idcct){
         $this->db->where('id_cct', $id_cct);
         return  $this->db->get()->row('id_nivel');
     }// get_nivel()
+
+    function get_indicpeso_xidcct($id_cct,$id_ciclo){
+        $this->db->select('`Bajo-peso` as bajo,Normal,Sobrepeso,Obesidad');
+        $this->db->from('pesoxcct');
+        $this->db->where('id_cct', $id_cct);
+        $this->db->where('id_ciclo', $id_ciclo);
+        return  $this->db->get()->result_array();
+    }// get_indicpeso_xidcct()
 }// Municipio_model

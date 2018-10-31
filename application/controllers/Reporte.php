@@ -8,7 +8,9 @@ class Reporte extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('Utilerias');
 		$this->load->model('Reportepdf_model');
+		$this->load->model('Escuela_model');
 		$this->load->library('PDF_MC_Table');
+		date_default_timezone_set('America/Mexico_City');
 	}// __construct()
 
 
@@ -32,13 +34,13 @@ class Reporte extends CI_Controller {
 			//incializamos variables de header
 			$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
 			$pdf->AliasNbPages();
-			$pdf->AddPage('L');
+			$pdf->AddPage('L','Legal');
 
 			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
 			foreach ($rutas as $ruta) {
 				$id_tprioritario = $ruta['id_tprioritario'];
 				//DATOS
-				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario);
+				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
 
 
 			}
@@ -47,7 +49,58 @@ class Reporte extends CI_Controller {
 		}
 	}// get_reporte()
 
-	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario){
+	public function get_reporte_desde_sup(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			// $cvecct = $_GET['cct'];
+			// $turno_single = $_GET['turno'];
+
+				$cvecct = $this->input->post('cct_tmp');
+				$turno_single = $this->input->post('turno_tmp');
+			// echo "<pre>";print_r($turno_single);die();
+			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
+			// echo "<pre>";print_r(($arr_cct));die();
+			if (count($arr_cct)==1) {
+				$id_cct = $arr_cct[0]['id_cct'];
+				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
+				$str_nombre = "ESCUELA: {$arr_cct[0]['nombre_centro']}";
+
+				$fecha = date("Y-m-d");
+				$arr_aux = explode("-",$fecha);
+
+				$anio_i = $arr_aux[0];
+				$mes_i = $arr_aux[1];
+				$dia_i = $arr_aux[2];
+				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
+				$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
+				// echo "<pre>";print_r(count($ciclo));die();
+				if (count($ciclo)==1) {
+					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
+					$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
+					//incializamos variables de header
+					$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+					$pdf->AliasNbPages();
+					$pdf->AddPage('L','Legal');
+
+					$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+					foreach ($rutas as $ruta) {
+						$id_tprioritario = $ruta['id_tprioritario'];
+						//DATOS
+						$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
+					}
+					$pdf->Output();
+				}
+				else {
+					echo "error";
+				}
+			}
+			else {
+				echo "error";
+			}
+
+		}
+	}// get_reporte_desde_sup()
+
+	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct){
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = "Orden: {$ruta['orden']}";
 				$tema = "Prioridad: {$ruta['tema']}";
@@ -101,8 +154,8 @@ class Reporte extends CI_Controller {
 					$pdf->Row2(array(
 						utf8_decode($problematica)
 					));
-				
-				
+
+
 				$evidencia = "Evidencias: {$ruta['otro_evidencia']}";
 				$pdf->Ln(8);
 				$pdf->SetFont('Arial','B',9);
@@ -116,7 +169,8 @@ class Reporte extends CI_Controller {
 						utf8_decode($evidencia)
 					));
 
-				$observaciondir = "Observaciones: {$ruta['obs_direc']}";
+				$observaciondir = "Observaciones director: {$ruta['obs_direc']}";
+				$observacionsup = "Observaciones supervisor: {$ruta['obs_supervisor']}";
 				$pdf->Ln(9);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
@@ -128,7 +182,11 @@ class Reporte extends CI_Controller {
 					$pdf->Row2(array(
 						utf8_decode($observaciondir)
 					));
-				
+					$pdf->Ln(9);
+					$pdf->Row2(array(
+						utf8_decode($observacionsup)
+					));
+
 
 
 				$pdf->Ln(10);
@@ -136,7 +194,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetFont('Arial','B',11);
 
 				//Table with 4 columns
-				$pdf->SetWidths(array(20,41,40,45,46,46,46)); // ancho de primer columna, segunda, tercera y cuarta
+				$pdf->SetWidths(array(10,41,40,45,46,46,20,85)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
 				// echo "<pre>";
@@ -149,7 +207,7 @@ class Reporte extends CI_Controller {
 				// print_r($cct);
 				// die();
 
-				
+
 				// echo $responsablesc; die();
 
 				$pdf->SetFillColor(255,255,255);
@@ -166,6 +224,7 @@ class Reporte extends CI_Controller {
 					utf8_decode("Fecha fin"),
 					utf8_decode("Recursos"),
 					utf8_decode("Avance"),
+					utf8_decode("Responsables"),
 				));
 
 
@@ -181,17 +240,21 @@ class Reporte extends CI_Controller {
 					// print_r($item["ids_responsables"]);
 					// die();
 					$ids_responsables = $item["ids_responsables"];
-					$responsablesc .= $this->get_perosonal_mostrar($cct[0]['cve_centro'], $ids_responsables);
-					
+					$auxpersonal = ($item["otro_responsable"]=='')?"":strtoupper($item["otro_responsable"]).", ";
+					$responsablesc = $auxpersonal.$this->get_perosonal_mostrar($cvecct, $ids_responsables);
+					// echo "<pre>";
+					// print_r($responsablesc);
+					// die();
 					$cont++;
-					$pdf->Row(array(
+					$pdf->Rowtab(array(
 						$cont,
 						utf8_decode($item["accion"]),
 						utf8_decode($item["ambito"]),
 						utf8_decode($item["accion_f_inicio"]),
 						utf8_decode($item["accion_f_termino"]),
 						utf8_decode($item["mat_insumos"]),
-						utf8_decode($item["avance"])
+						utf8_decode($item["avance"]),
+						utf8_decode(substr($responsablesc, 0, -2))
 					));
 				}
 
@@ -210,19 +273,19 @@ class Reporte extends CI_Controller {
 				// 		utf8_decode($responsablesc)
 				// 	));
 
-				$resp = "RESPONSABLES: {$responsablesc}";
-				$pdf->Ln();
-				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				$pdf->SetFillColor(255);
-				$pdf->SetAligns(array("L"));
-				// $pdf->SetColors(array(TRUE));
-				$pdf->SetLineW(array(0.2));
-				$pdf->SetTextColor(93,155,155);
+				// $resp = "RESPONSABLES: {$responsablesc}";
+				// $pdf->Ln();
+				// $pdf->SetFont('Arial','B',9);
+				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				// $pdf->SetFillColor(255);
+				// $pdf->SetAligns(array("L"));
+				// // $pdf->SetColors(array(TRUE));
+				// $pdf->SetLineW(array(0.2));
+				// $pdf->SetTextColor(93,155,155);
 				// $pdf->SetTextColor(87,166,57);
-					$pdf->Row2(array(
-						utf8_decode($resp)
-					));
+					// $pdf->Row2(array(
+					// 	utf8_decode($resp)
+					// ));
 				$pdf->Ln();
 
 		}else{
@@ -231,7 +294,7 @@ class Reporte extends CI_Controller {
 	}
 
 	public function get_perosonal_mostrar($cct, $ids_responsables){
-		
+
 		$ids_responsables = explode(",", $ids_responsables);
 		// echo"<pre>"; print_r($ids_responsables); die();
 		$curl = curl_init();
@@ -262,7 +325,13 @@ class Reporte extends CI_Controller {
 	    // echo "<pre>";
 	    // print_r($response->Personal);
 	    // die();
-	    $personal = $response->Personal;
+			if ($response->status==0) {
+				$personal = array();
+			}
+			else {
+				$personal = $response->Personal;
+			}
+	    // $personal = $response->Personal;
 	    $listap = "";
 	    foreach ($personal as $persona) {
 	    	// echo "<pre>";

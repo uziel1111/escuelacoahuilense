@@ -7,6 +7,32 @@ $(function() {
 function Info_esc(){
   _thisinfo = this;
 }
+
+$("#btn_indice_peso").click(function(e){
+              e.preventDefault();
+              let id_cct = $("#in_id_cct").val();
+              // alert(id_cct);
+  							$.ajax({
+  				        url:  base_url+"info/get_indice_peso",
+  				        method: 'POST',
+  				        data: {'id_cct':id_cct},
+  				        beforeSend: function(xhr) {
+  				        	Notification.loading("");
+  					  	},
+  				      })
+  				      .done(function( data ) {
+                  $("#div_contenedor_indpeso").empty();
+                  $("#div_contenedor_indpeso").html(data.dom_view_indice_peso);
+                  $("#modal_ind_peso").modal("show");
+  				      })
+  				      .fail(function(e) {
+  				        console.error("Error in "); console.table(e);
+  				      })
+  				      .always(function() {
+  							swal.close();
+  						});
+            });
+
 $("#btn_info_asist").click(function(e){
               e.preventDefault();
               obj_info.get_alumn_doc_grup();
