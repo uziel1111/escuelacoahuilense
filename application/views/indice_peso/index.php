@@ -1,17 +1,4 @@
 <div class="container-fluid">
-
-	<div class="row">
-		<div class="col-xs-4">
-			<?php foreach ($arr_indi_peso as $key => $value): ?>
-				<label for=""><?=$value['bajo'] ?></label>
-				<label for=""><?=$value['Normal'] ?></label>
-				<label for=""><?=$value['Sobrepeso'] ?></label>
-				<label for=""><?=$value['Obesidad'] ?></label>
-			<?php endforeach; ?>
-		</div>
-	</div>
-
-
 			<div class="row justify-content-center flex-column mb-3 ml-0 mr-0">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
@@ -33,34 +20,45 @@
        Peso Predominante
 		</div>
        		<div class="imc_box_num">
-       47
+       <?= $arr_indi_peso[0]['predom']?>
 		</div>
        		<div class="imc_box_label">
-       Sobrepeso
+       <?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
+       	Bajo-peso
+       <?php endif; ?>
+			 <?php if ($arr_indi_peso[0]['t_normal']==1): ?>
+       	Normal
+       <?php endif; ?>
+			 <?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
+       	Sobrepeso
+       <?php endif; ?>
+			 <?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
+       	Obesidad
+       <?php endif; ?>
 		</div>
 		</div>
     </div>
     <div class="col-sm">
 <ul class="list-group imc_list">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_bajo']==1)?'list-group-item-info':'' ?>">
     Bajo peso
-    <span class="badge badge-secondary badge-pill">7%</span>
+    <span class="badge <?=($arr_indi_peso[0]['t_bajo']==1)?'badge-primary':'badge-secondary' ?> badge-pill"><?=$arr_indi_peso[0]['bajo'] ?>%</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_normal']==1)?'list-group-item-info':'' ?>">
     Normal
-    <span class="badge badge-secondary badge-pill">40%</span>
+    <span class="badge <?=($arr_indi_peso[0]['t_normal']==1)?'badge-primary':'badge-secondary' ?> badge-pill"><?=$arr_indi_peso[0]['Normal'] ?>%</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-info">
+  <li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'list-group-item-info':'' ?>">
     Sobrepeso
-    <span class="badge badge-primary badge-pill">47%</span>
+    <span class="badge <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'badge-primary':'badge-secondary' ?> badge-pill"><?=$arr_indi_peso[0]['Sobrepeso'] ?>%</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_obesidad']==1)?'list-group-item-info':'' ?>">
     Obesidad
-    <span class="badge badge-secondary badge-pill">7%</span>
+    <span class="badge <?=($arr_indi_peso[0]['t_obesidad']==1)?'badge-primary':'badge-secondary' ?> badge-pill"><?=$arr_indi_peso[0]['Obesidad'] ?>%</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Obesidad+Sobrepeso
-    <span class="badge badge-secondary badge-pill">53%</span>
+    <span class="badge badge-secondary badge-pill"><?=$arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad'] ?>%</span>
   </li>
 </ul>
     </div>
@@ -69,7 +67,19 @@
     </div>
     <div class="col-sm">
 		<h4>Grafica</h4>
-      <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
+		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		<?php endif; ?>
+		<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
+		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		<?php endif; ?>
+		<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
+		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		<?php endif; ?>
+		<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
+		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		<?php endif; ?>
+
     </div>
   </div>
 
