@@ -147,10 +147,23 @@ function get_xidcct($idcct){
     }// get_nivel()
 
     function get_indicpeso_xidcct($id_cct,$id_ciclo){
-        $this->db->select('`Bajo-peso` as bajo,Normal,Sobrepeso,Obesidad');
+        $this->db->select('
+          ROUND(`Bajo-peso`*100,1) as `bajo`,
+          ROUND(`Normal`*100,1) as Normal,
+          ROUND(`Sobrepeso`*100,1) as Sobrepeso,
+          ROUND(`Obesidad`*100,1) as Obesidad,
+          ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1) as predom,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Bajo-peso`*100,1),1,0) as t_bajo,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Normal`*100,1),1,0) as t_normal,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Sobrepeso`*100,1),1,0) as t_sobrepeso,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Obesidad`*100,1),1,0) as t_obesidad
+        ');
         $this->db->from('pesoxcct');
         $this->db->where('id_cct', $id_cct);
         $this->db->where('id_ciclo', $id_ciclo);
+        //  $this->db->get();
+        // $str = $this->db->last_query();
+        // echo $str; die();
         return  $this->db->get()->result_array();
     }// get_indicpeso_xidcct()
 }// Municipio_model
