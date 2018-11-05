@@ -255,30 +255,39 @@
 <h4>Peso General</h4>
   <div class="row">
     <div class="col-sm">
-       <img src="assets/img/graficaIMCbascula-1.png" class="img-fluid" alt="Responsive image"><br>
-		
+		<div class="imc_box">
+       		<div class="imc_box_head">
+       Peso Predominante
+		</div>
+       		<div class="imc_box_num">
+       47
+		</div>
+       		<div class="imc_box_label">
+       Sobrepeso
+		</div>			
+		</div>
     </div>
     <div class="col-sm">
-<ul class="list-group">
+<ul class="list-group imc_list">
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Bajo peso
-    <span class="badge badge-warning badge-pill">14</span>
+    <span class="badge badge-secondary badge-pill">7%</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Normal
-    <span class="badge badge-primary badge-pill">2</span>
+    <span class="badge badge-secondary badge-pill">40%</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-info">
     Sobrepeso
-    <span class="badge badge-primary badge-pill">1</span>
+    <span class="badge badge-primary badge-pill">47%</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Obesidad
-    <span class="badge badge-primary badge-pill">1</span>
+    <span class="badge badge-secondary badge-pill">7%</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Obesidad+Sobrepeso
-    <span class="badge badge-primary badge-pill">1</span>
+    <span class="badge badge-secondary badge-pill">53%</span>
   </li>		
 </ul>
     </div>
@@ -287,11 +296,11 @@
     </div>
     <div class="col-sm">
 		<h4>Grafica</h4>
-      <img src="assets/img/graficaIMCdemo1.gif" class="img-fluid" alt="Responsive image">
+      <img src="assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-10">
     <div class="col-sm">
     <div class="alert alert-warning" role="alert">
 		<strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <strong>1500s</strong>, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
