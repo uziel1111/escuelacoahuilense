@@ -96,7 +96,7 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Padres de familia y estudiantes
+                                          Familia y estudiantes
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
                                           <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
