@@ -60,7 +60,7 @@
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-bubble"></span>
                                                 </div>
-                                              <h3 style="font-size:20px !important;" class="card-title color-6">Padres de familia y estudiantes</h3>
+                                              <h3 class="card-title color-6">Familia y estudiantes</h3>
                                             </div>
                                             <div class="card-body">
                                                 <!-- List group -->
