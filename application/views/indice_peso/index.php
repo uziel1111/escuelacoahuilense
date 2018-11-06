@@ -68,16 +68,16 @@
     <div class="col-sm">
 		<h4>Grafica</h4>
 		<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
-		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		 <img src="../../../assets/img/graficaIMCdemo_1.jpg" class="img-fluid" alt="Responsive image">
 		<?php endif; ?>
 		<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
-		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		 <img src="../../../assets/img/graficaIMCdemo_2.jpg" class="img-fluid" alt="Responsive image">
 		<?php endif; ?>
 		<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
-		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		 <img src="../../../assets/img/graficaIMCdemo_3.jpg" class="img-fluid" alt="Responsive image">
 		<?php endif; ?>
 		<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
-		 <img src="../../../assets/img/graficaIMCdemo3.png" class="img-fluid" alt="Responsive image">
+		 <img src="../../../assets/img/graficaIMCdemo_4.jpg" class="img-fluid" alt="Responsive image">
 		<?php endif; ?>
 
     </div>
