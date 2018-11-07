@@ -761,12 +761,12 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   function get_ind_permananciaxcct($id_cct,$id_corte,$id_ciclo){
 
-    $this->db->select('REPLACE(retencion,"%","") as retencion,REPLACE(aprobacion,"%","") as aprobacion, REPLACE(et,"%","") as et');
+    $this->db->select('REPLACE(retencion,"%","") as retencion,REPLACE(aprobacion,"%","") as aprobacion, IF(REPLACE(et, "%", "")>100, 100,REPLACE(et, "%", "")) as et');
     $this->db->from('indicadores_x_esc');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
-    // 
+    //
     // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();
@@ -775,11 +775,14 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   function get_ind_efixcct($id_cct,$id_corte,$id_ciclo){
 
-    $this->db->select('REPLACE(et,"%","") as et');
+    $this->db->select('IF(REPLACE(et, "%", "")>100, 100,REPLACE(et, "%", "")) as et');
     $this->db->from('indicadores_x_esc');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
+    // $this->db->get();
+    // $str = $this->db->last_query();
+    // echo $str; die();
     return  $this->db->get()->result_array();
   }// get_ind_efixcct
 

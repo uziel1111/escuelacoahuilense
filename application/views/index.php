@@ -41,12 +41,14 @@
                                             <div class="card-body">
                                                 <!-- List group -->
                                                 <ul class="list-group">
+
                                                   
                                                   <li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
 
                                                   <li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a></li>
                                                   <li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a></li>
                                                   
+
                                                   <li class="list-group-item"><a href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a></li>
                                                   <li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a></li>
                                                 </ul>
@@ -59,7 +61,7 @@
                                                 <div class="icon color-6">
                                                     <span class="lnr lnr-bubble"></span>
                                                 </div>
-                                              <h3 style="font-size:20px !important;" class="card-title color-6">Padres de familia y estudiantes</h3>
+                                              <h3 class="card-title color-6">Familia y estudiantes</h3>
                                             </div>
                                             <div class="card-body">
                                                 <!-- List group -->
