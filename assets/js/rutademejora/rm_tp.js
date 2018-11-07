@@ -278,10 +278,10 @@ Rm_tp.prototype.contar= function(elem, idGlosa){
 Rm_tp.prototype.readURL= function(input){
   // console.log(input.files[0]['width']);
 // console.log(input.files[0]['size']);
-  if (input.files[0]['size']>102400) {
+  if (input.files[0]['size']>3670016) {
 
     $("#img_evid").prop("src", "");
-    $("#glosaArchivos").html("El archivo seleccionado excede el tamaño máximo permitido (1mb)");
+    $("#glosaArchivos").html("El archivo seleccionado excede el tamaño máximo permitido (3.5mb)");
     document.getElementById('btn_clr_img').setAttribute("hidden", true);
     $("#edit_img").val(false);
     $("#imagen").val(null);

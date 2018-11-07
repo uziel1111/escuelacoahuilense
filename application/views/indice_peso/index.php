@@ -56,9 +56,9 @@
     Obesidad
     <span class="badge <?=($arr_indi_peso[0]['t_obesidad']==1)?'badge-primary':'badge-secondary' ?> badge-pill"><?=$arr_indi_peso[0]['Obesidad'] ?>%</span>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'list-group-item-danger':'' ?>"">
     Obesidad+Sobrepeso
-    <span class="badge badge-secondary badge-pill"><?=$arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad'] ?>%</span>
+    <span class="badge <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'badge-danger':'badge-secondary' ?>"><?=$arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad'] ?>%</span>
   </li>
 </ul>
     </div>
