@@ -86,14 +86,14 @@
   <div class="row mt-10">
     <div class="col-sm">
     <div class="alert alert-warning" role="alert">
-		<strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <strong>1500s</strong>, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+		<a href="http://checatemidetemuevete.gob.mx/" target="_blank"><img src="../../../assets/img/image002.jpg" class="img-fluid" alt="Responsive image"></a>
 </div>
     </div>
   </div>
 			</div>
 
 					<div class="tab-pane fade" id="nav-indicadores" role="tabpanel" aria-labelledby="nav-indicadores-tab">
-						<img src="../../../assets/img/bmi-and-obesity.jpg" class="img-fluid" alt="Responsive image">
+						<a href="../../../assets/img/bmi-and-obesity.jpg" target="_blank"><img src="../../../assets/img/bmi-and-obesity.jpg" class="img-fluid" alt="Responsive image"/></a>
 					</div>
 					<div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 						<div class="card bg-light mb-3">

@@ -276,8 +276,10 @@ Rm_tp.prototype.contar= function(elem, idGlosa){
 }
 
 Rm_tp.prototype.readURL= function(input){
-  // console.log(input.files[0]['size']);
+  // console.log(input.files[0]['width']);
+// console.log(input.files[0]['size']);
   if (input.files[0]['size']>102400) {
+
     $("#img_evid").prop("src", "");
     $("#glosaArchivos").html("El archivo seleccionado excede el tamaño máximo permitido (1mb)");
     document.getElementById('btn_clr_img').setAttribute("hidden", true);
@@ -292,19 +294,76 @@ Rm_tp.prototype.readURL= function(input){
   }
   else {
     if (input.files && input.files[0]) {
+      var file = input.files[0];
+    fileType = file.type;
       var reader = new FileReader();
 
       reader.onload = function(e) {
-        document.getElementById('btn_clr_img').removeAttribute("hidden");
-        // alert(e.target.result);
-        $('#img_evid').attr('src', e.target.result);
-      }
 
-      reader.readAsDataURL(input.files[0]);
+        var image = new Image();
+        image.src = reader.result;
+        image.onload = function() {
+          var maxWidth = 400,
+              maxHeight = 400,
+              imageWidth = image.width,
+              imageHeight = image.height;
+
+          if (imageWidth > imageHeight) {
+            if (imageWidth > maxWidth) {
+              imageHeight *= maxWidth / imageWidth;
+              imageWidth = maxWidth;
+            }
+          }
+          else {
+            if (imageHeight > maxHeight) {
+              imageWidth *= maxHeight / imageHeight;
+              imageHeight = maxHeight;
+            }
+          }
+
+          var canvas = document.createElement('canvas');
+          canvas.width = imageWidth;
+          canvas.height = imageHeight;
+
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+          // The resized file ready for upload
+          var finalFile = canvas.toDataURL(fileType);
+          // console.log(finalFile);
+          $('#img_evid').attr('src', finalFile);
+        }
+        document.getElementById('btn_clr_img').removeAttribute("hidden");
+        // console.log(e.target.result);
+        // console.log(input.files[0]);
+
+        // obj_rm_tp.resizeBase64Img(e.target.result,100,100);
+
+      }
+      reader.readAsDataURL(file);
+      // imagen1 = document.getElementById('img_evid');
+      // reader.readAsDataURL(input.files[0]);
+      // console.log(filesize(imagen1));
+      // console.log(input.files[0]);
     }
   }
 
 }
+
+Rm_tp.prototype.resizeBase64Img = function(base64, width, height) {
+
+  var canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  var context = canvas.getContext("2d");
+  var deferred = $.Deferred();
+  $("<img/>").attr("src", "data:image/gif;base64," + base64).load(function() {
+   context.scale(width/this.width, height/this.height);
+   context.drawImage(this, 0, 0);
+   deferred.resolve($("<img/>").attr("src", canvas.toDataURL()));
+  });
+  return deferred.promise();
+}
+
 
 Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
   // alert(path_evidencia);
