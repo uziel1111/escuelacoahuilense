@@ -1,8 +1,10 @@
 <?php
 class Escuela_model extends CI_Model
 {
+
     function __construct(){
         parent::__construct();
+        ini_set('max_execution_time', 300); //300 seconds = 5 minutes
     }
 
     function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){

@@ -26,7 +26,14 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-lg-3 margintop35">
-        	<button class="btn btn-primary">Buscar</button>
+        	<button class="btn btn-primary" id="bt_porcentajeobe">Buscar</button>
         </div>
 	</div>
+	
+
+	<div id="contenedor_de_vista_g"></div>
+
+	
 </div>
+
+<script src="<?= base_url('assets/js/indiceobesidad/indiceo.js') ?>"></script>
