@@ -91,7 +91,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="card mb-3 card-style-1">
 			<div class="card-header card-1-header bgcolor-2 text-white">Indicadores del Modelo Educativo de Coahuila</div>
 			<div class="card-body">
@@ -109,13 +108,11 @@
 							<hr>
 							<p>Asimismo puede consultar un resumen general sobre los indicadores de peso en la escuela haciendo clic en el siguiente botón: </p>
 							<p class="text-center mb-0">
-							<button class="btn btn-lg  btn-success" id="btn_indice_peso">Índice de peso</button>
+								<button class="btn btn-lg btn-success btn-style-1" id="btn_indice_peso">Índice de peso</button>
 							</p>
 						</div>
-
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-12 text-center">
 						<ul class="nav nav-pills nav-apa nav-fill">
@@ -129,11 +126,7 @@
 								<a class="nav-link nav-link-apa bgcolor-3 mt-2" class="btn btn-secondary btn-style-1" id="btn_info_aprendiz" data-toggle="tab"><span class="fz-30"><i class="material-icons">school</i></span><br><span class="fz-30">Aprendizaje</span></a>
 							</li>
 						</ul>
-
-
 					</div>
-
-
 					<div hidden id="dv_info_asistencia" class="container mt-3">
 						<div id="accordion" class="accordion-style-1 mb-3">
 							<div class="card-accordion-style-1 mb-3">
@@ -142,7 +135,6 @@
                    					<i class="fa fa-chevron-down pull-right"></i>
                     				Estadística escolar: alumnos, grupos y docentes
                 					</a>
-
 								</div>
 								<div id="est_alum_doc_grup" class="collapse" aria-labelledby="estadEsc" data-parent="#accordion">
 									<div class="card-body">
@@ -164,7 +156,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div hidden class="card-accordion-style-1 mb-3">
 								<div class="accordion-style-1-header" id="indiasis">
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_asisten" aria-expanded="true" aria-controls="indicadores_asisten">
@@ -178,7 +169,6 @@
 											<p id="lb_ind_asisten"></p>
 										</center>
 										<div class="row">
-
 											<div class="col-sm-4">
 												<div id="dv_info_graf_Cobertura"></div>
 												<center>
@@ -190,12 +180,9 @@
 													</div>
 												</center>
 											</div>
-
-
 											<div class="col-sm-4">
 												<!-- <div id="dv_info_graf_docen"></div> -->
 											</div>
-
 											<div class="col-sm-4">
 												<div id="dv_info_graf_Absorcion"></div>
 												<center>
@@ -212,7 +199,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div hidden id="dv_info_permanencia" class="container mt-3">
 						<?php
 						$arr_bimestres[ '1' ] = '1er BIMESTRE';
@@ -222,7 +208,6 @@
 						$arr_bimestres[ '5' ] = '5to BIMESTRE';
 						$arr_ciclos[ '2017-2018' ] = '2017-2018';
 						?>
-
 						<div id="accordion" class="accordion-style-1">
 							<?php if ($nivel=="PRIMARIA" || $nivel=="SECUNDARIA"): ?>
 							<div class="card-accordion-style-1 mb-3" class="accordion-style-1">
@@ -231,7 +216,6 @@
 	                    <i class="fa fa-chevron-down pull-right"></i>
 	                    Riesgo de abandono escolar
 	                </a>
-
 								</div>
 								<div id="riesgo_esc" class="collapse" aria-labelledby="chriesgo" data-parent="#accordion">
 									<div class="card-body">
@@ -273,17 +257,14 @@
 										<h6 style="color:red;" id="total_bajas"></h6>
 									</div>
 								</div>
-
 							</div>
 							<?php endif; ?>
-
 							<div class="card-accordion-style-1 mb-3">
 								<div class="accordion-style-1-header" id="indiperma" hidden>
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#indicadores_permanen" aria-expanded="true" aria-controls="indicadores_permanen">
 	                    <i class="fa fa-chevron-down pull-right"></i>
 	                    Indicadores de Permanencia
 	                </a>
-
 								</div>
 								<div id="indicadores_permanen" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
 									<div class="card-body">
@@ -308,7 +289,6 @@
 													</div>
 												</center>
 											</div>
-
 											<div class="col-sm-4">
 												<div id="dv_info_graf_Eficiencia_Terminal"></div>
 												<center>
@@ -321,14 +301,12 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="card-accordion-style-1 mb-3">
 								<div class="accordion-style-1-header" id="prog_apoyo" hidden>
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#prog_apoyo_" aria-expanded="true" aria-controls="indicadores_permanen">
 											<i class="fa fa-chevron-down pull-right"></i>
 											Programas de apoyo
 									</a>
-
 								</div>
 								<div id="prog_apoyo_" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
 									<div class="card-body">
@@ -337,18 +315,11 @@
 												<div id="tab_prog_apoyo"></div>
 											</center>
 										</div>
-
-
 									</div>
 								</div>
 							</div>
-
 						</div>
-
-
 					</div>
-
-
 					<div hidden id="dv_info_aprendizaje" class="container mt-3">
 						<div id="accordion" class="accordion-style-1">
 							<div class="card-accordion-style-1 mb-3" id="dv_lyc_esc" hidden>
@@ -357,7 +328,6 @@
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por contenido temático: Lenguaje y Comunicación
                 </a>
-
 								</div>
 								<div id="planea_cont_lyc" class="collapse" aria-labelledby="chplaneaLC" data-parent="#accordion">
 									<div class="card-body">
@@ -369,14 +339,12 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="card-accordion-style-1 mb-3" id="dv_mat_esc" hidden>
 								<div class="accordion-style-1-header" id="chplaneaMAT">
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#planea_cont_mat" aria-expanded="true" aria-controls="planea_cont_mat">
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por contenido temático: Matemáticas
                 </a>
-
 								</div>
 								<div id="planea_cont_mat" class="collapse" aria-labelledby="chplaneaMAT" data-parent="#accordion">
 									<div class="card-body">
@@ -388,18 +356,15 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="card-accordion-style-1 mb-3" id="dv_lyc_mat_esc_nl" hidden>
 								<div class="accordion-style-1-header" id="chplaneaLO">
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#planea_n_logro" aria-expanded="true" aria-controls="planea_n_logro">
                     <i class="fa fa-chevron-down pull-right"></i>
                     PLANEA por niveles de logro
                 </a>
-
 								</div>
 								<div id="planea_n_logro" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
 									<div class="card-body">
-
 										<?php if ($nivel == "PRIMARIA"): ?>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 											<div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
@@ -410,7 +375,6 @@
 											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
 										</div>
 										<?php endif; ?>
-
 										<?php if ($nivel != "PRIMARIA"): ?>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 											<div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
@@ -421,7 +385,6 @@
 											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2017</p>
 										</div>
 										<?php endif; ?>
-
 										<div class="row">
 											<div class="col">
 												<div id="dv_info_graf_nlogrolyc"></div>
@@ -435,7 +398,6 @@
 										<div class="row">
 											<div class="col">
 												<div class='table-responsive'>
-
 													<table id='tabla_planea' class='table table-gray table-hover'>
 														<thead>
 															<tr>
@@ -472,7 +434,6 @@
 														</thead>
 														<tbody>
 															<?php if ($nivel=="PRIMARIA"): ?>
-
 															<tr>
 																<td colspan='9' style='background-color:silver;'>PLANEA 2015</td>
 															</tr>
@@ -547,9 +508,7 @@
 																</th>
 																<?php endforeach; ?>
 															</tr>
-
 															<?php endif; ?>
-
 															<tr>
 																<td colspan='9' style='background-color:silver;'>PLANEA 2016</td>
 															</tr>
@@ -699,26 +658,21 @@
 																</th>
 																<?php endforeach; ?>
 															</tr>
-
 															<?php endif; ?>
 														</tbody>
 													</table>
 												</div>
 											</div>
 										</div>
-
-
 									</div>
 								</div>
 							</div>
-
 							<div class="card-accordion-style-1 mb-3" id="dv_ete_esc" hidden>
 								<div class="accordion-style-1-header" id="ch_ete">
 									<a class="collapsed d-block" data-toggle="collapse" data-target="#planea_ete" aria-expanded="true" aria-controls="planea_ete">
 									 <i class="fa fa-chevron-down pull-right"></i>
 									 Eficiencia Terminal Efectiva
-							 </a>
-
+							 		</a>
 								</div>
 								<div id="planea_ete" class="collapse" aria-labelledby="chplaneaLO" data-parent="#accordion">
 									<div class="card-body">
@@ -747,10 +701,7 @@
 									</div>
 								</div>
 							</div>
-
-
 						</div>
-
 					</div>
 					<!-- Modal Reactivos -->
 					<div class="modal fade" id="modal_ind_peso" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
@@ -761,7 +712,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_contenedor_indpeso"></div>
@@ -770,7 +720,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Reactivos -->
 					<div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-lg" role="document">
@@ -780,7 +729,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<span class="fz-18 fw800" id="modal_reactivos_title"></span>
@@ -791,7 +739,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_visor_apoyos_academ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-md" role="document">
@@ -801,7 +748,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -810,8 +756,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_visor_apoyos_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-md" role="document">
@@ -821,7 +765,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -830,7 +773,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal react -->
 					<div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-lg" role="document">
@@ -840,7 +782,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -849,7 +790,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_visor_pdfc2" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-md" role="document">
@@ -859,7 +799,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -868,7 +807,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_visor_pdfc3" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-md" role="document">
@@ -878,7 +816,6 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -887,7 +824,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_visor_material_reactivos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-md" role="document">
@@ -897,7 +833,6 @@
 									<button type="button" class="close" id="md_close_iframe" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-
 								</div>
 								<div class="modal-body">
 									<div id="div_listalinks"></div>
@@ -906,7 +841,6 @@
 						</div>
 					</div>
 					<!-- End Modal -->
-
 					<!-- Modal Apoyos -->
 					<div class="modal fade" id="modal_operacion_recursos" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
 						<div class="modal-dialog modal-md" role="document">
@@ -916,7 +850,6 @@
 									<button type="button" class="close" id="md_close_operacion_recursos" aria-label="Close">
 								                    <span aria-hidden="true">&times;</span>
 								                </button>
-
 								</div>
 								<div class="modal-body">
 									<p>Ayúdanos a mejorar los materiales de apoyo para nuestros alumnos, en este espacio puedes proponer videos, archivos o textos que en tu experiencia son efectivos.
@@ -975,18 +908,12 @@
 											<input type="hidden" name="idseleccionadofile" id="idseleccionadofile" value="false">
 											<input type="hidden" name="validaexixtente" id="validaexixtente" value="false">
 										</form>
-
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- End Modal -->
-
-
-
-
-
 				</div>
 			</div>
 		</div>
