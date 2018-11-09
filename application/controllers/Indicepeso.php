@@ -45,73 +45,79 @@ class Indicepeso extends CI_Controller {
 		}// getniveles_xcvemunicipio()
 
 		public function get_escuelas(){
-			// echo "<pre>";
-			// print_r($_POST);
-			// die();
 			$idmunicipio = $this->input->post("idmunicipio");
 			$idnivel = $this->input->post("idnivel");
 			$id_sostenimiento = 0;
 			$nombre_centro = "";
 			// $idmunicipio = $this->input->post('idperiodo');
 			$escuelas = $this->Escuela_model->get_xparams($idmunicipio,$idnivel,$id_sostenimiento,$nombre_centro);
-			$ptotal = array();
+			$ids = "";
 			foreach ($escuelas as $escuela) {
-				
-				$arr_indi_peso = $this->Escuela_model->get_indicpeso_xidcct($escuela['id_cct'],4);
-				
-				array_push($ptotal, $arr_indi_peso);
+				$ids .= $escuela['id_cct'].",";
 			}
-			
-			$ndiv = count($ptotal);
-			$bajo = 0;
-			$normal = 0;
-			$sobrepeso = 0;
-			$obesidad = 0;
-			$predom = 0;
-			$t_bajo = 0;
-			$t_normal = 0;
-			$t_sobrepeso = 0;
-			$t_obesidad = 0;
+			$ids = substr($ids, 0, -1);
+			$final = $this->Escuela_model->get_idicpeso_inccts($ids);
 			// echo "<pre>";
-			// 	print_r($ptotal);
-			// 	die();
-			foreach ($ptotal as $unoauno) {
-				// echo "<pre>";
-				// print_r($unoauno[0]['bajo']);
-				// die();
-				$bajo = $bajo + $unoauno[0]['bajo'];
-				$normal = $normal + $unoauno[0]['Normal'];
-				$sobrepeso = $sobrepeso + $unoauno[0]['Sobrepeso'];
-				$obesidad = $obesidad + $unoauno[0]['Obesidad'];
-				$predom = $predom + $unoauno[0]['predom'];
-				$t_bajo = $t_bajo + $unoauno[0]['t_bajo'];
-				$t_normal = $t_normal + $unoauno[0]['t_normal'];
-				$t_sobrepeso = $t_sobrepeso + $unoauno[0]['t_sobrepeso'];
-				$t_obesidad = $t_obesidad + $unoauno[0]['t_obesidad'];
-			}
+			// print_r($final);
+			// die();
+			// $ptotal = array();
+			// foreach ($escuelas as $escuela) {
+				
+			// 	$arr_indi_peso = $this->Escuela_model->get_indicpeso_xidcct($escuela['id_cct'],4);
+				
+			// 	array_push($ptotal, $arr_indi_peso);
+			// }
+			
+			// $ndiv = count($ptotal);
+			// $bajo = 0;
+			// $normal = 0;
+			// $sobrepeso = 0;
+			// $obesidad = 0;
+			// $predom = 0;
+			// $t_bajo = 0;
+			// $t_normal = 0;
+			// $t_sobrepeso = 0;
+			// $t_obesidad = 0;
+			// // echo "<pre>";
+			// // 	print_r($ptotal);
+			// // 	die();
+			// foreach ($ptotal as $unoauno) {
+			// 	// echo "<pre>";
+			// 	// print_r($unoauno[0]['bajo']);
+			// 	// die();
+			// 	$bajo = $bajo + $unoauno[0]['bajo'];
+			// 	$normal = $normal + $unoauno[0]['Normal'];
+			// 	$sobrepeso = $sobrepeso + $unoauno[0]['Sobrepeso'];
+			// 	$obesidad = $obesidad + $unoauno[0]['Obesidad'];
+			// 	$predom = $predom + $unoauno[0]['predom'];
+			// 	$t_bajo = $t_bajo + $unoauno[0]['t_bajo'];
+			// 	$t_normal = $t_normal + $unoauno[0]['t_normal'];
+			// 	$t_sobrepeso = $t_sobrepeso + $unoauno[0]['t_sobrepeso'];
+			// 	$t_obesidad = $t_obesidad + $unoauno[0]['t_obesidad'];
+			// }
 
-			$bajo = $bajo/$ndiv;
-			$normal = $normal/$ndiv;
-			$sobrepeso = $sobrepeso/$ndiv;
-			$obesidad = $obesidad/$ndiv;
-			$predom = $predom/$ndiv;
-			$t_bajo = $t_bajo/$ndiv;
-			$t_normal = $t_normal/$ndiv;
-			$t_sobrepeso = $t_sobrepeso/$ndiv;
-			$t_obesidad = $t_obesidad/$ndiv;
+			// $bajo = $bajo/$ndiv;
+			// $normal = $normal/$ndiv;
+			// $sobrepeso = $sobrepeso/$ndiv;
+			// $obesidad = $obesidad/$ndiv;
+			// $predom = $predom/$ndiv;
+			// $t_bajo = $t_bajo/$ndiv;
+			// $t_normal = $t_normal/$ndiv;
+			// $t_sobrepeso = $t_sobrepeso/$ndiv;
+			// $t_obesidad = $t_obesidad/$ndiv;
 
 
-			$final[0] = array(
-				"bajo" => $bajo,
-				"Normal" => $normal,
-				"Sobrepeso" => $sobrepeso,
-				"Obesidad" => $obesidad,
-				"predom" => $predom,
-				"t_bajo" => $t_bajo,
-				"t_normal" => $t_normal,
-				"t_sobrepeso" => $t_sobrepeso,
-				"t_obesidad" => $t_obesidad
-			);
+			// $final[0] = array(
+			// 	"bajo" => $bajo,
+			// 	"Normal" => $normal,
+			// 	"Sobrepeso" => $sobrepeso,
+			// 	"Obesidad" => $obesidad,
+			// 	"predom" => $predom,
+			// 	"t_bajo" => $t_bajo,
+			// 	"t_normal" => $t_normal,
+			// 	"t_sobrepeso" => $t_sobrepeso,
+			// 	"t_obesidad" => $t_obesidad
+			// );
 
 			$data['arr_indi_peso'] = $final;
     		$dom = $this->load->view("indice_peso/index",$data,TRUE);
