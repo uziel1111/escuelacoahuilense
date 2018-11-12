@@ -170,17 +170,19 @@ function get_xidcct($idcct){
     }// get_indicpeso_xidcct()
 
     function get_idicpeso_inccts($ids){
-      $str_query = "SELECT (SUM(ROUND(`Bajo-peso`*100,1))/COUNT(id_cct)) AS `bajo`,
-                    (SUM(ROUND(`Normal`*100,1))/COUNT(id_cct)) AS Normal,
-                    (SUM(ROUND(`Sobrepeso`*100,1))/COUNT(id_cct)) AS Sobrepeso,
-                    (SUM(ROUND(`Obesidad`*100,1))/COUNT(id_cct)) AS Obesidad,
-                    (SUM(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1))/COUNT(id_cct)) AS predom,
-                    (SUM(IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Bajo-peso`*100,1),1,0))/COUNT(id_cct)) AS t_bajo,
-                    (SUM(IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Normal`*100,1),1,0))/COUNT(id_cct)) AS t_normal,
-                    (SUM(IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Sobrepeso`*100,1),1,0))/COUNT(id_cct)) AS t_sobrepeso,
-                    (SUM(IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Obesidad`*100,1),1,0))/COUNT(id_cct)) AS t_obesidad
+      $str_query = "SELECT
+                    (ROUND(SUM(ROUND(`Bajo-peso`*100,1))/COUNT(id_cct),1)) AS `bajo`,
+                    (ROUND(SUM(ROUND(`Normal`*100,1))/COUNT(id_cct),1)) AS Normal,
+                    (ROUND(SUM(ROUND(`Sobrepeso`*100,1))/COUNT(id_cct),1)) AS Sobrepeso,
+                    (ROUND(SUM(ROUND(`Obesidad`*100,1))/COUNT(id_cct),1)) AS Obesidad,
+                    (ROUND(GREATEST(SUM(`Bajo-peso`)/ COUNT(id_cct),SUM(Normal)/ COUNT(id_cct),SUM(Sobrepeso)/ COUNT(id_cct),SUM(Obesidad)/ COUNT(id_cct)) * 100,1)) AS predom,
+                    (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(`Bajo-peso`)),1,0)) AS t_bajo,
+                    (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Normal)),1,0)) AS t_normal,
+                    (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Sobrepeso)),1,0)) AS t_sobrepeso,
+                    (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Obesidad)),1,0)) AS t_obesidad
                     FROM pesoxcct
                     where id_cct in ({$ids}) and id_ciclo = 4";
+                    // echo $str_query;die();
       return $this->db->query($str_query)->result_array();
       // echo
     }

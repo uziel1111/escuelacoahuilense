@@ -23,7 +23,7 @@
 							<li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de PLANEA</a></li>
-							<li class="list-group-item"><a href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de estar gordito</a></li>
+							<li class="list-group-item"><a href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Índice de peso</a></li>
 						</ul>
 					</div>
 				</div>
