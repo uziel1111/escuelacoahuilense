@@ -107,18 +107,6 @@ class Indicepeso extends CI_Controller {
 			// $t_obesidad = $t_obesidad/$ndiv;
 
 
-			// $final[0] = array(
-			// 	"bajo" => $bajo,
-			// 	"Normal" => $normal,
-			// 	"Sobrepeso" => $sobrepeso,
-			// 	"Obesidad" => $obesidad,
-			// 	"predom" => $predom,
-			// 	"t_bajo" => $t_bajo,
-			// 	"t_normal" => $t_normal,
-			// 	"t_sobrepeso" => $t_sobrepeso,
-			// 	"t_obesidad" => $t_obesidad
-			// );
-
 			$data['arr_indi_peso'] = $final;
     		$dom = $this->load->view("indice_peso/index",$data,TRUE);
 
@@ -129,5 +117,6 @@ class Indicepeso extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
 
 }// Catalogos

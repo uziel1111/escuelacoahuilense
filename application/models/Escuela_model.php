@@ -182,5 +182,6 @@ function get_xidcct($idcct){
                     FROM pesoxcct
                     where id_cct in ({$ids}) and id_ciclo = 4";
       return $this->db->query($str_query)->result_array();
+      // echo
     }
 }// Municipio_model
