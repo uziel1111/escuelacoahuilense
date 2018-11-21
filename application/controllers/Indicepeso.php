@@ -25,15 +25,20 @@ class Indicepeso extends CI_Controller {
 				}
 			}
 
-			$result_niveles = $this->Nivel_model->getall_est_ind();
-			if(count($result_niveles)==0){
-				$data['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
-			}else{
+			// $result_niveles = $this->Nivel_model->getall_est_ind();
+			// if(count($result_niveles)==0){
+			// 	$data['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
+			// }else{
 				$arr_niveles['0'] = 'TODOS';
-				foreach ($result_niveles as $row){
-					 $arr_niveles[$row['id_nivel']] = $row['nivel'];
-				}
-			}
+				$arr_niveles['1'] = 'ESPECIAL';
+				$arr_niveles['3'] = 'PREESCOLAR';
+				$arr_niveles['4'] = 'PRIMARIA';
+				$arr_niveles['5'] = 'SECUNDARIA';
+
+			// 	foreach ($result_niveles as $row){
+			// 		 $arr_niveles[$row['id_nivel']] = $row['nivel'];
+			// 	}
+			// }
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			$arr_ciclo['2'] = '2017-2018';
@@ -62,12 +67,12 @@ class Indicepeso extends CI_Controller {
 			// die();
 			// $ptotal = array();
 			// foreach ($escuelas as $escuela) {
-				
+
 			// 	$arr_indi_peso = $this->Escuela_model->get_indicpeso_xidcct($escuela['id_cct'],4);
-				
+
 			// 	array_push($ptotal, $arr_indi_peso);
 			// }
-			
+
 			// $ndiv = count($ptotal);
 			// $bajo = 0;
 			// $normal = 0;

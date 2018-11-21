@@ -18,12 +18,12 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso<span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">public</i></span> Por estado, municipio y zona</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de PLANEA</a></li>
-							<li class="list-group-item"><a href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Índice de peso</a></li>
 						</ul>
 					</div>
 				</div>

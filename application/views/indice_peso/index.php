@@ -83,7 +83,18 @@
 				<div class="row mt-10">
 					<div class="col-sm">
 						<div class="alert alert-warning" role="alert">
-							Lorem ipsum dolor sit amet consectetur, adipiscing elit placerat euismod fermentum, facilisis nec dapibus ultricies. Cubilia nec nisl ridiculus odio cursus in gravida proin, imperdiet dictumst auctor vestibulum velit commodo porta donec sociis, magna porttitor neque nostra hac diam dictum. Pretium litora diam pulvinar facilisis ornare massa, eros ultricies morbi malesuada placerat, dictumst leo senectus rhoncus felis.							
+							<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
+							Se recomienda aumentar la densidad calórica de la dieta incorporando o aumentando las grasas vegetales, frutas y productos lácteos; es recomendable ejercicios de fuerza de 2 a 3 veces por semana.
+							<?php endif; ?>
+							<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
+							Se recomienda fomentar la activación física, así como una dieta saludable que incluya el consumo de frutas y verduras en la población infantil y adolescente.
+							<?php endif; ?>
+							<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
+							Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+							<?php endif; ?>
+							<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
+							Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+							<?php endif; ?>
 							<a href="http://checatemidetemuevete.gob.mx/" target="_blank"></a>
 						</div>
 					</div>
@@ -95,12 +106,12 @@
 						<div class="alert alert-warning" role="alert">
 							<p>Chécate y prevé, acude con tu médico incluso si no tienes ninguna molestia. Es mucho más fácil prevenir que remediar. Localiza tu clínica más cercana. Para mas información visita:
 							</p>
-							<p class="text-center">			
+							<p class="text-center">
 							<a class="btn btn-lg btn-success btn-style-1" href="http://checatemidetemuevete.gob.mx/" target="_blank"><i class="fas fa-heartbeat"></i> Chécate, Mídete, Muévete</a>
-							</p>							
+							</p>
 						</div>
 					</div>
-				</div>				
+				</div>
 				<a href="<?= base_url('assets/img/bmi-and-obesity.jpg'); ?>">
 					<img src="<?= base_url('assets/img/bmi-and-obesity.jpg'); ?>" class="img-fluid" alt="Responsive image"/></a>
 			</div>
