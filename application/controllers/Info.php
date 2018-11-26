@@ -45,7 +45,7 @@ class Info extends CI_Controller {
 			}
 
 			$data['contenidos'] = $arr_contenidos;
-
+			$data['trae_indicpeso'] = COUNT($this->Escuela_model->get_indicpeso_xidcct($id_cct,4));
 			// echo "<pre>";print_r($planea17_estado);die();
 			$data['id_cct'] = $id_cct;
 			$data['planea15_escuela'] = $planea15_escuela;

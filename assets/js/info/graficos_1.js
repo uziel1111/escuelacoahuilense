@@ -2685,26 +2685,37 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "      </div>";
                   html += "    </div>";
+                  html += "    <div class='row'>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      </div>";
+                  html += "      <div class='col-md-3 col-sm-12'>";
+                  html += "      <center><a style='color:black;' >Numero de propuestas: <b id='n_propcont'>"+result[i]['n_prop']+"</b></a></center>";
+                  html += "      </div>";
+                  html += "    </div>";
 
                   html += "    <div class='row'>";
                   html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
                   if (periodo!='1') {
-                    html += "      <br><button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
+                    html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
                   }
                   html += "      </center>";
                   html += "      </div>";
                   html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
                   if (periodo!='1') {
-                  html += "      <br><button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
+                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
                   }
                   html += "      </center>";
                   html += "      </div>";
                   html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
                   if (result[i]['n_material']!="0") {
-                    html += "      <br><button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
+                    html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
                   }
                   html += "      </center>";
                   html += "      </div>";
@@ -2712,7 +2723,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      <center>";
 
-                  html += "      <center><a style='color:black;' >Numero de propuestas: <b id='n_propcont'>"+result[i]['n_prop']+"</b></a></center>";
                   if (result[i]['n_prop']<"5") {
                     html += "      <button id='btn_prop' type='button' class='btn btn-style-1 color-6 bgcolor-1 mb-2' onclick=obj_graficas.propmapoyo('"+result[i]['id_reactivo']+"')>Proponer material</button>";
                   }
