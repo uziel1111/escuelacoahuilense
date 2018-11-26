@@ -108,7 +108,7 @@
 							<hr>
 							<p>Asimismo puede consultar un resumen general sobre los indicadores de peso en la escuela haciendo clic en el siguiente botón: </p>
 							<p class="text-center mb-0">
-								<?php if ($trae_indicpeso == 1): ?>
+								<?php if ($trae_indicpeso > 0): ?>
 									<button class="btn btn-lg btn-success btn-style-1" id="btn_indice_peso">Índice de peso</button>
 								<?php endif; ?>
 								<?php if ($trae_indicpeso == 0): ?>

@@ -45,7 +45,15 @@ class Info extends CI_Controller {
 			}
 
 			$data['contenidos'] = $arr_contenidos;
-			$data['trae_indicpeso'] = COUNT($this->Escuela_model->get_indicpeso_xidcct($id_cct,4));
+			// $data['trae_indicpeso'] = COUNT($this->Escuela_model->get_indicpeso_xidcct($id_cct,4));
+			$arr_peso = $this->Escuela_model->get_indicpeso_xidcct($id_cct,4);
+			if (COUNT($arr_peso)==1) {
+				$data['trae_indicpeso'] = $arr_peso[0]['bajo']+$arr_peso[0]['Normal']+$arr_peso[0]['Sobrepeso']+$arr_peso[0]['Obesidad'];
+			}
+			else {
+				$data['trae_indicpeso'] = 0;
+			}
+			// echo "<pre>";print_r($arr_peso[0]['bajo']+$arr_peso[0]['Normal']+$arr_peso[0]['Sobrepeso']+$arr_peso[0]['Obesidad']);die();
 			// echo "<pre>";print_r($planea17_estado);die();
 			$data['id_cct'] = $id_cct;
 			$data['planea15_escuela'] = $planea15_escuela;
