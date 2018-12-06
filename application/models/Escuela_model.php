@@ -186,4 +186,41 @@ function get_xidcct($idcct){
       return $this->db->query($str_query)->result_array();
       // echo
     }
+
+    function get_indicpeso_xmuni($id_municipio, $idnivel, $id_ciclo){
+        $this->db->select('
+          ROUND(`Bajo-peso`*100,1) as `bajo`,
+          ROUND(`Normal`*100,1) as Normal,
+          ROUND(`Sobrepeso`*100,1) as Sobrepeso,
+          ROUND(`Obesidad`*100,1) as Obesidad,
+          ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1) as predom,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Bajo-peso`*100,1),1,0) as t_bajo,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Normal`*100,1),1,0) as t_normal,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Sobrepeso`*100,1),1,0) as t_sobrepeso,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Obesidad`*100,1),1,0) as t_obesidad
+        ');
+        $this->db->from('pesoxmuni');
+        $this->db->where('id_municipio', $id_municipio);
+        $this->db->where('id_ciclo', $id_ciclo);
+        $this->db->where('idnivel', $idnivel);
+        return  $this->db->get()->result_array();
+    }// get_indicpeso_xmuni()
+
+    function get_indicpeso_xestado($idnivel, $id_ciclo){
+        $this->db->select('
+          ROUND(`Bajo-peso`*100,1) as `bajo`,
+          ROUND(`Normal`*100,1) as Normal,
+          ROUND(`Sobrepeso`*100,1) as Sobrepeso,
+          ROUND(`Obesidad`*100,1) as Obesidad,
+          ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1) as predom,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Bajo-peso`*100,1),1,0) as t_bajo,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Normal`*100,1),1,0) as t_normal,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Sobrepeso`*100,1),1,0) as t_sobrepeso,
+          IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Obesidad`*100,1),1,0) as t_obesidad
+        ');
+        $this->db->from('pesoxestado');
+        $this->db->where('id_ciclo', $id_ciclo);
+        $this->db->where('idnivel', $idnivel);
+        return  $this->db->get()->result_array();
+    }// get_indicpeso_xestado()
 }// Municipio_model
