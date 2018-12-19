@@ -1365,11 +1365,11 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
                   useHTML: true
               },
               series: [{
-                  name: 'Leng. y comunicación 2015',
+                  name: 'Leng. y comunicación',
                   data: [lyc1_15, lyc2_15, lyc3_15, lyc4_15]
 
               }, {
-                  name: 'Leng. y comunicación 2016',
+                  name: 'Leng. y comunicación',
                   data: [lyc1_16, lyc2_16, lyc3_16, lyc4_16]
 
               },]
@@ -1438,11 +1438,11 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
                 useHTML: true
             },
             series: [{
-                name: 'Matemáticas 2015',
+                name: 'Matemáticas',
                 data: [mat1_15, mat2_15, mat3_15, mat4_15]
 
             }, {
-                name: 'Matemáticas 2016',
+                name: 'Matemáticas',
                 data: [mat1_16, mat2_16, mat3_16, mat4_16]
 
             }]

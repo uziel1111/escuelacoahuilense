@@ -374,11 +374,11 @@
 										<?php if ($nivel == "PRIMARIA"): ?>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 											<div style="display:inline-block; width:20px; height:20px; background-color:#ECC462; border: 1px solid black;"></div>
-											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2015</p>
+											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
 										</div>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 											<div style="display:inline-block; width:20px; height:20px; background-color:#D5831C; border: 1px solid black;"></div>
-											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2016</p>
+											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2018</p>
 										</div>
 										<?php endif; ?>
 										<?php if ($nivel != "PRIMARIA"): ?>
@@ -439,82 +439,6 @@
 															</tr>
 														</thead>
 														<tbody>
-															<?php if ($nivel=="PRIMARIA"): ?>
-															<tr>
-																<td colspan='9' style='background-color:silver;'>PLANEA 2015</td>
-															</tr>
-															<tr>
-																<th class='text-center'>Tu escuela</th>
-																<?php foreach ($planea15_escuela as $key => $value): ?>
-																<th class='text-center'>
-																	<?=$value['lyc_i'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_ii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iv'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_i'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_ii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_iii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_iv'] ?>%</th>
-																<?php endforeach; ?>
-															</tr>
-															<tr>
-																<th class='text-center'>Estado de Coahuila</th>
-																<?php foreach ($planea15_estado as $key => $value): ?>
-																<th class='text-center'>
-																	<?=$value['lyc_i'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_ii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iv'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_i'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_ii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_iii'] ?>%</th>
-																<th class='text-center'>
-																	<?=$value['mat_iv'] ?>%</th>
-																<?php endforeach; ?>
-															</tr>
-															<tr>
-																<th class='text-center'>Nacional</th>
-																<?php foreach ($planea15_nacional as $key => $value): ?>
-																<th class='text-center'>
-																	<?=$value['lyc_i'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['lyc_ii'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iii'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['lyc_iv'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['mat_i'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['mat_ii'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['mat_iii'] ?>
-																</th>
-																<th class='text-center'>
-																	<?=$value['mat_iv'] ?>
-																</th>
-																<?php endforeach; ?>
-															</tr>
-															<?php endif; ?>
 															<tr>
 																<td colspan='9' style='background-color:silver;'>PLANEA 2016</td>
 															</tr>
@@ -589,6 +513,85 @@
 																</th>
 																<?php endforeach; ?>
 															</tr>
+															<?php if ($nivel=="PRIMARIA"): ?>
+
+															<tr>
+																<td colspan='9' style='background-color:silver;'>PLANEA 2018</td>
+															</tr>
+															<tr>
+																<th class='text-center'>Tu escuela</th>
+																<?php foreach ($planea18_escuela as $key => $value): ?>
+																<th class='text-center'>
+																	<?=$value['lyc_i'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_ii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iv'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_i'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_ii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_iii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_iv'] ?>%</th>
+																<?php endforeach; ?>
+															</tr>
+															<tr>
+																<th class='text-center'>Estado de Coahuila</th>
+																<?php foreach ($planea18_estado as $key => $value): ?>
+																<th class='text-center'>
+																	<?=$value['lyc_i'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_ii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iv'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_i'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_ii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_iii'] ?>%</th>
+																<th class='text-center'>
+																	<?=$value['mat_iv'] ?>%</th>
+																<?php endforeach; ?>
+															</tr>
+															<tr>
+																<th class='text-center'>Nacional</th>
+																<?php foreach ($planea18_nacional as $key => $value): ?>
+																<th class='text-center'>
+																	<?=$value['lyc_i'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['lyc_ii'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iii'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['lyc_iv'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['mat_i'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['mat_ii'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['mat_iii'] ?>
+																</th>
+																<th class='text-center'>
+																	<?=$value['mat_iv'] ?>
+																</th>
+																<?php endforeach; ?>
+															</tr>
+
+															<?php endif; ?>
+
 															<?php if ($nivel != "PRIMARIA"): ?>
 															<tr>
 																<td colspan='9' style='background-color:silver;'>PLANEA 2017</td>

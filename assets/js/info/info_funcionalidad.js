@@ -542,6 +542,16 @@ Info_esc.prototype.get_planea =function(){
   								var mat3_17  = parseFloat(data.planea17_escuela[0]['mat_iii']);
   								var mat4_17  = parseFloat(data.planea17_escuela[0]['mat_iv']);
   							}
+                if (data.planea18_escuela.length>0) {
+    								var lyc1_18  = parseFloat(data.planea18_escuela[0]['lyc_i']);
+    								var lyc2_18  = parseFloat(data.planea18_escuela[0]['lyc_ii']);
+    								var lyc3_18  = parseFloat(data.planea18_escuela[0]['lyc_iii']);
+    								var lyc4_18  = parseFloat(data.planea18_escuela[0]['lyc_iv']);
+    								var mat1_18  = parseFloat(data.planea18_escuela[0]['mat_i']);
+    								var mat2_18  = parseFloat(data.planea18_escuela[0]['mat_ii']);
+    								var mat3_18  = parseFloat(data.planea18_escuela[0]['mat_iii']);
+    								var mat4_18  = parseFloat(data.planea18_escuela[0]['mat_iv']);
+    							}
                 // alert();
                 if ((lyc1_16+lyc2_16+lyc3_16+lyc4_16+mat1_16+mat2_16+mat3_16+mat4_16)>0) {
                   $("#dv_lyc_mat_esc_nl").removeAttr('hidden');}
@@ -594,8 +604,8 @@ Info_esc.prototype.get_planea =function(){
 															$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
 														}
 
-                            if (data.planea15_escuela.length>0 && data.planea16_escuela.length>0) {
-            									graf.PieDrilldownPlanea05y06(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16);
+                            if (data.planea16_escuela.length>0 && data.planea18_escuela.length>0) {
+            									graf.PieDrilldownPlanea05y06(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_18,lyc2_18,lyc3_18,lyc4_18,mat1_18,mat2_18,mat3_18,mat4_18);
             								}
             								else{
             									$("#tabla_planea").empty();
