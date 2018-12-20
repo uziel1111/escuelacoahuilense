@@ -27,8 +27,7 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
@@ -83,7 +82,7 @@ function Graficasm(){
                   type: 'bar'
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2016 Lenguaje y comunicación</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018 Lenguaje y comunicación</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
@@ -119,7 +118,7 @@ function Graficasm(){
                            events:{
                                click:function(){
                                   // alert("funciona");
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,1, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,3,1, va_por);
                                }
                            }
                        }
@@ -164,8 +163,6 @@ function Graficasm(){
         });
           Highcharts.theme = {
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
@@ -225,7 +222,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2016 Matemáticas</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018 Matemáticas</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+parseInt(arr_mate[0]['alumnos_evaluados'])+'</b>'
@@ -261,7 +258,7 @@ function Graficasm(){
                                click:function(){
                                 // alert("mate");
                                  console.info(this);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,3,2, va_por);
                                   // obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
                                }
                            }

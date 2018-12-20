@@ -33,7 +33,7 @@ $("#btn_busqueda_xregion").click(function(){
 					Planea.get_xregion();
 				}
 			}
-			
+
 		}
 	}
 });
@@ -41,11 +41,12 @@ $("#btn_busqueda_xregion").click(function(){
 $("#slt_nivel_planeaxz").change(function(){
 	$("#slt_periodo_planeaxz").empty();
 	if($("#slt_nivel_planeaxz").val() == '4'){
-		$("#slt_periodo_planeaxz").append("<option value='1'>2016</option>");
+		// $("#slt_periodo_planeaxz").append("<option value='1'>2016</option>");
+		$("#slt_periodo_planeaxz").append("<option value='3'>2018</option>");
 	}else if($("#slt_nivel_planeaxz").val() == '5' || $("#slt_nivel_planeaxz").val() == '6'){
 		$("#slt_periodo_planeaxz").append("<option value='2'>2017</option>");
 	}
-	
+
 	if($("#slt_nivel_planeaxz").val() == 0 || $("#slt_nivel_planeaxz") == '0'){
 		Notification.notification("", "Seleccione nivel", "info");
 	}else{
@@ -59,17 +60,18 @@ $("#slt_subsostenimiento_planeaxz").change(function(){
 	}else{
 		Planea.get_zonaxnivelsostenimiento();
 	}
-	
+
 });
 
 $("#slt_nivel_planeaxm").change(function(){
 	$("#slt_periodo_planeaxm").empty();
 	if($("#slt_nivel_planeaxm").val() == '4'){
-		$("#slt_periodo_planeaxm").append("<option value='1'>2016</option>");
+		// $("#slt_periodo_planeaxm").append("<option value='1'>2016</option>");
+		$("#slt_periodo_planeaxm").append("<option value='3'>2018</option>");
 	}else if($("#slt_nivel_planeaxm").val() == '5' || $("#slt_nivel_planeaxm").val() == '6'){
 		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
 	}
-	
+
 });
 
 const Planea = {
@@ -109,8 +111,8 @@ const Planea = {
 					}
 			        break;
 			}
-			
-			
+
+
 		})
 		.fail(function(e) {
 			console.error("Error in Planea.get_xmunicipio()"); console.table(e);
@@ -205,7 +207,7 @@ const Planea = {
 			for (var i = 0; i < subsostenimientos.length; i++) {
 				$("#slt_subsostenimiento_planeaxz").append("<option value = "+subsostenimientos[i]['data']+">"+subsostenimientos[i]['label']+"</option>");
 			}
-			
+
 		})
 		.fail(function(e) {
 			console.error("Error in Planea.get_xregion()"); console.table(e);
