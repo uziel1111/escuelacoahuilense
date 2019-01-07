@@ -12,22 +12,22 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(1)" href="javascript:void(0)" title="Edición #1">
+              <a onclick="Index.getinformese(1)" href="javascript:void(0)" title="Edición #1 septiembre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/1ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(2)" href="javascript:void(0)" title="Edición #2">
+              <a onclick="Index.getinformese(2)" href="javascript:void(0)" title="Edición #2 octubre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/2ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(3)" href="javascript:void(0)" title="Edición #3">
+              <a onclick="Index.getinformese(3)" href="javascript:void(0)" title="Edición #3 noviembre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/3ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(4)" href="javascript:void(0)" title="Edición #4">
+              <a onclick="Index.getinformese(4)" href="javascript:void(0)" title="Edición #4 diciembre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/4ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
