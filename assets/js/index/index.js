@@ -23,7 +23,6 @@ $("#btn_index_modeloeducativo").click(function(e){
   Index.getmodeloeducativo();
 });
 
-
 var Index = {
 
   getReconocimientosEstatales : function() {
@@ -158,6 +157,55 @@ getmodeloeducativo : function() {
   })
   .fail(function(e) {
     console.error("Error in modeloeducativo()"); console.table(e);
+  })
+  .always(function() {
+    swal.close();
+  });
+},
+getRevistaEscolar : function() {
+  var ruta = base_url+"Index/getRevistaEscolar";
+  $.ajax({
+    url: ruta,
+    method: 'POST',
+    data: { 'folder':1, 'file':1 },
+    beforeSend: function(xhr) {
+      Notification.loading("");
+    }
+  })
+  .done(function( data ) {
+    $("#div_generico").empty();
+    $("#div_generico").append(data.strView);
+    $("#modal_revistaEscolar").modal("show");
+    // Utiles.showPDF("modal_revistaEscolar", "");
+  })
+  .fail(function(e) {
+    console.error("Error in getCalendarioEscolar()"); console.table(e);
+  })
+  .always(function() {
+    swal.close();
+  });
+},
+
+getinformese : function(num_ed) {
+  // alert(num_ed);
+  var ruta = base_url+"Index/getinformese";
+  $.ajax({
+    url: ruta,
+    method: 'POST',
+    data: { 'num_ed':num_ed, 'file':1 },
+    beforeSend: function(xhr) {
+      Notification.loading("");
+    }
+  })
+  .done(function( data ) {
+    $("#div_generico2").empty();
+    $("#div_generico2").append(data.strView);
+    $("#modal_informese").modal("show");
+
+    Utiles.showPDF("modal_informese", "index/revistaEscolar/InformeSE_Coahuila"+num_ed+"ed.pdf");
+  })
+  .fail(function(e) {
+    console.error("Error in getCalendarioEscolar()"); console.table(e);
   })
   .always(function() {
     swal.close();

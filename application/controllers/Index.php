@@ -88,4 +88,24 @@ class Index extends CI_Controller {
 		exit;
 	}// modeloeducativo()
 
+	public function getRevistaEscolar(){
+		$strView = $this->load->view("index/revistaEscolar", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getRevistaEscolar()
+
+	public function getinformese(){
+		$num_ed = $this->input->post("num_ed");
+		$data['num_ed'] = $num_ed;
+		$strView = $this->load->view("index/informese", $data, TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getinformese()
+
 }

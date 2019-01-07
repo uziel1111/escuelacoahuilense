@@ -54,6 +54,8 @@
 							</li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a>
 							</li>
+							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Infórme<b>SE</b></a>
+							</li>
 						</ul>
 					</div>
 				</div>
