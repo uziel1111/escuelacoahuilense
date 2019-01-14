@@ -8,6 +8,7 @@
           <?php if ($num_ed[0]==2): ?> octubre<?php endif; ?>
           <?php if ($num_ed[0]==3): ?> noviembre<?php endif; ?>
           <?php if ($num_ed[0]==4): ?> diciembre<?php endif; ?>
+          <?php if ($num_ed[0]==5): ?> enero<?php endif; ?>
         </h5>
         <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

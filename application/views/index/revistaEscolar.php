@@ -31,6 +31,11 @@
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/4ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
+            <div class="col-sm-3">
+              <a onclick="Index.getinformese(5)" href="javascript:void(0)" title="Edición #5 enero">
+                <img src="<?= base_url('assets/docs/index/revistaEscolar/5ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
           </div>
         </div>
       </div>
