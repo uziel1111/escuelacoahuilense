@@ -132,14 +132,30 @@ class Info extends CI_Controller {
 		$id_cont = $this->input->post("id_cont");
 		$id_cct = $this->input->post("id_cct");
 		$periodo = $this->input->post("periodo");
+		$nombre = $this->input->post("nombre");
 		$idcampodis = $this->input->post("idcampodis");
 
-		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis);
+		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis,$nombre);
 		// echo "<pre>";print_r($graph_cont_reactivos_xcctxcont);die();
+		/*
 		$response = array(
 			'graph_cont_reactivos_xcctxcont'=>$graph_cont_reactivos_xcctxcont
 		);
+		*/
+		
+		
+		$data['graph_cont_reactivos_xcctxcont'] = $graph_cont_reactivos_xcctxcont;
+		$data['periodo'] = $periodo;
+		$data['nombre']=$nombre;
 
+		$str_view = $this->load->view("info/visor_reactivos", $data, TRUE);
+
+		$response = array(
+			'str_view'=>$str_view,
+			'longitud' =>count($graph_cont_reactivos_xcctxcont)
+		);
+		
+		// echo $str_view;
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}

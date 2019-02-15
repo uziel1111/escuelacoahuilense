@@ -62,7 +62,10 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       t2.url_argumento,
       t2.url_especificacion,
       (COUNT( DISTINCT t6.idrecurso)) AS n_material,
-	    (COUNT( DISTINCT t7.id_propuesta)) as n_prop
+	    (COUNT( DISTINCT t7.id_propuesta)) as n_prop,pr.id_planea_result,pr.a,pr.b,pr.c,pr.d,pr.res_ok,pr.n_alum_eval,
+      TRUNCATE((pr.n_alum_eval-(pr.a+pr.b+pr.c+pr.d)),1) as tr_sin_contestar,TRUNCATE(((pr.a*100)/pr.n_alum_eval),1) as porcen_a,
+      TRUNCATE(((pr.b*100)/pr.n_alum_eval),1) as porcen_b,TRUNCATE(((pr.c*100)/pr.n_alum_eval),1) as porcen_c,TRUNCATE(((pr.d*100)/pr.n_alum_eval),1) as porcen_d,
+      TRUNCATE(((pr.n_alum_eval-(pr.a+pr.b+pr.c+pr.d))*100/pr.n_alum_eval),1) as porcen_sin_res
       ');
       $this->db->from('planeaxesc_reactivo t1');
       $this->db->join('planea_reactivo t2', 't1.id_reactivo=t2.id_reactivo');
@@ -71,6 +74,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->join('planea_camposdisciplinares t5', 't4.id_campodisiplinario=t5.id_campodisiplinario');
       $this->db->join('recursos_apoyo t6', 't2.id_reactivo=t6.id_reactivo','left');
       $this->db->join('prop_mapoyo t7', 't2.id_reactivo = t7.id_reactivo','left');
+      $this->db->join('paneaxescxinciso pr', 'pr.id_cct = t1.id_ct and t2.id_reactivo=pr.id_reactivo','left');
       $this->db->where('t1.id_ct', $id_cct);
       $this->db->where('t3.id_contenido', $id_cont);
       $this->db->where('t1.id_periodo', $periodo);
@@ -90,7 +94,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t2.id_reactivo !=', 374);
       $this->db->where('(((t1.n_aciertos*100)/t1.n_almn_eval)<100)');
       $this->db->group_by('t2.id_reactivo');
-     //  $this->db->get();
+      // $this->db->get();
      // $str = $this->db->last_query();
      // echo $str; die();
       return  $this->db->get()->result_array();

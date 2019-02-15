@@ -1,4 +1,3 @@
-
 function HaceGraficas(){
     obj_graficas = this;
     $("#div_contenedor_operaciones").hide();
@@ -2208,7 +2207,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                            events:{
                                click:function(){
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
-                               }
+                                }
                            }
                        }
                    }
@@ -2349,7 +2348,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                            events:{
                                click:function(){
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
-                               }
+                                }
                            }
                        }
                    }
@@ -2614,7 +2613,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                            events:{
                                click:function(){
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
-                               }
+                                }
                            }
                        }
                    }
@@ -2638,14 +2637,15 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
 
 
-      HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis){
-
+      HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis, callback){
+            
           // alert(id_cont);
+          console.log(nombre);
           var ruta = base_url+"info/info_xcont_xcct";
           $.ajax({
             url: ruta,
             method: 'POST',
-            data: { 'id_cont':id_cont,'id_cct':id_cct,'periodo':periodo,'idcampodis':idcampodis
+            data: { 'id_cont':id_cont,'id_cct':id_cct,'periodo':periodo,'idcampodis':idcampodis,'nombre':nombre
                   },
             beforeSend: function( xhr ) {
               // obj_loader.show();
@@ -2654,18 +2654,27 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           .done(function( data ) {
             // obj_loader.hide();
               swal.close();
-              var result = data.graph_cont_reactivos_xcctxcont;
+              // var result = data.graph_cont_reactivos_xcctxcont;
               // var result_apoyoxreact = data.graph_cont_reactivos_xcctxcont_apoyo;
 
               var html = "<div style='text-align:left !important;'>";
-              if (result.length==0) {
+              if (data.longitud==0) {
                 // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
                 // html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
                 // html += "<table class='table-responsive table table-condensed'>";
                 // html += "<tbody>";
-                html += "    <div class='container'>";
+            
+              $("#div_generico_reactivos").empty();
+              $("#div_generico_reactivos").append(data.str_view);
+              $("#modal_visor_reactivos").modal("show");
+            }
+
+                /* ***********************************
+                var html_reactivos='';
+
+                html += "    <div class='container'> ";
                 for (var i = 0; i < result.length; i++) {
                   html += "    <div class='row'>";
                   html += "      <div class='col-2'>";
@@ -2681,7 +2690,14 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   html += "      <div class='col-12'>";
                   html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
                   html += "      </div>";
-                  html += "    </div>";
+                  html += "    </div><br>";
+                  html+='<p>Análisis Descriptivo del Resultado del Reactivo</p><div class="progress">';
+                  html+='<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>';
+                  html+='</div><br>';
+                  html+='<div class="progress"><div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>';
+                  html+='</div><br><div class="progress"><div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>';
+                  html+='</div><br><div class="progress"><div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>';
+                  html+='<br></br>';    
                   html += "    <div class='row'>";
                   html += "      <div class='col-md-3 col-sm-12'>";
                   html += "      </div>";
@@ -2734,14 +2750,29 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                 // html += "</table>";
               }
               // html += "</div>";
+              
+              // $("#div_reactivos_graf").empty();
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
+              // $('#modal_visor_reactivos .modal-body #div_reactivos_graf').html(html_reactivos);
               $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
+              
+              
+              //en esta parte vamos a agregar la grafica
+              
+
+            
+              // obj_grafica.TablaPieGraficaBarPrimaria_R(t1,t2,t3,t4,t5,t6);
+             
+
 
               $("#modal_reactivos_title").empty();
               $("#modal_reactivos_title").html("Contenido temático: "+nombre);
 
               $("#modal_visor_reactivos").modal("show");
+
+              //   obj_grafica.TablaPieGraficaPie_R(result[0]['a'],result[0]['b'],result[0]['c'],result[0]['d']);
+              *************** */
 
           })
           .fail(function(e) {
@@ -3198,3 +3229,4 @@ $("#tipodematerial").change(function(){
 		break;
 	}
 });
+
