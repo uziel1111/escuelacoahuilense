@@ -135,7 +135,7 @@
 				                  	</div>
 				                  	<div class='col-md-6 col-sm-12'>
 					                  	<div class="progress">
-					                  		<div class="progress-bar bg-primary" role="progressbar" style='width:<?=$item['porcen_sin_res'] ?>%' aria-valuenow="<?=	$item['porcen_sin_res'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="Sin Contestar" 	data-content="Porcentaje: <?=$item['porcen_sin_res'] ?>%"></div>	
+					                  		<div class="progress-bar bg-fuchsia" role="progressbar" style='width:<?=$item['porcen_sin_res'] ?>%' aria-valuenow="<?=	$item['porcen_sin_res'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="Sin Contestar" 	data-content="Porcentaje: <?=$item['porcen_sin_res'] ?>%"></div>	
 					                  	</div>	
 				                  	</div>	
 				                  	<div class='col-md-3 col-sm-12'>	
@@ -166,7 +166,7 @@
 										      <td ><center><?php echo $item['a'] ?></center></td>
 										      <td ><center><?php echo $item['b'] ?></center></td>
 										      <td ><center><?php echo $item['c'] ?></center></td>
-										      <td ><center><?php echo $item['b'] ?></center></td>
+										      <td ><center><?php echo $item['d'] ?></center></td>
 										      <td ><center><?php echo $item['tr_sin_contestar'] ?></center></td>
 										      <td ><center><?php echo $item['res_ok'] ?></center></td>
 										    </tr>
@@ -220,8 +220,8 @@
 	                        </div>
                     	</div>
                			<?php  } ?>
-                   <!--  </div><!-- .col-12 -->	
-				<!-- </div>.row --> -->
+                   <!--  </div><! .col-12 -->	
+				<!-- </div>.row --> 
 			</div>
 		</div>
 	</div>

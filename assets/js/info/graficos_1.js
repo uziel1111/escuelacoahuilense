@@ -2640,7 +2640,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis, callback){
             
           // alert(id_cont);
-          console.log(nombre);
+          // console.log(nombre);
           var ruta = base_url+"info/info_xcont_xcct";
           $.ajax({
             url: ruta,
@@ -2648,7 +2648,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             data: { 'id_cont':id_cont,'id_cct':id_cct,'periodo':periodo,'idcampodis':idcampodis,'nombre':nombre
                   },
             beforeSend: function( xhr ) {
-              // obj_loader.show();
+              // alert("cargando");
+              Notification.loading("");
             }
           })
           .done(function( data ) {
