@@ -12,6 +12,11 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
+              <a onclick="Index.getinformese(6)" href="javascript:void(0)" title="Edición #6 febrero">
+                <img src="<?= base_url('assets/docs/index/revistaEscolar/6ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
               <a onclick="Index.getinformese(5)" href="javascript:void(0)" title="Edición #5 enero">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/5ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
