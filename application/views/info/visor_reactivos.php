@@ -19,7 +19,7 @@
 		                        </div>
 		                        <div class='col-10'>
 			       					<?php if ($item['path_apoyo']!=null) { ?>
-			                        	<center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo(<?= $item['path_apoyo'] ?>)>Texto/imagen (apoyo)</a></center>
+			                        	<center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('<?= $item['path_apoyo'] ?>') >Texto/imagen (apoyo)</a></center>
 			                 		<?php  } ?>
 		                    	</div>
                       		</div>
@@ -30,7 +30,13 @@
 	                      	</div><br>
 	                      	 <?php if ($item['id_planea_result']!=null) { ?>
 	                      	<div class='container'>
-	                  			<p align="center">Análisis Descriptivo del Resultado del Reactivo</p>
+	                  			<h5 align="center">Análisis descriptivo del resultado del reactivo</h5>
+	                  			<div class='row'>
+	                  				<div class='col-md-7 col-md-7'></div>
+					                <div class='col-md-3 col-md-3'>
+					                Porcentajes
+					                </div>
+								</div>
 	                  			<div class='row'>
 					                <div class='col-md-1 col-sm-12'>
 					                  A)
@@ -38,15 +44,15 @@
 					                <div class='col-md-6 col-sm-12'>
 						                <div class="progress"> 
 							                <?php if ($item['res_ok']=='A') { ?>
-							                <div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_a'] ?>%' aria-valuenow="<?=$item['porcen_a'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="A" data-content="Porcentaje: <?=$item['porcen_a'] ?>%"></div>
+							                <div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_a'] ?>%' aria-valuenow="<?=$item['porcen_a'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="A)" data-content="Porcentaje: <?=$item['porcen_a'] ?>%"></div>
 							                  
 							                <?php  }else{ ?>
-							                <div class="progress-bar bg-primary" role="progressbar" style='width:<?=$item['porcen_a'] ?>%' aria-valuenow="<?=$item['porcen_a'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="A" data-content="Porcentaje: <?=$item['porcen_a'] ?>%"></div>
+							                <div class="progress-bar bg-primary" role="progressbar" style='width:<?=$item['porcen_a'] ?>%' aria-valuenow="<?=$item['porcen_a'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="A)" data-content="Porcentaje: <?=$item['porcen_a'] ?>%"></div>
 							                <?php } ?>
 						                </div>
 					                </div>
 					                <div class='col-md-3 col-sm-12'>
-					                  	Porcentaje: <?php echo $item['porcen_a']?>%
+					                  	 <?php echo $item['porcen_a']?>%
 					                </div>
 					                <div class='col-md-1 col-sm-12 '>
 					                <?php if ($item['res_ok']=='A') { ?>
@@ -62,15 +68,15 @@
 					                <div class='col-md-6 col-sm-12'>
 						                <div class="progress">
 							                <?php if ($item['res_ok']=='B') { ?>
-							                <div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_b'] ?>%' aria-valuenow="<?=$item['porcen_b'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="B" data-content="Porcentaje: <?=$item['porcen_b'] ?>%"></div>
+							                <div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_b'] ?>%' aria-valuenow="<?=$item['porcen_b'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="B)" data-content="Porcentaje: <?=$item['porcen_b'] ?>%"></div>
 							                  
 							                <?php  }else{ ?>
-							                <div class="progress-bar  bg-secondary" role="progressbar" style='width:<?=$item['porcen_b'] ?>%' aria-valuenow="<?=$item['porcen_b'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="B" data-content="Porcentaje: <?=$item['porcen_b'] ?>%"></div>
+							                <div class="progress-bar  bg-secondary" role="progressbar" style='width:<?=$item['porcen_b'] ?>%' aria-valuenow="<?=$item['porcen_b'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="B)" data-content="Porcentaje: <?=$item['porcen_b'] ?>%"></div>
 							                   <?php } ?>
 						                </div>
 					                </div>
 					                <div class='col-md-3 col-sm-12'>
-					                	Porcentaje: <?php echo $item['porcen_b']?>%
+					                	 <?php echo $item['porcen_b']?>%
 					                </div>
 					                <div class='col-md-1 col-sm-12'>
 					                <?php if ($item['res_ok']=='B') { ?>
@@ -86,16 +92,16 @@
 				                  	<div class='col-md-6 col-sm-12'>
 					                  	<div class="progress">
 						                  	<?php if ($item['res_ok']=='C') { ?>
-						                  	<div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_c'] ?>%' aria-valuenow="<?=$item['porcen_c'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="C" data-content="Porcentaje: <?=$item['porcen_c'] ?>%"></div>
+						                  	<div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_c'] ?>%' aria-valuenow="<?=$item['porcen_c'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="C)" data-content="Porcentaje: <?=$item['porcen_c'] ?>%"></div>
 						                  
 						                  	<?php  }else{ ?>
-						                  	<div class="progress-bar  bg-danger" role="progressbar" style='width:<?=$item['porcen_c'] ?>%' aria-valuenow="<?=$item['porcen_c'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="C" data-content="Porcentaje: <?=$item['porcen_c'] ?>%">
+						                  	<div class="progress-bar  bg-danger" role="progressbar" style='width:<?=$item['porcen_c'] ?>%' aria-valuenow="<?=$item['porcen_c'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="C)" data-content="Porcentaje: <?=$item['porcen_c'] ?>%">
 						                  	</div>
 						                  	<?php } ?>
 					                  	</div>
 				                  	</div>
 				                  	<div class='col-md-3 col-sm-12'>
-				                  	Porcentaje: <?php echo $item['porcen_c']?>%
+				                  	 <?php echo $item['porcen_c']?>%
 				                  	</div>
 				                  	<div class='col-md-1 col-sm-12'>
 					                <?php if ($item['res_ok']=='C') { ?>
@@ -111,16 +117,16 @@
 				                  	<div class='col-md-6 col-sm-12'>
 					                  	<div class="progress">
 						                  	<?php if ($item['res_ok']=='D') { ?>
-						                  	<div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_d'] ?>%' aria-valuenow="<?=$item['porcen_d'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="D" data-content="Porcentaje: <?=$item['porcen_d'] ?>%"></div>
+						                  	<div class="progress-bar  progress-bar-striped bg-success progress-bar-animated" role="progressbar" style='width:<?=$item['porcen_d'] ?>%' aria-valuenow="<?=$item['porcen_d'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="D)" data-content="Porcentaje: <?=$item['porcen_d'] ?>%"></div>
 						                  
 						                  	<?php  }else{ ?>
-						                  	<div class="progress-bar  bg-warning" role="progressbar" style='width:<?=$item['porcen_d'] ?>%' aria-valuenow="<?=$item['porcen_d'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="D" data-content="Porcentaje: <?=$item['porcen_d'] ?>%">
+						                  	<div class="progress-bar  bg-warning" role="progressbar" style='width:<?=$item['porcen_d'] ?>%' aria-valuenow="<?=$item['porcen_d'] ?>" aria-valuemin="0" aria-valuemax="100" data-toggle="popover" title="D)" data-content="Porcentaje: <?=$item['porcen_d'] ?>%">
 						                  	</div>
 						                  	<?php } ?>
 					                  	</div>
 				                  	</div>
 				                  	<div class='col-md-2 col-sm-12'>
-				                  		Porcentaje: <?php echo $item['porcen_d']?>%
+				                  		 <?php echo $item['porcen_d']?>%
 				                  	</div>
 				                  	<div class='col-md-1 col-sm-12'>
 					                <?php if ($item['res_ok']=='D') { ?>
@@ -131,7 +137,7 @@
 	                  			<br>
 			                  	<div class="row">
 				                  	<div class='col-md-1 col-sm-12'>
-				                  		Sin Contestar
+				                  		Sin contestar
 				                  	</div>
 				                  	<div class='col-md-6 col-sm-12'>
 					                  	<div class="progress">
@@ -139,7 +145,7 @@
 					                  	</div>	
 				                  	</div>	
 				                  	<div class='col-md-3 col-sm-12'>	
-				                  		Porcentaje: <?php echo $item['porcen_sin_res']?>%
+				                  		 <?php echo $item['porcen_sin_res']?>%
 				                  	</div>
 				                  	<div class='col-md-1 col-sm-12'>	
 				                  		
@@ -147,8 +153,8 @@
 			                  	</div>
 	                  			<br></br>
 	                   			<div class="row">
-				                   	<div class='col-md-12 col-sm-12'>
-					                   	<table class="table table-bordered">
+				                   	<div class='col-md-10 col-sm-12'>
+					                   	<table class="table table-bordered table-sm">
 										  <thead class="table-primary">
 										    <tr>
 										      <th scope="col"><center>Total</center></th>
@@ -156,8 +162,8 @@
 										      <th scope="col"><center>B</center></th>
 										      <th scope="col"><center>C</center></th>
 										      <th scope="col"><center>D</center></th>
-										      <th scope="col"><center>Sin Contestar</center></th>
-										      <th scope="col"><center>Inciso Correcto</center></th>
+										      <th scope="col" width='40'><center>Sin contestar</center></th>
+										      <th scope="col"  width='40'><center>Inciso correcto</center></th>
 										    </tr>
 										  </thead>
 										  <tbody>
