@@ -158,10 +158,10 @@
 										  <thead class="table-primary">
 										    <tr>
 										      <th scope="col"><center>Total</center></th>
-										      <th scope="col"><center>A</center></th>
-										      <th scope="col"><center>B</center></th>
-										      <th scope="col"><center>C</center></th>
-										      <th scope="col"><center>D</center></th>
+										      <th scope="col"><center>A)</center></th>
+										      <th scope="col"><center>B)</center></th>
+										      <th scope="col"><center>C)</center></th>
+										      <th scope="col"><center>D)</center></th>
 										      <th scope="col" width='40'><center>Sin contestar</center></th>
 										      <th scope="col"  width='40'><center>Inciso correcto</center></th>
 										    </tr>
