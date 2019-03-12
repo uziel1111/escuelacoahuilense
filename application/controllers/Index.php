@@ -7,6 +7,7 @@ class Index extends CI_Controller {
 			parent::__construct();
 			$this->load->helper('url');
 			$this->load->library('Utilerias');
+			$this->load->model('Ciclo_model');
 		}
 
 	/**
@@ -28,6 +29,7 @@ class Index extends CI_Controller {
 	{
 		$data = array();
 		Utilerias::pagina_basica($this, "index", $data);
+		
 	}
 
 	public function getReconocimientosEstatales(){
@@ -53,9 +55,13 @@ class Index extends CI_Controller {
 	}// getMaterialesUtiles()
 
 	public function getCalendarioEscolar(){
-		$strView = $this->load->view("index/calendarioEscolar", array(), TRUE);
+		$result_ciclo = $this->Ciclo_model->ultimo_ciclo_escolar();
+		$data=[];
+		$data['ciclo']=$result_ciclo;
+		$strView = $this->load->view("index/calendarioEscolar", $data, TRUE);
 		$response = array(
-											'strView' => $strView
+											'strView' => $strView,
+											
 											);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;

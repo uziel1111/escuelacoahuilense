@@ -20,6 +20,14 @@ class Ciclo_model extends CI_Model
             return  $this->db->get()->result_array();
     }// all()
 
+    function ultimo_ciclo_escolar(){
+      $this->db->select('ciclo');
+      $this->db->from('ciclo');
+      $this->db->order_by("id_ciclo", "desc");
+      $this->db->limit(1);
+      return  $this->db->get()->row('ciclo');
+    }
+
     function getciclo_xidmun_idnivel_xsost_idmod($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad){
       $this->db->select('ci.id_ciclo, ci.ciclo');
       $this->db->from('ciclo ci');
