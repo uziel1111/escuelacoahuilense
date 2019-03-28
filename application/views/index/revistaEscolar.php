@@ -12,33 +12,45 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(6)" href="javascript:void(0)" title="Edición #6 febrero">
+              <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_marzo_2019"  target="_blank" title="Edición #6 marzo">
+                <img src="https://www.seducoahuila.gob.mx/images/revi2.jpg?crc=3963119943" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_febrero_2019"  target="_blank" title="Edición #6 febrero">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/6ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(5)" href="javascript:void(0)" title="Edición #5 enero">
+               <!-- onclick="Index.getinformese(5)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_enero_2019" target="_blank" title="Edición #5 enero">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/5ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(4)" href="javascript:void(0)" title="Edición #4 diciembre">
+              <!-- onclick="Index.getinformese(4)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_diciembre" target="_blank" title="Edición #4 diciembre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/4ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(3)" href="javascript:void(0)" title="Edición #3 noviembre">
+              <!-- onclick="Index.getinformese(3)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_noviembre" target="_blank" title="Edición #3 noviembre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/3ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(2)" href="javascript:void(0)" title="Edición #2 octubre">
+              <!-- onclick="Index.getinformese(2)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_octubre" target="_blank" title="Edición #2 octubre">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/2ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              <a onclick="Index.getinformese(1)" href="javascript:void(0)" title="Edición #1 septiembre">
-                <img src="<?= base_url('assets/docs/index/revistaEscolar/1ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
+              <!-- onclick="Index.getinformese(1)" -->
+              <a  href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_septiembre_f343f7b15a6006" target="_blank" title="Edición #1 septiembre">
+                <img  src="<?= base_url('assets/docs/index/revistaEscolar/1ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
           </div>
