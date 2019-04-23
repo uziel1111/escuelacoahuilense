@@ -13,7 +13,7 @@
       <th scope="col">CTE 7</th>
       <th scope="col">CTE 8</th>
       <th scope="col">CTE 9</th>
-      <th scope="col">CTE 10</th>
+      <th scope="col">Estatus</th>
     </tr>
   </thead>
   <tbody>
@@ -38,7 +38,7 @@
           <?php } else{ ?>
         <td><?=$value['accion']?></td>
 
-        <?php for ($x = 1; $x <= 10; $x++) {?>
+        <?php for ($x = 1; $x <= 9; $x++) {?>
           <td>
             <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>") id="<?=$x?>_<?=$value['id_cct']?>_<?=$value['id_tprioritario']?>_<?=$value['id_accion']?>">
               <option value="0" <?=($value["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
@@ -55,8 +55,8 @@
             </select>
           </td>
 
-        <?php } $var_aux_id_tprioritario = $value['id_tprioritario']?>
-
+        <?php } ?><td>asdf</td>
+		<?php     $var_aux_id_tprioritario = $value['id_tprioritario']?>
         <?php } ?>
         </tr>
       <?php endforeach; ?>
