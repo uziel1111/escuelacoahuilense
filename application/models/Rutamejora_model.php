@@ -35,8 +35,8 @@ class Rutamejora_model extends CI_Model
       'orden' => $orden,
 			);
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
-    $id_insertado_tmp =$this->db->insert_id();
-        $this->db->trans_complete();
+    $id_insertado_tmp = $this->db->insert_id();
+    $this->db->trans_complete();
 
         if ($this->db->trans_status() === FALSE)
         {
@@ -172,22 +172,22 @@ class Rutamejora_model extends CI_Model
 
   function update_misionxidcct($id_cct,$misioncct, $id_ciclo){
     $date=date("Y-m-d");
-   $this->db->trans_start();
-   $data = array(
-      'mision' => $misioncct,
-      'id_ciclo' => $id_ciclo,
-      'f_mod' => $date
-  );
+    $this->db->trans_start();
+    $data = array(
+        'mision' => $misioncct,
+        'id_ciclo' => $id_ciclo,
+        'f_mod' => $date
+    );
 
-  $this->db->where('id_cct', $id_cct);
-  $this->db->update('rm_misionxcct', $data);
-  $this->db->trans_complete();
-  if ($this->db->trans_status() === FALSE)
-     {
+    $this->db->where('id_cct', $id_cct);
+    $this->db->update('rm_misionxcct', $data);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
          return false;
      }else{
          return true;
-     }
+    }
   }
 
   function get_misionxcct($id_cct, $id_ciclo){
@@ -440,19 +440,18 @@ function  get_datos_edith_tp($id_tprioritario){
   function insert_evidencia($id_cct,$estatus,$ruta_archivos_save){
     $this->db->trans_start();
       $data = array(
-          "path_evidencia" => $ruta_archivos_save,
-  );
-  $this->db->where("id_cct = '{$id_cct}'");
-  $this->db->where("id_tprioritario = '{$estatus}'");
-  $this->db->update('rm_tema_prioritarioxcct', $data);
-  $this->db->trans_complete();
-  if ($this->db->trans_status() === FALSE)
-      {
-          return false;
+        "path_evidencia" => $ruta_archivos_save,
+      );
+      $this->db->where("id_cct = '{$id_cct}'");
+      $this->db->where("id_tprioritario = '{$estatus}'");
+      $this->db->update('rm_tema_prioritarioxcct', $data);
+      $this->db->trans_complete();
+      if ($this->db->trans_status() === FALSE) {
+        return false;
       }else{
-          return true;
+        return true;
       }
-    }
+  }
 
     function get_url_evidencia($id_cct,$id_tprioritario){
       $this->db->select('path_evidencia');
@@ -510,5 +509,118 @@ function  get_datos_edith_tp($id_tprioritario){
     	$str_query = "SELECT obs_supervisor FROM rm_tema_prioritarioxcct WHERE id_tprioritario = {$idtemap}";
     	return $this->db->query($str_query)->result_array();
     }
+
+    //Nuevas funciones para RM Ismael Castillo
+    function insertaObjetivo($id_cct, $id_prioridad, $objetivo){
+      $this->db->select('id_cct');
+      $this->db->from('rm_tema_prioritarioxcct');
+      $this->db->where('id_cct', $id_cct);
+      $orden = $this->db->get()->num_rows()+1;
+
+      $this->db->trans_start();
+      $datos = array(
+        'id_cct' => $id_cct,
+        'id_prioridad' => $id_prioridad,
+        'orden' => $orden
+      );
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->insert('rm_tema_prioritarioxcct', $datos);
+      $id_tprioritario = $this->db->insert_id(); // Recuperamos el ultimo id generado
+
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE)
+      {
+          return false;
+      }else{
+        $objetivos = array(
+          'objetivo' => $objetivo,
+          'id_tprioritario' => $id_tprioritario,
+          'orden' => $orden,
+          'id_cct'=> $id_cct
+        );
+        $this->db->insert('rm_objetivo', $objetivos);
+          // return $id_tprioritario;
+      }
+    }
+
+    function actualizaObjetivo($id_objetivo, $objetivo){
+      $datos = array('objetivo' => $objetivo );
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->where('id_objetivo', $id_objetivo);
+      $this->db->update('rm_objetivo', $datos);
+    }
+
+
+
+    function getSubprioridad($idprioridad){
+      $str_query ="select id_subprioridad, subprioridad from rm_c_subprioridad where id_prioridad = {$idprioridad}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad){
+      $especial = "";
+      $condicion = "";
+      if ($id_prioridad == 1) {
+        $especial = "inner join rm_c_subprioridad subp on ind.id_subprioridad = subp.id_subprioridad";
+        $condicion = " and ind.id_subprioridad = {$id_subprioridad}";
+      }
+
+      $str_query = "select ind.id_indicador, ind.indicador from rm_c_indicador ind
+                    {$especial}
+                    where ind.id_c_prioridad = {$id_prioridad} and ind.nivel = {$id_nivel} {$condicion}";
+      // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getMetricas($id_indicador){
+      $str_query = "select ind.formula from rm_c_indicador ind where ind.id_indicador = {$id_indicador}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getObjetivos($id_cct){
+      $str_query = "select obj.id_objetivo, obj.orden, obj.objetivo, obj.id_tprioritario from rm_objetivo obj where obj.id_cct = {$id_cct}";
+      // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir){
+      $date = date("Y-m-d");
+
+      //Iniciar transaccion
+      $datos = array(
+        'id_tprioritario' => $id_tprioritario,
+        'otro_problematica' => $problematica,
+        'otro_evidencia' => $evidencia,
+        'obs_direc' => $comentario_dir,
+        'f_creacion' => $date
+      );
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->where('id_cct', $id_cct);
+      $this->db->update('rm_tema_prioritarioxcct', $datos);
+      $id_insertado_tmp = $this->db->insert_id();
+
+      return true;
+
+    }
+
+
+    function getObjetivo($id_objetivo, $id_tprioritario){
+      $str_query = "SELECT objetivo FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}  AND id_tprioritario = {$id_tprioritario}";
+      // echo "<pre>";print_r($str_query); die();
+
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function borrarObjetivo($id_objetivo){
+      $this->db->where('id_objetivo', $id_objetivo);
+      $this->db->delete('rm_objetivo');
+    }
+
+
 
 }// Rutamejora_model

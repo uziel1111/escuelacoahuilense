@@ -9,11 +9,11 @@ class Rutademejora extends CI_Controller {
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
 			$this->load->model('Prioridad_model');
-		  	$this->load->model('Problematica_model');
-		  	$this->load->model('Evidencia_model');
-		  	$this->load->model('Prog_apoyo_xcct_model');
-		  	$this->load->model('Apoyo_req_model');
-		  	$this->load->model('Ambito_model');
+			$this->load->model('Problematica_model');
+			$this->load->model('Evidencia_model');
+			$this->load->model('Prog_apoyo_xcct_model');
+			$this->load->model('Apoyo_req_model');
+			$this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
@@ -39,7 +39,8 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					$this->llenadatos();
+					// $this->llenadatos();
+					$this->index_new();
 				}
 
 			}else{
@@ -102,7 +103,8 @@ class Rutademejora extends CI_Controller {
 					if($response->procede == 1 && $response->status == 1){
 						$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 						Utilerias::set_cct_sesion($this, $datoscct);
-						$this->llenadatos();
+						// $this->llenadatos();
+						$this->index_new();
 						///Aqui llenamos los datos
 					}else{
 						$mensaje = $response->statusText;
@@ -142,6 +144,7 @@ class Rutademejora extends CI_Controller {
 			$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
 			$data['mision'] = $mision;
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+			// echo "<pre>";print_r($this->cct[0]['nivel']);die();
 			  if(count($result_prioridades)==0){
 			  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
 			  }else{
@@ -287,6 +290,7 @@ class Rutademejora extends CI_Controller {
 		public function insert_update_misioncct(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
+				// echo "<pre>";print_r($_POST);die();
 				$id_cct = $this->cct[0]['id_cct'];
 				$misioncct = $this->input->post("misioncct");
 				if ($this->Rutamejora_model->existe_misionxidcct($id_cct,'4')) {
@@ -1095,6 +1099,328 @@ public function edit_accion_super(){
 		// print_r($mensaje);
 		// die();
 		$response = array('mensaje' => $mensaje[0]['obs_supervisor']);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	// Nuevo codigo ruta mejora Ismael
+	public function index_new(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		// echo "<pre>";print_r($this->cct);die();
+
+		$data = array();
+
+		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
+		$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
+		$data['turno'] = $this->cct[0]['turno_single'];
+		$data['cct'] = $this->cct[0]['cve_centro'];
+
+		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
+		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
+		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
+
+
+		Utilerias::pagina_basica_rm($this, "ruta/rutademejora/index", $data);
+	}
+
+	public function modal_recomendacion(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+
+		$strView = $this->load->view("ruta/modals_new/modal_ruta", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => '<i class="far fa-lightbulb"></i> Recomendación');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function modal_mision(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+
+		$strView = $this->load->view("ruta/modals_new/modal_mision", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => '<i class="fas fa-flag"></i> Misión');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function tabla_rm(){
+		if(Utilerias::haySesionAbiertacct($this)){
+				$data = array();
+				$this->cct = Utilerias::get_cct_sesion($this);
+				$id_cct = $this->cct[0]['id_cct'];
+				$tam = 0;
+				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+
+				$data['rutas'] = $rutas;
+				$data['tam'] = $tam;
+
+
+				$strView = $this->load->view("ruta/rutademejora/tabla_rm", $data, TRUE);
+
+				$response = array('strView' => $strView);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+		}else{
+			redirect('Rutademejora/index');
+		}
+	}
+
+	public function tabla_up(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
+			$datos = $this->input->post('orden');
+			for($i = 0; $i < count($datos); $i++){
+				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
+			}
+
+
+			$id_cct = $this->cct[0]['id_cct'];
+			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+		}else{
+			redirect('Rutademejora/index');
+		}
+	}
+
+	public function modal_prioridad(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_nivel = $this->cct[0]['nivel'];
+		// echo "<pre>"; print_r($id_nivel); die();
+		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+		$data['prioridades'] = $result_prioridades;
+
+		$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => 'Agrega prioridad');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function agregarObjetivo(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+		$id_prioridad = $this->input->post('id_prioridad');
+		$objetivo = $this->input->post('objetivo');
+
+		$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo);
+
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function actualizarObjetivo(){
+
+		$id_objetivo = $this->input->post('id_objetivo');
+		$objetivo = $this->input->post('objetivo');
+		// echo $objetivo;die();
+		$estatus = $this->Rutamejora_model->actualizaObjetivo($id_objetivo, $objetivo);
+
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+
+	public function getObjetivos(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+		$datos = $this->Rutamejora_model->getObjetivos($id_cct);
+		$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
+			<thead>
+				<tr class='info'>
+					<th id='idrutamtema' hidden>
+						<center>id</center>
+					</th>
+					<th id='num_rutamtema' style='width:5%'>
+						<center>#</center>
+					</th>
+					<th id='des_rutamtema' style='width:75%'>
+						<center>Objetivos y metas</center>
+					</th>
+					<th id='op_rutamtema' style='width:20%'>
+						<center>Opciones</center>
+					</th>
+				</tr>
+			</thead>
+			<tbody>";
+
+			foreach ($datos as $dato) {
+				$idtprioritrio = $dato['id_tprioritario'];
+				$idobjetivo = $dato['id_objetivo'];
+				$tabla .= "<tr>
+					<td id='' hidden><center>{$dato['id_objetivo']}</center></td>
+					<td id='' hidden><center>{$dato['id_tprioritario']}</center></td>
+					<td id='num_rutamtema' data='1' class='text-center'>{$dato['orden']}</td>
+					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+					<td id='op_rutamtema' class='text-center'>
+						<button id='btn_editar' type='button' data-toggle='tooltip' class='btn btn-success' data-original-title='Editar' onclick='btnEditar({$dato['id_objetivo']}, {$dato['id_tprioritario']})'><i class='far fa-edit'></i></button>
+						<button id='btn_eliminar' type='button' data-toggle='tooltip' class='btn btn-danger' data-original-title='Eliminar' onclick='btnEliminar({$dato['id_objetivo']})'><i class='far fa-trash-alt'></i></button>
+					</td>
+				</tr>";
+			}
+
+			$tabla .= "</tbody></table>";
+
+			$response = array('table' => $tabla, 'id_tprioritario' => $idtprioritrio, 'id_objetivo' => $idobjetivo);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+	}
+
+
+
+	public function modal_actividades(){
+		$strView = $this->load->view("ruta/modals_new/modal_actividades", array(), TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => 'Edición de prioridad del Sistema Básico de Mejora');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getsubEspecial(){
+		$id_prioridad = $this->input->post('idprioridad');
+		$datos = $this->Rutamejora_model->getSubprioridad($id_prioridad);
+		$option = "<option value='0'>SELECCIONE</option>";
+		foreach ($datos as $dato) {
+			$option .="<option value='{$dato['id_subprioridad']}'>{$dato['subprioridad']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
+	}
+
+	public function llenaIndicador(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		// echo "<pre>";print_r($this->cct);die();
+		$nivel = $this->input->post('nivel');
+		$id_prioridad = $this->input->post('id_prioridad');
+		$id_subprioridad = $this->input->post('id_subprioridad');
+
+		if ($nivel == 'PRIMARIA') {
+			$id_nivel = 4;
+		}
+
+		if ( isset( $_POST['id_subprioridad'] ) ) {
+			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad);
+		}else {
+			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, 0);
+		}
+
+		$option = "<option value='0'>SELECCIONAR</option>";
+		foreach ($datos as $dato) {
+			$option .="<option value='{$dato['id_indicador']}'>{$dato['indicador']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getMetrica(){
+		$id_indicador = $this->input->post('id_indicador');
+
+		$datos = $this->Rutamejora_model->getMetricas($id_indicador);
+		$option = "<option value='0'>SELECCIONE</option>";
+		foreach ($datos as $dato) {
+			// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
+			$option .="<option value=''>{$dato['formula']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
+	}
+
+	public function grabarTema(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
+		$id_tprioritario = $this->input->post('tema_prioritario'); // este dato no viene
+		$problematica = $this->input->post('problematica');
+		$evidencia = $this->input->post('evidencia');
+		$comentario_dir = $this->input->post('comentario_dir');
+
+		$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+		// echo "<pre>";print_r($nombre_archivo);die();
+		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+		// echo "<pre>";print_r($estatus);die();
+		if ($nombre_archivo!='') {
+			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
+			// echo "<pre>";print_r($ruta_archivos);die();
+			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
+
+			$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
+			// echo "<pre>";print_r($estatusinst_urlarch);die();
+
+			if(!is_dir($ruta_archivos)){
+				mkdir($ruta_archivos, 0777, true);}
+				$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+				$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+				$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+				$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+				$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+
+				$uploadPath              = $ruta_archivos;
+				$config['upload_path']   = $uploadPath;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('userFile')) {
+						$fileData = $this->upload->data();
+						$str_view = true;
+				}
+		}
+		$estatus = true;
+
+		$response = array('estatus' => $estatus);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
+	}
+
+	public function btnEditar(){
+		$id_objetivo = $this->input->post('id_objetivo');
+		$id_tprioritario = $this->input->post('id_tprioritario'); // este dato no viene
+
+		$datos = $this->Rutamejora_model->getObjetivo($id_objetivo, $id_tprioritario)[0];
+// echo "<pre>";print_r($datos); die();
+
+		$response = array('datos' => $datos);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function btnEliminar(){
+		$id_objetivo = $this->input->post('id_objetivo');
+
+		// echo $id_objetivo;die();
+		$datos = $this->Rutamejora_model->borrarObjetivo($id_objetivo);
+
+		$response = array('datos' => $datos);
+
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
