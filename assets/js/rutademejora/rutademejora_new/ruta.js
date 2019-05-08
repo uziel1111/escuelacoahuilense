@@ -59,27 +59,32 @@ $("#btn_mision").click(function(e){
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault()
-	var ruta = base_url + 'Rutademejora/modal_prioridad'
-	$.ajax({
-		url:ruta,
-		data: { },
-		beforeSend: function(xhr) {
-	      Notification.loading("");
-    }
-	})
-	.done(function(data){
-		$("#div_generico").empty();
-    $("#div_generico").append(data.strView);
-		$('h5').empty();
-		$('h5').append(data.titulo);
-    $("#myModal").modal("show");
-	})
-	.fail(function(e) {
-    console.error("Error in ()");
-  })
-	.always(function() {
-    swal.close();
-  });
+	if(obj.id_tprioritario == undefined){
+		alert("seleccione un tema prioritario");
+	}else{
+		var ruta = base_url + 'Rutademejora/modal_prioridad'
+		$.ajax({
+			url:ruta,
+			type:'post',
+			data: {'idtemaprioritario': obj.id_tprioritario},
+			beforeSend: function(xhr) {
+		      Notification.loading("");
+	    }
+		})
+		.done(function(data){
+			$("#div_generico").empty();
+	    $("#div_generico").append(data.strView);
+			$('h5').empty();
+			$('h5').append(data.titulo);
+	    $("#myModal").modal("show");
+		})
+		.fail(function(e) {
+	    console.error("Error in ()");
+	  })
+		.always(function() {
+	    swal.close();
+	  });
+	}
 });
 
 //Actividades

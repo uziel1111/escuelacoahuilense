@@ -75,6 +75,7 @@ function Tabla(){
        $(this).addClass('selected').siblings().removeClass('selected');
        var value=$(this).find('td:first').text(); 
        obj.id_tprioritario = value;
+       // alert(obj.id_tprioritario);
        id_tprioritario = 0;
     });
   }
