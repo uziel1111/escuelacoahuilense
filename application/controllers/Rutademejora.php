@@ -21,6 +21,7 @@ class Rutademejora extends CI_Controller {
 		public function index(){
 			if(Utilerias::verifica_sesion_redirige($this)){
 				$this->llenadatos();
+
 			}else{
 				$data = $this->data;
 			    $data['error'] = '';
@@ -39,8 +40,7 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					// $this->llenadatos();
-					$this->index_new();
+					$this->llenadatos();
 				}
 
 			}else{
@@ -103,8 +103,10 @@ class Rutademejora extends CI_Controller {
 					if($response->procede == 1 && $response->status == 1){
 						$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 						Utilerias::set_cct_sesion($this, $datoscct);
+
 						// $this->llenadatos();
 						$this->index_new();
+
 						///Aqui llenamos los datos
 					}else{
 						$mensaje = $response->statusText;
