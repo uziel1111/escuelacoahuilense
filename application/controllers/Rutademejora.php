@@ -20,8 +20,7 @@ class Rutademejora extends CI_Controller {
 
 		public function index(){
 			if(Utilerias::verifica_sesion_redirige($this)){
-				// $this->llenadatos();
-				$this->index_new();
+				$this->llenadatos();
 
 			}else{
 				$data = $this->data;

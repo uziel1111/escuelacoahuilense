@@ -138,7 +138,7 @@
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Ambito:</label>
-										<select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UN AMBITO">
+										<select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UN AMBITO">
 											<?php foreach ($arr_ambitos as $item): ?>
 															<option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
 											<?php endforeach; ?>
@@ -152,6 +152,19 @@
 										<br>
 										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
 									</div>
+
+								</div>
+								<div class="row mt-15">
+									<div class="col-md-6">
+
+									</div>
+									<div class="col-md-6" id="div_otro_responsable">
+										<label>Otro responsable:</label>
+										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
+									</div>
+								</div>
+
+								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled />
@@ -172,12 +185,7 @@
 										</script>
 									</div>
 								</div>
-								<div class="row mt-15">
-									<div class="col-md-6" id="div_otro_responsable">
-										<label>Otro responsable:</label>
-										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
-									</div>
-								</div>
+
 								<div class="row mt-15">
 									<!-- <div class="col-md-12">
 										<label><label style="color:red;">*</label>Indicadores de medición:</label>
