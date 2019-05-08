@@ -1,13 +1,13 @@
 $(document).ready(function(){
 	obj_prioridad = new Prioridad();
-	$('#normalidad').attr('hidden', true);
+	// $('#normalidad').attr('hidden', true);
 })
 
 //Eventos
 $('#opt_prioridad_especial').change(function(){
 	if ( $('#opt_prioridad_especial').val() != 0 ) {
 		obj_prioridad.llenaIndicador();
-
+		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
 	}
 })
 
@@ -79,7 +79,6 @@ Prioridad.prototype.llenaIndicador = function(){
 	.done(function(result) {
 		$("#slt_indicador").empty();
 		$("#slt_indicador").append(result.stroption);
-		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
 	})
 	.fail(function(e) {
 		console.error("Error in llenaIndicador()");
@@ -137,31 +136,34 @@ Prioridad.prototype.getsubEspecial = function(){
 };
 
 
-Prioridad.prototype.getObjetivos = function(prioridad, idsubprioridad){
-	$.ajax({
-		url: base_url+'Rutademejora/getObjetivos',
-		type: 'POST',
-		dataType: 'JSON',
-		data: {'idtpriotario': $("#idtemap_seleccionado").val(), 'idprioridad':prioridad, 'idsubprioridad':idsubprioridad},
-		beforeSend: function(xhr) {
-	        Notification.loading("");
-    },
-	})
-	.done(function(result) {
-		$("#objetivo_meta").empty();
-		$("#objetivo_meta").append(result.table);
+Prioridad.prototype.getObjetivos = function(){
+	var idtemaprioritario = $("#id_tema_prioritario").val();
+	if(idtemaprioritario != 0){
+		$.ajax({
+			url: base_url+'Rutademejora/getObjetivos',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {'idtpriotario': $("#id_tema_prioritario").val(), 'idprioridad':$("#opt_prioridad").val(), 'idsubprioridad':$("#opt_prioridad_especial").val()},
+			beforeSend: function(xhr) {
+		        Notification.loading("");
+	    },
+		})
+		.done(function(result) {
+			$("#objetivo_meta").empty();
+			$("#objetivo_meta").append(result.table);
 
-		$('#tema_prioritario').val(result.id_tprioritario);
-		$('#id_objetivo').val(result.id_objetivo);
-		// obj_prioridad.btnEditar();
-		// btnEditar();
-	})
-	.fail(function(e) {
-		console.error("Error in getObjetivos()");
-	})
-	.always(function() {
-    swal.close();
-	});
+			$('#tema_prioritario').val(result.id_tprioritario);
+			$('#id_objetivo').val(result.id_objetivo);
+			// obj_prioridad.btnEditar();
+			// btnEditar();
+		})
+		.fail(function(e) {
+			console.error("Error in getObjetivos()");
+		})
+		.always(function() {
+	    swal.close();
+		});
+	}
 }
 
 //Aqui disparamos todas las funciones del modal
@@ -227,11 +229,6 @@ $('#grabar_prioridad').click(function(){
     },
 	})
 	.done(function(result) {
-		$('#tema_prioritario').val(result.id_tprioritario);
-		$('#id_objetivo').val(result.id_objetivo);
-		// $("#opt_prioridad_especial").empty();
-		// $("#opt_prioridad_especial").append(result.stroption);
-		// $('#normalidad').attr('hidden', false);
 		setTimeout(function () {
 			swal(
 					'¡Correcto!',
@@ -253,15 +250,18 @@ $('#grabar_prioridad').click(function(){
 
 //Grabar objetivo
 $('#grabar_objetivo').click(function(){
-	// console.log('Funciona');
-	let flag = $('#update_flag').val()
 
-	if (flag == '') {
+	let idtemap = $('#id_tema_prioritario').val()
+	let flag = $('#update_flag').val()
+	if (flag == 0) {
 		$.ajax({
 			url: base_url+'Rutademejora/agregarObjetivo',
 			type: 'POST',
 			dataType: 'JSON',
-			data: { id_prioridad: $("#opt_prioridad").val(),
+			data: { 
+				id_temaprioritario : idtemap,
+				id_subprioridad : $("#opt_prioridad_especial").val(),
+				id_prioridad: $("#opt_prioridad").val(),
 							objetivo: $('#CAPoutput').val()
 						},
 			beforeSend: function(xhr) {
@@ -278,6 +278,9 @@ $('#grabar_objetivo').click(function(){
 					);
 			}, 1000);
 			obj_prioridad.getObjetivos();
+			$("#id_tema_prioritario").val(result.idtemaprioritario);
+			$("#opt_prioridad").attr('disabled', true);
+			$("#opt_prioridad_especial").attr('disabled', true);
 		})
 		.fail(function(e) {
 			console.error("Error in agregar_objetivo()");
@@ -307,6 +310,9 @@ $('#grabar_objetivo').click(function(){
 					);
 			}, 1000);
 			obj_prioridad.getObjetivos();
+			$("#id_tema_prioritario").val(result.idtemaprioritario);
+			$("#opt_prioridad").attr('disabled', true);
+			$("#opt_prioridad_especial").attr('disabled', true);
 		})
 		.fail(function(e) {
 			console.error("Error in agregar_objetivo()");
@@ -316,6 +322,8 @@ $('#grabar_objetivo').click(function(){
 		});
 
 	}
+	$("#CAPoutput").val("");
+	
 })
 //Grabar objetivo
 

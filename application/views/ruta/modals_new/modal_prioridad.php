@@ -5,18 +5,18 @@
 			<select class="form-control" id="opt_prioridad" onchange="show($(this).val())">
 				<option value="0">SELECCIONAR PRIORIDAD</option>
 				<?php foreach ($prioridades as $prioridad): ?>
-						<option value="<?= $prioridad['id_prioridad'] ?>"><?= $prioridad['prioridad'] ?></option>
+						<option value="<?= $prioridad['id_prioridad'] ?>" <?=((isset($prioridad) && (int)$prioridad['id_prioridad'] == (int)$prioridad))?"selected":""  ?> > <?= $prioridad['prioridad'] ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 
-		<div class="col-sm-12" id="normalidad" style="margin-top:15px;">
+		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" <?=((isset($prioridad) && $prioridad == 1))?"":"hidden" ?> >
 			<label>Selecciona una opción</label><br>
 			<select class="form-control" id="opt_prioridad_especial">
 			</select>
 		</div>
 	</div>
-	<div id="hiddenDiv1" style="display:none">
+	<div id="hiddenDiv1"  <?=(isset($idtemaprioritario))?"":"style='display:none'"  ?>>
 		<div class="row mt-4">
 			<div class="col-12">
 				<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la prioridad seleccionada escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
@@ -116,7 +116,7 @@
 							<textarea id="CAPoutput" class="form-control" rows="4" style="text-transform: uppercase;"></textarea>
 							<small id="passwordHelpInline" class="text-muted">Máximo 400 caracteres.</small>
 
-							<input type="hidden" id="update_flag" name="" value="">
+							<input type="hidden" id="update_flag" name="" value="0">
 						</div>
 						<div class="col-auto">
 							<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">8.Guardar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
@@ -146,26 +146,26 @@
 			<div class="row mt-3">
 				<div class="col-lg-6">
 					<label><span class="badge badge-secondary h5 text-white">3.</span> Problemática por prioridad</label><br>
-					<textarea id="evidencias_problematicas" name="problematica" class="form-control" rows="2" maxlength="400"></textarea>
+					<textarea id="evidencias_problematicas" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 				</div>
 
 				<div class="col-lg-6 mt-3 mt-lg-0">
 					<label><span class="badge badge-secondary h5 text-white">4.</span> Evidencias de las problematicas</label>
 					<br>
-					<textarea id="evidencias_problematicas" name="evidencia" class="form-control" rows="2" maxlength="400"></textarea>
+					<textarea id="evidencias_problematicas" name="evidencia" class="form-control" rows="2" maxlength="400"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 				</div>
 			</div>
 
 			<div class="row mt-4">
 				<div class="col-lg-6">
 					<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del director</label>
-					<textarea id="txt_rm_meta" name="comentario_dir" class="form-control" rows="2"></textarea>
+					<textarea id="txt_rm_meta" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 				</div>
 
 				<div class="col-lg-6 mt-2 mt-lg-0">
 					<label><span class="badge badge-secondary h5 text-white">6.</span> Observaciones del supervisor</label>
 					<br>
-					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"></textarea>
+					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"><?= (isset($supervisor))?$supervisor:"" ?></textarea>
 				</div>
 			</div>
 
@@ -186,13 +186,13 @@
 					<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
 				</div>
 			</div>
-			<input type="hidden" id="tema_prioritario" name="tema_prioritario">
+			<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
 		</form>
 	</div>
 </div>
 
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
-<input type="hidden" value="<?=$idtemaprioritario?>" id="idtemap_seleccionado" name="tema_prioritario">
+<!-- <input type="hidden" value="" id="idtemap_seleccionado" name="tema_prioritario"> -->
 <input type="hidden" value="" id="id_objetivo">
 
 

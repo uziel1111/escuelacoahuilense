@@ -402,17 +402,7 @@ class Rutademejora extends CI_Controller {
 				redirect('Rutademejora/index');
 			}
 		}
-		public function get_datos_edith_tp(){
-			if(Utilerias::haySesionAbiertacct($this)){
-				$id_tprioritario = $this->input->post('id_tprioritario');
-				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
-				$response = array('datos' => $arr_datos);
-				Utilerias::enviaDataJson(200, $response, $this);
-				exit;
-			}else{
-				redirect('Rutademejora/index');
-			}
-		}
+		
 
 		public function get_obs_super(){
 			if(Utilerias::haySesionAbiertacct($this)){
@@ -1329,13 +1319,24 @@ public function edit_accion_super(){
 
 	public function agregarObjetivo(){
 		$this->cct = Utilerias::get_cct_sesion($this);
+		// echo "<pre>";
+		// print_r($_POST);
+		// die();
+		$id_tprioritario = $this->input->post("id_temaprioritario");
 		$id_cct = $this->cct[0]['id_cct'];
 		$id_prioridad = $this->input->post('id_prioridad');
+		$id_subprioridad = $this->input->post('id_subprioridad');
 		$objetivo = $this->input->post('objetivo');
 
-		$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo);
+		if($id_tprioritario == 0){
+				$estatus = $this->Rutamejora_model->insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad);
+		}else{
+			$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario);
+		}
 
-		$response = array('estatus' => $estatus);
+		
+
+		$response = array('estatus' => $estatus['status'], 'idtemaprioritario' =>$estatus['idtemaprioritario']);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
@@ -1355,12 +1356,45 @@ public function edit_accion_super(){
 
 	public function getObjetivos(){
 		$this->cct = Utilerias::get_cct_sesion($this);
-		echo "<pre>";
-		print_r($_POST);
-		die();
+		// echo "<pre>";
+		// print_r($_POST);
+		// die();
+
+		$idtpriotario = $this->input->post('idtpriotario');
+		$idprioridad = $this->input->post('idprioridad');
+		$idsubprioridad = $this->input->post('idsubprioridad');
+
 		$id_cct = $this->cct[0]['id_cct'];
-		$datos = $this->Rutamejora_model->getObjetivos($id_cct);
-		$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
+		$orden = 0;
+		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $idtpriotario, $idprioridad, $idsubprioridad);
+		$idobjetivo = 0;
+		if(count($datos) == 0){
+				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
+			<thead>
+				<tr class='info'>
+					<th id='idrutamtema' hidden>
+						<center>id</center>
+					</th>
+					<th id='num_rutamtema' style='width:5%'>
+						<center>#</center>
+					</th>
+					<th id='des_rutamtema' style='width:75%'>
+						<center>Objetivos y metas</center>
+					</th>
+					<th id='op_rutamtema' style='width:20%'>
+						<center>Opciones</center>
+					</th>
+				</tr>
+			</thead>
+			<tbody>";
+
+				$tabla .= "<tr>
+					<td colspan='4'>Sin datos que mostrar</td>
+				</tr>";
+
+			$tabla .= "</tbody></table>";
+		}else{
+				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 				<tr class='info'>
 					<th id='idrutamtema' hidden>
@@ -1380,12 +1414,12 @@ public function edit_accion_super(){
 			<tbody>";
 
 			foreach ($datos as $dato) {
-				$idtprioritrio = $dato['id_tprioritario'];
+				$orden = $orden +1;
 				$idobjetivo = $dato['id_objetivo'];
 				$tabla .= "<tr>
 					<td id='' hidden><center>{$dato['id_objetivo']}</center></td>
 					<td id='' hidden><center>{$dato['id_tprioritario']}</center></td>
-					<td id='num_rutamtema' data='1' class='text-center'>{$dato['orden']}</td>
+					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
 					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
 					<td id='op_rutamtema' class='text-center'>
 						<button id='btn_editar' type='button' data-toggle='tooltip' class='btn btn-success' data-original-title='Editar' onclick='btnEditar({$dato['id_objetivo']}, {$dato['id_tprioritario']})'><i class='far fa-edit'></i></button>
@@ -1395,8 +1429,10 @@ public function edit_accion_super(){
 			}
 
 			$tabla .= "</tbody></table>";
+		}
+		
 
-			$response = array('table' => $tabla, 'id_tprioritario' => $idtprioritrio, 'id_objetivo' => $idobjetivo);
+			$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
 
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
@@ -1475,9 +1511,10 @@ public function edit_accion_super(){
 
 	public function grabarTema(){
 		$this->cct = Utilerias::get_cct_sesion($this);
-		$id_cct = $this->cct[0]['id_cct'];
 		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
-		$id_tprioritario = $this->input->post('tema_prioritario'); // este dato no viene
+		$id_cct = $this->cct[0]['id_cct'];
+		
+		$id_tprioritario = $this->input->post('id_tema_prioritario'); // este dato no viene
 		$problematica = $this->input->post('problematica');
 		$evidencia = $this->input->post('evidencia');
 		$comentario_dir = $this->input->post('comentario_dir');
@@ -1545,6 +1582,39 @@ public function edit_accion_super(){
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
+	}
+
+	public function get_datos_edith_tp(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_tprioritario = $this->input->post('id_tprioritario');
+			// echo "<pre>";
+			// print_r($this->cct);
+			// die();
+			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
+			$data['prioridad'] = $datos[0]['id_prioridad'];
+			$data['subprioridad'] = $datos[0]['id_subprioridad'];
+			$data['problematica'] = $datos[0]['otro_problematica'];
+			$data['evidencia'] = $datos[0]['otro_evidencia'];
+			$data['director'] = $datos[0]['obs_direc'];
+			$data['supervisor'] = $datos[0]['obs_supervisor'];
+			$data['path'] = $datos[0]['path_evidencia'];
+			$data['t_objetivos'] = "tabla";
+			$data['prioridades'] = $result_prioridades;
+			$data['idtemaprioritario'] = $id_tprioritario;
+			// echo "<pre>";
+			// print_r($data);
+			// die();
+
+			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
+
+			$response = array('strView' => $strView, 'titulo' => 'Edita prioridad');
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}else{
+			redirect('Rutademejora/index');
+		}
 	}
 
 

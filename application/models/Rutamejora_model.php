@@ -511,28 +511,64 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     //Nuevas funciones para RM Ismael Castillo
-    function insertaObjetivo($id_cct, $id_prioridad, $objetivo){
+    function insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario){
+        $objetivos = array(
+          'objetivo' => $objetivo,
+          'id_tprioritario' => $id_tprioritario,
+          'orden' => 1,
+          'id_cct'=> $id_cct
+        );
+        
+        if($this->db->insert('rm_objetivo', $objetivos)){
+          $response = array(
+            'status' => true,
+            'idtemaprioritario' => $id_tprioritario
+          );
+        }else{
+            $response = array(
+              'status' => false,
+              'idtemaprioritario' => 0
+            );
+        }
+          return $response;
+    }
+
+    function insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad){
       $this->db->select('id_cct');
       $this->db->from('rm_tema_prioritarioxcct');
       $this->db->where('id_cct', $id_cct);
       $orden = $this->db->get()->num_rows()+1;
 
       $this->db->trans_start();
-      $datos = array(
-        'id_cct' => $id_cct,
-        'id_prioridad' => $id_prioridad,
-        'orden' => $orden
-      );
+      if($id_prioridad == 1){
+        $datos = array(
+          'id_cct' => $id_cct,
+          'id_prioridad' => $id_prioridad,
+          'id_subprioridad' => $id_subprioridad,
+          'orden' => $orden
+        );
+      }else{
+        $datos = array(
+          'id_cct' => $id_cct,
+          'id_prioridad' => $id_prioridad,
+          'orden' => $orden
+        );
+      }
 
       // echo "<pre>";print_r($datos);die();
       $this->db->insert('rm_tema_prioritarioxcct', $datos);
       $id_tprioritario = $this->db->insert_id(); // Recuperamos el ultimo id generado
 
       $this->db->trans_complete();
+      $response = array();
 
       if ($this->db->trans_status() === FALSE)
       {
-          return false;
+        $response = array(
+          'status' => false,
+          'idtemaprioritario' => 0
+        );
+          return $response;
       }else{
         $objetivos = array(
           'objetivo' => $objetivo,
@@ -541,7 +577,11 @@ function  get_datos_edith_tp($id_tprioritario){
           'id_cct'=> $id_cct
         );
         $this->db->insert('rm_objetivo', $objetivos);
-          // return $id_tprioritario;
+          $response = array(
+          'status' => true,
+          'idtemaprioritario' => $id_tprioritario
+        );
+          return $response;
       }
     }
 
@@ -580,9 +620,20 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    function getObjetivos($id_cct){
-      $str_query = "select obj.id_objetivo, obj.orden, obj.objetivo, obj.id_tprioritario from rm_objetivo obj where obj.id_cct = {$id_cct}";
-      // echo "<pre>";print_r($str_query);die();
+    function getObjetivos($id_cct, $idtpriotario, $idprioridad, $idsubprioridad){
+      $inner = "";
+      $where = "";
+
+      if($idsubprioridad != 0){
+        $inner = "INNER JOIN rm_c_subprioridad sub ON sub.id_prioridad = tprio.id_prioridad";
+        $where = " AND sub.id_subprioridad = {$idsubprioridad}";
+      }
+      // $str_query = "select obj.id_objetivo, obj.orden, obj.objetivo, obj.id_tprioritario from rm_objetivo obj where obj.id_cct = {$id_cct} and ";
+      $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
+                    INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
+                    {$inner}
+                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario ={$idtpriotario} AND tprio.id_prioridad = {$idprioridad} {$where}";
+      // echo $str_query;die();
       return $this->db->query($str_query)->result_array();
     }
 
@@ -607,6 +658,18 @@ function  get_datos_edith_tp($id_tprioritario){
       return true;
 
     }
+
+    function edith_tp($id_tprioritario){
+    $str_query = "
+        SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica, 
+        tprioritario.otro_evidencia, tprioritario.path_evidencia,
+        tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo 
+        FROM rm_tema_prioritarioxcct tprioritario
+        INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
+        WHERE tprioritario.id_tprioritario = {$id_tprioritario}
+    ";
+    return $this->db->query($str_query)->result_array();
+  }
 
 
     function getObjetivo($id_objetivo, $id_tprioritario){
