@@ -20,7 +20,8 @@ class Rutademejora extends CI_Controller {
 
 		public function index(){
 			if(Utilerias::verifica_sesion_redirige($this)){
-				$this->llenadatos();
+				// $this->llenadatos();
+				$this->index_new();
 
 			}else{
 				$data = $this->data;
@@ -687,10 +688,15 @@ class Rutademejora extends CI_Controller {
 				$tabla .= "</tbody>
 		                        </table>
 		                      </div>  ";
-		        $get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
 
-		        $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
-	        $response = array('tabla' => $tabla, 'datos' => $datos);
+      $get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
+      $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
+			// $strView = $this->load->view("ruta/modals_new/modal_actividades", $datos, TRUE);
+			// $response = array('tabla' => $tabla, 'datos' => $datos, 'strView' => $strView);
+
+
+			$response = array('tabla' => $tabla, 'datos' => $datos);
+
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{

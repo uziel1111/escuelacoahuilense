@@ -23,7 +23,7 @@
   <thead>
     <tr>
       <th scope="col">Prioridad</th>
-      <th scope="col">Acción</th>
+      <th scope="col">Actividades</th>
 
       <th scope="col">CTE 1</th>
       <th scope="col">CTE 2</th>
@@ -985,7 +985,7 @@ Resolución de problemas de manera aleatoria
             </select>
           </td>
 
-                  
+
 
         <td><img src="<?= base_url('assets/img/rm_estatus/2.png') ?>" class="img-fluid" alt="Responsive image"></td>
 		                </tr>
