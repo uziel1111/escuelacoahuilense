@@ -115,8 +115,13 @@ class Reporte extends CI_Controller {
 						utf8_decode($orden),
 						utf8_decode($tema)
 					));
+					if (empty($ruta['objetivos'])) {
+						$obj1 = "Objetivos: {$ruta['objetivos']}";
+					}
+					else {
+						$obj1 = "Objetivos: \n - {$ruta['objetivos']}";
+					}
 
-				$obj1 = "Objetivo1: {$ruta['objetivo1']}";
 				$pdf->Ln(5);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
@@ -125,25 +130,25 @@ class Reporte extends CI_Controller {
 				// $pdf->SetColors(array(TRUE));
 				$pdf->SetLineW(array(0.2));
 				$pdf->SetTextColor(0,0,0);
-					$pdf->Row2(array(
+					$pdf->Row1(array(
 						utf8_decode($obj1)
 					));
-
-				$obj2 = "Objetivo2: {$ruta['objetivo2']}";
-				$pdf->Ln(6);
-				$pdf->SetFont('Arial','B',9);
-				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				$pdf->SetFillColor(255);
-				$pdf->SetAligns(array("L"));
-				// $pdf->SetColors(array(TRUE));
-				$pdf->SetLineW(array(0.2));
-				$pdf->SetTextColor(0,0,0);
-					$pdf->Row2(array(
-						utf8_decode($obj2)
-					));
+					// $pdf->Ln(9);
+				// $obj2 = "Objetivo2: {$ruta['objetivo2']}";
+				// $pdf->Ln(6);
+				// $pdf->SetFont('Arial','B',9);
+				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				// $pdf->SetFillColor(255);
+				// $pdf->SetAligns(array("L"));
+				// // $pdf->SetColors(array(TRUE));
+				// $pdf->SetLineW(array(0.2));
+				// $pdf->SetTextColor(0,0,0);
+				// 	$pdf->Row2(array(
+				// 		utf8_decode($obj2)
+				// 	));
 
 				$problematica = "Problematicas: {$ruta['otro_problematica']}";
-				$pdf->Ln(7);
+				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
@@ -151,13 +156,13 @@ class Reporte extends CI_Controller {
 				// $pdf->SetColors(array(TRUE));
 				$pdf->SetLineW(array(0.2));
 				$pdf->SetTextColor(0,0,0);
-					$pdf->Row2(array(
+					$pdf->Row1(array(
 						utf8_decode($problematica)
 					));
 
 
 				$evidencia = "Evidencias: {$ruta['otro_evidencia']}";
-				$pdf->Ln(8);
+				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
@@ -165,13 +170,13 @@ class Reporte extends CI_Controller {
 				// $pdf->SetColors(array(TRUE));
 				$pdf->SetLineW(array(0.2));
 				$pdf->SetTextColor(0,0,0);
-					$pdf->Row2(array(
+					$pdf->Row1(array(
 						utf8_decode($evidencia)
 					));
 
 				$observaciondir = "Observaciones director: {$ruta['obs_direc']}";
 				$observacionsup = "Observaciones supervisor: {$ruta['obs_supervisor']}";
-				$pdf->Ln(9);
+				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255);
@@ -179,17 +184,17 @@ class Reporte extends CI_Controller {
 				// $pdf->SetColors(array(TRUE));
 				$pdf->SetLineW(array(0.2));
 				$pdf->SetTextColor(0,0,0);
-					$pdf->Row2(array(
+					$pdf->Row1(array(
 						utf8_decode($observaciondir)
 					));
-					$pdf->Ln(9);
-					$pdf->Row2(array(
+					$pdf->Ln(2);
+					$pdf->Row1(array(
 						utf8_decode($observacionsup)
 					));
 
 
 
-				$pdf->Ln(10);
+				$pdf->Ln(6);
 				/**/
 				$pdf->SetFont('Arial','B',11);
 
@@ -218,7 +223,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->Row(array(
 					utf8_decode("No."),
-					utf8_decode("Acción"),
+					utf8_decode("Actividad"),
 					utf8_decode("Ámbito"),
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),

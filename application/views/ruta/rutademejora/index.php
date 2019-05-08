@@ -42,7 +42,8 @@
 								<span data-toggle="modal" data-target="#actividades">
 								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
-								<button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button>
+								<a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
+								<!-- <button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button> -->
 
 								<button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button>
 							</div>
