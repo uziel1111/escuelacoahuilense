@@ -14,14 +14,14 @@
     </div>
     <div class="col">
       <img src="<?= base_url('assets/img/rm_estatus/4.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Terminado
-    </div>    
+    </div>
   </div>
 </div>
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Prioridad</th>
-      <th scope="col">Acción</th>
+      <th scope="col">Actividades</th>
 
       <th scope="col">CTE 1</th>
       <th scope="col">CTE 2</th>
