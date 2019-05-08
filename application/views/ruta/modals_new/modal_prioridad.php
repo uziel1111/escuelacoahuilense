@@ -192,7 +192,7 @@
 </div>
 
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
-<input type="hidden" value="" id="tema_prioritario" name="tema_prioritario">
+<input type="hidden" value="<?=$idtemaprioritario?>" id="idtemap_seleccionado" name="tema_prioritario">
 <input type="hidden" value="" id="id_objetivo">
 
 

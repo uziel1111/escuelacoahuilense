@@ -1313,9 +1313,10 @@ public function edit_accion_super(){
 		$data = array();
 		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_nivel = $this->cct[0]['nivel'];
-		// echo "<pre>"; print_r($id_nivel); die();
+		$idtemaprioritario = $this->input->post('idtemaprioritario');
 		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 		$data['prioridades'] = $result_prioridades;
+		$data['idtemaprioritario'] = $idtemaprioritario;
 
 		$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
@@ -1353,6 +1354,9 @@ public function edit_accion_super(){
 
 	public function getObjetivos(){
 		$this->cct = Utilerias::get_cct_sesion($this);
+		echo "<pre>";
+		print_r($_POST);
+		die();
 		$id_cct = $this->cct[0]['id_cct'];
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct);
 		$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>

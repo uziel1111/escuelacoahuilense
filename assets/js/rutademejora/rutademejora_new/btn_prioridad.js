@@ -6,7 +6,8 @@ $(document).ready(function(){
 //Eventos
 $('#opt_prioridad_especial').change(function(){
 	if ( $('#opt_prioridad_especial').val() != 0 ) {
-		obj_prioridad.llenaIndicador()
+		obj_prioridad.llenaIndicador();
+
 	}
 })
 
@@ -78,6 +79,7 @@ Prioridad.prototype.llenaIndicador = function(){
 	.done(function(result) {
 		$("#slt_indicador").empty();
 		$("#slt_indicador").append(result.stroption);
+		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
 	})
 	.fail(function(e) {
 		console.error("Error in llenaIndicador()");
@@ -135,12 +137,12 @@ Prioridad.prototype.getsubEspecial = function(){
 };
 
 
-Prioridad.prototype.getObjetivos = function(){
+Prioridad.prototype.getObjetivos = function(prioridad, idsubprioridad){
 	$.ajax({
 		url: base_url+'Rutademejora/getObjetivos',
 		type: 'POST',
 		dataType: 'JSON',
-		data: {},
+		data: {'idtpriotario': $("#idtemap_seleccionado").val(), 'idprioridad':prioridad, 'idsubprioridad':idsubprioridad},
 		beforeSend: function(xhr) {
 	        Notification.loading("");
     },
@@ -168,11 +170,11 @@ function show(select_id){
 	// console.log(opt);
 	if (opt == 1) {
 		obj_prioridad.getsubEspecial();
-		obj_prioridad.getObjetivos();
+		
 	} else {
 		$('#normalidad').attr('hidden', true);
 		obj_prioridad.llenaIndicador();
-		obj_prioridad.getObjetivos();
+		obj_prioridad.getObjetivos(opt,0);
 	}
 
 	hiddenDiv1.style.display='block';

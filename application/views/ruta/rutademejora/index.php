@@ -229,7 +229,7 @@
 <!-- scripts -->
 <!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/acciones.js') ?>"></script> -->
 <!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ayuda.js') ?>"></script> -->
-<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
+<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
 
 
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
