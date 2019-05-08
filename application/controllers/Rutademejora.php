@@ -1105,20 +1105,92 @@ public function edit_accion_super(){
 
 	// Nuevo codigo ruta mejora Ismael
 	public function index_new(){
+
+
 		$this->cct = Utilerias::get_cct_sesion($this);
-		// echo "<pre>";print_r($this->cct);die();
+		$usuario = $this->cct[0]['cve_centro'];
+		$responsables = $this->getPersonal($usuario);
+		// echo "<pre>";print_r($responsables);die();
+		if ($responsables->status==0) {
+			$personas = array();
+		}
+		else {
+			$personas = $responsables->Personal;
+		}
 
-		$data = array();
+		$options = "";
+		if($responsables->procede == 1 && $responsables->status == 1){
+			foreach ($personas as $persona) {
+				$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+			}
+									$options .="<option value='0'>OTRO</option>";
+		}else{
+			$options .="<option value='0'>OTRO</option>";
+		}
 
-		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
+		$data['responsables'] = $options;
+
+
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+		// echo "<pre>";print_r($this->cct[0]['nivel']);die();
+			if(count($result_prioridades)==0){
+			$data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
+			}else{
+			$data['arr_prioridades'] = $result_prioridades;
+			}
+			$result_problematicas = $this->Problematica_model->get_problematicas();
+			if(count($result_problematicas)==0){
+			$data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
+			}else{
+			$data['arr_problematicas'] = $result_problematicas;
+			}
+			$result_evidencias = $this->Evidencia_model->get_evidencias();
+			if(count($result_evidencias)==0){
+			$data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
+			}else{
+			$data['arr_evidencias'] = $result_evidencias;
+			}
+			// echo "<pre>";print_r($this->cct[0]['id_cct']);die();
+			$result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
+			if(count($result_progsapoyo)==0){
+			$data['arr_progsapoyo'] = '';
+			}else{
+			$data['arr_progsapoyo'] = $result_progsapoyo;
+			}
+			$result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
+			if(count($result_apoyosreq)==0){
+			$data['arr_apoyosreq'] = array(	'-1' => 'Error recuperando los apoyosreq' );
+			}else{
+			$data['arr_apoyosreq'] = $result_apoyosreq;
+			}
+			$result_ambitos = $this->Ambito_model->get_ambitos();
+			if(count($result_ambitos)==0){
+			$data['arr_ambitos'] = array(	'-1' => 'Error recuperando los ambitos' );
+			}else{
+			$data['arr_ambitos'] = $result_ambitos;
+			}
+
+		$data3 = array();
+		$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
+		$data3['arr_indicadores'] = $arr_indicadoresxct;
+		// echo "<pre>";print_r($arr_avances);die();
+		$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
+		$data['tab_indicadores'] = $string_view_indicadores;
+
+		$data4 = array();
+		$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
+		$data['tab_instructivo'] = $string_view_instructivo;
+
 		$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
+		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 		$data['turno'] = $this->cct[0]['turno_single'];
 		$data['cct'] = $this->cct[0]['cve_centro'];
 
 		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
 		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
-
 
 		Utilerias::pagina_basica_rm($this, "ruta/rutademejora/index", $data);
 	}

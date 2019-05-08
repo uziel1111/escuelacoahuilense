@@ -1,3 +1,18 @@
+<style type="text/css">
+  td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+
+.selected {
+    background-color: #9ccc65;
+    color: #FFF;
+}
+.popover-body {
+    padding: .5rem .75rem;
+    color: #212529;
+}
+.popover{
+    max-width:600px;
+}
+</style>
 
 	<!-- Start Main Area -->
 	<section class="main-area">
@@ -25,7 +40,7 @@
 								<button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button>
 
 								<span data-toggle="modal" data-target="#actividades">
-								<button type="button" id="btn_actividades" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
+								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
 								<button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button>
 
@@ -85,6 +100,16 @@
 <!-- fin modal -->
 
 <!-- scripts -->
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/acciones.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ayuda.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/acciones.js') ?>"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ayuda.js') ?>"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
+
+
+<script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/rm_delete_tp.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/acciones.js'); ?>"></script>
+<script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
