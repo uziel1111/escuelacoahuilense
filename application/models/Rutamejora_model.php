@@ -135,6 +135,8 @@ class Rutamejora_model extends CI_Model
       $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
       $this->db->where("e.cve_centro = '{$cct}'");
       $this->db->where("ts.id_turno_single = {$turno}");
+      // $this->db->get();
+      // echo $this->db->last_query();die();
       return  $this->db->get()->result_array();
     }
 

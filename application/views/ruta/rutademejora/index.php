@@ -42,7 +42,8 @@
 								<span data-toggle="modal" data-target="#actividades">
 								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
-								<button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button>
+								<a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
+								<!-- <button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button> -->
 
 								<button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button>
 							</div>
@@ -138,7 +139,7 @@
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Ambito:</label>
-										<select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONA UN AMBITO">
+										<select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UN AMBITO">
 											<?php foreach ($arr_ambitos as $item): ?>
 															<option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
 											<?php endforeach; ?>
@@ -152,6 +153,19 @@
 										<br>
 										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
 									</div>
+
+								</div>
+								<div class="row mt-15">
+									<div class="col-md-6">
+
+									</div>
+									<div class="col-md-6" id="div_otro_responsable">
+										<label>Otro responsable:</label>
+										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
+									</div>
+								</div>
+
+								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled />
@@ -172,12 +186,7 @@
 										</script>
 									</div>
 								</div>
-								<div class="row mt-15">
-									<div class="col-md-6" id="div_otro_responsable">
-										<label>Otro responsable:</label>
-										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
-									</div>
-								</div>
+
 								<div class="row mt-15">
 									<!-- <div class="col-md-12">
 										<label><label style="color:red;">*</label>Indicadores de medición:</label>
@@ -216,12 +225,13 @@
 </div>
 </div>
 </div>
+</div>
 <!-- fin modal -->
 
 <!-- scripts -->
 <!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/acciones.js') ?>"></script> -->
 <!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ayuda.js') ?>"></script> -->
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
 
 
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
