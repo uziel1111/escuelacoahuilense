@@ -119,7 +119,7 @@ class Reporte extends CI_Controller {
 						$obj1 = "Objetivos: {$ruta['objetivos']}";
 					}
 					else {
-						$obj1 = "Objetivos: \n - {$ruta['objetivos']}";
+						$obj1 = "Objetivos: \n- {$ruta['objetivos']}";
 					}
 
 				$pdf->Ln(5);
