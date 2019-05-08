@@ -36,11 +36,11 @@
                             <div class="row mt-15">
                               <div class="col-md-6">
                                 <label>Acción:</label>
-                                <textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="80"></textarea>
+                                <textarea id="txt_rm_meta1" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
                               <div class="col-md-6">
                                 <label>Materiales e insumos a utilizar:</label>
-                                <textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="80"></textarea>
+                                <textarea id="txt_rm_obs1" class="form-control" rows="5" maxlength="80"></textarea>
                               </div>
 
                             </div>
@@ -48,7 +48,7 @@
 
                               <div class="col-md-4">
                                 <label>Responsables</label>
-                                <select name="ruta_presp" class="selectpicker form-control" id="slc_rm_presp" title="SELECCIONE UNA OPCIÓN">
+                                <select name="ruta_presp1" class="selectpicker form-control" id="slc_rm_presp1" title="SELECCIONE UNA OPCIÓN">
                                   <option value="0">Otro</option>
                                 </select>
                               </div>
