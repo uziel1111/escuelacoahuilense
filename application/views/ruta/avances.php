@@ -1,3 +1,22 @@
+<div class="alert alert-success" role="alert">
+  <div class="row font-weight-bold text-muted">
+    <div class="col">
+     <img src="<?= base_url('assets/img/rm_estatus/0.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> No iniciado
+    </div>
+    <div class="col">
+      <img src="<?= base_url('assets/img/rm_estatus/1.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Recién iniciado
+    </div>
+    <div class="col">
+      <img src="<?= base_url('assets/img/rm_estatus/2.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Avance medio
+    </div>
+    <div class="col">
+      <img src="<?= base_url('assets/img/rm_estatus/3.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Por terminar
+    </div>
+    <div class="col">
+      <img src="<?= base_url('assets/img/rm_estatus/4.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Terminado
+    </div>    
+  </div>
+</div>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -18,6 +37,7 @@
   </thead>
   <tbody>
 <?=$var_aux_id_tprioritario = ''?>
+
       <?php foreach ($arr_avances as $key => $value):?>
         <tr>
           <?php if ($value['id_tprioritario'] == $var_aux_id_tprioritario){?>
@@ -55,7 +75,7 @@
             </select>
           </td>
 
-        <?php } ?><td>asdf</td>
+        <?php } ?><td> <img id='<?=$value['id_accion']?>icoima' src="<?= base_url("assets/img/rm_estatus/{$value['icono']}") ?>" class="img-fluid" alt="Responsive image" width="35px"> </td>
 		<?php     $var_aux_id_tprioritario = $value['id_tprioritario']?>
         <?php } ?>
         </tr>

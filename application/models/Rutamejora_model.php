@@ -321,7 +321,7 @@ function  get_datos_edith_tp($id_tprioritario){
     tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion,
     IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
     IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
-    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10
+    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10, '' as icono
     FROM rm_tema_prioritarioxcct tp
     INNER JOIN rm_c_prioridad p ON tp.id_prioridad=p.id_prioridad
     LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario

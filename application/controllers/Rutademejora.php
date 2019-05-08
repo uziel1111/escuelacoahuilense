@@ -795,16 +795,53 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
-				$data2['arr_avances'] = $arr_avances;
+				// $data2['arr_avances'] = $arr_avances;
 				$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
 				$data2['arr_avances_fechas'] = $arr_avances_fechas;
-				// echo "<pre>";print_r($arr_avances_fechas);die();
+				// echo "<pre>";print_r($data2);die();
+				// explode(" ", $pizza);
+				$clave = explode("_", array_search('TRUE', $arr_avances_fechas[0]))[0];
+				// echo $clave; die();
+				$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
+				$data2['arr_avances'] = $arr_avances_n;
+				// echo "<pre>";print_r($arr_avances_n);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}else{
 				redirect('Rutademejora/index');
+			}
+		}
+
+		public function asigna_icono($arr_avances, $habilitado){
+			$anterior = explode("cte", $habilitado)[1];
+			$anterior = ((int)$anterior-1);
+			$cadAnterior = "cte".$anterior;
+			$arr_avancesCompleto = array();
+			foreach ($arr_avances as $avance) {
+				if($avance[$habilitado] != 0){
+					$icono = $this->retorna_icono($avance[$habilitado]);
+				}else{
+					$icono = $this->retorna_icono($avance[$cadAnterior]);
+				}
+				$avance['icono'] = $icono;
+				array_push($arr_avancesCompleto, $avance);
+			}
+			return $arr_avancesCompleto;
+		}
+
+		public function retorna_icono($porcentaje){
+			if($porcentaje == 0){
+				return "0.png";
+			}else if($porcentaje == 10 || $porcentaje == 20 || $porcentaje == 30){
+				return "1.png";
+			}else if($porcentaje == 40 || $porcentaje == 50 || $porcentaje == 60 || $porcentaje == 70){
+				return "2.png";
+			}else if($porcentaje == 80 || $porcentaje == 90){
+				return "3.png";
+			}else if($porcentaje == 100){
+				return "4.png";
 			}
 		}
 
