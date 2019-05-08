@@ -40,7 +40,8 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					$this->llenadatos();
+					// $this->llenadatos();
+					$this->index_new();
 				}
 
 			}else{
