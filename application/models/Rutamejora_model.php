@@ -192,6 +192,16 @@ class Rutamejora_model extends CI_Model
     }
   }
 
+  function getTemasxcct($idcct){
+    $str_query ="SELECT * FROM rm_tema_prioritarioxcct WHERE id_cct = {$idcct}";
+    return $this->db->query($str_query)->result_array();
+  }
+
+  // function actualizaTP(){
+  //   $str_query ="SELECT * FROM rm_tema_prioritarioxcct WHERE id_cct = {$idcct}";
+  //   return $this->db->query($str_query)->result_array();
+  // }
+
   function get_misionxcct($id_cct, $id_ciclo){
   $this->db->select('mision');
     $this->db->from('rm_misionxcct');

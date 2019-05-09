@@ -498,14 +498,19 @@ class Rutademejora extends CI_Controller {
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
+				// echo $id_cct; die();
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
+				
+
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
+				$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
+				$this->actualizaOrden($temasp);
 				if ($estatus) {
 					if ($url!='') {
 						unlink($url);
 					}
-
+					
 				}
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
@@ -513,6 +518,15 @@ class Rutademejora extends CI_Controller {
 			}else{
 				redirect('Rutademejora/index');
 			}
+		}
+
+		public function actualizaOrden($temasp){
+			$orden = 1;
+			foreach ($temasp as $tema) {
+				$actualiza = $this->Rutamejora_model->update_order($orden, $tema['id_tprioritario']);
+				$orden = $orden +1;
+			}
+			$orden = 1;
 		}
 
 	public function get_view_acciones(){

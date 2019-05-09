@@ -227,6 +227,28 @@
 </div>
 </div>
 <!-- fin modal -->
+<!-- Modal -->
+            <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-style-1">
+                  <div class="modal-header bgcolor-2">
+                    <h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
+                    <button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group form-group-style-1">
+                            <div class="row mt-15">
+                              <div class="col-md-12" id="dv_ver_evidencia">
+                              </div>
+                            </div>
+                          </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        <!-- Modal -->
 
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 
