@@ -31,7 +31,6 @@ $('#btn_rutamejora_eliminareg').click(function(){
 
 
 function eliminarTP(id_tprioritario){
-	console.log(id_tprioritario);
 	$.ajax({
 		url: base_url+'rutademejora/eliminarTP',
 	  type: 'POST',
@@ -42,9 +41,7 @@ function eliminarTP(id_tprioritario){
     },
 	})
 	.done(function(result) {
-	  // swal.close();
 	  if (result) {
-	    // obj_rm_tp.limpia_campos_tp();
 	    swal(
 	        '¡Correcto!',
 	        "Se eliminó el tema prioritario correctamente",

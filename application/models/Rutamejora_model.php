@@ -303,7 +303,7 @@ function  get_datos_edith_tp($id_tprioritario){
   function delete_tema_prioritario($id_cct,$id_tprioritario){
 
       $this->db->trans_start();
-      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_tema_prioritarioxcct');
+      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_objetivo', 'rm_tema_prioritarioxcct');
       $this->db->where('id_tprioritario', $id_tprioritario);
       $this->db->delete($tables);
       $this->db->trans_complete();
@@ -313,9 +313,9 @@ function  get_datos_edith_tp($id_tprioritario){
       }else{
           return true;
       }
-    $str_query = "";
-        // echo $str_query; die();
-      return $this->db->query($str_query)->result_array();
+    // $str_query = "";
+    //     // echo $str_query; die();
+    //   return $this->db->query($str_query)->result_array();
   }
 
   function get_avances_tp_accionxcct($id_cct){
