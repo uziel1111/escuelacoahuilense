@@ -402,7 +402,7 @@ class Rutademejora extends CI_Controller {
 				redirect('Rutademejora/index');
 			}
 		}
-		
+
 
 		public function get_obs_super(){
 			if(Utilerias::haySesionAbiertacct($this)){
@@ -1334,7 +1334,7 @@ public function edit_accion_super(){
 			$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario);
 		}
 
-		
+
 
 		$response = array('estatus' => $estatus['status'], 'idtemaprioritario' =>$estatus['idtemaprioritario']);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -1430,7 +1430,7 @@ public function edit_accion_super(){
 
 			$tabla .= "</tbody></table>";
 		}
-		
+
 
 			$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
 
@@ -1513,7 +1513,7 @@ public function edit_accion_super(){
 		$this->cct = Utilerias::get_cct_sesion($this);
 		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
 		$id_cct = $this->cct[0]['id_cct'];
-		
+
 		$id_tprioritario = $this->input->post('id_tema_prioritario'); // este dato no viene
 		$problematica = $this->input->post('problematica');
 		$evidencia = $this->input->post('evidencia');
@@ -1615,6 +1615,18 @@ public function edit_accion_super(){
 		}else{
 			redirect('Rutademejora/index');
 		}
+	}
+
+	public function eliminarTP(){
+		$id_tprioritario = $this->input->post('id_tprioritario');
+
+		// echo $id_objetivo;die();
+		$estatus = $this->Rutamejora_model->deleteTP($id_tprioritario);
+
+		$response = array('estatus' => $estatus);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 
 

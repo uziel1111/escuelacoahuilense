@@ -520,7 +520,7 @@ function  get_datos_edith_tp($id_tprioritario){
           'orden' => 1,
           'id_cct'=> $id_cct
         );
-        
+
         if($this->db->insert('rm_objetivo', $objetivos)){
           $response = array(
             'status' => true,
@@ -663,9 +663,9 @@ function  get_datos_edith_tp($id_tprioritario){
 
     function edith_tp($id_tprioritario){
     $str_query = "
-        SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica, 
+        SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica,
         tprioritario.otro_evidencia, tprioritario.path_evidencia,
-        tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo 
+        tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo
         FROM rm_tema_prioritarioxcct tprioritario
         INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
         WHERE tprioritario.id_tprioritario = {$id_tprioritario}
@@ -686,6 +686,20 @@ function  get_datos_edith_tp($id_tprioritario){
       $this->db->delete('rm_objetivo');
     }
 
+    function deleteTP($id_tprioritario){
+      // echo $id_tprioritario;die();
+      $this->db->trans_start();
+      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_objetivo', 'rm_tema_prioritarioxcct');
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->delete($tables);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        return false;
+      }else{
+        return true;
+      }
+    }
 
 
 }// Rutamejora_model
