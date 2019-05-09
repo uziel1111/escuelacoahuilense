@@ -366,14 +366,18 @@ Rm_tp.prototype.resizeBase64Img = function(base64, width, height) {
 
 
 Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
-  // alert(path_evidencia);
+  
+
   var Protocol = location.protocol;
 	var URLactual = window.location.host;
   var pathname = window.location.pathname;
+  var strArray = pathname.split("/");
+  pathname = strArray[1];
   $('#dv_ver_evidencia').empty();
-  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/"+pathname+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia').modal('toggle');
 }
+
 $("#cerrar_modal_ver_evidencia").click(function(){
   $('#exampleModal_ver_evidencia').modal('toggle');
 });
