@@ -530,6 +530,8 @@ class Rutademejora extends CI_Controller {
 
 	public function save_accion(){
 		if(Utilerias::haySesionAbiertacct($this)){
+			// echo "<pre>";
+			// print_r($_POST); die();
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$id_ambito = $this->input->post('id_ambito');
 	  		$accion = $this->input->post('accion');

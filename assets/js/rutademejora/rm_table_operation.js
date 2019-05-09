@@ -1,6 +1,7 @@
 $(document).ready(function () {
    obj = new Tabla();
    obj.get_view();
+   obj.recomendacion();
 });
 
 
@@ -80,8 +81,28 @@ function Tabla(){
     });
   }
 
+  Tabla.prototype.recomendacion = function(){
+  var ruta = base_url + 'Rutademejora/modal_recomendacion'
+  $.ajax({
+    url:ruta,
+    data: { },
+    // beforeSend: function(xhr) {
+    //     Notification.loading("");
+    // }
+  })
+  .done(function(data){
+    $("#div_generico").empty();
+    $("#div_generico").append(data.strView);
+    $('h5').empty();
+    $('h5').append(data.titulo);
 
+    $("#myModal").modal("show");
 
-// $('.ok').on('click', function(e){
-//     alert($("#table tr.selected td:first").html());
-// });
+  })
+  .fail(function(e) {
+    console.error("Error in ()"); console.table(e);
+  })
+  .always(function() {
+    swal.close();
+  });
+}
