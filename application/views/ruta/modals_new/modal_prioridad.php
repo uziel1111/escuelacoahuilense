@@ -10,13 +10,16 @@
 			</select>
 		</div>
 
-		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" <?=((isset($prioridad) && $prioridad == 1))?"":"hidden" ?> >
+		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" <?=((isset($subprioridad) && $subprioridad == 1))?"":"hidden" ?> >
 			<label>Selecciona una opción</label><br>
 			<select class="form-control" id="opt_prioridad_especial">
+				<?php foreach ($subprioridades as $subp): ?>
+					<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
+				<?php endforeach; ?>
 			</select>
 		</div>
 	</div>
-	<div id="hiddenDiv1"  <?=(isset($idtemaprioritario))?"":"style='display:none'"  ?>>
+	<div id="hiddenDiv1"  <?=(isset($idtemaprioritario))?"":"style='display:none'"?> >
 		<div class="row mt-4">
 			<div class="col-12">
 				<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la prioridad seleccionada escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
@@ -186,12 +189,17 @@
 					<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
 				</div>
 			</div>
-			<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
+			<?php if (!isset($idtemaprioritario)): ?>
+				<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
+			<?php else: ?>
+				<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
+			<?php endif; ?>
+
 		</form>
 	</div>
 </div>
 
-<input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
+<input type="hidden" id="nivel" value="  ">
 <!-- <input type="hidden" value="" id="idtemap_seleccionado" name="tema_prioritario"> -->
 <input type="hidden" value="" id="id_objetivo">
 
