@@ -1353,7 +1353,7 @@ public function edit_accion_super(){
 		exit;
 	}
 
-
+// get
 	public function getObjetivos(){
 		$this->cct = Utilerias::get_cct_sesion($this);
 		// echo "<pre>";
@@ -1432,10 +1432,10 @@ public function edit_accion_super(){
 		}
 
 
-			$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
+		$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
 
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 
 
@@ -1466,12 +1466,11 @@ public function edit_accion_super(){
 
 	public function llenaIndicador(){
 		$this->cct = Utilerias::get_cct_sesion($this);
-		// echo "<pre>";print_r($this->cct);die();
-		$nivel = $this->input->post('nivel');
+		$id_nivel = $this->cct[0]['nivel'];
 		$id_prioridad = $this->input->post('id_prioridad');
 		$id_subprioridad = $this->input->post('id_subprioridad');
 
-		if ($nivel == 'PRIMARIA') {
+		if ($id_nivel == 'PRIMARIA') {
 			$id_nivel = 4;
 		}
 
@@ -1593,6 +1592,7 @@ public function edit_accion_super(){
 			// die();
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
+
 			// echo "<pre>";print_r($datos);die();
 
 			$data['prioridad'] = $datos[0]['id_prioridad'];

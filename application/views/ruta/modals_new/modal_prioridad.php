@@ -1,16 +1,16 @@
-<div class="form-group form-group-style-1">
+<div class="form-group form-group-style-1" >
 	<div class="row">
 		<div class="col-sm-12">
 			<label><span class="badge badge-secondary h5 text-white">1.</span> Prioridad del sistema básico de mejora</label><br>
 			<select class="form-control" id="opt_prioridad" onchange="show($(this).val())">
 				<option value="0">SELECCIONAR PRIORIDAD</option>
 				<?php foreach ($prioridades as $prioridad): ?>
-						<option value="<?= $prioridad['id_prioridad'] ?>" <?=((isset($prioridad) && (int)$prioridad['id_prioridad'] == (int)$prioridad))?"selected":""  ?> > <?= $prioridad['prioridad'] ?></option>
+						<option value="<?= $prioridad['id_prioridad'] ?>"  > <?= $prioridad['prioridad'] ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 
-		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" <?=((isset($subprioridad) && $subprioridad == 1))?"":"hidden" ?> >
+		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" >
 			<label>Selecciona una opción</label><br>
 			<select class="form-control" id="opt_prioridad_especial">
 				<?php foreach ($subprioridades as $subp): ?>
@@ -187,6 +187,7 @@
 			<div class="row mt-15">
 				<div class="col-12">
 					<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
+					<button type="button" id="salir" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 				</div>
 			</div>
 			<?php if (!isset($idtemaprioritario)): ?>
@@ -204,5 +205,5 @@
 <input type="hidden" value="" id="id_objetivo">
 
 
-
+<input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
