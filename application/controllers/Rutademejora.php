@@ -327,15 +327,9 @@ class Rutademejora extends CI_Controller {
 				              <tr class=info>
 		                          <th id='idrutamtema' hidden><center>id</center></th>
 		                          <th id='orden' style='width:4%'><center>Orden</center></th>
-		                          <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
+		                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
 		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th>
-		                          <th id='n_actividades' style='width:4%'><center>Actividades</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
-		                          </tr>
-		                          </thead>
+		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:4%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th><th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th></th><th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th></tr></thead>
 		                          <tbody id='id_tbody_demo'>";
 
 
@@ -343,13 +337,12 @@ class Rutademejora extends CI_Controller {
 					$tabla .= "<tr>
 							<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
 	                          <td id='orden' data='1'>{$ruta['orden']}</td>
-	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
-	                          <td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
+	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
 	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+														<td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
+														<td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
 		                              </tr>";
 				}
 
@@ -382,15 +375,9 @@ class Rutademejora extends CI_Controller {
 			              <tr class=info>
 	                          <th id='idrutamtema' hidden><center>id</center></th>
 	                          <th id='orden' style='width:4%'><center>Orden</center></th>
-	                          <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
+	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
 	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th>
-	                          <th id='n_actividades' style='width:8%'><center>Actividades</center></th>
-	                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
-	                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
-		                      <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
-	                          </tr>
-	                          </thead>
+	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
 	                          <tbody id='id_tbody_demo'>";
 
 
@@ -398,13 +385,10 @@ class Rutademejora extends CI_Controller {
 				$tabla .= "<tr>
 						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
                           <td id='orden' data='1'>{$ruta['orden']}</td>
-                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
-                          <td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
+                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
                           <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
                           <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
                           <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-                          <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-						  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
 	                              </tr>";
 			}
 
@@ -1334,10 +1318,10 @@ public function edit_accion_super(){
 		$data = array();
 		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_nivel = $this->cct[0]['nivel'];
-		$idtemaprioritario = $this->input->post('idtemaprioritario');
+		// $idtemaprioritario = $this->input->post('idtemaprioritario');
 		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 		$data['prioridades'] = $result_prioridades;
-		$data['idtemaprioritario'] = $idtemaprioritario;
+		// $data['idtemaprioritario'] = $idtemaprioritario;
 
 		$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
@@ -1623,9 +1607,12 @@ public function edit_accion_super(){
 			// die();
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
+			// echo "<pre>";print_r($datos);die();
+
 			$data['prioridad'] = $datos[0]['id_prioridad'];
 			$data['subprioridad'] = $datos[0]['id_subprioridad'];
 			$data['problematica'] = $datos[0]['otro_problematica'];
+
 			$data['evidencia'] = $datos[0]['otro_evidencia'];
 			$data['director'] = $datos[0]['obs_direc'];
 			$data['supervisor'] = $datos[0]['obs_supervisor'];
@@ -1633,6 +1620,9 @@ public function edit_accion_super(){
 			$data['t_objetivos'] = "tabla";
 			$data['prioridades'] = $result_prioridades;
 			$data['idtemaprioritario'] = $id_tprioritario;
+
+			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
+			$data['subprioridades'] = $datos;
 			// echo "<pre>";
 			// print_r($data);
 			// die();
