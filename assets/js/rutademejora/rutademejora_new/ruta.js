@@ -1,7 +1,3 @@
-
-
-
-
 $("#btn_mision").click(function(e){
 	e.preventDefault()
 	var ruta = base_url + 'Rutademejora/modal_mision'
