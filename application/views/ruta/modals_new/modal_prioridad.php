@@ -2,22 +2,45 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<label><span class="badge badge-secondary h5 text-white">1.</span> Prioridad del sistema básico de mejora</label><br>
-			<select class="form-control" id="opt_prioridad" onchange="show($(this).val())">
+			<?php if (isset($prioridad)): ?>
+			<select class="form-control" id="opt_prioridad" onchange="show($(this).val())" disabled>
 				<option value="0">SELECCIONAR PRIORIDAD</option>
-				<?php foreach ($prioridades as $prioridad): ?>
-						<option value="<?= $prioridad['id_prioridad'] ?>"  > <?= $prioridad['prioridad'] ?></option>
-				<?php endforeach; ?>
+					<?php foreach ($prioridades as $prioridad): ?>
+							<option value="<?= $prioridad['id_prioridad'] ?>" <?=((isset($prioridad) && (int)$prioridad['id_prioridad'] == (int)$prioridad))?"selected":""  ?> > <?= $prioridad['prioridad'] ?></option>
+					<?php endforeach; ?>
+
+				<?php else: ?>
+					<select class="form-control" id="opt_prioridad" onchange="show($(this).val())">
+						<option value="0">SELECCIONAR PRIORIDAD</option>
+					<?php foreach ($prioridades as $prioridad): ?>
+							<option value="<?= $prioridad['id_prioridad'] ?>" > <?= $prioridad['prioridad'] ?></option>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</select>
 		</div>
 
-		<div class="col-sm-12" id="normalidad" style="margin-top:15px;" >
-			<label>Selecciona una opción</label><br>
-			<select class="form-control" id="opt_prioridad_especial">
-				<?php foreach ($subprioridades as $subp): ?>
-					<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
-				<?php endforeach; ?>
-			</select>
-		</div>
+
+		<?php if ( (isset($subprioridad) && $subprioridad == 1 ) || (isset($subprioridad) && $subprioridad == 2 )): ?>
+			<div class="col-sm-12" id="normalidad" style="margin-top:15px;" >
+				<label>Selecciona una opción</label><br>
+				<select class="form-control" id="opt_prioridad_especial" disabled>
+					<?php foreach ($subprioridades as $subp): ?>
+						<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		<?php else: ?>
+			<div class="col-sm-12" id="normalidad" style="margin-top:15px;" hidden >
+				<label>Selecciona una opción</label><br>
+				<select class="form-control" id="opt_prioridad_especial">
+					<?php foreach ($subprioridades as $subp): ?>
+						<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		<?php endif; ?>
+
+
 	</div>
 	<div id="hiddenDiv1"  <?=(isset($idtemaprioritario))?"":"style='display:none'"?> >
 		<div class="row mt-4">
@@ -55,6 +78,7 @@
 								</span>
 							</label>
 							<select class="form-control" id="slt_indicador" tabindex="-98" onchange="boxes($(this).val())">
+								<option value="0">SELECCIONAR</option>
 							</select>
 						</div>
 

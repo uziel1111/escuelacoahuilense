@@ -1,5 +1,6 @@
 $(function() {
     obj_rm_edith_tp = new Rm_edith_tp();
+    obj_prioridad = new Prioridad();
 });
 $("#btn_rutamejora_editar").click(function(){
   if (obj.id_tprioritario === undefined) {
@@ -29,6 +30,10 @@ function Rm_edith_tp(){
   _thisrm_edith_tp = this;
 }
 
+function Prioridad(){
+  _thisrm_tp = this;
+}
+
 Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
   $.ajax({
   url: base_url+'rutademejora/get_datos_edith_tp',
@@ -55,6 +60,9 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
       $('h5').empty();
       $('h5').append(data.titulo);
       $("#myModal").modal("show");
+      setTimeout(function(){
+        obj_prioridad.getObjetivos()
+      }, 500)
 
 
 
