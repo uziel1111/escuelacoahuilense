@@ -6,34 +6,64 @@ function Riesgo(){
   _this = this;
 }
 
+      
+$("#slt_ciclo_ries").change(function(){
+  // console.log($("#slt_ciclo_ries").val());
+  if($("#slt_ciclo_ries option:selected").text()=='2018-2019'){
+    $("#slt_bimestre_ries").empty();
+    $('#slt_bimestre_ries').append('<option value="1">1er Periodo</option>');
+    $('#slt_bimestre_ries').append('<option value="2">2do Periodo</option>');
+    $('#slt_bimestre_ries').append('<option value="3">3er Periodo</option>');
+         
+  }else{
+    $("#slt_bimestre_ries").empty();
+    $('#slt_bimestre_ries').append('<option value="1">1er Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="2">2do Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="3">3er Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="4">4to Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="5">5to Bimestre</option>');
+  }
+
+});
+
 $("#btn_buscar_ries_muni").click(function() {
   let id_minicipio = $("#slt_municipio_ries").val();
   let id_nivel = $("#slt_nivel_ries").val();
   let id_bimestre = $("#slt_bimestre_ries").val();
-  let id_ciclo = $("#slt_ciclo_ries").val();
+  let id_ciclo = $("#slt_ciclo_ries option:selected").text();
   var obj_grafica = new Grafica();
-
+  let t1 = 0;
+  let t2 = 0;
+  let t3 = 0;
+  let t4 = 0;
+  let t5 = 0;
+  let t6 = 0;
+  // console.log($("#slt_ciclo_ries option:selected").text());
 	$.ajax({
     url:  base_url+"riesgo/riesgoxmuni_graf",
     method: 'POST',
-    data: {'id_minicipio':id_minicipio,'id_nivel':id_nivel,'id_bimestre':id_bimestre,'ciclo':"2017-2018"},
+    data: {'id_minicipio':id_minicipio,'id_nivel':id_nivel,'id_bimestre':id_bimestre,'ciclo':id_ciclo},
     beforeSend: function(xhr) {
       Notification.loading("");
   },
   })
   .done(function( data ) {
+    console.log(data);
 	// obj_loader.hide();
   $("#total_bajas_muni").text(data.total_bajas[0]['total']);
 	var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
 		var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
 		var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
 		var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
-	var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
-		var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
-		var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
-		var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
-		var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
-		var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+    if(data.graph_bar_riesgo.length>0){
+      t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
+      t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
+      t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
+      t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
+      t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
+      t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+    }
+	  
 		switch(id_nivel) {
 		case '4':
 							$("#dv_graf_riesgo_mun_zona").empty();

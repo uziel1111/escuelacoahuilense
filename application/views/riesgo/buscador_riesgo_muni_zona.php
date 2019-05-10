@@ -10,24 +10,26 @@
           <?=form_dropdown('minicipio', $municipios, 'large', array('class' => 'form-control', 'id' => 'slt_municipio_ries'));?>
         </div>
     </div>
-       <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
-         <div class="form-group form-group-style-1">
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
+        <div class="form-group form-group-style-1">
           <?=form_label('Nivel', 'nivel');?>
             <?=form_dropdown('nivel', $niveles, 'large', array('class' => 'form-control', 'id' => 'slt_nivel_ries'));?>
         </div>
-    </div>
-         <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
-           <div class="form-group form-group-style-1">
-            <?=form_label('Bimestre', 'bimestre');?>
-            <?=form_dropdown('bimestre', $bimestres, 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
-        </div>
-    </div>
-          <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
-            <div class="form-group form-group-style-1">
+      </div>
+        
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
+        <div class="form-group form-group-style-1">
             <?=form_label('Ciclo', 'ciclo');?>
             <?=form_dropdown('ciclo', $ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
         </div>
-    </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
+          <div class="form-group form-group-style-1">
+            <?=form_label('Bimestre', 'bimestre');?>
+            <?=form_dropdown('bimestre', $bimestres, 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
+          </div>
+      </div>
     </div>
     <div class="row">
         <div class="col">
