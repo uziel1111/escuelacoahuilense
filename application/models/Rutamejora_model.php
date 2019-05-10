@@ -722,8 +722,6 @@ function  get_datos_edith_tp($id_tprioritario){
         'path_evidencia' => ''
       );
       $this->db->where('id_tprioritario', $id_tprioritario);
-      $this->db->update('rm_tema_prioritarioxcct', $data);
-
       return $this->db->update('rm_tema_prioritarioxcct', $data);
     }
 

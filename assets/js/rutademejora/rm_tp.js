@@ -374,8 +374,35 @@ Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
   var strArray = pathname.split("/");
   pathname = strArray[1];
   $('#dv_ver_evidencia').empty();
-  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/"+pathname+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#dv_ver_evidencia').html('<iframe src="'+Protocol+"//"+URLactual+"/"+pathname+"/sarape/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia').modal('toggle');
+}
+
+Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
+    $.ajax({
+      url: base_url+'rutademejora/eliminaEvidencia',
+      type: 'POST',
+      dataType: 'JSON',
+      data: {id_tprioritario:idtemaprioritario},
+      beforeSend: function(xhr) {
+            Notification.loading("");
+        },
+      })
+      .done(function(result) {
+      swal.close();
+      console.log(result.status);
+        swal(
+            '¡Correcto!',
+            "Se eliminó el tema prioritario correctamente",
+            'success'
+          );
+      })
+      .fail(function(e) {
+      console.error("Error in get_datos_edith_tp()"); console.table(e);
+      })
+      .always(function() {
+          // swal.close();
+      })
 }
 
 $("#cerrar_modal_ver_evidencia").click(function(){
