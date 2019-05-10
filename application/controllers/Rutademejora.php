@@ -537,6 +537,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function actualizaOrden($temasp){
+			// echo "HOLA";die();
 			$orden = 1;
 			foreach ($temasp as $tema) {
 				$actualiza = $this->Rutamejora_model->update_order($orden, $tema['id_tprioritario']);
@@ -1628,6 +1629,11 @@ public function edit_accion_super(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
+
+			$id_nivel = $this->cct[0]['nivel'];
+			if ($id_nivel == 'PRIMARIA') {
+				$id_nivel = 4;
+			}
 			// echo "<pre>";
 			// print_r($this->cct);
 			// die();
@@ -1649,6 +1655,15 @@ public function edit_accion_super(){
 
 			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
 			$data['subprioridades'] = $datos;
+
+			$indicador = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
+
+			$data['indicadores'] = $indicador;
+			$data['id_indicador'] = $indicador[0]['id_indicador'];
+
+			$metrica = $this->Rutamejora_model->getMetricas($data['id_indicador']);
+			$data['metricas'] = $metrica;
+
 			// echo "<pre>";
 			// print_r($data);
 			// die();

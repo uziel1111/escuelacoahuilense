@@ -79,6 +79,9 @@
 							</label>
 							<select class="form-control" id="slt_indicador" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
+								<?php foreach ($indicadores as $indicador): ?>
+									<option value="<?php echo $indicador['id_indicador'] ?>"><?php echo $indicador['indicador'] ?></option>
+								<?php endforeach; ?>
 							</select>
 						</div>
 
@@ -91,6 +94,9 @@
 							</label>
 							<select class="form-control" id="slt_metrica" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
+								<?php foreach ($metricas as $metrica): ?>
+									<option><?php echo $metrica['formula'] ?></option>
+								<?php endforeach; ?>
 							</select>
 						</div>
 
