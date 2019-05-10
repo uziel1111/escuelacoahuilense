@@ -396,6 +396,7 @@ Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
             "Se eliminó el tema prioritario correctamente",
             'success'
           );
+        obj.get_view();
       })
       .fail(function(e) {
       console.error("Error in get_datos_edith_tp()"); console.table(e);
@@ -403,6 +404,7 @@ Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
       .always(function() {
           // swal.close();
       })
+
 }
 
 $("#cerrar_modal_ver_evidencia").click(function(){
