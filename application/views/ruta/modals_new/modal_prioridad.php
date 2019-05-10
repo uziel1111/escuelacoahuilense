@@ -198,7 +198,7 @@
 				<div class="col-lg-6 mt-2 mt-lg-0">
 					<label><span class="badge badge-secondary h5 text-white">6.</span> Observaciones del supervisor</label>
 					<br>
-					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"><?= (isset($supervisor))?$supervisor:"" ?></textarea>
+					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"  readonly><?= (isset($supervisor))?$supervisor:"" ?></textarea>
 				</div>
 			</div>
 
