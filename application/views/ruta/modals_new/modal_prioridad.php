@@ -192,7 +192,7 @@
 			<div class="row mt-4">
 				<div class="col-lg-6">
 					<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del director</label>
-					<textarea id="txt_rm_meta" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
+					<textarea id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 				</div>
 
 				<div class="col-lg-6 mt-2 mt-lg-0">
