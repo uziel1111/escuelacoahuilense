@@ -1339,7 +1339,8 @@ public function edit_accion_super(){
 		// print_r($_POST);
 		// die();
 		$id_tprioritario = $this->input->post('id_tprioritario');
-		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario);
+		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		// echo"<pre>";  print_r($path_archivo);die();
 		
 		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
 		unlink($path_archivo);
