@@ -334,6 +334,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
+		                          <th id='objetivo' style='width:6%'><center>Eliminar</center></th>
 		                          </tr>
 		                          </thead>
 		                          <tbody id='id_tbody_demo'>";
@@ -349,7 +350,16 @@ class Rutademejora extends CI_Controller {
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center>
+							  </td>
+							  <td id=''><center>";
+							  if($ruta['path_evidencia'] != ''){
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  }else{
+							  	$tabla.="";
+							  }
+							  $tabla.="</center>
+							  </td>
 		                    </tr>";
 				}
 
@@ -389,6 +399,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
+		                          <th id='objetivo' style='width:6%'><center>Eliminar</center></th>
 		                          </tr>
 		                          </thead>
 		                          <tbody id='id_tbody_demo'>";
@@ -404,7 +415,16 @@ class Rutademejora extends CI_Controller {
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center>
+							  </td>
+							  <td id=''><center>";
+							  if($ruta['path_evidencia'] != ''){
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  }else{
+							  	$tabla.="";
+							  }
+							  $tabla.="</center>
+							  </td>
 		                    </tr>";
 				}
 
@@ -1313,6 +1333,20 @@ public function edit_accion_super(){
 		}
 	}
 
+	public function eliminaEvidencia(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario);
+		
+		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+		unlink($path_archivo);
+		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 	public function tabla_up(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
@@ -1548,13 +1582,13 @@ public function edit_accion_super(){
 		$evidencia = $this->input->post('evidencia');
 		$comentario_dir = $this->input->post('comentario_dir');
 
-		if (isset($_POST['delete_file'])) {
-			// code...
-			$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
-			unlink($path_archivo);
-			$this->Rutamejora_model->deleteEvidencia($id_tprioritario);
-			// echo "<pre>";print_r($path_archivo);die();
-		} else {
+		// if (isset($_POST['delete_file'])) {
+		// 	// code...
+		// 	$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		// 	unlink($path_archivo);
+		// 	$this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+		// 	// echo "<pre>";print_r($path_archivo);die();
+		// } else {
 			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
 			// echo "<pre>";print_r($nombre_archivo);die();
 			$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
@@ -1592,7 +1626,7 @@ public function edit_accion_super(){
 
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
-		}
+		// }
 
 
 

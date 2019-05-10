@@ -201,12 +201,6 @@
 					<label><span class="badge badge-secondary h5 text-white">7.</span> Subir evidencia (imágen o pdf)</label>
 					<small id="" class="text-muted d-block">Disponible a partir del Consejo Técnico Escolar 2.</small>
 
-					<?php if (isset($path)): ?>
-						<label>Eliminar recurso</label>
-						<input type="checkbox" name="delete_file" id="delete_file" value="">
-						<input type="hidden" name="elimina_recurso" id="elimina_recurso" value="false">
-					<?php endif; ?>
-
 					<div class="input-group mb-3">
 					  <div class="custom-file">
 
