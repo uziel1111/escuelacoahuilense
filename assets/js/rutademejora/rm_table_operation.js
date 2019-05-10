@@ -51,6 +51,7 @@ function Tabla(){
       },
       error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
     });
+    obj.id_tprioritario = undefined
   }
 
   Tabla.prototype.update_order = function(datos){
