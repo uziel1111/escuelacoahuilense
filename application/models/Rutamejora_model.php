@@ -711,5 +711,21 @@ function  get_datos_edith_tp($id_tprioritario){
       }
     }
 
+    function getEvidencia($id_tprioritario){
+      $str_query = "SELECT path_evidencia FROM rm_tema_prioritarioxcct WHERE id_tprioritario = {$id_tprioritario}";
+
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function deleteEvidencia($id_tprioritario){
+      $data = array(
+        'path_evidencia' => ''
+      );
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->update('rm_tema_prioritarioxcct', $data);
+
+      return $this->db->update('rm_tema_prioritarioxcct', $data);
+    }
+
 
 }// Rutamejora_model

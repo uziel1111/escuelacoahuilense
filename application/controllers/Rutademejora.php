@@ -517,7 +517,7 @@ class Rutademejora extends CI_Controller {
 				// echo $id_cct; die();
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-				
+
 
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
 				$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
@@ -526,7 +526,7 @@ class Rutademejora extends CI_Controller {
 					if ($url!='') {
 						unlink($url);
 					}
-					
+
 				}
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
@@ -1510,7 +1510,7 @@ public function edit_accion_super(){
 			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, 0);
 		}
 
-		$option = "<option value='0'>SELECCIONAR</option>";
+		$option = "<option selected='selected' value='0'>SELECCIONAR</option>";
 		foreach ($datos as $dato) {
 			$option .="<option value='{$dato['id_indicador']}'>{$dato['indicador']}</option>";
 		}
@@ -1548,43 +1548,54 @@ public function edit_accion_super(){
 		$evidencia = $this->input->post('evidencia');
 		$comentario_dir = $this->input->post('comentario_dir');
 
-		$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
-		// echo "<pre>";print_r($nombre_archivo);die();
-		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
-		// echo "<pre>";print_r($estatus);die();
-		if ($nombre_archivo!='') {
-			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
-			// echo "<pre>";print_r($ruta_archivos);die();
-			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
+		if (isset($_POST['delete_file'])) {
+			// code...
+			$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+			unlink($path_archivo);
+			$this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+			// echo "<pre>";print_r($path_archivo);die();
+		} else {
+			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+			// echo "<pre>";print_r($nombre_archivo);die();
+			$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+			// echo "<pre>";print_r($estatus);die();
+			if ($nombre_archivo!='') {
+				$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
+				// echo "<pre>";print_r($ruta_archivos);die();
+				$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
 
-			$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
-			// echo "<pre>";print_r($estatusinst_urlarch);die();
+				$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
+				// echo "<pre>";print_r($estatusinst_urlarch);die();
 
-			if(!is_dir($ruta_archivos)){
-				mkdir($ruta_archivos, 0777, true);}
-				$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-				$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-				$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-				$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-				$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+				if(!is_dir($ruta_archivos)){
+					mkdir($ruta_archivos, 0777, true);}
+					$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+					$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+					$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+					$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+					$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
 
-				$uploadPath              = $ruta_archivos;
-				$config['upload_path']   = $uploadPath;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+					$uploadPath              = $ruta_archivos;
+					$config['upload_path']   = $uploadPath;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
-				$this->load->library('upload', $config);
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('userFile')) {
-						$fileData = $this->upload->data();
-						$str_view = true;
-				}
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+					if ($this->upload->do_upload('userFile')) {
+							$fileData = $this->upload->data();
+							$str_view = true;
+					}
+			}
+			$estatus = true;
+
+			$response = array('estatus' => $estatus);
+
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 		}
-		$estatus = true;
 
-		$response = array('estatus' => $estatus);
 
-		Utilerias::enviaDataJson(200, $response, $this);
-		exit;
+
 
 	}
 
