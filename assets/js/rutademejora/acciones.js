@@ -108,6 +108,8 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            success:function(data){
              var vista = data.tabla;
              // console.log(data.datos);
+             // $("#div_generico").empty();
+             // $("#div_generico").append(data.strView);
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
              $("#label_escuela").text(data.datos['escuela']);
@@ -121,6 +123,8 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              console.log(error);
            }
        });
+
+       // $("#myModal").modal("show");
        $("#exampleModalacciones").modal('show');
  };
 
@@ -278,15 +282,14 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  };
 
  Rm_acciones_tp.prototype.validaform = function(){
-  if($("#slc_rm_ambito").val() != ""){
-    if($("#txt_rm_meta").val() != ""){
-      if($("#txt_rm_obs").val() != ""){
+  if($("#txt_rm_meta").val() != ""){
+    if($("#txt_rm_obs").val() != ""){
+      if($("#slc_rm_ambito").val() != ""){
         // console.log(encargados);
         if(sel_encargado == true){
           if($("#datepicker1").val() != ""){
             if($("#datepicker2").val() != ""){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
-                  if($("#txt_rm_indimed").val() != ""){
                     if(date_diff_indays() >= 0){
                       obj_rm_acciones_tp.save_accion();
                     }else{
@@ -296,13 +299,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                         'danger'
                       );
                     }
-                  }else{
-                    swal(
-                        '¡Error!',
-                        "Introudzca indicador de medición",
-                        'danger'
-                      );
-                  }
+
               }else{
                 if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() == ""){
                     swal(
@@ -311,7 +308,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                         'danger'
                       );
                   }else{
-                    if($("#txt_rm_indimed").val() != ""){
+                    // if($("#txt_rm_indimed").val() != ""){
                       if(date_diff_indays() >= 0){
                         obj_rm_acciones_tp.save_accion();
                       }else{
@@ -321,13 +318,13 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                           'danger'
                         );
                       }
-                    }else{
-                      swal(
-                        '¡Error!',
-                        "Introudzca indicador de medición",
-                        'danger'
-                      );
-                    }
+                    // }else{
+                    //   swal(
+                    //     '¡Error!',
+                    //     "Introudzca indicador de medición",
+                    //     'danger'
+                    //   );
+                    // }
                   }
               }
             }else{
@@ -354,21 +351,21 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
       }else{
         swal(
           '¡Error!',
-          "Introudzca materiales o insumos ",
+          "Seleccione ambito",
           'danger'
         );
       }
     }else{
       swal(
           '¡Error!',
-          "Introduzca una acción",
+          "Introduzca recursos",
           'danger'
         );
     }
   }else{
     swal(
           '¡Error!',
-          "Seleccione ámbito ",
+          "Introudzca actividad ",
           'danger'
         );
   }

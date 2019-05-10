@@ -35,7 +35,10 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
         "Se actualizo tema prioritario correctamente",
         'success'
       );
-
+    var base2 = base_url.split('/index.php');
+    var icono = obj_rm_avances_acciones.get_icono(val_slc);
+    var ruta = base2[0]+"/assets/img/rm_estatus/"+icono;
+    $("#"+var_id_idacc+"icoima").attr("src",ruta);
   }
   else {
     swal(
@@ -54,3 +57,18 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
 })
 
  };
+
+
+Rm_avances_acciones.prototype.get_icono = function(porcentaje){
+  if(porcentaje == 0){
+      return "0.png";
+    }else if(porcentaje == 10 || porcentaje == 20 || porcentaje == 30){
+      return "1.png";
+    }else if(porcentaje == 40 || porcentaje == 50 || porcentaje == 60 || porcentaje == 70){
+      return "2.png";
+    }else if(porcentaje == 80 || porcentaje == 90){
+      return "3.png";
+    }else if(porcentaje == 100){
+      return "4.png";
+  }
+};

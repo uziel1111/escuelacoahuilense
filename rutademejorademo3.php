@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -91,7 +91,7 @@
 									<a class="nav-link hcolor-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Estadística e Indicadores
                                         </a>
-								
+
 									<div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item hcolor-1" href="#">Por estado, municipio y zona</a>
 										<a class="dropdown-item hcolor-1" href="#">Por escuela</a>
@@ -103,7 +103,7 @@
 									<a class="nav-link hcolor-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Servicios
                                         </a>
-								
+
 									<div class="dropdown-menu dropdown-menu-right ddm-color-2" aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item hcolor-2" href="#">Servicio profesional docente</a>
 										<a class="dropdown-item hcolor-2" href="#">Supervisión</a>
@@ -114,7 +114,7 @@
 									<a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Información
                                         </a>
-								
+
 									<div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item hcolor-3" href="#">Guía para padres de familia</a>
 									</div>
@@ -123,7 +123,7 @@
 									<a class="nav-link hcolor-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Otros
                                         </a>
-								
+
 									<div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item hcolor-4" href="#">Modelo Coahuilense</a>
 										<a class="dropdown-item hcolor-4" href="#">Calendario escolar</a>
@@ -148,7 +148,7 @@
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Ruta de Mejora</a>
-						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por acciones</a>						
+						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por acciones</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-indicadores-tab" data-toggle="tab" href="#nav-indicadores" role="tab" aria-controls="nav-indicadores" aria-selected="false">Indicadores sugeridos</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
@@ -162,11 +162,11 @@
 								</span>
 								<span data-toggle="modal" data-target="#capturaModal">
 								<button type="button" data-toggle="tooltip" title="Agregar prioridad" class="btn btn-lg btn-primary"><i class="fas fa-plus-square"></i></button>
-								</span>		
+								</span>
 								<button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary"><i class="fas fa-edit"></i></button>
 								<span data-toggle="modal" data-target="#exampleModal">
 								<button type="button" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary"><i class="fas fa-tasks"></i></button>
-								</span>	
+								</span>
 								<button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button>
 								<button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button>
 							</div>
@@ -174,8 +174,8 @@
 								<i class="fas fa-hand-point-right"></i> En esta escuela se cumplen:<br>
 <button type="button" class="btn btn-primary px-2 pt-0">
   <h6 class="d-inline"><span class="badge badge-light mt-0">1</span></h6> de 2 Líneas de Acción Estratégica.
-</button>							
-								
+</button>
+
 							</div>
 						</div>
 						<div class="row mt-15">
@@ -207,7 +207,7 @@
 												</th>
 												<th id='obs_supervisor' style='width:6%'>
 													<center>Observación</center>
-												</th>												
+												</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -225,7 +225,7 @@
 												<td id=''>
 													<center><i class="fas fa-minus text-muted"></i></i>
 													</center>
-												</td>												
+												</td>
 											</tr>
 											<tr>
 												<td id='idrutamtema' data='109' hidden>109</td>
@@ -241,7 +241,7 @@
 												<td id=''>
 													<center><i class="fas fa-check-circle text-success"></i>
 													</center>
-												</td>												
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -268,9 +268,9 @@
     </div>
     <div class="col">
       <img src="assets/img/rm_estatus/4.png" class="img-fluid" alt="Responsive image" width="35px"> Terminado
-    </div>	  
+    </div>
   </div>
-</div>						
+</div>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -1343,7 +1343,7 @@ Resolución de problemas de manera aleatoria
 		                </tr>
         </tbody>
 </table>
-					</div>		
+					</div>
 					<div class="tab-pane fade" id="nav-indicadores" role="tabpanel" aria-labelledby="nav-indicadores-tab">
 						<table class="table table-style-1 table-striped table-hover">
 							<thead class="bgcolor-4">
@@ -1408,7 +1408,7 @@ Resolución de problemas de manera aleatoria
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="form-group form-group-style-1">
@@ -1427,15 +1427,15 @@ Resolución de problemas de manera aleatoria
 							<div class="row">
 								<div class="col-12">
 												<label class="mb-1"><span class="badge badge-secondary h4 text-white">Misión</span></label>
-									<small class="text-muted">En este ciclo escolar quiero que mi escuela...</small> <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción 
-breve (de no más de 80 palabras aproximadamente) que clarifique cuál es 
-la contribución que debe hacer la escuela a la comunidad donde radica, 
-dónde se verá su impacto positivo y de qué forma deberá ser vista por 
-quienes interactúan con ella (alumnos, padres de familia, autoridades 
+									<small class="text-muted">En este ciclo escolar quiero que mi escuela...</small> <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción
+breve (de no más de 80 palabras aproximadamente) que clarifique cuál es
+la contribución que debe hacer la escuela a la comunidad donde radica,
+dónde se verá su impacto positivo y de qué forma deberá ser vista por
+quienes interactúan con ella (alumnos, padres de familia, autoridades
 locales, sociedad en general)"></em>
 												<textarea id="txt_rm_meta" class="form-control" rows="2">NOS DISTINGUIMOS POR OBTENER LOS MEJORES RESULTADOS DE APRENDIZAJE EN NUESTRA COMUNIDAD EDUCATIVA</textarea>
 												<small id="passwordHelpInline" class="text-muted">Máximo 150 caracteres.</small>
-	
+
 								</div>
 							</div>
 
@@ -1443,9 +1443,9 @@ locales, sociedad en general)"></em>
 							<div class="row">
 								<div class="col-12">
 
-<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Grabar</button>	
+<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Grabar</button>
 								</div>
-							</div>							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1461,7 +1461,7 @@ locales, sociedad en general)"></em>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="form-group form-group-style-1">
@@ -1480,22 +1480,22 @@ locales, sociedad en general)"></em>
 							<div class="row">
 								<div class="col-12">
 												<label class="mb-1"><span class="badge badge-secondary h4 text-white">Misión</span></label>
-									<small class="text-muted">En este ciclo escolar quiero que mi escuela...</small> <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción 
-breve (de no más de 80 palabras aproximadamente) que clarifique cuál es 
-la contribución que debe hacer la escuela a la comunidad donde radica, 
-dónde se verá su impacto positivo y de qué forma deberá ser vista por 
-quienes interactúan con ella (alumnos, padres de familia, autoridades 
+									<small class="text-muted">En este ciclo escolar quiero que mi escuela...</small> <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="En esta sección se hace una descripción
+breve (de no más de 80 palabras aproximadamente) que clarifique cuál es
+la contribución que debe hacer la escuela a la comunidad donde radica,
+dónde se verá su impacto positivo y de qué forma deberá ser vista por
+quienes interactúan con ella (alumnos, padres de familia, autoridades
 locales, sociedad en general)"></em>
 												<textarea id="txt_rm_meta" class="form-control" rows="2">NOS DISTINGUIMOS POR OBTENER LOS MEJORES RESULTADOS DE APRENDIZAJE EN NUESTRA COMUNIDAD EDUCATIVA</textarea>
 												<small id="passwordHelpInline" class="text-muted">Máximo 150 caracteres.</small>
-	
+
 								</div>
 							</div>
 						<hr class="mt-1 mb-2"/>
 							<div class="row">
 							<div class="col-12">
-<div class="alert alert-warning" role="alert">								
-<h5 class="text-black-50">Prioridades del Sistema Básico de Mejora</h5>								
+<div class="alert alert-warning" role="alert">
+<h5 class="text-black-50">Prioridades del Sistema Básico de Mejora</h5>
 <table class="table table-sm table-hover">
   <thead>
     <tr>
@@ -1516,14 +1516,14 @@ locales, sociedad en general)"></em>
 </table>
 	</div>
 							</div>
-							</div>	
+							</div>
 						<hr class="mt-1 mb-2"/>
 							<div class="row">
 								<div class="col-12">
 
-<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Continuar</button>	
+<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Continuar</button>
 								</div>
-							</div>							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1541,7 +1541,7 @@ locales, sociedad en general)"></em>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="alert alert-info" role="alert">
@@ -1696,7 +1696,7 @@ locales, sociedad en general)"></em>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="form-group form-group-style-1">
@@ -1706,25 +1706,25 @@ locales, sociedad en general)"></em>
 									<select class="selectpicker form-control" onchange="java_script_:show(this.options[this.selectedIndex].value)">
 										<option selected value="0">SELECCIONAR PRIORIDAD</option>
 										<option value="1">NORMALIDAD MÍNIMA ESCOLAR</option>
-										<option value="1">ALTO AL ABANDONO ESCOLAR</option>				
+										<option value="1">ALTO AL ABANDONO ESCOLAR</option>
 										<option value="2" data-content="EQUIPAMIENTO E INFRAESTRUCTURA DE ALTA CALIDAD <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>
 										<option value="2" data-content="ASEGURAR ALTOS ÍNDICES DE APRENDIZAJE A TODA LA POBLACIÓN EDUCATIVA <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>
 										<option value="2" data-content="CONTAR CON PERSONAL COMPETITIVO A NIVEL INTERNACIONAL <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>
 										<option value="2" data-content="GENERAR AMBIENTES DE COLABORACIÓN Y CORRESPONSABILIDAD CON LOS PADRES DE FAMILIA <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>
-										<option value="2" data-content="CONSOLIDAD EL LIDERAZGO DE DIRECTIVOS Y DOCENTES <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>	
+										<option value="2" data-content="CONSOLIDAD EL LIDERAZGO DE DIRECTIVOS Y DOCENTES <i class='fas fa-bookmark' aria-hidden='true'></i>"></option>
 									</select>
 								</div>
 							</div>
 							<div id="hiddenDiv1" style="display:none">
 							<div class="row mt-4">
 								<div class="col-12">
-									<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
-					inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
-					eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
-					aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
-					a un grado en particular, a una asignatura...), continuando con una meta 
-					numérica de mejora del indicador y finalizando con una fecha de 
-					cumplimiento máximo (si es para el final del período escolar se puede 
+									<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que
+					inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o
+					eliminar) seguido por un indicador concreto (por ejemplo: asistencia,
+					aprovechamiento, ... y en algunos casos enfocados a un nivel educativo,
+					a un grado en particular, a una asignatura...), continuando con una meta
+					numérica de mejora del indicador y finalizando con una fecha de
+					cumplimiento máximo (si es para el final del período escolar se puede
 					omitir este elemento dándolo por entendido)"></em></label>
 								</div>
 							</div>
@@ -1732,7 +1732,7 @@ locales, sociedad en general)"></em>
 								<div class="col-12">
 									<div class="alert alert-info" role="alert">
 										<div class="row">
-							
+
 								<div class="col">
 									<label class="mb-1"><span class="badge badge-secondary h5 text-white">1.Verbo </span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
 									<select class="selectpicker form-control" id="box1">
@@ -1782,12 +1782,12 @@ aprendizaje</option>
 										<option>Julio</option>
 										<option>Otro</option>
 									</select>
-								</div>	
+								</div>
 								<div class="col-auto">
 									<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">5.Generar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
 									<button onclick="writeText()" type="button" class="btn btn-dark btn-block">Generar <i class="fas fa-i-cursor"></i></button>
-								</div>											
-																		
+								</div>
+
 										</div>
 										<div class="row mt-3">
 											<div class="col">
@@ -1799,9 +1799,9 @@ aprendizaje</option>
 												<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">7.Guardar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
 												<button onclick="writeText()" type="button" class="btn btn-dark btn-block"><i class="fas fa-check-circle"></i></button>
 												<hr class="my-2"/>
-												<button onclick="writeText()" type="button" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i></button>												
-											</div>												
-										</div>	
+												<button onclick="writeText()" type="button" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i></button>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1809,7 +1809,7 @@ aprendizaje</option>
 								<div class="col-12">
 									<div class="alert alert-info" role="alert">
 										<div class="row">
-							
+
 								<div class='table-responsive'>
 									<table id='' class='table table-condensed table-hover table-light table-bordered'>
 										<thead>
@@ -1834,15 +1834,15 @@ aprendizaje</option>
 												<td id='num_rutamtema' data='1' class='text-center'>1</td>
 												<td id='des_rutamtema' data='Normalidad mínima'>Normalidad mínima</td>
 												<td id='op_rutamtema' class='text-center'>
-								
+
 								<button type="button" data-toggle="tooltip" title="Editar" class="btn btn-success"><i class="far fa-edit"></i></button>
-								<button type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>								
+								<button type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-								</div>										
-																		
+								</div>
+
 										</div>
 									</div>
 								</div>
@@ -1902,20 +1902,20 @@ aprendizaje</option>
 									</div>
 							<div class="col ml-2">
 								<b>Objetivo Estatal:</b> Lograr que el 100% de los docentes realicen su planeación de manera oportuna y congruente a las necesidades de sus alumnos y de acuerdo al plan y programa de estudios.
-									</div>	
+									</div>
 								</div>
 </div>
 								</div>
-							</div>								
+							</div>
 							<div class="row">
 								<div class="col-12">
-									<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que 
-					inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o 
-					eliminar) seguido por un indicador concreto (por ejemplo: asistencia, 
-					aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, 
-					a un grado en particular, a una asignatura...), continuando con una meta 
-					numérica de mejora del indicador y finalizando con una fecha de 
-					cumplimiento máximo (si es para el final del período escolar se puede 
+									<label><span class="badge badge-secondary h5 text-white">2.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Para la prioridad seleccionada escribe un objetivo que
+					inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o
+					eliminar) seguido por un indicador concreto (por ejemplo: asistencia,
+					aprovechamiento, ... y en algunos casos enfocados a un nivel educativo,
+					a un grado en particular, a una asignatura...), continuando con una meta
+					numérica de mejora del indicador y finalizando con una fecha de
+					cumplimiento máximo (si es para el final del período escolar se puede
 					omitir este elemento dándolo por entendido)"></em></label>
 								</div>
 							</div>
@@ -1927,7 +1927,7 @@ aprendizaje</option>
 												<label class="mb-1"><span class="badge badge-secondary h5 text-white">Objetivo 1</span></label>
 												<textarea id="txt_rm_meta" class="form-control" rows="2"></textarea>
 												<small id="passwordHelpInline" class="text-muted">Máximo 400 caracteres.</small>
-											</div>											
+											</div>
 											<div class="col-12 col-lg" id="txt2" style="display:none">
 												<label class="mb-1"><span class="badge badge-secondary h5 text-white">Objetivo 1</span></label>
 												<textarea id="txt_rm_meta" class="form-control" rows="2">Objetivo Estatal: Lograr que el 100% de los docentes realicen su planeación de manera oportuna y congruente a las necesidades de sus alumnos y de acuerdo al plan y programa de estudios. </textarea>
@@ -1976,12 +1976,12 @@ aprendizaje</option>
 							<div class="row">
 								<div class="col-12">
 <button type="button" class="btn btn-secondary btn-style-1 mr-10" data-toggle="modal" data-target="#recordatorioModal" title="Continuar">Grabar</button>
-<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Salir</button>	
+<button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Salir</button>
 								</div>
-							</div>								
 							</div>
-							
-							
+							</div>
+
+
 						</div>
 
 					</div>
@@ -1999,7 +1999,7 @@ aprendizaje</option>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="alert alert-light" role="alert">
@@ -2007,7 +2007,7 @@ aprendizaje</option>
 
 						<div class="row">
 							<div class="col my-1">
-								
+
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="p1">
 									<label class="custom-control-label" for="p1">Asistencia.</label>
@@ -2035,7 +2035,7 @@ aprendizaje</option>
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="myCheck2" onclick="chkInput2()">
 									<label class="custom-control-label" for="myCheck2">Otro.</label>
-								</div>								
+								</div>
 							</div>
 								<div class="col my-1">
 								<div class="custom-control custom-checkbox mr-sm-2">
@@ -2061,26 +2061,26 @@ aprendizaje</option>
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="p12">
 									<label class="custom-control-label" for="p12">Padres.</label>
-								</div>								
-	
-							</div>	
-						</div>							
+								</div>
+
+							</div>
+						</div>
 						<div class="row">
-							<div class="col-12">								
+							<div class="col-12">
 <div class="mb-3" id="text2" style="display:none">
   <input type="text2" class="form-control" placeholder="" aria-label="otro" aria-describedby="button-addon2">
 
 </div>
 															</div>
 						</div>
-								
+
 								</div>
 						<div class="row">
-							<div class="col-12">								
+							<div class="col-12">
 <button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Grabar y cerrar</button>
 							</div>
-						</div>								
-							
+						</div>
+
 						</div>
 				</div>
 			</div>
@@ -2095,7 +2095,7 @@ aprendizaje</option>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 						<div class="alert alert-light" role="alert">
@@ -2103,7 +2103,7 @@ aprendizaje</option>
 
 						<div class="row">
 							<div class="col my-1">
-								
+
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="ev1">
 									<label class="custom-control-label" for="ev1">Asistencia.</label>
@@ -2131,7 +2131,7 @@ aprendizaje</option>
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="myCheck" onclick="chkInput()">
 									<label class="custom-control-label" for="myCheck">Otro.</label>
-								</div>								
+								</div>
 							</div>
 								<div class="col my-1">
 								<div class="custom-control custom-checkbox mr-sm-2">
@@ -2157,33 +2157,33 @@ aprendizaje</option>
 								<div class="custom-control custom-checkbox mr-sm-2">
 									<input type="checkbox" class="custom-control-input" id="ev10">
 									<label class="custom-control-label" for="ev10">Padres.</label>
-								</div>								
-	
-							</div>	
-						</div>							
+								</div>
+
+							</div>
+						</div>
 						<div class="row">
-							<div class="col-12">								
+							<div class="col-12">
 <div class="mb-3" id="text" style="display:none">
   <input type="text" class="form-control" placeholder="" aria-label="otro" aria-describedby="button-addon2">
 
 </div>
 															</div>
 						</div>
-								
+
 								</div>
 						<div class="row">
-							<div class="col-12">								
+							<div class="col-12">
 <button type="button" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Grabar y cerrar</button>
 							</div>
-						</div>								
-							
+						</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
-		
+
 		<!-- End Modal -->
-		
+
 		<!-- Modal Recordatorio-->
 		<div class="modal fade" id="recordatorioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -2193,13 +2193,13 @@ aprendizaje</option>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-					
+
 					</div>
 					<div class="modal-body">
 							<div class="row">
 							<div class="col-12">
-<div class="alert alert-warning" role="alert">								
-<p class="text-black-50">Las escuelas primaria de Coahuila trabajamos juntas para:</p>								
+<div class="alert alert-warning" role="alert">
+<p class="text-black-50">Las escuelas primaria de Coahuila trabajamos juntas para:</p>
 <table class="table table-sm table-hover">
   <tbody>
     <tr  class="table-light">
@@ -2210,15 +2210,15 @@ aprendizaje</option>
 </table>
 	</div>
 							</div>
-							</div>	
-						
-						<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-success btn-style-1 mr-10">Continuar</button>						
+							</div>
+
+						<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-success btn-style-1 mr-10">Continuar</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- End Modal -->		
-	
+		<!-- End Modal -->
+
 	<!-- End Main Area -->
 
 
@@ -2276,34 +2276,34 @@ aprendizaje</option>
 			</div>
 		</div>
 	</footer>
-	
+
 	<!-- Scripts  -->
 <script>
  function show(aval) {
     if (aval == "1") {
     hiddenDiv1.style.display='block';
-	hiddenDiv2.style.display='none';	
+	hiddenDiv2.style.display='none';
     Form.fileURL.focus();
     }
     else if (aval == "2") {
     hiddenDiv1.style.display='none';
-	hiddenDiv2.style.display='block';	
+	hiddenDiv2.style.display='block';
     Form.fileURL.focus();
-    } 	 
+    }
     else {
     hiddenDiv1.style.display='none';
-	hiddenDiv2.style.display='none';	
+	hiddenDiv2.style.display='none';
     }
-  }	
+  }
 function shwTxt() {
   var t1 = document.getElementById("txt1");
-  var t2 = document.getElementById("txt2");	
+  var t2 = document.getElementById("txt2");
   if (t1.style.display !== "block") {
 	t2.style.display = "block";
 	t1.style.display = "none";
   } else {
     t1.style.display = "none";
-	t2.style.display = "block"; 
+	t2.style.display = "block";
   }
 }
 	function chkInput() {
@@ -2332,27 +2332,27 @@ function shwTxt() {
             var select_1 = $("#box1").val();
 			var select_2 = $("#box2").val();
             var select_3 = $("#box3").val();
-			var select_4 = $("#box4").val(); 
+			var select_4 = $("#box4").val();
 			if (select_1 == "0"){
 				select_1 = "(DEFINIR VERBO)";
-				
+
 			}
 			if (select_2 == "0"){
 				select_2 = "(DEFINIR INDICADOR)";
 			}
 			if (select_3 == "0"){
 				select_3 = "(DEFINIR META)";
-				
+
 			}
 			if (select_4 == "0"){
 				select_4 = "(DEFINIR FECHA)";
-			}			
+			}
             var CAParray = [select_1, select_2, select_3, select_4]
             var CAPtext = CAParray.join(" ");
-            
+
             myCAPtext.value = CAPtext;
         }
-    </script>	
+    </script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

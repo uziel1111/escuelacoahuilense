@@ -35,8 +35,8 @@ class Rutamejora_model extends CI_Model
       'orden' => $orden,
 			);
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
-    $id_insertado_tmp =$this->db->insert_id();
-        $this->db->trans_complete();
+    $id_insertado_tmp = $this->db->insert_id();
+    $this->db->trans_complete();
 
         if ($this->db->trans_status() === FALSE)
         {
@@ -135,6 +135,8 @@ class Rutamejora_model extends CI_Model
       $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
       $this->db->where("e.cve_centro = '{$cct}'");
       $this->db->where("ts.id_turno_single = {$turno}");
+      // $this->db->get();
+      // echo $this->db->last_query();die();
       return  $this->db->get()->result_array();
     }
 
@@ -172,23 +174,33 @@ class Rutamejora_model extends CI_Model
 
   function update_misionxidcct($id_cct,$misioncct, $id_ciclo){
     $date=date("Y-m-d");
-   $this->db->trans_start();
-   $data = array(
-      'mision' => $misioncct,
-      'id_ciclo' => $id_ciclo,
-      'f_mod' => $date
-  );
+    $this->db->trans_start();
+    $data = array(
+        'mision' => $misioncct,
+        'id_ciclo' => $id_ciclo,
+        'f_mod' => $date
+    );
 
-  $this->db->where('id_cct', $id_cct);
-  $this->db->update('rm_misionxcct', $data);
-  $this->db->trans_complete();
-  if ($this->db->trans_status() === FALSE)
-     {
+    $this->db->where('id_cct', $id_cct);
+    $this->db->update('rm_misionxcct', $data);
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
          return false;
      }else{
          return true;
-     }
+    }
   }
+
+  function getTemasxcct($idcct){
+    $str_query ="SELECT * FROM rm_tema_prioritarioxcct WHERE id_cct = {$idcct}";
+    return $this->db->query($str_query)->result_array();
+  }
+
+  // function actualizaTP(){
+  //   $str_query ="SELECT * FROM rm_tema_prioritarioxcct WHERE id_cct = {$idcct}";
+  //   return $this->db->query($str_query)->result_array();
+  // }
 
   function get_misionxcct($id_cct, $id_ciclo){
   $this->db->select('mision');
@@ -301,7 +313,7 @@ function  get_datos_edith_tp($id_tprioritario){
   function delete_tema_prioritario($id_cct,$id_tprioritario){
 
       $this->db->trans_start();
-      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_tema_prioritarioxcct');
+      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_objetivo', 'rm_tema_prioritarioxcct');
       $this->db->where('id_tprioritario', $id_tprioritario);
       $this->db->delete($tables);
       $this->db->trans_complete();
@@ -311,9 +323,9 @@ function  get_datos_edith_tp($id_tprioritario){
       }else{
           return true;
       }
-    $str_query = "";
-        // echo $str_query; die();
-      return $this->db->query($str_query)->result_array();
+    // $str_query = "";
+    //     // echo $str_query; die();
+    //   return $this->db->query($str_query)->result_array();
   }
 
   function get_avances_tp_accionxcct($id_cct){
@@ -321,7 +333,7 @@ function  get_datos_edith_tp($id_tprioritario){
     tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion,
     IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
     IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
-    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10
+    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10, '' as icono
     FROM rm_tema_prioritarioxcct tp
     INNER JOIN rm_c_prioridad p ON tp.id_prioridad=p.id_prioridad
     LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario
@@ -440,19 +452,18 @@ function  get_datos_edith_tp($id_tprioritario){
   function insert_evidencia($id_cct,$estatus,$ruta_archivos_save){
     $this->db->trans_start();
       $data = array(
-          "path_evidencia" => $ruta_archivos_save,
-  );
-  $this->db->where("id_cct = '{$id_cct}'");
-  $this->db->where("id_tprioritario = '{$estatus}'");
-  $this->db->update('rm_tema_prioritarioxcct', $data);
-  $this->db->trans_complete();
-  if ($this->db->trans_status() === FALSE)
-      {
-          return false;
+        "path_evidencia" => $ruta_archivos_save,
+      );
+      $this->db->where("id_cct = '{$id_cct}'");
+      $this->db->where("id_tprioritario = '{$estatus}'");
+      $this->db->update('rm_tema_prioritarioxcct', $data);
+      $this->db->trans_complete();
+      if ($this->db->trans_status() === FALSE) {
+        return false;
       }else{
-          return true;
+        return true;
       }
-    }
+  }
 
     function get_url_evidencia($id_cct,$id_tprioritario){
       $this->db->select('path_evidencia');
@@ -510,5 +521,195 @@ function  get_datos_edith_tp($id_tprioritario){
     	$str_query = "SELECT obs_supervisor FROM rm_tema_prioritarioxcct WHERE id_tprioritario = {$idtemap}";
     	return $this->db->query($str_query)->result_array();
     }
+
+    //Nuevas funciones para RM Ismael Castillo
+    function insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario){
+        $objetivos = array(
+          'objetivo' => $objetivo,
+          'id_tprioritario' => $id_tprioritario,
+          'orden' => 1,
+          'id_cct'=> $id_cct
+        );
+
+        if($this->db->insert('rm_objetivo', $objetivos)){
+          $response = array(
+            'status' => true,
+            'idtemaprioritario' => $id_tprioritario
+          );
+        }else{
+            $response = array(
+              'status' => false,
+              'idtemaprioritario' => 0
+            );
+        }
+          return $response;
+    }
+
+    function insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad){
+      $this->db->select('id_cct');
+      $this->db->from('rm_tema_prioritarioxcct');
+      $this->db->where('id_cct', $id_cct);
+      $orden = $this->db->get()->num_rows()+1;
+
+      $this->db->trans_start();
+      if($id_prioridad == 1){
+        $datos = array(
+          'id_cct' => $id_cct,
+          'id_prioridad' => $id_prioridad,
+          'id_subprioridad' => $id_subprioridad,
+          'orden' => $orden
+        );
+      }else{
+        $datos = array(
+          'id_cct' => $id_cct,
+          'id_prioridad' => $id_prioridad,
+          'orden' => $orden
+        );
+      }
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->insert('rm_tema_prioritarioxcct', $datos);
+      $id_tprioritario = $this->db->insert_id(); // Recuperamos el ultimo id generado
+
+      $this->db->trans_complete();
+      $response = array();
+
+      if ($this->db->trans_status() === FALSE)
+      {
+        $response = array(
+          'status' => false,
+          'idtemaprioritario' => 0
+        );
+          return $response;
+      }else{
+        $objetivos = array(
+          'objetivo' => $objetivo,
+          'id_tprioritario' => $id_tprioritario,
+          'orden' => $orden,
+          'id_cct'=> $id_cct
+        );
+        $this->db->insert('rm_objetivo', $objetivos);
+          $response = array(
+          'status' => true,
+          'idtemaprioritario' => $id_tprioritario
+        );
+          return $response;
+      }
+    }
+
+    function actualizaObjetivo($id_objetivo, $objetivo){
+      $datos = array('objetivo' => $objetivo );
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->where('id_objetivo', $id_objetivo);
+      $this->db->update('rm_objetivo', $datos);
+    }
+
+
+
+    function getSubprioridad($idprioridad){
+      $str_query ="select id_subprioridad, subprioridad from rm_c_subprioridad where id_prioridad = {$idprioridad}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad){
+      $especial = "";
+      $condicion = "";
+      if ($id_prioridad == 1) {
+        $especial = "inner join rm_c_subprioridad subp on ind.id_subprioridad = subp.id_subprioridad";
+        $condicion = " and ind.id_subprioridad = {$id_subprioridad}";
+      }
+
+      $str_query = "select ind.id_indicador, ind.indicador from rm_c_indicador ind
+                    {$especial}
+                    where ind.id_c_prioridad = {$id_prioridad} and ind.nivel = {$id_nivel} {$condicion}";
+      // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getMetricas($id_indicador){
+      $str_query = "select ind.formula from rm_c_indicador ind where ind.id_indicador = {$id_indicador}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getObjetivos($id_cct, $idtpriotario, $idprioridad, $idsubprioridad){
+      $inner = "";
+      $where = "";
+
+      if($idsubprioridad != 0){
+        $inner = "INNER JOIN rm_c_subprioridad sub ON sub.id_prioridad = tprio.id_prioridad";
+        $where = " AND sub.id_subprioridad = {$idsubprioridad}";
+      }
+      // $str_query = "select obj.id_objetivo, obj.orden, obj.objetivo, obj.id_tprioritario from rm_objetivo obj where obj.id_cct = {$id_cct} and ";
+      $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
+                    INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
+                    {$inner}
+                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario ={$idtpriotario} AND tprio.id_prioridad = {$idprioridad} {$where}";
+      // echo $str_query;die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir){
+      $date = date("Y-m-d");
+
+      //Iniciar transaccion
+      $datos = array(
+        'id_tprioritario' => $id_tprioritario,
+        'otro_problematica' => $problematica,
+        'otro_evidencia' => $evidencia,
+        'obs_direc' => $comentario_dir,
+        'f_creacion' => $date
+      );
+
+      // echo "<pre>";print_r($datos);die();
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->where('id_cct', $id_cct);
+      $this->db->update('rm_tema_prioritarioxcct', $datos);
+      $id_insertado_tmp = $this->db->insert_id();
+
+      return true;
+
+    }
+
+    function edith_tp($id_tprioritario){
+    $str_query = "
+        SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica,
+        tprioritario.otro_evidencia, tprioritario.path_evidencia,
+        tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo
+        FROM rm_tema_prioritarioxcct tprioritario
+        INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
+        WHERE tprioritario.id_tprioritario = {$id_tprioritario}
+    ";
+    return $this->db->query($str_query)->result_array();
+  }
+
+
+    function getObjetivo($id_objetivo, $id_tprioritario){
+      $str_query = "SELECT objetivo FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}  AND id_tprioritario = {$id_tprioritario}";
+      // echo "<pre>";print_r($str_query); die();
+
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function borrarObjetivo($id_objetivo){
+      $this->db->where('id_objetivo', $id_objetivo);
+      $this->db->delete('rm_objetivo');
+    }
+
+    function deleteTP($id_tprioritario){
+      // echo $id_tprioritario;die();
+      $this->db->trans_start();
+      $tables = array('rm_avance_xcctxtpxaccion','rm_accionxtproritario', 'rm_objetivo', 'rm_tema_prioritarioxcct');
+      $this->db->where('id_tprioritario', $id_tprioritario);
+      $this->db->delete($tables);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
 
 }// Rutamejora_model

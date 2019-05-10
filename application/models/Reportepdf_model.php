@@ -6,10 +6,26 @@ class Reportepdf_model extends CI_Model
     }
 
     function get_rutasxcct($idcct){
-      $str_query = "SELECT rtp.id_cct, rtp.id_tprioritario, rtp.orden, rtp.objetivo1, rtp.objetivo2, rtp.otro_problematica, rtp.otro_evidencia, rtp.obs_direc, rtp.obs_supervisor, p.prioridad AS tema
-      FROM rm_tema_prioritarioxcct rtp
+      $charaux='\n';
+      $str_query = "SELECT
+      	rtp.id_cct,
+      	rtp.id_tprioritario,
+      	rtp.orden,
+      	rtp.otro_problematica,
+      	rtp.otro_evidencia,
+      	rtp.obs_direc,
+      	rtp.obs_supervisor,
+      	p.prioridad AS tema,
+      	s.subprioridad,
+      	GROUP_CONCAT(o.objetivo SEPARATOR ',{$charaux}- ') as objetivos
+      FROM
+      	rm_tema_prioritarioxcct rtp
       INNER JOIN rm_c_prioridad p ON p.id_prioridad = rtp.id_prioridad
-      WHERE rtp.id_cct = {$idcct} ORDER BY orden ASC";
+      LEFT JOIN rm_c_subprioridad s ON rtp.id_subprioridad=s.id_subprioridad
+      LEFT JOIN rm_objetivo o ON rtp.id_tprioritario=o.id_tprioritario
+      WHERE rtp.id_cct = {$idcct}
+      GROUP BY rtp.id_tprioritario
+      ORDER BY orden ASC";
 // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
     }
