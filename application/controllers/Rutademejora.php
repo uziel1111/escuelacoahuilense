@@ -1341,7 +1341,7 @@ public function edit_accion_super(){
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
 		// echo"<pre>";  print_r($path_archivo);die();
-		
+
 		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
 		unlink($path_archivo);
 		$response = array('status' => $status);
@@ -1698,9 +1698,9 @@ public function edit_accion_super(){
 
 			$metrica = $this->Rutamejora_model->getMetricas($data['id_indicador']);
 			$data['metricas'] = $metrica;
-
+			// 
 			// echo "<pre>";
-			// print_r($data);
+			// print_r($data['indicadores']);
 			// die();
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
