@@ -277,13 +277,25 @@ $('#grabar_objetivo').click(function(){
 	let flag = $('#update_flag').val()
 	let contenido = $('#CAPoutput').val()
 
+	// if (contenido.length > 10) {
+	// 	alert('Texto muy largo')
+	// }
+
 	if (contenido == '') {
 		swal(
 			'¡Error!',
 			"Por favor ingrese un objetivo",
 			'error'
 		);
-	}else {
+	}else if (contenido.length > 400) {
+		swal(
+			'¡Error!',
+			"No puede ingresar mas de 400 caracteres",
+			'error'
+		);
+		return false
+	}
+	else {
 
 		if (flag == 0) {
 			$.ajax({
