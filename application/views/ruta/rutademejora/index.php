@@ -85,7 +85,7 @@
 		<div class="modal-content modal-style-1" style="width: 112% !important; margin-left:-25px !important; align:center !important;">
 			<div class="modal-header bg-dark">
 				<h5 class="modal-title text-white" id="exampleModalLabel"><i class="far fa-lightbulb"></i> </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -202,6 +202,7 @@
 									<div class="col-12">
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar actividad</button>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
+                    <button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 									</div>
 								</div>
 							</div>

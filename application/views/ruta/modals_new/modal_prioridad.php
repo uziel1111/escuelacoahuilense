@@ -61,8 +61,8 @@
 								</span>
 							</label>
 
-							<select class="form-control" id="slt_verbo" tabindex="-98" onchange="boxes($(this).val())">
-								<option selected="" value="0">SELECCIONAR</option>
+							<select class="form-control" id="slt_verbo" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option>LOGRAR</option>
 								<option>AUMENTAR</option>
 								<option>ELIMINAR</option>
@@ -77,8 +77,11 @@
 									<i class="fas fa-angle-double-right"></i>
 								</span>
 							</label>
-							<select class="form-control" id="slt_indicador" tabindex="-98" onchange="boxes($(this).val())">
-								<option value="0">SELECCIONAR</option>
+							<select class="form-control" id="slt_indicador" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
+								<?php foreach ($indicadores as $indicador): ?>
+									<option value="<?php echo $indicador['id_indicador'] ?>"><?php echo $indicador['indicador'] ?></option>
+								<?php endforeach; ?>
 							</select>
 						</div>
 
@@ -90,14 +93,17 @@
 								</span>
 							</label>
 							<select class="form-control" id="slt_metrica" tabindex="-98">
-								<option value="-1">SELECCIONAR</option>
+								<option selected='selected' value="0">SELECCIONAR</option>
+								<?php foreach ($metricas as $metrica): ?>
+									<option><?php echo $metrica['formula'] ?></option>
+								<?php endforeach; ?>
 							</select>
 						</div>
 
 						<div class="col">
 							<label class="mb-1"><span class="badge badge-secondary h5 text-white">4.Meta</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
-							<select class="form-control" id="slt_meta" tabindex="-98" onchange="boxes($(this).val())">
-								<option selected="" value="0">SELECCIONAR</option>
+							<select class="form-control" id="slt_meta" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option>OPCIÓN 1</option>
 								<option>OPCIÓN 2</option>
 								<option>OPCIÓN 3</option>
@@ -109,8 +115,8 @@
 						<div class="col">
 							<label class="mb-1"><span class="badge badge-secondary h5 text-white">5.Fecha</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
 
-							<select class="form-control" id="slt_fecha" tabindex="-98" onchange="boxes($(this).val())">
-								<option selected="" value="0">SELECCIONAR</option>
+							<select class="form-control" id="slt_fecha" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option>Agosto</option>
 								<option>Septiembre</option>
 								<option>Octubre</option>
@@ -186,13 +192,13 @@
 			<div class="row mt-4">
 				<div class="col-lg-6">
 					<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del director</label>
-					<textarea id="txt_rm_meta" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
+					<textarea id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 				</div>
 
 				<div class="col-lg-6 mt-2 mt-lg-0">
 					<label><span class="badge badge-secondary h5 text-white">6.</span> Observaciones del supervisor</label>
 					<br>
-					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"><?= (isset($supervisor))?$supervisor:"" ?></textarea>
+					<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"  readonly><?= (isset($supervisor))?$supervisor:"" ?></textarea>
 				</div>
 			</div>
 
@@ -200,8 +206,10 @@
 				<div class="col-12 mt-2 mt-lg-0">
 					<label><span class="badge badge-secondary h5 text-white">7.</span> Subir evidencia (imágen o pdf)</label>
 					<small id="" class="text-muted d-block">Disponible a partir del Consejo Técnico Escolar 2.</small>
+
 					<div class="input-group mb-3">
 					  <div class="custom-file">
+
 					    <input type="file" class="custom-file-input" id="userFile" name="archivo">
 					    <label class="custom-file-label" for="inputGroupFile01">Selecciona un archivo</label>
 					  </div>

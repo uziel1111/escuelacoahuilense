@@ -334,6 +334,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
+		                          <th id='objetivo' style='width:6%'><center>Eliminar</center></th>
 		                          </tr>
 		                          </thead>
 		                          <tbody id='id_tbody_demo'>";
@@ -349,7 +350,16 @@ class Rutademejora extends CI_Controller {
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center>
+							  </td>
+							  <td id=''><center>";
+							  if($ruta['path_evidencia'] != ''){
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  }else{
+							  	$tabla.="";
+							  }
+							  $tabla.="</center>
+							  </td>
 		                    </tr>";
 				}
 
@@ -389,6 +399,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
+		                          <th id='objetivo' style='width:6%'><center>Eliminar</center></th>
 		                          </tr>
 		                          </thead>
 		                          <tbody id='id_tbody_demo'>";
@@ -404,7 +415,16 @@ class Rutademejora extends CI_Controller {
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
+							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center>
+							  </td>
+							  <td id=''><center>";
+							  if($ruta['path_evidencia'] != ''){
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  }else{
+							  	$tabla.="";
+							  }
+							  $tabla.="</center>
+							  </td>
 		                    </tr>";
 				}
 
@@ -517,7 +537,7 @@ class Rutademejora extends CI_Controller {
 				// echo $id_cct; die();
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-				
+
 
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
 				$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
@@ -526,7 +546,7 @@ class Rutademejora extends CI_Controller {
 					if ($url!='') {
 						unlink($url);
 					}
-					
+
 				}
 				$response = array('estatus' => $estatus);
 				Utilerias::enviaDataJson(200, $response, $this);
@@ -537,6 +557,7 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function actualizaOrden($temasp){
+			// echo "HOLA";die();
 			$orden = 1;
 			foreach ($temasp as $tema) {
 				$actualiza = $this->Rutamejora_model->update_order($orden, $tema['id_tprioritario']);
@@ -1313,6 +1334,21 @@ public function edit_accion_super(){
 		}
 	}
 
+	public function eliminaEvidencia(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		// echo"<pre>";  print_r($path_archivo);die();
+
+		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+		unlink($path_archivo);
+		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 	public function tabla_up(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
@@ -1510,7 +1546,7 @@ public function edit_accion_super(){
 			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, 0);
 		}
 
-		$option = "<option value='0'>SELECCIONAR</option>";
+		$option = "<option selected='selected' value='0'>SELECCIONAR</option>";
 		foreach ($datos as $dato) {
 			$option .="<option value='{$dato['id_indicador']}'>{$dato['indicador']}</option>";
 		}
@@ -1548,43 +1584,54 @@ public function edit_accion_super(){
 		$evidencia = $this->input->post('evidencia');
 		$comentario_dir = $this->input->post('comentario_dir');
 
-		$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
-		// echo "<pre>";print_r($nombre_archivo);die();
-		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
-		// echo "<pre>";print_r($estatus);die();
-		if ($nombre_archivo!='') {
-			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
-			// echo "<pre>";print_r($ruta_archivos);die();
-			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
+		// if (isset($_POST['delete_file'])) {
+		// 	// code...
+		// 	$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		// 	unlink($path_archivo);
+		// 	$this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+		// 	// echo "<pre>";print_r($path_archivo);die();
+		// } else {
+			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
+			// echo "<pre>";print_r($nombre_archivo);die();
+			$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+			// echo "<pre>";print_r($estatus);die();
+			if ($nombre_archivo!='') {
+				$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
+				// echo "<pre>";print_r($ruta_archivos);die();
+				$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
 
-			$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
-			// echo "<pre>";print_r($estatusinst_urlarch);die();
+				$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
+				// echo "<pre>";print_r($estatusinst_urlarch);die();
 
-			if(!is_dir($ruta_archivos)){
-				mkdir($ruta_archivos, 0777, true);}
-				$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-				$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-				$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-				$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-				$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
+				if(!is_dir($ruta_archivos)){
+					mkdir($ruta_archivos, 0777, true);}
+					$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
+					$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
+					$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
+					$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
+					$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
 
-				$uploadPath              = $ruta_archivos;
-				$config['upload_path']   = $uploadPath;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+					$uploadPath              = $ruta_archivos;
+					$config['upload_path']   = $uploadPath;
+					$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
 
-				$this->load->library('upload', $config);
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('userFile')) {
-						$fileData = $this->upload->data();
-						$str_view = true;
-				}
-		}
-		$estatus = true;
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+					if ($this->upload->do_upload('userFile')) {
+							$fileData = $this->upload->data();
+							$str_view = true;
+					}
+			}
+			$estatus = true;
 
-		$response = array('estatus' => $estatus);
+			$response = array('estatus' => $estatus);
 
-		Utilerias::enviaDataJson(200, $response, $this);
-		exit;
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		// }
+
+
+
 
 	}
 
@@ -1617,6 +1664,11 @@ public function edit_accion_super(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
+
+			$id_nivel = $this->cct[0]['nivel'];
+			if ($id_nivel == 'PRIMARIA') {
+				$id_nivel = 4;
+			}
 			// echo "<pre>";
 			// print_r($this->cct);
 			// die();
@@ -1638,8 +1690,17 @@ public function edit_accion_super(){
 
 			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
 			$data['subprioridades'] = $datos;
+
+			$indicador = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
+
+			$data['indicadores'] = $indicador;
+			$data['id_indicador'] = $indicador[0]['id_indicador'];
+
+			$metrica = $this->Rutamejora_model->getMetricas($data['id_indicador']);
+			$data['metricas'] = $metrica;
+			// 
 			// echo "<pre>";
-			// print_r($data);
+			// print_r($data['indicadores']);
 			// die();
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
