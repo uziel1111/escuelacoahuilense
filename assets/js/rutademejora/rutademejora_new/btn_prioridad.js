@@ -2,6 +2,10 @@ $(document).ready(function(){
 	obj_prioridad = new Prioridad();
 	// $('#normalidad').attr('hidden', true);
 	// boxes()
+	$('#tooltip-demo').tooltip()
+	$('#writeText').tooltip()
+	$('#grabar_objetivo').tooltip()
+	$('#limpiar').tooltip()
 })
 
 //Eventos
@@ -43,8 +47,8 @@ $('#userFile').change(function(){
 			"El archivo no debe de superar los 5MB",
 			'error'
 		);
-		console.log('Muy grande');
 	} else {
+		var name = this.files[0].name;
 		var ext = (this.files[0].name).split('.').pop();
 
 		switch (ext) {
@@ -52,6 +56,10 @@ $('#userFile').change(function(){
 			case 'jpeg':
 			case 'png':
 			case 'pdf':
+			case 'JPG':
+			case 'JPEG':
+			case 'PNG':
+			case 'PDF':
 			break;
 
 			default:
@@ -63,6 +71,8 @@ $('#userFile').change(function(){
 				this.value = ''; // reset del valor
 				this.files[0].name = '';
 		}
+		$('#file_name').empty();
+		$('#file_name').html(name);
 	}
 })
 
