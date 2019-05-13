@@ -26,7 +26,7 @@
 
       <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2">
           <div class="form-group form-group-style-1">
-            <?=form_label('Bimestre', 'bimestre');?>
+            <?=form_label('Bimestre/Periodo', 'bimestre');?>
             <?=form_dropdown('bimestre', $bimestres, 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
           </div>
       </div>
