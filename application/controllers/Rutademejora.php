@@ -329,7 +329,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='orden' style='width:4%'><center>Orden</center></th>
 		                          <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
 		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th>
+		                          
 		                          <th id='n_actividades' style='width:4%'><center>Actividades</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
@@ -346,7 +346,7 @@ class Rutademejora extends CI_Controller {
 	                          <td id='orden' data='1'>{$ruta['orden']}</td>
 	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
 	                          <td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
-	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
+	                          
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
@@ -354,7 +354,7 @@ class Rutademejora extends CI_Controller {
 							  </td>
 							  <td id=''><center>";
 							  if($ruta['path_evidencia'] != ''){
-							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Eliminar Archivo</button>";
 							  }else{
 							  	$tabla.="";
 							  }
@@ -394,7 +394,7 @@ class Rutademejora extends CI_Controller {
 		                          <th id='orden' style='width:4%'><center>Orden</center></th>
 		                          <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
 		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th>
+		                          
 		                          <th id='n_actividades' style='width:4%'><center>Actividades</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
 		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
@@ -411,7 +411,7 @@ class Rutademejora extends CI_Controller {
 	                          <td id='orden' data='1'>{$ruta['orden']}</td>
 	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
 	                          <td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
-	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
+	                          
 	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
 							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
@@ -419,7 +419,7 @@ class Rutademejora extends CI_Controller {
 							  </td>
 							  <td id=''><center>";
 							  if($ruta['path_evidencia'] != ''){
-							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Elimiar Archivo</button>";
+							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Eliminar Archivo</button>";
 							  }else{
 							  	$tabla.="";
 							  }
@@ -533,16 +533,19 @@ class Rutademejora extends CI_Controller {
 		public function eliminarTP(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
+				// echo "<pre>";
+				// print_r($_POST);
+				// die();
 				$id_cct = $this->cct[0]['id_cct'];
-				// echo $id_cct; die();
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-
-
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
-				$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
-				$this->actualizaOrden($temasp);
+				
 				if ($estatus) {
+					$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
+					$this->actualizaOrden($temasp);
+					$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
+					$this->actualizaOrden($temasp);
 					if ($url!='') {
 						unlink($url);
 					}
@@ -557,10 +560,9 @@ class Rutademejora extends CI_Controller {
 		}
 
 		public function actualizaOrden($temasp){
-			// echo "HOLA";die();
 			$orden = 1;
 			foreach ($temasp as $tema) {
-				$actualiza = $this->Rutamejora_model->update_order($orden, $tema['id_tprioritario']);
+				$actualiza = $this->Rutamejora_model->update_order((int)$orden, (int)$tema['id_tprioritario']);
 				$orden = $orden +1;
 			}
 			$orden = 1;
