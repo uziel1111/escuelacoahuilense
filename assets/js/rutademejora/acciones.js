@@ -13,6 +13,12 @@ $("#cerrar_modal_acciones").click(function(){
   obj.get_view();
 });
 
+$('#saliract').click(function(){
+  obj_rm_acciones_tp.limpia_camposform();
+  $('#exampleModalacciones').modal('toggle');
+  obj.get_view();
+})
+
 $("#btn_rutamejora_acciones").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
