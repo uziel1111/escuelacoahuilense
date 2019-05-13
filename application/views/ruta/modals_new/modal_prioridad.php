@@ -136,7 +136,7 @@
 						<!-- Boton generar -->
 						<div class="col-auto">
 							<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">6.Generar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
-							<button id="writeText" type="button" class="btn btn-dark btn-block">Generar <i class="fas fa-i-cursor"></i>
+							<button id="writeText" type="button" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="top" title="Generar oración">Generar <i class="fas fa-i-cursor"></i>
 							</button>
 						</div>
 
@@ -153,10 +153,10 @@
 						</div>
 						<div class="col-auto">
 							<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">8.Guardar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
-							<button id="grabar_objetivo" type="button" class="btn btn-dark btn-block"><i class="fas fa-check-circle"></i></button>
+							<button id="grabar_objetivo" type="button" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i class="fas fa-check-circle"></i></button>
 							<hr class="my-2">
 
-							<button id="limpiar" type="button" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i></button>
+							<button id="limpiar" type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-plus-circle"></i></button>
 						</div>
 					</div>
 				</div>
@@ -192,7 +192,7 @@
 			<div class="row mt-4">
 				<div class="col-lg-6">
 					<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del director</label>
-					<textarea id="txt_rm_meta" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
+					<textarea id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 				</div>
 
 				<div class="col-lg-6 mt-2 mt-lg-0">
@@ -210,8 +210,8 @@
 					<div class="input-group mb-3">
 					  <div class="custom-file">
 
-					    <input type="file" class="custom-file-input" id="userFile" name="archivo">
-					    <label class="custom-file-label" for="inputGroupFile01">Selecciona un archivo</label>
+					    <input type="file" class="custom-file-input" id="userFile" name="archivo" capture="camera">
+					    <label class="custom-file-label" for="inputGroupFile01" id="file_name">Selecciona un archivo</label>
 					  </div>
 					</div>
 				</div>

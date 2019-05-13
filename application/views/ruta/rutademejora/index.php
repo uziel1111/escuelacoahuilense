@@ -202,6 +202,7 @@
 									<div class="col-12">
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar actividad</button>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
+                    <button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 									</div>
 								</div>
 							</div>

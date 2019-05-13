@@ -2,6 +2,10 @@ $(document).ready(function(){
 	obj_prioridad = new Prioridad();
 	// $('#normalidad').attr('hidden', true);
 	// boxes()
+	$('#tooltip-demo').tooltip()
+	$('#writeText').tooltip()
+	$('#grabar_objetivo').tooltip()
+	$('#limpiar').tooltip()
 })
 
 //Eventos
@@ -9,8 +13,16 @@ $('#opt_prioridad_especial').change(function(){
 	if ( $('#opt_prioridad_especial').val() != 0 ) {
 		obj_prioridad.llenaIndicador();
 		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
+		$('#opt_prioridad_especial').attr('disabled', true)
 	}
 })
+
+// $('#opt_prioridad').change(function(){
+// 	alert('Bloqueando')
+// 	if ($('#opt_prioridad').val() != 0) {
+// 		$('#opt_prioridad').attr('disabled', true)
+// 	}
+// })
 
 $('#slt_indicador').change(function(){
 	if ($('#slt_indicador').val() != 0 ) {
@@ -35,8 +47,8 @@ $('#userFile').change(function(){
 			"El archivo no debe de superar los 5MB",
 			'error'
 		);
-		console.log('Muy grande');
 	} else {
+		var name = this.files[0].name;
 		var ext = (this.files[0].name).split('.').pop();
 
 		switch (ext) {
@@ -44,6 +56,10 @@ $('#userFile').change(function(){
 			case 'jpeg':
 			case 'png':
 			case 'pdf':
+			case 'JPG':
+			case 'JPEG':
+			case 'PNG':
+			case 'PDF':
 			break;
 
 			default:
@@ -55,6 +71,8 @@ $('#userFile').change(function(){
 				this.value = ''; // reset del valor
 				this.files[0].name = '';
 		}
+		$('#file_name').empty();
+		$('#file_name').html(name);
 	}
 })
 
@@ -184,12 +202,15 @@ Prioridad.prototype.getObjetivos = function(){
 
 //Aqui disparamos todas las funciones del modal
 function show(select_id){
+	// alert(select_id)
 	let opt = $('#opt_prioridad').val();
 	// console.log(opt);
 	if (opt == 1) {
 		obj_prioridad.getsubEspecial();
-
+		obj_prioridad.llenaIndicador();
+		$('#opt_prioridad').attr('disabled', true)
 	} else {
+		$('#opt_prioridad').attr('disabled', true)
 		$('#normalidad').attr('hidden', true);
 		obj_prioridad.llenaIndicador();
 		obj_prioridad.getObjetivos(opt,0);
@@ -266,13 +287,25 @@ $('#grabar_objetivo').click(function(){
 	let flag = $('#update_flag').val()
 	let contenido = $('#CAPoutput').val()
 
+	// if (contenido.length > 10) {
+	// 	alert('Texto muy largo')
+	// }
+
 	if (contenido == '') {
 		swal(
 			'¡Error!',
 			"Por favor ingrese un objetivo",
 			'error'
 		);
-	}else {
+	}else if (contenido.length > 400) {
+		swal(
+			'¡Error!',
+			"No puede ingresar mas de 400 caracteres",
+			'error'
+		);
+		return false
+	}
+	else {
 
 		if (flag == 0) {
 			$.ajax({
@@ -418,7 +451,7 @@ function btnEliminar(idobjetivo){
 				//Recargamos el grid
 				setTimeout(function(){
 					obj_prioridad.getObjetivos();
-				}, 500)
+				}, 1000)
 			})
 			.fail(function(e) {
 				console.error("Error in btnEditar()");
