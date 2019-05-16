@@ -194,6 +194,7 @@ class Rutamejora_model extends CI_Model
 
   function getTemasxcct($idcct){
     $str_query ="SELECT * FROM rm_tema_prioritarioxcct WHERE id_cct = {$idcct}";
+    // echo $str_query;die();
     return $this->db->query($str_query)->result_array();
   }
 
