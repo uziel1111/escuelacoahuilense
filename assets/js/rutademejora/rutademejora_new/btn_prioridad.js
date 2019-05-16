@@ -6,8 +6,7 @@ $(document).ready(function(){
 	$('#writeText').tooltip()
 	$('#grabar_objetivo').tooltip()
 	$('#limpiar').tooltip()
-})
-
+});
 //Eventos
 $('#opt_prioridad_especial').change(function(){
 	if ( $('#opt_prioridad_especial').val() != 0 ) {
@@ -17,12 +16,6 @@ $('#opt_prioridad_especial').change(function(){
 	}
 })
 
-// $('#opt_prioridad').change(function(){
-// 	alert('Bloqueando')
-// 	if ($('#opt_prioridad').val() != 0) {
-// 		$('#opt_prioridad').attr('disabled', true)
-// 	}
-// })
 
 $('#slt_indicador').change(function(){
 	if ($('#slt_indicador').val() != 0 ) {
@@ -168,15 +161,16 @@ Prioridad.prototype.getsubEspecial = function(){
 
 
 Prioridad.prototype.getObjetivos = function(){
-	var idtemaprioritario = $("#id_tema_prioritario").val();
+	var idtemaprioritario = obj.id_tprioritario ;
+
 	if(idtemaprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {idtpriotario: $("#id_tema_prioritario").val(),
-						 idprioridad:$("#opt_prioridad").val(),
-						 idsubprioridad:$("#opt_prioridad_especial").val()
+			data: {id_tpriotario: obj.id_tprioritario,
+						 id_prioridad: obj.id_prioridad,
+						 id_subprioridad: obj.id_subprioridad
 					 },
 			beforeSend: function(xhr) {
 		        Notification.loading("");
@@ -209,6 +203,10 @@ function show(select_id){
 		obj_prioridad.getsubEspecial();
 		obj_prioridad.llenaIndicador();
 		$('#opt_prioridad').attr('disabled', true)
+
+		setTimeout(function(){
+			alert('Cargando objetivos')
+		}, 1000)
 	} else {
 		$('#opt_prioridad').attr('disabled', true)
 		$('#normalidad').attr('hidden', true);
@@ -245,19 +243,22 @@ $('#writeText').click(function(){
 
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
-	// alert('Funciona')
-	let formData = new FormData($('#t_prioritario')[0])
+
+	// let formData = new FormData($('#t_prioritario')[0])
+	// let id_tpriotario = obj.id_tprioritario
+	// alert('Temao prioritario: '+id_tpriotario)
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
 		dataType: 'JSON',
-		cache: false,
-    contentType: false,
-    processData: false,
-		data: formData,
-		beforeSend: function(xhr) {
+		data:{ id_tprioritario: obj.id_tprioritario,
+					 problematica: $('#problematica').val(),
+					 evidencias: $('#evidencias').val(),
+					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val()
+				 },
+	 	beforeSend: function(xhr) {
 	        Notification.loading("");
-    },
+   	},
 	})
 	.done(function(result) {
 		setTimeout(function () {
@@ -276,7 +277,6 @@ $('#grabar_prioridad').click(function(){
 	.always(function() {
     swal.close();
 	});
-
 })
 //Grabar prioridad
 
@@ -287,9 +287,9 @@ $('#grabar_objetivo').click(function(){
 	let flag = $('#update_flag').val()
 	let contenido = $('#CAPoutput').val()
 
-	// if (contenido.length > 10) {
-	// 	alert('Texto muy largo')
-	// }
+	// console.log(obj.id_tprioritario,);
+	// console.log(obj.id_prioridad,);
+	// console.log(obj.id_subprioridad);
 
 	if (contenido == '') {
 		swal(
@@ -313,9 +313,9 @@ $('#grabar_objetivo').click(function(){
 				type: 'POST',
 				dataType: 'JSON',
 				data: {
-								id_temaprioritario : idtemap,
-								id_subprioridad : $("#opt_prioridad_especial").val(),
-								id_prioridad: $("#opt_prioridad").val(),
+								id_tprioritario : obj.id_tprioritario,
+								id_subprioridad : obj.id_subprioridad,
+								id_prioridad: obj.id_prioridad,
 								objetivo: $('#CAPoutput').val()
 							},
 				beforeSend: function(xhr) {
@@ -389,79 +389,170 @@ $('#grabar_objetivo').click(function(){
 
 
 // Grid
-function btnEditar(idobjetivo, idtprioritario){
-	console.log(idobjetivo);
-	console.log(idtprioritario);
-	$.ajax({
-		url: base_url+'Rutademejora/btnEditar',
-		type: 'POST',
-		dataType: 'JSON',
-		data: { id_objetivo: idobjetivo,
-						id_tprioritario: idtprioritario
-					},
-		beforeSend: function(xhr) {
-	        Notification.loading("");
-    },
-	})
-	.done(function(result) {
-		$("#CAPoutput").empty();
-		$("#CAPoutput").val(result.datos['objetivo']);
-		$('#update_flag').val(idobjetivo);
-		// $("#CAPoutput").append(result.datos);
-		// $('#normalidad').attr('hidden', false);
-	})
-	.fail(function(e) {
-		console.error("Error in btnEditar()");
-	})
-	.always(function() {
-    swal.close();
-	});
+function btnEditar(){
+	// console.log(idobjetivo);
+	// console.log(idtprioritario);
+
+	if (obj.id_objetivo === undefined) {
+		swal(
+      '¡Error!',
+      "Selecciona un tema prioritario a editar ",
+      "error"
+    );
+		return false
+	}else {
+		console.log(obj.id_objetivo)
+		$.ajax({
+		 	url: base_url+'Rutademejora/btnEditar',
+		 	type: 'POST',
+		 	dataType: 'JSON',
+		 	data: { id_objetivo: obj.id_objetivo },
+		 	beforeSend: function(xhr) {
+		         Notification.loading("");
+	   },
+	 })
+	 .done(function(result) {
+	 		$("#CAPoutput").empty();
+	 		$("#CAPoutput").val(result.datos['objetivo']);
+	 		$('#update_flag').val(obj.id_objetivo);
+	 		// $("#CAPoutput").append(result.datos);
+	 		// $('#normalidad').attr('hidden', false);
+	 	})
+		.fail(function(e) {
+			console.error("Error in btnEditar()");
+		})
+		.always(function() {
+	    swal.close();
+		});
+	}
 
 }
 
-function btnEliminar(idobjetivo){
-	swal({
-		title: '¿Esta seguro de eliminar el tema prioritario?',
-		text: "Una vez eliminado no se podra recuperar",
-		type: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Eliminar',
-		cancelButtonText: 'Cancelar'
-	})
-	.then((result) => {
-		if (result.value) {
-			console.log(result.value);
-			$.ajax({
-				url: base_url+'Rutademejora/btnEliminar',
-				type: 'POST',
-				dataType: 'JSON',
-				data: { id_objetivo: idobjetivo },
-				beforeSend: function(xhr) {
-			        Notification.loading("");
-		    },
-			}) //Ajax
-			.done(function(result) {
-				swal(
-	        '¡Correcto!',
-	        "Se eliminó el tema prioritario correctamente",
-	        'success'
-	      );
-				//Recargamos el grid
-				setTimeout(function(){
-					obj_prioridad.getObjetivos();
-				}, 1000)
-			})
-			.fail(function(e) {
-				console.error("Error in btnEditar()");
-			})
-			.always(function() {
-		    swal.close();
-			});
-		}
+function btnEliminar(){
 
-	})
+	if (obj.id_objetivo === undefined) {
+		swal(
+      '¡Error!',
+      "Selecciona un tema prioritario a editar ",
+      "error"
+    );
+		return false
+	}else {
+		swal({
+			title: '¿Esta seguro de eliminar el tema prioritario?',
+			text: "Una vez eliminado no se podra recuperar",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Eliminar',
+			cancelButtonText: 'Cancelar'
+		})
+		.then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: base_url+'Rutademejora/btnEliminar',
+					type: 'POST',
+					dataType: 'JSON',
+					data: { id_objetivo: obj.id_objetivo },
+					beforeSend: function(xhr) {
+				        Notification.loading("");
+			    },
+				}) //Ajax
+				.done(function(result) {
+					swal(
+		        '¡Correcto!',
+		        "Se eliminó el tema prioritario correctamente",
+		        'success'
+		      );
+					//Recargamos el grid
+					setTimeout(function(){
+						obj_prioridad.getObjetivos();
+					}, 1000)
+				})
+				.fail(function(e) {
+					console.error("Error in btnEliminar()");
+				})
+				.always(function() {
+			    swal.close();
+				});
+			}
+		})
+	}
+}
+
+function cargarEvidencia(id_objetivo, id_tprioritario){
+ // alert(id_objetivo)
+ // $('#form_evidencia').submit()
+ let formData = new FormData($('#form_evidencia')[0])
+
+ $.ajax({
+	 url: base_url+'Rutademejora/cargarEvidencia/'+id_objetivo+'/'+id_tprioritario,
+	 type: 'POST',
+	 dataType: 'JSON',
+	 cache: false,
+	 contentType: false,
+	 processData: false,
+	 data: formData,
+	 beforeSend: function(xhr) {
+				 Notification.loading("");
+	 },
+ })
+ .done(function(result) {
+	 swal(
+		 '¡Correcto!',
+		 "Se eliminó el tema prioritario correctamente",
+		 'success'
+	 );
+	 //Recargamos el grid
+	 setTimeout(function(){
+		 obj_prioridad.cargarEvidencia();
+	 }, 1000)
+ })
+ .fail(function(e) {
+	 console.error("Error in cargarEvidencia()");
+ })
+ .always(function() {
+	 swal.close();
+ });
+
+}
 
 
+function cargarEvidenciaFin(id_objetivo, id_tprioritario){
+		console.log(id_objetivo);
+		console.log(id_tprioritario);
+
+		let formData = new FormData($('#form_evidencia_fin')[0])
+
+		$.ajax({
+	 	 url: base_url+'Rutademejora/cargarEvidenciaFin/'+id_objetivo+'/'+id_tprioritario,
+	 	 type: 'POST',
+	 	 dataType: 'JSON',
+	 	 cache: false,
+	 	 contentType: false,
+	 	 processData: false,
+	 	 data: formData,
+	 	 beforeSend: function(xhr) {
+	 				 Notification.loading("");
+	 	 },
+	  })
+
+		.done(function(result) {
+	 	 swal(
+	 		 '¡Correcto!',
+	 		 "Se eliminó el tema prioritario correctamente",
+	 		 'success'
+	 	 );
+	 	 //Recargamos el grid
+	 	 setTimeout(function(){
+	 		 obj_prioridad.cargarEvidencia();
+	 	 }, 1000)
+	  })
+	  .fail(function(e) {
+	 	 console.error("Error in cargarEvidenciaFin()");
+	  })
+	  .always(function() {
+	 	 swal.close();
+	  });
 }

@@ -75,9 +75,14 @@ function Tabla(){
   Tabla.prototype.funcionalidadselect = function(){
     $("#id_tabla_rutas tr").click(function(){
        $(this).addClass('selected').siblings().removeClass('selected');
-       var value=$(this).find('td:first').text(); 
+       var value = $(this).find('td:first').text();
+       var val2 = $(this).find('td:first').next().text();
+       var val3 = $(this).find('td:first').next().next().text();
+
        obj.id_tprioritario = value;
-       // alert(obj.id_tprioritario);
+       obj.id_prioridad = val2;
+       obj.id_subprioridad = val3;
+
        id_tprioritario = 0;
     });
   }

@@ -37,7 +37,7 @@
 								<span data-toggle="modal" data-target="#prioridad">
 								<button type="button" id="btn_prioridad" data-toggle="tooltip" title="Agregar prioridad" class="btn btn-lg btn-primary"><i class="fas fa-plus-square" ></i></button>
 								</span>
-								<button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button>
+								<!-- <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button> -->
 
 								<span data-toggle="modal" data-target="#actividades">
 								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
@@ -48,7 +48,7 @@
 								<button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button>
 							</div>
 
-							<div class="col-auto">
+							<div class="col-auto" hidden>
 								<i class="fas fa-hand-point-right"></i> En esta escuela se cumplen:<br>
 								<button type="button" class="btn btn-primary px-2 pt-0">
 								  <h6 class="d-inline"><span class="badge badge-light mt-0">1</span></h6> de 2 Líneas de Acción Estratégica.
@@ -136,36 +136,8 @@
 									</div>
 
 								</div>
-								<div class="row mt-15">
-									<div class="col-md-6">
-										<label><label style="color:red;">*</label>Ambito:</label>
-										<select class="selectpicker form-control" id="slc_rm_ambito" title="SELECCIONE UN AMBITO">
-											<?php foreach ($arr_ambitos as $item): ?>
-															<option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
-											<?php endforeach; ?>
-										</select>
-									</div>
-									<div class="col-md-6">
-										<label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
-										<select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
-										<?= $responsables?>
-										</select>
-										<br>
-										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
-									</div>
 
-								</div>
-								<div class="row mt-15">
-									<div class="col-md-6">
-
-									</div>
-									<div class="col-md-6" id="div_otro_responsable">
-										<label>Otro responsable:</label>
-										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
-									</div>
-								</div>
-
-								<div class="row mt-15">
+                <div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled />
@@ -186,6 +158,32 @@
 										</script>
 									</div>
 								</div>
+
+                <div class="row mt-15">
+									<div class="col-md-6">
+										<label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
+										<select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
+										<?= $responsables?>
+										</select>
+										<br>
+										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+									</div>
+
+                  <div class="col-md-6" id="div_otro_responsable">
+                    <label>Otro responsable:</label>
+                    <input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
+                  </div>
+
+								</div>
+
+								<div class="row mt-15">
+									<div class="col-md-6">
+
+									</div>
+
+								</div>
+
+
 
 								<div class="row mt-15">
 									<!-- <div class="col-md-12">

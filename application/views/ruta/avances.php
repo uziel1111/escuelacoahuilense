@@ -31,7 +31,6 @@
       <th scope="col">CTE 6</th>
       <th scope="col">CTE 7</th>
       <th scope="col">CTE 8</th>
-      <th scope="col">CTE 9</th>
       <th scope="col">Estatus</th>
     </tr>
   </thead>
@@ -45,7 +44,6 @@
           <?php } else{ ?><td><?=$value['prioridad']?></td><?php } ?>
           <?php if ($value['id_accion'] == ''){?>
             <td><b>N/A</b></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
