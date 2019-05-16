@@ -366,7 +366,7 @@ Rm_tp.prototype.resizeBase64Img = function(base64, width, height) {
 
 
 Rm_tp.prototype.ver_archivo_evidencia= function(path_evidencia){
-  
+
 
   var Protocol = location.protocol;
 	var URLactual = window.location.host;
