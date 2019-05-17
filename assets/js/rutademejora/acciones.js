@@ -122,8 +122,13 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#label_prioridad").text(data.datos['prioridad']);
              $("#label_problematica").text(data.datos['problematicas']);
              $("#label_evidencia").text(data.datos['evidencias']);
+             $("#id_objetivos").empty();
+             $("#id_objetivos").append(data.stroption);
 
              obj_rm_acciones_tp.iniciatabla();
+             // setTimeout(function(){
+             //   obj_rm_acciones_tp.iniciatabla();
+             // }, 500)
            },
            error: function(error){
              console.log(error);
@@ -135,18 +140,19 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
  };
 
  Rm_acciones_tp.prototype.save_accion = function(){
-  var id_ambito = $("#slc_rm_ambito").val();
   var accion = $("#txt_rm_meta").val();
   var materiales = $("#txt_rm_obs").val();
   var id_responsable = $("#slc_rm_presp").val();
   var finicio = $("#datepicker1").val();
   var ffin = $("#datepicker2").val();
   var medicion = $("#txt_rm_indimed").val();
+  var objetivo =$("#id_objetivos").val();
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
-           data:{"id_ambito":id_ambito, "accion":accion, "materiales":materiales, "ids_responsables":encargados,
-            "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val()},
+           data:{"accion":accion, "materiales":materiales, "ids_responsables":encargados,
+            "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val(), 'id_objetivo':objetivo
+          },
            success:function(data){
              var vista = data.tabla;
              $("#contenedor_acciones_id").empty();

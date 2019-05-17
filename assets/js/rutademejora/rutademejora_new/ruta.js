@@ -156,21 +156,21 @@ Prioridad.prototype.funcionalidadselect = function(){
 }
 
 
-$('#arch_1').click(function(e){
-	e.preventDefault()
-		let formData = new FormData($('#form_evidencia')[0])
-		alert('OK')
-
-		$.ajax({
-			url: base_url+'Rutademejora/cargarEvidencia',
-			type: 'POST',
-			dataType: 'JSON',
-			cache: false,
-	    contentType: false,
-	    processData: false,
-			data: formData,
-			beforeSend: function(xhr) {
-		        Notification.loading("");
-	    },
-		})
-})
+// $('#arch_1').click(function(e){
+// 	e.preventDefault()
+// 		let formData = new FormData($('#form_evidencia')[0])
+// 		alert('OK')
+//
+// 		$.ajax({
+// 			url: base_url+'Rutademejora/cargarEvidencia',
+// 			type: 'POST',
+// 			dataType: 'JSON',
+// 			cache: false,
+// 	    contentType: false,
+// 	    processData: false,
+// 			data: formData,
+// 			beforeSend: function(xhr) {
+// 		        Notification.loading("");
+// 	    },
+// 		})
+// })

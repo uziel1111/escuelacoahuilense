@@ -70,11 +70,15 @@ $('#userFile').change(function(){
 })
 
 $('#salir').click(function(){
-	$('#myModal').modal('hide');
+	// $('#myModal').modal('toggle');
+	$('.modal-backdrop').remove();
+	// $("#Mymodal").addClass("modal-backdrop");
 	obj.get_view();
+
 })
 
 $('#close').click(function(){
+	$('.modal-backdrop').remove();
 	obj.get_view();
 })
 
@@ -438,6 +442,7 @@ function btnEliminar(){
     );
 		return false
 	}else {
+		$('#CAPoutput').val('');
 		swal({
 			title: '¿Esta seguro de eliminar el tema prioritario?',
 			text: "Una vez eliminado no se podra recuperar",
@@ -499,14 +504,13 @@ function cargarEvidencia(id_objetivo, id_tprioritario){
 	 },
  })
  .done(function(result) {
-	 swal(
-		 '¡Correcto!',
-		 "Se eliminó el tema prioritario correctamente",
-		 'success'
-	 );
 	 //Recargamos el grid
 	 setTimeout(function(){
-		 obj_prioridad.cargarEvidencia();
+		 swal(
+			 '¡Correcto!',
+			 "Se la evidencia correctamente",
+			 'success'
+		 );
 	 }, 1000)
  })
  .fail(function(e) {
@@ -539,14 +543,13 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario){
 	  })
 
 		.done(function(result) {
-	 	 swal(
-	 		 '¡Correcto!',
-	 		 "Se eliminó el tema prioritario correctamente",
-	 		 'success'
-	 	 );
-	 	 //Recargamos el grid
+
 	 	 setTimeout(function(){
-	 		 obj_prioridad.cargarEvidencia();
+			 swal(
+				'¡Correcto!',
+				"Se eliminó el tema prioritario correctamente",
+				'success'
+			);
 	 	 }, 1000)
 	  })
 	  .fail(function(e) {
@@ -556,3 +559,94 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario){
 	 	 swal.close();
 	  });
 }
+
+$('.file_ini').change(function(){
+	if(this.files[0].size > 5242880){
+		swal(
+			'¡Error!',
+			"El archivo no debe de superar los 5MB",
+			'error'
+		);
+	} else {
+		var name = this.files[0].name;
+		var ext = (this.files[0].name).split('.').pop();
+
+		switch (ext) {
+			case 'jpg':
+			case 'jpeg':
+			case 'png':
+			case 'pdf':
+			case 'JPG':
+			case 'JPEG':
+			case 'PNG':
+			case 'PDF':
+			break;
+
+			default:
+				swal(
+					'¡Error!',
+					"El archivo no tiene la extensión adecuada",
+					'error'
+				);
+				this.value = ''; // reset del valor
+				this.files[0].name = '';
+		}
+		$('#file_name').empty();
+		$('#file_name').html(name);
+	}
+})
+
+
+$('.file_fin').change(function(){
+	if(this.files[0].size > 5242880){
+		swal(
+			'¡Error!',
+			"El archivo no debe de superar los 5MB",
+			'error'
+		);
+	} else {
+		var name = this.files[0].name;
+		var ext = (this.files[0].name).split('.').pop();
+
+		switch (ext) {
+			case 'jpg':
+			case 'jpeg':
+			case 'png':
+			case 'pdf':
+			case 'JPG':
+			case 'JPEG':
+			case 'PNG':
+			case 'PDF':
+			break;
+
+			default:
+				swal(
+					'¡Error!',
+					"El archivo no tiene la extensión adecuada",
+					'error'
+				);
+				this.value = ''; // reset del valor
+				this.files[0].name = '';
+		}
+		$('#file_name').empty();
+		$('#file_name').html(name);
+	}
+})
+
+function readURL(input) {
+  alert('Leyendo archivo')
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      // Asignamos el atributo src a la tag de imagen
+      // $('#preview').attr('src', e.target.result);
+      $('#preview').html("<img src='"+e.target.result+"' />")
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+// El listener va asignado al input
+$("#file").change(function() {
+  readURL(this);
+});

@@ -49,10 +49,9 @@ class Rutamejora_model extends CI_Model
       	return $this->db->query($str_query)->result_array();
     }// guardaruta()
 
-    function insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp){
+    function insert_accion($id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo){
     	$data2 = array(
 			'id_tprioritario' => $id_tprioritario,
-			'id_ambito' => $id_ambito,
 			'accion' => $accion,
 			'mat_insumos' => $materiales,
 			'ids_responsables' => $ids_responsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
@@ -61,15 +60,15 @@ class Rutamejora_model extends CI_Model
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
-			'indcrs_medicion' => $medicion
+			'indcrs_medicion' => $medicion,
+      'id_objetivos' => $id_objetivo
 		);
 		return $this->db->insert('rm_accionxtproritario', $data2);
     }
 
     function getacciones($id_tprioritario){
-    	$str_query = "SELECT * FROM rm_accionxtproritario rma
-						INNER JOIN rm_c_ambito ambito ON ambito.id_ambito = rma.id_ambito
-						WHERE rma.id_tprioritario = {$id_tprioritario}";
+    	$str_query = "SELECT * FROM rm_accionxtproritario where id_tprioritario = {$id_tprioritario}";
+            // echo "<pre>";print_r($str_query);die();
 		return $this->db->query($str_query)->result_array();
     	// return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
     }
@@ -405,10 +404,9 @@ function  get_datos_edith_tp($id_tprioritario){
   	return $this->db->get_where('rm_accionxtproritario', array('id_accion' => $id_accion, 'id_tprioritario' => $id_tprioritario))->result_array();
   }
 
-  function update_accion($id_accion, $id_tprioritario, $id_ambito, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp){
+  function update_accion($id_accion, $id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo){
   	$data2 = array(
 			'id_tprioritario' => $id_tprioritario,
-			'id_ambito' => $id_ambito,
 			'accion' => $accion,
 			'mat_insumos' => $materiales,
 			'ids_responsables' => $ids_responsables,// el formato debe ser una cadena separa por comas ejem(1, 2, 3) =modificar el combo de responsable para multiselect=
@@ -417,7 +415,8 @@ function  get_datos_edith_tp($id_tprioritario){
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
-			'indcrs_medicion' => $medicion
+			'indcrs_medicion' => $medicion,
+      'id_objetivos' => $id_objetivo
 		);
 		$this->db->where('id_accion', $id_accion);
   		return $this->db->update('rm_accionxtproritario', $data2);
@@ -819,6 +818,13 @@ function  get_datos_edith_tp($id_tprioritario){
 
     function getEvidenciaInicio($id_objetivo){
       $str_query = "SELECT path_ev_inicio, path_ev_fin FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getObjxAct($id_tprioritario){
+      $str_query = "SELECT ob.id_objetivo, ob.id_tprioritario, ob.objetivo FROM rm_objetivo ob
+                    INNER JOIN rm_accionxtproritario acp ON ob.id_tprioritario = acp.id_tprioritario
+                    WHERE ob.id_tprioritario = {$id_tprioritario}";
       return $this->db->query($str_query)->result_array();
     }
 
