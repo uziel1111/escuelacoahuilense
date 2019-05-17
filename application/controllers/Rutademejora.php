@@ -409,53 +409,38 @@ class Rutademejora extends CI_Controller {
 				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
 			}
 			$id_cct = $this->cct[0]['id_cct'];
-			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+			// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+			$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
 
 			$tabla = "<div class='table-responsive'>
 				           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 				            <thead>
 				              <tr class=info>
-		                          <th id='idrutamtema' hidden><center>id</center></th>
-		                          <th id='orden' style='width:4%'><center>Orden</center></th>
-		                          <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
-		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
+											<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+											<th id='id_prioridad' hidden><center>id_prioridad</center></th>
+											<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
+											<th id='orden' style='width:4%'><center>Orden</center></th>
+											<th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
+											<th id='objetivos' style='width:31%'><center>Objetivos</center></th>
+											<th id='n_actividades' style='width:4%'><center>Actividades</center></th>
+                     </tr>
+                    </thead>
+                    <tbody id='id_tbody_demo'>";
 
-		                          <th id='n_actividades' style='width:4%'><center>Actividades</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Objetivo</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th>
-		                          <th id='objetivo' style='width:6%'><center>Eliminar</center></th>
-		                          </tr>
-		                          </thead>
-		                          <tbody id='id_tbody_demo'>";
-
-
-				foreach ($rutas as $ruta) {
+				foreach ($temas_prioritarios as $tp) {
 					$tabla .= "<tr>
-							<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
-	                          <td id='orden' data='1'>{$ruta['orden']}</td>
-	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
-	                          <td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
-
-	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
-	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-							  <td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-							  <td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center>
-							  </td>
-							  <td id=''><center>";
-							  if($ruta['path_evidencia'] != ''){
-							  	$tabla.="<button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-danger btn-style-1 mr-1' onclick=obj_rm_tp.eliminaEvidencia('{$ruta['id_tprioritario']}')>Eliminar Archivo</button>";
-							  }else{
-							  	$tabla.="";
-							  }
-							  $tabla.="</center>
-							  </td>
-		                    </tr>";
+							<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
+							<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
+							<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
+							<td id='orden'>{$tp['orden']}</td>
+							<td id='prioridad'>{$tp['prioridad']}</td>
+							<td id='num_objetivos'>{$tp['num_objetivos']}</td>
+							<td id='num_acciones'>{$tp['num_acciones']}</td>
+						</tr>";
 				}
 
-			$tabla .= "</tbody>
-	                        </table>
-	                      </div>  ";
+			$tabla .= "</tbody></table></div>";
+
 			$response = array('tabla' => $tabla);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
