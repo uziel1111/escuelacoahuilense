@@ -33,9 +33,9 @@ $("#btn_rutamejora_acciones").click(function(){
   }
 });
 
-$("#btn_agregar_accion").click(function(){
-  obj_rm_acciones_tp.validaform();
-});
+// $("#btn_agregar_accion").click(function(){
+//   obj_rm_acciones_tp.validaform();
+// });
 
 $("#id_btn_elimina_accion").click(function(){
   // alert(Rm_acciones_tp.id_accion_select);
@@ -418,3 +418,45 @@ var date_diff_indays = function() {
   dt2 = new Date(date2);
 return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
 }
+
+
+//Guardar acciones por Objetivos
+$('#btn_agregar_accion').click(function(){
+  let id_tprioritario = obj.id_tprioritario
+  let id_objetivo = $('#id_objetivos').val()
+  // console.log('tema prioritario: '+id_tprioritario);
+  // console.log('objetivo: '+id_objetivo);
+  let accion = $("#txt_rm_meta").val();
+  let materiales = $("#txt_rm_obs").val();
+  let id_responsable = $("#slc_rm_presp").val();
+  let finicio = $("#datepicker1").val();
+  let ffin = $("#datepicker2").val();
+  let medicion = $("#txt_rm_indimed").val();
+
+  $.ajax({
+    url:base_url+"rutademejora/save_accion",
+    method:"POST",
+    data:{  "accion":accion,
+            "materiales":materiales,
+            "ids_responsables":encargados,
+            "finicio":finicio,
+            "ffin":ffin,
+            "medicion":medicion,
+            'id_tprioritario': obj.id_tprioritario,
+            'id_objetivo':id_objetivo,
+            'otroresp': $("#otro_responsable").val()
+   },
+    success:function(data){
+
+      var vista = data.tabla;
+      $("#contenedor_acciones_id").empty();
+      $("#contenedor_acciones_id").append(vista);
+      //Aqui se van a cargar las acciones en base a los objetivos
+      obj_rm_acciones_tp.iniciatabla();
+      obj_rm_acciones_tp.limpia_camposform();
+    },
+    error: function(error){
+      console.log(error);
+    }
+  })
+})

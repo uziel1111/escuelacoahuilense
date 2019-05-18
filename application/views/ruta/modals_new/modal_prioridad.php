@@ -23,6 +23,13 @@
 		width: 120px;
 		height: 120px;
 	}
+
+	.cerrar{
+		margin-left: 40px;
+		margin-top: -10px;
+		opacity: 0.2;
+		position: absolute;
+	}
 </style>
 <div class="form-group form-group-style-1" >
 	<div class="row">
@@ -232,4 +239,4 @@
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
-<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script> -->
+<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>

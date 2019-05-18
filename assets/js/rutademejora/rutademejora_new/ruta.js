@@ -102,16 +102,16 @@ $("#btn_actividades").click(function(e){
 
 ///
 Prioridad.prototype.getObjetivos = function(){
-	var idtemaprioritario = obj.id_tprioritario ;
-
-	if(idtemaprioritario != 0){
+	// var idtemaprioritario = obj.id_tprioritario ;
+  
+	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
 			data: {id_tpriotario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
-						 id_subprioridad: obj.id_subprioridad
+						 id_subprioridad: obj.id_subprioridad,
 					 },
 			beforeSend: function(xhr) {
 		        Notification.loading("");
@@ -156,7 +156,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 }
 
 
-// $('#arch_1').click(function(e){
+// $('#arch1').click(function(e){
 // 	e.preventDefault()
 // 		let formData = new FormData($('#form_evidencia')[0])
 // 		alert('OK')

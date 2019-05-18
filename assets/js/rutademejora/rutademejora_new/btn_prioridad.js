@@ -78,7 +78,7 @@ $('#salir').click(function(){
 })
 
 $('#close').click(function(){
-	// $('.modal-backdrop').remove();
+	$('.modal-backdrop').remove();
 	obj.get_view();
 })
 
@@ -164,39 +164,6 @@ Prioridad.prototype.getsubEspecial = function(){
 };
 
 
-Prioridad.prototype.getObjetivos = function(){
-	var idtemaprioritario = obj.id_tprioritario ;
-
-	if(idtemaprioritario != 0){
-		$.ajax({
-			url: base_url+'Rutademejora/getObjetivos',
-			type: 'POST',
-			dataType: 'JSON',
-			data: {id_tpriotario: obj.id_tprioritario,
-						 id_prioridad: obj.id_prioridad,
-						 id_subprioridad: obj.id_subprioridad
-					 },
-			beforeSend: function(xhr) {
-		        Notification.loading("");
-	    },
-		})
-		.done(function(result) {
-			$("#objetivo_meta").empty();
-			$("#objetivo_meta").append(result.table);
-
-			$('#tema_prioritario').val(result.id_tprioritario);
-			$('#id_objetivo').val(result.id_objetivo);
-			// obj_prioridad.btnEditar();
-			// btnEditar();
-		})
-		.fail(function(e) {
-			console.error("Error in getObjetivos()");
-		})
-		.always(function() {
-	    swal.close();
-		});
-	}
-}
 
 //Aqui disparamos todas las funciones del modal
 function show(select_id){
@@ -334,7 +301,7 @@ $('#grabar_objetivo').click(function(){
 							"El objetivo se insertó correctamente",
 							'success'
 						);
-						obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
+						obj_prioridad.getObjetivos();
 				}, 1000);
 
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
@@ -486,41 +453,7 @@ function btnEliminar(){
 	}
 }
 
-function cargarEvidencia(id_objetivo, id_tprioritario){
- // alert(id_objetivo)
- // $('#form_evidencia').submit()
- let formData = new FormData($('#form_evidencia')[0])
 
- $.ajax({
-	 url: base_url+'Rutademejora/cargarEvidencia/'+id_objetivo+'/'+id_tprioritario,
-	 type: 'POST',
-	 dataType: 'JSON',
-	 cache: false,
-	 contentType: false,
-	 processData: false,
-	 data: formData,
-	 beforeSend: function(xhr) {
-				 Notification.loading("");
-	 },
- })
- .done(function(result) {
-	 //Recargamos el grid
-	 setTimeout(function(){
-		 swal(
-			 '¡Correcto!',
-			 "Se la evidencia correctamente",
-			 'success'
-		 );
-	 }, 1000)
- })
- .fail(function(e) {
-	 console.error("Error in cargarEvidencia()");
- })
- .always(function() {
-	 swal.close();
- });
-
-}
 
 
 function cargarEvidenciaFin(id_objetivo, id_tprioritario){
@@ -632,21 +565,3 @@ $('.file_fin').change(function(){
 		$('#file_name').html(name);
 	}
 })
-
-function readURL(input) {
-  alert('Leyendo archivo')
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      // Asignamos el atributo src a la tag de imagen
-      // $('#preview').attr('src', e.target.result);
-      $('#preview').html("<img src='"+e.target.result+"' />")
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-// El listener va asignado al input
-$("#file").change(function() {
-  readURL(this);
-});
