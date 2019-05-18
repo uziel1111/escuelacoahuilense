@@ -821,10 +821,15 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    function getObjxAct($id_tprioritario){
+    function getActxObj($id_tprioritario){
       $str_query = "SELECT ob.id_objetivo, ob.id_tprioritario, ob.objetivo FROM rm_objetivo ob
                     INNER JOIN rm_accionxtproritario acp ON ob.id_tprioritario = acp.id_tprioritario
                     WHERE ob.id_tprioritario = {$id_tprioritario}";
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getObjxTp($id_tprioritario){
+      $str_query = "SELECT id_objetivo, objetivo, id_tprioritario FROM rm_objetivo WHERE id_tprioritario = {$id_tprioritario} ";
       return $this->db->query($str_query)->result_array();
     }
 

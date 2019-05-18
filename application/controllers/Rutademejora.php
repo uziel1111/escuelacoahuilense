@@ -327,7 +327,7 @@ class Rutademejora extends CI_Controller {
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
 					              <tr class=info>
-													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+													<th id='id_tprioritario' ><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:4%'><center>Orden</center></th>
@@ -339,7 +339,7 @@ class Rutademejora extends CI_Controller {
                       <tbody id='id_tbody_demo'>";
 												foreach ($temas_prioritarios as $tp) {
 													$tabla .= "<tr>
-															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
+															<td id='id_tprioritario' ><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 															<td id='id_subprioridad' hidden>{$tp['id_subprioridad']}</td>
 															<td id='orden'>{$tp['orden']}</td>
@@ -387,8 +387,6 @@ class Rutademejora extends CI_Controller {
 													$tabla .= "</tbody>
 									                    </table>
 									                  </div>  ";
-
-
 				}
 
 				// echo "<pre>";print_r($data['temas_prioritarios']);die();
@@ -752,16 +750,13 @@ class Rutademejora extends CI_Controller {
       $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
 			// $strView = $this->load->view("ruta/modals_new/modal_actividades", $datos, TRUE);
 			// $response = array('tabla' => $tabla, 'datos' => $datos, 'strView' => $strView);
-			$objetivos = $this->Rutamejora_model->getObjxAct($id_tprioritario);
-
+			$objetivos = $this->Rutamejora_model->getObjxTp($id_tprioritario);
+			// echo "<pre>";print_r($objetivos);die();
 			$option = "<option value='0'>SELECCIONE</option>";
 			foreach ($objetivos as $objetivo) {
 				// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
 				$option .="<option value='{$objetivo['id_objetivo']}'>{$objetivo['objetivo']}</option>";
 			}
-
-
-
 
 			$response = array('tabla' => $tabla, 'datos' => $datos, 'stroption' => $option);
 			// echo "<pre>";print_r($response);die();
@@ -1506,7 +1501,7 @@ public function edit_accion_super(){
 						<center>Evidencia inicio</center>
 					</th>
 					<th id='evidencia_fin' style='width:20%'>
-						<center>Evidencias fin</center>
+						<center>Evidencia fin</center>
 					</th>
 				</tr>
 			</thead>

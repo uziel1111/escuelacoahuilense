@@ -128,9 +128,8 @@
                 <div class="row mt-15">
                   <div class="col-md-12">
                     <label><label style="color:red;">*</label>Seleccione un objetivo:</label>
-										<select class="form-control" id="id_objetivos">
+										<select class="form-control" id="id_objetivos" onchange="(this.value)">
                         <option value="0">SELECCIONE</option>
-
                     </select>
 
 									</div>

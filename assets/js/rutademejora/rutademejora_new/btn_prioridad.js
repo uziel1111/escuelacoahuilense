@@ -78,7 +78,7 @@ $('#salir').click(function(){
 })
 
 $('#close').click(function(){
-	$('.modal-backdrop').remove();
+	// $('.modal-backdrop').remove();
 	obj.get_view();
 })
 
