@@ -593,6 +593,7 @@ class Rutademejora extends CI_Controller {
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_objetivo = $this->input->post('id_objetivo');
 			$id_tprioritario = $this->input->post('id_tprioritario');
+			$id_objetivo = $this->input->post('id_objetivo');
   		$accion = $this->input->post('accion');
   		$materiales = $this->input->post('materiales');
       $ids_responsables = $this->input->post('ids_responsables');
@@ -623,7 +624,7 @@ class Rutademejora extends CI_Controller {
 			if(isset($_POST['id_accion'])){
 				$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo);
 				if($update){
-	  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+	  			$acciones = $this->Rutamejora_model->getacciones($id_objetivo);
 	  			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 	                              <thead>
@@ -1457,6 +1458,7 @@ public function edit_accion_super(){
 		$id_cct = $this->cct[0]['id_cct'];
 		$orden = 0;
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $idtpriotario, $idprioridad, $idsubprioridad);
+		// echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
 		if(count($datos) == 0){
 				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
@@ -1509,49 +1511,96 @@ public function edit_accion_super(){
 			foreach ($datos as $dato) {
 				$orden = $orden +1;
 				$idobjetivo = $dato['id_objetivo'];
-				$tabla .= "<tr>
-					<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
-					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
-					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
-					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
-					<td>
-						<div class='text-center'>
-							<div style='margin-bottom: 10px;'>
-								<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
-												onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-									<i class='fas fa-times-circle'></i>
-								</button>
-								<img id='preview{$dato['id_objetivo']}' src='#' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
+				if ($dato['path_ev_inicio'] != '' || $dato['path_ev_fin'] != '') {
+					$tabla .= "<tr>
+						<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
+						<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
+						<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+						<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+						<td>
+							<div class='text-center'>
+								<div style='margin-bottom: 10px;'>
+									<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+													onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+										<i class='fas fa-times-circle'></i>
+									</button>
+									<img id='preview{$dato['id_objetivo']}' src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
+								</div>
+								<span class='btn btn-primary btn-file'>
+									 <i class='fas fa-paperclip'></i>
+									 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+									 		<input type='file' id='imgIni' name='arch1'
+											onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*'>
+									 </form>
+								</span>
 							</div>
-							<span class='btn btn-primary btn-file'>
-								 <i class='fas fa-paperclip'></i>
-								 <form enctype='multipart/form-data' id='form_evidencia'>
-								 		<input type='file' id='imgIni' name='arch1'
-										onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*'>
-								 </form>
-							</span>
-						</div>
-					</td>
+						</td>
 
-					<td>
-						<div class='text-center'>
-							<div style='margin-bottom: 10px;'>
-								<button type='button' value='Quack_2' class='btn btn-sm cerrar'
-												onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
-									<i class='fas fa-times-circle'></i>
-								</button>
-								<img id='preview_fin{$dato['id_objetivo']}' src='#' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
+						<td>
+							<div class='text-center'>
+								<div style='margin-bottom: 10px;'>
+									<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+													onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+										<i class='fas fa-times-circle'></i>
+									</button>
+									<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
+								</div>
+								<span class='btn btn-primary btn-file'>
+									 <i class='fas fa-paperclip'></i>
+									 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+									 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
+									 </form>
+								</span>
+
 							</div>
-							<span class='btn btn-primary btn-file'>
-								 <i class='fas fa-paperclip'></i>
-								 <form enctype='multipart/form-data' id='form_evidencia_fin'>
-								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
-								 </form>
-							</span>
+						</td>
+					</tr>";
+				} else {
+					$tabla .= "<tr>
+						<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
+						<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
+						<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+						<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+						<td>
+							<div class='text-center'>
+								<div style='margin-bottom: 10px;'>
+									<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+													onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+										<i class='fas fa-times-circle'></i>
+									</button>
+									<img id='preview{$dato['id_objetivo']}' src='#' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
+								</div>
+								<span class='btn btn-primary btn-file'>
+									 <i class='fas fa-paperclip'></i>
+									 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+									 		<input type='file' id='imgIni' name='arch1'
+											onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple>
+									 </form>
+								</span>
+							</div>
+						</td>
 
-						</div>
-					</td>
-				</tr>";
+						<td>
+							<div class='text-center'>
+								<div style='margin-bottom: 10px;'>
+									<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+													onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+										<i class='fas fa-times-circle'></i>
+									</button>
+									<img id='preview_fin{$dato['id_objetivo']}' src='#' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
+								</div>
+								<span class='btn btn-primary btn-file'>
+									 <i class='fas fa-paperclip'></i>
+									 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+									 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
+									 </form>
+								</span>
+
+							</div>
+						</td>
+					</tr>";
+				}
+
 			}
 
 			$tabla .= "</tbody></table>";
@@ -1719,9 +1768,6 @@ public function edit_accion_super(){
 			// print_r($datos[0]['id_prioridad']);
 			// die();
 
-
-
-
 			// $indicador = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
 			//
 			// $data['indicadores'] = $indicador;
@@ -1746,7 +1792,7 @@ public function edit_accion_super(){
 
 	public function cargarEvidencia($id_objetivo, $id_tprioritario){
 		// echo "<pre>";print_r($_FILES);die();
-		// echo "<pre>";print_r($id_tprioritario);die();
+		// echo "<pre>";print_r($id_objetivo);echo "<br>"; print_r($id_tprioritario);die();
 
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch1']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
@@ -1756,7 +1802,7 @@ public function edit_accion_super(){
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
 			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
-			// echo "<pre>";print_r($url_arch);die();
+			// echo "<pre>";print_r($ruta_archivos_save);die();
 			$ev_obj = $this->Rutamejora_model->evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
 			// echo "<pre>";print_r($ev_obj);die();
 
@@ -1791,7 +1837,7 @@ public function edit_accion_super(){
 
 	public function cargarEvidenciaFin($id_objetivo, $id_tprioritario){
 		// echo "<pre>";print_r($_FILES);die();
-		// echo "<pre>";print_r($id_objetivo);die();
+		// echo "<pre>";print_r($id_objetivo);echo "<br>"; print_r($id_tprioritario);die();
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch2']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
 		$this->cct = Utilerias::get_cct_sesion($this);
@@ -1800,7 +1846,7 @@ public function edit_accion_super(){
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
 			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
-			// echo "<pre>";print_r($url_arch);die();
+			// echo "<pre>";print_r($ruta_archivos_save);die();
 			$ev_obj = $this->Rutamejora_model->evidenciaObjFin($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
 			// echo "<pre>";print_r($ev_obj);die();
 
@@ -1860,6 +1906,89 @@ public function edit_accion_super(){
 		}
 
 		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getAccxObj(){
+		$id_objetivo = $this->input->post('id_objetivo');
+		// echo "<pre>";print_r($id_objetivo);die();
+		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
+
+		$tabla = "<div class='table-responsive'>
+														<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+															<thead>
+														<tr class=info>
+														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+															<th id='evidencias' style='width:39%'><center>Acción</center></th>
+															<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+															<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+															<th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+														</tr>
+													</thead>
+													<tbody>";
+						if(count($acciones) > 0){
+							foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+								<td hidden>{$accion['id_accion']}</td>
+								<td>{$accion['accion']}</td>
+								<td>{$accion['mat_insumos']}</td>
+								<td>{$accion['accion_f_inicio']}</td>
+								<td>{$accion['accion_f_termino']}</td>
+							</tr>";
+				}
+						}else{
+							$tabla .= "<tr>
+													<td colspan='5'>No hay datos por mostrar</td>
+												</tr>";
+						}
+
+			$tabla .= "</tbody>
+													</table>
+												</div>  ";
+
+		$response = array('acciones' => $acciones, 'tabla' => $tabla);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	function getTablaAccxObj($id_objetivo){
+		// echo "<pre>";print_r($id_objetivo);die();
+		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
+
+		$tabla = "<div class='table-responsive'>
+														<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+															<thead>
+														<tr class=info>
+														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+															<th id='evidencias' style='width:39%'><center>Acción</center></th>
+															<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+															<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
+															<th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+														</tr>
+													</thead>
+													<tbody>";
+						if(count($acciones) > 0){
+							foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+								<td hidden>{$accion['id_accion']}</td>
+								<td>{$accion['accion']}</td>
+								<td>{$accion['mat_insumos']}</td>
+								<td>{$accion['accion_f_inicio']}</td>
+								<td>{$accion['accion_f_termino']}</td>
+							</tr>";
+				}
+						}else{
+							$tabla .= "<tr>
+													<td colspan='5'>No hay datos por mostrar</td>
+												</tr>";
+						}
+
+			$tabla .= "</tbody>
+													</table>
+												</div>  ";
+
+		$response = array('acciones' => $acciones, 'tabla' => $tabla);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}

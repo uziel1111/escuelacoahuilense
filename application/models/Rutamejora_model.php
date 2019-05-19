@@ -67,8 +67,8 @@ class Rutamejora_model extends CI_Model
 		return $this->db->insert('rm_accionxtproritario', $data2);
     }
 
-    function getacciones($id_tprioritario){
-    	$str_query = "SELECT * FROM rm_accionxtproritario where id_tprioritario = {$id_tprioritario}";
+    function getacciones($id_objetivo){
+    	$str_query = "SELECT * FROM rm_accionxtproritario where id_objetivos = {$id_objetivo}";
             // echo "<pre>";print_r($str_query);die();
 		return $this->db->query($str_query)->result_array();
     	// return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
@@ -812,6 +812,7 @@ function  get_datos_edith_tp($id_tprioritario){
         $this->db->where("id_cct = '{$id_cct}'");
         $this->db->where("id_tprioritario = '{$id_tprioritario}'");
         $this->db->update('rm_objetivo', $data);
+        // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
         $this->db->trans_complete();
 
         if ($this->db->trans_status() === FALSE) {
@@ -858,9 +859,18 @@ function  get_datos_edith_tp($id_tprioritario){
       $data = array(
         'path_ev_fin' => ''
       );
-      // $this->db->where('id_objetivo', $id_objetivo);
-      echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
+      $this->db->where('id_objetivo', $id_objetivo);
+      // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
       return $this->db->update('rm_objetivo', $data);
+    }
+
+    function getAccxObj($id_objetivo){
+      $str_query = "SELECT acc.id_accion, acc.accion, acc.mat_insumos, acc.accion_f_inicio, acc.accion_f_termino
+                    FROM rm_accionxtproritario acc
+                    INNER JOIN rm_objetivo obj ON acc.id_objetivos = obj.id_objetivo
+                    WHERE acc.id_objetivos = {$id_objetivo}";
+      // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
     }
 
 }// Rutamejora_model
