@@ -102,16 +102,16 @@ $("#btn_actividades").click(function(e){
 
 ///
 Prioridad.prototype.getObjetivos = function(){
-	var idtemaprioritario = obj.id_tprioritario ;
+	// var idtemaprioritario = obj.id_tprioritario ;
 
-	if(idtemaprioritario != 0){
+	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
 			data: {id_tpriotario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
-						 id_subprioridad: obj.id_subprioridad
+						 id_subprioridad: obj.id_subprioridad,
 					 },
 			beforeSend: function(xhr) {
 		        Notification.loading("");
@@ -154,23 +154,3 @@ Prioridad.prototype.funcionalidadselect = function(){
 		 id_objetivo = 0;
 	});
 }
-
-
-$('#arch_1').click(function(e){
-	e.preventDefault()
-		let formData = new FormData($('#form_evidencia')[0])
-		alert('OK')
-
-		$.ajax({
-			url: base_url+'Rutademejora/cargarEvidencia',
-			type: 'POST',
-			dataType: 'JSON',
-			cache: false,
-	    contentType: false,
-	    processData: false,
-			data: formData,
-			beforeSend: function(xhr) {
-		        Notification.loading("");
-	    },
-		})
-})

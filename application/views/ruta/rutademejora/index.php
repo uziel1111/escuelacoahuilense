@@ -45,16 +45,16 @@
 								<a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
 								<!-- <button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button> -->
 
-								<button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button>
+								<!-- <button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button> -->
 							</div>
 
-							<div class="col-auto" hidden>
+							<!-- <div class="col-auto" hidden>
 								<i class="fas fa-hand-point-right"></i> En esta escuela se cumplen:<br>
 								<button type="button" class="btn btn-primary px-2 pt-0">
 								  <h6 class="d-inline"><span class="badge badge-light mt-0">1</span></h6> de 2 Líneas de Acción Estratégica.
 								</button>
 
-							</div>
+							</div> -->
 						</div>
 						<div class="row mt-15">
 							<div class="col-12">
@@ -80,7 +80,7 @@
 </section>
 
 <!-- modal -->
-<div id="myModal" class="modal fade">
+<div id="myModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-style-1" style="width: 112% !important; margin-left:-25px !important; align:center !important;">
 			<div class="modal-header bg-dark">
@@ -125,6 +125,16 @@
 						<div class="card-block">
 							<div class="form-group form-group-style-1">
 
+                <div class="row mt-15">
+                  <div class="col-md-12">
+                    <label><label style="color:red;">*</label>Seleccione un objetivo:</label>
+										<select class="form-control" id="id_objetivos">
+                        <option value="0">SELECCIONE</option>
+                    </select>
+
+									</div>
+                </div>
+
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Actividad:</label>
@@ -136,8 +146,26 @@
 									</div>
 
 								</div>
+								<div class="row mt-15">
 
-                <div class="row mt-15">
+									<div class="col-md-12">
+										<label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
+										<select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
+										<?= $responsables?>
+										</select>
+										<br>
+										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+									</div>
+
+								</div>
+								<div class="row mt-15">
+									<div class="col-md-12" id="div_otro_responsable">
+										<label>Otro responsable:</label>
+										<input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
+									</div>
+								</div>
+
+								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled />
@@ -158,32 +186,6 @@
 										</script>
 									</div>
 								</div>
-
-                <div class="row mt-15">
-									<div class="col-md-6">
-										<label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
-										<select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
-										<?= $responsables?>
-										</select>
-										<br>
-										<textarea id="txt_rm_otropa" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
-									</div>
-
-                  <div class="col-md-6" id="div_otro_responsable">
-                    <label>Otro responsable:</label>
-                    <input type="text" name="otro_responsable" id="otro_responsable" class="form-control">
-                  </div>
-
-								</div>
-
-								<div class="row mt-15">
-									<div class="col-md-6">
-
-									</div>
-
-								</div>
-
-
 
 								<div class="row mt-15">
 									<!-- <div class="col-md-12">

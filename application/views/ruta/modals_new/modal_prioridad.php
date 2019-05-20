@@ -18,49 +18,21 @@
 		cursor: inherit;
 		display: block;
 	}
+
+	#imagenmuestra{
+		width: 120px;
+		height: 120px;
+	}
+
+	.cerrar{
+		margin-left: 40px;
+		margin-top: -10px;
+		opacity: 0.2;
+		position: absolute;
+	}
 </style>
 <div class="form-group form-group-style-1" >
 	<div class="row">
-		<!-- <div class="col-sm-12">
-			<label><span class="badge badge-secondary h5 text-white">1.</span> Prioridad del sistema básico de mejora</label><br>
-			<?php if (isset($prioridad)): ?>
-			<select class="form-control" id="opt_prioridad" onchange="show($(this).val())" disabled>
-				<option value="0">SELECCIONAR PRIORIDAD</option>
-					<?php foreach ($prioridades as $prioridad): ?>
-							<option value="<?= $prioridad['id_prioridad'] ?>" <?=((isset($prioridad) && (int)$prioridad['id_prioridad'] == (int)$prioridad))?"selected":""  ?> > <?= $prioridad['prioridad'] ?></option>
-					<?php endforeach; ?>
-
-				<?php else: ?>
-					<select class="form-control" id="opt_prioridad" onchange="show($(this).val())">
-						<option value="0">SELECCIONAR PRIORIDAD</option>
-					<?php foreach ($prioridades as $prioridad): ?>
-							<option value="<?= $prioridad['id_prioridad'] ?>" > <?= $prioridad['prioridad'] ?></option>
-					<?php endforeach; ?>
-				<?php endif; ?>
-			</select>
-		</div> -->
-
-
-		<!-- <?php if ( (isset($subprioridad) && $subprioridad == 1 ) || (isset($subprioridad) && $subprioridad == 2 )): ?>
-			<div class="col-sm-12" id="normalidad" style="margin-top:15px;" >
-				<label>Selecciona una opción</label><br>
-				<select class="form-control" id="opt_prioridad_especial" disabled>
-					<?php foreach ($subprioridades as $subp): ?>
-						<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-		<?php else: ?>
-			<div class="col-sm-12" id="normalidad" style="margin-top:15px;" hidden >
-				<label>Selecciona una opción</label><br>
-				<select class="form-control" id="opt_prioridad_especial">
-					<?php foreach ($subprioridades as $subp): ?>
-						<option value="<?php echo $subp['id_subprioridad'] ?>" <?=((isset($subp) && (int)$subp['id_subprioridad'] == (int)$subp))?"selected":""  ?> ><?php echo $subp['subprioridad'] ?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-		<?php endif; ?> -->
-
 		<div class="col-sm-12">
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
@@ -239,25 +211,9 @@
 				</div>
 				<!-- Grid objetivos -->
 
-
-				<!-- <div class="row mt-3">
-					<div class="col-12 mt-2 mt-lg-0">
-						<label><span class="badge badge-secondary h5 text-white">5.</span> Subir evidencia (imágen o pdf)</label>
-						<small id="" class="text-muted d-block">Disponible a partir del Consejo Técnico Escolar 2.</small>
-
-						<div class="input-group mb-3">
-							<div class="custom-file">
-
-								<input type="file" class="custom-file-input" id="userFile" name="archivo" capture="camera">
-								<label class="custom-file-label" for="inputGroupFile01" id="file_name">Selecciona un archivo</label>
-							</div>
-						</div>
-					</div>
-				</div> -->
-
 				<div class="row mt-15">
 					<div class="col-12">
-						<button type="button" id="salir" class="btn btn-success btn-style-1 mr-10">Regresar</button>
+						<button type="button" id="salir" class="btn btn-success btn-style-1 mr-10" class="close" data-dismiss="modal">Regresar</button>
 					</div>
 				</div>
 
@@ -283,3 +239,4 @@
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>
