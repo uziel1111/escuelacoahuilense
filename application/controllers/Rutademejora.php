@@ -317,7 +317,6 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$tam = 0;
-
 				// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
 				$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct); //Verificamos si esa cct ya tiene temas prioritarios
 				$tam = count($temas_prioritarios);
@@ -387,7 +386,7 @@ class Rutademejora extends CI_Controller {
 													$tabla .= "</tbody>
 									                    </table>
 									                  </div>  ";
-				}
+																				}
 
 				// echo "<pre>";print_r($data['temas_prioritarios']);die();
 				$response = array('tabla' => $tabla, 'tamanio' => $tam);
@@ -413,7 +412,6 @@ class Rutademejora extends CI_Controller {
 			$tabla = "<div class='table-responsive'>
 				           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 				            <thead>
-				              <tr class=info>
 											<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 											<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 											<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
@@ -435,7 +433,7 @@ class Rutademejora extends CI_Controller {
 							<td id='num_objetivos'>{$tp['num_objetivos']}</td>
 							<td id='num_acciones'>{$tp['num_acciones']}</td>
 						</tr>";
-				}
+					}
 
 			$tabla .= "</tbody></table></div>";
 
