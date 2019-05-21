@@ -241,7 +241,7 @@
 </div>
 
 <!--  -->
-<div class="modal" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;">
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content modal-style-1">
 			<div class="modal-header bgcolor-2">
