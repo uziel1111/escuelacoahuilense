@@ -274,6 +274,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               var vista = data.tabla;
                $("#contenedor_acciones_id").empty();
                $("#contenedor_acciones_id").append(vista);
+               $("#id_objetivos").val('0');
                obj_rm_acciones_tp.iniciatabla();
             }else{
               swal(
