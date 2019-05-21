@@ -215,8 +215,8 @@ function imgPreviewFin(id_objetivo){
 
 $("#cerrar_modal_ver_evidencia").click(function(){
   $('#exampleModal_ver_evidencia').modal('toggle');
-  $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
-  $('.modal-backdrop').remove();//elim
+  //$('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+  //$('.modal-backdrop').remove();//elim
 });
 
 //
