@@ -37,12 +37,12 @@ $("#btn_prioridad").click(function(e){
         "Selecciona un tema prioritario a editar ",
         "error"
       );
-			return false
+
 	} else{
 			setTimeout(function(){
 				obj_prioridad.getObjetivos();
 			}, 500)
-      //get_datos_edith_tp
+
 			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 			$.ajax({
 				url:ruta,

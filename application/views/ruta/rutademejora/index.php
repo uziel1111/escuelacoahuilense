@@ -35,7 +35,7 @@
 								</span>
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="button" id="btn_prioridad" data-toggle="tooltip" title="Agregar prioridad" class="btn btn-lg btn-primary"><i class="fas fa-plus-square" ></i></button>
+								<button type="button" id="btn_prioridad" data-toggle="tooltip" title="Agregar planeación estrategica" class="btn btn-lg btn-primary"><i class="fas fa-plus-square" ></i></button>
 								</span>
 								<!-- <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button> -->
 
@@ -113,7 +113,7 @@
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
+					Linea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 
@@ -127,7 +127,7 @@
 
                 <div class="row mt-15">
                   <div class="col-md-12">
-                    <label><label style="color:red;">*</label>Seleccione un objetivo:</label>
+                    <label><label style="color:red;">*</label>Seleccione un objetivo/meta:</label>
 										<select class="form-control" id="id_objetivos">
                         <option value="0">SELECCIONE</option>
                     </select>
@@ -250,6 +250,7 @@
           </div>
           </div>
         <!-- Modal -->
+        
 
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 

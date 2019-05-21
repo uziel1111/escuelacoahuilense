@@ -6,6 +6,7 @@ $(document).ready(function(){
 	$('#writeText').tooltip()
 	$('#grabar_objetivo').tooltip()
 	$('#limpiar').tooltip()
+  $('[data-toggle="tooltip"]').tooltip()
 });
 //Eventos
 $('#opt_prioridad_especial').change(function(){
@@ -400,18 +401,17 @@ function btnEditar(){
 }
 
 function btnEliminar(){
-
 	if (obj.id_objetivo === undefined) {
 		swal(
       '¡Error!',
-      "Selecciona un tema prioritario a editar ",
+      "Selecciona un objetivo para eliminar ",
       "error"
     );
-		return false
+
 	}else {
 		$('#CAPoutput').val('');
 		swal({
-			title: '¿Esta seguro de eliminar el tema prioritario?',
+			title: '¿Esta seguro de eliminar el objetivo?',
 			text: "Una vez eliminado no se podra recuperar",
 			type: 'warning',
 			showCancelButton: true,
@@ -452,116 +452,3 @@ function btnEliminar(){
 		})
 	}
 }
-
-
-
-
-function cargarEvidenciaFin(id_objetivo, id_tprioritario){
-		console.log(id_objetivo);
-		console.log(id_tprioritario);
-
-		let formData = new FormData($('#form_evidencia_fin')[0])
-
-		$.ajax({
-	 	 url: base_url+'Rutademejora/cargarEvidenciaFin/'+id_objetivo+'/'+id_tprioritario,
-	 	 type: 'POST',
-	 	 dataType: 'JSON',
-	 	 cache: false,
-	 	 contentType: false,
-	 	 processData: false,
-	 	 data: formData,
-	 	 beforeSend: function(xhr) {
-	 				 Notification.loading("");
-	 	 },
-	  })
-
-		.done(function(result) {
-
-	 	 setTimeout(function(){
-			 swal(
-				'¡Correcto!',
-				"Se eliminó el tema prioritario correctamente",
-				'success'
-			);
-	 	 }, 1000)
-	  })
-	  .fail(function(e) {
-	 	 console.error("Error in cargarEvidenciaFin()");
-	  })
-	  .always(function() {
-	 	 swal.close();
-	  });
-}
-
-$('.file_ini').change(function(){
-	if(this.files[0].size > 5242880){
-		swal(
-			'¡Error!',
-			"El archivo no debe de superar los 5MB",
-			'error'
-		);
-	} else {
-		var name = this.files[0].name;
-		var ext = (this.files[0].name).split('.').pop();
-
-		switch (ext) {
-			case 'jpg':
-			case 'jpeg':
-			case 'png':
-			case 'pdf':
-			case 'JPG':
-			case 'JPEG':
-			case 'PNG':
-			case 'PDF':
-			break;
-
-			default:
-				swal(
-					'¡Error!',
-					"El archivo no tiene la extensión adecuada",
-					'error'
-				);
-				this.value = ''; // reset del valor
-				this.files[0].name = '';
-		}
-		$('#file_name').empty();
-		$('#file_name').html(name);
-	}
-})
-
-
-$('.file_fin').change(function(){
-	if(this.files[0].size > 5242880){
-		swal(
-			'¡Error!',
-			"El archivo no debe de superar los 5MB",
-			'error'
-		);
-	} else {
-		var name = this.files[0].name;
-		var ext = (this.files[0].name).split('.').pop();
-
-		switch (ext) {
-			case 'jpg':
-			case 'jpeg':
-			case 'png':
-			case 'pdf':
-			case 'JPG':
-			case 'JPEG':
-			case 'PNG':
-			case 'PDF':
-			break;
-
-			default:
-				swal(
-					'¡Error!',
-					"El archivo no tiene la extensión adecuada",
-					'error'
-				);
-				this.value = ''; // reset del valor
-				this.files[0].name = '';
-		}
-		$('#file_name').empty();
-		$('#file_name').html(name);
-	}
-})

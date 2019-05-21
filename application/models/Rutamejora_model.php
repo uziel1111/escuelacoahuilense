@@ -691,14 +691,23 @@ function  get_datos_edith_tp($id_tprioritario){
 
     function getObjetivo($id_objetivo){
       $str_query = "SELECT objetivo FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}";
-      // echo "<pre>";print_r($str_query); die();
+      echo "<pre>";print_r($str_query); die();
 
       return $this->db->query($str_query)->result_array();
     }
 
     function borrarObjetivo($id_objetivo){
+
+      //Este query hay que arreglarlo, debe recibir el id_tpriotario
+
+      $this->db->where('id_objetivos', $id_objetivo);
+      $this->db->delete('rm_accionxtproritario');
+
+      $this->db->reset_query();
+
       $this->db->where('id_objetivo', $id_objetivo);
       $this->db->delete('rm_objetivo');
+
     }
 
     function deleteTP($id_tprioritario){
@@ -785,41 +794,26 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario){
-      $this->db->trans_start();
+
         $data = array(
           "path_ev_inicio" => $ruta_archivos_save,
         );
-        $this->db->where("id_objetivo = '{$id_objetivo}'");
-        $this->db->where("id_cct = '{$id_cct}'");
-        $this->db->where("id_tprioritario = '{$id_tprioritario}'");
-        $this->db->update('rm_objetivo', $data);
-        // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
-        $this->db->trans_complete();
 
-        if ($this->db->trans_status() === FALSE) {
-          return false;
-        }else{
-          return true;
-        }
+        $this->db->where("id_objetivo = '{$id_objetivo}'");
+        return $this->db->update('rm_objetivo', $data);
+        // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
+
     }
 
     function evidenciaObjFin($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario){
-      $this->db->trans_start();
         $data = array(
           "path_ev_fin" => $ruta_archivos_save,
         );
-        $this->db->where("id_objetivo = '{$id_objetivo}'");
-        $this->db->where("id_cct = '{$id_cct}'");
-        $this->db->where("id_tprioritario = '{$id_tprioritario}'");
-        $this->db->update('rm_objetivo', $data);
-        // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
-        $this->db->trans_complete();
 
-        if ($this->db->trans_status() === FALSE) {
-          return false;
-        }else{
-          return true;
-        }
+        $this->db->where("id_objetivo = '{$id_objetivo}'");
+        // echo "<pre>";print_r($this->db->update('rm_objetivo', $data));die();
+        return $this->db->update('rm_objetivo', $data);
+
     }
 
     function getEvidenciaInicio($id_objetivo){
