@@ -740,12 +740,13 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getPrioridades($id_cct){
-        $str_query = "SELECT t1.orden, t1.id_tprioritario, t1.id_prioridad, t1.id_subprioridad, t1.prioridad, t1.num_objetivos,   SUM(IF(ISNULL(ap.id_accion),0,1)) as num_acciones
-        FROM (SELECT tp.id_prioridad, tp.id_subprioridad, tp.id_tprioritario, tp.orden, p.prioridad, ob.objetivo,
+        $str_query = "SELECT t1.orden, t1.id_tprioritario, t1.id_prioridad, t1.id_subprioridad, CONCAT_WS(' -> ',t1.prioridad,t1.subprioridad) as prioridad, t1.num_objetivos,   SUM(IF(ISNULL(ap.id_accion),0,1)) as num_acciones
+        FROM (SELECT tp.id_prioridad, tp.id_subprioridad, sub.subprioridad, tp.id_tprioritario, tp.orden, p.prioridad, ob.objetivo,
         SUM(IF(ISNULL(ob.id_objetivo),0,1)) as num_objetivos, ob.id_objetivo
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p ON p.id_prioridad = tp.id_prioridad
         LEFT JOIN rm_objetivo ob ON ob.id_tprioritario = tp.id_tprioritario
+        LEFT JOIN rm_c_subprioridad sub on sub.id_subprioridad = tp.id_subprioridad
         WHERE tp.id_cct = {$id_cct}
         GROUP BY tp.id_tprioritario) AS t1
         LEFT JOIN rm_accionxtproritario ap ON ap.id_objetivos = t1.id_objetivo
