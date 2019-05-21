@@ -35,7 +35,7 @@
 								</span>
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="button" id="btn_prioridad" data-toggle="tooltip" title="Agregar prioridad" class="btn btn-lg btn-primary"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar planeación estrategica" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 								<!-- <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button> -->
 
@@ -80,12 +80,12 @@
 </section>
 
 <!-- modal -->
-<div id="myModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div id="myModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-style-1" style="width: 112% !important; margin-left:-25px !important; align:center !important;">
 			<div class="modal-header bg-dark">
 				<h5 class="modal-title text-white" id="exampleModalLabel"><i class="far fa-lightbulb"></i> </h5>
-				<button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" id="close" data-target="#myModal" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -113,7 +113,7 @@
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
+					Linea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 
@@ -127,7 +127,7 @@
 
                 <div class="row mt-15">
                   <div class="col-md-12">
-                    <label><label style="color:red;">*</label>Seleccione un objetivo:</label>
+                    <label><label style="color:red;">*</label>Seleccione un objetivo/meta:</label>
 										<select class="form-control" id="id_objetivos">
                         <option value="0">SELECCIONE</option>
                     </select>
@@ -229,27 +229,28 @@
 </div>
 <!-- fin modal -->
 <!-- Modal -->
-            <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content modal-style-1">
-                  <div class="modal-header bgcolor-2">
-                    <h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
-                    <button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+  <!-- <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content modal-style-1">
+        <div class="modal-header bgcolor-2">
+          <h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
+          <button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="form-group form-group-style-1">
+                  <div class="row mt-15">
+                    <div class="col-md-12" id="dv_ver_evidencia">
+                    </div>
                   </div>
-                  <div class="modal-body">
-                          <div class="form-group form-group-style-1">
-                            <div class="row mt-15">
-                              <div class="col-md-12" id="dv_ver_evidencia">
-                              </div>
-                            </div>
-                          </div>
-              </div>
-            </div>
-          </div>
-          </div>
+                </div>
+    </div>
+  </div>
+</div>
+</div> -->
         <!-- Modal -->
+
 
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 

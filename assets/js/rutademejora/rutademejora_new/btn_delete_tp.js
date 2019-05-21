@@ -58,7 +58,7 @@ function eliminarTP(id_tprioritario){
 	  }
   })
 	.fail(function(e) {
-  	console.error("Error in get_datos_edith_tp()");
+  	console.error("Error in eliminarTP()");
   })
   .always(function() {
       swal.close();

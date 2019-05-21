@@ -330,8 +330,8 @@ class Rutademejora extends CI_Controller {
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:4%'><center>Orden</center></th>
-													<th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
-													<th id='objetivos' style='width:31%'><center>Objetivos</center></th>
+													<th id='tema' style='width:20%'><center>Lineas de acción</center></th>
+													<th id='objetivos' style='width:31%'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:4%'><center>Actividades</center></th>
 												</tr>
                       </thead>
@@ -365,8 +365,8 @@ class Rutademejora extends CI_Controller {
 	                        <th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 	                        <th id='orden' style='width:4%'><center>Orden</center></th>
-	                        <th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
-	                        <th id='objetivos' style='width:31%'><center>Objetivos</center></th>
+	                        <th id='tema' style='width:20%'><center>Lineas de acción</center></th>
+	                        <th id='objetivos' style='width:31%'><center>Objetivos y metas</center></th>
 	                        <th id='n_actividades' style='width:4%'><center>Actividades</center></th>
 	                        </thead>
 	                        <tbody id='id_tbody_demo'>";
@@ -416,8 +416,8 @@ class Rutademejora extends CI_Controller {
 											<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 											<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 											<th id='orden' style='width:4%'><center>Orden</center></th>
-											<th id='tema' style='width:20%'><center>Temas prioritarios</center></th>
-											<th id='objetivos' style='width:31%'><center>Objetivos</center></th>
+											<th id='tema' style='width:20%'><center>Lineas de acción</center></th>
+											<th id='objetivos' style='width:31%'><center>Objetivos y metas</center></th>
 											<th id='n_actividades' style='width:4%'><center>Actividades</center></th>
                      </tr>
                     </thead>
@@ -1487,7 +1487,7 @@ public function edit_accion_super(){
 				$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 				<tr class='info'>
-					<th id='idrutamtema' >
+					<th id='idrutamtema' hidden>
 						<center>id</center>
 					</th>
 					<th id='num_rutamtema' style='width:5%'>
@@ -1507,97 +1507,107 @@ public function edit_accion_super(){
 			<tbody>";
 
 			foreach ($datos as $dato) {
+				// echo "<pre>";print_r($dato);die();
 				$orden = $orden +1;
 				$idobjetivo = $dato['id_objetivo'];
-				if ($dato['path_ev_inicio'] != '' || $dato['path_ev_fin'] != '') {
-					$tabla .= "<tr>
-						<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
-						<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
-						<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
-						<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
-						<td>
-							<div class='text-center'>
-								<div style='margin-bottom: 10px;'>
-									<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
-													onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-										<i class='fas fa-times-circle'></i>
-									</button>
-									<img id='preview{$dato['id_objetivo']}' src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
-								</div>
-								<span class='btn btn-primary btn-file'>
-									 <i class='fas fa-paperclip'></i>
-									 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
-									 		<input type='file' id='imgIni' name='arch1'
-											onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*'>
-									 </form>
-								</span>
-							</div>
-						</td>
 
-						<td>
-							<div class='text-center'>
-								<div style='margin-bottom: 10px;'>
-									<button type='button' value='Quack_2' class='btn btn-sm cerrar'
-													onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
-										<i class='fas fa-times-circle'></i>
-									</button>
-									<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
-								</div>
-								<span class='btn btn-primary btn-file'>
-									 <i class='fas fa-paperclip'></i>
-									 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
-									 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
-									 </form>
-								</span>
+				// echo "Entramos al IF";die();
+				$tabla .= "<tr>
+					<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
+					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
+					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+					<td>
+						<div class='text-center'>
 
-							</div>
-						</td>
-					</tr>";
-				} else {
-					$tabla .= "<tr>
-						<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
-						<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
-						<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
-						<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
-						<td>
-							<div class='text-center'>
-								<div style='margin-bottom: 10px;'>
-									<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
-													onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-										<i class='fas fa-times-circle'></i>
-									</button>
-									<img id='preview{$dato['id_objetivo']}' src='#' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
-								</div>
-								<span class='btn btn-primary btn-file'>
-									 <i class='fas fa-paperclip'></i>
-									 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
-									 		<input type='file' id='imgIni' name='arch1'
-											onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple>
-									 </form>
-								</span>
-							</div>
-						</td>
+							<div style='margin-bottom: 10px;'>
+								<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+												onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+									<i class='fas fa-times-circle'></i>
+								</button>
 
-						<td>
-							<div class='text-center'>
-								<div style='margin-bottom: 10px;'>
-									<button type='button' value='Quack_2' class='btn btn-sm cerrar'
-													onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
-										<i class='fas fa-times-circle'></i>
-									</button>
-									<img id='preview_fin{$dato['id_objetivo']}' src='#' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
-								</div>
-								<span class='btn btn-primary btn-file'>
-									 <i class='fas fa-paperclip'></i>
-									 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
-									 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
-									 </form>
-								</span>
-
+								<img id='preview{$dato['id_objetivo']}'
+										 src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px'
+										 class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
 							</div>
-						</td>
-					</tr>";
-				}
+
+							<span class='btn btn-primary btn-file'>
+								 <i class='fas fa-paperclip'></i>
+								 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+								 		<input type='file' id='imgIni' name='arch1'
+										onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple>
+								 </form>
+							</span>
+						</div>
+					</td>
+
+					<td>
+						<div class='text-center'>
+
+							<div style='margin-bottom: 10px;'>
+								<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+												onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+									<i class='fas fa-times-circle'></i>
+								</button>
+
+								<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail'
+								onclick='imgPreviewFin({$dato['id_objetivo']})' />
+							</div>
+
+							<span class='btn btn-primary btn-file'>
+								 <i class='fas fa-paperclip'></i>
+								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
+								 </form>
+							</span>
+						</div>
+					</td>
+				</tr>";
+				 //else {
+				// 	$tabla .= "<tr>
+				// 		<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
+				// 		<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
+				// 		<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+				// 		<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+				// 		<td>
+				// 			<div class='text-center'>
+				// 				<div style='margin-bottom: 10px;'>
+				// 					<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+				// 									onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+				// 						<i class='fas fa-times-circle'></i>
+				// 					</button>
+				// 					<img id='preview{$dato['id_objetivo']}' src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px' class='img img-thumbnail'/>
+				// 				</div>
+				// 				<span class='btn btn-primary btn-file'>
+				// 					 <i class='fas fa-paperclip'></i>
+				// 					 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+				// 					 		<input type='file' id='imgIni' name='arch1'
+				// 							onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple>
+				// 					 </form>
+				// 				</span>
+				// 			</div>
+				// 		</td>
+				//
+				// 		<td>
+				// 			<div class='text-center'>
+				// 				<div style='margin-bottom: 10px;'>
+				// 					<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+				// 									onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+				// 						<i class='fas fa-times-circle'></i>
+				// 					</button>
+				// 					<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail' />
+				// 				</div>
+				// 				<span class='btn btn-primary btn-file'>
+				// 					 <i class='fas fa-paperclip'></i>
+				// 					 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+				// 					 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' >
+				// 					 </form>
+				// 				</span>
+				//
+				// 			</div>
+				// 		</td>
+				// 	</tr>";
+				// }
 
 			}
 

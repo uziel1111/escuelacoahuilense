@@ -24,13 +24,26 @@
 		height: 120px;
 	}
 
+	#dv_ver_evidencia{
+		margin-left: 50%;
+	}
+
 	.cerrar{
 		margin-left: 40px;
 		margin-top: -10px;
 		opacity: 0.2;
 		position: absolute;
 	}
+
+	#exampleModal_ver_evidencia{
+			margin-top: 75%;
+	}
+
+	.body_evidencia{
+		width: 50%;
+	}
 </style>
+
 <div class="form-group form-group-style-1" >
 	<div class="row">
 		<div class="col-sm-12">
@@ -173,7 +186,7 @@
 								<div class="row mt-3">
 									<div class="col">
 										<label class="mb-1"><span class="badge badge-secondary h5 text-white">7.Objetivo</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
-										<textarea id="CAPoutput" class="form-control" rows="4" style="text-transform: uppercase;"></textarea>
+										<textarea id="CAPoutput" class="form-control" rows="4" style="text-transform: uppercase;" maxlength="400"></textarea>
 										<small id="passwordHelpInline" class="text-muted">Máximo 400 caracteres.</small>
 
 										<input type="hidden" id="update_flag" name="" value="0">
@@ -222,14 +235,34 @@
 				<?php else: ?>
 					<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
 				<?php endif; ?>
-
 			</form>
 		</div>
-
-
 	</div>
-
 </div>
+
+<!--  -->
+<div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content modal-style-1">
+			<div class="modal-header bgcolor-2">
+				<h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
+				<button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body body_evidencia">
+				<div class="form-group form-group-style-1">
+
+					<div class="row mt-15">
+						<div class="col-md-12" id="dv_ver_evidencia"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  -->
 
 <input type="hidden" id="nivel" value="  ">
 <!-- <input type="hidden" value="" id="idtemap_seleccionado" name="tema_prioritario"> -->
@@ -238,5 +271,5 @@
 
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>

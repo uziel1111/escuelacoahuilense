@@ -239,7 +239,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
              obj_rm_acciones_tp.limpia_camposform();
              $('#btn_editando_accion').hide();
              $('#btn_agregar_accion').show();
-             // $('#id_objetivo').attr('disabled', false);
+             $('#id_objetivos').val('0');
+             $('#id_objetivos').attr('disabled', false);
 
            },
            error: function(error){
@@ -273,6 +274,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               var vista = data.tabla;
                $("#contenedor_acciones_id").empty();
                $("#contenedor_acciones_id").append(vista);
+               $("#id_objetivos").val('0');
                obj_rm_acciones_tp.iniciatabla();
             }else{
               swal(
@@ -293,6 +295,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  };
 
  Rm_acciones_tp.prototype.edit_accion = function(idaccion){
+   let id_objetivo = $('#id_objetivos').val()
    $.ajax({
            url:base_url+"rutademejora/edit_accion",
            method:"POST",
@@ -306,7 +309,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             $("#txt_rm_obs").val(editado['mat_insumos']);
             $("#slc_rm_presp").val(editado['ids_responsables']);
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
-            // $("#id_objetivos").attr('disabled', true);
+            $("#id_objetivos").val(id_objetivo);
+            $("#id_objetivos").attr('disabled', true);
             // console.log('ids_responsables');
             var ids = editado['ids_responsables'].split(',');
             // console.log(ids);
@@ -469,6 +473,7 @@ $('#btn_agregar_accion').click(function(){
       setTimeout(function(){
         getTablaAccxObj(id_objetivo)
       }, 500)
+      $('#id_objetivos').val('0');
     },
     error: function(error){
       console.log(error);
