@@ -2,6 +2,14 @@ $(document).ready(function() {
    obj_prioridad = new Prioridad();
 });
 
+$('#salir').click(function(){
+	$('#myModal').modal('toggle');
+	if ($('.modal-backdrop').is(':visible')) {
+	  $('body').removeClass('modal-open');
+	  $('.modal-backdrop').remove();
+	};
+})
+
 $("#btn_mision").click(function(e){
 	e.preventDefault()
 	var ruta = base_url + 'Rutademejora/modal_mision'
@@ -39,10 +47,6 @@ $("#btn_prioridad").click(function(e){
       );
 
 	} else{
-			setTimeout(function(){
-				obj_prioridad.getObjetivos();
-			}, 500)
-
 			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 			$.ajax({
 				url:ruta,
@@ -61,13 +65,14 @@ $("#btn_prioridad").click(function(e){
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
+        obj_prioridad.getObjetivos();
 			})
 			.fail(function(e) {
 		    console.error("Error in get_datos_edith_tp()");
 		  })
 			.always(function() {
 		    swal.close();
-				$("#myModal").modal("hide");
+				// $("#myModal").modal("hide");
 		  });
 		}
 });

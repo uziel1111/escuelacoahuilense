@@ -1487,7 +1487,7 @@ public function edit_accion_super(){
 				$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 				<tr class='info'>
-					<th id='idrutamtema' >
+					<th id='idrutamtema' hidden>
 						<center>id</center>
 					</th>
 					<th id='num_rutamtema' style='width:5%'>
@@ -1513,7 +1513,7 @@ public function edit_accion_super(){
 
 				// echo "Entramos al IF";die();
 				$tabla .= "<tr>
-					<td id='id_objetivo'><center>{$dato['id_objetivo']}</center></td>
+					<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
 					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
 					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
 					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
@@ -1543,7 +1543,7 @@ public function edit_accion_super(){
 
 					<td>
 						<div class='text-center'>
-						
+
 							<div style='margin-bottom: 10px;'>
 								<button type='button' value='Quack_2' class='btn btn-sm cerrar'
 												onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>

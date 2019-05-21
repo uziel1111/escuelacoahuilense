@@ -691,7 +691,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
     function getObjetivo($id_objetivo){
       $str_query = "SELECT objetivo FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}";
-      echo "<pre>";print_r($str_query); die();
+      // echo "<pre>";print_r($str_query); die();
 
       return $this->db->query($str_query)->result_array();
     }

@@ -271,5 +271,5 @@
 
 <input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>

@@ -6,7 +6,9 @@ $(document).ready(function(){
 	$('#writeText').tooltip()
 	$('#grabar_objetivo').tooltip()
 	$('#limpiar').tooltip()
-  $('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="tooltip"]').tooltip({
+    trigger : 'hover'
+	})
 });
 //Eventos
 $('#opt_prioridad_especial').change(function(){
@@ -71,11 +73,14 @@ $('#userFile').change(function(){
 })
 
 $('#salir').click(function(){
-	// $('#myModal').modal('toggle');
-	$('.modal-backdrop').remove();
+	$('#myModal').modal('toggle');
+	if ($('.modal-backdrop').is(':visible')) {
+	  $('body').removeClass('modal-open');
+	  $('.modal-backdrop').remove();
+	};
+	// $('.modal-backdrop').remove();
 	// $("#Mymodal").addClass("modal-backdrop");
 	obj.get_view();
-
 })
 
 $('#close').click(function(){
@@ -451,4 +456,58 @@ function btnEliminar(){
 			}
 		})
 	}
+}
+
+
+Prioridad.prototype.getObjetivos = function(){
+	// var idtemaprioritario = obj.id_tprioritario ;
+
+	if(obj.id_tprioritario != 0){
+		$.ajax({
+			url: base_url+'Rutademejora/getObjetivos',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {id_tpriotario: obj.id_tprioritario,
+						 id_prioridad: obj.id_prioridad,
+						 id_subprioridad: obj.id_subprioridad,
+					 },
+			beforeSend: function(xhr) {
+		        Notification.loading("");
+	    },
+		})
+		.done(function(result) {
+			$("#objetivo_meta").empty();
+			$("#objetivo_meta").append(result.table);
+
+			$('#tema_prioritario').val(result.id_tprioritario);
+			$('#id_objetivo').val(result.id_objetivo);
+			obj_prioridad.funcionalidadselect()
+			// obj_prioridad.btnEditar();
+			// btnEditar();
+		})
+		.fail(function(e) {
+			console.error("Error in getObjetivos()");
+		})
+		.always(function() {
+	    swal.close();
+		});
+	}
+}
+
+Prioridad.prototype.funcionalidadselect = function(){
+	$("#id_tabla_objetivos tr").click(function(){
+		 $(this).addClass('selected').siblings().removeClass('selected');
+		 var value = $(this).find('td:first').text();
+     var t_prioritario = $(this).find('td:first').next().text();
+
+		 obj.id_objetivo = value;
+		 obj.id_tprioritario = t_prioritario;
+		 // obj.id_subprioridad = val3;
+
+     console.log(obj.id_objetivo);
+     // console.log(val2);
+     // console.log(val3);
+
+		 id_objetivo = 0;
+	});
 }

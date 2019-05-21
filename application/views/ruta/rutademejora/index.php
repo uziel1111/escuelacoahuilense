@@ -35,7 +35,7 @@
 								</span>
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="button" id="btn_prioridad" data-toggle="tooltip" title="Agregar planeación estrategica" class="btn btn-lg btn-primary"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar planeación estrategica" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 								<!-- <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button> -->
 
@@ -85,7 +85,7 @@
 		<div class="modal-content modal-style-1" style="width: 112% !important; margin-left:-25px !important; align:center !important;">
 			<div class="modal-header bg-dark">
 				<h5 class="modal-title text-white" id="exampleModalLabel"><i class="far fa-lightbulb"></i> </h5>
-				<button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" id="close" data-target="#myModal" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
