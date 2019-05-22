@@ -200,6 +200,8 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario, elemento){
 
 function imgPreview(id_objetivo){
   let src = $('#preview'+id_objetivo).attr('src')
+  $('#titulo_ev').empty()
+  $('#titulo_ev').text('Vista previa')
   $('#dv_ver_evidencia').empty()
   $('#dv_ver_evidencia').html('<img src="'+src+'" width="100%" height="250" style="border: none;"/>')
   $('#exampleModal_ver_evidencia').modal('toggle');

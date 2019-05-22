@@ -245,7 +245,7 @@
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content modal-style-1">
 			<div class="modal-header bgcolor-2">
-				<h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
+				<h5 class="modal-title text-white" id="titulo_ev"> Archivo evidencia</h5>
 				<button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
