@@ -2,10 +2,10 @@ $(document).ready(function(){
 	obj_prioridad = new Prioridad();
 	// $('#normalidad').attr('hidden', true);
 	// boxes()
-	$('#tooltip-demo').tooltip()
-	$('#writeText').tooltip()
-	$('#grabar_objetivo').tooltip()
-	$('#limpiar').tooltip()
+	// $('#tooltip-demo').tooltip()
+	// $('#writeText').tooltip()
+	// $('#grabar_objetivo').tooltip()
+	// $('#limpiar').tooltip()
 	$('[data-toggle="tooltip"]').tooltip({
     trigger : 'hover'
 	})
