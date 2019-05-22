@@ -198,11 +198,8 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario, elemento){
 
 
 function imgPreview(id_objetivo){
-  // alert('Funciona: '+id_objetivo)
   let src = $('#preview'+id_objetivo).attr('src')
-
   $('#dv_ver_evidencia').empty()
-  // $('#dv_ver_evidencia').html('<iframe src="'+src+'" width="100%" height="50" style="border: none;"></iframe>')
   $('#dv_ver_evidencia').html('<img src="'+src+'" width="100%" height="250" style="border: none;"/>')
   $('#exampleModal_ver_evidencia').modal('toggle');
 }
@@ -216,8 +213,6 @@ function imgPreviewFin(id_objetivo){
 
 $("#cerrar_modal_ver_evidencia").click(function(){
   $('#exampleModal_ver_evidencia').modal('toggle');
-  //$('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
-  //$('.modal-backdrop').remove();//elim
 });
 
 //

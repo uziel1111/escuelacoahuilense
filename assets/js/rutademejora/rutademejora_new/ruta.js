@@ -42,10 +42,10 @@ $("#btn_prioridad").click(function(e){
 	if(obj.id_tprioritario === undefined){
 		swal(
         '¡Error!',
-        "Selecciona un tema prioritario a editar ",
+        "Selecciona una línea de acción para editar",
         "error"
       );
-
+    return false;
 	} else{
 			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 			$.ajax({
@@ -53,7 +53,8 @@ $("#btn_prioridad").click(function(e){
 				type:'post',
 				data: { id_tprioritario: obj.id_tprioritario,
 								id_prioridad: obj.id_prioridad,
-								id_subprioridad: obj.id_subprioridad
+								id_subprioridad: obj.id_subprioridad,
+                accion: obj.accion
 							},
 				beforeSend: function(xhr) {
 			      Notification.loading("");

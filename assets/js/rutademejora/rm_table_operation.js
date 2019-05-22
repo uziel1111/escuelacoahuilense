@@ -78,10 +78,12 @@ function Tabla(){
        var value = $(this).find('td:first').text();
        var val2 = $(this).find('td:first').next().text();
        var val3 = $(this).find('td:first').next().next().text();
+       var val4 = $(this).find('td:first').next().next().next().next().text();
 
        obj.id_tprioritario = value;
        obj.id_prioridad = val2;
        obj.id_subprioridad = val3;
+       obj.accion = val4;
 
        id_tprioritario = 0;
     });

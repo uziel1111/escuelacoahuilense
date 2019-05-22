@@ -93,6 +93,8 @@ $('#delete_file').click(function(){
 
 })
 
+
+
 function Prioridad(){
   _thismap = this;
 }
@@ -221,9 +223,6 @@ $('#writeText').click(function(){
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
 
-	// let formData = new FormData($('#t_prioritario')[0])
-	// let id_tpriotario = obj.id_tprioritario
-	// alert('Temao prioritario: '+id_tpriotario)
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
@@ -298,24 +297,34 @@ $('#grabar_objetivo').click(function(){
 				beforeSend: function(xhr) {
 			        Notification.loading("");
 		    },
-			})
-			.done(function(result) {
-
-				setTimeout(function () {
-					swal(
+				success: function(data){
+					setTimeout(function(){
+						swal(
 							'¡Correcto!',
 							"El objetivo se insertó correctamente",
 							'success'
 						);
-						obj_prioridad.getObjetivos();
-				}, 1000);
+					}, 1000)
+					obj_prioridad.getObjetivos()
+				}
+			})
+			.done(function(result) {
+
+				// setTimeout(function () {
+				// 	swal(
+				// 			'¡Correcto!',
+				// 			"El objetivo se insertó correctamente",
+				// 			'success'
+				// 		);
+				// 		obj_prioridad.getObjetivos();
+				// }, 1000);
 
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
 			})
 			.fail(function(e) {
-				console.error("Error in agregar_objetivo()");
+				console.error("Error in grabar_objetivo()");
 			})
 			.always(function() {
 		    swal.close();
@@ -331,17 +340,20 @@ $('#grabar_objetivo').click(function(){
 				beforeSend: function(xhr) {
 			        Notification.loading("");
 		    },
+				success: function(data){
+					setTimeout(function () {
+						swal(
+								'¡Correcto!',
+								"El objetivo se actualizó correctamente",
+								'success'
+							);
+					}, 1000);
+					obj_prioridad.getObjetivos()
+				}
 			})
 			.done(function(result) {
 				obj_prioridad.getObjetivos();
 				$('#update_flag').val('')
-				setTimeout(function () {
-					swal(
-							'¡Correcto!',
-							"El objetivo se actualizó correctamente",
-							'success'
-						);
-				}, 1000);
 
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
@@ -373,7 +385,7 @@ function btnEditar(){
 	if (obj.id_objetivo === undefined) {
 		swal(
       '¡Error!',
-      "Selecciona un tema prioritario a editar ",
+      "Selecciona una tema prioritario a editar ",
       "error"
     );
 		return false
@@ -458,7 +470,6 @@ function btnEliminar(){
 	}
 }
 
-
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
 
@@ -469,7 +480,6 @@ Prioridad.prototype.getObjetivos = function(){
 			dataType: 'JSON',
 			data: {id_tpriotario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
-						 id_subprioridad: obj.id_subprioridad,
 					 },
 			beforeSend: function(xhr) {
 		        Notification.loading("");
@@ -482,6 +492,7 @@ Prioridad.prototype.getObjetivos = function(){
 			$('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
+			// obj_prioridad.getObjetivos()
 			// obj_prioridad.btnEditar();
 			// btnEditar();
 		})
@@ -493,6 +504,7 @@ Prioridad.prototype.getObjetivos = function(){
 		});
 	}
 }
+
 
 Prioridad.prototype.funcionalidadselect = function(){
 	$("#id_tabla_objetivos tr").click(function(){

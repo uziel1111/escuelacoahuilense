@@ -531,10 +531,9 @@ function  get_datos_edith_tp($id_tprioritario){
         $objetivos = array(
           'objetivo' => $objetivo,
           'id_tprioritario' => $id_tprioritario,
-          'orden' => 1,
           'id_cct'=> $id_cct
         );
-
+        // echo "<pre>";print_r($this->db->insert('rm_objetivo', $objetivos));die();
         if($this->db->insert('rm_objetivo', $objetivos)){
           $response = array(
             'status' => true,
@@ -573,7 +572,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
       // echo "<pre>";print_r($datos);die();
       $this->db->insert('rm_tema_prioritarioxcct', $datos);
-      $id_tprioritario = $this->db->insert_id(); // Recuperamos el ultimo id generado
+      //$id_tprioritario = $this->db->insert_id(); // Recuperamos el ultimo id generado
 
       $this->db->trans_complete();
       $response = array();
@@ -636,19 +635,10 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    function getObjetivos($id_cct, $idtpriotario, $idprioridad, $idsubprioridad){
-      $inner = "";
-      $where = "";
-
-      if($idsubprioridad != 0){
-        $inner = "INNER JOIN rm_c_subprioridad sub ON sub.id_prioridad = tprio.id_prioridad";
-        $where = " AND sub.id_subprioridad = {$idsubprioridad}";
-      }
-
+    function getObjetivos($id_cct, $id_tprioritario, $idprioridad){
       $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
                     INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-                    {$inner}
-                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario ={$idtpriotario} AND tprio.id_prioridad = {$idprioridad} {$where}";
+                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }
@@ -669,7 +659,7 @@ function  get_datos_edith_tp($id_tprioritario){
       $this->db->where('id_tprioritario', $id_tprioritario);
       $this->db->where('id_cct', $id_cct);
       $this->db->update('rm_tema_prioritarioxcct', $datos);
-      $id_insertado_tmp = $this->db->insert_id();
+      // $id_insertado_tmp = $this->db->insert_id();
 
       return true;
 
@@ -740,13 +730,12 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getPrioridades($id_cct){
-        $str_query = "SELECT t1.orden, t1.id_tprioritario, t1.id_prioridad, t1.id_subprioridad, CONCAT_WS(' -> ',t1.prioridad,t1.subprioridad) as prioridad, t1.num_objetivos,   SUM(IF(ISNULL(ap.id_accion),0,1)) as num_acciones
-        FROM (SELECT tp.id_prioridad, tp.id_subprioridad, sub.subprioridad, tp.id_tprioritario, tp.orden, p.prioridad, ob.objetivo,
+        $str_query = "SELECT t1.orden, t1.id_tprioritario, t1.id_prioridad, t1.id_subprioridad, t1.prioridad, t1.num_objetivos,   SUM(IF(ISNULL(ap.id_accion),0,1)) as num_acciones
+        FROM (SELECT tp.id_prioridad, tp.id_subprioridad, tp.id_tprioritario, tp.orden, p.prioridad, ob.objetivo,
         SUM(IF(ISNULL(ob.id_objetivo),0,1)) as num_objetivos, ob.id_objetivo
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p ON p.id_prioridad = tp.id_prioridad
         LEFT JOIN rm_objetivo ob ON ob.id_tprioritario = tp.id_tprioritario
-        LEFT JOIN rm_c_subprioridad sub on sub.id_subprioridad = tp.id_subprioridad
         WHERE tp.id_cct = {$id_cct}
         GROUP BY tp.id_tprioritario) AS t1
         LEFT JOIN rm_accionxtproritario ap ON ap.id_objetivos = t1.id_objetivo

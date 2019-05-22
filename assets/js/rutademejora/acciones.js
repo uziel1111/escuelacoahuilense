@@ -23,7 +23,7 @@ $("#btn_rutamejora_acciones").click(function(){
   if (obj.id_tprioritario === undefined) {
     swal(
         '¡Error!',
-        "Favor de seleccionar un tema prioritario",
+        "Favor de seleccionar una línea de acción",
         "error"
       );
   }
@@ -146,7 +146,7 @@ Rm_acciones_tp.prototype.get_table_acciones= function(id_tprioritario){
                },
           success:function(data){
             var vista = data.tabla;
-            alert($("#id_objetivos").val())
+            // alert($("#id_objetivos").val())
             // console.log(data.datos);
             // $("#div_generico").empty();
             // $("#div_generico").append(data.strView);
@@ -251,12 +251,12 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
 
  Rm_acciones_tp.prototype.iniciatabla = function(){
   $("#idtabla_accionestp tr").click(function(){
-           $(this).addClass('selected').siblings().removeClass('selected');
-           var value=$(this).find('td:first').text();
-           // alert(value);
-           Rm_acciones_tp.id_accion_select = value;
-           // alert(Rm_acciones_tp.id_accion_select);
-        });
+     $(this).addClass('selected').siblings().removeClass('selected');
+     var value=$(this).find('td:first').text();
+     // alert(value);
+     Rm_acciones_tp.id_accion_select = value;
+     // alert(Rm_acciones_tp.id_accion_select);
+  });
  }
 
  Rm_acciones_tp.prototype.delete_accion = function(idaccion){
