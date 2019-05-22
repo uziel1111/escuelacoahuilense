@@ -360,16 +360,17 @@ class Rutademejora extends CI_Controller {
 					$tabla = "<div class='table-responsive text-center' >
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
-					              <tr class='info' style='vertical-align:middle'>
-												<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
-	                        <th id='id_prioridad' hidden><center>id_prioridad</center></th>
+												<tr class=info style='vertical-align:middle'>
+													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
-	                        <th id='orden' style='width:4%; vertical-align:middle;' ><center>Orden</center></th>
-	                        <th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
-	                        <th id='objetivos' style='width:5%; vertical-align:middle;'><center>Objetivos y metas</center></th>
-	                        <th id='n_actividades' style='width:5%; vertical-align:middle;'><center>Actividades</center></th>
-	                        </thead>
-	                        <tbody id='id_tbody_demo'>";
+													<th id='orden' style='width:3%; vertical-align:middle;'><center>Orden</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
+													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+												</tr>
+                      </thead>
+                      <tbody id='id_tbody_demo'>";
 
 													foreach ($temas_prioritarios as $tp) {
 														$tabla .= "<tr>
@@ -412,15 +413,15 @@ class Rutademejora extends CI_Controller {
 			$tabla = "<div class='table-responsive text-center'>
 				           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 				            <thead>
-										<tr>
+										<tr class=info style='vertical-align:middle'>
 											<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 											<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 											<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
-											<th id='orden' style='width:4%'><center>Orden</center></th>
-											<th id='tema' style='width:30%;'><center>Lineas de acción</center></th>
-											<th id='objetivos' style='width:5%;'><center>Objetivos y metas</center></th>
-											<th id='n_actividades' style='width:5%'><center>Actividades</center></th>
-                     </tr>
+											<th id='orden' style='width:3%; vertical-align:middle;'><center>Orden</center></th>
+											<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
+											<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+											<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+										</tr>
                     </thead>
                     <tbody id='id_tbody_demo'>";
 
