@@ -616,16 +616,19 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad){
-      $especial = "";
-      $condicion = "";
-      if ($id_prioridad == 1) {
-        $especial = "inner join rm_c_subprioridad subp on ind.id_subprioridad = subp.id_subprioridad";
-        $condicion = " and ind.id_subprioridad = {$id_subprioridad}";
-      }
+      // $especial = "";
+      // $condicion = "";
+      // if ($id_prioridad == 1) {
+      //   $especial = "inner join rm_c_subprioridad subp on ind.id_subprioridad = subp.id_subprioridad";
+      //   $condicion = " and ind.id_subprioridad = {$id_subprioridad}";
+      // }
 
-      $str_query = "select ind.id_indicador, ind.indicador from rm_c_indicador ind
-                    {$especial}
-                    where ind.id_c_prioridad = {$id_prioridad} and ind.nivel = {$id_nivel} {$condicion}";
+      $str_query = "SELECT ind.id_indicador, ind.indicador FROM rm_c_indicador ind
+                    WHERE ind.id_c_prioridad = {$id_prioridad} AND ind.nivel = {$id_nivel}";
+
+      // $str_query = "select ind.id_indicador, ind.indicador from rm_c_indicador ind
+      //               {$especial}
+      //               where ind.id_c_prioridad = {$id_prioridad} and ind.nivel = {$id_nivel} {$condicion}";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }
