@@ -437,7 +437,7 @@
                       </div>
                       <div class="row mt-15">
                         <div class="col-12">
-                          <div id="contenedor_acciones_id"></div>
+                          <div id="contenedor_acciones_id" style="display:table;"></div>
                     </div>
                   </div>
 

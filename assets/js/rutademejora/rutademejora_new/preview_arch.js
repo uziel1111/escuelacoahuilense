@@ -101,8 +101,9 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
    			 "La evidencia se eliminó correctamente",
    			 'success'
    		 );
+       $('#preview_fin'+id_objetivo).attr('src', '#');
    	 }, 1000)
-     $('#preview_fin'+id_objetivo).attr('src', '#');
+
     })
     .fail(function(e) {
    	 console.error("Error in eliminaEvidenciaFin()");

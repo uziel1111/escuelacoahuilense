@@ -297,17 +297,27 @@ $('#grabar_objetivo').click(function(){
 				beforeSend: function(xhr) {
 			        Notification.loading("");
 		    },
+				success: function(data){
+					setTimeout(function () {
+						swal(
+								'¡Correcto!',
+								"El objetivo se insertó correctamente",
+								'success'
+							);
+					}, 1500);
+					obj_prioridad.getObjetivos();
+				}
 			})
 			.done(function(result) {
 
-				setTimeout(function () {
-					swal(
-							'¡Correcto!',
-							"El objetivo se insertó correctamente",
-							'success'
-						);
-						obj_prioridad.getObjetivos();
-				}, 1000);
+				// setTimeout(function () {
+				// 	swal(
+				// 			'¡Correcto!',
+				// 			"El objetivo se insertó correctamente",
+				// 			'success'
+				// 		);
+				// 		obj_prioridad.getObjetivos();
+				// }, 1000);
 
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);

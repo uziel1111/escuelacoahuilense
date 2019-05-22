@@ -214,7 +214,7 @@
 								</div>
 								<div class="row" style="margin-top:10px;">
 
-									<div id="objetivo_meta" class="table-responsive">
+									<div id="objetivo_meta" class="table-responsive" style="display: table;">
 
 									</div>
 								</div>

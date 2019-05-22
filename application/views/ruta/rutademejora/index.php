@@ -58,7 +58,7 @@
 						</div>
 						<div class="row mt-15">
 							<div class="col-12">
-								<div id="contenedor_tabla"></div>
+								<div id="contenedor_tabla" style="display: table;"></div>
 							</div>
 
 							<label class="" style="">*Puede modificar el orden de los temas prioritarios arrastando el registro en la posición deseada.</label>

@@ -322,17 +322,17 @@ class Rutademejora extends CI_Controller {
 				$tam = count($temas_prioritarios);
 
 				if (isset($temas_prioritarios)) {
-					$tabla = "<div class='table-responsive text-center'>
+					$tabla = "<div class='table-responsive' >
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
-					              <tr class=info>
+					              <tr class=info style='vertical-align:middle'>
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
-													<th id='orden' style='width:4%;'><center>Orden</center></th>
-													<th id='tema' style='width:30%;'><center>Lineas de acción</center></th>
-													<th id='objetivos' style='width:5%'><center>Objetivos y metas</center></th>
-													<th id='n_actividades' style='width:5%'><center>Actividades</center></th>
+													<th id='orden' style='width:3%; vertical-align:middle;'><center>Orden</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
+													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
                       </thead>
                       <tbody id='id_tbody_demo'>";
@@ -341,10 +341,10 @@ class Rutademejora extends CI_Controller {
 															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 															<td id='id_subprioridad' hidden>{$tp['id_subprioridad']}</td>
-															<td id='orden'>{$tp['orden']}</td>
-															<td id='prioridad'>{$tp['prioridad']}</td>
-															<td id='num_objetivos'>{$tp['num_objetivos']}</td>
-															<td id='num_acciones'>{$tp['num_acciones']}</td>
+															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
+															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
+															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
+															<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
 								            </tr>";
 												}
 
@@ -357,17 +357,17 @@ class Rutademejora extends CI_Controller {
 					$new_tprioritarios = $this->Rutamejora_model->insertaTprioritarios($id_cct);
 					$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
 
-					$tabla = "<div class='table-responsive text-center'>
+					$tabla = "<div class='table-responsive text-center' >
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
-					              <tr class=info>
+					              <tr class='info' style='vertical-align:middle'>
 												<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 	                        <th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
-	                        <th id='orden' style='width:4%'><center>Orden</center></th>
-	                        <th id='tema' style='width:30%'><center>Lineas de acción</center></th>
-	                        <th id='objetivos' style='width:5%'><center>Objetivos y metas</center></th>
-	                        <th id='n_actividades' style='width:5%'><center>Actividades</center></th>
+	                        <th id='orden' style='width:4%; vertical-align:middle;' ><center>Orden</center></th>
+	                        <th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
+	                        <th id='objetivos' style='width:5%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+	                        <th id='n_actividades' style='width:5%; vertical-align:middle;'><center>Actividades</center></th>
 	                        </thead>
 	                        <tbody id='id_tbody_demo'>";
 
@@ -376,10 +376,10 @@ class Rutademejora extends CI_Controller {
 																<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 																<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 																<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
-									              <td id='orden'>{$tp['orden']}</td>
-									              <td id='prioridad'>{$tp['prioridad']}</td>
-									              <td id='num_objetivos'>{$tp['num_objetivos']}</td>
-									              <td id='num_acciones'>{$tp['num_acciones']}</td>
+									              <td id='orden' style='vertical-align:middle;'>{$tp['orden']}</td>
+									              <td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
+									              <td id='num_objetivos' style='vertical-align:middle;' >{$tp['num_objetivos']}</td>
+									              <td id='num_acciones' style='vertical-align:middle;' >{$tp['num_acciones']}</td>
 									            </tr>";
 													}
 
@@ -417,7 +417,7 @@ class Rutademejora extends CI_Controller {
 											<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 											<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 											<th id='orden' style='width:4%'><center>Orden</center></th>
-											<th id='tema' style='width:30%'><center>Lineas de acción</center></th>
+											<th id='tema' style='width:30%;'><center>Lineas de acción</center></th>
 											<th id='objetivos' style='width:5%;'><center>Objetivos y metas</center></th>
 											<th id='n_actividades' style='width:5%'><center>Actividades</center></th>
                      </tr>
@@ -629,8 +629,8 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-																<th id='evidencias' style='width:39%'><center>Acción</center></th>
-																<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
+																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
 	                            </tr>
@@ -669,8 +669,8 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:39%'><center>Acción</center></th>
-															<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
+															<th id='evidencias' style='width:39%; vertical-align: middle;' ><center>Recursos</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
 
@@ -719,8 +719,8 @@ class Rutademejora extends CI_Controller {
 	                              <thead>
 	                            <tr class=info>
 	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-																<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+	                              <th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
+																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
 	                            </tr>
@@ -1464,10 +1464,10 @@ public function edit_accion_super(){
 					<th id='idrutamtema' hidden>
 						<center>id</center>
 					</th>
-					<th id='num_rutamtema' style='width:5%'>
+					<th id='num_rutamtema' style='width:5%; vertical-align:middle;'>
 						<center>#</center>
 					</th>
-					<th id='des_rutamtema' style='width:75%'>
+					<th id='des_rutamtema' style='width:75%; vertical-align:middle;' >
 						<center>Objetivos y metas</center>
 					</th>
 					<th id='op_rutamtema' style='width:20%'>
@@ -1489,10 +1489,10 @@ public function edit_accion_super(){
 					<th id='idrutamtema' hidden>
 						<center>id</center>
 					</th>
-					<th id='num_rutamtema' style='width:5% margin-top:-50%' rowspan='2'>
+					<th id='num_rutamtema' style='width:5%; vertical-align:middle;%' rowspan='2'>
 						<center>#</center>
 					</th>
-					<th id='des_rutamtema' style='width:65% margin-top:-50%' rowspan='2'>
+					<th id='des_rutamtema' style='width:65%; vertical-align:middle;' rowspan='2'>
 						<center>Objetivos y metas</center>
 					</th>
 					<th colspan='2'>
@@ -1750,8 +1750,8 @@ public function edit_accion_super(){
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
-			$head = 'Editar línea de acción: ';
-			$head .= strtolower($titulo);
+			$head = 'EDITAR LÍNEA DE ACCIÓN: ';
+			$head .= $titulo;
 
 			$response = array('strView' => $strView, 'titulo' => $head);
 			Utilerias::enviaDataJson(200, $response, $this);
@@ -1891,8 +1891,8 @@ public function edit_accion_super(){
 														<thead>
 														<tr class=info>
 														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:25%' rowspan='2'><center>Acción</center></th>
-															<th id='evidencias' style='width:25%' rowspan='2'><center>Recursos</center></th>
+															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acción</center></th>
+															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
 															<th colspan='2' scope='col'><center>Fecha</center></th>
 														</tr>
 														<tr>
@@ -1935,8 +1935,8 @@ public function edit_accion_super(){
 															<thead>
 														<tr class=info>
 														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:39%'><center>Acción</center></th>
-															<th id='evidencias' style='width:39%'><center>Recursos</center></th>
+															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
+															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
 															<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 															<th id='problemas' style='width:31%'><center>Fecha de término</center></th>
 														</tr>
