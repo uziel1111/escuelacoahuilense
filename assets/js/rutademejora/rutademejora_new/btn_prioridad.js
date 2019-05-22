@@ -235,17 +235,21 @@ $('#grabar_prioridad').click(function(){
 	 	beforeSend: function(xhr) {
 	        Notification.loading("");
    	},
+		success: function(data){
+			setTimeout(function () {
+				swal(
+						'¡Correcto!',
+						"El tema prioritario se insertó correctamente",
+						'success'
+					);
+			}, 1000);
+			// obj_prioridad.getObjetivos();
+		}
 	})
 	.done(function(result) {
-		setTimeout(function () {
-			swal(
-					'¡Correcto!',
-					"El tema prioritario se insertó correctamente",
-					'success'
-				);
-		}, 1000);
-		obj_prioridad.getObjetivos();
-		obj.get_view();
+
+		$('#id_tema_prioritario').val(obj.id_tprioritario)
+		// obj.get_view();
 	})
 	.fail(function(e) {
 		console.error("Error in grabarTema()");
@@ -298,13 +302,13 @@ $('#grabar_objetivo').click(function(){
 			        Notification.loading("");
 		    },
 				success: function(data){
-					setTimeout(function () {
-						swal(
-								'¡Correcto!',
-								"El objetivo se insertó correctamente",
-								'success'
-							);
-					}, 1500);
+					// setTimeout(function () {
+					// 	swal(
+					// 			'¡Correcto!',
+					// 			"El objetivo se insertó correctamente",
+					// 			'success'
+					// 		);
+					// }, 100);
 					obj_prioridad.getObjetivos();
 				}
 			})
@@ -369,10 +373,6 @@ $('#grabar_objetivo').click(function(){
 		}
 			$("#CAPoutput").val("");
 	}
-
-	//
-
-
 })
 //Grabar objetivo
 
@@ -447,16 +447,18 @@ function btnEliminar(){
 					beforeSend: function(xhr) {
 				        Notification.loading("");
 			    },
+					success: function(data){
+						obj_prioridad.getObjetivos();
+					}
 				}) //Ajax
 				.done(function(result) {
-					swal(
-		        '¡Correcto!',
-		        "Se eliminó el tema prioritario correctamente",
-		        'success'
-		      );
 					//Recargamos el grid
 					setTimeout(function(){
-						obj_prioridad.getObjetivos();
+						swal(
+			        '¡Correcto!',
+			        "El objetivo se eliminó correctamente",
+			        'success'
+			      );
 					}, 1000)
 				})
 				.fail(function(e) {
