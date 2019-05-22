@@ -102,7 +102,7 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
    			 'success'
    		 );
    	 }, 1000)
-     $('#preview'+id_objetivo).attr('src', '#');
+     $('#preview_fin'+id_objetivo).attr('src', '#');
     })
     .fail(function(e) {
    	 console.error("Error in eliminaEvidenciaFin()");
