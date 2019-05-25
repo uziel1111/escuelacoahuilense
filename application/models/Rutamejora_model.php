@@ -49,7 +49,7 @@ class Rutamejora_model extends CI_Model
       	return $this->db->query($str_query)->result_array();
     }// guardaruta()
 
-    function insert_accion($id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo){
+    function insert_accion($id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $responsable, $otro_resp){
     	$data2 = array(
 			'id_tprioritario' => $id_tprioritario,
 			'accion' => $accion,
@@ -61,7 +61,9 @@ class Rutamejora_model extends CI_Model
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
 			'indcrs_medicion' => $medicion,
-      'id_objetivos' => $id_objetivo
+      'id_objetivos' => $id_objetivo,
+      'main_resp' => $responsable,
+      'resp_apoyo' => $otro_resp
 		);
     // echo "Inserta";echo "<pre>";print_r($this->db->insert('rm_accionxtproritario', $data2));die();
 		return $this->db->insert('rm_accionxtproritario', $data2);
@@ -87,10 +89,10 @@ class Rutamejora_model extends CI_Model
     	$this->db->trans_start();
     	$this->db->where('id_accion', $id_accion);
     	$this->db->where('id_tprioritario', $id_tprioritario);
-		$this->db->delete('rm_avance_xcctxtpxaccion');
-		$this->db->where('id_accion', $id_accion);
-		$this->db->where('id_tprioritario', $id_tprioritario);
-		$this->db->delete('rm_accionxtproritario');
+  		$this->db->delete('rm_avance_xcctxtpxaccion');
+  		$this->db->where('id_accion', $id_accion);
+  		$this->db->where('id_tprioritario', $id_tprioritario);
+  		$this->db->delete('rm_accionxtproritario');
       // $str = $this->db->last_query();
       // echo $str; die();
 		$this->db->trans_complete();
@@ -405,7 +407,7 @@ function  get_datos_edith_tp($id_tprioritario){
   	return $this->db->get_where('rm_accionxtproritario', array('id_accion' => $id_accion, 'id_tprioritario' => $id_tprioritario))->result_array();
   }
 
-  function update_accion($id_accion, $id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo){
+  function update_accion($id_accion, $id_tprioritario, $accion, $materiales, $ids_responsables, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp){
   	$data2 = array(
 			'id_tprioritario' => $id_tprioritario,
 			'accion' => $accion,
@@ -417,9 +419,12 @@ function  get_datos_edith_tp($id_tprioritario){
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
 			'indcrs_medicion' => $medicion,
-      'id_objetivos' => $id_objetivo
+      'id_objetivos' => $id_objetivo,
+      'main_resp' => $main_resp,
+      'resp_apoyo' => $otro_resp
 		);
 		$this->db->where('id_accion', $id_accion);
+    // echo "<pre>";print_r($data2);die();
     // echo "Actualiza";echo "<pre>";print_r($this->db->update('rm_accionxtproritario', $data2));die();
   		return $this->db->update('rm_accionxtproritario', $data2);
 }
@@ -482,18 +487,18 @@ function  get_datos_edith_tp($id_tprioritario){
     function get_avances_tp_accionxcct_fechas($id_ciclo){
       $date=date("Y-m-d");
       $str_query = "SELECT
-      IF(curdate()>cte1_f_ini AND curdate()<cte1_f_fin, 'TRUE', 'FALSE') AS cte1_var,
-      IF(curdate()>cte2_f_ini AND curdate()<cte2_f_fin, 'TRUE', 'FALSE') AS cte2_var,
-      IF(curdate()>cte3_f_ini AND curdate()<cte3_f_fin, 'TRUE', 'FALSE') AS cte3_var,
-      IF(curdate()>cte4_f_ini AND curdate()<cte4_f_fin, 'TRUE', 'FALSE') AS cte4_var,
-      IF(curdate()>cte5_f_ini AND curdate()<cte5_f_fin, 'TRUE', 'FALSE') AS cte5_var,
-      IF(curdate()>cte6_f_ini AND curdate()<cte6_f_fin, 'TRUE', 'FALSE') AS cte6_var,
-      IF(curdate()>cte7_f_ini AND curdate()<cte7_f_fin, 'TRUE', 'FALSE') AS cte7_var,
-      IF(curdate()>cte8_f_ini AND curdate()<cte8_f_fin, 'TRUE', 'FALSE') AS cte8_var,
-      IF(curdate()>cte9_f_ini AND curdate()<cte9_f_fin, 'TRUE', 'FALSE') AS cte9_var,
-      IF(curdate()>cte10_f_ini AND curdate()<cte10_f_fin, 'TRUE', 'FALSE') AS cte10_var
+      IF(NOW()>cte1_f_ini AND NOW()<cte1_f_fin, 'TRUE', 'FALSE') AS cte1_var,
+      IF(NOW()>cte2_f_ini AND NOW()<cte2_f_fin, 'TRUE', 'FALSE') AS cte2_var,
+      IF(NOW()>cte3_f_ini AND NOW()<cte3_f_fin, 'TRUE', 'FALSE') AS cte3_var,
+      IF(NOW()>cte4_f_ini AND NOW()<cte4_f_fin, 'TRUE', 'FALSE') AS cte4_var,
+      IF(NOW()>cte5_f_ini AND NOW()<cte5_f_fin, 'TRUE', 'FALSE') AS cte5_var,
+      IF(NOW()>cte6_f_ini AND NOW()<cte6_f_fin, 'TRUE', 'FALSE') AS cte6_var,
+      IF(NOW()>cte7_f_ini AND NOW()<cte7_f_fin, 'TRUE', 'FALSE') AS cte7_var,
+      IF(NOW()>cte8_f_ini AND NOW()<cte8_f_fin, 'TRUE', 'FALSE') AS cte8_var,
+      IF(NOW()>cte9_f_ini AND NOW()<cte9_f_fin, 'TRUE', 'FALSE') AS cte9_var,
+      IF(NOW()>cte10_f_ini AND NOW()<cte10_f_fin, 'TRUE', 'FALSE') AS cte10_var
       FROM rm_f_mod_avancexaccionxcte WHERE id_ciclo={$id_ciclo} ";
-          // echo $str_query; die();
+          // echo "<pre>";print_r($str_query); die();
       return $this->db->query($str_query)->result_array();
 
     }
@@ -528,10 +533,13 @@ function  get_datos_edith_tp($id_tprioritario){
 
     //Nuevas funciones para RM Ismael Castillo
     function insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario){
+        $date=date("Y-m-d");
+
         $objetivos = array(
           'objetivo' => $objetivo,
           'id_tprioritario' => $id_tprioritario,
-          'id_cct'=> $id_cct
+          'id_cct'=> $id_cct,
+          'fecha_creacion' => $date
         );
         // echo "<pre>";print_r($this->db->insert('rm_objetivo', $objetivos));die();
         if($this->db->insert('rm_objetivo', $objetivos)){
@@ -641,7 +649,7 @@ function  get_datos_edith_tp($id_tprioritario){
     function getObjetivos($id_cct, $id_tprioritario, $idprioridad){
       $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
                     INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ";
+                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.fecha_creacion DESC";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }

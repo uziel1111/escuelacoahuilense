@@ -142,13 +142,15 @@
 
 									<div class="col">
 										<label class="mb-1"><span class="badge badge-secondary h5 text-white">4.Meta</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
-										<select class="form-control" id="slt_meta" tabindex="-98">
+										<!-- <input type="text" id="slt_meta" class="form-control"> -->
+										<textarea id="slt_meta" rows="2" class="form-control" id="slt_meta"></textarea>
+										<!-- <select class="form-control" id="slt_meta" tabindex="-98">
 											<option selected='selected' value="0">SELECCIONAR</option>
 											<option>OPCIÓN 1</option>
 											<option>OPCIÓN 2</option>
 											<option>OPCIÓN 3</option>
 											<option>OPCIÓN 4</option>
-										</select>
+										</select> -->
 									</div>
 
 
@@ -169,8 +171,11 @@
 											<option>Mayo</option>
 											<option>Junio</option>
 											<option>Julio</option>
-											<option>Otro</option>
+											<option value="-1">Otro</option>
 										</select>
+
+										<!-- <input type="text" id="otra_fecha" class="form-control" style="margin-top: 15px"> -->
+										<textarea id="otra_fecha" rows="2" class="form-control" style="margin-top:15px"></textarea>
 									</div>
 
 									<!-- Boton generar -->
@@ -196,7 +201,7 @@
 										<button id="grabar_objetivo" type="button" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i class="fas fa-check-circle"></i></button>
 										<hr class="my-2">
 
-										<button id="limpiar" type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-plus-circle"></i></button>
+										<button id="limpiar" type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
 									</div>
 								</div>
 							</div>
@@ -208,10 +213,15 @@
 
 							<div class="alert alert-info" role="alert">
 								<div style="margin-bottom:10px;">
+
 									<button id="btn_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-sm btn-success" onclick="btnEditar(id_objetivo)"><i class="fas fa-edit"></i></button>
 
 									<button id="btn_eliminar" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-sm btn-danger" onclick="btnEliminar(id_objetivo)"><i class='far fa-trash-alt'></i></button>
+
+									<span>Selecciona un objetivo/meta para editar o eliminar</span>
+
 								</div>
+
 								<div class="row" style="margin-top:10px;">
 
 									<div id="objetivo_meta" class="table-responsive" style="display: table;">

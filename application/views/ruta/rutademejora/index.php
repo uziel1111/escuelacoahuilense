@@ -17,10 +17,13 @@
 	<!-- Start Main Area -->
 	<section class="main-area">
 		<div class="container">
+      <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
+        <h3>Planeación y despliegue estrategico</h3>
+      </div>
 			<div class="row justify-content-center flex-column mb-3">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Ruta de Mejora</a>
+						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Planeación estrategica</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por actividades</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
@@ -35,33 +38,22 @@
 								</span>
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar planeación estrategica" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar a planeación estrategica" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
-								<!-- <button id="btn_rutamejora_editar" type="button" data-toggle="tooltip" title="Editar" class="btn btn-lg btn-primary" ><i class="fas fa-edit"></i></button> -->
 
 								<span data-toggle="modal" data-target="#actividades">
 								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
 								<a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
-								<!-- <button id="btn_get_reporte" type="button" data-toggle="tooltip" title="Imprimir" class="btn btn-lg btn-primary"><i class="fas fa-print"></i></button> -->
-
-								<!-- <button id="btn_rutamejora_eliminareg" type="button" data-toggle="tooltip" title="Eliminar" class="btn btn-lg btn-primary"><i class="fas fa-trash-alt"></i></button> -->
 							</div>
 
-							<!-- <div class="col-auto" hidden>
-								<i class="fas fa-hand-point-right"></i> En esta escuela se cumplen:<br>
-								<button type="button" class="btn btn-primary px-2 pt-0">
-								  <h6 class="d-inline"><span class="badge badge-light mt-0">1</span></h6> de 2 Líneas de Acción Estratégica.
-								</button>
-
-							</div> -->
 						</div>
 						<div class="row mt-15">
-							<div class="col-12">
-								<div id="contenedor_tabla" style="display: table;"></div>
-							</div>
 
-							<label class="" style="">*Puede modificar el orden de los temas prioritarios arrastando el registro en la posición deseada.</label>
+              <div class="col-12">
+								<div id="contenedor_tabla" style="display: table;"></div>
+
+              </div>
 						</div>
 					</div> <!-- Ruta mejora -->
 
@@ -146,10 +138,28 @@
 									</div>
 
 								</div>
+
+                <div class="row mt-15">
+                  <div class="col-md-12">
+                    <label><label style="color:red;">*</label>Responsable</label>
+                    <select class="selectpicker form-control" id="main_responsable" title="SELECCIONA">
+                    <?= $responsables?>
+                    </select>
+                    <br>
+                    <textarea id="new_resp" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+                  </div>
+                </div>
+                <div class="row mt-15">
+									<div class="col-md-12" id="main_resp_2">
+										<label>Otro responsable:</label>
+										<input type="text" name="otro_resp" id="otro_resp" class="form-control" placeholder="Escribe el nombre del responsable">
+									</div>
+								</div>
+
 								<div class="row mt-15">
 
 									<div class="col-md-12">
-										<label><label style="color:red;">*</label>Responsables (Selecciona uno o más)</label>
+										<label><label style="color:red;">*</label>Profesores que apoyan</label>
 										<select class="selectpicker form-control" multiple data-selected-text-format="count > 3" id="slc_responsables" title="SELECCIONA">
 										<?= $responsables?>
 										</select>
@@ -220,7 +230,7 @@
 							<div id="contenedor_acciones_id"></div>
 				</div>
 			</div>
-
+      <!-- <input type="text" name="" value="" id="tmp_tprioritario">      -->
 		</div>
 	</div>
 </div>
@@ -228,35 +238,13 @@
 </div>
 </div>
 <!-- fin modal -->
-<!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content modal-style-1">
-        <div class="modal-header bgcolor-2">
-          <h5 class="modal-title text-white" id="exampleModalLabel"> Archivo evidencia</h5>
-          <button type="button" class="close" id="cerrar_modal_ver_evidencia" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-                <div class="form-group form-group-style-1">
-                  <div class="row mt-15">
-                    <div class="col-md-12" id="dv_ver_evidencia">
-                    </div>
-                  </div>
-                </div>
-    </div>
-  </div>
-</div>
-</div> -->
-        <!-- Modal -->
 
 
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 
 
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
-<script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script>
+<!-- <script src="<?= base_url('assets/js/rutademejora/drag.js'); ?>"></script> -->
 <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>

@@ -16,7 +16,7 @@ la contribución que debe hacer la escuela a la comunidad donde radica,
 dónde se verá su impacto positivo y de qué forma deberá ser vista por
 quienes interactúan con ella (alumnos, padres de familia, autoridades
 locales, sociedad en general)"></em>
-						<textarea id="txt_rm_mision2" class="form-control" rows="2" readonly><?= $mision ?></textarea>
+						<textarea id="txt_rm_mision2" class="form-control" rows="2" readonly style="font-size: 20px;"><?= $mision ?></textarea>
 		</div>
 	</div>
 
@@ -32,7 +32,7 @@ locales, sociedad en general)"></em>
 		</div>
 	</div>
 
-	<hr class="mt-1 mb-2">
+	<!-- <hr class="mt-1 mb-2">
 	<div class="row">
 		<div class="col-12">
 			<div class="alert alert-warning" role="alert">
@@ -57,7 +57,7 @@ locales, sociedad en general)"></em>
 			</table>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<hr class="mt-1 mb-2">
 		<div class="row">

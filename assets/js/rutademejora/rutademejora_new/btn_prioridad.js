@@ -6,6 +6,7 @@ $(document).ready(function(){
 	// $('#writeText').tooltip()
 	// $('#grabar_objetivo').tooltip()
 	// $('#limpiar').tooltip()
+	$('#otra_fecha').attr('hidden', true)
 	$('[data-toggle="tooltip"]').tooltip({
     trigger : 'hover'
 	})
@@ -16,6 +17,14 @@ $('#opt_prioridad_especial').change(function(){
 		obj_prioridad.llenaIndicador();
 		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val());
 		$('#opt_prioridad_especial').attr('disabled', true)
+	}
+})
+
+$('#slt_fecha').change(function(){
+	if ( $('#slt_fecha').val() == '-1' ) {
+		$('#otra_fecha').attr('hidden', false)
+	} else {
+		$('#otra_fecha').attr('hidden', true)
 	}
 })
 
@@ -31,9 +40,10 @@ $('#limpiar').click(function(){
 	$('#slt_verbo').val('0');
 	$('#slt_indicador').val('0');
 	$('#slt_metrica').val('0');
-	$('#slt_meta').val('0');
+	$('#slt_meta').val('');
 	$('#slt_fecha').val('0');
 	$('#CAPoutput').val('');
+	$('#otra_fecha').attr('hidden', true);
 })
 
 $('#userFile').change(function(){
@@ -197,23 +207,21 @@ function show(select_id){
 }
 
 $('#writeText').click(function(){
-	// $('#slt_verbo option:selected').val();
 	let verbo = $('#slt_verbo').val();
 	let indicador = $('#slt_indicador').val();
-	// let indicador = $('#slt_indicador').val();
 	let metrica = $('#slt_metrica').val();
-	// let metrica = $('#slt_metrica').val();
-	let meta = $('#slt_meta option:selected').val();
+	let meta = $('#slt_meta').val();
 	let fecha = $('#slt_fecha option:selected').val();
+	let otra_fecha = $('#otra_fecha').val();
 
-	if (verbo == '0' && indicador == '0' && metrica == '0' && meta == '0' && fecha  == '0') {
+	if (verbo == '0' && indicador == '0' && metrica == '0' && meta == '' && fecha  == '0') {
 		swal(
 			'¡Error!',
 			"Por favor seleccione al menos una opción",
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' ' + $('#slt_metrica option:selected').text() + ' ' + $('#slt_meta option:selected').text() + ' ' + $('#slt_fecha option:selected').text()
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' ' + $('#slt_metrica option:selected').text() + ' ' + meta + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}
@@ -249,7 +257,7 @@ $('#grabar_prioridad').click(function(){
 	.done(function(result) {
 
 		$('#id_tema_prioritario').val(obj.id_tprioritario)
-		// obj.get_view();
+		obj.get_view();
 	})
 	.fail(function(e) {
 		console.error("Error in grabarTema()");
@@ -266,7 +274,6 @@ $('#grabar_objetivo').click(function(){
 	let idtemap = $('#id_tema_prioritario').val()
 	let flag = $('#update_flag').val()
 	let contenido = $('#CAPoutput').val()
-
 	// console.log(obj.id_tprioritario,);
 	// console.log(obj.id_prioridad,);
 	// console.log(obj.id_subprioridad);
@@ -296,7 +303,7 @@ $('#grabar_objetivo').click(function(){
 								id_tprioritario : obj.id_tprioritario,
 								id_subprioridad : obj.id_subprioridad,
 								id_prioridad: obj.id_prioridad,
-								objetivo: $('#CAPoutput').val()
+								objetivo: $('#CAPoutput').val(),
 							},
 				beforeSend: function(xhr) {
 			        Notification.loading("");
@@ -318,6 +325,8 @@ $('#grabar_objetivo').click(function(){
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
+				$('#otra_fecha').attr('hidden', true)
+				$('#slt_meta').val('')
 			})
 			.fail(function(e) {
 				console.error("Error in grabar_objetivo()");

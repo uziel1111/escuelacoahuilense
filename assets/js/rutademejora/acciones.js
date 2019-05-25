@@ -4,6 +4,10 @@ $(function() {
     // $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
     sel_encargado = false;
+    $('#main_resp_2').attr('hidden', true)
+
+    // obj = new Tabla();
+    obj.get_view();
 
 });
 
@@ -16,7 +20,7 @@ $("#cerrar_modal_acciones").click(function(){
 $('#saliract').click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
-  obj.get_view();
+  obj_rm_acciones_tp.get_view()
 })
 
 $("#btn_rutamejora_acciones").click(function(){
@@ -98,6 +102,15 @@ $("#slc_responsables").change(function(){
    }
 });
 
+//Responsable principal
+$('#main_responsable').change(function(){
+  if ( $('#main_responsable').val() == '0' ) {
+    $('#main_resp_2').attr('hidden', false)
+  } else {
+    $('#main_resp_2').attr('hidden', true)
+  }
+})
+
 
 
 function Rm_acciones_tp(){
@@ -107,6 +120,7 @@ function Rm_acciones_tp(){
 
 
 Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
+  $('#tmp_tprioritario').val(id_tprioritario)
    $.ajax({
            url:base_url+"rutademejora/get_table_acciones",
            method:"POST",
@@ -206,6 +220,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#slc_rm_ambito").val("");
   $("#slc_rm_ambito").selectpicker("refresh");
   $("#slc_responsables").selectpicker('deselectAll');
+  $('#main_responsable').val("");
+  $('#main_responsable').selectpicker("refresh");
 }
 
  Rm_acciones_tp.prototype.editar_accion = function(){
@@ -217,18 +233,22 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   var ffin = $("#datepicker2").val();
   var medicion = $("#txt_rm_indimed").val();
   var id_objetivo = $("#id_objetivos").val();
+  // var responsable = $('#main_responsable').val()
 
-  // alert(id_objetivo);
+  // alert(responsable)
+  // return false
 
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
            data:{
-             "id_accion": Rm_acciones_tp.id_accion_select,"id_ambito":id_ambito, "accion":accion, "materiales":materiales,
+             "id_accion": Rm_acciones_tp.id_accion_select, "accion":accion, "materiales":materiales,
              "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion,
              'id_tprioritario': obj.id_tprioritario,
              'otroresp': $("#otro_responsable").val(),
-             'id_objetivo': id_objetivo
+             'id_objetivo': id_objetivo,
+             'responsable': $('#main_responsable').val(),
+             'new_resp': $('#new_resp').val()
            },
            success:function(data){
              var vista = data.tabla;
@@ -303,14 +323,16 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
            success:function(data){
             var editado = data.editado;
             // alert(editado['id_ambito']);
-            $("#slc_rm_ambito").val(editado['id_ambito']);
-            $("#slc_rm_ambito").selectpicker("refresh");
+            // $("#slc_rm_ambito").val(editado['id_ambito']);
+            // $("#slc_rm_ambito").selectpicker("refresh");
             $("#txt_rm_meta").val(editado['accion']);
             $("#txt_rm_obs").val(editado['mat_insumos']);
             $("#slc_rm_presp").val(editado['ids_responsables']);
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
             $("#id_objetivos").val(id_objetivo);
             $("#id_objetivos").attr('disabled', true);
+            $('#main_responsable').val(editado['main_resp'])
+            $("#main_responsable").selectpicker('val', editado['main_resp']);
             // console.log('ids_responsables');
             var ids = editado['ids_responsables'].split(',');
             // console.log(ids);
@@ -449,7 +471,11 @@ $('#btn_agregar_accion').click(function(){
   let finicio = $("#datepicker1").val();
   let ffin = $("#datepicker2").val();
   let medicion = $("#txt_rm_indimed").val();
+  let responsable = $('#main_responsable').val()
+  let encargados = $('#slc_responsables').val()
 
+  // console.log(responsable);
+  // return false
   $.ajax({
     url:base_url+"rutademejora/save_accion",
     method:"POST",
@@ -461,7 +487,9 @@ $('#btn_agregar_accion').click(function(){
             "medicion":medicion,
             'id_tprioritario': obj.id_tprioritario,
             'id_objetivo':id_objetivo,
-            'otroresp': $("#otro_responsable").val()
+            'otroresp': $("#otro_responsable").val(),
+            'responsable': responsable,
+            'new_resp': $("#new_resp").val(),
    },
     success:function(data){
       var vista = data.tabla;
@@ -470,6 +498,8 @@ $('#btn_agregar_accion').click(function(){
       //Aqui se van a cargar las acciones en base a los objetivos
       obj_rm_acciones_tp.iniciatabla();
       obj_rm_acciones_tp.limpia_camposform();
+      // obj.get_view();
+
       setTimeout(function(){
         getTablaAccxObj(id_objetivo)
       }, 500)
@@ -532,4 +562,32 @@ function getTablaAccxObj(id_objetivo){
       obj_rm_acciones_tp.iniciatabla();
     }
   })
+}
+
+
+//Grid Principal
+Rm_acciones_tp.prototype.get_view = function(){
+  $.ajax({
+    url: base_url+"Rutademejora/bajarutamejora",
+    data : "",
+    type : 'POST',
+    beforeSend: function(xhr) {
+      $("#wait").modal("show");
+    },
+    success: function(data){
+      $("#wait").modal("hide");
+      var view = data.tabla;
+      $("#contenedor_tabla").empty();
+      $("#contenedor_tabla").append(view);
+      // obj.inicio();
+      obj.funcionalidadselect();
+      if(data.tamanio == 0){
+        $("#btn_get_reporte").hide();
+      }else{
+        $("#btn_get_reporte").show();
+      }
+    },
+    error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
+  });
+  obj.id_tprioritario = undefined
 }
