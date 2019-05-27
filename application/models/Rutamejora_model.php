@@ -333,17 +333,18 @@ function  get_datos_edith_tp($id_tprioritario){
 
   function get_avances_tp_accionxcct($id_cct){
     $str_query = "SELECT
-    tp.id_cct, tp.id_tprioritario, tpa.id_accion, p.prioridad, tpa.accion,
+    tp.id_tprioritario, p.prioridad, o.id_objetivo, o.objetivo, o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
     IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
     IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
-    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8,IFNULL(av.cte9,0) as cte9,IFNULL(av.cte10,0) as cte10, '' as icono
+    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8, '' as icono
     FROM rm_tema_prioritarioxcct tp
-    INNER JOIN rm_c_prioridad p ON tp.id_prioridad=p.id_prioridad
-    LEFT JOIN rm_accionxtproritario tpa ON tp.id_tprioritario=tpa.id_tprioritario
-    LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct= av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND tpa.id_accion =av.id_accion
-    WHERE tp.id_cct= {$id_cct}
-    ORDER BY tp.id_tprioritario, tpa.id_accion DESC";
-        // echo $str_query; die();
+    INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+    LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+    LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+    LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
+    WHERE tp.id_cct = {$id_cct}
+    ORDER BY tp.id_tprioritario, a.id_accion DESC";
+        // echo "<pre>";print_r($str_query); die();
     return $this->db->query($str_query)->result_array();
 
   }
@@ -741,17 +742,15 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getPrioridades($id_cct){
-        $str_query = "SELECT t1.orden, t1.id_tprioritario, t1.id_prioridad, t1.id_subprioridad, t1.prioridad, t1.num_objetivos,   SUM(IF(ISNULL(ap.id_accion),0,1)) as num_acciones
-        FROM (SELECT tp.id_prioridad, tp.id_subprioridad, tp.id_tprioritario, tp.orden, p.prioridad, ob.objetivo,
-        SUM(IF(ISNULL(ob.id_objetivo),0,1)) as num_objetivos, ob.id_objetivo
-        FROM rm_tema_prioritarioxcct tp
-        INNER JOIN rm_c_prioridad p ON p.id_prioridad = tp.id_prioridad
-        LEFT JOIN rm_objetivo ob ON ob.id_tprioritario = tp.id_tprioritario
-        WHERE tp.id_cct = {$id_cct}
-        GROUP BY tp.id_tprioritario) AS t1
-        LEFT JOIN rm_accionxtproritario ap ON ap.id_objetivos = t1.id_objetivo
-        GROUP BY t1.id_tprioritario
-        ORDER BY t1.orden";
+        $str_query = "SELECT tp.id_tprioritario, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
+                      COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+                      FROM rm_tema_prioritarioxcct tp
+                      INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+                      LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+                      LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+                      WHERE tp.id_cct = {$id_cct}
+                      GROUP BY tp.id_tprioritario
+                      ORDER by tp.orden";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }
@@ -865,6 +864,14 @@ function  get_datos_edith_tp($id_tprioritario){
                     INNER JOIN rm_objetivo obj ON acc.id_objetivos = obj.id_objetivo
                     WHERE acc.id_objetivos = {$id_objetivo}";
       // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    function getObjetivosxTp($id_cct){
+      $str_query = "SELECT tp.id_tprioritario, ob.id_objetivo, ob.objetivo FROM rm_tema_prioritarioxcct tp
+                    INNER JOIN rm_objetivo ob ON ob.id_tprioritario = tp.id_tprioritario
+                    WHERE tp.id_cct = {$id_cct}
+                    ORDER BY tp.id_tprioritario";
       return $this->db->query($str_query)->result_array();
     }
 

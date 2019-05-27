@@ -9,8 +9,9 @@ function Rm_avances_acciones(){
 
 
 Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
-
+  // var val_slc = $("#".concat(cad_str_ids)).val();
   var val_slc = $("#".concat(cad_str_ids)).val();
+  // console.log(val_slc);
   var arr_res = cad_str_ids.split("_");
   var var_id_cte = arr_res[0];
   var var_id_cct = arr_res[1];
@@ -21,14 +22,19 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
   url: base_url+'rutademejora/set_avance',
   type: 'POST',
   dataType: 'JSON',
-  data: {var_id_cct:var_id_cct,var_id_idtp:var_id_idtp,var_id_idacc:var_id_idacc,var_id_cte:var_id_cte,val_slc:val_slc},
+  data: { var_id_cct:var_id_cct,
+          var_id_idtp:var_id_idtp,
+          var_id_idacc:var_id_idacc,
+          var_id_cte:var_id_cte,
+          val_slc:val_slc
+        },
   beforeSend: function(xhr) {
         Notification.loading("");
     },
 })
 .done(function(result) {
   swal.close();
-  console.log(result.estatus);
+  // console.log(result.estatus);
   if (result.estatus) {
     swal(
         'Correcto!',

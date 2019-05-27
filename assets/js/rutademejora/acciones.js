@@ -139,7 +139,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#id_objetivos").empty();
              $("#id_objetivos").append(data.stroption);
              getAccxObj()
-
+             // obj_rm_acciones_tp.get_view_acciones()
              obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
@@ -151,35 +151,35 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
        $("#exampleModalacciones").modal('show');
  };
 
-Rm_acciones_tp.prototype.get_table_acciones= function(id_tprioritario){
-  $.ajax({
-          url:base_url+"rutademejora/get_table_acciones",
-          method:"POST",
-          data:{ "id_tprioritario":id_tprioritario,
-                 "id_objetivo": $("#id_objetivos").val()
-               },
-          success:function(data){
-            var vista = data.tabla;
-            // alert($("#id_objetivos").val())
-            // console.log(data.datos);
-            // $("#div_generico").empty();
-            // $("#div_generico").append(data.strView);
-            $("#contenedor_acciones_id").empty();
-            $("#contenedor_acciones_id").append(vista);
-            $("#label_escuela").text(data.datos['escuela']);
-            $("#label_prioridad").text(data.datos['prioridad']);
-            $("#label_problematica").text(data.datos['problematicas']);
-            $("#label_evidencia").text(data.datos['evidencias']);
-            $("#id_objetivos").empty();
-            $("#id_objetivos").append(data.stroption);
-
-            obj_rm_acciones_tp.iniciatabla();
-          },
-          error: function(error){
-            console.log(error);
-          }
-      });
-}
+// Rm_acciones_tp.prototype.get_table_acciones= function(id_tprioritario){
+//   $.ajax({
+//           url:base_url+"rutademejora/get_table_acciones",
+//           method:"POST",
+//           data:{ "id_tprioritario":id_tprioritario,
+//                  "id_objetivo": $("#id_objetivos").val()
+//                },
+//           success:function(data){
+//             var vista = data.tabla;
+//             // alert($("#id_objetivos").val())
+//             // console.log(data.datos);
+//             // $("#div_generico").empty();
+//             // $("#div_generico").append(data.strView);
+//             $("#contenedor_acciones_id").empty();
+//             $("#contenedor_acciones_id").append(vista);
+//             $("#label_escuela").text(data.datos['escuela']);
+//             $("#label_prioridad").text(data.datos['prioridad']);
+//             $("#label_problematica").text(data.datos['problematicas']);
+//             $("#label_evidencia").text(data.datos['evidencias']);
+//             $("#id_objetivos").empty();
+//             $("#id_objetivos").append(data.stroption);
+//             getAccxObj()
+//             obj_rm_acciones_tp.iniciatabla();
+//           },
+//           error: function(error){
+//             console.log(error);
+//           }
+//       });
+// }
 
  Rm_acciones_tp.prototype.save_accion = function(){
   var accion = $("#txt_rm_meta").val();

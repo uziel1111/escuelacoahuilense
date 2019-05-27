@@ -326,9 +326,8 @@ class Rutademejora extends CI_Controller {
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
 					              <tr class=info style='vertical-align:middle'>
-													<th id='id_tprioritario' ><center>id_tprioritario</center></th>
+													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
-													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
 													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción estrategica</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
@@ -338,9 +337,8 @@ class Rutademejora extends CI_Controller {
                       <tbody id='id_tbody_demo'>";
 												foreach ($temas_prioritarios as $tp) {
 													$tabla .= "<tr>
-															<td id='id_tprioritario' ><center>{$tp['id_tprioritario']}</center></td>
+															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
-															<td id='id_subprioridad' hidden>{$tp['id_subprioridad']}</td>
 															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
 															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
@@ -873,6 +871,7 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+				// echo "<pre>";print_r($arr_obj);die();
 				$data2['arr_avances'] = $arr_avances;
 				$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
 				$data2['arr_avances_fechas'] = $arr_avances_fechas;
@@ -882,8 +881,8 @@ class Rutademejora extends CI_Controller {
 				// $clave = "cte4_var";
 				// echo $clave; die();
 				$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
-				$data2['arr_avances'] = $arr_avances_n;
-				// echo "<pre>";print_r($arr_avances_n);die();
+				// $data2['arr_avances'] = $arr_avances_n;
+				// echo "<pre>";print_r($data2);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
 				Utilerias::enviaDataJson(200, $response, $this);
