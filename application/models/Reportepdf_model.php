@@ -26,7 +26,7 @@ class Reportepdf_model extends CI_Model
       WHERE rtp.id_cct = {$idcct}
       GROUP BY rtp.id_tprioritario
       ORDER BY orden ASC";
-// echo $str_query; die();
+// echo "<pre>"; print_r($str_query); die();
       return $this->db->query($str_query)->result_array();
     }
 
@@ -40,6 +40,18 @@ CONCAT((IF(ISNULL(av.cte1),0,av.cte1))+(IF(ISNULL(av.cte2),0,av.cte2))+(IF(ISNUL
         WHERE acc.id_tprioritario = {$id_tprioritario}";
         // echo $str_query; die();
         return $this->db->query($str_query)->result_array();
+    }
+
+    function get_acciones_obj($id_tprioritario){
+      $str_query = "SELECT acc.id_accion, acc.accion, acc.accion_f_inicio, acc.accion_f_termino, acc.mat_insumos, CONCAT(IFNULL(av.cte1, '0'), '%') AS avance1,
+      CONCAT((IF(ISNULL(av.cte1),0,av.cte1))+(IF(ISNULL(av.cte2),0,av.cte2))+(IF(ISNULL(av.cte3),0,av.cte3))+(IF(ISNULL(av.cte4),0,av.cte4))+(IF(ISNULL(av.cte5),0,av.cte5))+
+      (IF(ISNULL(av.cte6),0,av.cte6))+(IF(ISNULL(av.cte7),0,av.cte7))+(IF(ISNULL(av.cte8),0,av.cte8)), '%') AS avance, acc.ids_responsables, acc.otro_responsable, ob.id_objetivo, acc.id_objetivos
+      FROM rm_objetivo ob
+      INNER JOIN rm_accionxtproritario acc ON ob.id_objetivo = acc.id_objetivos
+      LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion AND acc.id_tprioritario = av.id_tprioritario
+      WHERE acc.id_tprioritario = {$id_tprioritario}";
+
+      return $this->db->query($str_query)->result_array();
     }
 
     function get_ciclo($id_cct){

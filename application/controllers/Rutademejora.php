@@ -643,13 +643,12 @@ class Rutademejora extends CI_Controller {
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
-									  <td hidden>{$accion['id_accion']}</td>
-										<td>{$accion['accion']}</td>
-										<td>{$accion['mat_insumos']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-
-		                            </tr>";
+											  <td hidden>{$accion['id_accion']}</td>
+												<td>{$accion['accion']}</td>
+												<td>{$accion['mat_insumos']}</td>
+		                    <td>{$accion['accion_f_inicio']}</td>
+		                    <td>{$accion['accion_f_termino']}</td>
+		                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
@@ -658,8 +657,8 @@ class Rutademejora extends CI_Controller {
 	            }
 
 				$tabla .= "</tbody>
-		                        </table>
-		                      </div>  ";
+                    </table>
+                  </div>  ";
 		        $response = array('tabla' => $tabla);
 	  		}else{
 	  			$response = array('tabla' => '');
@@ -677,30 +676,28 @@ class Rutademejora extends CI_Controller {
 															<th id='evidencias' style='width:39%; vertical-align: middle;' ><center>Recursos</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
-									  <td hidden>{$accion['id_accion']}</td>
-										<td>{$accion['accion']}</td>
-										<td>{$accion['mat_insumos']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-
-		                            </tr>";
+											  <td hidden>{$accion['id_accion']}</td>
+												<td>{$accion['accion']}</td>
+												<td>{$accion['mat_insumos']}</td>
+		                    <td>{$accion['accion_f_inicio']}</td>
+		                    <td>{$accion['accion_f_termino']}</td>
+		                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
-	                              <td colspan='5'>No hay datos por mostrar</td>
-	                            </tr>";
+                            <td colspan='5'>No hay datos por mostrar</td>
+                          </tr>";
 	            }
 
 				$tabla .= "</tbody>
-		                        </table>
-		                      </div>  ";
+                    </table>
+                  </div>";
 		        $response = array('tabla' => $tabla);
 	  		}else{
 	  			$response = array('tabla' => '');
@@ -881,7 +878,7 @@ class Rutademejora extends CI_Controller {
 				// $clave = "cte4_var";
 				// echo $clave; die();
 				$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
-				// $data2['arr_avances'] = $arr_avances_n;
+				$data2['arr_avances'] = $arr_avances_n;
 				// echo "<pre>";print_r($data2);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
@@ -1943,13 +1940,16 @@ public function edit_accion_super(){
 
 		$tabla = "<div class='table-responsive'>
 														<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-															<thead>
+														<thead>
 														<tr class=info>
 														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Actividad</center></th>
-															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
-															<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-															<th id='problemas' style='width:31%'><center>Fecha de término</center></th>
+															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+															<th colspan='2' scope='col'><center>Fecha</center></th>
+														</tr>
+														<tr>
+															<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+															<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
 														</tr>
 													</thead>
 													<tbody>";

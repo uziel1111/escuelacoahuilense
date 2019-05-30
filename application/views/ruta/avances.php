@@ -18,67 +18,63 @@
   </div>
 </div>
 
-<?php $var_aux_id_tprioritario = ''  ?>
-<?php $var_aux_id_objetivos = ''  ?>
+<?php $var_aux_id_tprioritario = '';  ?>
+<?php $var_aux_id_objetivos = ''; ?>
+
+<?php $aux_1 = '1' ?>
+<?php $qb = '0' ?>
+<?php $endTable = '</tbody></table>' ?>
 
 <?php foreach ($arr_avances as $avance): ?>
-
   <!-- Lineas de Accion -->
   <?php if ($avance['id_tprioritario'] != $var_aux_id_tprioritario): ?>
-    <div class="alert" role="alert" style="background-color: #FFCC80">
+    <?php if ($qb == '1'): ?>
+    <?php echo $endTable ?>
+    <?php $qb = '0' ; ?>
+  <?php endif ?>
+    <div class="alert text-center" role="alert" style="background-color: #FFCC80">
       <label><b>Linea de acción:</b> <span><?php echo $avance['prioridad'] ?></span></label><br>
     </div>
-    <?php $var_aux_id_tprioritario = $avance['id_tprioritario'] ?>
-    <?php else: ?>
-      <h1>ALGO SALIO MAL!!</h1>
+    <?php $var_aux_id_tprioritario = $avance['id_tprioritario']; ?>
   <?php endif; ?>
 
   <!-- Objetivos -->
+
   <?php if ($avance['id_objetivo'] != $var_aux_id_objetivos): ?>
+    <?php if ($aux_1 != '1'): ?>
+      <?php echo $endTable ?>
+    <?php endif ?>
+    <div class="alert text-center" role="alert" style="background-color: #BBDEFB;">
+      <label><b>Objetivo:</b> <span><?php echo $avance['objetivo'] ?></span></label><br>
+    </div>
 
-    <?php if ($avance['id_tprioritario'] == $avance['ob_tp']): ?>
-      <div class="alert" role="alert" style="background-color: #BBDEFB;">
-        <label><b>Objetivo:</b> <span><?php echo $avance['objetivo'] ?></span></label><br>
-      </div>
-      <?php $var_aux_id_objetivos = $avance['id_objetivo'] ?>
-
-      <?php if ($avance['id_objetivos'] == $avance['id_objetivo']): ?>
-        <?php echo "SOY EL TP_1: ".$avance['id_objetivos'] ?>
-        <?php echo "<br>SOY EL TP: ".$avance['id_objetivo'] ?>
-        <table class="table table-hover">
-          <thead>
-            <tr class="text-center">
-              <th>Actividades</th>
-              <th>CTE 1</th>
-              <th>CTE 2</th>
-              <th>CTE 3</th>
-              <th>CTE 4</th>
-              <th>CTE 5</th>
-              <th>CTE 6</th>
-              <th>CTE 7</th>
-              <th>CTE 8</th>
-              <th>Estatus</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
-            </tr>
-          </tbody>
-        </table>
-      <?php else: ?>
-        <tr></tr>
-      <?php endif; ?>
-    <?php endif; ?>
-
-
-
-  <?php endif; ?> <!-- if objetivo -->
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-center">
+          <th>Actividades</th>
+          <th>CTE 1</th>
+          <th>CTE 2</th>
+          <th>CTE 3</th>
+          <th>CTE 4</th>
+          <th>CTE 5</th>
+          <th>CTE 6</th>
+          <th>CTE 7</th>
+          <th>CTE 8</th>
+          <th>Estatus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $var_aux_id_objetivos = $avance['id_objetivo']; ?>
+        <?php $aux_1 = '0';  ?>
+        <?php $qb = '1' ; ?>
+  <?php endif; ?>
 
   <!-- Acciones -->
-  <?php if ( $avance['id_accion'] == '' ) {  ?>
-    <tr></tr>
-  <?php } else { ?>
+    <?php if ( $avance['id_accion'] == '' ) {  ?>
+      <tr></tr>
+      <?php echo $endTable ?>
+      <?php $qb = '0' ; ?>
+    <?php } else { ?>
       <tr>
         <td style="vertical-align: middle;"><?php echo $avance['accion'] ?></td>
       <?php for ($x = 1; $x <= 8; $x++) { ?>

@@ -101,6 +101,7 @@ class Reporte extends CI_Controller {
 	}// get_reporte_desde_sup()
 
 	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct){
+		// echo "<pre>";print_r($ruta);die();
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = "Orden: {$ruta['orden']}";
 				$tema = "Prioridad: {$ruta['tema']}";
@@ -201,16 +202,20 @@ class Reporte extends CI_Controller {
 				//Table with 4 columns
 				$pdf->SetWidths(array(10,41,40,45,46,46,20,85)); // ancho de primer columna, segunda, tercera y cuarta
 
-				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
+				// $result = $this->Reportepdf_model->get_acciones($id_tprioritario);
+				$result = $this->Reportepdf_model->get_acciones_obj($id_tprioritario);
 				// echo "<pre>";
 				// print_r($result);
 				// die();
-				// $ids_responsables = $result[0]['ids_responsables'];
+				$ids_responsables = $result[0]['ids_responsables'];
 
 				$cct = Utilerias::get_cct_sesion($this);
 				// echo "<pre>";
-				// print_r($cct);
+				// print_r($ids_responsables);
 				// die();
+
+				//Actividades
+
 
 
 				// echo $responsablesc; die();
@@ -224,7 +229,6 @@ class Reporte extends CI_Controller {
 				$pdf->Row(array(
 					utf8_decode("No."),
 					utf8_decode("Actividad"),
-					utf8_decode("Ámbito"),
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),
 					utf8_decode("Recursos"),
@@ -254,7 +258,6 @@ class Reporte extends CI_Controller {
 					$pdf->Rowtab(array(
 						$cont,
 						utf8_decode($item["accion"]),
-						utf8_decode($item["ambito"]),
 						utf8_decode($item["accion_f_inicio"]),
 						utf8_decode($item["accion_f_termino"]),
 						utf8_decode($item["mat_insumos"]),
