@@ -14,7 +14,7 @@ $(function() {
 $("#cerrar_modal_acciones").click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
-  obj.get_view();
+  obj_rm_acciones_tp.get_view()
 });
 
 $('#saliract').click(function(){
@@ -120,7 +120,7 @@ function Rm_acciones_tp(){
 
 
 Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
-  $('#tmp_tprioritario').val(id_tprioritario)
+   $('#id_objetivos').val('0')
    $.ajax({
            url:base_url+"rutademejora/get_table_acciones",
            method:"POST",
@@ -138,9 +138,18 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#label_evidencia").text(data.datos['evidencias']);
              $("#id_objetivos").empty();
              $("#id_objetivos").append(data.stroption);
-             getAccxObj()
+             $("#id_objetivos").val('0');
+
+             setTimeout(function(){
+               $('#id_objetivos').change(function(){
+                 let id_objetivo = $('#id_objetivos').val();
+                 getTablaAccxObj(id_objetivo)
+                 obj_rm_acciones_tp.iniciatabla()
+               })
+             }, 300)
+
              // obj_rm_acciones_tp.get_view_acciones()
-             obj_rm_acciones_tp.iniciatabla();
+             // obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
              console.log(error);
@@ -199,8 +208,8 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              var vista = data.tabla;
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
-             obj_rm_acciones_tp.iniciatabla();
              obj_rm_acciones_tp.limpia_camposform();
+             obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
              console.log(error);
@@ -254,7 +263,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
              var vista = data.tabla;
              $("#contenedor_acciones_id").empty();
              $("#contenedor_acciones_id").append(vista);
-             // getTablaAccxObj(id_objetivo)
+             getTablaAccxObj(id_objetivo)
              obj_rm_acciones_tp.iniciatabla();
              obj_rm_acciones_tp.limpia_camposform();
              $('#btn_editando_accion').hide();

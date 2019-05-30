@@ -668,17 +668,20 @@ class Rutademejora extends CI_Controller {
 	  		if($insert){
 	  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 	  			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
-															<th id='evidencias' style='width:39%; vertical-align: middle;' ><center>Recursos</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+											<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+											<thead>
+											<tr class=info>
+											<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+												<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+												<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+												<th colspan='2' scope='col'><center>Fecha</center></th>
+											</tr>
+											<tr>
+												<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+												<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+											</tr>
+										</thead>
+										<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
@@ -716,17 +719,20 @@ class Rutademejora extends CI_Controller {
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
-																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
@@ -792,17 +798,20 @@ class Rutademejora extends CI_Controller {
 		if(Utilerias::haySesionAbiertacct($this)){
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-																<th id='evidencias' style='width:39%'><center>Acción</center></th>
-																<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
@@ -1096,31 +1105,34 @@ public function get_vista_acciones(){
 			$nombreescuela = $this->input->post('nombreescuela');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp_super' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+                    <td>{$accion['ambito']}</td>
+                    <td>{$accion['accion_f_inicio']}</td>
+                    <td>{$accion['accion_f_termino']}</td>
+                    <td>{$accion['accion']}</td>
+                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
-	                              <td colspan='5'>No hay datos por mostrar</td>
-	                            </tr>";
+                            <td colspan='5'>No hay datos por mostrar</td>
+                          </tr>";
 	            }
 
 				$tabla .= "</tbody>
@@ -1895,20 +1907,20 @@ public function edit_accion_super(){
 		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
 
 		$tabla = "<div class='table-responsive'>
-														<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-														<thead>
-														<tr class=info>
-														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
-															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-															<th colspan='2' scope='col'><center>Fecha</center></th>
-														</tr>
-														<tr>
-															<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-															<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-														</tr>
-													</thead>
-													<tbody>";
+								<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+								<thead>
+								<tr class=info>
+								<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+									<th colspan='2' scope='col'><center>Fecha</center></th>
+								</tr>
+								<tr>
+									<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+									<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+								</tr>
+							</thead>
+							<tbody>";
 						if(count($acciones) > 0){
 							foreach ($acciones as $accion) {
 					$tabla .= "<tr>
@@ -1939,20 +1951,20 @@ public function edit_accion_super(){
 		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
 
 		$tabla = "<div class='table-responsive'>
-														<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-														<thead>
-														<tr class=info>
-														<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
-															<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-															<th colspan='2' scope='col'><center>Fecha</center></th>
-														</tr>
-														<tr>
-															<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-															<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-														</tr>
-													</thead>
-													<tbody>";
+								<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+								<thead>
+								<tr class=info>
+								<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+									<th colspan='2' scope='col'><center>Fecha</center></th>
+								</tr>
+								<tr>
+									<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+									<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+								</tr>
+							</thead>
+							<tbody>";
 						if(count($acciones) > 0){
 							foreach ($acciones as $accion) {
 					$tabla .= "<tr>
@@ -1970,8 +1982,8 @@ public function edit_accion_super(){
 						}
 
 			$tabla .= "</tbody>
-													</table>
-												</div>  ";
+									</table>
+								</div>";
 
 		$response = array('acciones' => $acciones, 'tabla' => $tabla);
 		Utilerias::enviaDataJson(200, $response, $this);
