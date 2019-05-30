@@ -32,7 +32,7 @@
     <?php echo $endTable ?>
     <?php $qb = '0' ; ?>
   <?php endif ?>
-    <div class="alert text-center" role="alert" style="background-color: #FFCC80">
+    <div class="alert" role="alert" style="background-color: #FFCC80">
       <label><b>Linea de acción:</b> <span><?php echo $avance['prioridad'] ?></span></label><br>
     </div>
     <?php $var_aux_id_tprioritario = $avance['id_tprioritario']; ?>
