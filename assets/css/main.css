@@ -1606,6 +1606,183 @@ td, th {
     display: none;
   }
 }
+
+
+
+/* ---------------------------------------------------
+    INDEX CARDS
+----------------------------------------------------- */
+.card-index .inner{
+	overflow: hidden;
+	height: 130px;
+}
+.card-index .inner img{
+	
+	transition: all 1.5s ease;
+}
+.card-index:hover .inner img {
+	transform: scale(1.2);
+}
+.card-index p{
+font-size: 16px;
+}
+.card-columns {
+  @include media-breakpoint-only(md) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 2;
+  }
+}
+/*** Accordion  ***/
+.accordion-style-1 .card  {
+    padding: 0 0 0 0 !important;
+	border: 0 !important;
+	background: transparent;
+}
+.accordion-style-1 .card > div.card-header {
+	font-family: 'Source Sans Pro', sans-serif !important;
+   /* font-family:'Passion One', cursive !important; */
+    padding: 11px 16px 11px 17px;
+
+}
+.accordion-style-1 .tcard > div.card-header:first-child {
+    border-radius:6px 6px 0 0;
+    -moz-border-radius:6px 6px 0 0;
+    -webkit-border-radius:6px 6px 0 0;
+	
+}
+
+.accordion-style-1 .card-header:not(.collapsed) {
+    font-size: 18px;
+	font-weight:normal;
+	color: #D3D3D3;
+	background: #58595b;
+}
+.accordion-style-1 .card-header.collapsed {
+    font-size: 18px;
+	font-weight: normal;
+    color: #58595b;
+	background: #D3D3D3;
+}
+.accordion-style-1 .card-header.collapsed:hover {
+    background: rgba(0, 0, 0, 0.2);
+	color:#292828;
+}
+.accordion-style-1 .accordion-style-1-header .fa {
+  transition: .5s transform ease-in-out;
+  color: #fff;
+  font-size: 18px;
+}
+.accordion-style-1 .accordion-style-1-header .collapsed .fa {
+  transform: rotate(90deg);
+  color: #777777;
+  font-size: 18px;
+}
+.accordion-style-1 .card-body {
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0 2px 4px 2px;
+}
+/** search bar **/
+   .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background-color: #DBDBDB;
+    border-radius: 30px;
+    padding: 0px;
+    }
+
+    .search_input{
+	font-style: italic;
+    color:#3A3737;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s ease;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 250px;
+    caret-color:red;
+    transition: width 0.4s ease;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: #97252b;
+    color: #E8904C;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    }
+/* Icon box wrimagecard*/
+.wrimagecard{	
+	margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 12px 14px 0px rgba(46,61,73,0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.wrimagecard .fa-w-14,
+.wrimagecard .fa-w-20{
+	position: relative;
+    font-size: 70px !important;
+	color: rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+}
+.wrimagecard-topimage_header{
+	background: rgba(0, 0, 0, 0.15);
+padding: 20px;
+	transition: all 0.3s ease;
+}
+.wrimagecard-topimage_header:hover{
+	background: rgba(0, 0, 0, 0.1);
+}
+.wrimagecard-topimage_header:hover .fa-w-14,
+.wrimagecard-topimage_header:hover .fa-w-20
+{
+	color: rgba(209,117,47,1.00);
+}
+a.wrimagecard:hover, .wrimagecard-topimage:hover {
+    box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+}
+.wrimagecard-topimage a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.wrimagecard-topimage_title {
+    padding: 5px 10px;
+    position: relative;
+	text-align: center;
+}
+.wrimagecard-topimage a {
+    border-bottom: none;
+    text-decoration: none;
+    color: #525c65;
+    transition: color 0.3s ease;
+}
+
+/**/
+
+
+
 /* Main Boxes */
 .main-boxes {
   margin-top: 30px;
