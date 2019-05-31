@@ -70,7 +70,6 @@ class PDF_MC_Table extends FPDF{
       $this->Row(array(
         utf8_decode("No."),
         utf8_decode("Acción"),
-        utf8_decode("Ámbito"),
         utf8_decode("Fecha inicio"),
         utf8_decode("Fecha fin"),
         utf8_decode("Recursos"),
@@ -129,6 +128,37 @@ class PDF_MC_Table extends FPDF{
       //Draw the border
       $this->SetLineWidth($widht);
       $this->Rect($x,$y,$w,$h);
+      //Print the text
+      $this->MultiCell($w,5,$data[$i],0,$a,$color);
+      //Put the position to the right of the cell
+      $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+  }
+  function Row1($data)
+  {
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+    $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=5*$nb;
+    //Issue a page break first if needed
+    $this->CheckPageBreak($h);
+    //Draw the cells of the row
+    for($i=0;$i<count($data);$i++)
+    {
+      $w=$this->widths[$i];
+      $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+      $color=isset($this->color[$i]) ? $this->color[$i] : FALSE;
+      $widht=isset($this->widht[$i]) ? $this->widht[$i] : 0.2;
+      // echo $widht; die();
+      //Save the current position
+      $x=$this->GetX();
+      $y=$this->GetY();
+      //Draw the border
+      // $this->SetLineWidth($widht);
+      // $this->Rect($x,$y,$w,$h);
       //Print the text
       $this->MultiCell($w,5,$data[$i],0,$a,$color);
       //Put the position to the right of the cell
@@ -259,7 +289,7 @@ class PDF_MC_Table extends FPDF{
       $this->SetTextColor(0,0,0);
       $this->SetFont('Arial','B',16);
       $this->Cell(120);
-      $this->Cell(40,20,'Ruta de Mejora',0,1,'C');
+      $this->Cell(40,20,utf8_decode('Lineas de acción estrategica'),0,1,'C');
 }
 
 }

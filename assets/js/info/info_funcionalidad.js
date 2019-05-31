@@ -8,6 +8,25 @@ function Info_esc(){
   _thisinfo = this;
 }
 
+$("#slt_ciclo_ries").change(function(){
+  // console.log($("#slt_ciclo_ries").val());
+  if($("#slt_ciclo_ries").val()=='2018-2019'){
+    $("#slt_bimestre_ries").empty();
+    $('#slt_bimestre_ries').append('<option value="1">1er Periodo</option>');
+    $('#slt_bimestre_ries').append('<option value="2">2do Periodo</option>');
+    $('#slt_bimestre_ries').append('<option value="3">3er Periodo</option>');
+         
+  }else{
+    $("#slt_bimestre_ries").empty();
+    $('#slt_bimestre_ries').append('<option value="1">1er Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="2">2do Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="3">3er Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="4">4to Bimestre</option>');
+    $('#slt_bimestre_ries').append('<option value="5">5to Bimestre</option>');
+  }
+
+});
+
 $("#btn_indice_peso").click(function(e){
               e.preventDefault();
               let id_cct = $("#in_id_cct").val();
@@ -305,42 +324,50 @@ Info_esc.prototype.get_prog_apoyo =function(){
 
 Info_esc.prototype.get_riesgo =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
-							$("#dv_info_permanencia").removeAttr('hidden');
-							$("#dv_info_aprendizaje").attr('hidden',true);
-							let id_cct = $("#in_id_cct").val();
-							$.ajax({
-				        url:  base_url+"info/info_riesgo_graf",
-				        method: 'POST',
-				        data: {'id_cct':id_cct,'id_bim':1,'ciclo':"2017-2018"},
-				        beforeSend: function(xhr) {
-					        Notification.loading("");
-					    }
-				      })
-				      .done(function( data ) {
-				      	// console.log("DATOS BAJADOS");
-				      	// console.log(data);
+	$("#dv_info_permanencia").removeAttr('hidden');
+	$("#dv_info_aprendizaje").attr('hidden',true);
+	let id_cct = $("#in_id_cct").val();
+  let ciclo=$("#slt_ciclo_ries").val();
+  let id_bim = $("#slt_bimestre_ries").val();
 
-								var nivel = data.nivel;
-                if (data.graph_pie_riesgo.length>0) {
-							  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
-								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
-								var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
-								var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
-                }
-                if (data.graph_bar_riesgo.length>0) {
-							  var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
-								var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
-								var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
-								var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
-								var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
-								var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
-              }
-              if (q1==0) {
-                $("#dv_barras_muyaltor").attr('hidden',true);
-              }
-              else {
-                $("#dv_barras_muyaltor").removeAttr('hidden');
-              }
+  if(ciclo=='2018-2019' && id_bim==3){
+    alert("Periodo no disponible");
+  }else{
+
+		$.ajax({
+			url:  base_url+"info/info_riesgo_graf",
+			method: 'POST',
+			data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			}
+		})
+		.done(function( data ) {
+			// console.log("DATOS BAJADOS");
+			// console.log(data);
+			var nivel = data.nivel;
+      if (data.graph_pie_riesgo.length>0) {
+				var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
+  			var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
+  			var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
+  			var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
+      }
+
+      if (data.graph_bar_riesgo.length>0) {
+				var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
+			  var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
+			  var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
+			  var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
+			  var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
+			  var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+      }
+
+      if (q1==0) {
+        $("#dv_barras_muyaltor").attr('hidden',true);
+      }
+      else {
+        $("#dv_barras_muyaltor").removeAttr('hidden');
+      }
 
 								switch(nivel) {
 
@@ -491,6 +518,7 @@ Info_esc.prototype.get_riesgo =function(){
 				      .always(function() {
 							swal.close();
 						});
+  }
 },
 
 Info_esc.prototype.get_planea =function(){
@@ -762,8 +790,12 @@ Info_esc.prototype.get_ete =function(){
 
 Info_esc.prototype.get_riesgo2 =function(){
 	let id_bim = $("#slt_bimestre_ries").val();
-							let ciclo = $("#slt_ciclo_ries").val();
-							let id_cct = $("#in_id_cct").val();
+	let ciclo = $("#slt_ciclo_ries").val();
+	let id_cct = $("#in_id_cct").val();
+
+  if(ciclo=='2018-2019' && id_bim==3){
+    alert("Periodo no disponible");
+  }else{
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
@@ -773,8 +805,8 @@ Info_esc.prototype.get_riesgo2 =function(){
 							    },
 				      })
 				      .done(function( data ) {
-				      	console.log("DATOS BAJADOS");
-				      	console.log(data);
+				      	// console.log("DATOS BAJADOS");
+				      	// console.log(data);
 				      	// $("#total_bajas").text("4");
 				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
@@ -782,7 +814,7 @@ Info_esc.prototype.get_riesgo2 =function(){
 								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
 								var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
 								var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
-							var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
+							  var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
 								var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
 								var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
 								var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
@@ -911,6 +943,6 @@ Info_esc.prototype.get_riesgo2 =function(){
 						.always(function() {
 							swal.close();
 						});
-
+  }
 
 }

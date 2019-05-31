@@ -13,7 +13,13 @@
           <div class="row">
             <div class="col-sm-3">
               <!-- onclick="Index.getinformese(6)" -->
-              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_marzo_2019"  target="_blank" title="Edición #6 marzo">
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_abril_2019"  target="_blank" title="Edición #8 abril">
+                <img src="https://www.seducoahuila.gob.mx/images/revse221x287.jpg?crc=245631602" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_marzo_2019"  target="_blank" title="Edición #7 marzo">
                 <img src="https://www.seducoahuila.gob.mx/images/revi2.jpg?crc=3963119943" class="img-fluid" alt="Responsive image">
               </a>
             </div>

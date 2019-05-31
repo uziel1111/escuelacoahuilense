@@ -1,5 +1,6 @@
 $(function() {
     obj_rm_edith_tp = new Rm_edith_tp();
+    obj_prioridad = new Prioridad();
 });
 $("#btn_rutamejora_editar").click(function(){
   if (obj.id_tprioritario === undefined) {
@@ -29,6 +30,10 @@ function Rm_edith_tp(){
   _thisrm_edith_tp = this;
 }
 
+function Prioridad(){
+  _thisrm_tp = this;
+}
+
 Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
   $.ajax({
   url: base_url+'rutademejora/get_datos_edith_tp',
@@ -39,17 +44,25 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
         Notification.loading("");
     },
   })
-  .done(function(result) {
+  .done(function(data) {
   swal.close();
-  // console.log(result.datos);
-  obj_rm_edith_tp.set_tags_edith(result.datos);
+  // // console.log(result.datos);
+  // obj_rm_edith_tp.set_tags_edith(result.datos);
 
-  document.getElementById('btn_actualizar_tp').removeAttribute("hidden");
-  document.getElementById('btn_grabar_tp').setAttribute("hidden", true);
-  // document.getElementById('btn_get_reporte').setAttribute("hidden", true);
-  document.getElementById('btn_rutamejora_editar').setAttribute("hidden", true);
-  document.getElementById('btn_rutamejora_eliminareg').setAttribute("hidden", true);
-  document.getElementById('btn_rutamejora_acciones').setAttribute("hidden", true);
+  // document.getElementById('btn_actualizar_tp').removeAttribute("hidden");
+  // document.getElementById('btn_grabar_tp').setAttribute("hidden", true);
+  // // document.getElementById('btn_get_reporte').setAttribute("hidden", true);
+  // document.getElementById('btn_rutamejora_editar').setAttribute("hidden", true);
+  // document.getElementById('btn_rutamejora_eliminareg').setAttribute("hidden", true);
+  // document.getElementById('btn_rutamejora_acciones').setAttribute("hidden", true);
+  $("#div_generico").empty();
+      $("#div_generico").append(data.strView);
+      $('h5').empty();
+      $('h5').append(data.titulo);
+      $("#myModal").modal("show");
+      setTimeout(function(){
+        obj_prioridad.getObjetivos()
+      }, 500)
 
 
 

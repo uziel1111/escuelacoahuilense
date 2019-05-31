@@ -207,11 +207,12 @@
 					</div>
 					<div hidden id="dv_info_permanencia" class="container mt-3">
 						<?php
-						$arr_bimestres[ '1' ] = '1er BIMESTRE';
-						$arr_bimestres[ '2' ] = '2do BIMESTRE';
-						$arr_bimestres[ '3' ] = '3er BIMESTRE';
-						$arr_bimestres[ '4' ] = '4to BIMESTRE';
-						$arr_bimestres[ '5' ] = '5to BIMESTRE';
+						$arr_bimestres[ '1' ] = '1er Periodo';
+						$arr_bimestres[ '2' ] = '2do Periodo';
+						$arr_bimestres[ '3' ] = '3er Periodo';
+						
+						
+						$arr_ciclos[ '2018-2019' ] = '2018-2019';
 						$arr_ciclos[ '2017-2018' ] = '2017-2018';
 						?>
 						<div id="accordion" class="accordion-style-1">
@@ -231,16 +232,17 @@
 										<div class="row mt-3">
 											<div class="col col-md-4">
 												<div class="form-group form-group-style-1">
-													<?=form_label('Bimestre', 'bimestre');?>
-													<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
-												</div>
-											</div>
-											<div class="col col-md-4">
-												<div class="form-group form-group-style-1">
 													<?=form_label('Ciclo escolar', 'ciclo');?>
 													<?=form_dropdown('ciclo', $arr_ciclos, 'large', array('class' => 'form-control', 'id' => 'slt_ciclo_ries'));?>
 												</div>
 											</div>
+											<div class="col col-md-4">
+												<div class="form-group form-group-style-1">
+													<?=form_label('Bimestre/Periodo', 'bimestre');?>
+													<?=form_dropdown('bimestre',$arr_bimestres , 'large', array('class' => 'form-control', 'id' => 'slt_bimestre_ries'));?>
+												</div>
+											</div>
+
 											<div class="col col-md-1">
 												<?=form_label(' ', ' ');?>
 												<button class="btn btn-info btn-style-1" id="btn_buscar_ries_esc">Buscar</button>
@@ -259,8 +261,7 @@
 												<div class="table-responsive" id="dv_riesgtab_esc_bar"></div>
 											</div>
 										</div>
-										<h4>Alumnos que posiblemente han abandonado la escuela</h4>
-										<h6 style="color:red;" id="total_bajas"></h6>
+										
 									</div>
 								</div>
 							</div>

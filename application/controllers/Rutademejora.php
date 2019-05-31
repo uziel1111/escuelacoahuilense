@@ -9,18 +9,20 @@ class Rutademejora extends CI_Controller {
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
 			$this->load->model('Prioridad_model');
-		  	$this->load->model('Problematica_model');
-		  	$this->load->model('Evidencia_model');
-		  	$this->load->model('Prog_apoyo_xcct_model');
-		  	$this->load->model('Apoyo_req_model');
-		  	$this->load->model('Ambito_model');
+			$this->load->model('Problematica_model');
+			$this->load->model('Evidencia_model');
+			$this->load->model('Prog_apoyo_xcct_model');
+			$this->load->model('Apoyo_req_model');
+			$this->load->model('Ambito_model');
 			$this->load->model('Rutamejora_model');
 			$this->cct = array();
 		}
 
 		public function index(){
 			if(Utilerias::verifica_sesion_redirige($this)){
-				$this->llenadatos();
+				// $this->llenadatos();
+				$this->index_new();
+
 			}else{
 				$data = $this->data;
 			    $data['error'] = '';
@@ -39,7 +41,8 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					$this->llenadatos();
+					// $this->llenadatos();
+					$this->index_new();
 				}
 
 			}else{
@@ -102,7 +105,10 @@ class Rutademejora extends CI_Controller {
 					if($response->procede == 1 && $response->status == 1){
 						$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
 						Utilerias::set_cct_sesion($this, $datoscct);
-						$this->llenadatos();
+
+						// $this->llenadatos();
+						$this->index_new();
+
 						///Aqui llenamos los datos
 					}else{
 						$mensaje = $response->statusText;
@@ -142,6 +148,7 @@ class Rutademejora extends CI_Controller {
 			$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
 			$data['mision'] = $mision;
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+			// echo "<pre>";print_r($this->cct[0]['nivel']);die();
 			  if(count($result_prioridades)==0){
 			  $data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
 			  }else{
@@ -287,6 +294,7 @@ class Rutademejora extends CI_Controller {
 		public function insert_update_misioncct(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
+				// echo "<pre>";print_r($_POST);die();
 				$id_cct = $this->cct[0]['id_cct'];
 				$misioncct = $this->input->post("misioncct");
 				if ($this->Rutamejora_model->existe_misionxidcct($id_cct,'4')) {
@@ -309,39 +317,77 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$id_cct = $this->cct[0]['id_cct'];
 				$tam = 0;
-				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
-				// echo "<pre>";print_r($rutas);die();
-				$tam = count($rutas);
+				// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+				$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct); //Verificamos si esa cct ya tiene temas prioritarios
+				$tam = count($temas_prioritarios);
 
-				$tabla = "<div class='table-responsive'>
-				           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
-				            <thead>
-				              <tr class=info>
-		                          <th id='idrutamtema' hidden><center>id</center></th>
-		                          <th id='orden' style='width:4%'><center>Orden</center></th>
-		                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
-		                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-		                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:4%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th><th id='objetivo' style='width:6%'><center>Obs. supervisor</center></th></th><th id='objetivo' style='width:6%'><center>Archivo evidencia</center></th></tr></thead>
-		                          <tbody id='id_tbody_demo'>";
+				if (isset($temas_prioritarios)) {
+					$tabla = "<div class='table-responsive' >
+					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
+					            <thead>
+					              <tr class=info style='vertical-align:middle'>
+													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
+													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción estrategica</center></th>
+													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+												</tr>
+                      </thead>
+                      <tbody id='id_tbody_demo'>";
+												foreach ($temas_prioritarios as $tp) {
+													$tabla .= "<tr>
+															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
+															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
+															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
+															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
+															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
+															<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
+								            </tr>";
+												}
 
+												$tabla .= "</tbody>
+								                    </table>
+								                  </div>  ";
 
-				foreach ($rutas as $ruta) {
-					$tabla .= "<tr>
-							<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
-	                          <td id='orden' data='1'>{$ruta['orden']}</td>
-	                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
-	                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
-	                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
-	                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-														<td id=''><center><i class='{$ruta['obs_supervisor']}'></i></center></td>
-														<td id=''><center><button  style='display:{$ruta['trae_path']};' type='button' class='btn btn-primary btn-style-1 mr-1' onclick=obj_rm_tp.ver_archivo_evidencia('{$ruta['path_evidencia']}')>Ver</button></center></td>
-		                              </tr>";
-				}
+				} else {
 
-				$tabla .= "</tbody>
-		                        </table>
-		                      </div>  ";
+					$new_tprioritarios = $this->Rutamejora_model->insertaTprioritarios($id_cct);
+					$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
 
+					$tabla = "<div class='table-responsive text-center' >
+					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
+					            <thead>
+												<tr class=info style='vertical-align:middle'>
+													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
+													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
+													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción estrategica</center></th>
+													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+												</tr>
+                      </thead>
+                      <tbody id='id_tbody_demo'>";
+
+													foreach ($temas_prioritarios as $tp) {
+														$tabla .= "<tr>
+																<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
+																<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
+																<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
+									              <td id='orden' style='vertical-align:middle;'>{$tp['orden']}</td>
+									              <td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
+									              <td id='num_objetivos' style='vertical-align:middle;' >{$tp['num_objetivos']}</td>
+									              <td id='num_acciones' style='vertical-align:middle;' >{$tp['num_acciones']}</td>
+									            </tr>";
+													}
+
+													$tabla .= "</tbody>
+									                    </table>
+									                  </div>  ";
+																				}
+
+				// echo "<pre>";print_r($data['temas_prioritarios']);die();
 				$response = array('tabla' => $tabla, 'tamanio' => $tam);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
@@ -350,61 +396,57 @@ class Rutademejora extends CI_Controller {
 			}
 		}
 
-	public function update_order(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$this->cct = Utilerias::get_cct_sesion($this);
-			$id_cct = $this->cct[0]['id_cct'];
-			$datos = $this->input->post('orden');
-			for($i = 0; $i < count($datos); $i++){
-				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
-			}
-			$id_cct = $this->cct[0]['id_cct'];
-			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
 
-			$tabla = "<div class='table-responsive'>
-			           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
-			            <thead>
-			              <tr class=info>
-	                          <th id='idrutamtema' hidden><center>id</center></th>
-	                          <th id='orden' style='width:4%'><center>Orden</center></th>
-	                          <th id='tema' style='width:20%'><center>Prioridad</center></th>
-	                          <th id='problemas' style='width:31%'><center>Problemáticas</center></th>
-	                          <th id='evidencias' style='width:31%'><center>Evidencias</center></th><th id='n_actividades' style='width:8%'><center>Acciones</center></th><th id='objetivo' style='width:6%'><center>Objetivo</center></th></tr></thead>
-	                          <tbody id='id_tbody_demo'>";
+		//FUNCIONAMIENTO de DRAG and DROP
+	// public function update_order(){
+	// 	if(Utilerias::haySesionAbiertacct($this)){
+	// 		$this->cct = Utilerias::get_cct_sesion($this);
+	// 		$id_cct = $this->cct[0]['id_cct'];
+	// 		$datos = $this->input->post('orden');
+	// 		for($i = 0; $i < count($datos); $i++){
+	// 			$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
+	// 		}
+	// 		$id_cct = $this->cct[0]['id_cct'];
+	// 		// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+	// 		$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
+	//
+	// 		$tabla = "<div class='table-responsive text-center'>
+	// 			           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
+	// 			            <thead>
+	// 									<tr class=info style='vertical-align:middle'>
+	// 										<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
+	// 										<th id='id_prioridad' hidden><center>id_prioridad</center></th>
+	// 										<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
+	// 										<th id='orden' style='width:3%; vertical-align:middle;'><center>Orden</center></th>
+	// 										<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción</center></th>
+	// 										<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
+	// 										<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+	// 									</tr>
+  //                   </thead>
+  //                   <tbody id='id_tbody_demo'>";
+	//
+	// 			foreach ($temas_prioritarios as $tp) {
+	// 				$tabla .= "<tr>
+	// 						<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
+	// 						<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
+	// 						<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
+	// 						<td id='orden'>{$tp['orden']}</td>
+	// 						<td id='prioridad'>{$tp['prioridad']}</td>
+	// 						<td id='num_objetivos'>{$tp['num_objetivos']}</td>
+	// 						<td id='num_acciones'>{$tp['num_acciones']}</td>
+	// 					</tr>";
+	// 				}
+	//
+	// 		$tabla .= "</tbody></table></div>";
+	//
+	// 		$response = array('tabla' => $tabla);
+	// 		Utilerias::enviaDataJson(200, $response, $this);
+	// 		exit;
+	// 		}else{
+	// 			redirect('Rutademejora/index');
+	// 		}
+	// 	}
 
-
-			foreach ($rutas as $ruta) {
-				$tabla .= "<tr>
-						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
-                          <td id='orden' data='1'>{$ruta['orden']}</td>
-                          <td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
-                          <td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
-                          <td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
-                          <td id=''><center><i class='fas fa-check-circle'></i></center></td>
-	                              </tr>";
-			}
-
-			$tabla .= "</tbody>
-	                        </table>
-	                      </div>  ";
-			$response = array('tabla' => $tabla);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-			}else{
-				redirect('Rutademejora/index');
-			}
-		}
-		public function get_datos_edith_tp(){
-			if(Utilerias::haySesionAbiertacct($this)){
-				$id_tprioritario = $this->input->post('id_tprioritario');
-				$arr_datos = $this->Rutamejora_model->get_datos_edith_tp($id_tprioritario);
-				$response = array('datos' => $arr_datos);
-				Utilerias::enviaDataJson(200, $response, $this);
-				exit;
-			}else{
-				redirect('Rutademejora/index');
-			}
-		}
 
 		public function get_obs_super(){
 			if(Utilerias::haySesionAbiertacct($this)){
@@ -496,14 +538,22 @@ class Rutademejora extends CI_Controller {
 			exit;
 		}
 
-		public function delete_tp(){
+		public function eliminarTP(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
+				// echo "<pre>";
+				// print_r($_POST);
+				// die();
 				$id_cct = $this->cct[0]['id_cct'];
 				$id_tprioritario = $this->input->post("id_tprioritario");
 				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
 				$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
+
 				if ($estatus) {
+					$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
+					$this->actualizaOrden($temasp);
+					$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
+					$this->actualizaOrden($temasp);
 					if ($url!='') {
 						unlink($url);
 					}
@@ -515,6 +565,15 @@ class Rutademejora extends CI_Controller {
 			}else{
 				redirect('Rutademejora/index');
 			}
+		}
+
+		public function actualizaOrden($temasp){
+			$orden = 1;
+			foreach ($temasp as $tema) {
+				$actualiza = $this->Rutamejora_model->update_order((int)$orden, (int)$tema['id_tprioritario']);
+				$orden = $orden +1;
+			}
+			$orden = 1;
 		}
 
 	public function get_view_acciones(){
@@ -533,14 +592,14 @@ class Rutademejora extends CI_Controller {
 	public function save_accion(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
-			$id_ambito = $this->input->post('id_ambito');
-	  		$accion = $this->input->post('accion');
-	  		$materiales = $this->input->post('materiales');
-	        $ids_responsables = $this->input->post('ids_responsables');
-	        $otroresponsable = $this->input->post('otroresp');
-	  		$finicio = $this->input->post('finicio');
-	  		$ffin = $this->input->post('ffin');
-	  		$medicion = $this->input->post('medicion');
+			$id_objetivo = $this->input->post('id_objetivo');
+  		$accion = $this->input->post('accion');
+  		$materiales = $this->input->post('materiales');
+      $ids_responsables = $this->input->post('ids_responsables');
+      $otroresponsable = $this->input->post('otroresp');
+  		$finicio = $this->input->post('finicio');
+  		$ffin = $this->input->post('ffin');
+  		$medicion = $this->input->post('medicion');
 			$finicio = str_replace("/", "-", $finicio);
 			$porciones = explode("-", $finicio);
 			$finicio = $porciones[2]."-".$porciones[0]."-".$porciones[1];
@@ -549,6 +608,12 @@ class Rutademejora extends CI_Controller {
 			$ffin = $porciones[2]."-".$porciones[0]."-".$porciones[1];
 			$existotroresp = false;
 			$strids_resp = "";
+
+			$main_resp = $this->input->post('responsable');
+			$otro_resp = $this->input->post('new_resp');
+			// echo "<pre>";
+			// print_r($_POST);
+			// die();
 
 			foreach ($ids_responsables as $responsable) {
 				if($responsable == 0){
@@ -559,30 +624,31 @@ class Rutademejora extends CI_Controller {
 			$strids_resp = substr($strids_resp, 0, -1);
 
 			if(isset($_POST['id_accion'])){
-				$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $id_ambito, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp);
+				$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp);
+
 				if($update){
-	  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+	  			$acciones = $this->Rutamejora_model->getacciones($id_objetivo);
 	  			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 	                              <thead>
 	                            <tr class=info>
 	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
+																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Acción</center></th>
+																<th id='evidencias' style='width:39%; vertical-align: middle;'><center>Recursos</center></th>
 	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
 	                            </tr>
 	                          </thead>
 	                          <tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
-									  <td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+											  <td hidden>{$accion['id_accion']}</td>
+												<td>{$accion['accion']}</td>
+												<td>{$accion['mat_insumos']}</td>
+		                    <td>{$accion['accion_f_inicio']}</td>
+		                    <td>{$accion['accion_f_termino']}</td>
+		                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
@@ -591,47 +657,50 @@ class Rutademejora extends CI_Controller {
 	            }
 
 				$tabla .= "</tbody>
-		                        </table>
-		                      </div>  ";
+                    </table>
+                  </div>  ";
 		        $response = array('tabla' => $tabla);
 	  		}else{
 	  			$response = array('tabla' => '');
 	  		}
 			}else{
-				$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $id_ambito, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp);
+				$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp);
 	  		if($insert){
 	  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 	  			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+											<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+											<thead>
+											<tr class=info>
+											<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+												<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+												<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+												<th colspan='2' scope='col'><center>Fecha</center></th>
+											</tr>
+											<tr>
+												<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+												<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+											</tr>
+										</thead>
+										<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
-									  <td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+											  <td hidden>{$accion['id_accion']}</td>
+												<td>{$accion['accion']}</td>
+												<td>{$accion['mat_insumos']}</td>
+		                    <td>{$accion['accion_f_inicio']}</td>
+		                    <td>{$accion['accion_f_termino']}</td>
+		                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
-	                              <td colspan='5'>No hay datos por mostrar</td>
-	                            </tr>";
+                            <td colspan='5'>No hay datos por mostrar</td>
+                          </tr>";
 	            }
 
 				$tabla .= "</tbody>
-		                        </table>
-		                      </div>  ";
+                    </table>
+                  </div>";
 		        $response = array('tabla' => $tabla);
 	  		}else{
 	  			$response = array('tabla' => '');
@@ -650,26 +719,29 @@ class Rutademejora extends CI_Controller {
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+									<td>{$accion['accion']}</td>
+									<td>{$accion['mat_insumos']}</td>
+                  <td>{$accion['accion_f_inicio']}</td>
+                  <td>{$accion['accion_f_termino']}</td>
+                </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
@@ -680,10 +752,21 @@ class Rutademejora extends CI_Controller {
 				$tabla .= "</tbody>
 		                        </table>
 		                      </div>  ";
-		        $get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
 
-		        $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
-	        $response = array('tabla' => $tabla, 'datos' => $datos);
+      $get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
+      $datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
+			// $strView = $this->load->view("ruta/modals_new/modal_actividades", $datos, TRUE);
+			// $response = array('tabla' => $tabla, 'datos' => $datos, 'strView' => $strView);
+			$objetivos = $this->Rutamejora_model->getObjxTp($id_tprioritario);
+			// echo "<pre>";print_r($objetivos);die();
+			$option = "<option value='0'>SELECCIONE</option>";
+			foreach ($objetivos as $objetivo) {
+				// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
+				$option .="<option value='{$objetivo['id_objetivo']}'>{$objetivo['objetivo']}</option>";
+			}
+
+			$response = array('tabla' => $tabla, 'datos' => $datos, 'stroption' => $option);
+			// echo "<pre>";print_r($response);die();
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{
@@ -695,7 +778,9 @@ class Rutademejora extends CI_Controller {
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$idaccion = $this->input->post('idaccion');
+			// echo "<pre>";print_r($_POST);die();
 			$delete = $this->Rutamejora_model->deleteaccion($idaccion, $id_tprioritario);
+			// echo "<pre>";print_r($delete);die();
 			if($delete){
 				$tabla = $this->arma_tabla_acciones($id_tprioritario);
 				$response = array("mensaje" => "ok", "tabla" => $tabla);
@@ -713,26 +798,29 @@ class Rutademejora extends CI_Controller {
 		if(Utilerias::haySesionAbiertacct($this)){
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                              <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
-									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+										<td hidden>{$accion['id_accion']}</td>
+										<td>{$accion['accion']}</td>
+	                  <td>{$accion['accion_f_inicio']}</td>
+	                  <td>{$accion['accion_f_termino']}</td>
+
+                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
@@ -776,6 +864,7 @@ class Rutademejora extends CI_Controller {
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$idaccion = $this->input->post('idaccion');
 			$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
+			// echo "<pre>";print_r($editada);die();
 			$response = array("editado" => $editada[0]);
 			Utilerias::enviaDataJson(200, $response, $this);
 				exit;
@@ -788,16 +877,56 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+				// echo "<pre>";print_r($arr_obj);die();
 				$data2['arr_avances'] = $arr_avances;
 				$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
 				$data2['arr_avances_fechas'] = $arr_avances_fechas;
-				// echo "<pre>";print_r($arr_avances_fechas);die();
+				// echo "<pre>";print_r($arr_avances);die();
+				// explode(" ", $pizza);
+				$clave = explode("_", array_search('TRUE', $arr_avances_fechas[0]))[0];
+				// $clave = "cte4_var";
+				// echo $clave; die();
+				$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
+				$data2['arr_avances'] = $arr_avances_n;
+				// echo "<pre>";print_r($data2);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}else{
 				redirect('Rutademejora/index');
+			}
+		}
+
+		public function asigna_icono($arr_avances, $habilitado){
+			// echo $habilitado;die();
+			$anterior = explode("cte", $habilitado)[1];
+			$anterior = ((int)$anterior-1);
+			$cadAnterior = "cte".$anterior;
+			$arr_avancesCompleto = array();
+			foreach ($arr_avances as $avance) {
+				if($avance[$habilitado] != 0){
+					$icono = $this->retorna_icono($avance[$habilitado]);
+				}else{
+					$icono = $this->retorna_icono($avance[$cadAnterior]);
+				}
+				$avance['icono'] = $icono;
+				array_push($arr_avancesCompleto, $avance);
+			}
+			return $arr_avancesCompleto;
+		}
+
+		public function retorna_icono($porcentaje){
+			if($porcentaje == 0){
+				return "0.png";
+			}else if($porcentaje == 10 || $porcentaje == 20 || $porcentaje == 30){
+				return "1.png";
+			}else if($porcentaje == 40 || $porcentaje == 50 || $porcentaje == 60 || $porcentaje == 70){
+				return "2.png";
+			}else if($porcentaje == 80 || $porcentaje == 90){
+				return "3.png";
+			}else if($porcentaje == 100){
+				return "4.png";
 			}
 		}
 
@@ -976,31 +1105,34 @@ public function get_vista_acciones(){
 			$nombreescuela = $this->input->post('nombreescuela');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 			$tabla = "<div class='table-responsive'>
-	                            <table id='idtabla_accionestp_super' class='table table-condensed table-hover  table-bordered'>
-	                              <thead>
-	                            <tr class=info>
-	                            <th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-	                              <th id='orden' style='width:20%'><center>Ámbito</center></th>
-	                              <th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
-	                              <th id='problemas' style='width:31%'><center>Fecha de término</center></th>
-	                              <th id='evidencias' style='width:39%'><center>Acción</center></th>
-	                            </tr>
-	                          </thead>
-	                          <tbody>";
+									<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+									<thead>
+									<tr class=info>
+									<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+										<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+										<th colspan='2' scope='col'><center>Fecha</center></th>
+									</tr>
+									<tr>
+										<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+										<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+									</tr>
+								</thead>
+								<tbody>";
 	            if(count($acciones) > 0){
 	            	foreach ($acciones as $accion) {
 						$tabla .= "<tr>
 									<td hidden>{$accion['id_accion']}</td>
-		                              <td>{$accion['ambito']}</td>
-		                              <td>{$accion['accion_f_inicio']}</td>
-		                              <td>{$accion['accion_f_termino']}</td>
-		                              <td>{$accion['accion']}</td>
-		                            </tr>";
+                    <td>{$accion['ambito']}</td>
+                    <td>{$accion['accion_f_inicio']}</td>
+                    <td>{$accion['accion_f_termino']}</td>
+                    <td>{$accion['accion']}</td>
+                  </tr>";
 					}
 	            }else{
 	            	$tabla .= "<tr>
-	                              <td colspan='5'>No hay datos por mostrar</td>
-	                            </tr>";
+                            <td colspan='5'>No hay datos por mostrar</td>
+                          </tr>";
 	            }
 
 				$tabla .= "</tbody>
@@ -1099,5 +1231,762 @@ public function edit_accion_super(){
 		exit;
 	}
 
+	// Nuevo codigo ruta mejora Ismael
 
+	public function index_new(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$usuario = $this->cct[0]['cve_centro'];
+		$id_cct = $this->cct[0]['id_cct'];
+		$responsables = $this->getPersonal($usuario);
+		// echo "<pre>";print_r($responsables);die();
+		if ($responsables->status==0) {
+			$personas = array();
+		}
+		else {
+			$personas = $responsables->Personal;
+		}
+
+		$options = "";
+		if($responsables->procede == 1 && $responsables->status == 1){
+			foreach ($personas as $persona) {
+				$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+			}
+									$options .="<option value='0'>OTRO</option>";
+		}else{
+			$options .="<option value='0'>OTRO</option>";
+		}
+
+		$data['responsables'] = $options;
+
+
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+		// echo "<pre>";print_r($this->cct[0]['nivel']);die();
+			if(count($result_prioridades)==0){
+			$data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
+			}else{
+			$data['arr_prioridades'] = $result_prioridades;
+			}
+			$result_problematicas = $this->Problematica_model->get_problematicas();
+			if(count($result_problematicas)==0){
+			$data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
+			}else{
+			$data['arr_problematicas'] = $result_problematicas;
+			}
+			$result_evidencias = $this->Evidencia_model->get_evidencias();
+			if(count($result_evidencias)==0){
+			$data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
+			}else{
+			$data['arr_evidencias'] = $result_evidencias;
+			}
+			// echo "<pre>";print_r($this->cct[0]['id_cct']);die();
+			$result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
+			if(count($result_progsapoyo)==0){
+			$data['arr_progsapoyo'] = '';
+			}else{
+			$data['arr_progsapoyo'] = $result_progsapoyo;
+			}
+			$result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
+			if(count($result_apoyosreq)==0){
+			$data['arr_apoyosreq'] = array(	'-1' => 'Error recuperando los apoyosreq' );
+			}else{
+			$data['arr_apoyosreq'] = $result_apoyosreq;
+			}
+			$result_ambitos = $this->Ambito_model->get_ambitos();
+			if(count($result_ambitos)==0){
+			$data['arr_ambitos'] = array(	'-1' => 'Error recuperando los ambitos' );
+			}else{
+			$data['arr_ambitos'] = $result_ambitos;
+			}
+
+		$data3 = array();
+		$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
+		$data3['arr_indicadores'] = $arr_indicadoresxct;
+		// echo "<pre>";print_r($arr_avances);die();
+		$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
+		$data['tab_indicadores'] = $string_view_indicadores;
+
+		$data4 = array();
+		$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
+		$data['tab_instructivo'] = $string_view_instructivo;
+
+		$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
+		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
+		$data['turno'] = $this->cct[0]['turno_single'];
+		$data['cct'] = $this->cct[0]['cve_centro'];
+
+		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
+		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
+		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
+
+		Utilerias::pagina_basica_rm($this, "ruta/rutademejora/index", $data);
+	}
+
+	public function modal_recomendacion(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+
+		$strView = $this->load->view("ruta/modals_new/modal_ruta", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => '<i class="far fa-lightbulb"></i> Recomendación');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function modal_mision(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$data['mision'] = $mision;
+
+		$strView = $this->load->view("ruta/modals_new/modal_mision", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => '<i class="fas fa-flag"></i> Misión');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function tabla_rm(){
+		if(Utilerias::haySesionAbiertacct($this)){
+				$data = array();
+				$this->cct = Utilerias::get_cct_sesion($this);
+				$id_cct = $this->cct[0]['id_cct'];
+				$tam = 0;
+				$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+
+				$data['rutas'] = $rutas;
+				$data['tam'] = $tam;
+
+
+				$strView = $this->load->view("ruta/rutademejora/tabla_rm", $data, TRUE);
+
+				$response = array('strView' => $strView);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+		}else{
+			redirect('Rutademejora/index');
+		}
+	}
+
+	public function eliminaEvidencia(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		// echo"<pre>";  print_r($path_archivo);die();
+
+		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
+		unlink($path_archivo);
+		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function tabla_up(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_cct = $this->cct[0]['id_cct'];
+			$datos = $this->input->post('orden');
+			for($i = 0; $i < count($datos); $i++){
+				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
+			}
+
+
+			$id_cct = $this->cct[0]['id_cct'];
+			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
+		}else{
+			redirect('Rutademejora/index');
+		}
+	}
+
+	public function modal_prioridad(){
+		$data = array();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_nivel = $this->cct[0]['nivel'];
+		// $idtemaprioritario = $this->input->post('idtemaprioritario');
+		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+		$data['prioridades'] = $result_prioridades;
+		// $data['idtemaprioritario'] = $idtemaprioritario;
+
+		$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => 'Agrega prioridad');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function agregarObjetivo(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		// echo "<pre>";
+		// print_r($_POST);
+		// print_r($_FILES);
+		// die();
+		$id_tprioritario = $this->input->post("id_tprioritario");
+		$id_cct = $this->cct[0]['id_cct'];
+		$id_prioridad = $this->input->post('id_prioridad');
+		$objetivo = $this->input->post('objetivo');
+		$otra_fecha = $this->input->post('otra_fecha');
+
+		// echo "<pre>";
+		// print_r($_POST);
+		// die();
+
+		// if($id_tprioritario == 0){
+		// 		$estatus = $this->Rutamejora_model->insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad);
+		// }else{
+			$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario);
+		// }
+
+		$response = array('estatus' => $estatus['status'], 'idtemaprioritario' =>$estatus['idtemaprioritario']);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function actualizarObjetivo(){
+
+		$id_objetivo = $this->input->post('id_objetivo');
+		$objetivo = $this->input->post('objetivo');
+		// echo $objetivo;die();
+		$estatus = $this->Rutamejora_model->actualizaObjetivo($id_objetivo, $objetivo);
+
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+// get
+	public function getObjetivos(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+
+		$id_tprioritario = $this->input->post('id_tpriotario');
+		$idprioridad = $this->input->post('id_prioridad');
+
+		// echo "<pre>";print_r($_POST);die();
+
+		$id_cct = $this->cct[0]['id_cct'];
+		$orden = 0;
+		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
+		// echo "<pre>";print_r($datos);die();
+		$idobjetivo = 0;
+		if(count($datos) == 0){
+				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
+			<thead>
+				<tr class='info'>
+					<th id='idrutamtema' hidden>
+						<center>id</center>
+					</th>
+					<th id='num_rutamtema' style='width:5%; vertical-align:middle;'>
+						<center>#</center>
+					</th>
+					<th id='des_rutamtema' style='width:75%; vertical-align:middle;' >
+						<center>Objetivos y metas</center>
+					</th>
+					<th id='op_rutamtema' style='width:20%'>
+						<center>Opciones</center>
+					</th>
+				</tr>
+			</thead>
+			<tbody>";
+
+				$tabla .= "<tr>
+					<td colspan='4'>Sin datos que mostrar</td>
+				</tr>";
+
+			$tabla .= "</tbody></table>";
+		}else{
+				$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
+			<thead>
+				<tr class='info'>
+					<th id='idrutamtema' hidden>
+						<center>id</center>
+					</th>
+					<th id='num_rutamtema' style='width:5%; vertical-align:middle;%' rowspan='2'>
+						<center>#</center>
+					</th>
+					<th id='des_rutamtema' style='width:65%; vertical-align:middle;' rowspan='2'>
+						<center>Objetivos y metas</center>
+					</th>
+					<th colspan='2'>
+						<center>Evidencias</center>
+					</th>
+				</tr>
+				<tr>
+					<th id='evidencia_inico' style='width:15%'>
+						<center>Antes</center>
+					</th>
+					<th id='evidencia_fin' style='width:15%'>
+						<center>Despues</center>
+					</th>
+				</tr>
+			</thead>
+			<tbody>";
+
+			foreach ($datos as $dato) {
+				// echo "<pre>";print_r($dato);die();
+				$orden = $orden +1;
+				$idobjetivo = $dato['id_objetivo'];
+
+				// echo "Entramos al IF";die();
+				$tabla .= "<tr>
+					<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
+					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
+					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
+					<td>
+						<div class='text-center'>
+
+							<div style='margin-bottom: 10px;'>
+								<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+												onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+									<i class='fas fa-times-circle'></i>
+								</button>
+
+								<img id='preview{$dato['id_objetivo']}'
+										 src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px'
+										 class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
+							</div>
+
+							<span class='btn btn-primary btn-file'>
+								 <i class='fas fa-paperclip'></i>
+								 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+								 		<input type='file' id='imgIni' name='arch1'
+										onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencia al inicio de su objetivo'>
+								 </form>
+							</span>
+						</div>
+					</td>
+
+					<td>
+						<div class='text-center'>
+
+							<div style='margin-bottom: 10px;'>
+								<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+												onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+									<i class='fas fa-times-circle'></i>
+								</button>
+
+								<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail'
+								onclick='imgPreviewFin({$dato['id_objetivo']})' />
+							</div>
+
+							<span class='btn btn-primary btn-file'>
+								 <i class='fas fa-paperclip'></i>
+								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
+								 </form>
+							</span>
+						</div>
+					</td>
+				</tr>";
+
+			}
+
+			$tabla .= "</tbody></table>";
+		}
+
+		$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+
+
+	public function modal_actividades(){
+		$strView = $this->load->view("ruta/modals_new/modal_actividades", array(), TRUE);
+
+		$response = array('strView' => $strView, 'titulo' => 'Edición de prioridad del Sistema Básico de Mejora');
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getsubEspecial(){
+		$id_prioridad = $this->input->post('idprioridad');
+		$datos = $this->Rutamejora_model->getSubprioridad($id_prioridad);
+		$option = "<option value='0'>SELECCIONE</option>";
+		foreach ($datos as $dato) {
+			$option .="<option value='{$dato['id_subprioridad']}'>{$dato['subprioridad']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
+	}
+
+	public function llenaIndicador(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_nivel = $this->cct[0]['nivel'];
+		$id_prioridad = $this->input->post('id_prioridad');
+		$id_subprioridad = $this->input->post('id_subprioridad');
+
+		if ($id_nivel == 'PRIMARIA') {
+			$id_nivel = 4;
+		}
+
+		if ( isset( $_POST['id_subprioridad'] ) ) {
+			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad);
+		}else {
+			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, 0);
+		}
+
+		$option = "<option selected='selected' value='0'>SELECCIONAR</option>";
+		foreach ($datos as $dato) {
+			$option .="<option value='{$dato['id_indicador']}'>{$dato['indicador']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getMetrica(){
+		$id_indicador = $this->input->post('id_indicador');
+
+		$datos = $this->Rutamejora_model->getMetricas($id_indicador);
+		$option = "<option value='0'>SELECCIONE</option>";
+		foreach ($datos as $dato) {
+			// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
+			$option .="<option value=''>{$dato['formula']}</option>";
+		}
+
+		$response = array('stroption' => $option);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
+	}
+
+	public function grabarTema(){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
+		$id_cct = $this->cct[0]['id_cct'];
+
+		$id_tprioritario = $this->input->post('id_tprioritario');
+		$problematica = $this->input->post('problematica');
+		$evidencia = $this->input->post('evidencias');
+		$comentario_dir = $this->input->post('txt_rm_obs_direc');
+
+
+		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+
+
+		$estatus = true;
+
+		$response = array('estatus' => $estatus);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function btnEditar(){
+		$id_objetivo = $this->input->post('id_objetivo');
+		$id_tprioritario = $this->input->post('id_tprioritario'); // este dato no viene
+
+		$datos = $this->Rutamejora_model->getObjetivo($id_objetivo)[0];
+// echo "<pre>";print_r($datos); die();
+
+		$response = array('datos' => $datos);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function btnEliminar(){
+		$id_objetivo = $this->input->post('id_objetivo');
+
+		// echo $id_objetivo;die();
+		$datos = $this->Rutamejora_model->borrarObjetivo($id_objetivo);
+
+		$response = array('datos' => $datos);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	//Edicion/incerción de datos
+	public function get_datos_edith_tp(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$id_tprioritario = $this->input->post('id_tprioritario');
+			$titulo = $this->input->post('accion');
+
+			$id_nivel = $this->cct[0]['nivel'];
+			if ($id_nivel == 'PRIMARIA') {
+				$id_nivel = 4;
+			}
+			// echo "<pre>";
+			// print_r($_POST);
+			// die();
+			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
+			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
+
+			// echo "<pre>";print_r($datos);die();
+
+			$data['prioridad'] = $datos[0]['id_prioridad'];
+			$data['subprioridad'] = $datos[0]['id_subprioridad'];
+			$data['problematica'] = $datos[0]['otro_problematica'];
+			$data['evidencia'] = $datos[0]['otro_evidencia'];
+			$data['director'] = $datos[0]['obs_direc'];
+			$data['supervisor'] = $datos[0]['obs_supervisor'];
+			// $data['path'] = $datos[0]['path_evidencia'];
+			$data['t_objetivos'] = "tabla";
+			$data['prioridades'] = $result_prioridades;
+			$data['idtemaprioritario'] = $id_tprioritario;
+
+			$indicadores = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
+			$data['indicadores'] = $indicadores;
+
+			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
+			$data['subprioridades'] = $datos;
+
+			// echo "<pre>";
+			// print_r($datos[0]['id_prioridad']);
+			// die();
+
+			// $indicador = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
+			//
+			// $data['indicadores'] = $indicador;
+			// $data['id_indicador'] = $indicador[0]['id_indicador'];
+			//
+			// $metrica = $this->Rutamejora_model->getMetricas($data['id_indicador']);
+			// $data['metricas'] = $metrica;
+			//
+			// echo "<pre>";
+			// print_r($data);
+			// die();
+
+			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
+
+			$head = 'EDITAR LÍNEA DE ACCIÓN: ';
+			$head .= $titulo;
+
+			$response = array('strView' => $strView, 'titulo' => $head);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}else{
+			redirect('Rutademejora/index');
+		}
+	}
+
+	public function cargarEvidencia($id_objetivo, $id_tprioritario){
+		// echo "<pre>";print_r($_FILES);die();
+		// echo "<pre>";print_r($id_objetivo);echo "<br>"; print_r($id_tprioritario);die();
+
+		$nombre_archivo = str_replace(" ", "_", $_FILES['arch1']['name']);
+		// echo "<pre>";print_r($nombre_archivo);die();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+
+		if ( $nombre_archivo != '' ) {
+			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
+			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
+			// echo "<pre>";print_r($ruta_archivos_save);die();
+			$ev_obj = $this->Rutamejora_model->evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
+			// echo "<pre>";print_r($ev_obj);die();
+
+			if(!is_dir($ruta_archivos)){
+					mkdir($ruta_archivos, 0777, true);
+				}
+
+				$_FILES['userFile']['name']     = $_FILES['arch1']['name'];
+				$_FILES['userFile']['type']     = $_FILES['arch1']['type'];
+				$_FILES['userFile']['tmp_name'] = $_FILES['arch1']['tmp_name'];
+				$_FILES['userFile']['error']    = $_FILES['arch1']['error'];
+				$_FILES['userFile']['size']     = $_FILES['arch1']['size'];
+
+				$uploadPath              = $ruta_archivos;
+				$config['upload_path']   = $uploadPath;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('userFile')) {
+						$fileData = $this->upload->data();
+						$str_view = true;
+				}
+			$ev_obj = true;
+		}
+
+		$response = array('evidencias' => $ev_obj);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function cargarEvidenciaFin($id_objetivo, $id_tprioritario){
+		// echo "<pre>";print_r($_FILES);die();
+		// echo "<pre>";print_r($id_objetivo);echo "<br>"; print_r($id_tprioritario);die();
+		$nombre_archivo = str_replace(" ", "_", $_FILES['arch2']['name']);
+		// echo "<pre>";print_r($nombre_archivo);die();
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$id_cct = $this->cct[0]['id_cct'];
+
+		if ( $nombre_archivo != '' ) {
+			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
+			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
+			// echo "<pre>";print_r($ruta_archivos_save);die();
+			$ev_obj = $this->Rutamejora_model->evidenciaObjFin($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
+			// echo "<pre>";print_r($ev_obj);die();
+
+			if(!is_dir($ruta_archivos)){
+					mkdir($ruta_archivos, 0777, true);
+				}
+
+				$_FILES['userFile']['name']     = $_FILES['arch2']['name'];
+				$_FILES['userFile']['type']     = $_FILES['arch2']['type'];
+				$_FILES['userFile']['tmp_name'] = $_FILES['arch2']['tmp_name'];
+				$_FILES['userFile']['error']    = $_FILES['arch2']['error'];
+				$_FILES['userFile']['size']     = $_FILES['arch2']['size'];
+
+				$uploadPath              = $ruta_archivos;
+				$config['upload_path']   = $uploadPath;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('userFile')) {
+						$fileData = $this->upload->data();
+						$str_view = true;
+				}
+			$ev_obj = true;
+		}
+
+		$response = array('evidencias' => $ev_obj);
+
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	//Eliminar evidencia inicio
+	public function eliminaEvObjIn($id_objetivo){
+		$path_archivo = $this->Rutamejora_model->getEvidenciaInicio($id_objetivo)[0]['path_ev_inicio'];
+		// echo"<pre>";print_r($path_archivo);die();
+
+		if ($path_archivo != '' ) {
+				unlink($path_archivo);
+				$status = $this->Rutamejora_model->deleteEvidenciaObjIni($id_objetivo);
+		}
+
+		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+
+	//Eliminar evidencia fin
+	public function eliminaEvObjFin($id_objetivo){
+		$path_archivo = $this->Rutamejora_model->getEvidenciaFin($id_objetivo)[0]['path_ev_fin'];
+		// echo"<pre>";print_r($path_archivo);die();
+
+		if ($path_archivo != '' ) {
+				unlink($path_archivo);
+				$status = $this->Rutamejora_model->deleteEvidenciaObjFin($id_objetivo);
+		}
+
+		$response = array('status' => $status);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function getAccxObj(){
+		$id_objetivo = $this->input->post('id_objetivo');
+		// echo "<pre>";print_r($id_objetivo);die();
+		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
+
+		$tabla = "<div class='table-responsive'>
+								<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+								<thead>
+								<tr class=info>
+								<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+									<th colspan='2' scope='col'><center>Fecha</center></th>
+								</tr>
+								<tr>
+									<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+									<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+								</tr>
+							</thead>
+							<tbody>";
+						if(count($acciones) > 0){
+							foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+								<td hidden>{$accion['id_accion']}</td>
+								<td>{$accion['accion']}</td>
+								<td>{$accion['mat_insumos']}</td>
+								<td>{$accion['accion_f_inicio']}</td>
+								<td>{$accion['accion_f_termino']}</td>
+							</tr>";
+				}
+						}else{
+							$tabla .= "<tr>
+													<td colspan='5'>No hay datos por mostrar</td>
+												</tr>";
+						}
+
+			$tabla .= "</tbody>
+													</table>
+												</div>  ";
+
+		$response = array('acciones' => $acciones, 'tabla' => $tabla);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	function getTablaAccxObj($id_objetivo){
+		// echo "<pre>";print_r($id_objetivo);die();
+		$acciones = $this->Rutamejora_model->getAccxObj($id_objetivo);
+
+		$tabla = "<div class='table-responsive'>
+								<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+								<thead>
+								<tr class=info>
+								<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+									<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+									<th colspan='2' scope='col'><center>Fecha</center></th>
+								</tr>
+								<tr>
+									<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+									<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+								</tr>
+							</thead>
+							<tbody>";
+						if(count($acciones) > 0){
+							foreach ($acciones as $accion) {
+					$tabla .= "<tr>
+								<td hidden>{$accion['id_accion']}</td>
+								<td>{$accion['accion']}</td>
+								<td>{$accion['mat_insumos']}</td>
+								<td>{$accion['accion_f_inicio']}</td>
+								<td>{$accion['accion_f_termino']}</td>
+							</tr>";
+				}
+						}else{
+							$tabla .= "<tr>
+													<td colspan='5'>No hay datos por mostrar</td>
+												</tr>";
+						}
+
+			$tabla .= "</tbody>
+									</table>
+								</div>";
+
+		$response = array('acciones' => $acciones, 'tabla' => $tabla);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
 }// Rutamedejora

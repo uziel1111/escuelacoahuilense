@@ -37,13 +37,15 @@ class Riesgo extends CI_Controller {
 			}
 
 			// $sostenimientos = $this->Sostenimiento_model->all();
-			$arr_bimestres['1'] = '1er BIMESTRE';
-			$arr_bimestres['2'] = '2do BIMESTRE';
-			$arr_bimestres['3'] = '3er BIMESTRE';
-			$arr_bimestres['4'] = '4to BIMESTRE';
-			$arr_bimestres['5'] = '5to BIMESTRE';
+			$arr_bimestres['1'] = '1er Periodo';
+			$arr_bimestres['2'] = '2do Periodo';
+			$arr_bimestres['3'] = '3er Periodo';
+			// $arr_bimestres['4'] = '4to BIMESTRE';
+			// $arr_bimestres['5'] = '5to BIMESTRE';
 
-			$arr_ciclos['1'] = '2017 - 2018';
+			
+			$arr_ciclos['1'] = '2018-2019';
+			$arr_ciclos['2'] = '2017-2018';
 
 			// foreach ($sostenimientos as $sostenimiento){
 			// 	 $arr_sostenimientos[$sostenimiento['id_sostenimiento']] = $sostenimiento['sostenimiento'];
