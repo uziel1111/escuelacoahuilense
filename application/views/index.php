@@ -102,6 +102,7 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="fas fa-star"></i></span> TALIS <span class="h4 text-white badge badge-secondary bgcolor-4">Nuevo</span></a></li>							
 							<li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>
